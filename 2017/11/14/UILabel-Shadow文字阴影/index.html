@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="#方法1 1设置UILabel中的shadowColor和shadowOffset属性 问题:阴影没有模糊效果，并且无法设置阴影的宽度等等，比较具有局限性 #方法2 123456NSShadow *shadow = [[NSShadow alloc]init];  shadow.shadowBlurRadius = 1;  shadow.shadowOffset = CGSizeMake(0,1)">
+<meta name="description" content="#方法1 设置UILabel中的shadowColor和shadowOffset属性 问题:阴影没有模糊效果，并且无法设置阴影的宽度等等，比较具有局限性 #方法2 NSShadow *shadow = [[NSShadow alloc]init];  shadow.shadowBlurRadius = 1;  shadow.shadowOffset = CGSizeMake(0,1);  shad">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UILaebl_Shadow文字阴影">
 <meta property="og:url" content="http://yoursite.com/2017/11/14/UILabel-Shadow文字阴影/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="#方法1 1设置UILabel中的shadowColor和shadowOffset属性 问题:阴影没有模糊效果，并且无法设置阴影的宽度等等，比较具有局限性 #方法2 123456NSShadow *shadow = [[NSShadow alloc]init];  shadow.shadowBlurRadius = 1;  shadow.shadowOffset = CGSizeMake(0,1)">
+<meta property="og:description" content="#方法1 设置UILabel中的shadowColor和shadowOffset属性 问题:阴影没有模糊效果，并且无法设置阴影的宽度等等，比较具有局限性 #方法2 NSShadow *shadow = [[NSShadow alloc]init];  shadow.shadowBlurRadius = 1;  shadow.shadowOffset = CGSizeMake(0,1);  shad">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-11-14T08:56:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UILaebl_Shadow文字阴影">
-<meta name="twitter:description" content="#方法1 1设置UILabel中的shadowColor和shadowOffset属性 问题:阴影没有模糊效果，并且无法设置阴影的宽度等等，比较具有局限性 #方法2 123456NSShadow *shadow = [[NSShadow alloc]init];  shadow.shadowBlurRadius = 1;  shadow.shadowOffset = CGSizeMake(0,1)">
+<meta name="twitter:description" content="#方法1 设置UILabel中的shadowColor和shadowOffset属性 问题:阴影没有模糊效果，并且无法设置阴影的宽度等等，比较具有局限性 #方法2 NSShadow *shadow = [[NSShadow alloc]init];  shadow.shadowBlurRadius = 1;  shadow.shadowOffset = CGSizeMake(0,1);  shad">
 
 
 
@@ -388,10 +388,10 @@
 
       
         <p>#方法1</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">设置UILabel中的shadowColor和shadowOffset属性</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">设置UILabel中的shadowColor和shadowOffset属性</div></pre></td></tr></table></figure>
 <p>问题:阴影没有模糊效果，并且无法设置阴影的宽度等等，比较具有局限性</p>
 <p>#方法2</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">NSShadow *shadow = [[NSShadow alloc]init];</div><div class="line">  shadow.shadowBlurRadius = 1;</div><div class="line">  shadow.shadowOffset = CGSizeMake(0,1);</div><div class="line">  shadow.shadowColor = [UIColor colorWithWhite:0 alpha:0.6];</div><div class="line">  NSAttributedString *attText =  [[NSAttributedString alloc]initWithString:[NSString stringWithFormat:@&quot;%@浏览过&quot;,!model.read_num?@&quot;0&quot;:model.read_num] attributes:@&#123;NSShadowAttributeName:shadow&#125;];</div><div class="line">  cell.skimLab.attributedText = attText;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">NSShadow *shadow = [[NSShadow alloc]init];</div><div class="line">  shadow.shadowBlurRadius = 1;</div><div class="line">  shadow.shadowOffset = CGSizeMake(0,1);</div><div class="line">  shadow.shadowColor = [UIColor colorWithWhite:0 alpha:0.6];</div><div class="line">  NSAttributedString *attText =  [[NSAttributedString alloc]initWithString:[NSString stringWithFormat:@&quot;%@浏览过&quot;,!model.read_num?@&quot;0&quot;:model.read_num] attributes:@&#123;NSShadowAttributeName:shadow&#125;];</div><div class="line">  cell.skimLab.attributedText = attText;</div></pre></td></tr></table></figure>
 
       
     </div>

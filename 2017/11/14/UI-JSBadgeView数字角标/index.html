@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="使用方法1234567891011121314//在父控件上显示，//显示的位置TopRight  self.badgeView = [[JSBadgeView alloc]initWithParentView:parentView alignment:JSBadgeViewAlignmentTopRight];  //位置  self.badgeView.badgePositionAdjustm">
+<meta name="description" content="使用方法//在父控件上显示，//显示的位置TopRight  self.badgeView = [[JSBadgeView alloc]initWithParentView:parentView alignment:JSBadgeViewAlignmentTopRight];  //位置  self.badgeView.badgePositionAdjustment = CGPointMake(-">
 <meta name="keywords" content="UI,iOS,JSBadge">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UI_JSBadgeView数字角标">
 <meta property="og:url" content="http://yoursite.com/2017/11/14/UI-JSBadgeView数字角标/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="使用方法1234567891011121314//在父控件上显示，//显示的位置TopRight  self.badgeView = [[JSBadgeView alloc]initWithParentView:parentView alignment:JSBadgeViewAlignmentTopRight];  //位置  self.badgeView.badgePositionAdjustm">
+<meta property="og:description" content="使用方法//在父控件上显示，//显示的位置TopRight  self.badgeView = [[JSBadgeView alloc]initWithParentView:parentView alignment:JSBadgeViewAlignmentTopRight];  //位置  self.badgeView.badgePositionAdjustment = CGPointMake(-">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-11-14T09:27:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UI_JSBadgeView数字角标">
-<meta name="twitter:description" content="使用方法1234567891011121314//在父控件上显示，//显示的位置TopRight  self.badgeView = [[JSBadgeView alloc]initWithParentView:parentView alignment:JSBadgeViewAlignmentTopRight];  //位置  self.badgeView.badgePositionAdjustm">
+<meta name="twitter:description" content="使用方法//在父控件上显示，//显示的位置TopRight  self.badgeView = [[JSBadgeView alloc]initWithParentView:parentView alignment:JSBadgeViewAlignmentTopRight];  //位置  self.badgeView.badgePositionAdjustment = CGPointMake(-">
 
 
 
@@ -388,8 +388,8 @@
       
 
       
-        <h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">//在父控件上显示，</div><div class="line">//显示的位置TopRight  </div><div class="line">self.badgeView = [[JSBadgeView alloc]initWithParentView:parentView alignment:JSBadgeViewAlignmentTopRight];  </div><div class="line">//位置  </div><div class="line">self.badgeView.badgePositionAdjustment = CGPointMake(-15, 10);</div><div class="line">//设置tag要辨别    </div><div class="line">self.badgeView.tag = 10086;</div><div class="line"></div><div class="line">//背景色</div><div class="line">self.badgeView.badgeBackgroundColor = [UIColor redColor];  </div><div class="line">//没有反光面</div><div class="line">self.badgeView.badgeOverlayColor = [UIColor clearColor];  </div><div class="line">//外圈的颜色，默认是白色    </div><div class="line">self.badgeView.badgeStrokeColor = [UIColor redColor];</div></pre></td></tr></table></figure>
-<h1 id="设置数字"><a href="#设置数字" class="headerlink" title="设置数字"></a>设置数字</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">//1、用字符</div><div class="line">self.badgeView.badgeText = @&quot;1&quot;;  </div><div class="line">//2、如果不显示就设置为空</div><div class="line">self.badgeView.badgeText = nil; </div><div class="line"></div><div class="line">//当更新数字时，最好刷新，不然由于frame固定的，数字为2位时，红圈变形  </div><div class="line">[self.badgeView setNeedsLayout];</div></pre></td></tr></table></figure>
+        <h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">//在父控件上显示，</div><div class="line">//显示的位置TopRight  </div><div class="line">self.badgeView = [[JSBadgeView alloc]initWithParentView:parentView alignment:JSBadgeViewAlignmentTopRight];  </div><div class="line">//位置  </div><div class="line">self.badgeView.badgePositionAdjustment = CGPointMake(-15, 10);</div><div class="line">//设置tag要辨别    </div><div class="line">self.badgeView.tag = 10086;</div><div class="line"></div><div class="line">//背景色</div><div class="line">self.badgeView.badgeBackgroundColor = [UIColor redColor];  </div><div class="line">//没有反光面</div><div class="line">self.badgeView.badgeOverlayColor = [UIColor clearColor];  </div><div class="line">//外圈的颜色，默认是白色    </div><div class="line">self.badgeView.badgeStrokeColor = [UIColor redColor];</div></pre></td></tr></table></figure>
+<h1 id="设置数字"><a href="#设置数字" class="headerlink" title="设置数字"></a>设置数字</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">//1、用字符</div><div class="line">self.badgeView.badgeText = @&quot;1&quot;;  </div><div class="line">//2、如果不显示就设置为空</div><div class="line">self.badgeView.badgeText = nil; </div><div class="line"></div><div class="line">//当更新数字时，最好刷新，不然由于frame固定的，数字为2位时，红圈变形  </div><div class="line">[self.badgeView setNeedsLayout];</div></pre></td></tr></table></figure>
       
     </div>
     

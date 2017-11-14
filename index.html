@@ -392,7 +392,7 @@
       
         
           
-          使用方法1234567891011121314//在父控件上显示，//显示的位置TopRight  self.badgeView = [[JSBadgeView alloc]initWithParentView:parentView alignment:JSBadgeViewAlignmentTop
+          使用方法//在父控件上显示，//显示的位置TopRight  self.badgeView = [[JSBadgeView alloc]initWithParentView:parentView alignment:JSBadgeViewAlignmentTopRight];  //位置  self
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -563,10 +563,10 @@
         
           
           #方法1
-1设置UILabel中的shadowColor和shadowOffset属性
+设置UILabel中的shadowColor和shadowOffset属性
 问题:阴影没有模糊效果，并且无法设置阴影的宽度等等，比较具有局限性
 #方法2
-123456NSShadow *shadow = [[NSShadow alloc]init];  shadow.shadowBlur
+NSShadow *shadow = [[NSShadow alloc]init];  shadow.shadowBlurRadius 
           ...
           <!--noindex-->
           <div class="post-button text-center">
