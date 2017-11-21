@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="ReactNative">
+<meta name="description" content="需求 分享页面中，我们经常会看到在页面的顶端或者底部遇到有【打开App】或者【下载App】这样的按钮。 比较友好的产品，会做设备识别，以及检测APP是否安装，来做打开或者下载App 的需求但是在微信中，这方面做的比较恶心，微信下面几乎是全面屏蔽了唤起原生App 的功能  Universal Link在iOS 9以后，苹果推出了Universal Link 这个概念，解决了使用A标签，以及iFram">
 <meta property="og:type" content="article">
 <meta property="og:title" content="App_微信页面中唤起唤起App">
 <meta property="og:url" content="http://yoursite.com/2017/11/21/iOS-Func-微信页面中唤起唤起App/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="ReactNative">
+<meta property="og:description" content="需求 分享页面中，我们经常会看到在页面的顶端或者底部遇到有【打开App】或者【下载App】这样的按钮。 比较友好的产品，会做设备识别，以及检测APP是否安装，来做打开或者下载App 的需求但是在微信中，这方面做的比较恶心，微信下面几乎是全面屏蔽了唤起原生App 的功能  Universal Link在iOS 9以后，苹果推出了Universal Link 这个概念，解决了使用A标签，以及iFram">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-21T05:24:33.000Z">
+<meta property="og:updated_time" content="2017-11-21T05:34:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="App_微信页面中唤起唤起App">
-<meta name="twitter:description" content="ReactNative">
+<meta name="twitter:description" content="需求 分享页面中，我们经常会看到在页面的顶端或者底部遇到有【打开App】或者【下载App】这样的按钮。 比较友好的产品，会做设备识别，以及检测APP是否安装，来做打开或者下载App 的需求但是在微信中，这方面做的比较恶心，微信下面几乎是全面屏蔽了唤起原生App 的功能  Universal Link在iOS 9以后，苹果推出了Universal Link 这个概念，解决了使用A标签，以及iFram">
 
 
 
@@ -376,7 +376,35 @@
       
 
       
-        
+        <h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><blockquote>
+<p>分享页面中，我们经常会看到在页面的顶端或者底部遇到有【打开App】或者【下载App】这样的按钮。</p>
+<p>比较友好的产品，会做设备识别，以及检测APP是否安装，来做打开或者下载App 的需求<br>但是在微信中，这方面做的比较恶心，微信下面几乎是全面屏蔽了唤起原生App 的功能</p>
+</blockquote>
+<h1 id="Universal-Link"><a href="#Universal-Link" class="headerlink" title="Universal Link"></a>Universal Link</h1><p>在iOS 9以后，苹果推出了Universal Link 这个概念，解决了使用A标签，以及iFrame 的弊端。WWDC2015 Session 509 有介绍,通过Universal Link，将App 与网页端建立连接桥，可以从Safari 或者其他前端浏览器来识别并唤醒App，甚至是微信环境下也可以冲破障碍</p>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><h2 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h2><h3 id="服务器配置"><a href="#服务器配置" class="headerlink" title="服务器配置"></a>服务器配置</h3><blockquote>
+<p>准备独立域名<br>一级域名，二级域名均可。<br>SSL 证书</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">为服务器配置HTTPS 用的SSL 证书</div><div class="line">上传签名好的JSON 配置文件</div></pre></td></tr></table></figure>
+<h2 id="服务器配置代码"><a href="#服务器配置代码" class="headerlink" title="服务器配置代码"></a>服务器配置代码</h2><p>新建一个JSON文件，不需要后缀名，内容输入以下代码：</p>
+<blockquote>
+<p>appID:相关内容可以在Developer 中心找到相关的内容。如图，前半部分为Prefix 后半部分为ID，即你的App 的bundle id，两者通过.相连<br>paths:用来唤醒App 所需要指定的JSON文件在服务器中的路径。用”/* “ 是根目录，而/html 则是指html目录下的<br>注意：这里的AppID中前半部分，在App 转让主体后会改变，需重新更新<br>填好后保存为apple-app-site-association 名，上传到域名指向的服务器根目录。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;applinks&quot;: &#123;</div><div class="line">        &quot;apps&quot;: [],</div><div class="line">        &quot;details&quot;: [</div><div class="line">            &#123;</div><div class="line">                &quot;appID&quot;: &quot;5B5Q4xxxx.com.xxxx.xxxx&quot;,</div><div class="line">                &quot;paths&quot;: [ &quot;/html/1/*&quot;, &quot;/*&quot;]</div><div class="line">            &#125;,</div><div class="line">        ]</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="App配置"><a href="#App配置" class="headerlink" title="App配置"></a>App配置</h2><h2 id="工程文件配置"><a href="#工程文件配置" class="headerlink" title="工程文件配置"></a>工程文件配置</h2><blockquote>
+<p>在工程文件中，找到Targets - Capabilities - Associated Domains 将开关选为On，并添加你的域名，格式为applinks:你的域名.com</p>
+</blockquote>
+<p>##iOS 移动端的代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray * _Nullable))restorationHandler</div><div class="line">&#123;</div><div class="line">    if ([userActivity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) &#123;</div><div class="line">        NSString *url = userActivity.webpageURL.description;</div><div class="line">        // 这里可以通过拆分url 来传入参数，达到跳转原生页面的功能，如跳转某商品页</div><div class="line">        [UIApplication sharedApplication] openURL:webpageURL];</div><div class="line">    &#125;</div><div class="line">    return YES;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="h5网页配置"><a href="#h5网页配置" class="headerlink" title="h5网页配置"></a>h5网页配置</h2><blockquote>
+<p>h5网页中对需要唤起App 的按钮或者控件添加点击事件，事件的函数代码如下:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">function wakeUpApp()&#123;</div><div class="line">    if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) &#123;</div><div class="line">        var loadDateTime = new Date();</div><div class="line">        window.setTimeout(function() &#123;</div><div class="line">            var timeOutDateTime = new Date();</div><div class="line">            if (timeOutDateTime - loadDateTime &lt; 5000) &#123;</div><div class="line">                window.location.href = &quot;http://a.app.qq.com/o/simple.jsp?pkgname=你的应用宝BundleID&quot;;</div><div class="line">            &#125; else &#123;</div><div class="line">                window.close();</div><div class="line">            &#125;</div><div class="line">        &#125;,</div><div class="line">            25);</div><div class="line">        window.location.href = &quot;https://yourdomainname.com/&quot;;          </div><div class="line">    &#125; else if (navigator.userAgent.match(/android/i)) &#123;</div><div class="line">        var state = null;</div><div class="line">        try &#123;</div><div class="line">            state = window.open(&quot;apps custom url schemes &quot;, &apos;_blank&apos;);</div><div class="line">        &#125; catch(e) &#123;&#125;</div><div class="line">        if (state) &#123;</div><div class="line">            window.close();</div><div class="line">        &#125; else &#123;</div><div class="line">            window.location.href = &quot;要跳转的页面URL&quot;;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注：代码中 yourdomainname.com 还可以后面添加 /goodid/123456 之类的属性id后缀，用来传递事件类型和id，方便移动端做更丰富的功能需求，比如通过goodid 识别要做的下一步动作是打开商品id 为123456 的商品详情页，等等。</p>
+<p>配置完成，查看是否能唤起App，也可以通过如下图中，输入域名，长按来唤起App 做验证。<br>至此，大功告成。</p>
+<p>只能在iOS 9环境及以上实现该功能。iOS 8或者以下，只能采取老式的跳转至应用宝来实现</p>
+</blockquote>
+
       
     </div>
     
@@ -460,8 +488,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -523,6 +560,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#需求"><span class="nav-number">1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Universal-Link"><span class="nav-number">2.</span> <span class="nav-text">Universal Link</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现"><span class="nav-number">3.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器"><span class="nav-number">3.1.</span> <span class="nav-text">服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器配置"><span class="nav-number">3.1.1.</span> <span class="nav-text">服务器配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器配置代码"><span class="nav-number">3.2.</span> <span class="nav-text">服务器配置代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#App配置"><span class="nav-number">3.3.</span> <span class="nav-text">App配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工程文件配置"><span class="nav-number">3.4.</span> <span class="nav-text">工程文件配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#h5网页配置"><span class="nav-number">3.5.</span> <span class="nav-text">h5网页配置</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
