@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="runloop - 检测方案runloop 的状态typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) &amp;#123;    kCFRunLoopEntry         = (1UL &amp;lt;&amp;lt; 0), // 即将进入Loop    kCFRunLoopBeforeTimers  = (1UL &amp;lt;&amp;lt; 1), // 即将处理 T">
+<meta name="description" content="runloop - 检测方案原文文档 runloop 的状态typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) &amp;#123;    kCFRunLoopEntry         = (1UL &amp;lt;&amp;lt; 0), // 即将进入Loop    kCFRunLoopBeforeTimers  = (1UL &amp;lt;&amp;lt; 1), // 即">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS-Func-检测主线程卡顿的问题">
 <meta property="og:url" content="http://yoursite.com/2017/11/22/iOS-Func-检测主线程卡顿的问题/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="runloop - 检测方案runloop 的状态typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) &amp;#123;    kCFRunLoopEntry         = (1UL &amp;lt;&amp;lt; 0), // 即将进入Loop    kCFRunLoopBeforeTimers  = (1UL &amp;lt;&amp;lt; 1), // 即将处理 T">
+<meta property="og:description" content="runloop - 检测方案原文文档 runloop 的状态typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) &amp;#123;    kCFRunLoopEntry         = (1UL &amp;lt;&amp;lt; 0), // 即将进入Loop    kCFRunLoopBeforeTimers  = (1UL &amp;lt;&amp;lt; 1), // 即">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-22T14:15:18.000Z">
+<meta property="og:updated_time" content="2017-11-22T14:16:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS-Func-检测主线程卡顿的问题">
-<meta name="twitter:description" content="runloop - 检测方案runloop 的状态typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) &amp;#123;    kCFRunLoopEntry         = (1UL &amp;lt;&amp;lt; 0), // 即将进入Loop    kCFRunLoopBeforeTimers  = (1UL &amp;lt;&amp;lt; 1), // 即将处理 T">
+<meta name="twitter:description" content="runloop - 检测方案原文文档 runloop 的状态typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) &amp;#123;    kCFRunLoopEntry         = (1UL &amp;lt;&amp;lt; 0), // 即将进入Loop    kCFRunLoopBeforeTimers  = (1UL &amp;lt;&amp;lt; 1), // 即">
 
 
 
@@ -376,7 +376,8 @@
       
 
       
-        <h1 id="runloop-检测方案"><a href="#runloop-检测方案" class="headerlink" title="runloop - 检测方案"></a>runloop - 检测方案</h1><h2 id="runloop-的状态"><a href="#runloop-的状态" class="headerlink" title="runloop 的状态"></a>runloop 的状态</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) </div><div class="line">&#123;</div><div class="line">    kCFRunLoopEntry         = (1UL &lt;&lt; 0), // 即将进入Loop</div><div class="line">    kCFRunLoopBeforeTimers  = (1UL &lt;&lt; 1), // 即将处理 Timer</div><div class="line">    kCFRunLoopBeforeSources = (1UL &lt;&lt; 2), // 即将处理 Source</div><div class="line">    kCFRunLoopBeforeWaiting = (1UL &lt;&lt; 5), // 即将进入休眠</div><div class="line">    kCFRunLoopAfterWaiting  = (1UL &lt;&lt; 6), // 刚从休眠中唤醒</div><div class="line">    kCFRunLoopExit          = (1UL &lt;&lt; 7), // 即将退出Loop</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+        <h1 id="runloop-检测方案"><a href="#runloop-检测方案" class="headerlink" title="runloop - 检测方案"></a>runloop - 检测方案</h1><p><a href="https://juejin.im/post/59edb7596fb9a0450d103f34" target="_blank" rel="external">原文文档</a></p>
+<h2 id="runloop-的状态"><a href="#runloop-的状态" class="headerlink" title="runloop 的状态"></a>runloop 的状态</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) </div><div class="line">&#123;</div><div class="line">    kCFRunLoopEntry         = (1UL &lt;&lt; 0), // 即将进入Loop</div><div class="line">    kCFRunLoopBeforeTimers  = (1UL &lt;&lt; 1), // 即将处理 Timer</div><div class="line">    kCFRunLoopBeforeSources = (1UL &lt;&lt; 2), // 即将处理 Source</div><div class="line">    kCFRunLoopBeforeWaiting = (1UL &lt;&lt; 5), // 即将进入休眠</div><div class="line">    kCFRunLoopAfterWaiting  = (1UL &lt;&lt; 6), // 刚从休眠中唤醒</div><div class="line">    kCFRunLoopExit          = (1UL &lt;&lt; 7), // 即将退出Loop</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <h2 id="耗时进行判断"><a href="#耗时进行判断" class="headerlink" title="耗时进行判断"></a>耗时进行判断</h2><ul>
 <li>利用 kCFRunLoopBeforeSources 和 kCFRunLoopAfterWaiting 这两个状态之间的耗时</li>
 <li>进行判断是否有太多事件处理导致出现了卡顿</li>
@@ -465,6 +466,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2017/11/22/iOS-Func-Crash日志/" rel="prev" title="iOS-Func-Crash日志">
+                iOS-Func-Crash日志 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -540,7 +545,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -551,7 +556,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
