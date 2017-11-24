@@ -125,7 +125,7 @@
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
 <meta property="og:description" content="Protocol协议 协议 规定了用来实现某一特定功能所必须的方法和属性。任意能够满足协议要求的类型被称为遵循(conform)这个协议。类，结构体或枚举类型都可以遵循协议，并提供具体实现来完成协议定义的方法和功能  语法格式 语法  protol  OneProtocol&amp;#123;// 协议内容&amp;#125;  要使类遵循某个协议，需要在类型名称后加上协议名称，中间以冒号:分隔，作为类型定义的一">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-24T04:50:30.000Z">
+<meta property="og:updated_time" content="2017-11-24T05:01:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift-Grammar-Protocol协议">
 <meta name="twitter:description" content="Protocol协议 协议 规定了用来实现某一特定功能所必须的方法和属性。任意能够满足协议要求的类型被称为遵循(conform)这个协议。类，结构体或枚举类型都可以遵循协议，并提供具体实现来完成协议定义的方法和功能  语法格式 语法  protol  OneProtocol&amp;#123;// 协议内容&amp;#125;  要使类遵循某个协议，需要在类型名称后加上协议名称，中间以冒号:分隔，作为类型定义的一">
@@ -438,385 +438,48 @@
 <p>协议可以要求它的遵循者实现指定的构造器。<br>像书写普通的构造器那样，在协议的定义里写下构造器的声明，但不需要写花括号和构造器的实体，语法如下：</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">protocol SomeProtocol &#123;</div><div class="line">   init(someParameter: Int)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
 <p>实例</p>
-<p>protocol tcpprotocol {<br>   init(aprot: Int)<br>}</p>
-<pre><code>1
-2
-3
-</code></pre><p>四、协议构造器规定在类中的实现</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">protocol tcpprotocol &#123;</div><div class="line">   init(aprot: Int)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="四、协议构造器规定在类中的实现"><a href="#四、协议构造器规定在类中的实现" class="headerlink" title="四、协议构造器规定在类中的实现"></a>四、协议构造器规定在类中的实现</h1><blockquote>
 <p>你可以在遵循该协议的类中实现构造器，并指定其为类的指定构造器或者便利构造器。在这两种情况下，你都必须给构造器实现标上”required”修饰符：</p>
-<p>class SomeClass: SomeProtocol {<br>   required init(someParameter: Int) {<br>      // 构造器实现<br>   }<br>}</p>
-<p>protocol tcpprotocol {<br>   init(aprot: Int)<br>}</p>
-<p>class tcpClass: tcpprotocol {<br>   required init(aprot: Int) {<br>   }<br>}</p>
-<pre><code>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-</code></pre><p>施用required修饰符可以保证：所有的遵循该协议的子类，同样能为构造器规定提供一个显式的实现或继承实现。<br>如果一个子类重写了父类的指定构造器，并且该构造器遵循了某个协议的规定，那么该构造器的实现需要被同时标示required和override修饰符：</p>
-<p>protocol tcpprotocol {<br>    init(no1: Int)<br>}</p>
-<p>class mainClass {<br>    var no1: Int // 局部变量<br>    init(no1: Int) {<br>        self.no1 = no1 // 初始化<br>    }<br>}</p>
-<p>class subClass: mainClass, tcpprotocol {<br>    var no2: Int<br>    init(no1: Int, no2 : Int) {<br>        self.no2 = no2<br>        super.init(no1:no1)<br>    }<br>    // 因为遵循协议，需要加上”required”; 因为继承自父类，需要加上”override”<br>    required override convenience init(no1: Int)  {<br>        self.init(no1:no1, no2:0)<br>    }<br>}<br>let res = mainClass(no1: 20)<br>let show = subClass(no1: 30, no2: 50)</p>
-<p>print(“res is: (res.no1)”)<br>print(“res is: (show.no1)”)<br>print(“res is: (show.no2)”)</p>
-<pre><code>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-</code></pre><p>以上程序执行输出结果为：</p>
-<p>res is: 20<br>res is: 30<br>res is: 50</p>
-<pre><code>1
-2
-3
-</code></pre><p>五、协议类型</p>
-<p>尽管协议本身并不实现任何功能，但是协议可以被当做类型来使用。<br>协议可以像其他普通类型一样使用，使用场景:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">class SomeClass: SomeProtocol &#123;</div><div class="line">   required init(someParameter: Int) &#123;</div><div class="line">      // 构造器实现</div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">protocol tcpprotocol &#123;</div><div class="line">   init(aprot: Int)</div><div class="line">&#125;</div><div class="line"></div><div class="line">class tcpClass: tcpprotocol &#123;</div><div class="line">   required init(aprot: Int) &#123;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>施用required修饰符可以保证：所有的遵循该协议的子类，同样能为构造器规定提供一个显式的实现或继承实现。<br>如果一个子类重写了父类的指定构造器，并且该构造器遵循了某个协议的规定，那么该构造器的实现需要被同时标示required和override修饰符：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">protocol tcpprotocol &#123;</div><div class="line">    init(no1: Int)</div><div class="line">&#125;</div><div class="line"></div><div class="line">class mainClass &#123;</div><div class="line">    var no1: Int // 局部变量</div><div class="line">    init(no1: Int) &#123;</div><div class="line">        self.no1 = no1 // 初始化</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class subClass: mainClass, tcpprotocol &#123;</div><div class="line">    var no2: Int</div><div class="line">    init(no1: Int, no2 : Int) &#123;</div><div class="line">        self.no2 = no2</div><div class="line">        super.init(no1:no1)</div><div class="line">    &#125;</div><div class="line">    // 因为遵循协议，需要加上&quot;required&quot;; 因为继承自父类，需要加上&quot;override&quot;</div><div class="line">    required override convenience init(no1: Int)  &#123;</div><div class="line">        self.init(no1:no1, no2:0)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">let res = mainClass(no1: 20)</div><div class="line">let show = subClass(no1: 30, no2: 50)</div><div class="line"></div><div class="line">print(&quot;res is: \(res.no1)&quot;)</div><div class="line">print(&quot;res is: \(show.no1)&quot;)</div><div class="line">print(&quot;res is: \(show.no2)&quot;)</div><div class="line"></div><div class="line"></div><div class="line">以上程序执行输出结果为：</div><div class="line"></div><div class="line">res is: 20</div><div class="line">res is: 30</div><div class="line">res is: 50</div></pre></td></tr></table></figure>
+<h1 id="五、协议类型"><a href="#五、协议类型" class="headerlink" title="五、协议类型"></a>五、协议类型</h1><p>尽管协议本身并不实现任何功能，但是协议可以被当做类型来使用。<br>协议可以像其他普通类型一样使用，使用场景:</p>
 <pre><code>作为函数、方法或构造器中的参数类型或返回值类型
 作为常量、变量或属性的类型
 作为数组、字典或其他容器中的元素类型
-</code></pre><p>实例</p>
-<p>protocol Generator {<br>    associatedtype members<br>    func next() -&gt; members?<br>}</p>
-<p>var items = [10,20,30].makeIterator()<br>while let x = items.next() {<br>    print(x)<br>}</p>
-<p>for lists in [1,2,3].map( {i in i*5}) {<br>    print(lists)<br>}</p>
-<p>print([100,200,300])<br>print([1,2,3].map({i in i*10}))</p>
-<pre><code>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-</code></pre><p>以上程序执行输出结果为：</p>
-<p>10<br>20<br>30<br>5<br>10<br>15<br>[100, 200, 300]<br>[10, 20, 30]</p>
-<pre><code>1
-2
-3
-4
-5
-6
-7
-8
-</code></pre><p>六、在扩展中添加协议成员</p>
-<p>我们可以可以通过扩展来扩充已存在类型( 类，结构体，枚举等)。<br>扩展可以为已存在的类型添加属性，方法，下标脚本，协议等成员。</p>
-<p>protocol AgeClasificationProtocol {<br>   var age: Int { get }<br>   func agetype() -&gt; String<br>}</p>
-<p>class Person {<br>   let firstname: String<br>   let lastname: String<br>   var age: Int<br>   init(firstname: String, lastname: String) {<br>      self.firstname = firstname<br>      self.lastname = lastname<br>      self.age = 10<br>   }<br>}</p>
-<p>extension Person : AgeClasificationProtocol {<br>   func fullname() -&gt; String {<br>      var c: String<br>      c = firstname + “ “ + lastname<br>      return c<br>   }</p>
-<p>   func agetype() -&gt; String {<br>      switch age {<br>      case 0…2:<br>         return “Baby”<br>      case 2…12:<br>         return “Child”<br>      case 13…19:<br>         return “Teenager”<br>      case let x where x &gt; 65:<br>         return “Elderly”<br>      default:<br>         return “Normal”<br>      }<br>   }<br>}</p>
-<pre><code>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-</code></pre><p>七、协议的继承</p>
-<p>协议能够继承一个或多个其他协议，可以在继承的协议基础上增加新的内容要求。<br>协议的继承语法与类的继承相似，多个被继承的协议间用逗号分隔：</p>
-<p>protocol InheritingProtocol: SomeProtocol, AnotherProtocol {<br>    // 协议定义<br>}</p>
-<pre><code>1
-2
-3
-</code></pre><p>实例</p>
-<p>protocol Classa {<br>    var no1: Int { get set }<br>    func calc(sum: Int)<br>}</p>
-<p>protocol Result {<br>    func print(target: Classa)<br>}</p>
-<p>class Student2: Result {<br>    func print(target: Classa) {<br>        target.calc(1)<br>    }<br>}</p>
-<p>class Classb: Result {<br>    func print(target: Classa) {<br>        target.calc(5)<br>    }<br>}</p>
-<p>class Student: Classa {<br>    var no1: Int = 10</p>
-<pre><code>func calc(sum: Int) {
-    no1 -= sum
-    print(&quot;学生尝试 \(sum) 次通过&quot;)
-
-    if no1 &lt;= 0 {
-        print(&quot;学生缺席考试&quot;)
-    }
-}
-</code></pre><p>}</p>
-<p>class Player {<br>    var stmark: Result!</p>
-<pre><code>init(stmark: Result) {
-    self.stmark = stmark
-}
-
-func print(target: Classa) {
-    stmark.print(target)
-}
-</code></pre><p>}</p>
-<p>var marks = Player(stmark: Student2())<br>var marksec = Student()</p>
-<p>marks.print(marksec)<br>marks.print(marksec)<br>marks.print(marksec)<br>marks.stmark = Classb()<br>marks.print(marksec)<br>marks.print(marksec)<br>marks.print(marksec)</p>
-<pre><code>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-</code></pre><p>以上程序执行输出结果为：</p>
-<p>学生尝试 1 次通过<br>学生尝试 1 次通过<br>学生尝试 1 次通过<br>学生尝试 5 次通过<br>学生尝试 5 次通过<br>学生缺席考试<br>学生尝试 5 次通过<br>学生缺席考试</p>
-<pre><code>1
-2
-3
-4
-5
-6
-7
-8
-</code></pre><p>八、类专属协议</p>
-<p>你可以在协议的继承列表中,通过添加class关键字,限制协议只能适配到类（class）类型。<br>该class关键字必须是第一个出现在协议的继承列表中，其后，才是其他继承协议。格式如下：</p>
-<p>protocol SomeClassOnlyProtocol: class, SomeInheritedProtocol {<br>    // 协议定义<br>}</p>
-<pre><code>1
-2
-3
-</code></pre><p>实例</p>
-<p>protocol TcpProtocol {<br>    init(no1: Int)<br>}</p>
-<p>class MainClass {<br>    var no1: Int // 局部变量<br>    init(no1: Int) {<br>        self.no1 = no1 // 初始化<br>    }<br>}</p>
-<p>class SubClass: MainClass, TcpProtocol {<br>    var no2: Int<br>    init(no1: Int, no2 : Int) {<br>        self.no2 = no2<br>        super.init(no1:no1)<br>    }<br>    // 因为遵循协议，需要加上”required”; 因为继承自父类，需要加上”override”<br>    required override convenience init(no1: Int)  {<br>        self.init(no1:no1, no2:0)<br>    }<br>}</p>
-<p>let res = MainClass(no1: 20)<br>let show = SubClass(no1: 30, no2: 50)</p>
-<p>print(“res is: (res.no1)”)<br>print(“res is: (show.no1)”)<br>print(“res is: (show.no2)”)</p>
-<pre><code>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-</code></pre><p>以上程序执行输出结果为：</p>
-<p>res is: 20<br>res is: 30<br>res is: 50</p>
-<pre><code>1
-2
-3
-</code></pre><p>九、协议合成</p>
-<p>Swift 支持合成多个协议，这在我们需要同时遵循多个协议时非常有用。<br>语法格式如下：</p>
-<p>protocol Stname {<br>    var name: String { get }<br>}</p>
-<p>protocol Stage {<br>    var age: Int { get }<br>}</p>
-<p>struct Person: Stname, Stage {<br>    var name: String<br>    var age: Int<br>}</p>
-<p>func show(celebrator: Stname &amp; Stage) {<br>    print(“(celebrator.name) is (celebrator.age) years old”)<br>}</p>
-<p>let studname = Person(name: “Priya”, age: 21)<br>print(studname)</p>
-<p>let stud = Person(name: “Rehan”, age: 29)<br>print(stud)</p>
-<p>let student = Person(name: “Roshan”, age: 19)<br>print(student)</p>
-<pre><code>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-</code></pre><p>以上程序执行输出结果为：</p>
-<p>Person(name: “Priya”, age: 21)<br>Person(name: “Rehan”, age: 29)<br>Person(name: “Roshan”, age: 19)</p>
-<pre><code>1
-2
-3
-</code></pre><p>十、检验协议的一致性</p>
-<p>你可以使用is和as操作符来检查是否遵循某一协议或强制转化为某一类型。</p>
+</code></pre><blockquote>
+<p>实例</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">protocol Generator &#123;</div><div class="line">    associatedtype members</div><div class="line">    func next() -&gt; members?</div><div class="line">&#125;</div><div class="line"></div><div class="line">var items = [10,20,30].makeIterator()</div><div class="line">while let x = items.next() &#123;</div><div class="line">    print(x)</div><div class="line">&#125;</div><div class="line"></div><div class="line">for lists in [1,2,3].map( &#123;i in i*5&#125;) &#123;</div><div class="line">    print(lists)</div><div class="line">&#125;</div><div class="line"></div><div class="line">print([100,200,300])</div><div class="line">print([1,2,3].map(&#123;i in i*10&#125;))</div><div class="line"></div><div class="line"></div><div class="line">以上程序执行输出结果为：</div><div class="line"></div><div class="line">10</div><div class="line">20</div><div class="line">30</div><div class="line">5</div><div class="line">10</div><div class="line">15</div><div class="line">[100, 200, 300]</div><div class="line">[10, 20, 30]</div></pre></td></tr></table></figure>
+<h1 id="六、在扩展中添加协议成员"><a href="#六、在扩展中添加协议成员" class="headerlink" title="六、在扩展中添加协议成员"></a>六、在扩展中添加协议成员</h1><p>我们可以可以通过扩展来扩充已存在类型( 类，结构体，枚举等)。<br>扩展可以为已存在的类型添加属性，方法，下标脚本，协议等成员。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">protocol AgeClasificationProtocol &#123;</div><div class="line">   var age: Int &#123; get &#125;</div><div class="line">   func agetype() -&gt; String</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Person &#123;</div><div class="line">   let firstname: String</div><div class="line">   let lastname: String</div><div class="line">   var age: Int</div><div class="line">   init(firstname: String, lastname: String) &#123;</div><div class="line">      self.firstname = firstname</div><div class="line">      self.lastname = lastname</div><div class="line">      self.age = 10</div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">extension Person : AgeClasificationProtocol &#123;</div><div class="line">   func fullname() -&gt; String &#123;</div><div class="line">      var c: String</div><div class="line">      c = firstname + &quot; &quot; + lastname</div><div class="line">      return c</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   func agetype() -&gt; String &#123;</div><div class="line">      switch age &#123;</div><div class="line">      case 0...2:</div><div class="line">         return &quot;Baby&quot;</div><div class="line">      case 2...12:</div><div class="line">         return &quot;Child&quot;</div><div class="line">      case 13...19:</div><div class="line">         return &quot;Teenager&quot;</div><div class="line">      case let x where x &gt; 65:</div><div class="line">         return &quot;Elderly&quot;</div><div class="line">      default:</div><div class="line">         return &quot;Normal&quot;</div><div class="line">      &#125;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="七、协议的继承"><a href="#七、协议的继承" class="headerlink" title="七、协议的继承"></a>七、协议的继承</h1><p>协议能够继承一个或多个其他协议，可以在继承的协议基础上增加新的内容要求。<br>协议的继承语法与类的继承相似，多个被继承的协议间用逗号分隔：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">protocol InheritingProtocol: SomeProtocol, AnotherProtocol &#123;</div><div class="line">    // 协议定义</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>实例</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">protocol Classa &#123;</div><div class="line">    var no1: Int &#123; get set &#125;</div><div class="line">    func calc(sum: Int)</div><div class="line">&#125;</div><div class="line"></div><div class="line">protocol Result &#123;</div><div class="line">    func print(target: Classa)</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Student2: Result &#123;</div><div class="line">    func print(target: Classa) &#123;</div><div class="line">        target.calc(1)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Classb: Result &#123;</div><div class="line">    func print(target: Classa) &#123;</div><div class="line">        target.calc(5)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Student: Classa &#123;</div><div class="line">    var no1: Int = 10</div><div class="line"></div><div class="line">    func calc(sum: Int) &#123;</div><div class="line">        no1 -= sum</div><div class="line">        print(&quot;学生尝试 \(sum) 次通过&quot;)</div><div class="line"></div><div class="line">        if no1 &lt;= 0 &#123;</div><div class="line">            print(&quot;学生缺席考试&quot;)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Player &#123;</div><div class="line">    var stmark: Result!</div><div class="line"></div><div class="line">    init(stmark: Result) &#123;</div><div class="line">        self.stmark = stmark</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    func print(target: Classa) &#123;</div><div class="line">        stmark.print(target)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var marks = Player(stmark: Student2())</div><div class="line">var marksec = Student()</div><div class="line"></div><div class="line">marks.print(marksec)</div><div class="line">marks.print(marksec)</div><div class="line">marks.print(marksec)</div><div class="line">marks.stmark = Classb()</div><div class="line">marks.print(marksec)</div><div class="line">marks.print(marksec)</div><div class="line">marks.print(marksec)</div><div class="line"></div><div class="line"></div><div class="line">以上程序执行输出结果为：</div><div class="line"></div><div class="line">学生尝试 1 次通过</div><div class="line">学生尝试 1 次通过</div><div class="line">学生尝试 1 次通过</div><div class="line">学生尝试 5 次通过</div><div class="line">学生尝试 5 次通过</div><div class="line">学生缺席考试</div><div class="line">学生尝试 5 次通过</div><div class="line">学生缺席考试</div></pre></td></tr></table></figure>
+<h1 id="八、类专属协议"><a href="#八、类专属协议" class="headerlink" title="八、类专属协议"></a>八、类专属协议</h1><p>你可以在协议的继承列表中,通过添加class关键字,限制协议只能适配到类（class）类型。<br>该class关键字必须是第一个出现在协议的继承列表中，其后，才是其他继承协议。格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">protocol SomeClassOnlyProtocol: class, SomeInheritedProtocol &#123;</div><div class="line">    // 协议定义</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>实例</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">protocol TcpProtocol &#123;</div><div class="line">    init(no1: Int)</div><div class="line">&#125;</div><div class="line"></div><div class="line">class MainClass &#123;</div><div class="line">    var no1: Int // 局部变量</div><div class="line">    init(no1: Int) &#123;</div><div class="line">        self.no1 = no1 // 初始化</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class SubClass: MainClass, TcpProtocol &#123;</div><div class="line">    var no2: Int</div><div class="line">    init(no1: Int, no2 : Int) &#123;</div><div class="line">        self.no2 = no2</div><div class="line">        super.init(no1:no1)</div><div class="line">    &#125;</div><div class="line">    // 因为遵循协议，需要加上&quot;required&quot;; 因为继承自父类，需要加上&quot;override&quot;</div><div class="line">    required override convenience init(no1: Int)  &#123;</div><div class="line">        self.init(no1:no1, no2:0)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let res = MainClass(no1: 20)</div><div class="line">let show = SubClass(no1: 30, no2: 50)</div><div class="line"></div><div class="line">print(&quot;res is: \(res.no1)&quot;)</div><div class="line">print(&quot;res is: \(show.no1)&quot;)</div><div class="line">print(&quot;res is: \(show.no2)&quot;)</div><div class="line"></div><div class="line">以上程序执行输出结果为：</div><div class="line"></div><div class="line">res is: 20</div><div class="line">res is: 30</div><div class="line">res is: 50</div></pre></td></tr></table></figure>
+<h1 id="九、协议合成"><a href="#九、协议合成" class="headerlink" title="九、协议合成"></a>九、协议合成</h1><p>Swift 支持合成多个协议，这在我们需要同时遵循多个协议时非常有用。<br>语法格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">protocol Stname &#123;</div><div class="line">    var name: String &#123; get &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">protocol Stage &#123;</div><div class="line">    var age: Int &#123; get &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">struct Person: Stname, Stage &#123;</div><div class="line">    var name: String</div><div class="line">    var age: Int</div><div class="line">&#125;</div><div class="line"></div><div class="line">func show(celebrator: Stname &amp; Stage) &#123;</div><div class="line">    print(&quot;\(celebrator.name) is \(celebrator.age) years old&quot;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">let studname = Person(name: &quot;Priya&quot;, age: 21)</div><div class="line">print(studname)</div><div class="line"></div><div class="line">let stud = Person(name: &quot;Rehan&quot;, age: 29)</div><div class="line">print(stud)</div><div class="line"></div><div class="line">let student = Person(name: &quot;Roshan&quot;, age: 19)</div><div class="line">print(student)</div><div class="line"></div><div class="line"></div><div class="line">以上程序执行输出结果为：</div><div class="line"></div><div class="line">Person(name: &quot;Priya&quot;, age: 21)</div><div class="line">Person(name: &quot;Rehan&quot;, age: 29)</div><div class="line">Person(name: &quot;Roshan&quot;, age: 19)</div></pre></td></tr></table></figure>
+<h1 id="十、检验协议的一致性"><a href="#十、检验协议的一致性" class="headerlink" title="十、检验协议的一致性"></a>十、检验协议的一致性</h1><p>你可以使用is和as操作符来检查是否遵循某一协议或强制转化为某一类型。</p>
 <pre><code>is操作符用来检查实例是否遵循了某个协议。
 as?返回一个可选值，当实例遵循协议时，返回该协议类型;否则返回nil。
 as用以强制向下转型，如果强转失败，会引起运行时错误。
-</code></pre><p>实例</p>
-<p>下面的例子定义了一个 HasArea 的协议，要求有一个Double类型可读的 area：</p>
-<p>protocol HasArea {<br>    var area: Double { get }<br>}</p>
-<p>// 定义了Circle类，都遵循了HasArea协议<br>class Circle: HasArea {<br>    let pi = 3.1415927<br>    var radius: Double<br>    var area: Double { return pi <em> radius </em> radius }<br>    init(radius: Double) { self.radius = radius }<br>}</p>
-<p>// 定义了Country类，都遵循了HasArea协议<br>class Country: HasArea {<br>    var area: Double<br>    init(area: Double) { self.area = area }<br>}</p>
-<p>// Animal是一个没有实现HasArea协议的类<br>class Animal {<br>    var legs: Int<br>    init(legs: Int) { self.legs = legs }<br>}</p>
-<p>let objects: [AnyObject] = [<br>    Circle(radius: 2.0),<br>    Country(area: 243_610),<br>    Animal(legs: 4)<br>]</p>
-<p>for object in objects {<br>    // 对迭代出的每一个元素进行检查，看它是否遵循了HasArea协议<br>    if let objectWithArea = object as? HasArea {<br>        print(“面积为 (objectWithArea.area)”)<br>    } else {<br>        print(“没有面积”)<br>    }<br>}</p>
-<pre><code>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-</code></pre><p>以上程序执行输出结果为：</p>
-<p>面积为 12.5663708<br>面积为 243610.0<br>没有面积</p>
-
+</code></pre><blockquote>
+<p>实例</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">下面的例子定义了一个 HasArea 的协议，要求有一个Double类型可读的 area：</div><div class="line"></div><div class="line">protocol HasArea &#123;</div><div class="line">    var area: Double &#123; get &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 定义了Circle类，都遵循了HasArea协议</div><div class="line">class Circle: HasArea &#123;</div><div class="line">    let pi = 3.1415927</div><div class="line">    var radius: Double</div><div class="line">    var area: Double &#123; return pi * radius * radius &#125;</div><div class="line">    init(radius: Double) &#123; self.radius = radius &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 定义了Country类，都遵循了HasArea协议</div><div class="line">class Country: HasArea &#123;</div><div class="line">    var area: Double</div><div class="line">    init(area: Double) &#123; self.area = area &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// Animal是一个没有实现HasArea协议的类</div><div class="line">class Animal &#123;</div><div class="line">    var legs: Int</div><div class="line">    init(legs: Int) &#123; self.legs = legs &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let objects: [AnyObject] = [</div><div class="line">    Circle(radius: 2.0),</div><div class="line">    Country(area: 243_610),</div><div class="line">    Animal(legs: 4)</div><div class="line">]</div><div class="line"></div><div class="line">for object in objects &#123;</div><div class="line">    // 对迭代出的每一个元素进行检查，看它是否遵循了HasArea协议</div><div class="line">    if let objectWithArea = object as? HasArea &#123;</div><div class="line">        print(&quot;面积为 \(objectWithArea.area)&quot;)</div><div class="line">    &#125; else &#123;</div><div class="line">        print(&quot;没有面积&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">以上程序执行输出结果为：</div><div class="line"></div><div class="line">面积为 12.5663708</div><div class="line">面积为 243610.0</div><div class="line">没有面积</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -982,7 +645,7 @@ as用以强制向下转型，如果强转失败，会引起运行时错误。
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Protocol"><span class="nav-number">1.</span> <span class="nav-text">Protocol</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#协议"><span class="nav-number">1.1.</span> <span class="nav-text">协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法格式"><span class="nav-number">1.2.</span> <span class="nav-text">语法格式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对属性的规定"><span class="nav-number">2.</span> <span class="nav-text">对属性的规定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对-Mutating-方法的规定"><span class="nav-number">3.</span> <span class="nav-text">对 Mutating 方法的规定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对构造器的规定"><span class="nav-number">4.</span> <span class="nav-text">对构造器的规定</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Protocol"><span class="nav-number">1.</span> <span class="nav-text">Protocol</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#协议"><span class="nav-number">1.1.</span> <span class="nav-text">协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法格式"><span class="nav-number">1.2.</span> <span class="nav-text">语法格式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对属性的规定"><span class="nav-number">2.</span> <span class="nav-text">对属性的规定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对-Mutating-方法的规定"><span class="nav-number">3.</span> <span class="nav-text">对 Mutating 方法的规定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对构造器的规定"><span class="nav-number">4.</span> <span class="nav-text">对构造器的规定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、协议构造器规定在类中的实现"><span class="nav-number">5.</span> <span class="nav-text">四、协议构造器规定在类中的实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、协议类型"><span class="nav-number">6.</span> <span class="nav-text">五、协议类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、在扩展中添加协议成员"><span class="nav-number">7.</span> <span class="nav-text">六、在扩展中添加协议成员</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#七、协议的继承"><span class="nav-number">8.</span> <span class="nav-text">七、协议的继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#八、类专属协议"><span class="nav-number">9.</span> <span class="nav-text">八、类专属协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#九、协议合成"><span class="nav-number">10.</span> <span class="nav-text">九、协议合成</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#十、检验协议的一致性"><span class="nav-number">11.</span> <span class="nav-text">十、检验协议的一致性</span></a></li></ol></div>
             
 
           </div>
