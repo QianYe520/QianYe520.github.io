@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="获得crash日志产生/保存 程序崩溃时，系统会创建一份crash日志保存在设备上。 这份crash日志记录着应用程序崩溃时的信息，包含每个执行线程的栈调用信息（低内存闪退日志例外），对定位问题很有帮助  连接设备获取 可以连接设备，打开Xcode - Window - Organizer， 在左侧面板中选择Device Logs（可以选择具体设备的Device Logs或者Library下所有设">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-Func-Crash日志">
+<meta property="og:url" content="http://yoursite.com/2017/11/22/iOS-Func-Crash日志/index.html">
+<meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
+<meta property="og:description" content="获得crash日志产生/保存 程序崩溃时，系统会创建一份crash日志保存在设备上。 这份crash日志记录着应用程序崩溃时的信息，包含每个执行线程的栈调用信息（低内存闪退日志例外），对定位问题很有帮助  连接设备获取 可以连接设备，打开Xcode - Window - Organizer， 在左侧面板中选择Device Logs（可以选择具体设备的Device Logs或者Library下所有设">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/iOS-Func-Crash%E6%97%A5%E5%BF%97-%20001.png">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/iOS-Func-Crash%E6%97%A5%E5%BF%97-%20002.png">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/iOS-Func-Crash%E6%97%A5%E5%BF%97%20-%20003.png">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/iOS-Func-Crash%E6%97%A5%E5%BF%97-%20004.png">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/iOS-Func-Crash%E6%97%A5%E5%BF%97-%20005.png">
+<meta property="og:updated_time" content="2017-11-22T15:10:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS-Func-Crash日志">
+<meta name="twitter:description" content="获得crash日志产生/保存 程序崩溃时，系统会创建一份crash日志保存在设备上。 这份crash日志记录着应用程序崩溃时的信息，包含每个执行线程的栈调用信息（低内存闪退日志例外），对定位问题很有帮助  连接设备获取 可以连接设备，打开Xcode - Window - Organizer， 在左侧面板中选择Device Logs（可以选择具体设备的Device Logs或者Library下所有设">
+<meta name="twitter:image" content="http://ozr735s7e.bkt.clouddn.com/iOS-Func-Crash%E6%97%A5%E5%BF%97-%20001.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/22/iOS-Func-Crash日志/"/>
+
+
+
+
+
+  <title>iOS-Func-Crash日志 | 千夜、おれはおまえをずっと爱している</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">千夜、おれはおまえをずっと爱している</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/22/iOS-Func-Crash日志/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS-Func-Crash日志</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-22T22:22:26+08:00">
+                2017-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/Crash/" itemprop="url" rel="index">
+                    <span itemprop="name">Crash</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="获得crash日志"><a href="#获得crash日志" class="headerlink" title="获得crash日志"></a>获得crash日志</h1><h2 id="产生-保存"><a href="#产生-保存" class="headerlink" title="产生/保存"></a>产生/保存</h2><ul>
+<li>程序崩溃时，系统会创建一份crash日志保存在设备上。</li>
+<li>这份crash日志记录着应用程序崩溃时的信息，包含每个执行线程的栈调用信息（低内存闪退日志例外），对定位问题很有帮助</li>
+</ul>
+<h2 id="连接设备获取"><a href="#连接设备获取" class="headerlink" title="连接设备获取"></a>连接设备获取</h2><ul>
+<li>可以连接设备，打开Xcode - Window - Organizer，</li>
+<li>在左侧面板中选择Device Logs（可以选择具体设备的Device Logs或者Library下所有设备的Device Logs）</li>
+<li>然后根据时间排序查看设备上的crash日志</li>
+</ul>
+<h2 id="已发布app通过iTunes-Connect获取"><a href="#已发布app通过iTunes-Connect获取" class="headerlink" title="已发布app通过iTunes Connect获取"></a>已发布app通过iTunes Connect获取</h2><ul>
+<li>可以通过iTunes Connect（Manage Your Applications - View Details - Crash Reports）获取用户的crash日志</li>
+<li>不过这并不是100%有效的，而且大多数开发者并不依赖于此，因为这需要用户设备同意上传相关信息，详情可参见iOS: Providing Apple with diagnostics and usage information摘要</li>
+</ul>
+<h2 id="接入现有的crash收集工具获取"><a href="#接入现有的crash收集工具获取" class="headerlink" title="接入现有的crash收集工具获取"></a>接入现有的crash收集工具获取</h2><p>通常接入现有的crash收集工具，或者自己编写一个进行自动化收集、解析和统计汇总</p>
+<h1 id="解析crash日志"><a href="#解析crash日志" class="headerlink" title="解析crash日志"></a>解析crash日志</h1><h2 id="符号化解析"><a href="#符号化解析" class="headerlink" title="符号化解析"></a>符号化解析</h2><ul>
+<li>当获得一份crash日志时，需要将初始展示的十六进制地址等原始信息映射为源代码级别的方法名称和代码行数，使其对开发人员可读这个过程称为符号化解析。要成功地符号化解析一份crash日志，我们需要有对应的应用程序二进制文件以及符号（.dSYM）文件</li>
+</ul>
+<p>-如果处于开发调试阶段，通常Xcode都能匹配到crash日志对应的二进制文件和符号文件，所以能够帮我们自动解析。</p>
+<ul>
+<li>如果处于测试阶段，测试人员已经安装了不同的版本（比如alpha、beta版本），那么需要保存好对应版本的二进制文件和符号文件，以便在应用程序崩溃时对crash日志进行解析。对于这种场景下产生的crash日志，只需要将.crash文件、.app文件和.dSYM文件三者放在同一个目录下，然后将.crash文件拖放到Xcode - Window - Organizer中左侧面板Library下的Device Logs中，即可进行解析。</li>
+</ul>
+<p>如果要提交发布，那么我们通常会先执行Clean，再Build，最后通过Product - Archive来打包。这样，Xcode会将二进制文件和符号文件归档在一起，可以通过Organizer中的Archives进行浏览</p>
+<p><a href="http://stackoverflow.com/questions/1460892/symbolicating-iphone-app-crash-reports" target="_blank" rel="external">关于如何解析crash日志的讨论</a></p>
+<h1 id="分析crash日志"><a href="#分析crash日志" class="headerlink" title="分析crash日志"></a>分析crash日志</h1><ul>
+<li>在分析一份crash日志之前，如果开发人员对于常见的错误类型有所了解，那定是极好的。</li>
+<li>crash日志的产生来源于两种问题：违反iOS策略被干掉，以及自身的代码bug</li>
+</ul>
+<h1 id="iOS策略"><a href="#iOS策略" class="headerlink" title="iOS策略"></a>iOS策略</h1><h2 id="低内存闪退"><a href="#低内存闪退" class="headerlink" title="低内存闪退"></a>低内存闪退</h2><blockquote>
+<p>低内存闪退日志</p>
+<ul>
+<li>前面提到大多数crash日志都包含着执行线程的栈调用信息</li>
+<li>但是低内存闪退日志除外，这里就先看看低内存闪退日志是什么样的<br>我们使用Xcode 5和iOS 7的设备模拟一次低内存闪退，然后通过Organizer查看产生的crash日志，可以发现Process和Type都为Unknown：</li>
+</ul>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/iOS-Func-Crash%E6%97%A5%E5%BF%97-%20001.png" alt="001"></p>
+<blockquote>
+<p>具体的日志内容如下</p>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/iOS-Func-Crash%E6%97%A5%E5%BF%97-%20002.png" alt="002"></p>
+</blockquote>
+<ul>
+<li>第一部分是崩溃信息，包括识别标识、软硬件信息和时间信息等。</li>
+<li>第二部分是内存页分配信息，以及当前占用内存最多的进程，上图中为crashTypeDemo。</li>
+<li><p>第三部分是具体的进程列表，描述着每个进程使用内存的情况以及当前状态。在较早的版本中可以在某些进程后面看到“jettisoned”字样，表明这些进程使用过多内存被终止了，而现在我们看到的是“vm-pageshortage”字样。</p>
+</li>
+<li><p>当iOS检测到内存过低时，它（的VM系统）会发出低内存警告通知，尝试回收一些内存；如果情况没有得到足够的改善，iOS会终止后台应用以回收更多内存；最后，如果内存还是不足，那么正在运行的应用可能会被终止掉。</p>
+</li>
+<li>所以，我们的应用应该合理地响应系统抛出来的低内存警告通知，对一些缓存数据和可重新创建的对象进行释放，同时要避免出现内存泄露等问题。</li>
+</ul>
+<p>低内存闪退是由iOS策略决定终止应用程序运行的，同样基于iOS策略的还有Watchdog超时和用户强制退出</p>
+<h2 id="Watchdog超时"><a href="#Watchdog超时" class="headerlink" title="Watchdog超时"></a>Watchdog超时</h2><ul>
+<li><p>Apple的iOS Developer Library网站上，QA1693文档中描述了Watchdog机制，包括生效场景和表现。如果我们的应用程序对一些特定的UI事件（比如启动、挂起、恢复、结束）响应不及时，Watchdog会把我们的应用程序干掉，并生成一份响应的crash报告</p>
+</li>
+<li><p>这份crash报告的有趣之处在于异常代码：“0x8badf00d”，即“ate bad food”</p>
+</li>
+<li><p>如果说特定的UI事件比较抽象，那么用代码来直接描述的话，对应的就是（创建一个工程时Xcode自动生成的）UIApplicationDelegate的几个方法：</p>
+</li>
+</ul>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/iOS-Func-Crash%E6%97%A5%E5%BF%97%20-%20003.png" alt="003"></p>
+<ul>
+<li>所以当遇到Watchdog日志时，可以检查下上图几个方法是否有比较重的阻塞UI的动作</li>
+<li>QA1693举的例子是在主线程进行同步网络请求。如果我们是在公司的Wifi环境下使用则一切顺利，但当应用程序发布出去面向很大范围的用户，在各种网络环境下运行，则不可避免地会出现一片Watchdog超时报告。<br>另一种可能出现问题的场景就是数据量比较大的情况下进行的数据库版本迁移（同样是在主线程上），这也是促使我写这篇总结的一个直接因素。</li>
+</ul>
+<h2 id="用户强制退出"><a href="#用户强制退出" class="headerlink" title="用户强制退出"></a>用户强制退出</h2><ul>
+<li><p>一看到“用户强制退出”，首先可能想到的双击Home键，然后关闭应用程序。不过这种场景是不会产生crash日志的，因为双击Home键后，所有的应用程序都处于后台状态，而iOS随时都有可能关闭后台进程，所以这种场景没有crash日志。</p>
+</li>
+<li><p>另一种场景是用户同时按住电源键和Home键，让iPhone重启。这种场景会产生日志（仅验证过一次），但并不针对特定应用程序。</p>
+</li>
+<li><p>这里指的“用户强制退出”场景，是稍微比较复杂点的操作：先按住电源键，直到出现“滑动关机”的界面时，再按住Home键，这时候当前应用程序会被终止掉，并且产生一份相应事件的crash日志</p>
+</li>
+</ul>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/iOS-Func-Crash%E6%97%A5%E5%BF%97-%20004.png" alt="004"></p>
+<ul>
+<li>通常，用户应该是遇到应用程序卡死，并且影响到了iOS响应，才会进行这样的操作——不过感觉这操作好高级，所以这样的crash日志应该比较少见</li>
+</ul>
+<h1 id="常见错误标识"><a href="#常见错误标识" class="headerlink" title="常见错误标识"></a>常见错误标识</h1><h2 id="Exception-codes"><a href="#Exception-codes" class="headerlink" title="Exception codes"></a>Exception codes</h2><p>上面“用户强制退出”的crash日志中的Exception Codes是“0xdeadfa11”，再上面“Watchdog超时”的crash日志中的Exception Codes是“0x8badf00d”，这些都是特有的Exception codes。<br>根据官方文档描述，至少有以下几种特定异常代码：</p>
+<p>0x8badf00d错误码：Watchdog超时，意为“ate bad food”。</p>
+<p>0xdeadfa11错误码：用户强制退出，意为“dead fall”。</p>
+<p>0xbaaaaaad错误码：用户按住Home键和音量键，获取当前内存状态，不代表崩溃。<br><img src="http://ozr735s7e.bkt.clouddn.com/iOS-Func-Crash%E6%97%A5%E5%BF%97-%20005.png" alt="005"><br>0xbad22222错误码：VoIP应用（因为太频繁？）被iOS干掉。</p>
+<p>0xc00010ff错误码：因为太烫了被干掉，意为“cool off”。</p>
+<p>0xdead10cc错误码：因为在后台时仍然占据系统资源（比如通讯录）被干掉，意为“dead lock”</p>
+<h2 id="Exception-types"><a href="#Exception-types" class="headerlink" title="Exception types"></a>Exception types</h2><p>查看我们的crash分析报告邮件，会发现最经常遇到的错误类型是SEGV（Segmentation Violation，段违例），表明内存操作不当，比如访问一个没有权限的内存地址。<br>当我们收到SIGSEGV信号时，可以往以下几个方面考虑：<br>访问无效内存地址，比如访问Zombie对象；<br>尝试往只读区域写数据；<br>解引用空指针；<br>使用未初始化的指针；<br>栈溢出；<br>此外，还有其它常见信号：<br>SIGABRT：收到Abort信号，可能自身调用abort()或者收到外部发送过来的信号；<br>SIGBUS：总线错误。与SIGSEGV不同的是，SIGSEGV访问的是无效地址（比如虚存映射不到物理内存），而SIGBUS访问的是有效地址，但总线访问异常（比如地址对齐问题）；<br>SIGILL：尝试执行非法的指令，可能不被识别或者没有权限；<br>SIGFPE：Floating Point Error，数学计算相关问题（可能不限于浮点计算），比如除零操作；<br>SIGPIPE：管道另一端没有进程接手数据</p>
+<h2 id="代码bug"><a href="#代码bug" class="headerlink" title="代码bug"></a>代码bug</h2><p>此外，比较常见的崩溃基本都源于代码bug，比如数组越界、插空、多线程安全性、访问野指针、发送未实现的selector等。如果引入Core Data，则又有另外一些常见问题，不过这是另一个话题了。</p>
+<p>遇到这些bug时，都有比较清楚的错误原因说明，比如“index 0 beyond bounds for empty array”等。需要稍微注意点的是多线程问题，当一时找不到解决思路时，不妨往多线程方面考虑下</p>
+<p><a href="http://blog.csdn.net/jasonblog/article/details/19031517" target="_blank" rel="external">iOS应用的crash日志的分析基础</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/22/iOS-Func-检测主线程卡顿的问题/" rel="next" title="iOS-Func-检测主线程卡顿的问题">
+                <i class="fa fa-chevron-left"></i> iOS-Func-检测主线程卡顿的问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/22/iOS-Func-Bug管理工具/" rel="prev" title="iOS-Func-Bug管理工具">
+                iOS-Func-Bug管理工具 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="千夜 QQ:738816656" />
+          <p class="site-author-name" itemprop="name">千夜 QQ:738816656</p>
+           
+              <p class="site-description motion-element" itemprop="description">ReactNative</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#获得crash日志"><span class="nav-number">1.</span> <span class="nav-text">获得crash日志</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#产生-保存"><span class="nav-number">1.1.</span> <span class="nav-text">产生/保存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接设备获取"><span class="nav-number">1.2.</span> <span class="nav-text">连接设备获取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#已发布app通过iTunes-Connect获取"><span class="nav-number">1.3.</span> <span class="nav-text">已发布app通过iTunes Connect获取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接入现有的crash收集工具获取"><span class="nav-number">1.4.</span> <span class="nav-text">接入现有的crash收集工具获取</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解析crash日志"><span class="nav-number">2.</span> <span class="nav-text">解析crash日志</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#符号化解析"><span class="nav-number">2.1.</span> <span class="nav-text">符号化解析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分析crash日志"><span class="nav-number">3.</span> <span class="nav-text">分析crash日志</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#iOS策略"><span class="nav-number">4.</span> <span class="nav-text">iOS策略</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#低内存闪退"><span class="nav-number">4.1.</span> <span class="nav-text">低内存闪退</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Watchdog超时"><span class="nav-number">4.2.</span> <span class="nav-text">Watchdog超时</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户强制退出"><span class="nav-number">4.3.</span> <span class="nav-text">用户强制退出</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见错误标识"><span class="nav-number">5.</span> <span class="nav-text">常见错误标识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Exception-codes"><span class="nav-number">5.1.</span> <span class="nav-text">Exception codes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exception-types"><span class="nav-number">5.2.</span> <span class="nav-text">Exception types</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码bug"><span class="nav-number">5.3.</span> <span class="nav-text">代码bug</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+# 访客数
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">千夜 QQ:738816656</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Universal Links简介 iOS9之前   iOS9之前,对于从各种从浏览器,Safari、UIWebView或者 WKWebView中唤醒APP的需求,我们通常只能使用scheme.首先是app中注册某个scheme   在iOS 9以后   通过Universal Link，将App 与网页端建立连接桥，可以从Safari 或者其他前端浏览器来识别并唤醒App，甚至是微信环境下也可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-Func- Universal Links通用链接">
+<meta property="og:url" content="http://yoursite.com/2017/11/21/iOS-Func- Universal Links通用链接/index.html">
+<meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
+<meta property="og:description" content="Universal Links简介 iOS9之前   iOS9之前,对于从各种从浏览器,Safari、UIWebView或者 WKWebView中唤醒APP的需求,我们通常只能使用scheme.首先是app中注册某个scheme   在iOS 9以后   通过Universal Link，将App 与网页端建立连接桥，可以从Safari 或者其他前端浏览器来识别并唤醒App，甚至是微信环境下也可以">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/Universal%20Links-%20001.png">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/Universal%20Links-002.png">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/Universal%20Links-%20003.png">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/iOS-Universal%20Links-%20004.jpg">
+<meta property="og:updated_time" content="2017-11-23T09:53:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS-Func- Universal Links通用链接">
+<meta name="twitter:description" content="Universal Links简介 iOS9之前   iOS9之前,对于从各种从浏览器,Safari、UIWebView或者 WKWebView中唤醒APP的需求,我们通常只能使用scheme.首先是app中注册某个scheme   在iOS 9以后   通过Universal Link，将App 与网页端建立连接桥，可以从Safari 或者其他前端浏览器来识别并唤醒App，甚至是微信环境下也可以">
+<meta name="twitter:image" content="http://ozr735s7e.bkt.clouddn.com/Universal%20Links-%20001.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/21/iOS-Func- Universal Links通用链接/"/>
+
+
+
+
+
+  <title>iOS-Func- Universal Links通用链接 | 千夜、おれはおまえをずっと爱している</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">千夜、おれはおまえをずっと爱している</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/21/iOS-Func- Universal Links通用链接/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS-Func- Universal Links通用链接</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-21T13:19:49+08:00">
+                2017-11-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/Func/" itemprop="url" rel="index">
+                    <span itemprop="name">Func</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Universal-Links"><a href="#Universal-Links" class="headerlink" title="Universal Links"></a>Universal Links</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
+<p>iOS9之前</p>
+</blockquote>
+<ul>
+<li>iOS9之前,对于从各种从浏览器,Safari、UIWebView或者 WKWebView中唤醒APP的需求,我们通常只能使用scheme.首先是app中注册某个scheme</li>
+</ul>
+<blockquote>
+<p>在iOS 9以后</p>
+</blockquote>
+<ul>
+<li>通过Universal Link，将App 与网页端建立连接桥，可以从Safari 或者其他前端浏览器来识别并唤醒App，甚至是微信环境下也可以冲破障碍</li>
+</ul>
+<p><a href="https://developer.apple.com/library/content/documentation/General/Conceptual/AppSearch/UniversalLinks.html#//apple_ref/doc/uid/TP40016308-CH12-SW2" target="_blank" rel="external">官方的说明文档–&gt;</a></p>
+<h2 id="Universal-Link的优点"><a href="#Universal-Link的优点" class="headerlink" title="Universal Link的优点"></a>Universal Link的优点</h2><ul>
+<li><strong>唯一性</strong>:</li>
+<li><p>不像自定义的scheme,因为它使用标准的http/https链接到你的web站点,所以它不会被其它的app所声明.另外,Custom URL scheme 因为是自定义的协议，所以在没有安装 app 的情况下是无法直接打开的，而 universal links 本身是一个 HTTP/HTTPS 链接，所以有更好的兼容性</p>
+</li>
+<li><p><strong>安全</strong>:</p>
+</li>
+<li><p>当用户的手机上安装了你的app,那么iOS将去你的网站上去下载你上传上去的说明文件(这个说明文件声明了你的app可以打开哪些类型的http链接).因为只有你自己才能上传文件到你网站的根目录,所以你的网站和你的app之间的关联是安全的.</p>
+</li>
+<li><p><strong>可变</strong>:</p>
+</li>
+<li><p>当用户手机上没有安装你的app的时候,Universal Links也能够工作.如果你愿意,在没有安装你的app的时候,用户点击链接,会在safari中展示你网站的内容.</p>
+</li>
+<li><p><strong>简单</strong>:</p>
+</li>
+<li><p>一个URL链接,可以同时作用于网站和ap</p>
+</li>
+<li><p><strong>私有</strong></p>
+</li>
+<li>其它app可以在不需要知道你的app是否安装了的情况下和你的app相互通信</li>
+</ul>
+<h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><blockquote>
+<p>分享页面中，我们经常会看到在页面的顶端或者底部遇到有【打开App】或者【下载App】这样的按钮。</p>
+<p>比较友好的产品，会做设备识别，以及检测APP是否安装，来做打开或者下载App 的需求<br>但是在微信中，这方面做的比较恶心，微信下面几乎是全面屏蔽了唤起原生App 的功能</p>
+</blockquote>
+<h1 id="Universal-Link-实现"><a href="#Universal-Link-实现" class="headerlink" title="Universal Link 实现"></a>Universal Link 实现</h1><h2 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h2><blockquote>
+<p>域名</p>
+</blockquote>
+<ul>
+<li>有一个域名,且这个域名的网站需要支持https,然后拥有网站的上传到根目录的权限(这个权限是为了上传一个apple指定的文件)</li>
+</ul>
+<blockquote>
+<p>支持Universal Links(通用链接)</p>
+</blockquote>
+<ul>
+<li>创建一个json格式的命名为apple-app-site-association文件</li>
+<li><p>注意这个文件必须没有后缀名,文件名必须为: <strong><em>apple-app-site-association</em></strong></p>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"> </div><div class="line"> &#123;</div><div class="line">  <span class="string">"applinks"</span>: &#123;</div><div class="line">      <span class="string">"apps"</span>: [],</div><div class="line">      <span class="string">"details"</span>: [</div><div class="line">          &#123;</div><div class="line">              <span class="string">"appID"</span>: <span class="string">"Prefix +点 +BundleID"</span>,</div><div class="line">              <span class="string">"paths"</span>: [ <span class="string">"/html/1/*"</span>, <span class="string">"/*"</span>],</div><div class="line">                        &#125;,</div><div class="line">      ]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>Prefix   和 BundleID</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/Universal%20Links-%20001.png" alt="001"></p>
+<blockquote>
+<p>paths:<br>根据 paths 键设定一个你的app支持的路径列表,只有这些指定的路径的链接,才能被app所处理,举个例子:如果你的网站是www.XXXX.com,你的path写的是”/support/“,那么当用户点击www.yohunl.com/support/myDoucument,就可以进入你的app了,相反www.yohunl.com/other 就不会.<br><em>path是大小写敏感的!</em> 号表示任意路径.</p>
+</blockquote>
+<h2 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h2><h3 id="服务器配置"><a href="#服务器配置" class="headerlink" title="服务器配置"></a>服务器配置</h3><blockquote>
+<p>准备独立域名<br>一级域名，二级域名均可。<br>SSL 证书</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">为服务器配置HTTPS 用的SSL 证书</div><div class="line">上传签名好的JSON 配置文件</div></pre></td></tr></table></figure>
+<h3 id="新建JSON文件"><a href="#新建JSON文件" class="headerlink" title="新建JSON文件"></a>新建JSON文件</h3><p>新建一个JSON文件，不需要后缀名，内容输入以下代码：</p>
+<blockquote>
+<p>appID:相关内容可以在Developer 中心找到相关的内容。如图，前半部分为Prefix 后半部分为ID，即你的App 的bundle id，两者通过.相连<br>paths:用来唤醒App 所需要指定的JSON文件在服务器中的路径。用”/* “ 是根目录，而/html 则是指html目录下的<br>注意：这里的AppID中前半部分，在App 转让主体后会改变，需重新更新<br>填好后保存为apple-app-site-association 名，上传到域名指向的服务器根目录。</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="string">"applinks"</span>: &#123;</div><div class="line">        <span class="string">"apps"</span>: [],</div><div class="line">        <span class="string">"details"</span>: [</div><div class="line">            &#123;</div><div class="line">                <span class="string">"appID"</span>: <span class="string">"5B5Q4xxxx.com.xxxx.xxxx"</span>,</div><div class="line">                <span class="string">"paths"</span>: [ <span class="string">"/html/1/*"</span>, <span class="string">"/*"</span>]</div><div class="line">            &#125;,</div><div class="line">        ]</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="上传传该文件apple-app-site-association"><a href="#上传传该文件apple-app-site-association" class="headerlink" title="上传传该文件apple-app-site-association"></a>上传传该文件apple-app-site-association</h2><ul>
+<li>上传传该文件apple-app-site-association到你的域名所对应的网站的根目录下(其实也不一定是根目录,例如ghost博客站点,就没有根目录一说,它就需要放在相应的主题目录下)</li>
+<li>这一步是为了苹果能从<a href="https://你的域名/apple-app-site-associationxh获取到你上传的apple-app-site-association文件" target="_blank" rel="external">https://你的域名/apple-app-site-associationxh获取到你上传的apple-app-site-association文件</a>.<br>上传完后,自己先访问一下,看看是否能够获取到,用我的做例子,<a href="https://yohunl.com/apple-app-site-association" target="_blank" rel="external">https://yohunl.com/apple-app-site-association</a> ,当你点击这个链接,应该是下载apple-app-site-association文件.<br>验证该文件是否合法,苹果为了方便开发者,提供了一个网页来验证我们编写的这个apple-app-site-association是否合法有效,验证网址,进入网站进行验证</li>
+</ul>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/Universal%20Links-002.png" alt="002"></p>
+<h2 id="App配置"><a href="#App配置" class="headerlink" title="App配置"></a>App配置</h2><h3 id="工程文件配置"><a href="#工程文件配置" class="headerlink" title="工程文件配置"></a>工程文件配置</h3><blockquote>
+<p>在工程文件中，找到Targets - Capabilities - Associated Domains 将开关选为On，并添加你的域名，</p>
+<p>格式为  </p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">applinks: + 后台给的域名.com </div><div class="line">applinks: + www.后台给的域名.com</div></pre></td></tr></table></figure>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/Universal%20Links-%20003.png" alt="003"></p>
+<h3 id="iOS移动端的代码"><a href="#iOS移动端的代码" class="headerlink" title="iOS移动端的代码"></a>iOS移动端的代码</h3><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application continueUserActivity:(<span class="built_in">NSUserActivity</span> *)userActivity restorationHandler:(<span class="keyword">void</span> (^)(<span class="built_in">NSArray</span> * _Nullable))restorationHandler</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> ([userActivity.activityType isEqualToString:<span class="built_in">NSUserActivityTypeBrowsingWeb</span>]) &#123;</div><div class="line">        <span class="built_in">NSString</span> *url = userActivity.webpageURL.description;</div><div class="line">        <span class="comment">// 这里可以通过拆分url 来传入参数，达到跳转原生页面的功能，如跳转某商品页</span></div><div class="line">        [<span class="built_in">UIApplication</span> sharedApplication] openURL:webpageURL];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/iOS-Universal%20Links-%20004.jpg" alt="004"></p>
+<h2 id="h5网页配置"><a href="#h5网页配置" class="headerlink" title="h5网页配置"></a>h5网页配置</h2><blockquote>
+<p>h5网页中对需要唤起App 的按钮或者控件添加点击事件，事件的函数代码如下:</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line">function wakeUpApp()&#123;</div><div class="line">    if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) &#123;</div><div class="line">        var loadDateTime = new Date();</div><div class="line">        window.setTimeout(function() &#123;</div><div class="line">            var timeOutDateTime = new Date();</div><div class="line">            if (timeOutDateTime - loadDateTime <span class="tag">&lt; <span class="attr">5000</span>) &#123;</span></div><div class="line"><span class="tag">                <span class="attr">window.location.href</span> = <span class="string">"http://a.app.qq.com/o/simple.jsp?pkgname=你的应用宝BundleID"</span>;</span></div><div class="line"><span class="tag">            &#125; <span class="attr">else</span> &#123;</span></div><div class="line"><span class="tag">                <span class="attr">window.close</span>();</span></div><div class="line"><span class="tag">            &#125;</span></div><div class="line"><span class="tag">        &#125;,</span></div><div class="line"><span class="tag">            <span class="attr">25</span>);</span></div><div class="line"><span class="tag">        <span class="attr">window.location.href</span> = <span class="string">"https://yourdomainname.com/"</span>;          </span></div><div class="line"><span class="tag">    &#125; <span class="attr">else</span> <span class="attr">if</span> (<span class="attr">navigator.userAgent.match</span>(/<span class="attr">android</span>/<span class="attr">i</span>)) &#123;</span></div><div class="line"><span class="tag">        <span class="attr">var</span> <span class="attr">state</span> = <span class="string">null;</span></span></div><div class="line"><span class="tag">        <span class="attr">try</span> &#123;</span></div><div class="line"><span class="tag">            <span class="attr">state</span> = <span class="string">window.open(</span>"<span class="attr">apps</span> <span class="attr">custom</span> <span class="attr">url</span> <span class="attr">schemes</span> ", '<span class="attr">_blank</span>');</span></div><div class="line"><span class="tag">        &#125; <span class="attr">catch</span>(<span class="attr">e</span>) &#123;&#125;</span></div><div class="line"><span class="tag">        <span class="attr">if</span> (<span class="attr">state</span>) &#123;</span></div><div class="line"><span class="tag">            <span class="attr">window.close</span>();</span></div><div class="line"><span class="tag">        &#125; <span class="attr">else</span> &#123;</span></div><div class="line"><span class="tag">            <span class="attr">window.location.href</span> = <span class="string">"要跳转的页面URL"</span>;</span></div><div class="line"><span class="tag">        &#125;</span></div><div class="line"><span class="tag">    &#125;</span></div><div class="line"><span class="tag">&#125;</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/21/MarkDomn-语法/" rel="next" title="MarkDomn语法">
+                <i class="fa fa-chevron-left"></i> MarkDomn语法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/21/iOS-Safari-跳转App/" rel="prev" title="iOS_Safari跳转App">
+                iOS_Safari跳转App <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="千夜 QQ:738816656" />
+          <p class="site-author-name" itemprop="name">千夜 QQ:738816656</p>
+           
+              <p class="site-description motion-element" itemprop="description">ReactNative</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Universal-Links"><span class="nav-number">1.</span> <span class="nav-text">Universal Links</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Universal-Link的优点"><span class="nav-number">1.2.</span> <span class="nav-text">Universal Link的优点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#需求"><span class="nav-number">2.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Universal-Link-实现"><span class="nav-number">3.</span> <span class="nav-text">Universal Link 实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#条件"><span class="nav-number">3.1.</span> <span class="nav-text">条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器"><span class="nav-number">3.2.</span> <span class="nav-text">服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器配置"><span class="nav-number">3.2.1.</span> <span class="nav-text">服务器配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新建JSON文件"><span class="nav-number">3.2.2.</span> <span class="nav-text">新建JSON文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上传传该文件apple-app-site-association"><span class="nav-number">3.3.</span> <span class="nav-text">上传传该文件apple-app-site-association</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#App配置"><span class="nav-number">3.4.</span> <span class="nav-text">App配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#工程文件配置"><span class="nav-number">3.4.1.</span> <span class="nav-text">工程文件配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iOS移动端的代码"><span class="nav-number">3.4.2.</span> <span class="nav-text">iOS移动端的代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#h5网页配置"><span class="nav-number">3.5.</span> <span class="nav-text">h5网页配置</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+# 访客数
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">千夜 QQ:738816656</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
