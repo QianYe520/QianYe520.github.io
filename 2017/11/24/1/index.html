@@ -105,17 +105,17 @@
 
 
 
-<meta name="description" content="String String 的定义  public struct String &amp;#123;    /// An empty `String`.    public init()&amp;#125;  创建字符串，最简单的方法  var str = &quot;I  am a string&quot;  创建空串  var emptyStr1 = &quot;&quot;或var emptyStr2 = String()  使用三个引号来创建一">
+<meta name="description" content="基本类型 多出来的是 Tuple*8 和 可选类型**  数字类型 Int  在32位机器上是Int32  在64位机器上是Int64 除了Int之外，还有Int，Int8，Int16，Int32，Int64.  UInt   在32位机器上是UInt32  在64位机器上是UInt64. 除了UInt之外，还有UInt8，UInt16，UInt32，UInt64.   Double    64位">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift-String&#x2F;Character">
+<meta property="og:title" content="Swift-Grammar-基本类型和基本运算">
 <meta property="og:url" content="http://yoursite.com/2017/11/24/1/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="String String 的定义  public struct String &amp;#123;    /// An empty `String`.    public init()&amp;#125;  创建字符串，最简单的方法  var str = &quot;I  am a string&quot;  创建空串  var emptyStr1 = &quot;&quot;或var emptyStr2 = String()  使用三个引号来创建一">
+<meta property="og:description" content="基本类型 多出来的是 Tuple*8 和 可选类型**  数字类型 Int  在32位机器上是Int32  在64位机器上是Int64 除了Int之外，还有Int，Int8，Int16，Int32，Int64.  UInt   在32位机器上是UInt32  在64位机器上是UInt64. 除了UInt之外，还有UInt8，UInt16，UInt32，UInt64.   Double    64位">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-24T08:26:46.000Z">
+<meta property="og:updated_time" content="2017-11-24T08:56:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift-String&#x2F;Character">
-<meta name="twitter:description" content="String String 的定义  public struct String &amp;#123;    /// An empty `String`.    public init()&amp;#125;  创建字符串，最简单的方法  var str = &quot;I  am a string&quot;  创建空串  var emptyStr1 = &quot;&quot;或var emptyStr2 = String()  使用三个引号来创建一">
+<meta name="twitter:title" content="Swift-Grammar-基本类型和基本运算">
+<meta name="twitter:description" content="基本类型 多出来的是 Tuple*8 和 可选类型**  数字类型 Int  在32位机器上是Int32  在64位机器上是Int64 除了Int之外，还有Int，Int8，Int16，Int32，Int64.  UInt   在32位机器上是UInt32  在64位机器上是UInt64. 除了UInt之外，还有UInt8，UInt16，UInt32，UInt64.   Double    64位">
 
 
 
@@ -150,7 +150,7 @@
 
 
 
-  <title>Swift-String/Character | 千夜、おれはおまえをずっと爱している</title>
+  <title>Swift-Grammar-基本类型和基本运算 | 千夜、おれはおまえをずっと爱している</title>
   
 
 
@@ -348,7 +348,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Swift-String/Character</h1>
+          <h1 class="post-title" itemprop="name headline">Swift-Grammar-基本类型和基本运算</h1>
         
 
         <div class="post-meta">
@@ -360,7 +360,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-24T16:11:26+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-24T15:39:27+08:00">
                 2017-11-24
               </time>
             
@@ -411,7 +411,7 @@
 
           
           
-             <span id="/2017/11/24/1/" class="leancloud_visitors" data-flag-title="Swift-String/Character">
+             <span id="/2017/11/24/1/" class="leancloud_visitors" data-flag-title="Swift-Grammar-基本类型和基本运算">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -442,62 +442,88 @@
       
 
       
-        <h1 id="String"><a href="#String" class="headerlink" title="String"></a>String</h1><blockquote>
-<p>String 的定义</p>
+        <h1 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h1><blockquote>
+<p>多出来的是 <strong>Tuple*8 和 </strong>可选类型**</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">struct</span> <span class="title">String</span> </span>&#123;</div><div class="line">    <span class="comment">/// An empty `String`.</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">init</span>()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>创建字符串，最简单的方法</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">"I  am a string"</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>创建空串</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> emptyStr1 = <span class="string">""</span></div><div class="line">或</div><div class="line"><span class="keyword">var</span> emptyStr2 = <span class="type">String</span>()</div></pre></td></tr></table></figure>
-<blockquote>
-<p>使用三个引号来创建一段话的string<br>开始的三个引号的第一行后面的空格都会忽略，但是第二行的空格不会</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> quotation = <span class="string">""</span><span class="string">"</span></div><div class="line"><span class="string">The White Rabbit put on his spectacles.  "</span><span class="type">Where</span> shall <span class="type">I</span> begin,</div><div class="line">please your <span class="type">Majesty</span>?<span class="string">" he asked.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">"</span><span class="type">Begin</span> at the beginning,<span class="string">" the King said gravely, "</span>and go on</div><div class="line">till you come to the end; then stop.<span class="string">"</span></div><div class="line"><span class="string">"</span><span class="string">""</span></div></pre></td></tr></table></figure>
-<h1 id="Character"><a href="#Character" class="headerlink" title="Character"></a>Character</h1><blockquote>
-<p>创建一个Character，必须显式声明类型</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> c1:<span class="type">Character</span> = <span class="string">"c"</span>  <span class="comment">//注意是双引号</span></div><div class="line"><span class="keyword">var</span> c2 = <span class="string">"c"</span>  <span class="comment">//c2被认为是String类型</span></div><div class="line"><span class="keyword">var</span> c3 = '<span class="built_in">c</span>'  <span class="comment">//编译错误</span></div><div class="line"></div><div class="line"><span class="type">Character</span>可以赋值为<span class="type">Unicode</span></div><div class="line"><span class="keyword">let</span> eAcute: <span class="type">Character</span> = <span class="string">"\u&#123;E9&#125;"</span>      <span class="comment">// é</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>改变String，这个语法和java一样的，不过内存管理层面已经是不同的对象了</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> str:<span class="type">String</span> = <span class="string">"first"</span></div><div class="line"><span class="keyword">var</span> c1:<span class="type">Character</span> = <span class="string">"c"</span>  <span class="comment">//注意是双引号</span></div><div class="line"><span class="keyword">var</span> c2 = <span class="string">"c"</span>  <span class="comment">//c2被认为是String类型</span></div><div class="line">str += <span class="string">"sceond"</span>   <span class="comment">//str变为firstsceond,此时的str和之前的str内存地址不同</span></div><div class="line">str += c2     <span class="comment">//str变为firstc,此时的str和之前的str内存地址不同</span></div><div class="line">str.appendContentsOf(<span class="string">"second"</span>) <span class="comment">// 和使用+=是一样的</span></div><div class="line">str.appendContentsOf(c2)  <span class="comment">//和使用+=是一样的</span></div><div class="line">str.append(c1);  <span class="comment">//添加Character的方法</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>遍历String字符</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> str:<span class="type">String</span> = <span class="string">"first"</span></div><div class="line"><span class="keyword">for</span> <span class="built_in">c</span> <span class="keyword">in</span> str.characters &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="built_in">c</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"> ------ 或</div><div class="line"></div><div class="line"><span class="keyword">for</span> index <span class="keyword">in</span> str.characters.<span class="built_in">indices</span> &#123;</div><div class="line">    <span class="built_in">print</span>(str[index])</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>获取String长度</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> s = <span class="string">"dfe"</span></div><div class="line"><span class="built_in">print</span>(s.<span class="built_in">count</span>)  <span class="comment">//3</span></div></pre></td></tr></table></figure>
+<h2 id="数字类型"><a href="#数字类型" class="headerlink" title="数字类型"></a>数字类型</h2><blockquote>
+<p><strong>Int</strong></p>
 <ul>
-<li>swift里面有extended grapheme clusters(An extended grapheme cluster is a sequence of one or more Unicode scalars that (when combined) produce a single human-readable character.) 也就是几个Unicode字符组合成一个人类可以识别的字符。</li>
-<li>当string里面添加了characters后，count不一定会增加。<br>string的count不一定和NSString的length一致。<br>(The length of an NSString is based on the number of 16-bit code units within the string’s UTF-16 representation and not the number of Unicode extended grapheme clusters within the string.)</li>
+<li>在32位机器上是Int32 </li>
+<li>在64位机器上是Int64</li>
+<li>除了Int之外，还有Int，Int8，Int16，Int32，Int64.</li>
 </ul>
-<blockquote>
-<p>String的Index</p>
+<p>UInt</p>
 </blockquote>
 <ul>
-<li>不像java里面的Index直接就是一个数字。String的Index是在不同的extension中定义的。 </li>
+<li>在32位机器上是UInt32 </li>
+<li>在64位机器上是UInt64.</li>
+<li>除了UInt之外，还有UInt8，UInt16，UInt32，UInt64.</li>
 </ul>
 <blockquote>
-<p>获得String里面的某个字符的过程</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> greeting = <span class="string">"Guten Tag!"</span></div><div class="line">greeting[greeting.startIndex]</div><div class="line"><span class="comment">// G</span></div><div class="line">greeting[greeting.index(before: greeting.endIndex)]</div><div class="line"><span class="comment">// !</span></div><div class="line">greeting[greeting.index(after: greeting.startIndex)]</div><div class="line"><span class="comment">// u</span></div><div class="line"><span class="keyword">let</span> index = greeting.index(greeting.startIndex, offsetBy: <span class="number">7</span>)</div><div class="line">greeting[index]</div><div class="line"><span class="comment">// a</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>插入和移除字符</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> welcome = <span class="string">"hello"</span></div><div class="line">welcome.insert(<span class="string">"!"</span>, at: welcome.endIndex)</div><div class="line"><span class="comment">// welcome now equals "hello!"</span></div><div class="line"></div><div class="line">welcome.insert(contentsOf: <span class="string">" there"</span>, at: welcome.index(before: welcome.endIndex))</div><div class="line"><span class="comment">// welcome now equals "hello there!"</span></div><div class="line">welcome.remove(at: welcome.index(before: welcome.endIndex))</div><div class="line"><span class="comment">// welcome now equals "hello there"</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> range = welcome.index(welcome.endIndex, offsetBy: -<span class="number">6</span>)..&lt;welcome.endIndex</div><div class="line">welcome.removeSubrange(range)</div><div class="line"><span class="comment">// welcome now equals "hello"</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>截串</p>
+<p>Double </p>
 </blockquote>
 <ul>
-<li>Swift引入了一个SubString类，用来截串</li>
+<li>64位浮点数</li>
 </ul>
+<blockquote>
+<p>Float </p>
+</blockquote>
+<ul>
+<li>32位浮点数</li>
+</ul>
+<blockquote>
+<p>Swift不支持数字类型之间的自动转换。必须显式手动转换</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> i: <span class="type">Int</span> = <span class="number">2_000</span>   <span class="comment">//这个表示2000  </span></div><div class="line"><span class="keyword">var</span> d: <span class="type">Double</span> = <span class="number">5.3</span>  </div><div class="line"><span class="keyword">var</span> e = d * <span class="type">Double</span>(i)</div></pre></td></tr></table></figure>
+<h2 id="不同进制的前缀"><a href="#不同进制的前缀" class="headerlink" title="不同进制的前缀"></a>不同进制的前缀</h2><p>十进制        没有<br>二进制        0b<br>八进制        0o<br>十六进制      0x<br>科学计数<br>1.25e2 代表   1.25乘上10的2次方<br>0xFp2  代表   15乘上2的2次方<br>typealias    关键字，用来个类型起别名</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">typealias</span> ii = <span class="type">Int8</span>  </div><div class="line"><span class="keyword">var</span> mm = ii.<span class="built_in">min</span> <span class="comment">//这里的ii代表了Int8</span></div></pre></td></tr></table></figure>
+<h2 id="Boolean-类型"><a href="#Boolean-类型" class="headerlink" title="Boolean 类型"></a>Boolean 类型</h2><blockquote>
+<p>Swift和java一样，对boolean类型是强要求的，不能在if里面传一个整形用于判断</p>
+</blockquote>
+<h2 id="新类型——元组（Tuple）"><a href="#新类型——元组（Tuple）" class="headerlink" title="新类型——元组（Tuple）"></a>新类型——元组（Tuple）</h2><blockquote>
+<p>其实就是一群数据组合，可以将其解出来输出。注意的是tuple不只是两个元素，你可以自己扩展成多个元素</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> menu = (<span class="string">"apple"</span>, <span class="number">20</span>)  <span class="comment">//定义一个Tuple  </span></div><div class="line"><span class="keyword">var</span> menu2 = (name: <span class="string">"banana"</span>, price:<span class="number">10</span>)  <span class="comment">//可以在定义的时候指定元素名字  </span></div><div class="line"><span class="keyword">let</span> (name,price) = menu   <span class="comment">//解Tuple，如果某个元素不想要的话，用 _ 代替  </span></div><div class="line"><span class="built_in">print</span>(name, price)   <span class="comment">//输出  apple 20  </span></div><div class="line"><span class="built_in">print</span>(menu.<span class="number">0</span>,menu.<span class="number">1</span>)  <span class="comment">//不解Tuple直接输出  </span></div><div class="line"><span class="built_in">print</span>(menu2.name,menu2.price)  <span class="comment">//利用元素名字解Tuple</span></div></pre></td></tr></table></figure>
+<h2 id="可选类型（Optionals"><a href="#可选类型（Optionals" class="headerlink" title="可选类型（Optionals)"></a>可选类型（Optionals)</h2><blockquote>
+<p>当一个方法可以返回一个对象的时候，它有可能返回一个空值。比如将字符串转换为数字的方法。为了处理这种情况，有了可选类型。</p>
+<p>可选类型表示一个数据，它可能有值，也可能为空。基本语法是在类型的后面加上问号 ？</p>
+</blockquote>
+<p>比如下面的代码<br><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> str:<span class="type">String</span>  </div><div class="line"><span class="built_in">print</span>(str)  <span class="comment">//这里报错说str没初始化</span></div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>但是如果将str改为可选类型，那么这就可以输出</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> str:<span class="type">String</span>?  </div><div class="line"><span class="built_in">print</span>(str)  <span class="comment">//输出 nil</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>可选类型转换为对应的类型 –&gt;对可选类型解包<br>强制解包有个注意点，就是如果这个可选类型是nil的话，那么强制解包的语句会在运行时报错</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> str:<span class="type">String</span>? = <span class="string">"fe"</span>  </div><div class="line"><span class="keyword">var</span> s = str! <span class="comment">//将str解包为s，但是如果str没有赋值的话，那么这句会在运行时报错  </span></div><div class="line"><span class="built_in">print</span>(s)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>解决强制解包的时候，可选类型可能为nil的问题。if语句里面多了一个 Optional Binding 的概念。就是将可选类型解包后判断是否为nil，然后执行不同的分支代码 </p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">//因为没给str赋值，所以输出  str为空  </span></div><div class="line"><span class="keyword">var</span> str:<span class="type">String</span>?  </div><div class="line"><span class="keyword">if</span> <span class="keyword">let</span> s = str &#123;  </div><div class="line">    <span class="built_in">print</span>(<span class="string">"str有值"</span>)  </div><div class="line">&#125; <span class="keyword">else</span> &#123;  </div><div class="line">    <span class="built_in">print</span>(<span class="string">"str为空"</span>)  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在编程中，我们可以确保可选类型一定不为nil的，那么每次要将可选类型解包都要加个 !，很麻烦。所以有了隐式可选类型，它是用 ! 代替了 ? 号。然后在需要将可选类型转换为对应类型的时候就不用加 ! 了</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> str:<span class="type">String</span>! = <span class="string">"string"</span>  </div><div class="line"><span class="keyword">var</span> s = str</div></pre></td></tr></table></figure>
+<h1 id="基本运算"><a href="#基本运算" class="headerlink" title="基本运算"></a>基本运算</h1><h2 id="一些和C完全一样的基本运算"><a href="#一些和C完全一样的基本运算" class="headerlink" title="一些和C完全一样的基本运算"></a>一些和C完全一样的基本运算</h2><blockquote>
+<p>加减乘除，负号，自增（++）自减（–），+=等， 判断大小之类（==，!=，&gt;=…），三元运算符，逻辑运算（!，&amp;&amp;，||）</p>
+</blockquote>
+<h2 id="不一样的运算符"><a href="#不一样的运算符" class="headerlink" title="不一样的运算符"></a>不一样的运算符</h2><h3 id="取模"><a href="#取模" class="headerlink" title="取模%"></a>取模%</h3><blockquote>
+<p>在C中，只能对整形进行运算<br>Swift中可以对浮点数进行运算。结果就是多出来的那部分</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">比如 <span class="number">7.1</span>%<span class="number">2.5</span>  得到<span class="number">2.1</span>，因为<span class="number">7.1</span>可以最多减去<span class="number">2</span>个<span class="number">2.5</span>，然后剩下<span class="number">2.1</span></div></pre></td></tr></table></figure>
+<h3 id="范围运算符"><a href="#范围运算符" class="headerlink" title="范围运算符"></a>范围运算符</h3><blockquote>
+<p> … 和 ..&lt;两个运算符可以用在for里面</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">//输出 1 2 3    包含最后一个元素3  </span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>...<span class="number">3</span> &#123;  </div><div class="line">    <span class="built_in">print</span>(i)  </div><div class="line">&#125;  </div><div class="line"><span class="comment">//输出 1 2  不包含最后一个元素3  </span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>..&lt;<span class="number">3</span> &#123;  </div><div class="line">    <span class="built_in">print</span>(i)  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="单范围运算符"><a href="#单范围运算符" class="headerlink" title="单范围运算符"></a>单范围运算符</h3><blockquote>
+<p>对于下标运算可以这样用</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> names = [<span class="string">"Anna"</span>, <span class="string">"Alex"</span>, <span class="string">"Brian"</span>, <span class="string">"Jack"</span>]  </div><div class="line"><span class="keyword">for</span> name <span class="keyword">in</span> names[<span class="number">2</span>...] &#123;  </div><div class="line">    <span class="built_in">print</span>(name)  </div><div class="line">&#125;  </div><div class="line"><span class="comment">// Brian  </span></div><div class="line"><span class="comment">// Jack  </span></div><div class="line">   </div><div class="line"><span class="keyword">for</span> name <span class="keyword">in</span> names[...<span class="number">2</span>] &#123;  </div><div class="line">    <span class="built_in">print</span>(name)  </div><div class="line">&#125;  </div><div class="line"><span class="comment">// Anna  </span></div><div class="line"><span class="comment">// Alex  </span></div><div class="line"><span class="comment">// Brian  </span></div><div class="line"><span class="keyword">for</span> name <span class="keyword">in</span> names[..&lt;<span class="number">2</span>] &#123;  </div><div class="line">    <span class="built_in">print</span>(name)  </div><div class="line">&#125;  </div><div class="line"><span class="comment">// Anna  </span></div><div class="line"><span class="comment">// Alex</span></div></pre></td></tr></table></figure>
+<h3 id="二元运算符"><a href="#二元运算符" class="headerlink" title="二元运算符"></a>二元运算符</h3><blockquote>
+<p>??这是一个二元运算符</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">a ?? b</div><div class="line"></div><div class="line">它的意思是：如果可选类型a不是<span class="literal">nil</span>，那么解包a并返回解包值，如果a为<span class="literal">nil</span>，那么返回b</div><div class="line"></div><div class="line">相当于 a != <span class="literal">nil</span> ? a! : b</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -531,6 +557,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/24/1/" rel="prev" title="Swift-String/Character">
+                Swift-String/Character <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -607,7 +637,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -664,7 +694,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#String"><span class="nav-number">1.</span> <span class="nav-text">String</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Character"><span class="nav-number">2.</span> <span class="nav-text">Character</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本类型"><span class="nav-number">1.</span> <span class="nav-text">基本类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数字类型"><span class="nav-number">1.1.</span> <span class="nav-text">数字类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不同进制的前缀"><span class="nav-number">1.2.</span> <span class="nav-text">不同进制的前缀</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Boolean-类型"><span class="nav-number">1.3.</span> <span class="nav-text">Boolean 类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新类型——元组（Tuple）"><span class="nav-number">1.4.</span> <span class="nav-text">新类型——元组（Tuple）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可选类型（Optionals"><span class="nav-number">1.5.</span> <span class="nav-text">可选类型（Optionals)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本运算"><span class="nav-number">2.</span> <span class="nav-text">基本运算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一些和C完全一样的基本运算"><span class="nav-number">2.1.</span> <span class="nav-text">一些和C完全一样的基本运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不一样的运算符"><span class="nav-number">2.2.</span> <span class="nav-text">不一样的运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#取模"><span class="nav-number">2.2.1.</span> <span class="nav-text">取模%</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#范围运算符"><span class="nav-number">2.2.2.</span> <span class="nav-text">范围运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单范围运算符"><span class="nav-number">2.2.3.</span> <span class="nav-text">单范围运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二元运算符"><span class="nav-number">2.2.4.</span> <span class="nav-text">二元运算符</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
