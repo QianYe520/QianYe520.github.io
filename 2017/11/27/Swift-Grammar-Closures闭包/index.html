@@ -105,17 +105,17 @@
 
 
 
-<meta name="description" content="ReactNative">
+<meta name="description" content="闭包 闭包可以看做是匿名的函数 回想一下函数作为参数的情况定义一个函数，它最后的参数是一个函数类型  func doMath(first: Int, second: Int, mathFunc: (Int, Int) -&amp;gt; Int) &amp;#123;    print(&quot;mathFunc =&quot;,mathFunc(first,second))&amp;#125;  定义一个函数，它有两个整形参数，并有一个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift-Grammar-Closures闭包">
 <meta property="og:url" content="http://yoursite.com/2017/11/27/Swift-Grammar-Closures闭包/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="ReactNative">
+<meta property="og:description" content="闭包 闭包可以看做是匿名的函数 回想一下函数作为参数的情况定义一个函数，它最后的参数是一个函数类型  func doMath(first: Int, second: Int, mathFunc: (Int, Int) -&amp;gt; Int) &amp;#123;    print(&quot;mathFunc =&quot;,mathFunc(first,second))&amp;#125;  定义一个函数，它有两个整形参数，并有一个">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-27T10:19:24.000Z">
+<meta property="og:updated_time" content="2017-11-27T10:57:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift-Grammar-Closures闭包">
-<meta name="twitter:description" content="ReactNative">
+<meta name="twitter:description" content="闭包 闭包可以看做是匿名的函数 回想一下函数作为参数的情况定义一个函数，它最后的参数是一个函数类型  func doMath(first: Int, second: Int, mathFunc: (Int, Int) -&amp;gt; Int) &amp;#123;    print(&quot;mathFunc =&quot;,mathFunc(first,second))&amp;#125;  定义一个函数，它有两个整形参数，并有一个">
 
 
 
@@ -371,6 +371,39 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/Grammar/" itemprop="url" rel="index">
+                    <span itemprop="name">Grammar</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -409,7 +442,59 @@
       
 
       
-        
+        <h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><blockquote>
+<p>闭包可以看做是匿名的函数</p>
+<h2 id="回想一下函数作为参数的情况"><a href="#回想一下函数作为参数的情况" class="headerlink" title="回想一下函数作为参数的情况"></a>回想一下函数作为参数的情况</h2><p>定义一个函数，它最后的参数是一个函数类型</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">doMath</span><span class="params">(first: Int, second: Int, mathFunc: <span class="params">(Int, Int)</span></span></span> -&gt; <span class="type">Int</span>) &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"mathFunc ="</span>,mathFunc(first,second))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>定义一个函数，它有两个整形参数，并有一个整形返回值</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(first: Int, <span class="number">_</span> second: Int)</span></span> -&gt; <span class="type">Int</span>&#123;</div><div class="line">    <span class="keyword">return</span> first + second</div></pre></td></tr></table></figure>
+<blockquote>
+<p>调用第一个函数，将第二个函数作为参数传入</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">doMath(<span class="number">1</span>, second: <span class="number">3</span>, mathFunc: add)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>打印</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">mathFunc = 4</div></pre></td></tr></table></figure>
+<blockquote>
+<p>如果我们想用doMath实现两个数相减的方法，那么必须再写定义一个sub函数，然后将其作为参数传入。这样在功能多了之后会显得很麻烦，一堆函数，而所以有了闭包这个概念</p>
+</blockquote>
+<h2 id="闭包的语法"><a href="#闭包的语法" class="headerlink" title="闭包的语法"></a>闭包的语法</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">&#123; (参数列表) -&gt; 返回类型 <span class="keyword">in</span> </div><div class="line"></div><div class="line">      <span class="comment">//闭包体</span></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>有了闭包，我们可以将上面的代码改为</p>
+<p>定义一个函数，它最后的参数是一个函数类型</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">doMath</span><span class="params">(f:Int,s:Int,mathFunc:<span class="params">(Int,Int)</span></span></span>-&gt;)&#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"mathFunc = "</span>,mathunc(first,second))</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>调用</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">doMath(<span class="number">1</span>, second: <span class="number">3</span>, mathFunc: &#123;(f: <span class="type">Int</span>, s: <span class="type">Int</span>) -&gt; <span class="type">Int</span> <span class="keyword">in</span></div><div class="line">    <span class="keyword">return</span> f + s</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>还是很麻烦是吧？ 别忘了 <strong>Swift有类型推断功能</strong>，所以我们可以继续简化上面的闭包部分代码 </p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">doMath(<span class="number">1</span>, second: <span class="number">3</span>, mathFunc: &#123;f, s <span class="keyword">in</span></div><div class="line">    <span class="keyword">return</span> f + s</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>对应只有一行代码的闭包，return关键字还可以省略</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">doMath(<span class="number">1</span>, second: <span class="number">3</span>, mathFunc: &#123;f, s <span class="keyword">in</span> f + s &#125;)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>此外，闭包对参数提供了默认名字，依次为 $0,$1,$2….所以上面的闭包仍可以简化</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">doMath(<span class="number">1</span>, second: <span class="number">3</span>, mathFunc: &#123;$<span class="number">0</span> + $<span class="number">1</span> &#125;)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>对于闭包在参数列表最后一项的情况，可以将闭包写到小括号外部，并且可以省略掉外部参数名</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> doMath(<span class="number">1</span>, second: <span class="number">3</span>)&#123;</div><div class="line">    <span class="keyword">var</span> f = $<span class="number">0</span> + <span class="number">1</span></div><div class="line">    <span class="keyword">return</span> f + $<span class="number">1</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Autoclosures"><a href="#Autoclosures" class="headerlink" title="Autoclosures"></a>Autoclosures</h1><blockquote>
+<p>姑且叫自动打包吧。用大括号括起来就好，编译器自动判断这个大括号里面的是什么返回类型。但是有时候不准确，需要自己写。下面是这个概念的解释，其实也是一种定义闭包变量的方法</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> t = &#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">1</span></div><div class="line">&#125;</div><div class="line"><span class="built_in">print</span>(t())</div></pre></td></tr></table></figure>
+<p>未完</p>
+<p><a href="http://lib.csdn.net/article/swift/67701" target="_blank" rel="external">http://lib.csdn.net/article/swift/67701</a></p>
+
       
     </div>
     
@@ -493,8 +578,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -556,6 +650,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#闭包"><span class="nav-number">1.</span> <span class="nav-text">闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#回想一下函数作为参数的情况"><span class="nav-number">1.1.</span> <span class="nav-text">回想一下函数作为参数的情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包的语法"><span class="nav-number">1.2.</span> <span class="nav-text">闭包的语法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Autoclosures"><span class="nav-number">2.</span> <span class="nav-text">Autoclosures</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

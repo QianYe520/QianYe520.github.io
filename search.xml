@@ -3,7 +3,11 @@
   <entry>
     <title><![CDATA[Swift-Grammar-Closures闭包]]></title>
 <url>../../../../../../../../2017/11/27/Swift-Grammar-Closures闭包/</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[闭包 闭包可以看做是匿名的函数 回想一下函数作为参数的情况定义一个函数，它最后的参数是一个函数类型 func doMath(first: Int, second: Int, mathFunc: (Int, Int) -&gt; Int) &#123; print("mathFunc =",mathFunc(first,second))&#125; 定义一个函数，它有两个整形参数，并有一个整形返回值 func add(first: Int, _ second: Int) -&gt; Int&#123; return first + second 调用第一个函数，将第二个函数作为参数传入 doMath(1, second: 3, mathFunc: add) 打印 mathFunc = 4 如果我们想用doMath实现两个数相减的方法，那么必须再写定义一个sub函数，然后将其作为参数传入。这样在功能多了之后会显得很麻烦，一堆函数，而所以有了闭包这个概念 闭包的语法&#123; (参数列表) -&gt; 返回类型 in //闭包体&#125; 有了闭包，我们可以将上面的代码改为 定义一个函数，它最后的参数是一个函数类型 func doMath(f:Int,s:Int,mathFunc:(Int,Int)-&gt;)&#123; print("mathFunc = ",mathunc(first,second)) &#125; 调用 doMath(1, second: 3, mathFunc: &#123;(f: Int, s: Int) -&gt; Int in return f + s&#125;) 还是很麻烦是吧？ 别忘了 Swift有类型推断功能，所以我们可以继续简化上面的闭包部分代码 doMath(1, second: 3, mathFunc: &#123;f, s in return f + s&#125;) 对应只有一行代码的闭包，return关键字还可以省略 doMath(1, second: 3, mathFunc: &#123;f, s in f + s &#125;) 此外，闭包对参数提供了默认名字，依次为 $0,$1,$2….所以上面的闭包仍可以简化 doMath(1, second: 3, mathFunc: &#123;$0 + $1 &#125;) 对于闭包在参数列表最后一项的情况，可以将闭包写到小括号外部，并且可以省略掉外部参数名 doMath(1, second: 3)&#123; var f = $0 + 1 return f + $1&#125; Autoclosures 姑且叫自动打包吧。用大括号括起来就好，编译器自动判断这个大括号里面的是什么返回类型。但是有时候不准确，需要自己写。下面是这个概念的解释，其实也是一种定义闭包变量的方法 var t = &#123; return 1&#125;print(t()) 未完 http://lib.csdn.net/article/swift/67701]]></content>
+      <categories>
+        <category>Swift</category>
+        <category>Grammar</category>
+      </categories>
   </entry>
   <entry>
     <title><![CDATA[FF-Beichoo-有读1.1版本问题]]></title>
