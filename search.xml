@@ -38,8 +38,8 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[Swift-String/Character]]></title>
-<url>../../../../../../../../2017/11/24/Swift-String-Character/</url>
+    <title><![CDATA[Swift-Grammar-String-Character]]></title>
+<url>../../../../../../../../2017/11/24/Swift-Grammar-String-Character/</url>
     <content type="text"><![CDATA[String String 的定义 public struct String &#123; /// An empty `String`. public init()&#125; 创建字符串，最简单的方法 var str = "I am a string" 创建空串 var emptyStr1 = ""或var emptyStr2 = String() 使用三个引号来创建一段话的string开始的三个引号的第一行后面的空格都会忽略，但是第二行的空格不会 let quotation = """The White Rabbit put on his spectacles. "Where shall I begin,please your Majesty?" he asked."Begin at the beginning," the King said gravely, "and go ontill you come to the end; then stop."""" Character 创建一个Character，必须显式声明类型 var c1:Character = "c" //注意是双引号var c2 = "c" //c2被认为是String类型var c3 = 'c' //编译错误Character可以赋值为Unicodelet eAcute: Character = "\u&#123;E9&#125;" // é 改变String，这个语法和java一样的，不过内存管理层面已经是不同的对象了 var str:String = "first"var c1:Character = "c" //注意是双引号var c2 = "c" //c2被认为是String类型str += "sceond" //str变为firstsceond,此时的str和之前的str内存地址不同str += c2 //str变为firstc,此时的str和之前的str内存地址不同str.appendContentsOf("second") // 和使用+=是一样的str.appendContentsOf(c2) //和使用+=是一样的str.append(c1); //添加Character的方法 遍历String字符 var str:String = "first"for c in str.characters &#123; print(c)&#125; ------ 或for index in str.characters.indices &#123; print(str[index])&#125; 获取String长度 var s = "dfe"print(s.count) //3 swift里面有extended grapheme clusters(An extended grapheme cluster is a sequence of one or more Unicode scalars that (when combined) produce a single human-readable character.) 也就是几个Unicode字符组合成一个人类可以识别的字符。 当string里面添加了characters后，count不一定会增加。string的count不一定和NSString的length一致。(The length of an NSString is based on the number of 16-bit code units within the string’s UTF-16 representation and not the number of Unicode extended grapheme clusters within the string.) String的Index 不像java里面的Index直接就是一个数字。String的Index是在不同的extension中定义的。 获得String里面的某个字符的过程 let greeting = "Guten Tag!"greeting[greeting.startIndex]// Ggreeting[greeting.index(before: greeting.endIndex)]// !greeting[greeting.index(after: greeting.startIndex)]// ulet index = greeting.index(greeting.startIndex, offsetBy: 7)greeting[index]// a 插入和移除字符 var welcome = "hello"welcome.insert("!", at: welcome.endIndex)// welcome now equals "hello!"welcome.insert(contentsOf: " there", at: welcome.index(before: welcome.endIndex))// welcome now equals "hello there!"welcome.remove(at: welcome.index(before: welcome.endIndex))// welcome now equals "hello there"let range = welcome.index(welcome.endIndex, offsetBy: -6)..&lt;welcome.endIndexwelcome.removeSubrange(range)// welcome now equals "hello" 截串 Swift引入了一个SubString类，用来截串 let greeting = "Hello, world!"let index = greeting.index(of: ",") ?? greeting.endIndexlet beginning = greeting[..&lt;index]// beginning is "Hello"但是注意SubString可能会用到原来string的内存。官方建议是短时间使用，如果想要长时间保持，需要转为String// Convert the result to a String for long-term storage.let newString = String(beginning) 将String转换为NSString，然后调用NSString的截串方法 var str = "123456789"var ns = (str as NSString).substringWithRange(NSMakeRange(1, 4))print(ns) //输出 2345 xtension来扩展String(最简单) mport Foundationextension String &#123; //获取部分字符串，如果不在范围内，返回nil.如果end大于字符串长度，那么截取到最后 subscript (start: Int, end: Int) -&gt; String? &#123; if start &gt; self.count || start &lt; 0 || start &gt; end &#123; return nil &#125; let begin = self.index(self.startIndex, offsetBy: start) var terminal: Index if end &gt;= length &#123; terminal = self.index(self.startIndex, offsetBy: count) &#125; else &#123; terminal = self.index(self.startIndex, offsetBy: end + 1) &#125; let range = (begin ..&lt; terminal) return self.substring(with: range) &#125; //获取某个字符，如果不在范围内，返回nil subscript (index: Int) -&gt; Character? &#123; if index &gt; self.count - 1 || index &lt; 0 &#123; return nil &#125; return self[self.index(self.startIndex, offsetBy: index)] &#125;&#125;]]></content>
       <categories>
         <category>Swift</category>
@@ -84,14 +84,6 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[Blog-配置]]></title>
-<url>../../../../../../../../2017/11/23/Blog-配置/</url>
-    <content type="text"><![CDATA[博客配置01博客配置02]]></content>
-      <categories>
-        <category>Blog</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[iOS-Tool-FastLane自动化发布工具+上传Bugly]]></title>
 <url>../../../../../../../../2017/11/23/iOS-Tool-FastLane自动化发布工具+上传Bugly/</url>
     <content type="text"><![CDATA[打包的流程 修改测试版本号 修改Build版本号 执行Archive 选择Adhoc导出IPA安装包文件 上传Bugly测试平台 分享测试链接二维码FastlaneFastlane本身包含两大模块，内核部分+ActionActionAction是Fastlane自动化流程中的最小执行单元，直观上来讲就是Fastfile脚本中的一个个命令，比如：git_pull，deliver，pod_install等等，而这些命令背后都对应其实是一个用Ruby编写的脚本 Fastlane 是一套用 Ruby 编写的 iOS 命令行工具集（后来也支持了 Android），主要组件包括： match / cert / sigh 协助管理代码签名 pem 自动生成 APNs 证书 scan 自动化测试 gym 自动化编译并打包生成签名的 .ipa 文件 snapshot / frameit 协助处理 iOS 屏幕快照 pilot 上传和管理 TestFlight deliver 将应用及其它信息上传到 App Store 而正是这些颗粒度极小的Action，根据自己需求组合成一个自动化的链条 安装 首先确保Xcode命令行工具是最新版本的 $ xcode-select --install 安装Fastlane: $ sudo gem install fastlane -NV 找到工程文件目录下执行 $ fastlane init 在执行“Your Apple ID” 这一步输入苹果开发者账号，fastlane 会自动获取工程文件名，目录等其他数据。这一步“Please confirm the above values”，确认信息，没问题则输入 y。然后，fastlane 会进行一系列的初始化操作，包括下载 App Store 上的元数据和截屏文件。等待初始化完成之后，工程目录下就多了一个 fastlane目录： $ cd fastlane &amp;&amp; lsAppfile Fastfile metadata report.xmlDeliverfile README.md screenshots 文件目录 metadata目录下存放整个元数据文件，包括关键词、版本更新日志、图标等. screenshots目录下存放应用截图 Appfile文件记录App的 bundle ID、Apple ID、Team ID三种信息. Fastfile脚本的核心执行文件.有几个默认的选项，可直接使用. report文件时每次执行fastlane时生成报告 安装fastlane成功后，首先拆解我们需要自动化的两个流程: 自动打包成Adhoc的安装包ipa文件 通过fastlane自动上传到bugly 自动化打包 自动化打包使用最多就是Fastlane中gym这个Action, 转为打包而生, 安装gym这个组件: $ sudo gem install gym cd项目根目录, 创建自动打包脚本: $ vim gym.sh 输入脚本内容: #!/bin/bash#计时SECONDS=0#假设脚本放置在与项目相同的路径下project_path=$(pwd)#取当前时间字符串添加到文件结尾now=$(date +"%Y_%m_%d_%H_%M_%S")#指定项目的scheme名称scheme="Xitu"#指定要打包的配置名configuration="Adhoc"#指定打包所使用的输出方式，目前支持app-store, package, ad-hoc, enterprise, development, 和developer-id，即xcodebuild的method参数export_method='ad-hoc'#指定项目地址workspace_path="$project_path/Xitu.xcworkspace"#指定输出路径output_path="project_path/APP"#指定输出归档文件地址archive_path="$output_path/Xitu$&#123;now&#125;.xcarchive"#指定输出ipa地址ipa_path="$output_path/Xitu$&#123;now&#125;.ipa"#指定输出ipa名称ipa_name="Xitu$&#123;now&#125;.ipa"#获取执行命令时的commit messagecommit_msg="$1"#输出设定的变量值echo "===workspace path: $&#123;workspace_path&#125;==="echo "===archive path: $&#123;archive_path&#125;==="echo "===ipa path: $&#123;ipa_path&#125;==="echo "===export method: $&#123;export_method&#125;==="echo "===commit msg: $1==="#先清空前一次buildgym --workspace $&#123;workspace_path&#125; --scheme $&#123;scheme&#125; --clean --configuration $&#123;configuration&#125; --archive_path $&#123;archive_path&#125; --export_method $&#123;export_method&#125; --output_directory $&#123;output_path&#125; --output_name $&#123;ipa_name&#125;#输出总用时echo "===Finished. Total time: $&#123;SECONDS&#125;s===" 把如上脚本中Xitu改成你的项目名称即可. 为脚本执行提升权限 $ chmod +x gym.sh 执行一下脚本看一下打包效果: $ ./gym.sh 经过572s，Adhoc版本的ipa文件打包成功，我们在项目根目录下找到App目录： =========================================== #上传Bugly fastlane中定义action$ fastlane new_action 这时命令行会要求你输入自定义action名字，直接以bugly上传文件命名 $ upload_app_to_bugly wei wan]]></content>
@@ -99,6 +91,14 @@
         <category>iOS</category>
         <category>Tool</category>
         <category>FastLane</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Blog-配置]]></title>
+<url>../../../../../../../../2017/11/23/Blog-配置/</url>
+    <content type="text"><![CDATA[博客配置01博客配置02]]></content>
+      <categories>
+        <category>Blog</category>
       </categories>
   </entry>
   <entry>
