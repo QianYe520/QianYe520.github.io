@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
 <meta property="og:description" content="问题 上拉加载更多，一直加载/加载白页 版本判断问题  数据 上拉加载更多，一直加载/加载白页  1.AFN限制15秒  sessionManager.requestSerializer.timeoutInterval = 15;2.缓存，从缓存里取数据，应该也要让刷新状态结束  refresh直接end 是否对新的数据请求有影响（不确定）3.scrovlview滑动影响，控制子viewC里的ta">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-28T11:24:27.000Z">
+<meta property="og:updated_time" content="2017-11-28T11:33:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FF-Beichoo-有读1.1.0版本问题">
 <meta name="twitter:description" content="问题 上拉加载更多，一直加载/加载白页 版本判断问题  数据 上拉加载更多，一直加载/加载白页  1.AFN限制15秒  sessionManager.requestSerializer.timeoutInterval = 15;2.缓存，从缓存里取数据，应该也要让刷新状态结束  refresh直接end 是否对新的数据请求有影响（不确定）3.scrovlview滑动影响，控制子viewC里的ta">
@@ -470,11 +470,11 @@
 <blockquote>
 <p>版本控制基本配置</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">/**</div><div class="line">*  @brief: 版本控制基本配置</div><div class="line">*</div><div class="line">* @discussion: 后台决定依赖  后台控制还是appstore 版本号来控制</div><div class="line">*/</div><div class="line">- (void)show_configurationLaunchUserOption</div><div class="line">&#123;</div><div class="line">FFNetWorkTool *api = [FFNetWorkTool api];</div><div class="line">api.config.isSign = NO;</div><div class="line">[api httpPost:@&quot;special/launch&quot;</div><div class="line">parameters:nil</div><div class="line">success:^(NSDictionary *dic) &#123;</div><div class="line">[self analyzeResponse:dic];</div><div class="line">&#125;</div><div class="line">failure:^(NSError *error) &#123;</div><div class="line"></div><div class="line">&#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">/**</div><div class="line">*  @brief: 版本控制基本配置</div><div class="line">*</div><div class="line">* @discussion: 后台决定依赖  后台控制还是appstore 版本号来控制</div><div class="line">*/</div><div class="line">- (void)show_configurationLaunchUserOption</div><div class="line">&#123;</div><div class="line">   FFNetWorkTool *api = [FFNetWorkTool api];</div><div class="line">   api.config.isSign = NO;</div><div class="line">  [api httpPost:@&quot;special/launch&quot;</div><div class="line">     parameters:nil</div><div class="line">        success:^(NSDictionary *dic)</div><div class="line">         &#123;</div><div class="line">          [self analyzeResponse:dic];</div><div class="line">&#125;</div><div class="line">       failure:^(NSError *error) &#123;</div><div class="line">&#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>版本控制 数据解析</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">/**</div><div class="line">*  @brief: 只有当 app_version = 1 才能 轻质跟新</div><div class="line">*/</div><div class="line">-(void)analyzeResponse:(id)dic</div><div class="line">&#123;</div><div class="line">NSLog(@&quot;%@&quot;,dic);</div><div class="line">if ([[dic allKeys] containsObject:@&quot;code&quot;])</div><div class="line">&#123;</div><div class="line">if ([dic[@&quot;code&quot;] integerValue] == 0</div><div class="line">&amp;&amp; [[dic allKeys] containsObject:@&quot;data&quot;]</div><div class="line">&amp;&amp; [[dic[@&quot;data&quot;] allKeys] containsObject:@&quot;app_version&quot;]</div><div class="line">&amp;&amp; [[dic[@&quot;data&quot;] allKeys] containsObject:@&quot;force_update&quot;]</div><div class="line">&amp;&amp; [dic[@&quot;data&quot;][@&quot;force_update&quot;]integerValue] == 1</div><div class="line">&amp;&amp; dic[@&quot;data&quot;][@&quot;app_version&quot;] )</div><div class="line">&#123;</div><div class="line"></div><div class="line">[self  checkVersionDic:@&#123;@&quot;version&quot;:dic[@&quot;data&quot;][@&quot;app_version&quot;]&#125;];</div><div class="line">return;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">//app store 版本去控制</div><div class="line">[self appVersonUpdate];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">/**</div><div class="line">*  @brief: 只有当 app_version = 1 才能 轻质跟新</div><div class="line">*/</div><div class="line">-(void)analyzeResponse:(id)dic</div><div class="line">&#123;</div><div class="line">    if ([[dic allKeys] containsObject:@&quot;code&quot;])</div><div class="line">     &#123;</div><div class="line">      if ([dic[@&quot;code&quot;] integerValue] == 0</div><div class="line">         &amp;&amp; [[dic allKeys] containsObject:@&quot;data&quot;]</div><div class="line">         &amp;&amp; [[dic[@&quot;data&quot;] allKeys] containsObject:@&quot;app_version&quot;]</div><div class="line">         &amp;&amp; [[dic[@&quot;data&quot;] allKeys] containsObject:@&quot;force_update&quot;]</div><div class="line">         &amp;&amp; [dic[@&quot;data&quot;][@&quot;force_update&quot;]integerValue] == 1</div><div class="line">         &amp;&amp; dic[@&quot;data&quot;][@&quot;app_version&quot;] )</div><div class="line">     &#123;</div><div class="line">         [self  checkVersionDic:@&#123;@&quot;version&quot;:dic[@&quot;data&quot;][@&quot;app_version&quot;]&#125;];</div><div class="line">            return;</div><div class="line"> &#125;</div><div class="line">&#125;</div><div class="line">//app store 版本去控制</div><div class="line">[self appVersonUpdate];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>Appstore 方式控制版本更新 入口）</p>
 </blockquote>
@@ -489,6 +489,9 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">[self check_pingObserver];</div></pre></td></tr></table></figure>
 <h2 id="TabBarC样式撤换"><a href="#TabBarC样式撤换" class="headerlink" title="TabBarC样式撤换"></a>TabBarC样式撤换</h2><blockquote>
 <p>撤换地上那方<br>点击，略微弹动动画</p>
+</blockquote>
+<h2 id="首页推荐-猜你喜欢"><a href="#首页推荐-猜你喜欢" class="headerlink" title="首页推荐-猜你喜欢"></a>首页推荐-猜你喜欢</h2><blockquote>
+<p>换一换，偏移量修改</p>
 </blockquote>
 
       
@@ -660,7 +663,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据"><span class="nav-number">1.1.</span> <span class="nav-text">数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#轻读页卡顿"><span class="nav-number">1.2.</span> <span class="nav-text">轻读页卡顿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TabBarC样式撤换"><span class="nav-number">1.3.</span> <span class="nav-text">TabBarC样式撤换</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据"><span class="nav-number">1.1.</span> <span class="nav-text">数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#轻读页卡顿"><span class="nav-number">1.2.</span> <span class="nav-text">轻读页卡顿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TabBarC样式撤换"><span class="nav-number">1.3.</span> <span class="nav-text">TabBarC样式撤换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#首页推荐-猜你喜欢"><span class="nav-number">1.4.</span> <span class="nav-text">首页推荐-猜你喜欢</span></a></li></ol></li></ol></div>
             
 
           </div>
