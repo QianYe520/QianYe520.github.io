@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
 <meta property="og:description" content="问题 上拉加载更多，一直加载/加载白页 版本判断问题  数据 上拉加载更多，一直加载/加载白页  1.AFN限制15秒  sessionManager.requestSerializer.timeoutInterval = 15;2.缓存，从缓存里取数据，应该也要让刷新状态结束  refresh直接end 是否对新的数据请求有影响（不确定）3.scrovlview滑动影响，控制子viewC里的ta">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-28T11:44:47.000Z">
+<meta property="og:updated_time" content="2017-11-28T11:46:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FF-Beichoo-有读1.1.0版本问题">
 <meta name="twitter:description" content="问题 上拉加载更多，一直加载/加载白页 版本判断问题  数据 上拉加载更多，一直加载/加载白页  1.AFN限制15秒  sessionManager.requestSerializer.timeoutInterval = 15;2.缓存，从缓存里取数据，应该也要让刷新状态结束  refresh直接end 是否对新的数据请求有影响（不确定）3.scrovlview滑动影响，控制子viewC里的ta">
@@ -477,7 +477,7 @@
 <blockquote>
 <p>版本控制基本配置<br>@discussion: 后台决定依赖  后台控制还是appstore 版本号来控制</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">- (void)show_configurationLaunchUserOption</div><div class="line">&#123;</div><div class="line">   FFNetWorkTool *api = [FFNetWorkTool api];</div><div class="line">   api.config.isSign = NO;</div><div class="line">  [api httpPost:@&quot;special/launch&quot;</div><div class="line">     parameters:nil</div><div class="line">        success:^(NSDictionary *dic)</div><div class="line">         &#123;</div><div class="line">          [self analyzeResponse:dic];</div><div class="line">&#125;</div><div class="line">       failure:^(NSError *error) &#123;</div><div class="line">&#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">- (void)show_configurationLaunchUserOption</div><div class="line">&#123;</div><div class="line">   FFNetWorkTool *api = [FFNetWorkTool api];</div><div class="line">   api.config.isSign = NO;</div><div class="line">  [api httpPost:@&quot;special/launch&quot;</div><div class="line">     parameters:nil</div><div class="line">        success:^(NSDictionary *dic)</div><div class="line">         &#123;</div><div class="line">          [self analyzeResponse:dic];</div><div class="line">&#125;</div><div class="line">       failure:^(NSError *error) &#123;</div><div class="line">&#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>版本控制 数据解析<br>@brief: 只有当 app_version = 1 才能 轻质跟新</p>
 </blockquote>
