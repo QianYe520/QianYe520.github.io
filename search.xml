@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[iOS-APP-Code上架配置文档]]></title>
+<url>../../../../../../../../2017/11/29/iOS_APP_Code_上架配置文档/</url>
+    <content type="text"></content>
+      <categories>
+        <category>iOS</category>
+        <category>App</category>
+        <category>Code</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[Git-基本使用]]></title>
 <url>../../../../../../../../2017/11/29/Git-基本使用/</url>
     <content type="text"><![CDATA[基本使用初始化仓库 创建普通仓库 $ git init 创建裸仓库，这里面许多git命令不能使用，切换分支都不可用，一般用来当远程仓库 $ git --bare init 别名 使用config alias.命令进行，添加–global参数后可以对全局git的config文件进行配置 $ git config --global alias.st status 一个很吊的配置，让你的git变得更好看，摘自 $ git config --global alias.lg &quot;log --color --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&apos; --abbrev-commit&quot; 本地的一些命令 配置信息 $ git config user.name &quot;名字&quot; git config user.email &quot;email&quot; branch分支相关命令 $ git branch -a //显示所有分支 git branch 分支名字 //如果该分支不存在，就会新建 git branch --delete 分支名字 //删除分支 add将本目录下的文件都添加到暂缓区，准备提交用 $ git add . commit 提交 $ git commit -m &quot;注释&quot; merge这个命令会将本分支merge别处的分支。 $ git merge merge过来的分支 远程命令 添加远程仓库 $ git remote add &lt;远程主机名&gt; url push，命令格式： &amp; git push 远程主机名 本地分支:远程分支 举个例子下面命令将本地分支a，push到远程主机origin的a_remote上，如果远程主机里面没有a_remote分支，那么就会创建一个这名字的分支。 $ git push origin a:a_remote 注意：如果没有远程分支的名字，那么将会在远程仓库建立一个同名的分支。如果没有本地名字，就像 :a_remote，这就相当于传了一个空的分支给远程， 那么会删除掉远程仓库的这个分支。 pull这个命令会将本地和远程分支进行merge，如果出现冲突，需要自己解决。 命令格式： $ git push 远程主机名 远程分支:本地分支 例子在此，将远程主机的 $ git pull orgin a_remote:a 发生冲突的时候，如果需要丢弃本地工作，那么使用 $ git reset --hard branch相关的远程命令将远程分支和本地分支相关联 git branch --track 本地分支 远程主机/远程分支 //在创建本地分支的时候指定它所关联的远程分支 git branch --set-upstream-to 远程主机/远程分支 //将当前分支关联远程分支 fetch这个命令将远程的分支fetch下来，然后可以将这些fetch下来的分支和本地分支进行合并 git fetch 主机名 git fetch -p 主机名 //fetch完成后，删除本地仍存在，但是远程不存在的分支关联 下面的命令将本地分支绑定远程分支，但好像并没什么用，push的时候如果不输入远程分支名字，那么还是会新建一个和本地分支同名的远程分支。 git branch --set-upstream-to origin/aa_remote stash在进行pull的时候，经常会遇到 error: Your local changes to the following files would be overwritten by merge: xxx/xxx/xxx.java Please, commit your changes or stash them before you can merge. Aborting 这里要么将你当前的工作commit一下，要么就可以使用stash命令。先用stash命令缓存当前工作，然后pull，pull后再用stash pop还原之前的工作 $ git pull ... file foobar not up to date, cannot merge. $ git stash $ git pull $ git stash pop 另外的情况就是：你在工作的时候，突然被老板要求去改别的东西，你也可以用stash把当前的工作缓存起来。改完别的东西后再回来继续工作。 其他 $... hack hack hack ... $ git stash $ edit emergency fix $ git commit -a -m &quot;Fix in a hurry&quot; $ git stash pop # ... continue hacking ... 最后一些坑 1、初始化的仓库要先commit一下才能新建分支 2、如果远程仓库在使用这个分支，那么不能提交到这个分支上去，除非建立bare仓库，但是bare仓库不能使用git命令。]]></content>
