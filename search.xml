@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[iOS-APP-Code上架配置文档]]></title>
 <url>../../../../../../../../2017/11/29/iOS_APP_Code_上架配置文档/</url>
-    <content type="text"><![CDATA[#第三方服务平台对接 辈出设计登录，分享 ##阿里云(直播类一般需要，不需要跳过) -（https://www.aliyun.com购买一年只要10个月的费用，oss和 slb 是按流量收费，请保证账户有余额）500并发 一月 账号：xxxxx密码：xxxxx ##腾讯云(直播类一般需要，不需要跳过) 腾讯云请使用qq或qq邮箱注册（https://www.qcloud.com账户需充值）差认证账号：xxxxxx密码：xxxxxxSdkAppId ：1314xxxxaccountType ：1314xxxx 短信平台 iOS 只要注意短信可用即可 QQ登录的功能（open.qq.com） 登录的APP ID：xxxxAPP KEY：xxxxx app上的腾讯地图 app上的腾讯地图key信息（HYPERLINK “http://lbs.qq.com/index.html&quot;http://lbs.qq.com/index.html）您的腾讯地图的 key：xxxxx账号：xxxx密码：xxx App新浪微博登 App新浪微博登录信息（ HYPERLINK “http://open.weibo.com/development/mobile“ http://open.weibo.com/development/mobile）App Key： xxxx不要微博APP secret：xxxx账号： xxxx密码： xxxx 微信开放平台 HYPERLINK “https://open.weixin.qq.com/“ https://open.weixin.qq.com/您的微信的APP ID：xxxxxAPP secret：8xxxxx账号：xxx密码：xxxx 开通微信支付(Beichoo暂时不需要) 开通微信支付（直播需要文网文）：用于观众支付（具体操作步骤请参考售后文档-后台需要配置的地方-微信支付文档）并留意和保留相关邮箱，等交付后台后填写到后台的资金管理-支付接口列表-微信支付。 注：最后确认分享到朋友圈、发送给朋友、微信登录和微信支付（直播需要文网文）的接口都已经获得。 app名称和BID app名国内发布APP，名字是中文 在项目info文件里边，把Bundle display name 填写一个中文名字，Localization native development regior 选择中国。如果刚才提到的两个都没有，自己手动添加即可 Bundle identifier 命名规范 命名规范，且具有唯一性，因为在发布时候，描述证书要匹配当前id。一般采用com/cn +公司名+项目名，例如com.jindong.jd注：在申请QQ、微信、地图、微博等第三方所需填写的包名均要与此包名统一，如果不统一就会导致各功能无法正常使用 Version 格式： 1.1.1 最好写3位 Build: 格式： 1 （写整数 1，2，3，4，5即可） Clean 通知全员提交代码 预先跑一边，自测，然后，clean工程，僵尸模式，断点统统清楚 Edit Scheme 必须改为 Release 开发环境 FFConfig.h服务器接口 #define APP_ENVIRONMENT_EDITION 0 0 上线 （不准Mac跑去测，必须打包TestFlight方式） 1 开发 2 测试 3 stage 服务器版本目前0.1版本 #define API_VERSION @&quot;/bc/0.1/&quot; Push Notification 务必打开 平时这个不要关了！！！ Applinks 开启H5跳转App App 信息 iTunesConnect:https://itunesconnect.apple.com/login iTunesConnect点击—&gt;登录 根据运营会给 多套 关键字，副标题，多种语言环境为了在构建版本里，多加几套关键字 构建版本截图 发布时 来传]]></content>
+    <content type="text"><![CDATA[#第三方服务平台对接 辈出设计登录，分享 ##阿里云(直播类一般需要，不需要跳过) -（https://www.aliyun.com购买一年只要10个月的费用，oss和 slb 是按流量收费，请保证账户有余额）500并发 一月 账号：xxxxx密码：xxxxx ##腾讯云(直播类一般需要，不需要跳过) 腾讯云请使用qq或qq邮箱注册（https://www.qcloud.com账户需充值）差认证账号：xxxxxx密码：xxxxxxSdkAppId ：1314xxxxaccountType ：1314xxxx 短信平台 iOS 只要注意短信可用即可 QQ登录的功能（open.qq.com） 登录的APP ID：xxxxAPP KEY：xxxxx app上的腾讯地图 app上的腾讯地图key信息（HYPERLINK “http://lbs.qq.com/index.html&quot;http://lbs.qq.com/index.html）您的腾讯地图的 key：xxxxx账号：xxxx密码：xxx App新浪微博登 App新浪微博登录信息（ HYPERLINK “http://open.weibo.com/development/mobile“ http://open.weibo.com/development/mobile）App Key： xxxx不要微博APP secret：xxxx账号： xxxx密码： xxxx 微信开放平台 HYPERLINK “https://open.weixin.qq.com/“ https://open.weixin.qq.com/您的微信的APP ID：xxxxxAPP secret：8xxxxx账号：xxx密码：xxxx 开通微信支付(Beichoo暂时不需要) 开通微信支付（直播需要文网文）：用于观众支付（具体操作步骤请参考售后文档-后台需要配置的地方-微信支付文档）并留意和保留相关邮箱，等交付后台后填写到后台的资金管理-支付接口列表-微信支付。 注：最后确认分享到朋友圈、发送给朋友、微信登录和微信支付（直播需要文网文）的接口都已经获得。 企业微信公众号的服务号信息 您的微信公众号名称：xxxxxx开通微信支付：用于主播提现（具体操作步骤请参考售后文档-后台需要配置的地方-微信提现文档）并留意和保留相关邮箱，等交付后台后填写到后台的资金管理-支付接口列表-微信提现。开通企业付款到用户 ##企业支付宝申请/签约及app支付申请（直播需要文网文） 企业支付宝申请、签约及app支付申请（直播需要文网文）您的支付宝账号： XXXXXX ##友盟账户信息 HYPERLINK “http://www.umeng.com“ http://www.umeng.com账号：xxxxxx密码: xxxxx app名称和BID app名国内发布APP，名字是中文 在项目info文件里边，把Bundle display name 填写一个中文名字，Localization native development regior 选择中国。如果刚才提到的两个都没有，自己手动添加即可 Bundle identifier 命名规范 命名规范，且具有唯一性，因为在发布时候，描述证书要匹配当前id。一般采用com/cn +公司名+项目名，例如com.jindong.jd注：在申请QQ、微信、地图、微博等第三方所需填写的包名均要与此包名统一，如果不统一就会导致各功能无法正常使用 Version 格式： 1.1.1 最好写3位 Build: 格式： 1 （写整数 1，2，3，4，5即可） Clean 通知全员提交代码 预先跑一边，自测，然后，clean工程，僵尸模式，断点统统清楚 Edit Scheme 必须改为 Release 开发环境 FFConfig.h服务器接口 #define APP_ENVIRONMENT_EDITION 0 0 上线 （不准Mac跑去测，必须打包TestFlight方式） 1 开发 2 测试 3 stage 服务器版本目前0.1版本 #define API_VERSION @&quot;/bc/0.1/&quot; Push Notification 务必打开 平时这个不要关了！！！ Applinks 开启H5跳转App App 信息 iTunesConnect:https://itunesconnect.apple.com/login iTunesConnect点击—&gt;登录 根据运营会给 多套 关键字，副标题，多种语言环境为了在构建版本里，多加几套关键字 构建版本截图 发布时 来传]]></content>
       <categories>
         <category>iOS</category>
         <category>App</category>
@@ -129,6 +129,14 @@
       </categories>
   </entry>
   <entry>
+    <title><![CDATA[Blog-配置]]></title>
+<url>../../../../../../../../2017/11/23/Blog-配置/</url>
+    <content type="text"><![CDATA[博客配置01博客配置02]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[iOS-Tool-FastLane自动化发布工具+上传Bugly]]></title>
 <url>../../../../../../../../2017/11/23/iOS-Tool-FastLane自动化发布工具+上传Bugly/</url>
     <content type="text"><![CDATA[打包的流程 修改测试版本号 修改Build版本号 执行Archive 选择Adhoc导出IPA安装包文件 上传Bugly测试平台 分享测试链接二维码FastlaneFastlane本身包含两大模块，内核部分+ActionActionAction是Fastlane自动化流程中的最小执行单元，直观上来讲就是Fastfile脚本中的一个个命令，比如：git_pull，deliver，pod_install等等，而这些命令背后都对应其实是一个用Ruby编写的脚本 Fastlane 是一套用 Ruby 编写的 iOS 命令行工具集（后来也支持了 Android），主要组件包括： match / cert / sigh 协助管理代码签名 pem 自动生成 APNs 证书 scan 自动化测试 gym 自动化编译并打包生成签名的 .ipa 文件 snapshot / frameit 协助处理 iOS 屏幕快照 pilot 上传和管理 TestFlight deliver 将应用及其它信息上传到 App Store 而正是这些颗粒度极小的Action，根据自己需求组合成一个自动化的链条 安装 首先确保Xcode命令行工具是最新版本的 $ xcode-select --install 安装Fastlane: $ sudo gem install fastlane -NV 找到工程文件目录下执行 $ fastlane init 在执行“Your Apple ID” 这一步输入苹果开发者账号，fastlane 会自动获取工程文件名，目录等其他数据。这一步“Please confirm the above values”，确认信息，没问题则输入 y。然后，fastlane 会进行一系列的初始化操作，包括下载 App Store 上的元数据和截屏文件。等待初始化完成之后，工程目录下就多了一个 fastlane目录： $ cd fastlane &amp;&amp; lsAppfile Fastfile metadata report.xmlDeliverfile README.md screenshots 文件目录 metadata目录下存放整个元数据文件，包括关键词、版本更新日志、图标等. screenshots目录下存放应用截图 Appfile文件记录App的 bundle ID、Apple ID、Team ID三种信息. Fastfile脚本的核心执行文件.有几个默认的选项，可直接使用. report文件时每次执行fastlane时生成报告 安装fastlane成功后，首先拆解我们需要自动化的两个流程: 自动打包成Adhoc的安装包ipa文件 通过fastlane自动上传到bugly 自动化打包 自动化打包使用最多就是Fastlane中gym这个Action, 转为打包而生, 安装gym这个组件: $ sudo gem install gym cd项目根目录, 创建自动打包脚本: $ vim gym.sh 输入脚本内容: #!/bin/bash#计时SECONDS=0#假设脚本放置在与项目相同的路径下project_path=$(pwd)#取当前时间字符串添加到文件结尾now=$(date +"%Y_%m_%d_%H_%M_%S")#指定项目的scheme名称scheme="Xitu"#指定要打包的配置名configuration="Adhoc"#指定打包所使用的输出方式，目前支持app-store, package, ad-hoc, enterprise, development, 和developer-id，即xcodebuild的method参数export_method='ad-hoc'#指定项目地址workspace_path="$project_path/Xitu.xcworkspace"#指定输出路径output_path="project_path/APP"#指定输出归档文件地址archive_path="$output_path/Xitu$&#123;now&#125;.xcarchive"#指定输出ipa地址ipa_path="$output_path/Xitu$&#123;now&#125;.ipa"#指定输出ipa名称ipa_name="Xitu$&#123;now&#125;.ipa"#获取执行命令时的commit messagecommit_msg="$1"#输出设定的变量值echo "===workspace path: $&#123;workspace_path&#125;==="echo "===archive path: $&#123;archive_path&#125;==="echo "===ipa path: $&#123;ipa_path&#125;==="echo "===export method: $&#123;export_method&#125;==="echo "===commit msg: $1==="#先清空前一次buildgym --workspace $&#123;workspace_path&#125; --scheme $&#123;scheme&#125; --clean --configuration $&#123;configuration&#125; --archive_path $&#123;archive_path&#125; --export_method $&#123;export_method&#125; --output_directory $&#123;output_path&#125; --output_name $&#123;ipa_name&#125;#输出总用时echo "===Finished. Total time: $&#123;SECONDS&#125;s===" 把如上脚本中Xitu改成你的项目名称即可. 为脚本执行提升权限 $ chmod +x gym.sh 执行一下脚本看一下打包效果: $ ./gym.sh 经过572s，Adhoc版本的ipa文件打包成功，我们在项目根目录下找到App目录： =========================================== #上传Bugly fastlane中定义action$ fastlane new_action 这时命令行会要求你输入自定义action名字，直接以bugly上传文件命名 $ upload_app_to_bugly wei wan]]></content>
@@ -136,14 +144,6 @@
         <category>iOS</category>
         <category>Tool</category>
         <category>FastLane</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[Blog-配置]]></title>
-<url>../../../../../../../../2017/11/23/Blog-配置/</url>
-    <content type="text"><![CDATA[博客配置01博客配置02]]></content>
-      <categories>
-        <category>Blog</category>
       </categories>
   </entry>
   <entry>
