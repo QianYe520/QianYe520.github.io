@@ -15,12 +15,11 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[iOS-APP-Code上架配置文档]]></title>
-<url>../../../../../../../../2017/11/29/iOS_APP_Code_上架配置文档/</url>
+    <title><![CDATA[iOS-Code上架配置文档]]></title>
+<url>../../../../../../../../2017/11/29/iOS_Code_上架配置文档/</url>
     <content type="text"><![CDATA[#第三方服务平台对接 辈出设计登录，分享 ##阿里云(直播类一般需要，不需要跳过) -（https://www.aliyun.com购买一年只要10个月的费用，oss和 slb 是按流量收费，请保证账户有余额）500并发 一月 账号：xxxxx密码：xxxxx ##腾讯云(直播类一般需要，不需要跳过) 腾讯云请使用qq或qq邮箱注册（https://www.qcloud.com账户需充值）差认证账号：xxxxxx密码：xxxxxxSdkAppId ：1314xxxxaccountType ：1314xxxx 短信平台 iOS 只要注意短信可用即可 QQ登录的功能（open.qq.com） 登录的APP ID：xxxxAPP KEY：xxxxx app上的腾讯地图 app上的腾讯地图key信息（HYPERLINK “http://lbs.qq.com/index.html&quot;http://lbs.qq.com/index.html）您的腾讯地图的 key：xxxxx账号：xxxx密码：xxx App新浪微博登 App新浪微博登录信息（ HYPERLINK “http://open.weibo.com/development/mobile“ http://open.weibo.com/development/mobile）App Key： xxxx不要微博APP secret：xxxx账号： xxxx密码： xxxx 微信开放平台 HYPERLINK “https://open.weixin.qq.com/“ https://open.weixin.qq.com/您的微信的APP ID：xxxxxAPP secret：8xxxxx账号：xxx密码：xxxx 开通微信支付(Beichoo暂时不需要) 开通微信支付（直播需要文网文）：用于观众支付（具体操作步骤请参考售后文档-后台需要配置的地方-微信支付文档）并留意和保留相关邮箱，等交付后台后填写到后台的资金管理-支付接口列表-微信支付。 注：最后确认分享到朋友圈、发送给朋友、微信登录和微信支付（直播需要文网文）的接口都已经获得。 企业微信公众号的服务号信息 您的微信公众号名称：xxxxxx开通微信支付：用于主播提现（具体操作步骤请参考售后文档-后台需要配置的地方-微信提现文档）并留意和保留相关邮箱，等交付后台后填写到后台的资金管理-支付接口列表-微信提现。开通企业付款到用户 ##企业支付宝申请/签约及app支付申请（直播需要文网文） 企业支付宝申请、签约及app支付申请（直播需要文网文）您的支付宝账号： XXXXXX ##友盟账户信息 HYPERLINK “http://www.umeng.com“ http://www.umeng.com账号：xxxxxx密码: xxxxx #苹果开发者账号 苹果开发者账号：738816656@qq.com（具体找相关人要）密码：xxxxxxxx如有有内购银行卡卡号：6236 6818 2000 3886 174开户行： 中国建设银行持卡人姓名：岳克奎12位识别码（打电话问银行）：105391004150 app名称和BID app名国内发布APP，名字是中文 在项目info文件里边，把Bundle display name 填写一个中文名字，Localization native development regior 选择中国。如果刚才提到的两个都没有，自己手动添加即可 Bundle identifier 命名规范 命名规范，且具有唯一性，因为在发布时候，描述证书要匹配当前id。一般采用com/cn +公司名+项目名，例如com.jindong.jd注：在申请QQ、微信、地图、微博等第三方所需填写的包名均要与此包名统一，如果不统一就会导致各功能无法正常使用 Version 格式： 1.1.1 最好写3位 Build: 格式： 1 （写整数 1，2，3，4，5即可） Clean 通知全员提交代码 预先跑一边，自测，然后，clean工程，僵尸模式，断点统统清楚 Edit Scheme 必须改为 Release 开发环境 FFConfig.h服务器接口 #define APP_ENVIRONMENT_EDITION 0 0 上线 （不准Mac跑去测，必须打包TestFlight方式） 1 开发 2 测试 3 stage 服务器版本目前0.1版本 #define API_VERSION @&quot;/bc/0.1/&quot; Push Notification 务必打开 平时这个不要关了！！！ Applinks 开启H5跳转App App 信息 iTunesConnect:https://itunesconnect.apple.com/login iTunesConnect点击—&gt;登录 根据运营会给 多套 关键字，副标题，多种语言环境为了在构建版本里，多加几套关键字 构建版本截图 发布时 来传]]></content>
       <categories>
         <category>iOS</category>
-        <category>App</category>
         <category>Code</category>
       </categories>
   </entry>
