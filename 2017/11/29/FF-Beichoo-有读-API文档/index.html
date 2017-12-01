@@ -105,17 +105,17 @@
 
 
 
-<meta name="description" content="登录注册推荐轻读个人">
+<meta name="description" content="登录注册推荐轻读轻读列表 action   special/light_reading 轻读  parameters :   refresh          值 1 (第一次进入界面传入以及后续下拉刷新，目的为清除缓存) user_id          值 用户id  interest         值 用户兴趣分类(未登录传入)page             值 1.2.3 当前获取数据">
 <meta property="og:type" content="article">
 <meta property="og:title" content="FF-Beichoo-有读-API文档">
 <meta property="og:url" content="http://yoursite.com/2017/11/29/FF-Beichoo-有读-API文档/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="登录注册推荐轻读个人">
+<meta property="og:description" content="登录注册推荐轻读轻读列表 action   special/light_reading 轻读  parameters :   refresh          值 1 (第一次进入界面传入以及后续下拉刷新，目的为清除缓存) user_id          值 用户id  interest         值 用户兴趣分类(未登录传入)page             值 1.2.3 当前获取数据">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-30T07:46:41.000Z">
+<meta property="og:updated_time" content="2017-12-01T03:33:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FF-Beichoo-有读-API文档">
-<meta name="twitter:description" content="登录注册推荐轻读个人">
+<meta name="twitter:description" content="登录注册推荐轻读轻读列表 action   special/light_reading 轻读  parameters :   refresh          值 1 (第一次进入界面传入以及后续下拉刷新，目的为清除缓存) user_id          值 用户id  interest         值 用户兴趣分类(未登录传入)page             值 1.2.3 当前获取数据">
 
 
 
@@ -409,7 +409,76 @@
       
 
       
-        <h1 id="登录注册"><a href="#登录注册" class="headerlink" title="登录注册"></a>登录注册</h1><h1 id="推荐"><a href="#推荐" class="headerlink" title="推荐"></a>推荐</h1><h1 id="轻读"><a href="#轻读" class="headerlink" title="轻读"></a>轻读</h1><h1 id="个人"><a href="#个人" class="headerlink" title="个人"></a>个人</h1>
+        <h1 id="登录注册"><a href="#登录注册" class="headerlink" title="登录注册"></a>登录注册</h1><h1 id="推荐"><a href="#推荐" class="headerlink" title="推荐"></a>推荐</h1><h1 id="轻读"><a href="#轻读" class="headerlink" title="轻读"></a>轻读</h1><h2 id="轻读列表"><a href="#轻读列表" class="headerlink" title="轻读列表"></a>轻读列表</h2><blockquote>
+<p>action </p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"></div><div class="line">special/light_reading 轻读</div></pre></td></tr></table></figure>
+<blockquote>
+<p>parameters : </p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">refresh          值 <span class="number">1</span> (第一次进入界面传入以及后续下拉刷新，目的为清除缓存)</div><div class="line"> user_id          值 用户<span class="keyword">id</span> </div><div class="line"> interest         值 用户兴趣分类(未登录传入)</div><div class="line">page             值 <span class="number">1.2</span><span class="number">.3</span> 当前获取数据页码</div></pre></td></tr></table></figure>
+<blockquote>
+<p>result</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">dic </div><div class="line">       &#123;</div><div class="line">        code: <span class="number">0</span>,</div><div class="line">        data:</div><div class="line">            item:[</div><div class="line">                &#123;</div><div class="line">                    tab:<span class="number">2</span> , <span class="number">2</span>是正常推荐</div><div class="line">                    type:collection(跳转合集),article (跳转文章)</div><div class="line"></div><div class="line">                    me: 是否属于自己， <span class="number">0</span>不属于 <span class="number">1</span>属于</div><div class="line">                    title: 合集标题</div><div class="line">                    cover: 合集封面</div><div class="line">                    brief: 合集简介</div><div class="line">                    source: 来源</div><div class="line">                    <span class="keyword">id</span>: 合集ID</div><div class="line">                    recommend_num: 推荐人数</div><div class="line">                    read_num: 阅读数量</div><div class="line"></div><div class="line">                    type: article,</div><div class="line">                    recommend_num: 推荐人数,</div><div class="line">                    title: 文章标题,</div><div class="line">                    issuer_nickname: 发行人名字,</div><div class="line">                    cover: 文章封面,</div><div class="line">                    read_num: 阅读数量,</div><div class="line">                    source: 文章来源,</div><div class="line">                    <span class="keyword">id</span>: 文章ID</div><div class="line">                &#125;,</div><div class="line">            ]</div><div class="line">            page_num: 当前页面,</div><div class="line">            page_max: 最大页面</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="个人"><a href="#个人" class="headerlink" title="个人"></a>个人</h1><h2 id="当前登录人-信息页"><a href="#当前登录人-信息页" class="headerlink" title="当前登录人-信息页"></a>当前登录人-信息页</h2><blockquote>
+<p>action(GET/POST)     </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">user/my_user_info</div></pre></td></tr></table></figure>
+<blockquote>
+<p>parameters 参数</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>user_id</th>
+<th>Int</th>
+<th>用户ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ts</td>
+<td>Int</td>
+<td>时间戳</td>
+</tr>
+<tr>
+<td>nonce</td>
+<td>Int</td>
+<td>6位随机数</td>
+</tr>
+<tr>
+<td>more</td>
+<td>Int</td>
+<td>(more=1会返回创建的合集数量和最近阅读)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>result</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>Int</td>
+<td>返回码</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Json</td>
+<td>{…}</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">&#123;</div><div class="line"> code: 0,</div><div class="line"> data:</div><div class="line"> &#123;</div><div class="line">​     name: 名字,</div><div class="line">​     career: 职业,</div><div class="line">​     company: 公司,</div><div class="line">​     portrait: 头像,</div><div class="line">​     read_num: 查看多少篇文章,</div><div class="line">​     read_time: 阅读时长,</div><div class="line">​     viewpoint_num: 观点数量</div><div class="line">​     new_follow_num: 新的关注人数,</div><div class="line">​     has_message: 是否有新消息,</div><div class="line"></div><div class="line">​     message_dic: &#123;</div><div class="line">​         user_follow: 0,  访客</div><div class="line">​         message_system: 0, 系统消息</div><div class="line">​         user_commented: 0,  评论</div><div class="line">​         comment_praised: 0  点赞</div><div class="line">​     &#125;</div><div class="line">​     如果more==1，多两个字段:</div><div class="line">​     viewpoint_praise_num: 30天内观点被赞次数,</div><div class="line">​     visited_num: 被访问数,</div><div class="line">​     interest: [](array)</div><div class="line">​     create_collection_num: 创建合集数量,</div><div class="line">​     create_collection_list: [</div><div class="line">​         source: youdu,</div><div class="line">​         cover: 合集封面,</div><div class="line">​         id: 合集id</div><div class="line">​         title: 合集名称</div><div class="line">​     ]</div><div class="line">​     collection_read_list: [</div><div class="line">​         [&apos;合集名&apos;, &apos;查看文章数量&apos;]</div><div class="line">​         ...</div><div class="line">​     ]</div><div class="line">​     article_list:[</div><div class="line">​     &#123;</div><div class="line">​         issuer_nickname: 合集名字</div><div class="line">​         issuer_logo: 合集图片</div><div class="line">​         title: 文章标题</div><div class="line">​         cover: 文章封面</div><div class="line">​         read_num: 文章阅读数量</div><div class="line">​         id: 文章id,</div><div class="line">​         recommend_num: 推荐数</div><div class="line">​     &#125;</div><div class="line">​     ...</div><div class="line">​     ]</div><div class="line">​     visitor_info_list: [</div><div class="line">​     &#123;</div><div class="line">​         portrait: 用户头像,</div><div class="line">​         user_id: 用户id</div><div class="line">​     &#125;</div><div class="line">​     ]</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -579,7 +648,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#登录注册"><span class="nav-number">1.</span> <span class="nav-text">登录注册</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#推荐"><span class="nav-number">2.</span> <span class="nav-text">推荐</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#轻读"><span class="nav-number">3.</span> <span class="nav-text">轻读</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#个人"><span class="nav-number">4.</span> <span class="nav-text">个人</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#登录注册"><span class="nav-number">1.</span> <span class="nav-text">登录注册</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#推荐"><span class="nav-number">2.</span> <span class="nav-text">推荐</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#轻读"><span class="nav-number">3.</span> <span class="nav-text">轻读</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#轻读列表"><span class="nav-number">3.1.</span> <span class="nav-text">轻读列表</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#个人"><span class="nav-number">4.</span> <span class="nav-text">个人</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#当前登录人-信息页"><span class="nav-number">4.1.</span> <span class="nav-text">当前登录人-信息页</span></a></li></ol></li></ol></div>
             
 
           </div>
