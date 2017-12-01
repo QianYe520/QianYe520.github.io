@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Swift-Grammar-Inheritance-类继承]]></title>
+<url>../../../../../../../../2017/12/01/Swift-Grammar-Inheritance-类继承/</url>
+    <content type="text"><![CDATA[类继承.&gt;继承是类独有的，结构体和枚举类都不具有这个功能。继承就好像子承父业一样，一个继承的类（称为子类subClass）可以获得被继承的类（称为父类superClass）的属性，方法和其他特性。 子类可以重写父类的方法，也可以添加自己的属性，还可以为继承而来的属性添加观察器（对继承而来的存储和计算属性都可以） 基类 一个不继承自任何类的类称为基类。在Swift中，是没有共同的终极父类的。oc和java都是有终级父类的 定义一个Animal基类 class Animal &#123; var life : Int = 0 var description: String&#123; return "An animal with a life of \(life)" &#125; func makeSounds() &#123; &#125; &#125; 继承语法 &lt;span style="color:#ff0000;"&gt;class Dog: Animal&lt;/span&gt; &#123; var name : String = "larry" &#125; 上面的Dog类继承自Animal类，并且添加了自己的name属性。我们可以修改一下dog继承的属性，然后打印一下 var dog = Dog() dog.life = 10 print("dog's life is",dog.life) //dog's life is 10 覆盖（override）父类属性 对于继承而来的存储属性或者计算属性，我们可以通过重写这个属性的getter和setter方法来实现覆盖。下面是几条规则： 1、当你重写了setter方法的时候，一定要重写getter方法。但是可以只重写getter方法。 2、覆盖属性的时候，属性名和类型都必须和继承的属性一致才算覆盖。并且前面要加上override关键字。 3、你可以将继承的只读属性重写为读写属性，但是不能将继承的读写属性重写为只读属性。 下面重写Animal的description属性 class Dog: Animal &#123; var name : String = "larry" override var description: String &#123; get&#123; return "It's a dog with the name of \(name)" &#125; &#125; &#125; 覆盖属性观察器 规则： 1、不能对继承的常量，或者只读属性添加属性观察器 2、不能同时对一个继承属性同时添加属性观察器和setter方法。因为setter方法已经可以提供属性观察器的功能。 3、即使覆盖了之后，如果父类的该属性有观察器，那么当值修改的时候，父类的观察器也会被调用 class Dog: Animal &#123; var name : String = "larry" override var life: Int &#123; didSet&#123; print("The dog's life is \(life)") &#125; &#125; override var description: String &#123; get&#123; return "It's a dog with the name of \(name)" &#125; &#125; &#125; 覆盖父类方法 同样的，加上override后，重写父类方法就可以 override func makeSounds() &#123; print("wang! wang!") &#125; 防止覆盖用final关键字去修饰就可以了。比如final var，final func， final class func， final subscript]]></content>
+      <categories>
+        <category>Swift</category>
+        <category>Grammar</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[Swift-Grammar-Subscripts-下标]]></title>
 <url>../../../../../../../../2017/12/01/Swift-Grammar-Subscripts-下标/</url>
     <content type="text"><![CDATA[下标 所谓的下标，就是[]在Array和Dictionary的时候就已经接触过了。它其实算一种特殊的方法，利用下标，我们可以将属性的getter和setter写在一起。而且还可以提供另外的一些功能。String截串的时候无比麻烦,利用下标和扩展（Extension）封装后变得很简单。这个在讲到扩展的时候在写出来吧。下标语法 subscript(index: Int) -&gt; Int &#123; get &#123; // return an appropriate subscript value here &#125; set(newValue) &#123; // perform a suitable setting action here &#125; &#125; 当然可以和计算属性一样将setter删去，变为只读。下面举一个使用例子。假设在买橙子。下标表示你要买多少斤，下标能返回总共价格。 当对下标赋值的时候，表示买那么多斤的时候总共花了多少钱。然后修改了橙子的单价.下标不止一个变量，还可以有多个变量。变量也可以是不同的类型 class Orange &#123; var pricePerKg: Double = 3 subscript(kg: Double, str: String) -&gt; Double &#123; get&#123; print(str) return kg * pricePerKg &#125; set&#123; print(str) self.pricePerKg = newValue / kg &#125; &#125; &#125; var o = Orange() print("price of 10kg orange ",o[10,"buy 10 kg orange"]) o[100,"buy 100kg orange"] = 250 print("price per kg when buying 100kg orange ",o.pricePerKg) //打印 //buy 10 kg orange //price of 10kg orange 30.0 //buy 100kg orange //price per kg when buying 100kg orange 2.5]]></content>
