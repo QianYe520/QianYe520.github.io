@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Swift-Grammar-Properties-属性]]></title>
+<url>../../../../../../../../2017/12/01/Swift-Grammar-Properties-属性/</url>
+    <content type="text"><![CDATA[Properties Swift中，属性大致分为两种，存储属性+计算属性 Stored Properties存储属性 存储属性:能保存数据的属性。枚举类、结构体、类都具有存储属性存储属性可以设为var 或let。分别对应常量和变量 struct CPU &#123; var clockSpeed = 1.0 //变量 let coreNum = 2 //常量 &#125; 计算属性就是它本身不保存数据，而是通过处理其他的数据得到返回值。 结构体和类才具有计算属性然后我们初始化一个CPU实例，但是这个实例我们设置为常量。这样会导致一个后果：对应值传递的结构体，当实例是常量的时候，即使存储属性是变量，也不能修改里面属性的值 let cpu = CPU(clockSpeed: 3.2) //注意到这个初始化方法只有一个参数，因为我们设置了coreNum为常量，并且给了初始值，所以构造方法会发生变化 cpu.clockSpeed = 3.3 //这句会报错 然而对于引用传递的类来讲，即使实例是常量，里面设置为变量的存储属性还是可以更改值的 class Telephone &#123; var cpu = CPU() var screenSize: Int? var price: Int? &#125; let myTelephont = Telephone() myTelephont.screenSize = 4 懒加载存储属性Swift需要保证一个类或结构体或枚举类在初始化之后，所以的存储属性都必须有初始值（除开可选类型）。所以当实例初始化完成以后，所以的存储属性都初始化了。但是有些时候某些存储属性不一定会用到，所以我们可以把这些存储属性设置为lazy存储属性。那么它在要用到的时候才会进行初始化。lazy存储属性只能是变量。而且在多线程调用的时候，如果lazy属性没有初始化，那么不能保证只会初始化一次 struct CPU &#123; lazy var clockSpeed = 1.0 let coreNum = 2 &#125; let cpu = CPU() //这时候clockSpeed还是为nil Computed Properties 计算属性 故名思议，它本身不保存数据，只是用其他数据得到返回值，或者当设置它的时候修改其他数据。下面的例子利用存储属性得到apple的总价。或者修改总价的时候修改重量 struct Apple &#123; let pricePerKg = 6.0 var weight: Double var totalPrice: Double &#123; get &#123; return pricePerKg * weight &#125; set(newTotalPrice) &#123; weight = newTotalPrice / pricePerKg &#125; &#125; &#125; var apple = Apple(weight: 2.0) print(apple.totalPrice) //12.0 apple.totalPrice = 6.0 print(apple.weight) //1.0 算属性的setter方法新值自带一个默认名 newValue，所以上面的定义可以改为 struct Apple &#123; let pricePerKg = 6.0 var weight: Double var totalPrice: Double &#123; get &#123; return pricePerKg * weight &#125; set &#123; weight = newValue / pricePerKg &#125; &#125; &#125; 可以将计算属性的setter去掉，那么这个计算数据就变成了只读的。这时候还可以省去get关键字 struct Apple &#123; let pricePerKg = 6.0 var weight: Double var totalPrice: Double &#123; return pricePerKg * weight &#125; &#125; 不要在计算属性的setter和getter里面获取该计算属性，这样会导致循环调用 Property Observers属性观察器 有了属性观察器，我们可以在属性被修改的时候做一些事情。注意的是对于非继承而来的计算属性，没有必要设置属性观察器，因为直接可以在计算属性的setter定义中完成这项功能。 属性观察器有两个方法willSet 在属性将要赋值的时候调用，这时候属性的值还没改变didSet在属性值被赋值完的时候就会调用。（即使是赋值和原来值一样的值）这时候属性的值已经改变。willSet方法里面会传递新值过来，你可以自己定义这个新值的名称，如果不定义，会具有默认值newValuedidSet方法里面会传递属性的旧值过来，你可以自己定义这个旧值的名称，如果不定义，会具有默认值oldValue。如果你在didSet方法里面又对这个存储属性赋值，那么这个值会覆盖掉刚刚赋值的值。且不会导致循环调用。比如下面例子里面，当pricePerKg小于3的时候，会把它改为3 struct Apple &#123; var pricePerKg = 6.0 &#123; willSet(priceNewValue)&#123; print("In willSet, priceNewValue=",priceNewValue) print("In willSet, pricePerKg=",pricePerKg) &#125; didSet&#123; print("In didSet, oldValue=",oldValue) print("In didSet, pricePerKg=",pricePerKg) if pricePerKg &lt; 3 &#123; pricePerKg = 3 &#125; &#125; &#125; var weight: Double var totalPrice: Double &#123; get &#123; return pricePerKg * weight &#125; set &#123; weight = newValue / pricePerKg &#125; &#125; &#125; var apple = Apple(pricePerKg: 6.0, weight: 1.0) apple.pricePerKg = 2.0 print("apple.pricePerKg=",apple.pricePerKg) /* 输出 In willSet, priceNewValue= 2.0 In willSet, pricePerKg= 6.0 In didSet, oldValue= 6.0 In didSet, pricePerKg= 2.0 apple.pricePerKg= 3.0 */ Global and Local Variables全局变量和局部变量 所谓的局部变量，就是定义在函数、方法、闭包、类型上下文里面的变量。全局变量就是定义在函数、方法、闭包、类型上下文之外的变量。局部变量和全局变量都称为存储变量。在全局和局部范围内，都可以定义计算变量，或者为存储变量定义观察器 var apple = Apple(pricePerKg: 6.0, weight: 1.0) &#123; //为apple变量定义观察器 willSet &#123; print("newApple",newValue) &#125; didSet&#123; print("oldApple",oldValue) &#125; &#125; apple = Apple(pricePerKg: 6.0, weight: 2.0) var c: Double &#123; //定义一个计算变量 get&#123; return 9 &#125; set &#123; print("In setter,",newValue) &#125; &#125; c = 2 print(c) /* newApple Apple(pricePerKg: 6.0, weight: 2.0) oldApple Apple(pricePerKg: 6.0, weight: 1.0) In setter, 2.0 9.0 */ 官方文档说全局变量常量都是懒加载，局部变量常量都不是懒加载 Type Properties类型属性 所谓的类型属性，就是这个属性是属于这个类型的，即使这个类型由多个实例，也只会有一个类型变量。 类型属性是懒加载的，而且必须在定义的时候给初始值。 一般是用static来定义类型属性。特别的，对应类的计算类型属性，还可以用class关键字定义，这样可以使得子类可以覆盖它。 注意类型属性访问的时候用的是类名，不能使用实例来访问 struct SomeStructure &#123; static var storedTypeProperty = "Some value." static var computedTypeProperty: Int &#123; return 1 &#125; &#125; enum SomeEnumeration &#123; static var storedTypeProperty = "Some value." static var computedTypeProperty: Int &#123; return 6 &#125; &#125; class SomeClass &#123; static var storedTypeProperty = "Some value." static var computedTypeProperty: Int &#123; return 27 &#125; class var overrideableComputedTypeProperty: Int &#123; return 107 &#125; &#125; print(SomeStructure.storedTypeProperty) // prints "Some value." SomeStructure.storedTypeProperty = "Another value." print(SomeStructure.storedTypeProperty) // prints "Another value." print(SomeEnumeration.computedTypeProperty) // prints "6" print(SomeClass.computedTypeProperty) // prints "27"]]></content>
+      <categories>
+        <category>Swift</category>
+        <category>Grammar</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[Code-Optimize性能优化]]></title>
 <url>../../../../../../../../2017/11/30/Code-Optimize性能优化/</url>
     <content type="text"></content>
@@ -178,6 +187,14 @@
       </categories>
   </entry>
   <entry>
+    <title><![CDATA[Blog-配置]]></title>
+<url>../../../../../../../../2017/11/23/Blog-配置/</url>
+    <content type="text"><![CDATA[博客配置01博客配置02]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[iOS-Tool-FastLane自动化发布工具+上传Bugly]]></title>
 <url>../../../../../../../../2017/11/23/iOS-Tool-FastLane自动化发布工具+上传Bugly/</url>
     <content type="text"><![CDATA[打包的流程 修改测试版本号 修改Build版本号 执行Archive 选择Adhoc导出IPA安装包文件 上传Bugly测试平台 分享测试链接二维码FastlaneFastlane本身包含两大模块，内核部分+ActionActionAction是Fastlane自动化流程中的最小执行单元，直观上来讲就是Fastfile脚本中的一个个命令，比如：git_pull，deliver，pod_install等等，而这些命令背后都对应其实是一个用Ruby编写的脚本 Fastlane 是一套用 Ruby 编写的 iOS 命令行工具集（后来也支持了 Android），主要组件包括： match / cert / sigh 协助管理代码签名 pem 自动生成 APNs 证书 scan 自动化测试 gym 自动化编译并打包生成签名的 .ipa 文件 snapshot / frameit 协助处理 iOS 屏幕快照 pilot 上传和管理 TestFlight deliver 将应用及其它信息上传到 App Store 而正是这些颗粒度极小的Action，根据自己需求组合成一个自动化的链条 安装 首先确保Xcode命令行工具是最新版本的 $ xcode-select --install 安装Fastlane: $ sudo gem install fastlane -NV 找到工程文件目录下执行 $ fastlane init 在执行“Your Apple ID” 这一步输入苹果开发者账号，fastlane 会自动获取工程文件名，目录等其他数据。这一步“Please confirm the above values”，确认信息，没问题则输入 y。然后，fastlane 会进行一系列的初始化操作，包括下载 App Store 上的元数据和截屏文件。等待初始化完成之后，工程目录下就多了一个 fastlane目录： $ cd fastlane &amp;&amp; lsAppfile Fastfile metadata report.xmlDeliverfile README.md screenshots 文件目录 metadata目录下存放整个元数据文件，包括关键词、版本更新日志、图标等. screenshots目录下存放应用截图 Appfile文件记录App的 bundle ID、Apple ID、Team ID三种信息. Fastfile脚本的核心执行文件.有几个默认的选项，可直接使用. report文件时每次执行fastlane时生成报告 安装fastlane成功后，首先拆解我们需要自动化的两个流程: 自动打包成Adhoc的安装包ipa文件 通过fastlane自动上传到bugly 自动化打包 自动化打包使用最多就是Fastlane中gym这个Action, 转为打包而生, 安装gym这个组件: $ sudo gem install gym cd项目根目录, 创建自动打包脚本: $ vim gym.sh 输入脚本内容: #!/bin/bash#计时SECONDS=0#假设脚本放置在与项目相同的路径下project_path=$(pwd)#取当前时间字符串添加到文件结尾now=$(date +"%Y_%m_%d_%H_%M_%S")#指定项目的scheme名称scheme="Xitu"#指定要打包的配置名configuration="Adhoc"#指定打包所使用的输出方式，目前支持app-store, package, ad-hoc, enterprise, development, 和developer-id，即xcodebuild的method参数export_method='ad-hoc'#指定项目地址workspace_path="$project_path/Xitu.xcworkspace"#指定输出路径output_path="project_path/APP"#指定输出归档文件地址archive_path="$output_path/Xitu$&#123;now&#125;.xcarchive"#指定输出ipa地址ipa_path="$output_path/Xitu$&#123;now&#125;.ipa"#指定输出ipa名称ipa_name="Xitu$&#123;now&#125;.ipa"#获取执行命令时的commit messagecommit_msg="$1"#输出设定的变量值echo "===workspace path: $&#123;workspace_path&#125;==="echo "===archive path: $&#123;archive_path&#125;==="echo "===ipa path: $&#123;ipa_path&#125;==="echo "===export method: $&#123;export_method&#125;==="echo "===commit msg: $1==="#先清空前一次buildgym --workspace $&#123;workspace_path&#125; --scheme $&#123;scheme&#125; --clean --configuration $&#123;configuration&#125; --archive_path $&#123;archive_path&#125; --export_method $&#123;export_method&#125; --output_directory $&#123;output_path&#125; --output_name $&#123;ipa_name&#125;#输出总用时echo "===Finished. Total time: $&#123;SECONDS&#125;s===" 把如上脚本中Xitu改成你的项目名称即可. 为脚本执行提升权限 $ chmod +x gym.sh 执行一下脚本看一下打包效果: $ ./gym.sh 经过572s，Adhoc版本的ipa文件打包成功，我们在项目根目录下找到App目录： =========================================== #上传Bugly fastlane中定义action$ fastlane new_action 这时命令行会要求你输入自定义action名字，直接以bugly上传文件命名 $ upload_app_to_bugly wei wan]]></content>
@@ -185,14 +202,6 @@
         <category>iOS</category>
         <category>Tool</category>
         <category>FastLane</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[Blog-配置]]></title>
-<url>../../../../../../../../2017/11/23/Blog-配置/</url>
-    <content type="text"><![CDATA[博客配置01博客配置02]]></content>
-      <categories>
-        <category>Blog</category>
       </categories>
   </entry>
   <entry>
