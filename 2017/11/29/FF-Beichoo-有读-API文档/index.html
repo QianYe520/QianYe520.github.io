@@ -105,17 +105,17 @@
 
 
 
-<meta name="description" content="登录注册推荐轻读轻读列表 action   special/light_reading 轻读  parameters     字段 类型 描述     refresh Int 值 1 (第一次进入界面传入以及后续下拉刷新，目的为清除缓存)   user_id string 用户id   interest array 用户兴趣分类(未登录传入)   page Int 值 1.2.3 当前获取数据页码">
+<meta name="description" content="登录注册推荐推荐页-列表 action  special/recommend  prama     字段 描述 Other     config.isSign = NO 未登录设置签名 默认YES   user_id 用户ID 登录必传／不登录可不传   page_size 当前请求数据条数 传 3（可不传）   interest 用户感兴趣分类 未登录必传、登录可不传     result  返">
 <meta property="og:type" content="article">
 <meta property="og:title" content="FF-Beichoo-有读-API文档">
 <meta property="og:url" content="http://yoursite.com/2017/11/29/FF-Beichoo-有读-API文档/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="登录注册推荐轻读轻读列表 action   special/light_reading 轻读  parameters     字段 类型 描述     refresh Int 值 1 (第一次进入界面传入以及后续下拉刷新，目的为清除缓存)   user_id string 用户id   interest array 用户兴趣分类(未登录传入)   page Int 值 1.2.3 当前获取数据页码">
+<meta property="og:description" content="登录注册推荐推荐页-列表 action  special/recommend  prama     字段 描述 Other     config.isSign = NO 未登录设置签名 默认YES   user_id 用户ID 登录必传／不登录可不传   page_size 当前请求数据条数 传 3（可不传）   interest 用户感兴趣分类 未登录必传、登录可不传     result  返">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-01T03:41:32.000Z">
+<meta property="og:updated_time" content="2017-12-01T04:16:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FF-Beichoo-有读-API文档">
-<meta name="twitter:description" content="登录注册推荐轻读轻读列表 action   special/light_reading 轻读  parameters     字段 类型 描述     refresh Int 值 1 (第一次进入界面传入以及后续下拉刷新，目的为清除缓存)   user_id string 用户id   interest array 用户兴趣分类(未登录传入)   page Int 值 1.2.3 当前获取数据页码">
+<meta name="twitter:description" content="登录注册推荐推荐页-列表 action  special/recommend  prama     字段 描述 Other     config.isSign = NO 未登录设置签名 默认YES   user_id 用户ID 登录必传／不登录可不传   page_size 当前请求数据条数 传 3（可不传）   interest 用户感兴趣分类 未登录必传、登录可不传     result  返">
 
 
 
@@ -409,7 +409,90 @@
       
 
       
-        <h1 id="登录注册"><a href="#登录注册" class="headerlink" title="登录注册"></a>登录注册</h1><h1 id="推荐"><a href="#推荐" class="headerlink" title="推荐"></a>推荐</h1><h1 id="轻读"><a href="#轻读" class="headerlink" title="轻读"></a>轻读</h1><h2 id="轻读列表"><a href="#轻读列表" class="headerlink" title="轻读列表"></a>轻读列表</h2><blockquote>
+        <h1 id="登录注册"><a href="#登录注册" class="headerlink" title="登录注册"></a>登录注册</h1><h1 id="推荐"><a href="#推荐" class="headerlink" title="推荐"></a>推荐</h1><h2 id="推荐页-列表"><a href="#推荐页-列表" class="headerlink" title="推荐页-列表"></a>推荐页-列表</h2><blockquote>
+<p>action</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">special/recommend</div></pre></td></tr></table></figure>
+<blockquote>
+<p>prama</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+<th>Other</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>config.isSign = NO</td>
+<td>未登录设置签名</td>
+<td>默认YES</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>用户ID</td>
+<td>登录必传／不登录可不传</td>
+</tr>
+<tr>
+<td>page_size</td>
+<td>当前请求数据条数</td>
+<td>传 3（可不传）</td>
+</tr>
+<tr>
+<td>interest</td>
+<td>用户感兴趣分类</td>
+<td>未登录必传、登录可不传</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>result</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">返回参数:</div><div class="line">&#123;</div><div class="line">    code = 0;</div><div class="line">    data =     &#123;</div><div class="line">        &quot;banner_list&quot; =banner轮播图模块         (</div><div class="line">                                            &#123;</div><div class="line">                                                img = 图片链接;</div><div class="line">                                                title = 图片主题;</div><div class="line">                                                type = 图片跳转界面类型;（article：文章、collection：合集、h5：h5界面）</div><div class="line">                                                url = 跳转界面需要接受参数;</div><div class="line">                                            &#125;</div><div class="line">                                            );</div><div class="line">        &quot;collection_master_list&quot; =  收藏达人模块       (</div><div class="line">                                                  &#123;</div><div class="line">                                                      brief = 达人描述;</div><div class="line">                                                      me = 是否是我（1：是我、0不是我）;</div><div class="line">                                                      name = 达人姓名;</div><div class="line">                                                      portrait = 达人头像链接;</div><div class="line">                                                      &quot;user_id&quot; = 达人用户id;</div><div class="line">                                                  &#125;</div><div class="line">                                                  );</div><div class="line">        &quot;good_collection_list&quot; = 精选合集模块        (</div><div class="line">                                                &#123;</div><div class="line">                                                    brief = 合集描述;</div><div class="line">                                                    cover = 合集封面图;</div><div class="line">                                                    &quot;issuer_logo&quot; = 合集作者logo;</div><div class="line">                                                    &quot;read_num&quot; = 已经阅读过人数;</div><div class="line">                                                    id = 合集id;</div><div class="line">                                                    source = 合集来源;</div><div class="line">                                                    title = 合集标题;</div><div class="line">                                                &#125;</div><div class="line">                                                );</div><div class="line">        &quot;guess_collection_list&quot; =猜你喜欢模块         (</div><div class="line">                                                 &#123;</div><div class="line">                                                     brief = 合集描述;</div><div class="line">                                                     cover = 合集封面图;</div><div class="line">                                                     id = 合集id;</div><div class="line">                                                     me = 是否是我（1：是我、0不是我）;</div><div class="line">                                                     source = 合集来源;</div><div class="line">                                                     title = 合集标题;</div><div class="line">                                                 &#125;</div><div class="line">                                                 );</div><div class="line">        &quot;hot_article_zixun&quot; =  资讯滚动展示模块       (</div><div class="line">                                               cover = 合集封面图;</div><div class="line">                                               id = 资讯链接;</div><div class="line">                                               &quot;issuer_nickname&quot; = 作者名称;</div><div class="line">                                               source = 资讯来源;</div><div class="line">                                               title =资讯标题;</div><div class="line">                                               &#125;</div><div class="line">                                               );</div><div class="line">        &quot;my_collection_list&quot; = 我的订阅模块        (</div><div class="line">                                              &#123;</div><div class="line">                                                  cover = 合集封面图;</div><div class="line">                                                  id = 合集id;</div><div class="line">                                                  &quot;new_article_num&quot; = 最近更新文章数;</div><div class="line">                                                  me = 是否是我（1：是我、0不是我）;</div><div class="line">                                                  source = 合集来源;</div><div class="line">                                                  title = 合集标题;</div><div class="line">                                              &#125;</div><div class="line">                                              );</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="推荐页-猜你喜欢刷新接口"><a href="#推荐页-猜你喜欢刷新接口" class="headerlink" title="推荐页- 猜你喜欢刷新接口"></a>推荐页- 猜你喜欢刷新接口</h2><blockquote>
+<p>action </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">collection/guess_collection</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Prama</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+<th>Other</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user_id</td>
+<td>用户id</td>
+<td>登录必传／不登录可不传</td>
+</tr>
+<tr>
+<td>page_size</td>
+<td>当前请求数据条数</td>
+<td>传 3（可不传）</td>
+</tr>
+<tr>
+<td>interest</td>
+<td>用户感兴趣分类</td>
+<td>未登录必传、登录可不传</td>
+</tr>
+<tr>
+<td>netTool.config.isSign = NO</td>
+<td>未登录传参</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>result</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">返回参数:</div><div class="line">&#123;</div><div class="line">    code = 0;</div><div class="line">    data =     &#123;</div><div class="line">        &quot;guess_collection_list&quot; = 猜你喜欢模块        (</div><div class="line">                                                 &#123;</div><div class="line">                                                     brief =合集描述;</div><div class="line">                                                     category = 合集类型;</div><div class="line">                                                     &quot;collection_user_id&quot; = 合集用户id;</div><div class="line">                                                     cover = 合集封面图;</div><div class="line">                                                     &quot;custom_cover&quot; = 高清封面图;</div><div class="line">                                                     &quot;forwarding_num&quot; = 转发数量;</div><div class="line">                                                     id = 合集id;</div><div class="line">                                                     &quot;issuer_logo&quot; = 合集作者logo;</div><div class="line">                                                     &quot;issuer_nickname&quot; = 合集作者名称;</div><div class="line">                                                     &quot;read_num&quot; = 阅读人数;</div><div class="line">                                                     source = 合集来源;</div><div class="line">                                                     title = 合集标题;</div><div class="line">                                                     uri = yiheyingxiao;</div><div class="line">                                                 &#125;</div><div class="line">                                                 );</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="轻读"><a href="#轻读" class="headerlink" title="轻读"></a>轻读</h1><h2 id="轻读列表"><a href="#轻读列表" class="headerlink" title="轻读列表"></a>轻读列表</h2><blockquote>
 <p>action </p>
 </blockquote>
 <figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"></div><div class="line">special/light_reading 轻读</div></pre></td></tr></table></figure>
@@ -678,7 +761,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#登录注册"><span class="nav-number">1.</span> <span class="nav-text">登录注册</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#推荐"><span class="nav-number">2.</span> <span class="nav-text">推荐</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#轻读"><span class="nav-number">3.</span> <span class="nav-text">轻读</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#轻读列表"><span class="nav-number">3.1.</span> <span class="nav-text">轻读列表</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#个人"><span class="nav-number">4.</span> <span class="nav-text">个人</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#当前登录人-信息页"><span class="nav-number">4.1.</span> <span class="nav-text">当前登录人-信息页</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#登录注册"><span class="nav-number">1.</span> <span class="nav-text">登录注册</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#推荐"><span class="nav-number">2.</span> <span class="nav-text">推荐</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐页-列表"><span class="nav-number">2.1.</span> <span class="nav-text">推荐页-列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐页-猜你喜欢刷新接口"><span class="nav-number">2.2.</span> <span class="nav-text">推荐页- 猜你喜欢刷新接口</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#轻读"><span class="nav-number">3.</span> <span class="nav-text">轻读</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#轻读列表"><span class="nav-number">3.1.</span> <span class="nav-text">轻读列表</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#个人"><span class="nav-number">4.</span> <span class="nav-text">个人</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#当前登录人-信息页"><span class="nav-number">4.1.</span> <span class="nav-text">当前登录人-信息页</span></a></li></ol></li></ol></div>
             
 
           </div>
