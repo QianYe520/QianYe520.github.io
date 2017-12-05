@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
 <meta property="og:description" content="ProtocolPOP 面向协议的编程 面向协议的编程的核心是抽象（Abstraction）和简化（Simplicity）协议的高级使用是协议的延展协议(protocol) + 结构体(struct) &amp;gt; 类(class)  面向对象与面向协议比较 面向对象是一个很古老的软件开发模式，通过类来实现 面向协议是苹果在 swift 中主推的，通过协议和结构体，可以代替类 Swift 中的很多对象">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-05T05:10:18.000Z">
+<meta property="og:updated_time" content="2017-12-05T05:19:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift-Grammar-Protocol协议">
 <meta name="twitter:description" content="ProtocolPOP 面向协议的编程 面向协议的编程的核心是抽象（Abstraction）和简化（Simplicity）协议的高级使用是协议的延展协议(protocol) + 结构体(struct) &amp;gt; 类(class)  面向对象与面向协议比较 面向对象是一个很古老的软件开发模式，通过类来实现 面向协议是苹果在 swift 中主推的，通过协议和结构体，可以代替类 Swift 中的很多对象">
@@ -474,7 +474,10 @@
 <li>协议的高级使用是协议的延展以及和结构体配合</li>
 </ul>
 <blockquote>
-<p>为议添加属性, 属性为可读或可写<br><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">SomeProtocol</span> </span>&#123;</div><div class="line">    <span class="comment">// 协议内容</span></div><div class="line">    <span class="keyword">var</span> name: <span class="type">String</span> &#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125;</div><div class="line">    <span class="keyword">var</span> age:  <span class="type">Int</span> &#123; <span class="keyword">set</span> <span class="keyword">get</span> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>为议添加属性, 属性为可读或可写</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">SomeProtocol</span> </span>&#123;</div><div class="line">    <span class="comment">// 协议内容</span></div><div class="line">    <span class="keyword">var</span> name: <span class="type">String</span> &#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125;</div><div class="line">    <span class="keyword">var</span> age:  <span class="type">Int</span> &#123; <span class="keyword">set</span> <span class="keyword">get</span> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
 <p>定义一个接受协议的结构体</p>
 </blockquote>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SomeModel</span>: <span class="title">SomeProtocol</span></span>&#123;</div><div class="line">   <span class="keyword">var</span> name:<span class="type">String</span> = <span class="string">""</span></div><div class="line">   <span class="keyword">var</span> age: <span class="type">Int</span> = <span class="number">0</span></div><div class="line">   <span class="keyword">var</span> isYue: <span class="type">Bool</span> =  <span class="literal">false</span></div><div class="line">   </div><div class="line">   <span class="keyword">init</span>(with dict:[<span class="type">String</span>:<span class="type">Any</span>])&#123;</div><div class="line">   <span class="keyword">self</span>.name = (dict[<span class="string">"name"</span>]<span class="keyword">as</span>?<span class="type">String</span>)??<span class="string">""</span></div><div class="line">   <span class="keyword">self</span>.age = (dict[<span class="string">"age"</span>]<span class="keyword">as</span>?<span class="type">Int</span>)??<span class="number">0</span></div><div class="line">   <span class="keyword">self</span>.isYue = (dict[<span class="string">"isYue"</span>]<span class="keyword">as</span>?<span class="type">Bool</span>)??<span class="literal">false</span></div><div class="line">   &#125;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
