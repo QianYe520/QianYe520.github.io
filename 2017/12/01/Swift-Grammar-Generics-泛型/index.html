@@ -105,17 +105,17 @@
 
 
 
-<meta name="description" content="泛型函数 当我们写一个函数的时候，一般都会指明参数的类型。比如下面两个实现交换变量的函数（摘自官方文档   func swapTwoInts(inout a: Int, inout _ b: Int) &amp;#123;      let temporaryA = a      a = b      b = temporaryA  &amp;#125;  上面的只是限于交换整形。但是如果我们相对Double或F">
+<meta name="description" content="泛型 接受其它函数作为参数的函数有时被称为高阶函数泛型函数 写一个函数的时，一般都会指明参数的类型一般默认在函数中定义的参数都是常量参数，也就是这个参数你只可以查询使用，不能改变它的值如果想要声明一个变量参数，可以在前面加上var，这样就可以改变这个参数的值    //此时这个id值可以在函数中改变 func  getName(var id:String).........  一般默认的参数传递都">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift-Grammar-Generics-泛型">
 <meta property="og:url" content="http://yoursite.com/2017/12/01/Swift-Grammar-Generics-泛型/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="泛型函数 当我们写一个函数的时候，一般都会指明参数的类型。比如下面两个实现交换变量的函数（摘自官方文档   func swapTwoInts(inout a: Int, inout _ b: Int) &amp;#123;      let temporaryA = a      a = b      b = temporaryA  &amp;#125;  上面的只是限于交换整形。但是如果我们相对Double或F">
+<meta property="og:description" content="泛型 接受其它函数作为参数的函数有时被称为高阶函数泛型函数 写一个函数的时，一般都会指明参数的类型一般默认在函数中定义的参数都是常量参数，也就是这个参数你只可以查询使用，不能改变它的值如果想要声明一个变量参数，可以在前面加上var，这样就可以改变这个参数的值    //此时这个id值可以在函数中改变 func  getName(var id:String).........  一般默认的参数传递都">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-01T09:36:47.000Z">
+<meta property="og:updated_time" content="2017-12-05T10:16:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift-Grammar-Generics-泛型">
-<meta name="twitter:description" content="泛型函数 当我们写一个函数的时候，一般都会指明参数的类型。比如下面两个实现交换变量的函数（摘自官方文档   func swapTwoInts(inout a: Int, inout _ b: Int) &amp;#123;      let temporaryA = a      a = b      b = temporaryA  &amp;#125;  上面的只是限于交换整形。但是如果我们相对Double或F">
+<meta name="twitter:description" content="泛型 接受其它函数作为参数的函数有时被称为高阶函数泛型函数 写一个函数的时，一般都会指明参数的类型一般默认在函数中定义的参数都是常量参数，也就是这个参数你只可以查询使用，不能改变它的值如果想要声明一个变量参数，可以在前面加上var，这样就可以改变这个参数的值    //此时这个id值可以在函数中改变 func  getName(var id:String).........  一般默认的参数传递都">
 
 
 
@@ -442,23 +442,38 @@
       
 
       
-        <h1 id="泛型函数"><a href="#泛型函数" class="headerlink" title="泛型函数"></a>泛型函数</h1><blockquote>
-<p>当我们写一个函数的时候，一般都会指明参数的类型。比如下面两个实现交换变量的函数（摘自官方文档</p>
+        <h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><ul>
+<li>接受其它函数作为参数的函数有时被称为高阶函数<h1 id="泛型函数"><a href="#泛型函数" class="headerlink" title="泛型函数"></a>泛型函数</h1><blockquote>
+<p>写一个函数的时，一般都会指明参数的类型<br>一般默认在函数中定义的参数都是常量参数，也就是这个参数你只可以查询使用，不能改变它的值<br>如果想要声明一个变量参数，可以在前面加上var，这样就可以改变这个参数的值</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">func</span> <span class="title">swapTwoInts</span><span class="params">(<span class="keyword">inout</span> a: Int, <span class="keyword">inout</span> <span class="number">_</span> b: Int)</span></span> &#123;  </div><div class="line">    <span class="keyword">let</span> temporaryA = a  </div><div class="line">    a = b  </div><div class="line">    b = temporaryA  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">//此时这个id值可以在函数中改变</span></div><div class="line"> <span class="function"><span class="keyword">func</span>  <span class="title">getName</span><span class="params">(<span class="keyword">var</span> id:String)</span></span>.........</div></pre></td></tr></table></figure>
 <blockquote>
-<p>上面的只是限于交换整形。但是如果我们相对Double或Float类型，甚至是任何类型的数据实现交换的功能，我们都要分别写一个函数。这是无比麻烦的。</p>
-<p>所以有了泛型这个概念，泛型就是模糊的类型。当我们函数的功能实现和具体类型没关系的时候，就可以使用泛型。<br>有了泛型，我们可以将上面实现两个变量交换的功能用一个方法完成，这个方法可以用于不同的数据类型</p>
+<p>一般默认的参数传递都是传值调用的，而不是传引用。<strong>所以传入的参数在函数内改变，并不影响原来的那个参数</strong>。传入的只是这个参数的副本<br>下面两个实现交换变量的函数</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">func</span> <span class="title">swapTwoValues</span>&lt;T&gt;<span class="params">(<span class="keyword">inout</span> a: T, <span class="keyword">inout</span> <span class="number">_</span> b: T)</span></span> &#123;  </div><div class="line">    <span class="keyword">let</span> temporaryA = a  </div><div class="line">    a = b  </div><div class="line">    b = temporaryA  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">swapTwoInts</span><span class="params">( a:<span class="keyword">inout</span> Int, b:<span class="keyword">inout</span> Int)</span></span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">let</span> t = a   <span class="comment">//  0</span></div><div class="line">    a = b       <span class="comment">// 100</span></div><div class="line">    b = t       <span class="comment">//  0</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> x = <span class="number">0</span>,y = <span class="number">100</span></div><div class="line"><span class="built_in">print</span>(<span class="string">"x = \(x) ;y = \(y)"</span>)</div><div class="line"></div><div class="line"><span class="comment">//打印</span></div><div class="line">x = <span class="number">0</span> ;y = <span class="number">100</span></div><div class="line"><span class="comment">//交换变量的函数</span></div><div class="line">swapTwoInts(a: &amp;x, b: &amp;y)</div><div class="line"><span class="built_in">print</span>(<span class="string">"x = \(x) ;y = \(y)"</span>)</div><div class="line">x = <span class="number">100</span> ;y = <span class="number">0</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>上面的只是限于交换整形。但是如果我们相对Double或Float类型，甚至是任何类型的数据实现交换的功能，我们都要分别写一个函数。这是无比麻烦的</p>
+<p>所以有了泛型这个概念，泛型就是<strong>模糊的类型</strong><br>函数的功能实现和具体类型没关系的时候，就可以使用泛型(感觉类似OC的 id 类型)<br>将上面实现两个变量交换的功能用一个方法完成，这个方法可以用于不同的数据类型<br>swapTwoInts <t> 理解为一个函数族,类型参数 T 的每个选择都会确定一个新函数,该函数接受一个T型数组和一个 T -&gt; T类型的函数作为参数,并返回一个[T]类型的数组</t></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">swapTwoInts</span>&lt;T&gt;<span class="params">( a: <span class="keyword">inout</span> T, <span class="number">_</span> b: <span class="keyword">inout</span> T)</span></span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">let</span> t = a</div><div class="line">    a = b</div><div class="line">    b = t</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> x = <span class="number">8.12</span>,y = <span class="number">100.1</span></div><div class="line"><span class="built_in">print</span>(<span class="string">"x = \(x) ;y = \(y)"</span>)   <span class="comment">//x = 8.12 ;y = 100.1</span></div><div class="line">swapTwoInts( a: &amp;x,  &amp;y)</div><div class="line"><span class="built_in">print</span>(<span class="string">"x = \(x) ;y = \(y)"</span>)   <span class="comment">//x = 100.1 ;y = 8.12</span></div><div class="line"></div><div class="line"></div><div class="line">问题：x = <span class="number">8</span>  y = <span class="number">100.1</span> 发生错误，整数和浮点型数如何写交换方法？？？</div></pre></td></tr></table></figure>
 <blockquote>
 <p>主要的语法就是上面的<t>，这个T就是代表某个类型，但是没有指明具体是哪种类型。而且这个T，可以换成你希望的标示符，只要不是关键字。并且一般要求单词的首字母要大写，比如Element、Value等。而且能指定多个类型，见下面的类型约束</t></p>
+<p>泛型的函数调用方法和普通函数是一样的<br>下面创建了两个Animal实例，然后使用刚刚定义的函数交换数据。</p>
 </blockquote>
-<p>泛型的函数调用方法和普通函数是一样的。下面创建了两个Animal实例，然后使用刚刚定义的函数交换数据。</p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> </div><div class="line"></div><div class="line"><span class="keyword">var</span> cat = <span class="type">Animal</span>()  </div><div class="line">cat.life = <span class="number">1</span>  </div><div class="line"><span class="keyword">var</span> dog = <span class="type">Animal</span>()  </div><div class="line">dog.life = <span class="number">2</span>  </div><div class="line">  </div><div class="line">swapTwoValues(&amp;cat, &amp;dog)  </div><div class="line"><span class="built_in">print</span>(cat.life)  <span class="comment">// 2  </span></div><div class="line"><span class="built_in">print</span>(dog.life)  <span class="comment">// 1</span></div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;</div><div class="line">    <span class="keyword">var</span> life = <span class="number">0</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> cat = <span class="type">Animal</span>()</div><div class="line">cat.life = <span class="number">1</span></div><div class="line"><span class="keyword">var</span> dog = <span class="type">Animal</span>()</div><div class="line">dog.life = <span class="number">2</span></div><div class="line"></div><div class="line">swapTwoInts(cat.life, dog.life)  <span class="comment">//报错！！ 方面交换方法不能交换。。醉了</span></div><div class="line"><span class="built_in">print</span>(cat.life)  </div><div class="line"><span class="built_in">print</span>(dog.life)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>泛型举例分析</p>
+</blockquote>
+<p><a href="http://lib.csdn.net/article/swift/48384?knId=10" target="_blank" rel="external">参考</a></p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="comment">//  map</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">map</span>&lt;Element,T&gt;<span class="params">(xs:[Element],transfom:<span class="params">(Element)</span></span></span> -&gt;<span class="type">T</span>)-&gt;[<span class="type">T</span>]&#123;</div><div class="line">    <span class="keyword">var</span> result :[<span class="type">T</span>] = []</div><div class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> xs&#123;</div><div class="line">        result.append(transfom(x))</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> result</div><div class="line">    </div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">genericComputeArray</span>&lt;T&gt;<span class="params">(xs: [Int], transfom: <span class="params">(Int)</span></span></span> -&gt; <span class="type">T</span>) -&gt; [<span class="type">T</span>] &#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">map</span>(xs: xs, transfom: transfom)</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">这块 不是很理解</div></pre></td></tr></table></figure>
+<blockquote>
+<p>顶层函数和扩展<br>写一个函数,它接受一个给定的整型数组,通过计算得到并返回一个新数组。要求：新数组各项为原数组中对应的整型数据加一。for 循环能实现</p>
+</blockquote>
 <h1 id="泛型类型"><a href="#泛型类型" class="headerlink" title="泛型类型"></a>泛型类型</h1><blockquote>
-<p>定义一个类型，但是它可以对不同类型的数据进行操作。比如Array和Dictionary这两个集合结构体，他们可以装不同类型的数据，这就是泛型类型。<br>官方文档给我们展示了一个泛型类型的栈，它使用Array来实现</p>
-</blockquote>
+<p>定义一个类型，但是它可以对不同类型的数据进行操作<br>比如Array和Dictionary这两个集合结构体，他们可以装不同类型的数据，这就是泛型类型</p>
+<h2 id="官方文档展示一个泛型类型的栈，使用Array来实现"><a href="#官方文档展示一个泛型类型的栈，使用Array来实现" class="headerlink" title="官方文档展示一个泛型类型的栈，使用Array来实现"></a>官方文档展示一个泛型类型的栈，使用Array来实现</h2></blockquote>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">struct Stack&lt;Element&gt; &#123;  </div><div class="line">    var items = [Element]()  </div><div class="line">    mutating func push(item: Element) &#123;  </div><div class="line">        items.append(item)  </div><div class="line">    &#125;  </div><div class="line">    mutating func pop() -&gt; Element &#123;  </div><div class="line">        return items.removeLast()  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>然后在创建这种泛型类型实例的时候，我们必须指定所属的类型</p>
@@ -654,7 +669,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#泛型函数"><span class="nav-number">1.</span> <span class="nav-text">泛型函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#泛型类型"><span class="nav-number">2.</span> <span class="nav-text">泛型类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#泛型约束"><span class="nav-number">3.</span> <span class="nav-text">泛型约束</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关联类型"><span class="nav-number">4.</span> <span class="nav-text">关联类型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#泛型"><span class="nav-number">1.</span> <span class="nav-text">泛型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#泛型函数"><span class="nav-number">2.</span> <span class="nav-text">泛型函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#泛型类型"><span class="nav-number">3.</span> <span class="nav-text">泛型类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#官方文档展示一个泛型类型的栈，使用Array来实现"><span class="nav-number">3.1.</span> <span class="nav-text">官方文档展示一个泛型类型的栈，使用Array来实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#泛型约束"><span class="nav-number">4.</span> <span class="nav-text">泛型约束</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关联类型"><span class="nav-number">5.</span> <span class="nav-text">关联类型</span></a></li></ol></div>
             
 
           </div>
