@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[iOS-NSDictionary-字典]]></title>
+<url>../../../../../../../../2017/12/06/iOS-NSDictionary-字典/</url>
+    <content type="text"><![CDATA[#初始化 创建字段,不可变的 NSDictionary * dic = [NSDictionary dictionaryWithObjectsAndKeys:@"s",@"name", nil]; 快捷创建方式 NSDictionary * dic2 = @&#123; @"one":@"1",@"two":@"2"&#125;;dic2.count 获得字典长度 遍历NSArray * keys = [dic3 allKeys]; for (int i = 0; i &lt; keys.count; i++) &#123; NSString * key = [keys objectAtIndex:i]; //如果你的字典中存储的多种不同的类型,那么最好用id类型去接受它 id obj = [dic3 objectForKey:key]; NSLog(@"obj %@",obj); &#125; 枚举器 NSEnumerator * enumerator = [dic3 objectEnumerator];id value;while (value = [enumerator nextObject]) &#123; NSLog(@"value %@",value);&#125; 可变字典NSMutableDictionary 创建一个可变长度字典 NSMutableDictionary * muDic = [[NSMutableDictionary alloc] initWithCapacity:0]; 向字典中村如数据 [muDic setObject:@"1" forKey:@"one"]; 删除 [muDic removeObjectForKey:@“one"]; 全部删除 [muDic removeAllObjects];]]></content>
+      <categories>
+        <category>iOS</category>
+        <category>NSDictionary</category>
+      </categories>
+      <tags>
+        <tag>NSDictionary</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[iOS-NSArray-数组]]></title>
 <url>../../../../../../../../2017/12/06/iOS-NSArray-数组/</url>
     <content type="text"><![CDATA[初始化、取值等基础操作 NSArray 是不可变数组,一旦创建完成就不能够对数组进行,添加,删除等操作 NSArray * array = [[NSArray alloc] init]; NSArray * array1 = [NSArray arrayWithObjects:@"one",@"two",@"three", nil]; ``` &gt;在创建一个NSArray的时候最后一个元素一定是nil 不要把nil存到数组中，会导致数据丢失&gt;数组实际上存储的时对象的地址,同样也可以存储数组的地址```objectivec NSArray * a1 = [[NSArray alloc] initWithObjects:@"one",@"two",@"three", nil]; NSArray * a2 = [[NSArray alloc] initWithObjects:@"1",@"2",@"3", nil]; NSArray * a3 = [[NSArray alloc] initWithObjects:a1,a2, nil];``` &gt;创建数组的快捷方式```objectivec NSArray * array = @[@"a",@"b",@"c"]; 快速获得一个数组中的元素 NSString * str = array[0]; [array objectAtIndex:0]; 数组的index从0开始 [array count] 获得元素个数[array containsObject:p1] 判断数组中是否包含某个对象 遍历数组 普通的for循环 for (int i = 0; i &lt; array.count; i++)&#123; NSString * str = array[i]; NSLog(@"array[%d] = %@",i,str);&#125; 使用增强for循环的方式遍历数组 for (NSString * str in array)&#123; NSLog(@"str = %@",str);&#125; 枚举器 NSArray * array = @[@"one",@"two",@"three"];NSEnumerator * enumerator = [array objectEnumerator];NSString * value;while (value = [enumerator nextObject]) &#123; NSLog(@"enum str %@",value);&#125; 数组排序 使用sortedArrayUsingSelector [array sortedArrayUsingSelector:@selector(compare:)] 使用block方式排序 array2 = [array2 sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) &#123; /* NSComparisonResult result = [obj1 compare:obj2]; return result; */ //obj1 compare obj2 就是正序排序 //return [obj1 compare:obj2]; //obj2 compare obj1 就是倒序排序 return [obj2 compare:obj1]; &#125;]; 如果你向给你自己定义的对象排序,必须根据某一个属性来排序,如果你向给你自己定义的对象排序,必须根据某一个属性来排序,sortDescriptorWithKey 参数要的就是你对象中,要依据哪个属性来排序,你就把哪个 属性的名字当成key传入ascending YES表示正序 NO表示倒叙 NSSortDescriptor * d1 = [NSSortDescriptor sortDescriptorWithKey:@"age" ascending:NO]; NSSortDescriptor * d2 = [NSSortDescriptor sortDescriptorWithKey:@"year" ascending:NO]; ``` &gt;如果你要使用多个属性进行排序,默认在前面的NSSortDescriptor优先级比较高```objectivec NSArray * description = @[d2,d1]; array3 = [array3 sortedArrayUsingDescriptors:description]; 可变数组NSMutableArray 创建可变数组 NSMutableArray * array = [[NSMutableArray alloc] initWithCapacity:0]; 使用addObject 动态给数组中增加元素 [array addObject:@“one"]; 数组中可以存储,同一个对象多次指定对象插入的位置 [array insertObject:str1 atIndex:2]; 删除 会通过对象,删除数组中所有的同一个地址的对象 [array removeObject:str1]; 通过索引的方式删除对象,超出了数组的count值,那么就会导致异常 index beyond bounds [array removeObjectAtIndex:0];[array removeAllObjects];]]></content>
