@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[iOS-NSSet]]></title>
+<url>../../../../../../../../2017/12/06/iOS-NSSet/</url>
+    <content type="text"><![CDATA[NSSet初始化 NSSet是无序的注意:这个是最为重要的功能 NSSet中不能够存储重复的数据,可以用它来去除重复的值 NSString * str1 = @"one"; NSString * str2 = @"two"; NSString * str3 = @"three"; NSSet * set = [[NSSet alloc] initWithObjects:str1,str2,str3,str1, nil]; 这样其实在set中指存储了 @“one”,@“two”,@“three” set.count 值为3[set containsObject:str1]; 是否包含str1 遍历NSEnumerator * enumerator = [set objectEnumerator]; NSString * value; while (value = [enumerator nextObject]) &#123; NSLog(@"value %@",value); &#125; 可变集合NSMutableSet 创建一个可变集合 NSMutableSet * muSet = [[NSMutableSet alloc] init]; 增加值 [muSet addObject:str1]; 删除 [muSet removeObject:str1]; 删除所有 [muSet removeAllObjects]; 集合之间相互转换 NSArray 转换成 NSMutableArray NSArray * array = @[@"one",@"two",@"three"];NSMutableArray * muArray = [NSMutableArray arrayWithArray:array]; NSDictionary 转换成 NSMutableDictionary NSDictionary * dic = @&#123;@"one":@"1",@"two":@"2"&#125;;NSMutableDictionary * muDic = [NSMutableDictionary dictionaryWithDictionary:dic]; NSSet 转换成 NSMutableSet NSSet * set = [[NSSet alloc] initWithObjects:@"one",@"two", nil];NSMutableSet *muSet = [NSMutableSet setWithSet:set]; NSArray 转换成NSSetNSMutableSet * muSet2 = [NSMutableSet setWithArray:array]; NSDictionary 转化成NSArrayNSArray * keys = [dic allKeys];NSArray * values = [dic allValues]; 字符串转换成数组NSString * str = @"aa.bb.cc";NSArray * strArray =[str componentsSeparatedByString:@“."];]]></content>
+      <categories>
+        <category>iOS</category>
+        <category>NSSet</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[iOS-NSDictionary-字典]]></title>
 <url>../../../../../../../../2017/12/06/iOS-NSDictionary-字典/</url>
     <content type="text"><![CDATA[#初始化 创建字段,不可变的 NSDictionary * dic = [NSDictionary dictionaryWithObjectsAndKeys:@"s",@"name", nil]; 快捷创建方式 NSDictionary * dic2 = @&#123; @"one":@"1",@"two":@"2"&#125;;dic2.count 获得字典长度 遍历NSArray * keys = [dic3 allKeys]; for (int i = 0; i &lt; keys.count; i++) &#123; NSString * key = [keys objectAtIndex:i]; //如果你的字典中存储的多种不同的类型,那么最好用id类型去接受它 id obj = [dic3 objectForKey:key]; NSLog(@"obj %@",obj); &#125; 枚举器 NSEnumerator * enumerator = [dic3 objectEnumerator];id value;while (value = [enumerator nextObject]) &#123; NSLog(@"value %@",value);&#125; 可变字典NSMutableDictionary 创建一个可变长度字典 NSMutableDictionary * muDic = [[NSMutableDictionary alloc] initWithCapacity:0]; 向字典中村如数据 [muDic setObject:@"1" forKey:@"one"]; 删除 [muDic removeObjectForKey:@“one"]; 全部删除 [muDic removeAllObjects];]]></content>
