@@ -105,18 +105,18 @@
 
 
 
-<meta name="description" content="惰性初始化 Swift中，有两种方式来惰性初始化。 简单表达式  lazy var first = NSArray(objects: &quot;1&quot;,&quot;2&quot;)  闭包不要忘记最后的小括号，只有加了小括号，必包才会在掉用的时候立刻执行要类型声明lazy var second:String，这样Xcode会进行类型检  lazy var second:String = &amp;#123;       return">
+<meta name="description" content="惰性初始化 Swift中，有两种方式来惰性初始化。 简单表达式 lazy var first = NSArray(objects: &quot;1&quot;,&quot;2&quot;) ##闭包  不要忘记最后的小括号，只有加了小括号，必包才会在掉用的时候立刻执行要类型声明lazy var second:String，这样Xcode会进行类型检  lazy var second:String = &amp;#123;       retur">
 <meta name="keywords" content="Swift,Grammar,Lazy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift-Grammar-Lazy-懒加载">
 <meta property="og:url" content="http://yoursite.com/2017/12/08/Swift-Grammar-Lazy-懒加载/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="惰性初始化 Swift中，有两种方式来惰性初始化。 简单表达式  lazy var first = NSArray(objects: &quot;1&quot;,&quot;2&quot;)  闭包不要忘记最后的小括号，只有加了小括号，必包才会在掉用的时候立刻执行要类型声明lazy var second:String，这样Xcode会进行类型检  lazy var second:String = &amp;#123;       return">
+<meta property="og:description" content="惰性初始化 Swift中，有两种方式来惰性初始化。 简单表达式 lazy var first = NSArray(objects: &quot;1&quot;,&quot;2&quot;) ##闭包  不要忘记最后的小括号，只有加了小括号，必包才会在掉用的时候立刻执行要类型声明lazy var second:String，这样Xcode会进行类型检  lazy var second:String = &amp;#123;       retur">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-08T08:47:33.000Z">
+<meta property="og:updated_time" content="2017-12-08T08:52:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift-Grammar-Lazy-懒加载">
-<meta name="twitter:description" content="惰性初始化 Swift中，有两种方式来惰性初始化。 简单表达式  lazy var first = NSArray(objects: &quot;1&quot;,&quot;2&quot;)  闭包不要忘记最后的小括号，只有加了小括号，必包才会在掉用的时候立刻执行要类型声明lazy var second:String，这样Xcode会进行类型检  lazy var second:String = &amp;#123;       return">
+<meta name="twitter:description" content="惰性初始化 Swift中，有两种方式来惰性初始化。 简单表达式 lazy var first = NSArray(objects: &quot;1&quot;,&quot;2&quot;) ##闭包  不要忘记最后的小括号，只有加了小括号，必包才会在掉用的时候立刻执行要类型声明lazy var second:String，这样Xcode会进行类型检  lazy var second:String = &amp;#123;       retur">
 
 
 
@@ -456,11 +456,11 @@
       
         <h1 id="惰性初始化"><a href="#惰性初始化" class="headerlink" title="惰性初始化"></a>惰性初始化</h1><blockquote>
 <p>Swift中，有两种方式来惰性初始化。</p>
-<p>简单表达式</p>
-</blockquote>
+<h2 id="简单表达式"><a href="#简单表达式" class="headerlink" title="简单表达式"></a>简单表达式</h2></blockquote>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="built_in">lazy</span> <span class="keyword">var</span> first = <span class="type">NSArray</span>(objects: <span class="string">"1"</span>,<span class="string">"2"</span>)</div></pre></td></tr></table></figure>
+<p>##闭包</p>
 <blockquote>
-<p>闭包<br>不要忘记最后的小括号，只有加了小括号，必包才会在掉用的时候立刻执行<br>要类型声明lazy var second:String，这样Xcode会进行类型检</p>
+<p>不要忘记最后的小括号，只有加了小括号，必包才会在掉用的时候立刻执行<br>要类型声明lazy var second:String，这样Xcode会进行类型检</p>
 </blockquote>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="built_in">lazy</span> <span class="keyword">var</span> second:<span class="type">String</span> = &#123;</div><div class="line">       <span class="keyword">return</span> <span class="string">"second"</span></div><div class="line">       &#125;()</div></pre></td></tr></table></figure>
 <h1 id="惰性初始化的使用场景"><a href="#惰性初始化的使用场景" class="headerlink" title="惰性初始化的使用场景"></a>惰性初始化的使用场景</h1><h2 id="属性本身依赖于外部因素才能初始化"><a href="#属性本身依赖于外部因素才能初始化" class="headerlink" title="属性本身依赖于外部因素才能初始化"></a>属性本身依赖于外部因素才能初始化</h2><blockquote>
@@ -651,7 +651,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#惰性初始化"><span class="nav-number">1.</span> <span class="nav-text">惰性初始化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#惰性初始化的使用场景"><span class="nav-number">2.</span> <span class="nav-text">惰性初始化的使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#属性本身依赖于外部因素才能初始化"><span class="nav-number">2.1.</span> <span class="nav-text">属性本身依赖于外部因素才能初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性需要复杂计算，消耗大量CPU"><span class="nav-number">2.2.</span> <span class="nav-text">属性需要复杂计算，消耗大量CPU</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性不确定是否会使用到"><span class="nav-number">2.3.</span> <span class="nav-text">属性不确定是否会使用到</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定制化的初始化"><span class="nav-number">2.4.</span> <span class="nav-text">定制化的初始化</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#惰性初始化"><span class="nav-number">1.</span> <span class="nav-text">惰性初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单表达式"><span class="nav-number">1.1.</span> <span class="nav-text">简单表达式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#惰性初始化的使用场景"><span class="nav-number">2.</span> <span class="nav-text">惰性初始化的使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#属性本身依赖于外部因素才能初始化"><span class="nav-number">2.1.</span> <span class="nav-text">属性本身依赖于外部因素才能初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性需要复杂计算，消耗大量CPU"><span class="nav-number">2.2.</span> <span class="nav-text">属性需要复杂计算，消耗大量CPU</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性不确定是否会使用到"><span class="nav-number">2.3.</span> <span class="nav-text">属性不确定是否会使用到</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定制化的初始化"><span class="nav-number">2.4.</span> <span class="nav-text">定制化的初始化</span></a></li></ol></li></ol></div>
             
 
           </div>
