@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
 <meta property="og:description" content="StringString 的定义 字符串是有序的字符集合，或者叫文本String 是字符串类型。单个字，Character是字符类型2个字符串可以用 + 链接通过字符插值可以合成一个长字符串  public struct String &amp;#123;    public init()     // An empty `String`&amp;#125; 字符串创建和空判断 字符串字面量，包含双引号的值  v">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-08T09:55:41.000Z">
+<meta property="og:updated_time" content="2017-12-09T16:15:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift-Grammar-String-Character">
 <meta name="twitter:description" content="StringString 的定义 字符串是有序的字符集合，或者叫文本String 是字符串类型。单个字，Character是字符类型2个字符串可以用 + 链接通过字符插值可以合成一个长字符串  public struct String &amp;#123;    public init()     // An empty `String`&amp;#125; 字符串创建和空判断 字符串字面量，包含双引号的值  v">
@@ -454,7 +454,7 @@
 
       
         <h1 id="String"><a href="#String" class="headerlink" title="String"></a>String</h1><h2 id="String-的定义"><a href="#String-的定义" class="headerlink" title="String 的定义"></a>String 的定义</h2><blockquote>
-<p>字符串是有序的字符集合，或者叫文本<br>String 是字符串类型。单个字，Character是字符类型<br>2个字符串可以用 + 链接<br>通过字符插值可以合成一个长字符串</p>
+<p><strong>字符串</strong>是有序的字符集合，或者叫文本<br>String 是字符串类型。单个字，Character是字符类型<br>2个字符串可以用 + 链接<br>通过字符插值可以合成一个长字符串</p>
 </blockquote>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">struct</span> <span class="title">String</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">init</span>()     <span class="comment">// An empty `String`</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="字符串创建和空判断"><a href="#字符串创建和空判断" class="headerlink" title="字符串创建和空判断"></a>字符串创建和空判断</h2><blockquote>
@@ -464,15 +464,14 @@
 <blockquote>
 <p>创建空串</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> yue  = <span class="string">""</span></div><div class="line">或</div><div class="line"><span class="keyword">var</span> yue = <span class="type">String</span>()</div><div class="line"></div><div class="line"><span class="keyword">var</span> ke = <span class="string">"  "</span></div><div class="line"></div><div class="line"></div><div class="line">yue.isEmpty    <span class="comment">// 判断字符串是否为空</span></div><div class="line">ke.isEmpty   <span class="comment">// 不为空。有空格</span></div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> yue  = <span class="string">""</span></div><div class="line">或</div><div class="line"><span class="keyword">var</span> yue = <span class="type">String</span>()  <span class="comment">//结构体方式创建</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> ke = <span class="string">"  "</span></div><div class="line"></div><div class="line"></div><div class="line">yue.isEmpty    <span class="comment">// 判断字符串是否为空</span></div><div class="line">ke.isEmpty   <span class="comment">// 不为空。有空格</span></div></pre></td></tr></table></figure>
 <blockquote>
 <p>使用三个引号来创建一段话的string<br>开始的三个引号的第一行后面的空格都会忽略，但是第二行的空格不会</p>
 </blockquote>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> quotation = <span class="string">""</span><span class="string">"</span></div><div class="line"><span class="string">The White Rabbit put on his spectacles.  "</span><span class="type">Where</span> shall <span class="type">I</span> begin,</div><div class="line">please your <span class="type">Majesty</span>?<span class="string">" he asked.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">"</span><span class="type">Begin</span> at the beginning,<span class="string">" the King said gravely, "</span>and go on</div><div class="line">till you come to the end; then stop.<span class="string">"</span></div><div class="line"><span class="string">"</span><span class="string">""</span></div></pre></td></tr></table></figure>
 <h2 id="可修改字符串"><a href="#可修改字符串" class="headerlink" title="可修改字符串"></a>可修改字符串</h2><blockquote>
-<p>Swift 3.0 用 var 和 let 来判断字符串是否可以被修改(类似OC可变字符串)</p>
+<p>Swift 3.0 用 var 和 let 来判断字符串是否可以被修改(类似OC可变字符串)<br>let修饰 不可变字符串  不能拼接追加等<br>var修饰 可变字符串<br><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> variableString = <span class="string">"Hello"</span></div><div class="line">variableString += <span class="string">"Swift 3.0"</span>;</div><div class="line"><span class="built_in">print</span>(variableString);</div><div class="line"><span class="comment">//打印</span></div><div class="line"><span class="type">HelloSwift</span> <span class="number">3.0</span></div></pre></td></tr></table></figure></p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> variableString = <span class="string">"Hello"</span></div><div class="line">variableString += <span class="string">"Swift 3.0"</span>;</div><div class="line"><span class="built_in">print</span>(variableString);</div><div class="line"><span class="comment">//打印</span></div><div class="line"><span class="type">HelloSwift</span> <span class="number">3.0</span></div></pre></td></tr></table></figure>
 <h2 id="Character-字符"><a href="#Character-字符" class="headerlink" title="Character 字符"></a>Character 字符</h2><blockquote>
 <p>创建一个Character，必须显式声明类型</p>
 </blockquote>
