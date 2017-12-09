@@ -113,7 +113,7 @@
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
 <meta property="og:description" content="字符 swift 采用Unicode编码 一个字符可以用字符本身，也可以用Unicode编码 Unicode编码 C 和 OC等，字符放在(‘)之间的  Swift （””）双引号 Unicode编码可以有 单、双、四字节编码表现形式  \u{}     n为1-8个16尽职数    let andSign1:Character = &quot;&amp;amp;&quot;       //用字符本print(andSig">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-08T10:36:04.000Z">
+<meta property="og:updated_time" content="2017-12-09T16:11:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift-Grammar-Character字符">
 <meta name="twitter:description" content="字符 swift 采用Unicode编码 一个字符可以用字符本身，也可以用Unicode编码 Unicode编码 C 和 OC等，字符放在(‘)之间的  Swift （””）双引号 Unicode编码可以有 单、双、四字节编码表现形式  \u{}     n为1-8个16尽职数    let andSign1:Character = &quot;&amp;amp;&quot;       //用字符本print(andSig">
@@ -469,7 +469,49 @@
 <blockquote>
 <p>Swift字符类型是Character。声明let/var<br>如果省略Character类型声明,自动推段是字符串，”&amp;”默认是字符串类型</p>
 </blockquote>
-<h2 id="转义符"><a href="#转义符" class="headerlink" title="转义符"></a>转义符</h2>
+<h2 id="转义符"><a href="#转义符" class="headerlink" title="转义符"></a>转义符</h2><table>
+<thead>
+<tr>
+<th>字符表示</th>
+<th>Uicode编码</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\t</td>
+<td>\u{0009}</td>
+<td>水平制表符tab</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>\u{000a}</td>
+<td>换行</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>\u{000d}</td>
+<td>回车</td>
+</tr>
+<tr>
+<td>\”</td>
+<td>\u{0022}</td>
+<td>双引号</td>
+</tr>
+<tr>
+<td>\’</td>
+<td>\u{0027}</td>
+<td>单引号</td>
+</tr>
+<tr>
+<td>\</td>
+<td>\u{005c}</td>
+<td>反斜线</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">//转义符</span></div><div class="line">      <span class="keyword">let</span> specialCharTab1 = <span class="string">"Yue\tKekui"</span></div><div class="line">      <span class="built_in">print</span>(<span class="string">"specialCharTab1:\(specialCharTab1)"</span>)</div></pre></td></tr></table></figure>
+
       
     </div>
     
