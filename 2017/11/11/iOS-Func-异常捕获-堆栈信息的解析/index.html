@@ -105,16 +105,19 @@
 
 
 
-<meta name="description" content="ReactNative">
-<meta property="og:type" content="website">
-<meta property="og:title" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:url" content="http://yoursite.com/categories/iOS/Func/index.html">
+<meta name="description" content="堆栈信息的解析 最使用NSSetUncaughtExceptionHandler和signal方法捕获异常，并传到服务器，用来追踪线上app的异常信息捕获到的都是堆栈信息：    如何利用这些堆栈信息查看报错方法名和行数？  异常信息 异常信息有三种类型 ①已标记错误位置的:信息已经很明确了，不用解析test 0x000000010bfddd8c -[ViewController viewDidL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-Func-异常捕获-堆栈信息的解析">
+<meta property="og:url" content="http://yoursite.com/2017/11/11/iOS-Func-异常捕获-堆栈信息的解析/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="ReactNative">
+<meta property="og:description" content="堆栈信息的解析 最使用NSSetUncaughtExceptionHandler和signal方法捕获异常，并传到服务器，用来追踪线上app的异常信息捕获到的都是堆栈信息：    如何利用这些堆栈信息查看报错方法名和行数？  异常信息 异常信息有三种类型 ①已标记错误位置的:信息已经很明确了，不用解析test 0x000000010bfddd8c -[ViewController viewDidL">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/iOS-Func-%E5%BC%82%E5%B8%B8%E6%8D%95%E8%8E%B7-%E5%A0%86%E6%A0%88%E4%BF%A1%E6%81%AF%E7%9A%84%E8%A7%A3%E6%9E%90-001.png">
+<meta property="og:updated_time" content="2017-12-11T09:45:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="千夜、おれはおまえをずっと爱している">
-<meta name="twitter:description" content="ReactNative">
+<meta name="twitter:title" content="iOS-Func-异常捕获-堆栈信息的解析">
+<meta name="twitter:description" content="堆栈信息的解析 最使用NSSetUncaughtExceptionHandler和signal方法捕获异常，并传到服务器，用来追踪线上app的异常信息捕获到的都是堆栈信息：    如何利用这些堆栈信息查看报错方法名和行数？  异常信息 异常信息有三种类型 ①已标记错误位置的:信息已经很明确了，不用解析test 0x000000010bfddd8c -[ViewController viewDidL">
+<meta name="twitter:image" content="http://ozr735s7e.bkt.clouddn.com/iOS-Func-%E5%BC%82%E5%B8%B8%E6%8D%95%E8%8E%B7-%E5%A0%86%E6%A0%88%E4%BF%A1%E6%81%AF%E7%9A%84%E8%A7%A3%E6%9E%90-001.png">
 
 
 
@@ -143,13 +146,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/iOS/Func/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/11/11/iOS-Func-异常捕获-堆栈信息的解析/"/>
 
 
 
 
 
-  <title>分类: Func | 千夜、おれはおまえをずっと爱している</title>
+  <title>iOS-Func-异常捕获-堆栈信息的解析 | 千夜、おれはおまえをずっと爱している</title>
   
 
 
@@ -168,7 +171,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -316,311 +319,236 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block category">
-
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Func<small>分类</small>
-        </h1>
-      </div>
-
-      
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/11/iOS-Func-异常捕获-堆栈信息的解析/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/12/07/iOS-Func-网络状况侦测/" itemprop="url">
-              
-                <span itemprop="name">iOS-Func-网络状况侦测</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">iOS-Func-异常捕获-堆栈信息的解析</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-07T11:05:40+08:00"
-              content="2017-12-07" >
-          12-07
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-11T17:25:40+08:00">
+                2017-11-11
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/Func/" itemprop="url" rel="index">
+                    <span itemprop="name">Func</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/11/11/iOS-Func-异常捕获-堆栈信息的解析/" class="leancloud_visitors" data-flag-title="iOS-Func-异常捕获-堆栈信息的解析">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/06/iOS-Func-网速实时显示/" itemprop="url">
-              
-                <span itemprop="name">iOS-Func-网速实时显示</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-06T15:34:44+08:00"
-              content="2017-12-06" >
-          12-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/06/iOS-Func-内存泄漏问题/" itemprop="url">
-              
-                <span itemprop="name">iOS-Func-内存泄漏问题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-06T14:09:22+08:00"
-              content="2017-12-06" >
-          12-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/30/iOS-Func-图片的解压缩/" itemprop="url">
-              
-                <span itemprop="name">iOS-Func-图片的解压缩</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-30T17:21:17+08:00"
-              content="2017-11-30" >
-          11-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/22/iOS-Func-Bug管理工具/" itemprop="url">
-              
-                <span itemprop="name">iOS-Func-Bug管理工具</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-22T23:38:49+08:00"
-              content="2017-11-22" >
-          11-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/22/iOS-Func-检测主线程卡顿的问题/" itemprop="url">
-              
-                <span itemprop="name">iOS-Func-检测主线程卡顿的问题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-22T21:58:35+08:00"
-              content="2017-11-22" >
-          11-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/22/iOS-Func-autoreleasepool/" itemprop="url">
-              
-                <span itemprop="name">iOS-Func-Autoreleasepool</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-22T15:43:49+08:00"
-              content="2017-11-22" >
-          11-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/21/iOS-App跳转设置/" itemprop="url">
-              
-                <span itemprop="name">iOS_App跳转设置</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-21T14:16:33+08:00"
-              content="2017-11-21" >
-          11-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/21/iOS-Safari-跳转App/" itemprop="url">
-              
-                <span itemprop="name">iOS_Safari跳转App</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-21T13:55:42+08:00"
-              content="2017-11-21" >
-          11-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/21/iOS-Func- Universal Links通用链接/" itemprop="url">
-              
-                <span itemprop="name">iOS-Func- Universal Links通用链接</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-21T13:19:49+08:00"
-              content="2017-11-21" >
-          11-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <h1 id="堆栈信息的解析"><a href="#堆栈信息的解析" class="headerlink" title="堆栈信息的解析"></a>堆栈信息的解析</h1><blockquote>
+<p>最使用NSSetUncaughtExceptionHandler和signal方法捕获异常，并传到服务器，用来追踪线上app的异常信息<br>捕获到的都是堆栈信息：</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/iOS-Func-%E5%BC%82%E5%B8%B8%E6%8D%95%E8%8E%B7-%E5%A0%86%E6%A0%88%E4%BF%A1%E6%81%AF%E7%9A%84%E8%A7%A3%E6%9E%90-001.png" alt="001"></p>
+<ul>
+<li>如何利用这些堆栈信息查看报错方法名和行数？</li>
+</ul>
+<h2 id="异常信息"><a href="#异常信息" class="headerlink" title="异常信息"></a>异常信息</h2><blockquote>
+<p>异常信息有三种类型</p>
+<p>①已标记错误位置的:信息已经很明确了，不用解析<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">test 0x000000010bfddd8c -[ViewController viewDidLoad] + 8588</div></pre></td></tr></table></figure></p>
+<p>②有模块地址的情况<br>二进制库名（test）<br>调用方法的地址（0x00000001018157dc）<br>模块地址（0x100064000）<br>+偏移地址（24844252）</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">test 0x00000001018157dc 0x100064000 + 24844252</div></pre></td></tr></table></figure>
+<blockquote>
+<p>③无模块地址的情况：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">test 0x00000001018157dc test + 24844252</div></pre></td></tr></table></figure>
+<h2 id="dSYM符号表获取"><a href="#dSYM符号表获取" class="headerlink" title="dSYM符号表获取"></a>dSYM符号表获取</h2><blockquote>
+<p>xcode-&gt;window-&gt;organizer-&gt;右键你的应用 show finder-&gt;右键.xcarchive 显示包内容-&gt;dSYMs-&gt;test.app.dYSM</p>
+</blockquote>
+<h2 id="atos命令"><a href="#atos命令" class="headerlink" title="atos命令"></a>atos命令</h2><blockquote>
+<p>atos命令来符号化某个特定模块加载地址</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ atos [-arch 架构名] [-o 符号表] [-l 模块地址] [方法地址]</div></pre></td></tr></table></figure>
+<h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><ul>
+<li>使用终端，进到test.app.dYSM所在目录</li>
+</ul>
+<blockquote>
+<p>①如果是有模块地址的情况，运行：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$  atos -arch arm64 -o test.app.dSYM/Contents/Resources/DWARF/test -l 0x100064000 0x00000001018157dc</div></pre></td></tr></table></figure>
+<blockquote>
+<p>②.如果是无模块地址的情况</p>
+</blockquote>
+<ul>
+<li>❶先将偏移地址转为16进制：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">24844252 = 0x17B17DC</div></pre></td></tr></table></figure>
+<ul>
+<li>❷然后用方法的地址-偏移地址，得到的就是模块地址</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">0x00000001018157dc - 0x17B17DC = 0x100064000</div></pre></td></tr></table></figure>
+<ul>
+<li>❸最后运行</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ atos -arch arm64 -o test.app.dSYM/Contents/Resources/DWARF/test -l 0x100064000 0x00000001018157dc</div></pre></td></tr></table></figure>
+<h1 id="iOS崩溃堆栈符号化"><a href="#iOS崩溃堆栈符号化" class="headerlink" title="iOS崩溃堆栈符号化"></a>iOS崩溃堆栈符号化</h1><p><a href="http://blog.csdn.net/tencent_bugly/article/details/46275773" target="_blank" rel="external">http://blog.csdn.net/tencent_bugly/article/details/46275773</a></p>
+<p><a href="http://blog.csdn.net/reylen/article/details/50568440" target="_blank" rel="external">http://blog.csdn.net/reylen/article/details/50568440</a></p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/24/Swift-Grammar-基本类型与运算/" rel="next" title="Swift-Grammar--基本类型与运算">
+                <i class="fa fa-chevron-left"></i> Swift-Grammar--基本类型与运算
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/13/iOS-RunTime-占位图/" rel="prev" title="iOS-Runtime实践:占位图">
+                iOS-Runtime实践:占位图 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/categories/iOS/Func/page/2/">2</a><a class="extend next" rel="next" href="/categories/iOS/Func/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -628,6 +556,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -648,8 +580,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -711,6 +652,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#堆栈信息的解析"><span class="nav-number">1.</span> <span class="nav-text">堆栈信息的解析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#异常信息"><span class="nav-number">1.1.</span> <span class="nav-text">异常信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dSYM符号表获取"><span class="nav-number">1.2.</span> <span class="nav-text">dSYM符号表获取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#atos命令"><span class="nav-number">1.3.</span> <span class="nav-text">atos命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解析"><span class="nav-number">1.4.</span> <span class="nav-text">解析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#iOS崩溃堆栈符号化"><span class="nav-number">2.</span> <span class="nav-text">iOS崩溃堆栈符号化</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -845,10 +802,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 

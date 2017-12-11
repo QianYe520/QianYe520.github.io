@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[iOS-Func-异常捕获-堆栈信息的解析]]></title>
-<url>../../../../../../../../2017/12/11/iOS-Func-异常捕获-堆栈信息的解析/</url>
-    <content type="text"><![CDATA[堆栈信息的解析 最使用NSSetUncaughtExceptionHandler和signal方法捕获异常，并传到服务器，用来追踪线上app的异常信息捕获到的都是堆栈信息： 如何利用这些堆栈信息查看报错方法名和行数？ 异常信息 异常信息有三种类型 ①已标记错误位置的:信息已经很明确了，不用解析test 0x000000010bfddd8c -[ViewController viewDidLoad] + 8588 ②有模块地址的情况二进制库名（test）调用方法的地址（0x00000001018157dc）模块地址（0x100064000）+偏移地址（24844252） test 0x00000001018157dc 0x100064000 + 24844252 ③无模块地址的情况： test 0x00000001018157dc test + 24844252 dSYM符号表获取 xcode-&gt;window-&gt;organizer-&gt;右键你的应用 show finder-&gt;右键.xcarchive 显示包内容-&gt;dSYMs-&gt;test.app.dYSM atos命令 atos命令来符号化某个特定模块加载地址 $ atos [-arch 架构名] [-o 符号表] [-l 模块地址] [方法地址] 解析 使用终端，进到test.app.dYSM所在目录 ①如果是有模块地址的情况，运行： $ atos -arch arm64 -o test.app.dSYM/Contents/Resources/DWARF/test -l 0x100064000 0x00000001018157dc ②.如果是无模块地址的情况 ❶先将偏移地址转为16进制： 24844252 = 0x17B17DC ❷然后用方法的地址-偏移地址，得到的就是模块地址 0x00000001018157dc - 0x17B17DC = 0x100064000 ❸最后运行 $ atos -arch arm64 -o test.app.dSYM/Contents/Resources/DWARF/test -l 0x100064000 0x00000001018157dc iOS崩溃堆栈符号化http://blog.csdn.net/tencent_bugly/article/details/46275773]]></content>
-      <categories>
-        <category>iOS</category>
-        <category>Func</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[Swift-Grammar-AccessControl-open]]></title>
 <url>../../../../../../../../2017/12/11/Swift-Grammar-AccessControl-open/</url>
     <content type="text"><![CDATA[open作业 open则是弥补public语义上的不足。现在的pubic有两层含义：①这个元素可以在其他作用域被访问②这个元素可以在其他作用域被继承或者override 继承问题 继承是一件危险的事情尤其对于一个framework或者module的设计者而言在自身的module内，类或者属性对于作者而言是清晰的，能否被继承或者override都是可控的,但是对于使用它的人，作者有时会希望传达出这个类或者属性不应该被继承或者修改。这个对应的就是 final ========================== final 的问题在于在标记之后，在任何地方都不能override而对于lib的设计者而言，希望得到的是在module内可以被override在被import到其他地方后其他用户使用的时候不能被override ========================== 这就是open产生的初衷通过open和public标记区别一个元素在其他module中是只能被访问还是可以被override /// ModuleA:// 这个类在ModuleA的范围外是不能被继承的，只能被访问public class NonSubclassableParentClass &#123; public func foo() &#123;&#125; // 这是错误的写法，因为class已经不能被继承， // 所以他的方法的访问权限不能大于类的访问权限 open func bar() &#123;&#125; // final的含义保持不变 public final func baz() &#123;&#125;&#125;// 在ModuleA的范围外可以被继承open class SubclassableParentClass &#123; // 这个属性在ModuleA的范围外不能被override public var size : Int // 这个方法在ModuleA的范围外不能被override public func foo() &#123;&#125; // 这个方法在任何地方都可以被override open func bar() &#123;&#125; ///final的含义保持不变 public final func baz() &#123;&#125;&#125;/// final的含义保持不变public final class FinalClass &#123; &#125;/// ModuleB:import ModuleA// 这个写法是错误的，编译会失败// 因为NonSubclassableParentClass类访问权限标记的是public，只能被访问不能被继承class SubclassA : NonSubclassableParentClass &#123; &#125;// 这样写法可以通过，因为SubclassableParentClass访问权限为 `open`.class SubclassB : SubclassableParentClass &#123; // 这样写也会编译失败 // 因为这个方法在SubclassableParentClass 中的权限为public，不是`open'. override func foo() &#123; &#125; // 这个方法因为在SubclassableParentClass中标记为open，所以可以这样写 // 这里不需要再声明为open，因为这个类是internal的 override func bar() &#123; &#125;&#125;open class SubclassC : SubclassableParentClass &#123; // 这种写法会编译失败，因为这个类已经标记为open // 这个方法override是一个open的方法，则也需要表明访问权限 override func bar() &#123; &#125; &#125;open class SubclassD : SubclassableParentClass &#123; // 正确的写法，方法也需要标记为open open override func bar() &#123; &#125; &#125;open class SubclassE : SubclassableParentClass &#123; // 也可以显式的指出这个方法不能在被override public final override func bar() &#123; &#125; &#125;]]></content>
@@ -649,6 +640,14 @@
       </categories>
   </entry>
   <entry>
+    <title><![CDATA[Blog-配置]]></title>
+<url>../../../../../../../../2017/11/23/Blog-配置/</url>
+    <content type="text"><![CDATA[博客配置01博客配置02]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[iOS-Tool-FastLane自动化发布工具+上传Bugly]]></title>
 <url>../../../../../../../../2017/11/23/iOS-Tool-FastLane自动化发布工具+上传Bugly/</url>
     <content type="text"><![CDATA[打包的流程 修改测试版本号 修改Build版本号 执行Archive 选择Adhoc导出IPA安装包文件 上传Bugly测试平台 分享测试链接二维码FastlaneFastlane本身包含两大模块，内核部分+ActionActionAction是Fastlane自动化流程中的最小执行单元，直观上来讲就是Fastfile脚本中的一个个命令，比如：git_pull，deliver，pod_install等等，而这些命令背后都对应其实是一个用Ruby编写的脚本 Fastlane 是一套用 Ruby 编写的 iOS 命令行工具集（后来也支持了 Android），主要组件包括： match / cert / sigh 协助管理代码签名 pem 自动生成 APNs 证书 scan 自动化测试 gym 自动化编译并打包生成签名的 .ipa 文件 snapshot / frameit 协助处理 iOS 屏幕快照 pilot 上传和管理 TestFlight deliver 将应用及其它信息上传到 App Store 而正是这些颗粒度极小的Action，根据自己需求组合成一个自动化的链条 安装 首先确保Xcode命令行工具是最新版本的 $ xcode-select --install 安装Fastlane: $ sudo gem install fastlane -NV 找到工程文件目录下执行 $ fastlane init 在执行“Your Apple ID” 这一步输入苹果开发者账号，fastlane 会自动获取工程文件名，目录等其他数据。这一步“Please confirm the above values”，确认信息，没问题则输入 y。然后，fastlane 会进行一系列的初始化操作，包括下载 App Store 上的元数据和截屏文件。等待初始化完成之后，工程目录下就多了一个 fastlane目录： $ cd fastlane &amp;&amp; lsAppfile Fastfile metadata report.xmlDeliverfile README.md screenshots 文件目录 metadata目录下存放整个元数据文件，包括关键词、版本更新日志、图标等. screenshots目录下存放应用截图 Appfile文件记录App的 bundle ID、Apple ID、Team ID三种信息. Fastfile脚本的核心执行文件.有几个默认的选项，可直接使用. report文件时每次执行fastlane时生成报告 安装fastlane成功后，首先拆解我们需要自动化的两个流程: 自动打包成Adhoc的安装包ipa文件 通过fastlane自动上传到bugly 自动化打包 自动化打包使用最多就是Fastlane中gym这个Action, 转为打包而生, 安装gym这个组件: $ sudo gem install gym cd项目根目录, 创建自动打包脚本: $ vim gym.sh 输入脚本内容: #!/bin/bash#计时SECONDS=0#假设脚本放置在与项目相同的路径下project_path=$(pwd)#取当前时间字符串添加到文件结尾now=$(date +"%Y_%m_%d_%H_%M_%S")#指定项目的scheme名称scheme="Xitu"#指定要打包的配置名configuration="Adhoc"#指定打包所使用的输出方式，目前支持app-store, package, ad-hoc, enterprise, development, 和developer-id，即xcodebuild的method参数export_method='ad-hoc'#指定项目地址workspace_path="$project_path/Xitu.xcworkspace"#指定输出路径output_path="project_path/APP"#指定输出归档文件地址archive_path="$output_path/Xitu$&#123;now&#125;.xcarchive"#指定输出ipa地址ipa_path="$output_path/Xitu$&#123;now&#125;.ipa"#指定输出ipa名称ipa_name="Xitu$&#123;now&#125;.ipa"#获取执行命令时的commit messagecommit_msg="$1"#输出设定的变量值echo "===workspace path: $&#123;workspace_path&#125;==="echo "===archive path: $&#123;archive_path&#125;==="echo "===ipa path: $&#123;ipa_path&#125;==="echo "===export method: $&#123;export_method&#125;==="echo "===commit msg: $1==="#先清空前一次buildgym --workspace $&#123;workspace_path&#125; --scheme $&#123;scheme&#125; --clean --configuration $&#123;configuration&#125; --archive_path $&#123;archive_path&#125; --export_method $&#123;export_method&#125; --output_directory $&#123;output_path&#125; --output_name $&#123;ipa_name&#125;#输出总用时echo "===Finished. Total time: $&#123;SECONDS&#125;s===" 把如上脚本中Xitu改成你的项目名称即可. 为脚本执行提升权限 $ chmod +x gym.sh 执行一下脚本看一下打包效果: $ ./gym.sh 经过572s，Adhoc版本的ipa文件打包成功，我们在项目根目录下找到App目录： =========================================== #上传Bugly fastlane中定义action$ fastlane new_action 这时命令行会要求你输入自定义action名字，直接以bugly上传文件命名 $ upload_app_to_bugly wei wan]]></content>
@@ -656,14 +655,6 @@
         <category>iOS</category>
         <category>Tool</category>
         <category>FastLane</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[Blog-配置]]></title>
-<url>../../../../../../../../2017/11/23/Blog-配置/</url>
-    <content type="text"><![CDATA[博客配置01博客配置02]]></content>
-      <categories>
-        <category>Blog</category>
       </categories>
   </entry>
   <entry>
@@ -864,6 +855,15 @@
       <categories>
         <category>iOS</category>
         <category>RunTime</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS-Func-异常捕获-堆栈信息的解析]]></title>
+<url>../../../../../../../../2017/11/11/iOS-Func-异常捕获-堆栈信息的解析/</url>
+    <content type="text"><![CDATA[堆栈信息的解析 最使用NSSetUncaughtExceptionHandler和signal方法捕获异常，并传到服务器，用来追踪线上app的异常信息捕获到的都是堆栈信息： 如何利用这些堆栈信息查看报错方法名和行数？ 异常信息 异常信息有三种类型 ①已标记错误位置的:信息已经很明确了，不用解析test 0x000000010bfddd8c -[ViewController viewDidLoad] + 8588 ②有模块地址的情况二进制库名（test）调用方法的地址（0x00000001018157dc）模块地址（0x100064000）+偏移地址（24844252） test 0x00000001018157dc 0x100064000 + 24844252 ③无模块地址的情况： test 0x00000001018157dc test + 24844252 dSYM符号表获取 xcode-&gt;window-&gt;organizer-&gt;右键你的应用 show finder-&gt;右键.xcarchive 显示包内容-&gt;dSYMs-&gt;test.app.dYSM atos命令 atos命令来符号化某个特定模块加载地址 $ atos [-arch 架构名] [-o 符号表] [-l 模块地址] [方法地址] 解析 使用终端，进到test.app.dYSM所在目录 ①如果是有模块地址的情况，运行： $ atos -arch arm64 -o test.app.dSYM/Contents/Resources/DWARF/test -l 0x100064000 0x00000001018157dc ②.如果是无模块地址的情况 ❶先将偏移地址转为16进制： 24844252 = 0x17B17DC ❷然后用方法的地址-偏移地址，得到的就是模块地址 0x00000001018157dc - 0x17B17DC = 0x100064000 ❸最后运行 $ atos -arch arm64 -o test.app.dSYM/Contents/Resources/DWARF/test -l 0x100064000 0x00000001018157dc iOS崩溃堆栈符号化http://blog.csdn.net/tencent_bugly/article/details/46275773 http://blog.csdn.net/reylen/article/details/50568440]]></content>
+      <categories>
+        <category>iOS</category>
+        <category>Func</category>
       </categories>
   </entry>
   <entry>
