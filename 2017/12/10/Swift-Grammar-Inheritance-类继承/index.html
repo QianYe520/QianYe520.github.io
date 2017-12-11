@@ -105,18 +105,18 @@
 
 
 
-<meta name="description" content="Inheritance-类继承-简介 继承性是面向语言特征之一swift的类继承只能发生生在类上，不能发生在枚举和机构体上swift中一格类可以继承另一个类的方法、属性、下标等特征子类   父类（超类）子类继承父类后，可重写父类的方法、属性、下标等单继承，但可遵从多个协议，多重继承可以通过遵从多个协议实现  案例 场景：面向对象的程序员岳克奎，在编程过程中需要描述和处理个人信息定义类Person">
+<meta name="description" content="Inheritance-类继承-简介 继承性是面向语言特征之一swift的类继承只能发生生在类上，不能发生在枚举和结构体上swift中一个类可以继承另一个类的方法、属性、下标等特征子类   父类（超类）子类继承父类后，可重写父类的方法、属性、下标等单继承，但可遵从多个协议，多重继承可以通过遵从多个协议实现  案例 场景：面向对象的程序员岳克奎，在编程过程中需要描述和处理个人信息定义类Person">
 <meta name="keywords" content="Swift,Grammar,Inheritance">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift-Grammar-Inheritance-类继承">
 <meta property="og:url" content="http://yoursite.com/2017/12/10/Swift-Grammar-Inheritance-类继承/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="Inheritance-类继承-简介 继承性是面向语言特征之一swift的类继承只能发生生在类上，不能发生在枚举和机构体上swift中一格类可以继承另一个类的方法、属性、下标等特征子类   父类（超类）子类继承父类后，可重写父类的方法、属性、下标等单继承，但可遵从多个协议，多重继承可以通过遵从多个协议实现  案例 场景：面向对象的程序员岳克奎，在编程过程中需要描述和处理个人信息定义类Person">
+<meta property="og:description" content="Inheritance-类继承-简介 继承性是面向语言特征之一swift的类继承只能发生生在类上，不能发生在枚举和结构体上swift中一个类可以继承另一个类的方法、属性、下标等特征子类   父类（超类）子类继承父类后，可重写父类的方法、属性、下标等单继承，但可遵从多个协议，多重继承可以通过遵从多个协议实现  案例 场景：面向对象的程序员岳克奎，在编程过程中需要描述和处理个人信息定义类Person">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-09T17:16:01.000Z">
+<meta property="og:updated_time" content="2017-12-11T01:39:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift-Grammar-Inheritance-类继承">
-<meta name="twitter:description" content="Inheritance-类继承-简介 继承性是面向语言特征之一swift的类继承只能发生生在类上，不能发生在枚举和机构体上swift中一格类可以继承另一个类的方法、属性、下标等特征子类   父类（超类）子类继承父类后，可重写父类的方法、属性、下标等单继承，但可遵从多个协议，多重继承可以通过遵从多个协议实现  案例 场景：面向对象的程序员岳克奎，在编程过程中需要描述和处理个人信息定义类Person">
+<meta name="twitter:description" content="Inheritance-类继承-简介 继承性是面向语言特征之一swift的类继承只能发生生在类上，不能发生在枚举和结构体上swift中一个类可以继承另一个类的方法、属性、下标等特征子类   父类（超类）子类继承父类后，可重写父类的方法、属性、下标等单继承，但可遵从多个协议，多重继承可以通过遵从多个协议实现  案例 场景：面向对象的程序员岳克奎，在编程过程中需要描述和处理个人信息定义类Person">
 
 
 
@@ -455,7 +455,7 @@
 
       
         <h1 id="Inheritance-类继承-简介"><a href="#Inheritance-类继承-简介" class="headerlink" title="Inheritance-类继承-简介"></a>Inheritance-类继承-简介</h1><blockquote>
-<p>继承性是面向语言特征之一<br>swift的类继承只能发生生在类上，不能发生在枚举和机构体上<br>swift中一格类可以继承另一个类的方法、属性、下标等特征<br>子类   父类（超类）<br>子类继承父类后，可重写父类的方法、属性、下标等<br>单继承，但可遵从多个协议，多重继承可以通过遵从多个协议实现</p>
+<p>继承性是面向语言特征之一<br>swift的类继承只能发生生在类上，不能发生在枚举和结构体上<br>swift中一个类可以继承另一个类的方法、属性、下标等特征<br>子类   父类（超类）<br>子类继承父类后，可重写父类的方法、属性、下标等<br>单继承，但可遵从多个协议，多重继承可以通过遵从多个协议实现</p>
 </blockquote>
 <h1 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h1><blockquote>
 <p>场景：面向对象的程序员岳克奎，在编程过程中需要描述和处理个人信息<br>定义类Person</p>
@@ -483,6 +483,10 @@
 <p>3.便利构造函数必须最终以调用一个指定构造函数结束</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Student 中的 ⑤ 便利构造函数 调用 同一类中  ④号构造函数，</div><div class="line"> Person中的 ② 便利构造函数 调用同一类中的 ③ 指定构造函数</div></pre></td></tr></table></figure>
+<h1 id="构造过程安全检查"><a href="#构造过程安全检查" class="headerlink" title="构造过程安全检查"></a>构造过程安全检查</h1><h2 id="类的构造的两个阶段"><a href="#类的构造的两个阶段" class="headerlink" title="类的构造的两个阶段"></a>类的构造的两个阶段</h2><blockquote>
+<p>分析图：书Page 200页</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">1.分配内存 ---&gt;初始化子类存储属性---&gt;沿构造函数链向上初始父类存储属性 </div><div class="line">到达构造函数链顶部，出书画全部的父类存储属性</div><div class="line"></div><div class="line">2.修改属性  ---&gt; 调用方法</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -659,7 +663,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Inheritance-类继承-简介"><span class="nav-number">1.</span> <span class="nav-text">Inheritance-类继承-简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#案例"><span class="nav-number">2.</span> <span class="nav-text">案例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#构造函数的调用规则"><span class="nav-number">3.</span> <span class="nav-text">构造函数的调用规则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#修改上面案例"><span class="nav-number">3.1.</span> <span class="nav-text">修改上面案例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造函数之间的调用形成构造函数链"><span class="nav-number">3.2.</span> <span class="nav-text">构造函数之间的调用形成构造函数链</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Inheritance-类继承-简介"><span class="nav-number">1.</span> <span class="nav-text">Inheritance-类继承-简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#案例"><span class="nav-number">2.</span> <span class="nav-text">案例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#构造函数的调用规则"><span class="nav-number">3.</span> <span class="nav-text">构造函数的调用规则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#修改上面案例"><span class="nav-number">3.1.</span> <span class="nav-text">修改上面案例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造函数之间的调用形成构造函数链"><span class="nav-number">3.2.</span> <span class="nav-text">构造函数之间的调用形成构造函数链</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#构造过程安全检查"><span class="nav-number">4.</span> <span class="nav-text">构造过程安全检查</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#类的构造的两个阶段"><span class="nav-number">4.1.</span> <span class="nav-text">类的构造的两个阶段</span></a></li></ol></li></ol></div>
             
 
           </div>
