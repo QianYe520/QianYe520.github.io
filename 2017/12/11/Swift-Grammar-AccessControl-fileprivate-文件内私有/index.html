@@ -105,18 +105,18 @@
 
 
 
-<meta name="description" content="ReactNative">
+<meta name="description" content="在原有的swift中的 private &amp;lt;其实并不是真正的私有，如果一个变量定义为private，在同一个文件中的其他类依然是可以访问到的这个场景在使用extension的时候很明显   class User &amp;#123;    private var name = &quot;private&quot;&amp;#125;extension User&amp;#123;    var accessPrivate: Stri">
 <meta name="keywords" content="Swift,Grammar,AccessControl,fileprivate">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift-Grammar-AccessControl-fileprivate-文件内私有">
 <meta property="og:url" content="http://yoursite.com/2017/12/11/Swift-Grammar-AccessControl-fileprivate-文件内私有/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="ReactNative">
+<meta property="og:description" content="在原有的swift中的 private &amp;lt;其实并不是真正的私有，如果一个变量定义为private，在同一个文件中的其他类依然是可以访问到的这个场景在使用extension的时候很明显   class User &amp;#123;    private var name = &quot;private&quot;&amp;#125;extension User&amp;#123;    var accessPrivate: Stri">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-11T08:32:36.000Z">
+<meta property="og:updated_time" content="2017-12-11T08:36:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift-Grammar-AccessControl-fileprivate-文件内私有">
-<meta name="twitter:description" content="ReactNative">
+<meta name="twitter:description" content="在原有的swift中的 private &amp;lt;其实并不是真正的私有，如果一个变量定义为private，在同一个文件中的其他类依然是可以访问到的这个场景在使用extension的时候很明显   class User &amp;#123;    private var name = &quot;private&quot;&amp;#125;extension User&amp;#123;    var accessPrivate: Stri">
 
 
 
@@ -454,7 +454,21 @@
       
 
       
-        
+        <blockquote>
+<p>在原有的swift中的 private &lt;其实并不是真正的私有，如果一个变量定义为private，在同一个文件中的其他类依然是可以访问到的<br>这个场景在使用extension的时候很明显</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">var</span> name = <span class="string">"private"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">User</span></span>&#123;</div><div class="line">    <span class="keyword">var</span> accessPrivate: <span class="type">String</span> &#123;</div><div class="line">        <span class="keyword">return</span> name</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>带来了两个问题：</p>
+</blockquote>
+<ul>
+<li>标记为private时，意为真的私有还是文件内可共享呢？</li>
+<li>如果意图为真正的私有时，必须保证这个类或者结构体在一个单独的文件里。否则可能同文件里其他的代码访问到</li>
+</ul>
+<blockquote>
+<p>在swift 3中，新增加了一个<code> fileprivate </code>来显式的表明，这个元素的访问权限为文件内私有<br>过去的private对应现在的fileprivate<br>现在的private则是真正的私有，离开了这个类或者结构体的作用域外面就无法访问</p>
+</blockquote>
+
       
     </div>
     
