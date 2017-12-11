@@ -1324,7 +1324,9 @@ Crash Bug：系统Crash、处理signal场景交互
         
           
           runloop - 检测方案  原文文档
-runloop 的状态typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) &#123;    kCFRunLoopEntry         = (1UL &lt;&lt; 0), // 即将进入Loop
+CFRunLoopRunCFRunLoopRun源代码
+
+核心方法CFRunLoopRun简化后的主要逻辑大概是这样的:NSRunLoop调用方法主要就是在kCFRunLoopBeforeSources和kCFRunLoopBeforeWaiting之间,还
           ...
           <!--noindex-->
           <div class="post-button text-center">
