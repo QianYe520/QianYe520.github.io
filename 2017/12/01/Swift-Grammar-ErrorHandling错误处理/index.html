@@ -25,8 +25,8 @@
 
 <script>
     (function(){
-        if('520'){
-            if (prompt('请输入文章密码') !== '520'){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
                 alert('密码错误！');
                 history.back();
             }
@@ -105,17 +105,17 @@
 
 
 
-<meta name="description" content="Swift的错误处理是用来处理运行时错误的 当错误发生时，你可以选择抓错误，或者继续往上抛出错误。当一个运行时错误最终没办法处理的时候，程序就会崩溃。 Swift中有一个空的协议用来给用户自定义错误。一般使用枚举类实现这个协议来自定义错误。如下    enum ComputerError: ErrorType &amp;#123;      case NoGameError      case Memor">
+<meta name="description" content="Swift-错误 Swift提供了一套完整的错误抛出-捕获-处理机制Swift采用Error协议来表示错误类型，通过do-try-catch的方式来处理可能会抛出异常的代码  Optional 可选值表示一个值要么有值，要么是nil。在Swift中，Optional是用enum写的，     public enum Optional&amp;lt;Wrapped&amp;gt; : ExpressibleByNi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift-Grammar-ErrorHandling错误处理">
 <meta property="og:url" content="http://yoursite.com/2017/12/01/Swift-Grammar-ErrorHandling错误处理/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="Swift的错误处理是用来处理运行时错误的 当错误发生时，你可以选择抓错误，或者继续往上抛出错误。当一个运行时错误最终没办法处理的时候，程序就会崩溃。 Swift中有一个空的协议用来给用户自定义错误。一般使用枚举类实现这个协议来自定义错误。如下    enum ComputerError: ErrorType &amp;#123;      case NoGameError      case Memor">
+<meta property="og:description" content="Swift-错误 Swift提供了一套完整的错误抛出-捕获-处理机制Swift采用Error协议来表示错误类型，通过do-try-catch的方式来处理可能会抛出异常的代码  Optional 可选值表示一个值要么有值，要么是nil。在Swift中，Optional是用enum写的，     public enum Optional&amp;lt;Wrapped&amp;gt; : ExpressibleByNi">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-01T09:20:19.000Z">
+<meta property="og:updated_time" content="2017-12-11T07:18:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift-Grammar-ErrorHandling错误处理">
-<meta name="twitter:description" content="Swift的错误处理是用来处理运行时错误的 当错误发生时，你可以选择抓错误，或者继续往上抛出错误。当一个运行时错误最终没办法处理的时候，程序就会崩溃。 Swift中有一个空的协议用来给用户自定义错误。一般使用枚举类实现这个协议来自定义错误。如下    enum ComputerError: ErrorType &amp;#123;      case NoGameError      case Memor">
+<meta name="twitter:description" content="Swift-错误 Swift提供了一套完整的错误抛出-捕获-处理机制Swift采用Error协议来表示错误类型，通过do-try-catch的方式来处理可能会抛出异常的代码  Optional 可选值表示一个值要么有值，要么是nil。在Swift中，Optional是用enum写的，     public enum Optional&amp;lt;Wrapped&amp;gt; : ExpressibleByNi">
 
 
 
@@ -442,7 +442,129 @@
       
 
       
-        <h1 id="Swift的错误处理是用来处理运行时错误的"><a href="#Swift的错误处理是用来处理运行时错误的" class="headerlink" title="Swift的错误处理是用来处理运行时错误的"></a>Swift的错误处理是用来处理运行时错误的</h1><blockquote>
+        <h1 id="Swift-错误"><a href="#Swift-错误" class="headerlink" title="Swift-错误"></a>Swift-错误</h1><blockquote>
+<p>Swift提供了一套完整的错误抛出-捕获-处理机制<br>Swift采用Error协议来表示错误类型，通过do-try-catch的方式来处理可能会抛出异常的代码</p>
+</blockquote>
+<h1 id="Optional"><a href="#Optional" class="headerlink" title="Optional"></a>Optional</h1><blockquote>
+<p>可选值表示一个值要么有值，要么是nil。在Swift中，Optional是用enum写的，</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Optional</span>&lt;<span class="title">Wrapped</span>&gt; : <span class="title">ExpressibleByNilLiteral</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="keyword">none</span></div><div class="line">    <span class="keyword">case</span> some(<span class="type">Wrapped</span>)</div><div class="line">     <span class="comment">//...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>当发生错误的时候，返回一个可选值是常见的处理方式。但是，这种方式的有一个很明显的缺点</p>
+</blockquote>
+<ul>
+<li>调用者不清楚为什么失败</li>
+<li>不好进行相关的处理</li>
+</ul>
+<h1 id="Error协议与throws"><a href="#Error协议与throws" class="headerlink" title="Error协议与throws"></a>Error协议与throws</h1><ul>
+<li>Error是一个空的协议，用来表示错误类型</li>
+<li>NSError和CFError都遵循了这个协议</li>
+</ul>
+<blockquote>
+<p>在Swfit中，枚举是一个特别适合用来处理Error的数据类型。<br>首先定义一个类Person表示人</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Sex</span></span>&#123;</div><div class="line">	<span class="keyword">case</span> male</div><div class="line">	<span class="keyword">case</span> female</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</div><div class="line">	<span class="keyword">let</span> sex:<span class="type">Sex</span></div><div class="line">	<span class="keyword">var</span> money:<span class="type">CGFloat</span></div><div class="line">	<span class="keyword">init</span>(sex:<span class="type">Sex</span> ,money:<span class="type">CGFloat</span>) &#123;</div><div class="line">	    <span class="keyword">self</span>.sex = sex</div><div class="line">	    <span class="keyword">self</span>.money = money</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Person可以结婚，结婚的时候会发生一些错误，比如钱不够，比如性别不对，用枚举来表示</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">enum</span> <span class="title">MarryError</span> : <span class="title">Error</span></span>&#123;</div><div class="line">    <span class="keyword">case</span> lackMoney</div><div class="line">    <span class="keyword">case</span> wrongSex</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>方法的实现如下</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">extension</span> <span class="title">Person</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">marry</span><span class="params">(with another: Person)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">Bool</span>&#123;</div><div class="line">        <span class="keyword">guard</span> <span class="keyword">self</span>.sex != another.sex <span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">throw</span> <span class="type">MarryError</span>.wrongSex</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">guard</span> <span class="keyword">self</span>.money + another.money &gt; <span class="number">100000</span> <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="type">MarryError</span>.lackMoney</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>一个带有throws关键字的函数，调用的时候有两种方式选择</p>
+<p>①❶使用 do-try-catch 代码块</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">let</span> tom = <span class="type">Person</span>(sex: .male, money: <span class="number">100000</span>)</div><div class="line"><span class="keyword">let</span> jack = <span class="type">Person</span>(sex: .male, money: <span class="number">100000</span>)</div><div class="line"><span class="keyword">do</span>&#123;</div><div class="line">    <span class="keyword">try</span> tom.marry(with: jack)</div><div class="line">&#125;<span class="keyword">catch</span> <span class="type">MarryError</span>.wrongSex &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Two Person have same sex"</span>)</div><div class="line">&#125;<span class="keyword">catch</span> <span class="type">MarryError</span>.lackMoney&#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Oh, they do not have enough moeny"</span>)</div><div class="line">&#125;<span class="keyword">catch</span> <span class="keyword">let</span> error&#123;</div><div class="line">    <span class="built_in">print</span>(error)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>❷不需要区分每一个Error，也可以这么调用</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">do</span>&#123;</div><div class="line">    <span class="keyword">try</span> tom.marry(with: jack)</div><div class="line">&#125;<span class="keyword">catch</span> <span class="keyword">let</span> error&#123;</div><div class="line">    <span class="built_in">print</span>(error)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>②使用 try?，对于有返回值的throws函数，使用try?会把结果转换为可选值</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">let</span> tom = <span class="type">Person</span>(sex: .male, money: <span class="number">100000</span>)</div><div class="line"><span class="keyword">let</span> jack = <span class="type">Person</span>(sex: .male, money: <span class="number">100000</span>)</div><div class="line"></div><div class="line"><span class="keyword">if</span> <span class="keyword">let</span> result = <span class="keyword">try</span>? tom.marry(with: jack)&#123;<span class="comment">//成功</span></div><div class="line"></div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Error happen"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="defer关键字"><a href="#defer关键字" class="headerlink" title="defer关键字"></a>defer关键字</h1><blockquote>
+<p>defer关键字用来处理类似Ojective C中@try-@catch-@finally中，@finally的作用<br>比如，打开文件，如果抛出错误的话，我们总希望关闭这个文件句柄</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">func</span> <span class="title">contents</span><span class="params">(of filePath:String)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">String</span>&#123;</div><div class="line">    <span class="keyword">let</span> file = <span class="keyword">open</span>(filePath,<span class="type">O_RDWR</span>)</div><div class="line">    <span class="keyword">defer</span> &#123;</div><div class="line">        close(file)</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//...</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">defer</span>代码块的内容在退出作用域之前会被执行</div></pre></td></tr></table></figure>
+<blockquote>
+<p>关于defer的注意</p>
+</blockquote>
+<ul>
+<li>多个defer会按照逆序的方式执行。</li>
+<li>当你的程序遇到严重错误，比如fatalError,或者强制解析nil，或者segfaults的时候，defer的代码块并不会执行。</li>
+</ul>
+<h1 id="rethrow"><a href="#rethrow" class="headerlink" title="rethrow"></a>rethrow</h1><blockquote>
+<p>rethrow关键字在高阶函数中比较常见，所谓高阶函数，就是一个函数的参数或者返回值是函数类型<br>最常见的比如，Sequence协议map方法<br>比如：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> array = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"><span class="keyword">let</span> result = array.<span class="built_in">map</span>&#123;$<span class="number">0</span> * <span class="number">2</span>&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>由于map函数传入的是一个闭包，这个闭包可能会抛出错误<br>由参数抛出的错误最后会向上传递给map函数</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">enum</span> <span class="title">MapError</span> : <span class="title">Error</span></span>&#123;</div><div class="line">    <span class="keyword">case</span> invalid</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">customMapper</span><span class="params">(input:Int)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">Int</span>&#123;</div><div class="line">    <span class="keyword">if</span> input &lt; <span class="number">10</span>&#123;</div><div class="line">        <span class="keyword">throw</span> <span class="type">MapError</span>.invalid</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> input + <span class="number">1</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> array = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"><span class="keyword">let</span> result = array.<span class="built_in">map</span>(customMapper)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>这样是编译不通过的<br>调用的时候需要：按照上文提到的throws关键字的路子来</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">do</span> &#123;</div><div class="line">   <span class="keyword">let</span> result = <span class="keyword">try</span> array.<span class="built_in">map</span>(customMapper)</div><div class="line">&#125; <span class="keyword">catch</span> <span class="keyword">let</span> error&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>这就是rethrows关键字的精髓所在<br>rethrows 关键字表示当参数闭包标记为throws的时候，函数本身为throws。如果参数闭包不会抛出错误，则函数也不会<br>通过这个关键字，你不必每次都进行try-catch</p>
+</blockquote>
+<h1 id="Result类型"><a href="#Result类型" class="headerlink" title="Result类型"></a>Result类型</h1><blockquote>
+<p>一个函数执行要么成功，要么失败。成功的时候我们希望返回数据，失败的时候我们希望得到错误信息，这就是Result类型，一个典型的Result类型如下：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">enum</span> <span class="title">Result</span>&lt;<span class="title">T</span>&gt;</span>&#123;</div><div class="line">    <span class="keyword">case</span> success(<span class="type">T</span>)</div><div class="line">    <span class="keyword">case</span> failure(error:<span class="type">Error</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>通过Result类型，不再需要可选值或者do-try-catch来包裹你的代码<br>用Result类型对上述marry函数进行重写</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">extension</span> <span class="title">Person</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">marry</span><span class="params">(with another: Person)</span></span>  -&gt; <span class="type">Result</span>&lt;<span class="type">Bool</span>&gt;&#123;</div><div class="line">        <span class="keyword">guard</span> <span class="keyword">self</span>.sex != another.sex <span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">return</span> .failure(error: <span class="type">MarryError</span>.wrongSex)</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">guard</span> <span class="keyword">self</span>.money + another.money &gt; <span class="number">100000</span> <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> .failure(error: <span class="type">MarryError</span>.lackMoney)</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> .success(<span class="literal">true</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>然后，这么调用</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">let</span> tom = <span class="type">Person</span>(sex: .male, money: <span class="number">100000</span>)</div><div class="line"> <span class="keyword">let</span> jack = <span class="type">Person</span>(sex: .male, money: <span class="number">100000</span>)</div><div class="line"> <span class="keyword">let</span> result = tom.marry(with: jack)</div><div class="line">  <span class="keyword">switch</span> result &#123;</div><div class="line">    <span class="keyword">case</span> <span class="keyword">let</span> .success(value):</div><div class="line">        <span class="built_in">print</span>(value)</div><div class="line">    <span class="keyword">case</span> <span class="keyword">let</span> .failure(error):</div><div class="line">        <span class="built_in">print</span>(error)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Result链"><a href="#Result链" class="headerlink" title="Result链"></a>Result链</h1><blockquote>
+<p>Swift中有可选链，来处理多个可选值的连续调用。同样的，我们也可以为Result类型来添加链式调用：</p>
+</blockquote>
+<ul>
+<li>如果上一个调用结果是.success, 则继续调用下一个</li>
+<li>如果上一个调用结果是.failure, 则传递failure给下一个<blockquote>
+<p>用extension来实现</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">extension</span> <span class="title">Result</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">flatMap</span>&lt;V&gt;<span class="params">(transform:<span class="params">(T)</span></span></span> <span class="keyword">throws</span> -&gt; (<span class="type">V</span>)) <span class="keyword">rethrows</span> -&gt; <span class="type">Result</span>&lt;<span class="type">V</span>&gt;&#123;</div><div class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</div><div class="line">        <span class="keyword">case</span> <span class="keyword">let</span> .failure(error):</div><div class="line">            <span class="keyword">return</span> .failure(error: error)</div><div class="line"></div><div class="line">        <span class="keyword">case</span> <span class="keyword">let</span> .success(data):</div><div class="line">            <span class="keyword">return</span> .success(<span class="keyword">try</span> transform(data))</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>于是，可以这么调用</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">resut.flatMap(&#123;<span class="comment">//转换1&#125;).flatMap(//转换2)...</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>一旦失败，中间有一次flatMap转换失败，则之后的转换逻辑都不会执行<br>进阶：Result类型在Swift版本的Promise中大行其道，可以参见PromiseKit的源码，promise让异步处理变得优雅</p>
+</blockquote>
+<h1 id="assert-precondition"><a href="#assert-precondition" class="headerlink" title="assert/precondition"></a>assert/precondition</h1><blockquote>
+<p>Swift也有断言支持<br>在Swfit中，断言是一个函数<br>断言仅在Debug模式下进行检查，帮助开发者发现代码中的问题</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">assert</span><span class="params">(<span class="number">_</span> condition: @autoclosure <span class="params">()</span></span></span> -&gt; <span class="type">Bool</span>, </div><div class="line">             <span class="number">_</span> message: <span class="meta">@autoclosure</span> () -&gt; <span class="type">String</span> = <span class="keyword">default</span>, </div><div class="line">                  file: <span class="type">StaticString</span> = #file, </div><div class="line">                  line: <span class="type">UInt</span> = #line)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>如果需要在Relase模式下也进行检查，则使用precondition</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">precondition</span><span class="params">(<span class="number">_</span> condition: @autoclosure <span class="params">()</span></span></span> -&gt; <span class="type">Bool</span>, </div><div class="line">             <span class="number">_</span> message: <span class="meta">@autoclosure</span> () -&gt; <span class="type">String</span> = <span class="keyword">default</span>, </div><div class="line">                  file: <span class="type">StaticString</span> = #file, </div><div class="line">                  line: <span class="type">UInt</span> = #line)</div></pre></td></tr></table></figure>
+<h1 id="桥接到Objective-C"><a href="#桥接到Objective-C" class="headerlink" title="桥接到Objective C"></a>桥接到Objective C</h1><blockquote>
+<p>使用NSError来处理错误的的Objective 方法</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"> <span class="comment">//NSFileManager</span></div><div class="line">- (<span class="built_in">BOOL</span>)removeItemAtURL:(<span class="built_in">NSURL</span> *)URL error:(<span class="built_in">NSError</span> * _Nullable *)error;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在Swift中会被自动的转换成</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">removeItem</span><span class="params">(at URL: URL)</span></span> <span class="keyword">throws</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>但是，纯Swfit的Error桥接的Objective C的时候，会有一些问题<br>因为NSError需要 domain和code等详细信息<br>可以让Swift的Error实现CustomNSError协议，来提供这些需要的信息</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">enum</span> <span class="title">MarryError</span> : <span class="title">Error</span></span>&#123;</div><div class="line">    <span class="keyword">case</span> lackMoney</div><div class="line">    <span class="keyword">case</span> wrongSex</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">MarryError</span> : <span class="title">CustomNSError</span></span>&#123;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">let</span> errorDomain = <span class="string">"com.person.marryError"</span></div><div class="line">    <span class="keyword">var</span> erroCode:<span class="type">Int</span>&#123;</div><div class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</div><div class="line">        <span class="keyword">case</span> .lackMoney:</div><div class="line">            <span class="keyword">return</span> -<span class="number">100001</span></div><div class="line">        <span class="keyword">case</span> .wrongSex:</div><div class="line">            <span class="keyword">return</span> -<span class="number">100002</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">var</span> errorUserInfo:[<span class="type">String</span>:<span class="type">Any</span>]&#123;</div><div class="line">        <span class="keyword">return</span> [:]</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>相关的，还有两个协议LocalizedError和RecoverableError</p>
+</blockquote>
+<h1 id="Swift的错误处理是用来处理运行时错误的"><a href="#Swift的错误处理是用来处理运行时错误的" class="headerlink" title="Swift的错误处理是用来处理运行时错误的"></a>Swift的错误处理是用来处理运行时错误的</h1><blockquote>
 <p>当错误发生时，你可以选择抓错误，或者继续往上抛出错误。当一个运行时错误最终没办法处理的时候，程序就会崩溃。</p>
 <p>Swift中有一个空的协议用来给用户自定义错误。一般使用枚举类实现这个协议来自定义错误。如下</p>
 </blockquote>
@@ -684,7 +806,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Swift的错误处理是用来处理运行时错误的"><span class="nav-number">1.</span> <span class="nav-text">Swift的错误处理是用来处理运行时错误的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#defer语句"><span class="nav-number">2.</span> <span class="nav-text">defer语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#另外如果我们再改改上面的代码，使用try"><span class="nav-number">2.1.</span> <span class="nav-text">另外如果我们再改改上面的代码，使用try!</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Swift-错误"><span class="nav-number">1.</span> <span class="nav-text">Swift-错误</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Optional"><span class="nav-number">2.</span> <span class="nav-text">Optional</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Error协议与throws"><span class="nav-number">3.</span> <span class="nav-text">Error协议与throws</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#defer关键字"><span class="nav-number">4.</span> <span class="nav-text">defer关键字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rethrow"><span class="nav-number">5.</span> <span class="nav-text">rethrow</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Result类型"><span class="nav-number">6.</span> <span class="nav-text">Result类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Result链"><span class="nav-number">7.</span> <span class="nav-text">Result链</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#assert-precondition"><span class="nav-number">8.</span> <span class="nav-text">assert/precondition</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#桥接到Objective-C"><span class="nav-number">9.</span> <span class="nav-text">桥接到Objective C</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Swift的错误处理是用来处理运行时错误的"><span class="nav-number">10.</span> <span class="nav-text">Swift的错误处理是用来处理运行时错误的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#defer语句"><span class="nav-number">11.</span> <span class="nav-text">defer语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#另外如果我们再改改上面的代码，使用try"><span class="nav-number">11.1.</span> <span class="nav-text">另外如果我们再改改上面的代码，使用try!</span></a></li></ol></li></ol></div>
             
 
           </div>
