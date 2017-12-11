@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Swift-Grammar-RequiredInit必要初始化器]]></title>
+<url>../../../../../../../../2017/12/11/Swift-Grammar-RequiredInit必要初始化器/</url>
+    <content type="text"><![CDATA[必要初始化器 重写类的时候经常提示要添加代码 required init?(coder aDecoder: NSCoder) &#123; fatalError("init(coder:) has not been implemented") &#125; 必要初始化器，这种情况一般会出现在继承了遵守NSCoding protocol的类，比如UIView系列的类、UIViewController系列的类 为什么一定要添加 这是NSCoding protocol定义的，遵守了NSCoding protoaol的所有类必须继承只是有的情况会隐式继承，而有的情况下需要显示实现 什么情况下要显示添加： 当我们在子类定义了指定初始化器(包括自定义和重写父类指定初始化器)，那么必须显示实现required init?(coder aDecoder: NSCoder)，而其他情况下则会隐式继承，可不用理会。 什么情况下会调用： 当使用storyboard实现界面的时候，程序会调用这个初始化器。注意要去掉fatalError，fatalError的意思是无条件停止执行并打印。在obj-c中可以通过下面代码实现 NSException *exception = [NSException exceptionWithName:@"HotTeaException" reason:@"The tea is too hot" userInfo:nil]; @throw exception; 举例分析普通子类 通常情况下，一说到required修饰符，最先想到的应该就是普通类（class）的init()方法 class MyClass &#123; var str:String init(str:String) &#123; self.str = str &#125;&#125; 定义一个MyClass的子类（subclass）并实例化这个子类 在实例化MySubClass时，其实是继承了它父类MyClass的init()方法class MySubClass:MyClass &#123; &#125;var MySubClass(str:"Hello Swift") 子类的初始化方法 子类中添加一个init()方法在init()方法前加上override修饰符，表示MySubClass重写了其父类的init()方法，然后还要调用父类的init()方法，并将参数一并传给父类的方法 class MySubClass:MyClass &#123; override init(str:String) &#123; super.init(str:str) &#125; &#125;var MySubClass(str:"Hello Swift" 当子类的初始化方法参数类型与父类的初始化方法参数类型不同时，我们就不必在子类的初始化方法前加override修饰符了，但是要把子类初始化方法的参数类型转换为符合父类初始化方法的参数类型，然后传给父类的初始化方法 lass MyClass &#123; var str:String init(str:String) &#123; self.str = str &#125;&#125;class MySubClass:MyClass&#123; init(i:Int) &#123; super.init(str:String(i)) &#125;&#125;MySubClass(i: 10) 给父类的init()方法加上required修饰符class MyClass &#123; var str:String required init(str:String) &#123; self.str = str &#125;&#125;class MySubClass:MyClass&#123; init(i:Int) &#123; super.init(str:String(i)) &#125; // 编译错误&#125;MySubClass(i: 10) 因为我们没有实现父类中要去必须要实现的方法 class MyClass &#123; var str:String required init(str:String) &#123; self.str = str &#125;&#125;class MySubClass:MyClass&#123; required init(str:String) &#123; super.init(str: str) &#125; init(i:Int) &#123; super.init(str:String(i)) &#125; &#125;MySubClass(i: 10) 子类需要添加异于父类的初始化方法时，必须先要实现父类中使用required修饰符修饰过的初始化方法，并且也要使用required修饰符而不是override如果子类中不需要添加任何初始化方法，我们则可以忽略父类的required初始化方法： class MyClass &#123; var str:String required init(str:String) &#123; self.str = str &#125;&#125;class MySubClass:MyClass&#123; //编译器不会报错，因为如果子类没有任何初始化方法时，Swift会默认使用父类的初始化方法You do not have to provide an explicit implementation of a required initializer if you can satisfy the requirement with an inherited initialiser.&#125;MySubClass(str: "hello swift") required修饰符的使用规则 required修饰符只能用于修饰类初始化方法 当子类含有异于父类的初始化方法时（初始化方法参数类型和数量异于父类），子类必须要实现父类的required初始化方法，并且也要使用required修饰符而不是override 当子类没有初始化方法时，可以不用实现父类的required初始化方法 总结： 如果代码实现界面，那么我们只要根据编译器提示添加必要初始化器后，就不用理会，我们创建界面的工作可以在自定义的初始化器里实现。 补充：let vc = UIViewController()方式初始化类UIViewController类视乎只有两个初始化器，一个是必要初始化器init?(coder aDecoder: NSCoder)，一个是指定初始化器init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?)，那么为什么我们可以用let vc = UIViewController()这种方式初始化类呢？原因可能是这个初始化方式是来自uikit,也就是调用了Object-c下的UIViewController初始化方法，是object-c bridge过来的]]></content>
+      <categories>
+        <category>Swift</category>
+        <category>Grammar</category>
+        <category>RequiredInit</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>Grammar</tag>
+        <tag>RequiredInit</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Swift-Grammar-4.0更新]]></title>
 <url>../../../../../../../../2017/12/11/Swift-Grammar-4-0更新/</url>
     <content type="text"><![CDATA[用系统方法setValuesForKeys()赋值问题 (swift4) 在swift3中，编译器自动推断@objc，换句话说，它自动添加@objc在swift4中，编译器不再自动推断，你必须显式添加@objc @objc var content = ""swift 4.0 版本要在前面加@objc 还有一种更简单的方法，不必一个一个属性的添加,下面这种写法 @objcMembersclass Test &#123;&#125; setValuesForKeys()奔溃(swift4) @objc解决了单个属性的问题，一个属性的值是数组字典，用setValuesForKeys() 程序奔溃，xcode9.0.1提示如下 [__NSCFConstantString count]: unrecognized selector sent to instance 0x102cb3290 造成崩溃是因为该字段如果为空 用了空串来占位，造成数据类型不一致而崩溃。这个在swift3中没有问题]]></content>
