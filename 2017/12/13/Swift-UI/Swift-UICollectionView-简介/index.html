@@ -113,7 +113,7 @@
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
 <meta property="og:description" content="UICollectionView的常用属性 1.设置位置和大小    init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout)  2.设置子视图的布局方式   var collectionViewLayout: UICollectionViewLayout  3.设置UICollectionView的代理对象">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-13T09:36:39.000Z">
+<meta property="og:updated_time" content="2017-12-13T09:40:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift-UI-UICollectionView-简介">
 <meta name="twitter:description" content="UICollectionView的常用属性 1.设置位置和大小    init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout)  2.设置子视图的布局方式   var collectionViewLayout: UICollectionViewLayout  3.设置UICollectionView的代理对象">
@@ -582,7 +582,7 @@
 <blockquote>
 <p>4.该方法是用来设置 UICollectionView 的 Item 左右之间的最小间距(如果在自定义UICollectionView中实现了该属性, 那么该方法就会覆盖掉原来的属性)  </p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">collectionView</span><span class="params">(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int)</span></span> -&gt; <span class="type">CGFloat</span>  </div><div class="line">```   </div><div class="line"></div><div class="line">&gt; <span class="number">5</span>.该方法是用来设置 <span class="type">UICollectionView</span> 的页头尺寸(如果在自定义<span class="type">UICollectionView</span>中实现了该属性, 那么该方法就会覆盖掉原来的属性) </div><div class="line"></div><div class="line">```swift  </div><div class="line">        <span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">collectionView</span><span class="params">(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int)</span></span> -&gt; <span class="type">CGSize</span></div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">collectionView</span><span class="params">(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int)</span></span> -&gt; <span class="type">CGFloat</span></div><div class="line">   </div><div class="line">``` </div><div class="line"></div><div class="line">&gt; <span class="number">5</span>.该方法是用来设置 <span class="type">UICollectionView</span> 的页头尺寸(如果在自定义<span class="type">UICollectionView</span>中实现了该属性, 那么该方法就会覆盖掉原来的属性) </div><div class="line"></div><div class="line">```swift  </div><div class="line">        <span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">collectionView</span><span class="params">(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int)</span></span> -&gt; <span class="type">CGSize</span></div></pre></td></tr></table></figure>
 <blockquote>
 <p>6.该方法是用来设置 UIcollectionView 的页尾尺寸(如果在自定义UICollectionView中实现了该属性, 那么该方法就会覆盖掉原来的属性) </p>
 </blockquote>
