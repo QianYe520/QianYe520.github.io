@@ -590,7 +590,7 @@
   </entry>
   <entry>
     <title><![CDATA[Git-基本使用]]></title>
-<url>../../../../../../../../2017/11/29/Git-基本使用/</url>
+<url>../../../../../../../../2017/11/29/Git/Git-基本使用/</url>
     <content type="text"><![CDATA[基本使用初始化仓库 创建普通仓库 $ git init 创建裸仓库，这里面许多git命令不能使用，切换分支都不可用，一般用来当远程仓库 $ git --bare init 别名 使用config alias.命令进行，添加–global参数后可以对全局git的config文件进行配置 $ git config --global alias.st status 一个很吊的配置，让你的git变得更好看，摘自 $ git config --global alias.lg &quot;log --color --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&apos; --abbrev-commit&quot; 本地的一些命令 配置信息 $ git config user.name &quot;名字&quot; git config user.email &quot;email&quot; branch分支相关命令 $ git branch -a //显示所有分支 git branch 分支名字 //如果该分支不存在，就会新建 git branch --delete 分支名字 //删除分支 add将本目录下的文件都添加到暂缓区，准备提交用 $ git add . commit 提交 $ git commit -m &quot;注释&quot; merge这个命令会将本分支merge别处的分支。 $ git merge merge过来的分支 远程命令 添加远程仓库 $ git remote add &lt;远程主机名&gt; url push，命令格式： &amp; git push 远程主机名 本地分支:远程分支 举个例子下面命令将本地分支a，push到远程主机origin的a_remote上，如果远程主机里面没有a_remote分支，那么就会创建一个这名字的分支。 $ git push origin a:a_remote 注意：如果没有远程分支的名字，那么将会在远程仓库建立一个同名的分支。如果没有本地名字，就像 :a_remote，这就相当于传了一个空的分支给远程， 那么会删除掉远程仓库的这个分支。 pull这个命令会将本地和远程分支进行merge，如果出现冲突，需要自己解决。 命令格式： $ git push 远程主机名 远程分支:本地分支 例子在此，将远程主机的 $ git pull orgin a_remote:a 发生冲突的时候，如果需要丢弃本地工作，那么使用 $ git reset --hard branch相关的远程命令将远程分支和本地分支相关联 git branch --track 本地分支 远程主机/远程分支 //在创建本地分支的时候指定它所关联的远程分支 git branch --set-upstream-to 远程主机/远程分支 //将当前分支关联远程分支 fetch这个命令将远程的分支fetch下来，然后可以将这些fetch下来的分支和本地分支进行合并 git fetch 主机名 git fetch -p 主机名 //fetch完成后，删除本地仍存在，但是远程不存在的分支关联 下面的命令将本地分支绑定远程分支，但好像并没什么用，push的时候如果不输入远程分支名字，那么还是会新建一个和本地分支同名的远程分支。 git branch --set-upstream-to origin/aa_remote stash在进行pull的时候，经常会遇到 error: Your local changes to the following files would be overwritten by merge: xxx/xxx/xxx.java Please, commit your changes or stash them before you can merge. Aborting 这里要么将你当前的工作commit一下，要么就可以使用stash命令。先用stash命令缓存当前工作，然后pull，pull后再用stash pop还原之前的工作 $ git pull ... file foobar not up to date, cannot merge. $ git stash $ git pull $ git stash pop 另外的情况就是：你在工作的时候，突然被老板要求去改别的东西，你也可以用stash把当前的工作缓存起来。改完别的东西后再回来继续工作。 其他 $... hack hack hack ... $ git stash $ edit emergency fix $ git commit -a -m &quot;Fix in a hurry&quot; $ git stash pop # ... continue hacking ... 最后一些坑 1、初始化的仓库要先commit一下才能新建分支 2、如果远程仓库在使用这个分支，那么不能提交到这个分支上去，除非建立bare仓库，但是bare仓库不能使用git命令。]]></content>
       <categories>
         <category>Git</category>
@@ -708,6 +708,14 @@
       </categories>
   </entry>
   <entry>
+    <title><![CDATA[Blog-配置]]></title>
+<url>../../../../../../../../2017/11/23/Blog-配置/</url>
+    <content type="text"><![CDATA[博客配置01博客配置02]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[iOS-Tool-FastLane自动化发布工具+上传Bugly]]></title>
 <url>../../../../../../../../2017/11/23/iOS-Garmmar/iOS-Tool-FastLane自动化发布工具+上传Bugly/</url>
     <content type="text"><![CDATA[打包的流程 修改测试版本号 修改Build版本号 执行Archive 选择Adhoc导出IPA安装包文件 上传Bugly测试平台 分享测试链接二维码FastlaneFastlane本身包含两大模块，内核部分+ActionActionAction是Fastlane自动化流程中的最小执行单元，直观上来讲就是Fastfile脚本中的一个个命令，比如：git_pull，deliver，pod_install等等，而这些命令背后都对应其实是一个用Ruby编写的脚本 Fastlane 是一套用 Ruby 编写的 iOS 命令行工具集（后来也支持了 Android），主要组件包括： match / cert / sigh 协助管理代码签名 pem 自动生成 APNs 证书 scan 自动化测试 gym 自动化编译并打包生成签名的 .ipa 文件 snapshot / frameit 协助处理 iOS 屏幕快照 pilot 上传和管理 TestFlight deliver 将应用及其它信息上传到 App Store 而正是这些颗粒度极小的Action，根据自己需求组合成一个自动化的链条 安装 首先确保Xcode命令行工具是最新版本的 $ xcode-select --install 安装Fastlane: $ sudo gem install fastlane -NV 找到工程文件目录下执行 $ fastlane init 在执行“Your Apple ID” 这一步输入苹果开发者账号，fastlane 会自动获取工程文件名，目录等其他数据。这一步“Please confirm the above values”，确认信息，没问题则输入 y。然后，fastlane 会进行一系列的初始化操作，包括下载 App Store 上的元数据和截屏文件。等待初始化完成之后，工程目录下就多了一个 fastlane目录： $ cd fastlane &amp;&amp; lsAppfile Fastfile metadata report.xmlDeliverfile README.md screenshots 文件目录 metadata目录下存放整个元数据文件，包括关键词、版本更新日志、图标等. screenshots目录下存放应用截图 Appfile文件记录App的 bundle ID、Apple ID、Team ID三种信息. Fastfile脚本的核心执行文件.有几个默认的选项，可直接使用. report文件时每次执行fastlane时生成报告 安装fastlane成功后，首先拆解我们需要自动化的两个流程: 自动打包成Adhoc的安装包ipa文件 通过fastlane自动上传到bugly 自动化打包 自动化打包使用最多就是Fastlane中gym这个Action, 转为打包而生, 安装gym这个组件: $ sudo gem install gym cd项目根目录, 创建自动打包脚本: $ vim gym.sh 输入脚本内容: #!/bin/bash#计时SECONDS=0#假设脚本放置在与项目相同的路径下project_path=$(pwd)#取当前时间字符串添加到文件结尾now=$(date +"%Y_%m_%d_%H_%M_%S")#指定项目的scheme名称scheme="Xitu"#指定要打包的配置名configuration="Adhoc"#指定打包所使用的输出方式，目前支持app-store, package, ad-hoc, enterprise, development, 和developer-id，即xcodebuild的method参数export_method='ad-hoc'#指定项目地址workspace_path="$project_path/Xitu.xcworkspace"#指定输出路径output_path="project_path/APP"#指定输出归档文件地址archive_path="$output_path/Xitu$&#123;now&#125;.xcarchive"#指定输出ipa地址ipa_path="$output_path/Xitu$&#123;now&#125;.ipa"#指定输出ipa名称ipa_name="Xitu$&#123;now&#125;.ipa"#获取执行命令时的commit messagecommit_msg="$1"#输出设定的变量值echo "===workspace path: $&#123;workspace_path&#125;==="echo "===archive path: $&#123;archive_path&#125;==="echo "===ipa path: $&#123;ipa_path&#125;==="echo "===export method: $&#123;export_method&#125;==="echo "===commit msg: $1==="#先清空前一次buildgym --workspace $&#123;workspace_path&#125; --scheme $&#123;scheme&#125; --clean --configuration $&#123;configuration&#125; --archive_path $&#123;archive_path&#125; --export_method $&#123;export_method&#125; --output_directory $&#123;output_path&#125; --output_name $&#123;ipa_name&#125;#输出总用时echo "===Finished. Total time: $&#123;SECONDS&#125;s===" 把如上脚本中Xitu改成你的项目名称即可. 为脚本执行提升权限 $ chmod +x gym.sh 执行一下脚本看一下打包效果: $ ./gym.sh 经过572s，Adhoc版本的ipa文件打包成功，我们在项目根目录下找到App目录： =========================================== #上传Bugly fastlane中定义action$ fastlane new_action 这时命令行会要求你输入自定义action名字，直接以bugly上传文件命名 $ upload_app_to_bugly wei wan]]></content>
@@ -715,14 +723,6 @@
         <category>iOS</category>
         <category>Tool</category>
         <category>FastLane</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[Blog-配置]]></title>
-<url>../../../../../../../../2017/11/23/Blog-配置/</url>
-    <content type="text"><![CDATA[博客配置01博客配置02]]></content>
-      <categories>
-        <category>Blog</category>
       </categories>
   </entry>
   <entry>
@@ -815,7 +815,7 @@
   </entry>
   <entry>
     <title><![CDATA[iOS_App跳转设置]]></title>
-<url>../../../../../../../../2017/11/21/iOS-Func-App跳转设置/</url>
+<url>../../../../../../../../2017/11/21/iOS-Func/iOS-Func-App跳转设置/</url>
     <content type="text"><![CDATA[跳到更多设置界面除了跳到WiFi设置界面，能不能跳到其他的设置界面呢？比如：定位服务、FaceTime、音乐等等。都是可以的，一起来看看如何实现的 跳到这些界面的参数配置： ##定位服务 用户关闭了定位,APP里面提示打开定位服务点击到设置界面设置，直接跳到定位服务设置界面= //定位服务设置界面NSURL *url = [NSURL URLWithString:@&quot;prefs:root=LOCATION_SERVICES&quot;];if ([[UIApplication sharedApplication] canOpenURL:url])&#123; [[UIApplication sharedApplication] openURL:url];&#125; FaceTim//FaceTime设置界面NSURL *url = [NSURL URLWithString:@&quot;prefs:root=FACETIME&quot;];if ([[UIApplication sharedApplication] canOpenURL:url])&#123; [[UIApplication sharedApplication] openURL:url];&#125; 音乐//音乐设置界面NSURL *url = [NSURL URLWithString:@&quot;prefs:root=MUSIC&quot;];if ([[UIApplication sharedApplication] canOpenURL:url])&#123; [[UIApplication sharedApplication] openURL:url];&#125; 蓝牙设置界面//蓝牙设置界面NSURL *url = [NSURL URLWithString:@&quot;prefs:root=Bluetooth&quot;];if ([[UIApplication sharedApplication] canOpenURL:url])&#123; [[UIApplication sharedApplication] openURL:url];&#125; iCloud设置界面//iCloud设置界面NSURL *url = [NSURL URLWithString:@&quot;prefs:root=CASTLE&quot;];if ([[UIApplication sharedApplication] canOpenURL:url]&#123; [[UIApplication sharedApplication] openURL:url];&#125; other设置界面只需要prefs:root=后面的值即可可以跳到这些界面的参数配置：r About — prefs:root=General&amp;path=AboutAccessibility — prefs:root=General&amp;path=ACCESSIBILITYAirplane Mode On — prefs:root=AIRPLANE_MODEAuto-Lock — prefs:root=General&amp;path=AUTOLOCKBrightness — prefs:root=BrightnessBluetooth — prefs:root=General&amp;path=BluetoothDate &amp; Time — prefs:root=General&amp;path=DATE_AND_TIMEFaceTime — prefs:root=FACETIMEGeneral — prefs:root=GeneralKeyboard — prefs:root=General&amp;path=KeyboardiCloud — prefs:root=CASTLEiCloud Storage &amp; Backup — prefs:root=CASTLE&amp;path=STORAGE_AND_BACKUPInternational — prefs:root=General&amp;path=INTERNATIONALLocation Services — prefs:root=LOCATION_SERVICESMusic — prefs:root=MUSICMusic Equalizer — prefs:root=MUSIC&amp;path=EQMusic Volume Limit — prefs:root=MUSIC&amp;path=VolumeLimitNetwork — prefs:root=General&amp;path=NetworkNike + iPod — prefs:root=NIKE_PLUS_IPODNotes — prefs:root=NOTESNotification — prefs:root=NOTIFICATIONS_IDPhone — prefs:root=PhonePhotos — prefs:root=PhotosProfile — prefs:root=General&amp;path=ManagedConfigurationListReset — prefs:root=General&amp;path=ResetSafari — prefs:root=SafariSiri — prefs:root=General&amp;path=AssistantSounds — prefs:root=SoundsSoftware Update — prefs:root=General&amp;path=SOFTWARE_UPDATE_LINKStore — prefs:root=STORETwitter — prefs:root=TWITTERUsage — prefs:root=General&amp;path=USAGEVPN — prefs:root=General&amp;path=Network/VPNWallpaper — prefs:root=WallpaperWi-Fi — prefs:root=WIFI]]></content>
       <categories>
         <category>iOS</category>
