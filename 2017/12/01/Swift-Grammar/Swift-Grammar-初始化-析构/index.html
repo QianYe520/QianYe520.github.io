@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<script>
+    (function(){
+        if('520'){
+            if (prompt('请输入文章密码') !== '520'){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Initialization 初始化初始化 初始化，是当创建一个类、结构体、枚举类的时，完成存储属性的值的初始化，和其他一些初始化工作。准备好这个实例以供使用反过来，当一个实例不再使用的时候，由析构过程释放这个实例所占用资源完成初始化工作的一个方法一般称为初始化方法、构造器(Initializer)、构造方法等等Swift中的构造器不需返回值，只是完成初始化工作。  类或结构体在创建的时候必须保证">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift-Grammar-Initialization初始化&amp;Deinitialization析构">
+<meta property="og:url" content="http://yoursite.com/2017/12/01/Swift-Grammar/Swift-Grammar-初始化-析构/index.html">
+<meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
+<meta property="og:description" content="Initialization 初始化初始化 初始化，是当创建一个类、结构体、枚举类的时，完成存储属性的值的初始化，和其他一些初始化工作。准备好这个实例以供使用反过来，当一个实例不再使用的时候，由析构过程释放这个实例所占用资源完成初始化工作的一个方法一般称为初始化方法、构造器(Initializer)、构造方法等等Swift中的构造器不需返回值，只是完成初始化工作。  类或结构体在创建的时候必须保证">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/Swift-Grammar-Initialization%E5%88%9D%E5%A7%8B%E5%8C%96&Deinitialization%E6%9E%90%E6%9E%84-001.png">
+<meta property="og:updated_time" content="2017-12-01T08:48:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift-Grammar-Initialization初始化&amp;Deinitialization析构">
+<meta name="twitter:description" content="Initialization 初始化初始化 初始化，是当创建一个类、结构体、枚举类的时，完成存储属性的值的初始化，和其他一些初始化工作。准备好这个实例以供使用反过来，当一个实例不再使用的时候，由析构过程释放这个实例所占用资源完成初始化工作的一个方法一般称为初始化方法、构造器(Initializer)、构造方法等等Swift中的构造器不需返回值，只是完成初始化工作。  类或结构体在创建的时候必须保证">
+<meta name="twitter:image" content="http://ozr735s7e.bkt.clouddn.com/Swift-Grammar-Initialization%E5%88%9D%E5%A7%8B%E5%8C%96&Deinitialization%E6%9E%90%E6%9E%84-001.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/01/Swift-Grammar/Swift-Grammar-初始化-析构/"/>
+
+
+
+
+
+  <title>Swift-Grammar-Initialization初始化&Deinitialization析构 | 千夜、おれはおまえをずっと爱している</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">千夜、おれはおまえをずっと爱している</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-read">
+          <a href="/read/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            阅读榜
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/01/Swift-Grammar/Swift-Grammar-初始化-析构/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swift-Grammar-Initialization初始化&Deinitialization析构</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-01T16:30:44+08:00">
+                2017-12-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/Grammar/" itemprop="url" rel="index">
+                    <span itemprop="name">Grammar</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/12/01/Swift-Grammar/Swift-Grammar-初始化-析构/" class="leancloud_visitors" data-flag-title="Swift-Grammar-Initialization初始化&Deinitialization析构">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Initialization-初始化"><a href="#Initialization-初始化" class="headerlink" title="Initialization 初始化"></a>Initialization 初始化</h1><h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><blockquote>
+<p>初始化，是当创建一个类、结构体、枚举类的时，完成存储属性的值的初始化，和其他一些初始化工作。准备好这个实例以供使用<br>反过来，当一个实例不再使用的时候，由析构过程释放这个实例所占用资源<br>完成初始化工作的一个方法一般称为初始化方法、构造器(Initializer)、构造方法等等<br>Swift中的构造器不需返回值，只是完成初始化工作。</p>
+</blockquote>
+<h2 id="类或结构体在创建的时候必须保证存储属性有初始化值"><a href="#类或结构体在创建的时候必须保证存储属性有初始化值" class="headerlink" title="类或结构体在创建的时候必须保证存储属性有初始化值"></a>类或结构体在创建的时候必须保证存储属性有初始化值</h2><blockquote>
+<p>目的的实现可以通过在定义属性的时候给存储属性添加上默认值，也可以在构造器中赋值。并且在这两种情况中都不会触发属性的观察器。<br>官方文档建议我们在一个存储属性通常具有同一个初始值的时候，使用属性定义的方式添加初始值。</p>
+<p>下面是这两种方法的代码<br><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> life: <span class="type">Int</span> = <span class="number">0</span>  </div><div class="line">    <span class="keyword">var</span> height: <span class="type">Double</span>  </div><div class="line">    <span class="keyword">init</span>()&#123;  </div><div class="line">        height = <span class="number">0</span>  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这里的init()方法就是构造器。注意它是不带func关键字的。而且也没有返回值。<br>以前创建一个实例的时候，都是使用“类名()”的形式，这其实就是调用了这个构造器。但是当时我们并没有写这个构造器，这是因为当一个类没有其他构造器的时候，编译器会自动生成这个默认的构造器。但是一旦有了其他的构造器，那么系统就不会再默认生成这个构造器。你也就再不能用“类名()”这种创建方法了。当然，当有其他构造器的时候，你也可以手动添加这个默认的构造器。</p>
+</blockquote>
+<h2 id="自定义构造器"><a href="#自定义构造器" class="headerlink" title="自定义构造器"></a>自定义构造器</h2><blockquote>
+<p>可以定义构造器，可以传入自定义的参数列表来初始化类。自定义的构造器的外部参数名规则和方法不太一样，构造器的每一个参数都会生成和局部参数名一样的外部参数名。如果不想要外部参数名，还是可以用下划线取消</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> life: <span class="type">Int</span> = <span class="number">0</span>  </div><div class="line">    <span class="keyword">var</span> height: <span class="type">Double</span>  </div><div class="line">    <span class="keyword">init</span>()&#123;    <span class="comment">//注意，当有其他构造器的时候，系统不会再生成这个构造器，必须手动写出来  </span></div><div class="line">        height = <span class="number">0</span>  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">init</span>(life: <span class="type">Int</span>, height: <span class="type">Double</span>) &#123;  </div><div class="line">        <span class="keyword">self</span>.life = life  </div><div class="line">        <span class="keyword">self</span>.height = height  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line"><span class="comment">//可以这样使用自定义的构造器  </span></div><div class="line"><span class="keyword">var</span> a = <span class="type">Animal</span>(life: <span class="number">29</span>, height: <span class="number">1.2</span>)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>再次提醒，当有类定义里面有自定义构造器的时候，不会再自动生成默认构造器。并且对于结构体也再不会自动生成遍历属性的构造器。<br>但是你可以将你自己的构造器写在扩展里面，这样就不会影响默认构造器的自动生成</p>
+</blockquote>
+<h2 id="构造器委托（Initializer-Delegation）"><a href="#构造器委托（Initializer-Delegation）" class="headerlink" title="构造器委托（Initializer Delegation）"></a>构造器委托（Initializer Delegation）</h2><blockquote>
+<p>构造器委托，就是在一个构造器里面调用另外一个构造器，这样可以减少多余的代码。在构造器里面使用self.init语法来调用另外一个构造器，且这个语法只能在构造器里面使用。<br>构造器委托在值类型（结构体和枚举类）和类直接是不太一样的。因为类需要考虑到继承问题。<br>先来看值类型的构造器委托。这个很简单，调用另外一个构造器就行了。下面的例子虽然有点脱裤子放屁的感觉，但。。就是举个例子而已</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Apple</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> totalPrice: <span class="type">Double</span>  </div><div class="line">      </div><div class="line">    <span class="keyword">init</span>(totalPrice: <span class="type">Double</span>) &#123;  </div><div class="line">        <span class="keyword">self</span>.totalPrice = totalPrice  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">init</span>(kg: <span class="type">Double</span>, pricePerKg: <span class="type">Double</span>) &#123;  </div><div class="line">        <span class="keyword">let</span> totalPrice = kg * pricePerKg  </div><div class="line">        <span class="keyword">self</span>.<span class="keyword">init</span>(totalPrice: totalPrice)   <span class="comment">//调用另外一个构造器  </span></div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="类的继承和初始化"><a href="#类的继承和初始化" class="headerlink" title="类的继承和初始化"></a>类的继承和初始化</h1><blockquote>
+<p>因为类可以继承，所以它的初始化规则就变得比结构体要复杂多了。<br>首先，类的构造器分为指定构造器（Designated Initializer） 和  便利构造器 （Convenience Initializer）<br>一个类通常具有很少数量（一般只有1个）的指定构造器。但是必须最少具有一个。<br>便利构造器是用来调用指定构造器完成初始化工作的。一个类可以不具有遍历构造器。<br>两种构造器的语法</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="comment">//指定构造器  </span></div><div class="line"><span class="keyword">init</span>(parameters) &#123;  </div><div class="line">    statements  </div><div class="line">&#125;  </div><div class="line"><span class="comment">//便利构造器  </span></div><div class="line"><span class="keyword">convenience</span> <span class="keyword">init</span>(parameters) &#123;  </div><div class="line">    statements  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="类的构造器委托规则："><a href="#类的构造器委托规则：" class="headerlink" title="类的构造器委托规则："></a>类的构造器委托规则：</h2><ul>
+<li><p>1、一个指定构造器必须调用它的直接父类的指定构造器</p>
+</li>
+<li><p>2、一个便利构造器必须调用同一个类的另外的构造器</p>
+</li>
+<li><p>3、一个便利构造器必须最终以调用指定构造器结束。</p>
+</li>
+</ul>
+<blockquote>
+<p>规则2和3连起来就是说，一个便利构造器可能会调用了另外一个便利构造器，然后这个构造器又调用了另外一个便利构造器….但是这个链的最后的一个便利构造器必须是调用指定构造器。<br>下面附上官方的图片。在图片上可以看到，三条规则总结起来就是：指定构造器往上调用，便利构造器平行调用且终结在指定构造器。</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/Swift-Grammar-Initialization%E5%88%9D%E5%A7%8B%E5%8C%96&amp;Deinitialization%E6%9E%90%E6%9E%84-001.png" alt="001"></p>
+<h2 id="类的初始化分为两阶段"><a href="#类的初始化分为两阶段" class="headerlink" title="类的初始化分为两阶段"></a>类的初始化分为两阶段</h2><h2 id="第一阶段"><a href="#第一阶段" class="headerlink" title="第一阶段"></a>第一阶段</h2><ul>
+<li>1、一个指定构造器或便利构造器被调用</li>
+<li>2、分配类实例所需的内存，但是内存没有初始化</li>
+<li>3、这个类的指定构造器确保该类引入的新的存储属性都初始化。（因为便利构造器最终会到指定构造器）。</li>
+<li>4、然后这个构造器调用父类的指定构造器完成和第三步同样的工作。</li>
+<li>5、直到继承链的最顶部分。</li>
+<li>6、这时候有的存储属性都有初始值了。</li>
+</ul>
+<h2 id="第二阶段"><a href="#第二阶段" class="headerlink" title="第二阶段"></a>第二阶段</h2><ul>
+<li>1、从继承链的最顶部分出发。每个指定构造器具有了修改实例的权利。并且可以调用实例方法。</li>
+<li>2、最后，这个初始化链条里面的便利构造器都具有了修改实例的权利。</li>
+</ul>
+<blockquote>
+<p>遵循上面两个阶段的步骤，避免了当在初始化链后面的构造器修改了属性之后，又被前面的构造器修改属性的可能性。避免了使用没有经过初始化的属性的可能性。</p>
+<p>为了确保两个阶段步骤的实施。编译器有4条检测规则，这四条规则决定了你在构造器里面某些代码的顺序。</p>
+</blockquote>
+<ul>
+<li><p>1、在调用父类构造器之前，必须确保子类引入的新属性已经得到初始化。</p>
+</li>
+<li><p>2、子类必须在调用了父类的构造器之后，才能访问继承的属性。</p>
+</li>
+<li><p>3、便利构造器必须在调用了其他构造器之后，才能访问属性或调用实例方法。</p>
+</li>
+<li><p>4、在完成第一阶段之前（其实就是完成初始化本类定义的新属性，调用父类构造器），构造器不能调用实例方法，不能访问属性的值，不能把self当做值访问。但是可以用self.属性名的方式给属性赋值。</p>
+</li>
+</ul>
+<blockquote>
+<p>下面可以看看分别违反每个规则的例子</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> life: <span class="type">Int</span>  </div><div class="line">    <span class="keyword">var</span> height: <span class="type">Double</span>  </div><div class="line">    <span class="keyword">init</span>(getLife: <span class="type">Int</span>, getHeight: <span class="type">Double</span>) &#123;  </div><div class="line">        <span class="keyword">self</span>.life = getLife  </div><div class="line">        <span class="keyword">self</span>.height = getHeight  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span>: <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> name: <span class="type">String</span>  </div><div class="line">    <span class="keyword">init</span>()&#123;  </div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(getLife: <span class="number">2</span>, getHeight: <span class="number">2.0</span>)  <span class="comment">//这句报错，违反第一条，必须先将本类引入的属性初始化才能调用父类构造器  </span></div><div class="line">        <span class="keyword">self</span>.name = <span class="string">"Larry"</span>                     <span class="comment">//所以这一句必须写在前面才没错  </span></div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">init</span>(name: <span class="type">String</span>, getLife: <span class="type">Int</span>, getHeight: <span class="type">Double</span>)&#123;  </div><div class="line">        <span class="keyword">self</span>.name = name  </div><div class="line">        <span class="keyword">self</span>.life = <span class="number">1</span>                            <span class="comment">//这句报错，违反第二条，必须调用了父类构造器之后才能访问继承的属性。  </span></div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(getLife: getLife, getHeight: getHeight)    <span class="comment">//这句必须放在第二句之前才没错  </span></div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">convenience</span> <span class="keyword">init</span>(getLife: <span class="type">Int</span>) &#123;  </div><div class="line">        <span class="keyword">self</span>.name = <span class="string">"Larry"</span>         <span class="comment">//这句报错，违反第三条，便利构造器里面必须调用了其他构造器之后才能访问属性  </span></div><div class="line">        <span class="keyword">self</span>.<span class="keyword">init</span>()                 <span class="comment">//这句应该放在前面  </span></div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">init</span>(getName: <span class="type">String</span>) &#123;  </div><div class="line">        <span class="keyword">self</span>.name = getName  </div><div class="line">        <span class="type">Dog</span>.sayHello()  </div><div class="line">        <span class="keyword">self</span>.printName()          <span class="comment">//这句报错，违反第四条，必须完成了阶段1才能调用实例方法或访问属性  </span></div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(getLife: <span class="number">21</span>, getHeight: <span class="number">2.3</span>)   <span class="comment">//这句应该放在前面  </span></div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">printName</span><span class="params">()</span></span>&#123;  </div><div class="line">        <span class="built_in">print</span>(<span class="keyword">self</span>.name)  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">sayHello</span><span class="params">()</span></span>&#123;  </div><div class="line">        <span class="built_in">print</span>(<span class="string">"hello"</span>)  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="属性观察器"><a href="#属性观察器" class="headerlink" title="属性观察器"></a>属性观察器</h1><blockquote>
+<p>以前说过，属性观察器在构造器里面给属性赋值的时候是不会被调用的。但是这个只针对于本类定义的属性。对于继承而来的属性，当已经经过父类的构造器完成初始化后，如果在子类里面修改了继承属性的值，那么就会触发父类观察器，如果你在子类里面也覆盖了这个观察器，那么子类和父类的观察器都会被调用</p>
+<p>另外再看</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> life: <span class="type">Int</span> = <span class="number">0</span> &#123;  </div><div class="line">        <span class="keyword">willSet</span>&#123;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"animial life newValue \(newValue)"</span>)  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">init</span>(getlife: <span class="type">Int</span>)&#123;  </div><div class="line">        <span class="built_in">print</span>(<span class="string">"animal life init \(self.life)"</span>)  </div><div class="line">        <span class="keyword">self</span>.life = <span class="number">1</span>  </div><div class="line">        <span class="built_in">print</span>(<span class="string">"animal life after assign \(self.life)"</span>)  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>如果我们调用下面的语句</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">var</span> a = <span class="type">Animal</span>(getlife: <span class="number">3</span>)  </div><div class="line"><span class="comment">//打印  </span></div><div class="line"><span class="comment">//animal life init 0  </span></div><div class="line"><span class="comment">//animal life after assign 1</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意一点，我们在init里面第一句已经用到了self。根据编译器规则第四条，不允许在属性没有初始化的前进行访问。从上面代码通过编译来看，这里编译器已经将属性初始化为定义时候的值了。如果你将定义时候的默认值删去，那么第一句就会报错<br>Swift默认是不继承父类的构造器的。<br>如果你想要和父类一样的构造器，那么必须自己写。如果你写的构造器（不管是指定还是便利）和父类的指定构造器一样，那么这个构造器前必须加上override关键字。如果你写的构造器和父类的便利构造器一样，那么不用加override，因为子类永远不能直接调用父类的便利构造器。<br>但是在某些情况下，子类可以自动继承父类构造器。<br>前提条件：子类新引入的属性都必须具有默认值</p>
+</blockquote>
+<ul>
+<li>规则1：如果子类没有定义任何的指定构造器。那么子类自动继承父类所有的指定构造器。</li>
+<li>规则2：如果子类实现了父类所有的指定构造器（可以通过规则1继承而来，也可以通过重写而来），那么子类自动继承父类所有的便利构造器。</li>
+</ul>
+<blockquote>
+<p>例子</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> life: <span class="type">Int</span>  </div><div class="line">    <span class="keyword">var</span> height: <span class="type">Double</span>  </div><div class="line">    <span class="keyword">convenience</span> <span class="keyword">init</span>(getLife: <span class="type">Int</span>)&#123;  </div><div class="line">        <span class="keyword">self</span>.<span class="keyword">init</span>(getLife: getLife, getHeight: <span class="number">0.0</span>)  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">init</span>(getLife: <span class="type">Int</span>, getHeight: <span class="type">Double</span>) &#123;  </div><div class="line">        <span class="keyword">self</span>.life = getLife  </div><div class="line">        <span class="keyword">self</span>.height = getHeight  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span>: <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> name: <span class="type">String</span> = <span class="string">"Larry"</span>  </div><div class="line">    <span class="comment">//    override init(getLife: Int, getHeight: Double)&#123;  </span></div><div class="line">    <span class="comment">//        super.init(getLife: getLife, getHeight:getHeight)  </span></div><div class="line">    <span class="comment">//    &#125;  </span></div><div class="line">      </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>无论上面Dog类里面注释的代码是否打开，Dog都继承了Animal的所有构造器</p>
+</blockquote>
+<h1 id="Failable-Initializers可失败的构造器"><a href="#Failable-Initializers可失败的构造器" class="headerlink" title="Failable Initializers可失败的构造器"></a>Failable Initializers可失败的构造器</h1><blockquote>
+<p>Swift中有个概念，就是创建实例的时候如果条件不符合，可以返回一个nil对象。这类可以返回nil的构造器叫做可失败的构造器。语法是在init的前面加上一个？。当条件不满足的时候，你可以用 return nil结束构造方法。那么这时候得到的实例其实是一个nil，这里也说明了，可失败构造器返回的是可选类型。其实之前也说过，Swift的构造器是不需要返回值的。所以你成功的时候不需要写return什么东东。</p>
+<h2 id="值类型的可失败构造器"><a href="#值类型的可失败构造器" class="headerlink" title="值类型的可失败构造器"></a>值类型的可失败构造器</h2><p>下面是structure的</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">struct</span> <span class="title">Apple</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> pricePerKg: <span class="type">Double</span>  </div><div class="line">    <span class="keyword">init</span>?(pricePerKg: <span class="type">Double</span>)&#123;  </div><div class="line">        <span class="keyword">if</span> pricePerKg &lt; <span class="number">0</span> &#123;  </div><div class="line">            <span class="keyword">return</span> <span class="literal">nil</span>  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">self</span>.pricePerKg = pricePerKg  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line"><span class="built_in">print</span>(<span class="type">Apple</span>(pricePerKg: <span class="number">2</span>))  </div><div class="line"><span class="built_in">print</span>(<span class="type">Apple</span>(pricePerKg: -<span class="number">2</span>))  </div><div class="line"><span class="comment">//打印  </span></div><div class="line"><span class="comment">//Optional(SwiftTest.Apple(pricePerKg: 2.0))  </span></div><div class="line"><span class="comment">//nil</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>接下来是枚举类的</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">enum FruitSet &#123;  </div><div class="line">    case apple, orange, banana  </div><div class="line">    init?(symbol: Character)&#123;  </div><div class="line">        switch symbol &#123;  </div><div class="line">        case &quot;a&quot;,&quot;A&quot; :  </div><div class="line">            self = .apple  </div><div class="line">        case &quot;o&quot;,&quot;O&quot; :  </div><div class="line">            self = .orange  </div><div class="line">        case &quot;b&quot;,&quot;B&quot; :  </div><div class="line">            self = .banana  </div><div class="line">        default :  </div><div class="line">            return nil  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">print(FruitSet(symbol: &quot;a&quot;))  </div><div class="line">print(FruitSet(symbol: &quot;e&quot;))  </div><div class="line">//打印  </div><div class="line">//Optional(SwiftTest.FruitSet.apple)  </div><div class="line">//nil</div></pre></td></tr></table></figure>
+<blockquote>
+<p>对应有默认值的枚举类，会自动生成一个init?(rawValue:)的构造器。如下</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">FruitSet</span> : <span class="title">Character</span></span>&#123;  </div><div class="line">    <span class="keyword">case</span> apple = <span class="string">"a"</span>, orange = <span class="string">"o"</span>, banana = <span class="string">"b"</span>  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="built_in">print</span>(<span class="type">FruitSet</span>(rawValue: <span class="string">"a"</span>))  </div><div class="line"><span class="built_in">print</span>(<span class="type">FruitSet</span>(rawValue: <span class="string">"e"</span>))</div></pre></td></tr></table></figure>
+<h2 id="类的可失败构造器"><a href="#类的可失败构造器" class="headerlink" title="类的可失败构造器"></a>类的可失败构造器</h2><blockquote>
+<p>有一个规则，就是必须在本类所有的属性（包括继承的）都赋值之后才可以返回nil</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  </div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> pricePerKg: <span class="type">Double</span>  </div><div class="line">    <span class="keyword">init</span>?(pricePerKg: <span class="type">Double</span>)&#123;  </div><div class="line">        <span class="keyword">if</span> pricePerKg &lt; <span class="number">0</span> &#123;  </div><div class="line">            <span class="keyword">return</span> <span class="literal">nil</span>              <span class="comment">//这句报错，所以你必须先初始化其他属性值  </span></div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">self</span>.pricePerKg = pricePerKg  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="可失败初始化的传递过程"><a href="#可失败初始化的传递过程" class="headerlink" title="可失败初始化的传递过程"></a>可失败初始化的传递过程</h2><blockquote>
+<p>一个可失败的构造器可以调用其他的构造器，无论是可失败的还是不会失败的。</p>
+</blockquote>
+<p>但是一个不可失败的构造器不能去调用一个可失败的构造器。如果去调用父类的可失败构造器，虽然用解包可以解决，但是一旦父类的可失败构造器返回了nil，那么程序直接崩溃</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Fruit</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> name: <span class="type">String</span>  </div><div class="line">    <span class="keyword">init</span>?(name: <span class="type">String</span>)&#123;  </div><div class="line">        <span class="keyword">self</span>.name = name  </div><div class="line">        <span class="keyword">if</span> name.isEmpty &#123;  </div><div class="line">            <span class="keyword">return</span> <span class="literal">nil</span>  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span>: <span class="title">Fruit</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> pricePerKg: <span class="type">Double</span>  </div><div class="line">    <span class="keyword">init</span>(pricePerKg: <span class="type">Double</span>)&#123;  </div><div class="line">        <span class="keyword">self</span>.pricePerKg = pricePerKg  </div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(name: <span class="string">""</span>)!   <span class="comment">//利用解包调用了父类的可失败构造器，但是因为这样父类会返回一个nil，所以程序在这行会崩溃  </span></div><div class="line">  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">convenience</span> <span class="keyword">init</span>?()&#123;  </div><div class="line">        <span class="keyword">self</span>.<span class="keyword">init</span>(pricePerKg: <span class="number">3</span>)  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">var</span> i = <span class="type">Apple</span>(pricePerKg: <span class="number">3</span>)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>同样的，可失败的构造器也可以被重写，你可以重写为不可失败的构造器。<br>但是不可失败的构造器不能覆盖为可失败的构造器。<br>你可以用!代替?来实现可失败构造器，那么这样得到的实例会自动解包。当然，存在nil报错的问题。记得处理。</p>
+</blockquote>
+<h1 id="必须构造器（Required-Initializers）"><a href="#必须构造器（Required-Initializers）" class="headerlink" title="必须构造器（Required Initializers）"></a>必须构造器（Required Initializers）</h1><blockquote>
+<p>在构造器前面加上required关键字就行了。这样的构造器要求子类必须重写。子类重写这个构造器的时候，也必须加上required关键字。要求子类的子类也要重写这个构造器。<br>写了required后不用写override关键字。写了会有警告。</p>
+<p>给属性默认值时使用闭包或函数</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">getprice</span><span class="params">()</span></span>-&gt;<span class="type">Double</span> &#123;  </div><div class="line">    <span class="keyword">return</span> <span class="number">1</span>  </div><div class="line">&#125;  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> pricePerKg: <span class="type">Double</span> = getprice()  </div><div class="line">    <span class="keyword">var</span> name = &#123;  </div><div class="line">        <span class="keyword">return</span> <span class="string">"apple"</span>  </div><div class="line">    &#125;()     <span class="comment">//留意这对小括号，没有的话那就是给属性赋值一个闭包了。  </span></div><div class="line">&#125;  </div><div class="line"><span class="keyword">var</span> a = <span class="type">Apple</span>()  </div><div class="line"><span class="built_in">print</span>(a.pricePerKg,a.name)</div></pre></td></tr></table></figure>
+<h1 id="析构器"><a href="#析构器" class="headerlink" title="析构器"></a>析构器</h1><blockquote>
+<p>析构器，就是在一个实例再也不用到时候调用的方法。析构器里面完成一些清理工作或保存数据等等。析构器是系统自动调用的，不允许自行调用。</p>
+<p>语法</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">deinit</span> &#123;  </div><div class="line">    <span class="comment">// perform the deinitialization  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/01/Swift-Grammar/Swift-Grammar-Inheritance-类继承基本用法/" rel="next" title="Swift-Grammar-Inheritance-类继承基本用法">
+                <i class="fa fa-chevron-left"></i> Swift-Grammar-Inheritance-类继承基本用法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/01/iOS-UI-UIButton-Img和Title位置/" rel="prev" title="iOS-UI-UIButton-Img和Title位置">
+                iOS-UI-UIButton-Img和Title位置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="千夜 QQ:738816656" />
+          <p class="site-author-name" itemprop="name">千夜 QQ:738816656</p>
+           
+              <p class="site-description motion-element" itemprop="description">ReactNative</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">90</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Initialization-初始化"><span class="nav-number">1.</span> <span class="nav-text">Initialization 初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化"><span class="nav-number">1.1.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类或结构体在创建的时候必须保证存储属性有初始化值"><span class="nav-number">1.2.</span> <span class="nav-text">类或结构体在创建的时候必须保证存储属性有初始化值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义构造器"><span class="nav-number">1.3.</span> <span class="nav-text">自定义构造器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造器委托（Initializer-Delegation）"><span class="nav-number">1.4.</span> <span class="nav-text">构造器委托（Initializer Delegation）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类的继承和初始化"><span class="nav-number">2.</span> <span class="nav-text">类的继承和初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#类的构造器委托规则："><span class="nav-number">2.1.</span> <span class="nav-text">类的构造器委托规则：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类的初始化分为两阶段"><span class="nav-number">2.2.</span> <span class="nav-text">类的初始化分为两阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一阶段"><span class="nav-number">2.3.</span> <span class="nav-text">第一阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二阶段"><span class="nav-number">2.4.</span> <span class="nav-text">第二阶段</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#属性观察器"><span class="nav-number">3.</span> <span class="nav-text">属性观察器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Failable-Initializers可失败的构造器"><span class="nav-number">4.</span> <span class="nav-text">Failable Initializers可失败的构造器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#值类型的可失败构造器"><span class="nav-number">4.1.</span> <span class="nav-text">值类型的可失败构造器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类的可失败构造器"><span class="nav-number">4.2.</span> <span class="nav-text">类的可失败构造器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可失败初始化的传递过程"><span class="nav-number">4.3.</span> <span class="nav-text">可失败初始化的传递过程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#必须构造器（Required-Initializers）"><span class="nav-number">5.</span> <span class="nav-text">必须构造器（Required Initializers）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#析构器"><span class="nav-number">6.</span> <span class="nav-text">析构器</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+# 访客数
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">千夜 QQ:738816656</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === '') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("GGOhuU9q4e5a7HISgedllhyN-gzGzoHsz", "1Dlb2KyTymPIvsleHp8s02I8");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
