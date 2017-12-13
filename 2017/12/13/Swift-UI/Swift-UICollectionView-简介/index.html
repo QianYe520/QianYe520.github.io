@@ -113,7 +113,7 @@
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
 <meta property="og:description" content="UICollectionView的常用属性 1.设置位置和大小    init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout)  2.设置子视图的布局方式   var collectionViewLayout: UICollectionViewLayout  3.设置UICollectionView的代理对象">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-13T09:25:31.000Z">
+<meta property="og:updated_time" content="2017-12-13T09:27:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift-UI-UICollectionView-简介">
 <meta name="twitter:description" content="UICollectionView的常用属性 1.设置位置和大小    init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout)  2.设置子视图的布局方式   var collectionViewLayout: UICollectionViewLayout  3.设置UICollectionView的代理对象">
@@ -518,11 +518,11 @@
 <blockquote>
 <p>10.刷新数据  </p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">reloadData</span><span class="params">()</span></span>  </div><div class="line">``` </div><div class="line">&gt; <span class="number">11</span>.设置 <span class="type">UICollectionView</span> 的集合视图布局, 及是否使用动画 </div><div class="line"></div><div class="line">``` swift</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">setCollectionViewLayout</span><span class="params">(layout: UICollectionViewLayout, animated: Bool)</span></span>  </div><div class="line">```   </div><div class="line">&gt; <span class="number">12</span>.设置 <span class="type">UICollectionView</span> 的集合视图布局, 及是否使用动画, 以及完成之后的闭包方法  </div><div class="line"></div><div class="line">```swift</div><div class="line">   <span class="function"><span class="keyword">func</span> <span class="title">setCollectionViewLayout</span><span class="params">(layout: UICollectionViewLayout, animated: Bool, completion: <span class="params">(<span class="params">(Bool)</span></span></span></span> -&gt; <span class="type">Void</span>)!)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">reloadData</span><span class="params">()</span></span>  </div><div class="line">``` </div><div class="line"></div><div class="line">&gt; <span class="number">11</span>.设置 <span class="type">UICollectionView</span> 的集合视图布局, 及是否使用动画 </div><div class="line"></div><div class="line">``` swift</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">setCollectionViewLayout</span><span class="params">(layout: UICollectionViewLayout, animated: Bool)</span></span>  </div><div class="line">```   </div><div class="line"></div><div class="line">&gt; <span class="number">12</span>.设置 <span class="type">UICollectionView</span> 的集合视图布局, 及是否使用动画, 以及完成之后的闭包方法  </div><div class="line"></div><div class="line">```swift</div><div class="line">   <span class="function"><span class="keyword">func</span> <span class="title">setCollectionViewLayout</span><span class="params">(layout: UICollectionViewLayout, animated: Bool, completion: <span class="params">(<span class="params">(Bool)</span></span></span></span> -&gt; <span class="type">Void</span>)!)</div></pre></td></tr></table></figure>
 <blockquote>
 <p>13.设置 UICollectionView 显示多少个 Item  </p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">numberOfSections</span><span class="params">()</span></span> -&gt; <span class="type">Int</span>  </div><div class="line">```    </div><div class="line">&gt; <span class="number">14</span>.设置 <span class="type">UICollectionView</span> 显示多少组 <span class="type">Item</span>  </div><div class="line"></div><div class="line">```swift</div><div class="line">   <span class="function"><span class="keyword">func</span> <span class="title">numberOfItemsInSection</span><span class="params">(section: Int)</span></span> -&gt; <span class="type">Int</span></div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">numberOfSections</span><span class="params">()</span></span> -&gt; <span class="type">Int</span>  </div><div class="line">```    </div><div class="line"></div><div class="line">&gt; <span class="number">14</span>.设置 <span class="type">UICollectionView</span> 显示多少组 <span class="type">Item</span>  </div><div class="line"></div><div class="line">```swift</div><div class="line">   <span class="function"><span class="keyword">func</span> <span class="title">numberOfItemsInSection</span><span class="params">(section: Int)</span></span> -&gt; <span class="type">Int</span></div></pre></td></tr></table></figure>
 <blockquote>
 <p>15.设置 UICollectionView 滚动到第几个 Item 的索引路径, 以及显示样式和是否启用动画 </p>
 </blockquote>
@@ -538,7 +538,7 @@
 <blockquote>
 <p>18.在 UICollectionView 中刷新某个 Item  </p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">reloadSections</span><span class="params">(sections: NSIndexSet)</span></span>  </div><div class="line">```  </div><div class="line">&gt; <span class="number">19</span>.移动 <span class="type">UICollectionView</span> 中某个 <span class="type">Item</span> 到某个位置  </div><div class="line"></div><div class="line">```swift</div><div class="line">   <span class="function"><span class="keyword">func</span> <span class="title">moveSection</span><span class="params">(section: Int, toSection newSection: Int)</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">reloadSections</span><span class="params">(sections: NSIndexSet)</span></span>  </div><div class="line">```  </div><div class="line"></div><div class="line">&gt; <span class="number">19</span>.移动 <span class="type">UICollectionView</span> 中某个 <span class="type">Item</span> 到某个位置  </div><div class="line"></div><div class="line">```swift</div><div class="line">   <span class="function"><span class="keyword">func</span> <span class="title">moveSection</span><span class="params">(section: Int, toSection newSection: Int)</span></span></div></pre></td></tr></table></figure>
 <h1 id="UICollectionView代理方法"><a href="#UICollectionView代理方法" class="headerlink" title="UICollectionView代理方法"></a>UICollectionView代理方法</h1><blockquote>
 <p>1.点击 Item 时调用的方法  </p>
 </blockquote>
@@ -566,8 +566,8 @@
 <blockquote>
 <p>6.该方法是用来设置 UIcollectionView 的页尾尺寸(如果在自定义UICollectionView中实现了该属性, 那么该方法就会覆盖掉原来的属性) </p>
 </blockquote>
-<p><code>swift  
-    optional func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -&gt; CGSize</code>swift </p>
+<pre><code class="swift"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">collectionView</span><span class="params">(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int)</span></span> -&gt; <span class="type">CGSize</span>
+</code></pre>
 
       
     </div>
