@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<script>
+    (function(){
+        if('520'){
+            if (prompt('请输入文章密码') !== '520'){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="UITextField," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="文本输入框 创建+frame    let textField = UITextField(frame: CGRect(x:10, y:60, width:200, height:30))// let textField = UITextField()// textField.frame = CGRect(x:20,y:30,width:100,height:30)  设置边框样式为圆角矩形  t">
+<meta name="keywords" content="UITextField">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift-UITextField">
+<meta property="og:url" content="http://yoursite.com/2017/12/07/Swift-UI/Swift-UITextField/index.html">
+<meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
+<meta property="og:description" content="文本输入框 创建+frame    let textField = UITextField(frame: CGRect(x:10, y:60, width:200, height:30))// let textField = UITextField()// textField.frame = CGRect(x:20,y:30,width:100,height:30)  设置边框样式为圆角矩形  t">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-07T03:22:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift-UITextField">
+<meta name="twitter:description" content="文本输入框 创建+frame    let textField = UITextField(frame: CGRect(x:10, y:60, width:200, height:30))// let textField = UITextField()// textField.frame = CGRect(x:20,y:30,width:100,height:30)  设置边框样式为圆角矩形  t">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/07/Swift-UI/Swift-UITextField/"/>
+
+
+
+
+
+  <title>Swift-UITextField | 千夜、おれはおまえをずっと爱している</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">千夜、おれはおまえをずっと爱している</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-read">
+          <a href="/read/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            阅读榜
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/07/Swift-UI/Swift-UITextField/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swift-UITextField</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-07T09:24:54+08:00">
+                2017-12-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/UI/" itemprop="url" rel="index">
+                    <span itemprop="name">UI</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/UI/UITextField/" itemprop="url" rel="index">
+                    <span itemprop="name">UITextField</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/12/07/Swift-UI/Swift-UITextField/" class="leancloud_visitors" data-flag-title="Swift-UITextField">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="文本输入框"><a href="#文本输入框" class="headerlink" title="文本输入框"></a>文本输入框</h1><blockquote>
+<p>创建+frame</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">let</span> textField = <span class="type">UITextField</span>(frame: <span class="type">CGRect</span>(x:<span class="number">10</span>, y:<span class="number">60</span>, width:<span class="number">200</span>, height:<span class="number">30</span>))</div><div class="line"><span class="comment">// let textField = UITextField()</span></div><div class="line"><span class="comment">// textField.frame = CGRect(x:20,y:30,width:100,height:30)</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>设置边框样式为圆角矩形</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">textField.borderStyle = <span class="type">UITextBorderStyle</span>.roundedRect</div><div class="line"><span class="keyword">self</span>.view.addSubview(textField)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>文本输入框的边框样式</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">UITextBorderStyle</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">        <span class="keyword">case</span> <span class="keyword">none</span> 无边框</div><div class="line">        <span class="keyword">case</span> line 直线边框</div><div class="line">        <span class="keyword">case</span> bezel 圆角矩形边框</div><div class="line">        <span class="keyword">case</span> roundedRect 边线+阴影</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>文本输入框的提示文字</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">textField.placeholder = <span class="string">"请输入相关信息"</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>文字大小超过文本框长度时自动缩小字号，而不是隐藏显示省略号</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> textField.adjustsFontSizeToFitWidth=<span class="literal">true</span>  <span class="comment">//当文字超出文本框宽度时，自动调整文字大小</span></div><div class="line">textField.minimumFontSize=<span class="number">14</span>              <span class="comment">//最小可缩小的字号</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>水平/垂直对齐方式</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="comment">/** 水平对齐 **/</span></div><div class="line">textField.textAlignment = .<span class="keyword">right</span> <span class="comment">//水平右对齐</span></div><div class="line">textField.textAlignment = .center <span class="comment">//水平居中对齐</span></div><div class="line">textField.textAlignment = .<span class="keyword">left</span> <span class="comment">//水平左对齐</span></div><div class="line"> </div><div class="line"><span class="comment">/** 垂直对齐 **/</span></div><div class="line">textField.contentVerticalAlignment = .top  <span class="comment">//垂直向上对齐</span></div><div class="line">textField.contentVerticalAlignment = .center  <span class="comment">//垂直居中对齐</span></div><div class="line">textField.contentVerticalAlignment = .bottom  <span class="comment">//垂直向下对齐</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>背景图片设置</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">textField.borderStyle = .<span class="keyword">none</span> <span class="comment">//先要去除边框样式</span></div><div class="line">textField.background = <span class="type">UIImage</span>(named:<span class="string">"background1"</span>)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>清除按钮（输入框内右侧小叉）</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">textField.clearButtonMode = .whileEditing  <span class="comment">//编辑时出现清除按钮</span></div><div class="line">textField.clearButtonMode = .unlessEditing  <span class="comment">//编辑时不出现，编辑后才出现清除按钮</span></div><div class="line">textField.clearButtonMode = .always  <span class="comment">//一直显示清除按钮</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>键盘类型</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">Default</span>：                系统默认的虚拟键盘</div><div class="line"><span class="type">ASCII</span> <span class="type">Capable</span>：          显示英文字母的虚拟键盘</div><div class="line"><span class="type">Numbers</span> and <span class="type">Punctuation</span>：显示数字和标点的虚拟键盘</div><div class="line"><span class="type">URL</span>：                    显示便于输入url网址的虚拟键盘</div><div class="line"><span class="type">Number</span> <span class="type">Pad</span>：             显示便于输入数字的虚拟键盘</div><div class="line"><span class="type">Phone</span> <span class="type">Pad</span>：              显示便于拨号呼叫的虚拟键盘</div><div class="line"><span class="type">Name</span> <span class="type">Phone</span> <span class="type">Pad</span>：         显示便于聊天拨号的虚拟键盘</div><div class="line"><span class="type">Email</span> <span class="type">Address</span>：          显示便于输入<span class="type">Email</span>的虚拟键盘</div><div class="line"><span class="type">Decimal</span> <span class="type">Pad</span>：            显示用于输入数字和小数点的虚拟键盘</div><div class="line"><span class="type">Twitter</span>：                显示方便些<span class="type">Twitter</span>的虚拟键盘</div><div class="line"><span class="type">Web</span> <span class="type">Search</span>：             显示便于在网页上书写的虚拟键盘</div></pre></td></tr></table></figure>
+<blockquote>
+<p>设置文本框关联的键盘</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">textField.keyboardType = <span class="type">UIKeyboardType</span>.numberPad</div></pre></td></tr></table></figure>
+<blockquote>
+<p>使文本框失去焦点，并收回键盘</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">textField.resignFirstResponder()</div></pre></td></tr></table></figure>
+<blockquote>
+<p>设置键盘return键的样式</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> extField.returnKeyType = <span class="type">UIReturnKeyType</span>.done     <span class="comment">//表示完成输入</span></div><div class="line">textField.returnKeyType = <span class="type">UIReturnKeyType</span>.go      <span class="comment">//表示完成输入，同时会跳到另一页</span></div><div class="line">textField.returnKeyType = <span class="type">UIReturnKeyType</span>.search  <span class="comment">//表示搜索</span></div><div class="line">textField.returnKeyType = <span class="type">UIReturnKeyType</span>.<span class="built_in">join</span>    <span class="comment">//表示注册用户或添加数据</span></div><div class="line">textField.returnKeyType = <span class="type">UIReturnKeyType</span>.next    <span class="comment">//表示继续下一步</span></div><div class="line">textField.returnKeyType = <span class="type">UIReturnKeyType</span>.send    <span class="comment">//表示发送</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>键盘return键的响应</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">import</span> UIKit</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span>,<span class="title">UITextFieldDelegate</span> </span>&#123;</div><div class="line">     </div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.viewDidLoad()</div><div class="line">         </div><div class="line">        <span class="keyword">let</span> textField = <span class="type">UITextField</span>(frame: <span class="type">CGRect</span>(x:<span class="number">10</span>,y:<span class="number">160</span>,width:<span class="number">200</span>,height:<span class="number">30</span>))</div><div class="line">        <span class="comment">//设置边框样式为圆角矩形</span></div><div class="line">        textField.borderStyle = <span class="type">UITextBorderStyle</span>.roundedRect</div><div class="line">        textField.returnKeyType = <span class="type">UIReturnKeyType</span>.done</div><div class="line">        textField.delegate=<span class="keyword">self</span></div><div class="line">        <span class="keyword">self</span>.view.addSubview(textField)</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">textFieldShouldReturn</span><span class="params">(<span class="number">_</span> textField: UITextField)</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">        <span class="comment">//收起键盘</span></div><div class="line">        textField.resignFirstResponder()</div><div class="line">        <span class="comment">//打印出文本框中的值</span></div><div class="line">        <span class="built_in">print</span>(textField.text)</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>输入/显示文本字体的颜色</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">textField.textColor = <span class="type">UIColor</span>.cyan</div></pre></td></tr></table></figure>
+<blockquote>
+<p>文本框的字体大小设置</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">//text.font = [UIFont fontWithName:@"Arial" size:20.0f];   //设置输入框内容的字体样式和大小</span></div><div class="line">textField.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">14</span>)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>文本输入框的代理设置（遵守UITextFieldDelegate协议）</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span>,<span class="title">UITextFieldDelegate</span> </span>&#123;</div><div class="line"></div><div class="line">textField.delegate = <span class="keyword">self</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>输入框的背景颜色</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">text.backgroundColor = [<span class="type">UIColor</span> whiteColor]<span class="comment">//设置输入框的背景颜色，此时设置为白色 如果使用了自定义的背景图片边框会被忽略掉 ~~~</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>输入框中一开始就有的文字</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">text.text = @<span class="string">"文字"</span>;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>是否自动纠错</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> text.autocorrectionType = <span class="type">UITextAutocorrectionTypeNo</span></div><div class="line"> 几种选择样式</div><div class="line">typedef <span class="class"><span class="keyword">enum</span> </span>&#123;</div><div class="line">	<span class="type">UITextAutocorrectionTypeDefault</span>, 默认</div><div class="line">	<span class="type">UITextAutocorrectionTypeNo</span>, 不自动纠错</div><div class="line">	<span class="type">UITextAutocorrectionTypeYes</span>, 自动纠错</div><div class="line">&#125; <span class="type">UITextAutocorrectionType</span>;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>再次编辑就清空</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">text.clearsOnBeginEditing = <span class="type">YES</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>首字母是否自动大</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> text.autocapitalizationType = <span class="type">UITextAutocapitalizationTypeNone</span>;</div><div class="line">typedef <span class="class"><span class="keyword">enum</span> </span>&#123;</div><div class="line">	<span class="type">UITextAutocapitalizationTypeNone</span>, 不自动大写</div><div class="line">	<span class="type">UITextAutocapitalizationTypeWords</span>, 单词首字母大写</div><div class="line">	<span class="type">UITextAutocapitalizationTypeSentences</span>, 句子的首字母大写</div><div class="line">	<span class="type">UITextAutocapitalizationTypeAllCharacters</span>, 所有字母都大写</div><div class="line">&#125; <span class="type">UITextAutocapitalizationType</span>;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>键盘外观</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> textView.keyboardAppearance=<span class="type">UIKeyboardAppearanceDefault</span></div><div class="line"> </div><div class="line">typedef <span class="class"><span class="keyword">enum</span> </span>&#123;</div><div class="line">	<span class="type">UIKeyboardAppearanceDefault</span>， 默认外观，浅灰色</div><div class="line">	<span class="type">UIKeyboardAppearanceAlert</span>， 深灰 石墨色</div><div class="line">&#125; <span class="type">UIReturnKeyType</span>;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>最右侧加图片是以下代码（左侧类似）</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="type">UIImageView</span> *image=[[<span class="type">UIImageView</span> alloc] initWithImage:[<span class="type">UIImage</span> imageNamed:@<span class="string">"right.png"</span>]] <span class="comment">//</span></div><div class="line">text.rightView=image;</div><div class="line">text.rightViewMode = <span class="type">UITextFieldViewModeAlways</span></div><div class="line"></div><div class="line">typedef <span class="class"><span class="keyword">enum</span> </span>&#123;</div><div class="line">	<span class="type">UITextFieldViewModeNever</span>,</div><div class="line">	<span class="type">UITextFieldViewModeWhileEditing</span>,</div><div class="line">	<span class="type">UITextFieldViewModeUnlessEditing</span>,</div><div class="line">	<span class="type">UITextFieldViewModeAlways</span></div><div class="line">&#125; <span class="type">UITextFieldViewMode</span>;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>重写绘制行为<br>除了UITextField对象的风格选项，你还可以定制化UITextField对象，为他添加许多不同的重写方法，来改变文本字段的显示行为。这些方法都会返回一个CGRect结构，制定了文本字段每个部件的边界范围。以下方法都可以重写</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> – textRectForBounds:　　 <span class="comment">//重写来重置文字区域</span></div><div class="line">– drawTextInRect:　　 <span class="comment">//改变绘文字属性.重写时调用super可以按默认图形属性绘制,若自己完全重写绘制函数，就不用调用super了.</span></div><div class="line">– placeholderRectForBounds:　　<span class="comment">//重写来重置占位符区域</span></div><div class="line">– drawPlaceholderInRect:　　<span class="comment">//重写改变绘制占位符属性.重写时调用super可以按默认图形属性绘制,若自己完全重写绘制函数，就不用调用super了.</span></div><div class="line">– borderRectForBounds:　　<span class="comment">//重写来重置边缘区域</span></div><div class="line">– editingRectForBounds:　　<span class="comment">//重写来重置编辑区域</span></div><div class="line">– clearButtonRectForBounds:　　<span class="comment">//重写来重置clearButton位置,改变size可能导致button的图片失真</span></div><div class="line">– leftViewRectForBounds:</div><div class="line">– rightViewRectForBounds:</div></pre></td></tr></table></figure>
+<blockquote>
+<p>委托方法</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> (<span class="type">BOOL</span>)textFieldShouldBeginEditing:(<span class="type">UITextField</span> *)textField&#123;</div><div class="line"><span class="comment">//返回一个BOOL值，指定是否循序文本字段开始编辑</span></div><div class="line"><span class="keyword">return</span> <span class="type">YES</span>;</div><div class="line">&#125;</div><div class="line">(void)textFieldDidBeginEditing:(<span class="type">UITextField</span> *)textField&#123;</div><div class="line"><span class="comment">//开始编辑时触发，文本字段将成为first responder</span></div><div class="line">&#125;</div><div class="line">(<span class="type">BOOL</span>)textFieldShouldEndEditing:(<span class="type">UITextField</span> *)textField&#123;</div><div class="line"><span class="comment">//返回BOOL值，指定是否允许文本字段结束编辑，当编辑结束，文本字段会让出first responder</span></div><div class="line"><span class="comment">//要想在用户结束编辑时阻止文本字段消失，可以返回NO</span></div><div class="line"><span class="comment">//这对一些文本字段必须始终保持活跃状态的程序很有用，比如即时消息</span></div><div class="line"><span class="keyword">return</span> <span class="type">NO</span>;</div><div class="line">&#125;</div><div class="line">(<span class="type">BOOL</span>)textField:(<span class="type">UITextField</span>*)textField shouldChangeCharactersInRange:(<span class="type">NSRange</span>)range replacementString:(<span class="type">NSString</span> *)string&#123;</div><div class="line"><span class="comment">//当用户使用自动更正功能，把输入的文字修改为推荐的文字时，就会调用这个方法。</span></div><div class="line"><span class="comment">//这对于想要加入撤销选项的应用程序特别有用</span></div><div class="line"><span class="comment">//可以跟踪字段内所做的最后一次修改，也可以对所有编辑做日志记录,用作审计用途。</span></div><div class="line"><span class="comment">//要防止文字被改变可以返回NO</span></div><div class="line"><span class="comment">//这个方法的参数中有一个NSRange对象，指明了被改变文字的位置，建议修改的文本也在其中</span></div><div class="line"><span class="keyword">return</span> <span class="type">YES</span>;</div><div class="line">&#125;</div><div class="line">(<span class="type">BOOL</span>)textFieldShouldClear:(<span class="type">UITextField</span> *)textField&#123;</div><div class="line"><span class="comment">//返回一个BOOL值指明是否允许根据用户请求清除内容</span></div><div class="line"><span class="comment">//可以设置在特定条件下才允许清除内容</span></div><div class="line"><span class="keyword">return</span> <span class="type">YES</span>;</div><div class="line">&#125;</div><div class="line">-(<span class="type">BOOL</span>)textFieldShouldReturn:(<span class="type">UITextField</span> *)textField&#123;</div><div class="line"><span class="comment">//返回一个BOOL值，指明是否允许在按下回车键时结束编辑</span></div><div class="line"><span class="comment">//如果允许要调用resignFirstResponder 方法，这回导致结束编辑，而键盘会被收起[textField resignFirstResponder];</span></div><div class="line"><span class="comment">//查一下resign这个单词的意思就明白这个方法了</span></div><div class="line"><span class="keyword">return</span> <span class="type">YES</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>通知</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="type">UITextField</span>派生自<span class="type">UIControl</span>，所以<span class="type">UIControl</span>类中的通知系统在文本字段中也可以使用。除了<span class="type">UIControl</span>类的标准事件，你还可以使用下列<span class="type">UITextField</span>类特有的事件</div><div class="line"><span class="type">UITextFieldTextDidBeginEditingNotification</span></div><div class="line"><span class="type">UITextFieldTextDidChangeNotification</span></div><div class="line"><span class="type">UITextFieldTextDidEndEditingNotification</span></div><div class="line">当文本字段退出编辑模式时触发。通知的object属性存储了最终文本。</div><div class="line">因为文本字段要使用键盘输入文字，所以下面这些事件发生时，也会发送动作通知</div><div class="line"><span class="type">UIKeyboardWillShowNotification</span>   <span class="comment">//键盘显示之前发送</span></div><div class="line"><span class="type">UIKeyboardDidShowNotification</span>    <span class="comment">//键盘显示之后发送</span></div><div class="line"><span class="type">UIKeyboardWillHideNotification</span>   <span class="comment">//键盘隐藏之前发送</span></div><div class="line"><span class="type">UIKeyboardDidHideNotification</span>    <span class="comment">//键盘隐藏之后发送</span></div><div class="line"></div><div class="line"><span class="comment">//添加通知方法</span></div><div class="line"><span class="type">NSNotificationCenter</span>.defaultCenter().addObserver(<span class="keyword">self</span>, selector: <span class="type">Selector</span>(<span class="string">"textFiledEditChanged:"</span>), name: <span class="type">UITextFieldTextDidChangeNotification</span>, object: textfield)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>限制只能输入特定的字符</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> -(<span class="type">BOOL</span>)textField:(<span class="type">UITextField</span> *)textField shouldChangeCharactersInRange:(<span class="type">NSRange</span>)range replacementString:(<span class="type">NSString</span> *)string&#123;</div><div class="line"><span class="type">NSCharacterSet</span> *cs;</div><div class="line">cs = [[<span class="type">NSCharacterSet</span> characterSetWithCharactersInString:<span class="type">NUMBERS</span>]invertedSet];</div><div class="line"><span class="type">NSString</span> *filtered = [[string componentsSeparatedByCharactersInSet:cs]componentsJoinedByString:@<span class="string">""</span>];<span class="comment">//按cs分离出数组,数组按@""分离出字符串</span></div><div class="line"><span class="type">BOOL</span> canChange = [string isEqualToString:filtered];</div><div class="line"><span class="keyword">return</span> canChange;</div><div class="line">&#125;</div><div class="line">上面这个<span class="type">NUMBERS</span>是一个宏，可以在文件顶部定义：</div><div class="line">define <span class="type">NUMBERS</span> @”<span class="number">0123456789</span>\n”</div><div class="line">如果你要限制输入英文和数字的话，就可以把这个定义为：</div><div class="line">define kAlphaNum @”<span class="type">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789</span>″</div></pre></td></tr></table></figure>
+<blockquote>
+<p>限制只能输入一定长度的字符</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> (<span class="type">BOOL</span>)textField:(<span class="type">UITextField</span> *)textField shouldChangeCharactersInRange:(<span class="type">NSRange</span>)range replacementString:(<span class="type">NSString</span> *)string;</div><div class="line">&#123; <span class="comment">//string就是此时输入的那个字符 textField就是此时正在输入的那个输入框 返回YES就是可以改变输入框的值 NO相反</span></div><div class="line"><span class="keyword">if</span> ([string isEqualToString:@<span class="string">"\n"</span>]) <span class="comment">//按会车可以改变</span></div><div class="line">&#123;</div><div class="line"><span class="keyword">return</span> <span class="type">YES</span>;</div><div class="line">&#125;</div><div class="line"><span class="type">NSString</span> * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];<span class="comment">//得到输入框的内容</span></div><div class="line"><span class="keyword">if</span> (<span class="keyword">self</span>.myTextField == textField) <span class="comment">//判断是否时我们想要限定的那个输入框</span></div><div class="line">&#123;</div><div class="line"><span class="keyword">if</span> ([toBeString length] &gt; <span class="number">20</span>) &#123; <span class="comment">//如果输入框内容大于20则弹出警告</span></div><div class="line">textField.text = [toBeString substringToIndex:<span class="number">20</span>];</div><div class="line"><span class="type">UIAlertView</span> *alert = [[[<span class="type">UIAlertView</span> alloc] initWithTitle:<span class="literal">nil</span> message:@<span class="string">"超过最大字数不能输入了"</span> delegate:<span class="literal">nil</span> cancelButtonTitle:@<span class="string">"Ok"</span> otherButtonTitles:<span class="literal">nil</span>, <span class="literal">nil</span>] autorelease];</div><div class="line">[alert show];</div><div class="line"><span class="keyword">return</span> <span class="type">NO</span>;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">return</span> <span class="type">YES</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//设置能不能进行编辑/用户交互的开关</span></div><div class="line">textfield.enabled = <span class="literal">true</span></div><div class="line">textfield.userInteractionEnabled = <span class="literal">true</span></div><div class="line"></div><div class="line"><span class="comment">//设置圆角属性</span></div><div class="line">textField.layer.cornerRadius = <span class="number">10.0</span></div><div class="line">textField.layer.masksToBounds = <span class="literal">true</span></div><div class="line"></div><div class="line"><span class="comment">//自定义输入源控件</span></div><div class="line"><span class="keyword">let</span> inputview = <span class="type">UIButton</span>(frame: <span class="type">CGRectMake</span>(<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="type">CGRectGetWidth</span>(<span class="keyword">self</span>.view.bounds), <span class="number">100.0</span>))</div><div class="line">inputview.setImage(<span class="type">UIImage</span>(named: <span class="string">"normalImage"</span>), forState: <span class="type">UIControlState</span>.<span class="type">Normal</span>)</div><div class="line">inputview.backgroundColor = <span class="type">UIColor</span>.lightGrayColor()</div><div class="line">inputview.addTarget(<span class="keyword">self</span>, action: <span class="type">Selector</span>(<span class="string">"click:"</span>), forControlEvents: <span class="type">UIControlEvents</span>.<span class="type">TouchUpInside</span>)</div><div class="line">textfield.inputView = inputview</div><div class="line"></div><div class="line"><span class="comment">// 自定义输入源控件副视图</span></div><div class="line"><span class="keyword">let</span> accessoryview = <span class="type">UIView</span>(frame: <span class="type">CGRectMake</span>(<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="type">CGRectGetWidth</span>(<span class="keyword">self</span>.view.bounds), <span class="number">40.0</span>))</div><div class="line">accessoryview.backgroundColor = <span class="type">UIColor</span>.greenColor()</div><div class="line"><span class="keyword">let</span> accessoryLeft = <span class="type">UIButton</span>(frame: <span class="type">CGRectMake</span>(<span class="number">10.0</span>, <span class="number">10.0</span>, <span class="number">60.0</span>, <span class="number">20.0</span>))</div><div class="line">accessoryview.addSubview(accessoryLeft)</div><div class="line">accessoryLeft.setTitle(<span class="string">"取消"</span>, forState: <span class="type">UIControlState</span>.<span class="type">Normal</span>)</div><div class="line">accessoryLeft.backgroundColor = <span class="type">UIColor</span>.orangeColor()</div><div class="line">accessoryLeft.addTarget(<span class="keyword">self</span>, action: <span class="type">Selector</span>(<span class="string">"leftClick:"</span>), forControlEvents: <span class="type">UIControlEvents</span>.<span class="type">TouchUpInside</span>)</div><div class="line"><span class="keyword">let</span> accessoryRight = <span class="type">UIButton</span>(frame: <span class="type">CGRectMake</span>((<span class="type">CGRectGetWidth</span>(accessoryview.bounds) - <span class="number">10.0</span> - <span class="number">60.0</span>), <span class="number">10.0</span>, <span class="number">60.0</span>, <span class="number">20.0</span>))</div><div class="line">accessoryview.addSubview(accessoryRight)</div><div class="line">accessoryRight.setTitle(<span class="string">"确定"</span>, forState: <span class="type">UIControlState</span>.<span class="type">Normal</span>)</div><div class="line">accessoryRight.backgroundColor = <span class="type">UIColor</span>.orangeColor()</div><div class="line">accessoryRight.addTarget(<span class="keyword">self</span>, action: <span class="type">Selector</span>(<span class="string">"rightClick:"</span>), forControlEvents: <span class="type">UIControlEvents</span>.<span class="type">TouchUpInside</span>)</div><div class="line">textfield.inputAccessoryView = accessoryview</div><div class="line"></div><div class="line"><span class="comment">// 自定义输入源控件时响应事件</span></div><div class="line"><span class="comment">// MARK: - click</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">click</span><span class="params">(button:UIButton)</span></span></div><div class="line">&#123;</div><div class="line"><span class="keyword">self</span>.view.endEditing(<span class="literal">true</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//MARK: - left/right click</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">leftClick</span><span class="params">(button:UIButton)</span></span></div><div class="line">&#123;</div><div class="line"><span class="built_in">print</span>(<span class="string">"取消"</span>)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">rightClick</span><span class="params">(button:UIButton)</span></span></div><div class="line">&#123;</div><div class="line"><span class="keyword">self</span>.view.endEditing(<span class="literal">true</span>)</div><div class="line"><span class="built_in">print</span>(<span class="string">"确定"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/UITextField/" rel="tag"># UITextField</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/06/Swift-UI/Swift-UILabel/" rel="next" title="Swift-UILabel">
+                <i class="fa fa-chevron-left"></i> Swift-UILabel
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/07/Swift-UI/Swift-UISlider/" rel="prev" title="Swift—UISlider">
+                Swift—UISlider <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="千夜 QQ:738816656" />
+          <p class="site-author-name" itemprop="name">千夜 QQ:738816656</p>
+           
+              <p class="site-description motion-element" itemprop="description">ReactNative</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">90</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#文本输入框"><span class="nav-number">1.</span> <span class="nav-text">文本输入框</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+# 访客数
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">千夜 QQ:738816656</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === '') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("GGOhuU9q4e5a7HISgedllhyN-gzGzoHsz", "1Dlb2KyTymPIvsleHp8s02I8");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
