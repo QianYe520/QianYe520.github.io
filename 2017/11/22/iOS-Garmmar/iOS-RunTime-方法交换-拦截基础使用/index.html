@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="RunTime," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="RunTime的消息机制参考链接  Objective-C的方法调用是属于消息传送的机制每个类都有一个isa的结构体指针在这个结构体里, 得到指定类的所有属性, 所有方法的列表, 也可以知父类是什么…  新建RTMsgModel RTMsgModel.h  @interface RTMsgModel : NSObject- (void)ff_post;- (void)ff_getWithCount">
+<meta name="keywords" content="RunTime">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-RunTime-方法交换&#x2F;拦截基础使用">
+<meta property="og:url" content="http://yoursite.com/2017/11/22/iOS-Garmmar/iOS-RunTime-方法交换-拦截基础使用/index.html">
+<meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
+<meta property="og:description" content="RunTime的消息机制参考链接  Objective-C的方法调用是属于消息传送的机制每个类都有一个isa的结构体指针在这个结构体里, 得到指定类的所有属性, 所有方法的列表, 也可以知父类是什么…  新建RTMsgModel RTMsgModel.h  @interface RTMsgModel : NSObject- (void)ff_post;- (void)ff_getWithCount">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-22T06:07:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS-RunTime-方法交换&#x2F;拦截基础使用">
+<meta name="twitter:description" content="RunTime的消息机制参考链接  Objective-C的方法调用是属于消息传送的机制每个类都有一个isa的结构体指针在这个结构体里, 得到指定类的所有属性, 所有方法的列表, 也可以知父类是什么…  新建RTMsgModel RTMsgModel.h  @interface RTMsgModel : NSObject- (void)ff_post;- (void)ff_getWithCount">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/22/iOS-Garmmar/iOS-RunTime-方法交换-拦截基础使用/"/>
+
+
+
+
+
+  <title>iOS-RunTime-方法交换/拦截基础使用 | 千夜、おれはおまえをずっと爱している</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">千夜、おれはおまえをずっと爱している</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-read">
+          <a href="/read/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            阅读榜
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/22/iOS-Garmmar/iOS-RunTime-方法交换-拦截基础使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS-RunTime-方法交换/拦截基础使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-22T11:26:44+08:00">
+                2017-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/RunTime/" itemprop="url" rel="index">
+                    <span itemprop="name">RunTime</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/11/22/iOS-Garmmar/iOS-RunTime-方法交换-拦截基础使用/" class="leancloud_visitors" data-flag-title="iOS-RunTime-方法交换/拦截基础使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="RunTime的消息机制"><a href="#RunTime的消息机制" class="headerlink" title="RunTime的消息机制"></a>RunTime的消息机制</h1><p><a href="https://juejin.im/post/59e006116fb9a0450a665af2" target="_blank" rel="external">参考链接</a></p>
+<blockquote>
+<p>Objective-C的方法调用是属于消息传送的机制<br>每个类都有一个isa的结构体指针<br>在这个结构体里, 得到指定类的所有属性, 所有方法的列表, 也可以知父类是什么…</p>
+</blockquote>
+<h2 id="新建RTMsgModel"><a href="#新建RTMsgModel" class="headerlink" title="新建RTMsgModel"></a>新建RTMsgModel</h2><blockquote>
+<p>RTMsgModel.h</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">@interface RTMsgModel : NSObject</div><div class="line">- (void)ff_post;</div><div class="line">- (void)ff_getWithCount:(NSInteger)count;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>RTMsgModel.m</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">- (void)ff_post</div><div class="line">&#123;</div><div class="line">   NSLog(@&quot;被调用了: %@, 当前对象为: %@&quot;, NSStringFromClass([self class]), self);</div><div class="line">&#125;</div><div class="line">- (void)ff_getWithCount:(NSInteger)count</div><div class="line">&#123;</div><div class="line">    NSLog(@&quot;被%ld人调用了&quot;, count);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="测试消息机制"><a href="#测试消息机制" class="headerlink" title="测试消息机制"></a>测试消息机制</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">//</div><div class="line">//  ViewController.m</div><div class="line">//  Runtime方法交换拦截</div><div class="line">//</div><div class="line">//  Created by RN on 17/11/22.</div><div class="line">//  Copyright © 2017年 YueKekui. All rights reserved.</div><div class="line">//</div><div class="line"></div><div class="line">#import &quot;ViewController.h&quot;</div><div class="line">#import &quot;RTMsgModel.h&quot;</div><div class="line">#import &lt;objc/message.h&gt;</div><div class="line">@interface ViewController ()</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line">@implementation ViewController</div><div class="line"></div><div class="line">- (void)viewDidLoad &#123;</div><div class="line">    [super viewDidLoad];</div><div class="line">    [self show_runTimeMsg];</div><div class="line">&#125;</div><div class="line">#pragma mark - RunTime的消息机制</div><div class="line">/**</div><div class="line"> * @brief:  RunTime的消息机制</div><div class="line"> *</div><div class="line"> *</div><div class="line"> *</div><div class="line"> * @attention： Xcode 会自动屏蔽通过objc_msgSend创建对象, 我们可以去到工程里设置</div><div class="line"> *               Build Setting -&gt; Enable Strict Checking of objc_msgSend Calls 改成No</div><div class="line"> */</div><div class="line">- (void)show_runTimeMsg</div><div class="line">&#123;</div><div class="line">    //1.objc_getClass</div><div class="line">    Class getClass = objc_getClass(&quot;RTMsgModel&quot;);</div><div class="line">    NSLog(@&quot;Get The Class is: %@&quot;, getClass);</div><div class="line">    </div><div class="line"></div><div class="line">    //2.objc_msgSend</div><div class="line">    RTMsgModel *messageModel = objc_msgSend(getClass, @selector(alloc));</div><div class="line">    </div><div class="line">    NSLog(@&quot;alloc Object: %@&quot;, messageModel);</div><div class="line">    </div><div class="line">    // 在不调用init方法, 可以通过发消息调用想用的方法, 这里调用没有在.h文件里声明的方法会警告该方法没有声明</div><div class="line">    objc_msgSend(messageModel, @selector(ff_post));</div><div class="line">    </div><div class="line">    messageModel = objc_msgSend(messageModel, @selector(init));</div><div class="line">    </div><div class="line">    NSLog(@&quot;init Object: %@&quot;, messageModel);</div><div class="line">    </div><div class="line">    </div><div class="line">    objc_msgSend(messageModel, @selector(ff_post));</div><div class="line">    </div><div class="line">    // 还有另外一种写法, 就是把所有东西都集合在一起, 也就是我们常用的[[NSObject alloc] init];的原型</div><div class="line">    RTMsgModel *messageModelTwo = objc_msgSend(objc_msgSend(objc_getClass(&quot;RTMsgModel&quot;), @selector(alloc)), @selector(init));</div><div class="line">    objc_msgSend(messageModelTwo, @selector(ff_getWithCount:), 5);</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<h2 id="打印"><a href="#打印" class="headerlink" title="打印"></a>打印</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">2017-11-22 12:36:16.232 Runtime方法交换拦截[21927:3962074] Get The Class is: RTMsgModel</div><div class="line">2017-11-22 12:36:16.233 Runtime方法交换拦截[21927:3962074] alloc Object: &lt;RTMsgModel: 0x600000003680&gt;</div><div class="line">2017-11-22 12:36:16.233 Runtime方法交换拦截[21927:3962074] 被调用了: RTMsgModel, 当前对象为: &lt;RTMsgModel: 0x600000003680&gt;</div><div class="line">2017-11-22 12:36:16.233 Runtime方法交换拦截[21927:3962074] init Object: &lt;RTMsgModel: 0x600000003680&gt;</div><div class="line">2017-11-22 12:36:16.233 Runtime方法交换拦截[21927:3962074] 被调用了: RTMsgModel, 当前对象为: &lt;RTMsgModel: 0x600000003680&gt;</div><div class="line">2017-11-22 12:36:16.233 Runtime方法交换拦截[21927:3962074] 被5人调用了</div></pre></td></tr></table></figure>
+<h1 id="RunTime方法交换"><a href="#RunTime方法交换" class="headerlink" title="RunTime方法交换"></a>RunTime方法交换</h1><blockquote>
+<p>建一个类RunTimeMethodModel.h</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">@interface RunTimeMethodModel : NSObject</div><div class="line">@property (nonatomic, copy) NSString *cl_height;</div><div class="line">@property (nonatomic, copy) NSString *cl_weight;</div><div class="line"></div><div class="line">- (NSString *)cl_height;</div><div class="line">- (NSString *)cl_weight;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<blockquote>
+<p>RunTimeMethodModel.m</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">- (NSString *)cl_height &#123;</div><div class="line">    return @&quot;我身高180&quot;;</div><div class="line">&#125;</div><div class="line">- (NSString *)cl_weight &#123;</div><div class="line">    return @&quot;我体重280&quot;;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<h2 id="测试交换方法"><a href="#测试交换方法" class="headerlink" title="测试交换方法"></a>测试交换方法</h2><blockquote>
+<p>执行方法交换</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">RunTimeMethodModel *methodModel = [[RunTimeMethodModel alloc] init];</div><div class="line"></div><div class="line"> NSLog(@&quot;身高: %@&quot;, methodModel.cl_height);</div><div class="line"> NSLog(@&quot;体重: %@&quot;, methodModel.cl_weight);</div><div class="line"></div><div class="line"> Method methodOne = class_getInstanceMethod([methodModel class], @selector(cl_height));</div><div class="line"> Method methodTwo = class_getInstanceMethod([methodModel class], @selector(cl_weight));</div><div class="line"></div><div class="line"> method_exchangeImplementations(methodOne, methodTwo);</div><div class="line"></div><div class="line"> NSLog(@&quot;打印的内容: %@&quot;, [methodModel cl_height]);</div></pre></td></tr></table></figure>
+<h2 id="打印-1"><a href="#打印-1" class="headerlink" title="打印"></a>打印</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">身高: 我身高180</div><div class="line">体重: 我体重280 </div><div class="line">打印的内容: 我体重280</div></pre></td></tr></table></figure>
+<h2 id="注意一点"><a href="#注意一点" class="headerlink" title="注意一点"></a>注意一点</h2><p><strong><em>注意一点, 由于这里的ViewController会销毁, 但method_exchangeImplementations会一直存在, 再次进来的时候, 就会再次根据上次交换过的顺序再次交换</em></strong></p>
+<blockquote>
+<p>+load交换方法</p>
+</blockquote>
+<h3 id="load交换方法"><a href="#load交换方法" class="headerlink" title="+load交换方法"></a>+load交换方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">+ (void)load &#123;</div><div class="line"></div><div class="line">    Method methodOne = class_getInstanceMethod(self, @selector(cl_height));</div><div class="line">    Method methodTwo = class_getInstanceMethod(self, @selector(cl_weight));</div><div class="line"></div><div class="line">    method_exchangeImplementations(methodOne, methodTwo);</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (NSString *)cl_height &#123;</div><div class="line"></div><div class="line">    return @&quot;我身高180&quot;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (NSString *)cl_weight &#123;</div><div class="line"></div><div class="line">    return @&quot;我体重280&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>打印</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">身高: 我体重280</div><div class="line"></div><div class="line">体重: 我身高180</div><div class="line"></div><div class="line">身高: 我体重280</div><div class="line"></div><div class="line">体重: 我身高180</div></pre></td></tr></table></figure>
+<h3 id="initialize交换方法"><a href="#initialize交换方法" class="headerlink" title="+initialize交换方法"></a>+initialize交换方法</h3><blockquote>
+<p>+load这个方法里的确是可以保证方法交换只有一次, 但这里有一个弊端, 就是当程序一运行就会执行这个方法交换了<br>+load: 程序一开始就会去执行, 只执行一次.<br>+initialize: 当类被初始化的时候会才会去执行, 该类只会执行一次.</p>
+<p>initialize<br>class_getInstanceMethod         获取实例方法<br>method_exchangeImplementations  方法交换</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">+ (void)initialize </div><div class="line">+ &#123;</div><div class="line">    Method methodOne = class_getInstanceMethod(self, @selector(cl_height));</div><div class="line">    Method methodTwo = class_getInstanceMethod(self, @selector(cl_weight));</div><div class="line">    method_exchangeImplementations(methodOne, methodTwo);</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (NSString *)cl_height &#123;</div><div class="line">    return @&quot;我身高180&quot;;</div><div class="line">&#125;</div><div class="line">- (NSString *)cl_weight &#123;</div><div class="line">    return @&quot;我体重280&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="RunTime方法拦截"><a href="#RunTime方法拦截" class="headerlink" title="RunTime方法拦截"></a>RunTime方法拦截</h1><blockquote>
+<p>从刚刚我们就知道, 可以使用method_exchangeImplementations交换两个方法, 但只应用在本类, 现在我们来看看别的应</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">@implementation BaseModel</div><div class="line">- (void)cl_logBaseModel &#123;</div><div class="line">    NSLog(@&quot;Base Model Log&quot;);</div><div class="line">&#125;</div><div class="line">@end</div><div class="line"></div><div class="line">@implementation InterceptModel</div><div class="line">- (void)cl_logInterceptModel &#123;</div><div class="line">    NSLog(@&quot;Intercept You Method &quot;);</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<blockquote>
+<p>最终的实现</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">+ (void)initialize &#123;</div><div class="line"></div><div class="line">    Method mehtodOne = class_getInstanceMethod([BaseModel class], @selector(cl_logBaseModel));</div><div class="line">    Method mehtodTwo = class_getInstanceMethod([InterceptModel class], @selector(cl_logInterceptModel));</div><div class="line"></div><div class="line">    method_exchangeImplementations(mehtodOne, mehtodTwo);</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)viewDidLoad &#123;</div><div class="line">    [super viewDidLoad];</div><div class="line"></div><div class="line">    self.view.backgroundColor = [UIColor whiteColor];</div><div class="line"></div><div class="line">    BaseModel *baseModel = [[BaseModel alloc] init];</div><div class="line"></div><div class="line">    [baseModel cl_logBaseModel];</div><div class="line">&#125;</div><div class="line">。</div></pre></td></tr></table></figure>
+<blockquote>
+<p>打印结果<br>发现方法是被InterceptModel这个类拦截, 并且替换了InterceptModel的方法</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">[InterceptModel cl_logInterceptModel] 第15行 Intercept You Method</div></pre></td></tr></table></figure>
+<h1 id="类方法也可以交换和拦截"><a href="#类方法也可以交换和拦截" class="headerlink" title="类方法也可以交换和拦截"></a>类方法也可以交换和拦截</h1><blockquote>
+<p>新增类方法</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">#import &quot;BaseModel.h&quot;</div><div class="line"></div><div class="line">@implementation BaseModel</div><div class="line"></div><div class="line">- (void)cl_logBaseModel &#123;</div><div class="line"></div><div class="line">    NSLog(@&quot;Base Model Log&quot;);</div><div class="line">&#125;</div><div class="line">+ (void)cl_logBaseModelClass &#123;</div><div class="line"></div><div class="line">    NSLog(@&quot;Base Model Class Log&quot;);</div><div class="line">&#125;</div><div class="line">@end</div><div class="line">-----------------------------------------------</div><div class="line">@implementation InterceptModel</div><div class="line"></div><div class="line">- (void)cl_logInterceptModel &#123;</div><div class="line"></div><div class="line">    NSLog(@&quot;Intercept You Method &quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">+ (void)cl_logInterceptModelClass &#123;</div><div class="line"></div><div class="line">    NSLog(@&quot;Intercept Class You Method &quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<blockquote>
+<p>最终实现<br>class_getInstanceMethod 获取类方法<br>method_exchangeImplementations</p>
+<p>initialize<br> class_getInstanceMethod         实例方法<br> class_getClassMethod            类方法<br> method_exchangeImplementations  交换方法</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">+ (void)initialize &#123;</div><div class="line">    // 拦截实例方法</div><div class="line">    Method mehtodOne = class_getInstanceMethod([BaseModel class], @selector(cl_logBaseModel));</div><div class="line">    Method mehtodTwo = class_getInstanceMethod([InterceptModel class], @selector(cl_logInterceptModel));</div><div class="line">    method_exchangeImplementations(mehtodOne, mehtodTwo);</div><div class="line"></div><div class="line">    // 拦截类方法</div><div class="line">    Method classMehtodOne = class_getClassMethod([BaseModel class], @selector(cl_logBaseModelClass));</div><div class="line">    Method classMehtodTwo = class_getClassMethod([InterceptModel class], @selector(cl_logInterceptModelClass));</div><div class="line"></div><div class="line">    method_exchangeImplementations(classMehtodOne, classMehtodTwo);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>执行</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">self.view.backgroundColor = [UIColor whiteColor];</div><div class="line"></div><div class="line">BaseModel *baseModel = [[BaseModel alloc] init];</div><div class="line"></div><div class="line">[baseModel cl_logBaseModel];</div><div class="line"></div><div class="line">[BaseModel cl_logBaseModelClass];</div></pre></td></tr></table></figure>
+<blockquote>
+<p>打印</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Intercept You Method </div><div class="line"></div><div class="line">Intercept Class You Method</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/RunTime/" rel="tag"># RunTime</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/22/iOS-UIScrollView基础用法/" rel="next" title="iOS-UIScrollView基础用法">
+                <i class="fa fa-chevron-left"></i> iOS-UIScrollView基础用法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/22/iOS-Func/iOS-Func-autoreleasepool/" rel="prev" title="iOS-Func-Autoreleasepool">
+                iOS-Func-Autoreleasepool <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="千夜 QQ:738816656" />
+          <p class="site-author-name" itemprop="name">千夜 QQ:738816656</p>
+           
+              <p class="site-description motion-element" itemprop="description">ReactNative</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">90</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RunTime的消息机制"><span class="nav-number">1.</span> <span class="nav-text">RunTime的消息机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#新建RTMsgModel"><span class="nav-number">1.1.</span> <span class="nav-text">新建RTMsgModel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试消息机制"><span class="nav-number">1.2.</span> <span class="nav-text">测试消息机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打印"><span class="nav-number">1.3.</span> <span class="nav-text">打印</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RunTime方法交换"><span class="nav-number">2.</span> <span class="nav-text">RunTime方法交换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#测试交换方法"><span class="nav-number">2.1.</span> <span class="nav-text">测试交换方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打印-1"><span class="nav-number">2.2.</span> <span class="nav-text">打印</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意一点"><span class="nav-number">2.3.</span> <span class="nav-text">注意一点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#load交换方法"><span class="nav-number">2.3.1.</span> <span class="nav-text">+load交换方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#initialize交换方法"><span class="nav-number">2.3.2.</span> <span class="nav-text">+initialize交换方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RunTime方法拦截"><span class="nav-number">3.</span> <span class="nav-text">RunTime方法拦截</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类方法也可以交换和拦截"><span class="nav-number">4.</span> <span class="nav-text">类方法也可以交换和拦截</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+# 访客数
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">千夜 QQ:738816656</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === '') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("GGOhuU9q4e5a7HISgedllhyN-gzGzoHsz", "1Dlb2KyTymPIvsleHp8s02I8");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
