@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Swift-UIKit-UIImage-简单使用]]></title>
+<url>../../../../../../../../2017/12/14/Swift-UIKit-UIImage-简单使用/</url>
+    <content type="text"><![CDATA[创建func myImage() &#123; // 1.创建一个UIImageView, 并且设置它的frame var myImageView = UIImageView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)) // 2.设置UIImage的图片名, 以及展示的样式 var myImage = UIImage(named: "image_bate.jpg")?.imageWithRenderingMode(UIImageRenderingMode.Automatic) // 3.把UIImage添加到ImageView里面去 myImageView.image = myImage self.view.addSubview(myImageView) &#125; 在viewDidload中实现: override func viewDidLoad() &#123; super.viewDidLoad() self.myImage() &#125; 注意 由于UIImage不能单独的拿出来展示, 它必须依赖于某个一个继承于UIView的一个View, 比如UIImageView或者UIButton, 这些都是可以的]]></content>
+      <categories>
+        <category>Swift</category>
+        <category>UIKit</category>
+        <category>UIImage</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>UIKit</tag>
+        <tag>UIImage</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Swift-UIKit-UIImage-简介]]></title>
 <url>../../../../../../../../2017/12/14/Swift-UIKit/Swift-UIKit-UIImage-简介/</url>
     <content type="text"><![CDATA[UIImage的状态 UIImageOrientation enum UIImageOrientation : Int &#123; case Up //默认方向 case Down //180°旋转 case Left //逆时针旋转90° case Right //顺时针旋转90° case UpMirrored //水平向上翻转 case DownMirrored //水平向下翻转 case LeftMirrored //逆时针旋转90°后再垂直翻转 case RightMirrored //顺时针旋转90°后再垂直翻转&#125; UIImageResizingMode enum UIImageResizingMode : Int &#123; case Tile //平铺到调整完位置的图像 case Stretch //拉伸到调整完位置的图像&#125; UIImageRenderingMode enum UIImageRenderingMode : Int &#123; case Automatic //默认上下文显示的图像位置 case AlwaysOriginal //总是以图片为模板 case AlwaysTemplate //会把图像作为绘画的模板, 忽略其他颜色&#125; 常用的属性 UIImage里面虽然有很多属性, 但唯一常用的属性就只有设置获取image名字的属性. init?(named name: String) -&gt; UIImage]]></content>
@@ -56,8 +71,8 @@
       </categories>
       <tags>
         <tag>Swift</tag>
-        <tag>UITableView</tag>
         <tag>UIKit</tag>
+        <tag>UITableView</tag>
       </tags>
   </entry>
   <entry>
@@ -71,8 +86,8 @@
       </categories>
       <tags>
         <tag>Swift</tag>
-        <tag>UITableView</tag>
         <tag>UIKit</tag>
+        <tag>UITableView</tag>
       </tags>
   </entry>
   <entry>
