@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Swift-UIKit-UISwitch-简单使用]]></title>
+<url>../../../../../../../../2017/12/14/Swift-UIKit-UISwitch-简单使用/</url>
+    <content type="text"><![CDATA[自定义UISwitch UISwitch 是继承于 UIControl, 所以 UIControl 里面的属性和方法 UISwitch 都是可以用的 func mySwitch() &#123; // 1.自定义 UISwitch var switchButton = UISwitch() // 2.设置 UISwitch 的位置 switchButton.center = CGPointMake(self.view.frame.width / 2, self.view.frame.height / 2) // 3.设置 UISwitch 打开时底图渐变颜色, 默认是从白变绿 switchButton.onTintColor = UIColor.redColor() // 4.设置 UISwitch 关闭时底图渐变颜色, 默认是从绿变白 switchButton.tintColor = UIColor.blackColor() // 5.设置 UISwitch 的小圆点颜色, 默认是白色 switchButton.thumbTintColor = UIColor.blueColor() // 6.设置 UISwitch 是否打开 switchButton.on = true // 7.设置 UISwitch 是否打开, 并且是否打开动画效果 switchButton.setOn(true, animated: true) // 8.添加到 UISwitch 到 self.view self.view.addSubview(switchButton) &#125; 在 viewDidLoad中实现 override func viewDidLoad() &#123; super.viewDidLoad() self.mySwitch()&#125;]]></content>
+      <categories>
+        <category>Swift</category>
+        <category>UIKit</category>
+        <category>UISwitch</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>UIKit</tag>
+        <tag>UISwitch</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Swift-UIKit-UISwitch-简介]]></title>
 <url>../../../../../../../../2017/12/14/Swift-UIKit-UISwitch-简介/</url>
     <content type="text"><![CDATA[UISwitch的常用属性 1.设置 UISwitch 打开时底图渐变颜色, 默认是从白变绿 var onTintColor: UIColor! 2.设置 UISwitch 关闭时底图渐变颜色, 默认是从白变绿 var tintColor: UIColor? 3.设置 UISwitch 的小圆点颜色, 默认是白色 var thumbTintColor: UIColor? 4.设置 UISwitch 是否打开 var on: Bool 5.设置 UISwitch 的位置 init(frame: CGRect) 6.设置 UISwitch 是否打开, 并且是否打开动画效果 func setOn(on: Bool, animated: Bool)]]></content>
