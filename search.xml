@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Swift-UIKit-NSNotificationCenter-简介]]></title>
+<url>../../../../../../../../2017/12/14/Swift-UIKit-NSNotificationCenter-简介/</url>
+    <content type="text"><![CDATA[NSNotificationCenter 如果被通知对象创建了，那么执行完发送通知之后就会执行被通知的selector的方法，之后再回来执行后一行代码通知一般在mode与View需要交流（传递数据）时使用，或者也可以用于多线程的消息传递，也可是其他的信息传递,最常用的场景是页面值的回传 注册通知 参数：第一个是响应被通知的对象，一般是self， selector:一个自定义方法，实现得到通知后的操作（如果使用闭包的方法，就在回调中实现），name:通知的名字（注意注册通知和发送通知必须一致才能够响应通知），object:发通知的对象，如果填nil则表示接受所有通知，如果填上具体的对象，则是1对1的通知。建议：如果通知多可以单独写一个方法放通知（调用第二个方法），如果通知比较少建议使用第一种，再实现其selector方法，注册通知是在需要被通知的类里写 NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TiltleNotification), name: "TiltleNotification", object: nil)//注册了一个名字叫做TiltleNotification 发送通知post 在需要通知的类（即需要传信息出去的类）中使用通知传递消息name也可以这样写:NSNotification.Name.init(“TiltleNotification”) NSNotificationCenter.defaultCenter().postNotificationName(NSNotification.Name("TiltleNotification"), object: self, userInfo: ["success":true,"img":UIImage(named:"image"]) 在完成通知中的选择器方法func pushBookTiltleNotification(notification:NSNotification)&#123; //记得参数加上，才能得到信息 let dict = notification.userInfo if (dict["success"] as! Bool) &#123;//获取传递过来的值,而且需要转换下 ProgressHUD.showSuccess("通知成功") &#125;else&#123; ProgressHUD.showError("通知失败") &#125; &#125; 移除通知 由于通知是单列的，所以使用完后必须在析构deinit中移除通知，否则后期将引发难以查询的莫名错误 deinit&#123; //注意由于通知是单例的，所以用了之后需要析构， NSNotificationCenter.defaultCenter().removeObserver(self, name: "TiltleNotification", object: nil) &#125;]]></content>
+      <categories>
+        <category>Swift</category>
+        <category>UIKit</category>
+        <category>NSNotificationCenter</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>UIKit</tag>
+        <tag>NSNotificationCenter</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[iOS-Func-高效切圆角]]></title>
 <url>../../../../../../../../2017/12/14/iOS-Func/iOS-Func-高效切圆角/</url>
     <content type="text"><![CDATA[UIView（不包括其子类） UIView 只要设置图层的 cornerRadius 属性即可（不明白的话，可以看看官方文档里对 cornerRadius 的描述）设置 layer.masksToBounds = YES，会造成不必要的离屏渲染 UIView *view = [[UIView alloc] init];view.backgroundColor = [UIColor blackColor];view.layer.cornerRadius = 3.f;// 以下两行，任写一行view.layer.masksToBounds = NO;view.clipToBounds = NO; 以下两行，千万不要加！ view.layer.masksToBounds = YES;view.clipToBounds = YES; 文本类视图UITextField UITextField有两种实现方法 // 支持设置圆角边框UITextField *textField = [[UITextField alloc] init];textField.borderStyle = UITextBorderStyleRoundedRect;// 与 UIView 类似UITextField *textField = [[UITextField alloc] init];textField.layer.cornerRadius = cornerRadius; UITextView// 与 UIView 类似UITextView *textView = [[UITextView alloc] init];textView.layer.cornerRadius = cornerRadius; UILabelUILabel *label = [[UILabel alloc] init];// 重点在此！！设置视图的图层背景色，千万不要直接设置 label.backgroundColorlabel.layer.backgroundColor = [UIColor grayColor].CGColor;label.layer.cornerRadius = cornerRadius; UIButton UIButton 的背景图片，如果是复杂的图片，可以依靠 UI 切图来实现如果是简单的纯色背景图片，可以利用代码绘制带圆角的图片 UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];// 设置 UIButton 的背景图片。[button setBackgroundImage:image forState:UIControlStateNormal]; 背景图片绘制方法 + (UIImage *)pureColorImageWithSize:(CGSize)size color:(UIColor *)color cornRadius:(CGFloat)cornRadius &#123; UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, size.width, size.height)]; view.backgroundColor = color; view.layer.cornerRadius = cornerRadius; // 下面方法，第一个参数表示区域大小。第二个参数表示是否是非透明的。如果需要显示半透明效果，需要传NO，否则传YES。第三个参数是屏幕密度UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, [UIScreen mainScreen].scale); [view.layer renderInContext:UIGraphicsGetCurrentContext()]; UIImage *image = UIGraphicsGetImageFromCurrentImageContext(); UIGraphicsEndImageContext(); return image; &#125; UIImageView 方式一：贝塞尔曲线切割圆角 - (UIImageView *)roundedRectImageViewWithCornerRadius:(CGFloat)cornerRadius &#123; UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:cornerRadius]; CAShapeLayer *layer = [CAShapeLayer layer]; layer.path = bezierPath.CGPath; self.layer.mask = layer; return self;&#125; 绘制四个角的遮罩（使用场景受限） 在 UIImageView 上添加一个四个角有内容，其它部分是透明的视图，只对 UIImageView 圆角部分进行遮挡。但要保证被遮挡的部分背景色要与周围背景相同，避免穿帮。所以当 UIImageView 处于一个复杂的背景时，是不适合使用这个方法的 最不推荐做法（当一个页面只有少量圆角图片时才推荐使用） UIImageView *imageView = [[UIImageView alloc] init];imageView.layer.cornerRadius = 5.f;imageView.layer.masksToBounds = YES;]]></content>
@@ -1181,14 +1196,6 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[Blog-配置]]></title>
-<url>../../../../../../../../2017/11/23/Blog/Blog-配置/</url>
-    <content type="text"><![CDATA[博客配置01博客配置02]]></content>
-      <categories>
-        <category>Blog</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[iOS-Tool-FastLane自动化发布工具+上传Bugly]]></title>
 <url>../../../../../../../../2017/11/23/iOS-Garmmar/iOS-Tool-FastLane自动化发布工具+上传Bugly/</url>
     <content type="text"><![CDATA[打包的流程 修改测试版本号 修改Build版本号 执行Archive 选择Adhoc导出IPA安装包文件 上传Bugly测试平台 分享测试链接二维码FastlaneFastlane本身包含两大模块，内核部分+ActionActionAction是Fastlane自动化流程中的最小执行单元，直观上来讲就是Fastfile脚本中的一个个命令，比如：git_pull，deliver，pod_install等等，而这些命令背后都对应其实是一个用Ruby编写的脚本 Fastlane 是一套用 Ruby 编写的 iOS 命令行工具集（后来也支持了 Android），主要组件包括： match / cert / sigh 协助管理代码签名 pem 自动生成 APNs 证书 scan 自动化测试 gym 自动化编译并打包生成签名的 .ipa 文件 snapshot / frameit 协助处理 iOS 屏幕快照 pilot 上传和管理 TestFlight deliver 将应用及其它信息上传到 App Store 而正是这些颗粒度极小的Action，根据自己需求组合成一个自动化的链条 安装 首先确保Xcode命令行工具是最新版本的 $ xcode-select --install 安装Fastlane: $ sudo gem install fastlane -NV 找到工程文件目录下执行 $ fastlane init 在执行“Your Apple ID” 这一步输入苹果开发者账号，fastlane 会自动获取工程文件名，目录等其他数据。这一步“Please confirm the above values”，确认信息，没问题则输入 y。然后，fastlane 会进行一系列的初始化操作，包括下载 App Store 上的元数据和截屏文件。等待初始化完成之后，工程目录下就多了一个 fastlane目录： $ cd fastlane &amp;&amp; lsAppfile Fastfile metadata report.xmlDeliverfile README.md screenshots 文件目录 metadata目录下存放整个元数据文件，包括关键词、版本更新日志、图标等. screenshots目录下存放应用截图 Appfile文件记录App的 bundle ID、Apple ID、Team ID三种信息. Fastfile脚本的核心执行文件.有几个默认的选项，可直接使用. report文件时每次执行fastlane时生成报告 安装fastlane成功后，首先拆解我们需要自动化的两个流程: 自动打包成Adhoc的安装包ipa文件 通过fastlane自动上传到bugly 自动化打包 自动化打包使用最多就是Fastlane中gym这个Action, 转为打包而生, 安装gym这个组件: $ sudo gem install gym cd项目根目录, 创建自动打包脚本: $ vim gym.sh 输入脚本内容: #!/bin/bash#计时SECONDS=0#假设脚本放置在与项目相同的路径下project_path=$(pwd)#取当前时间字符串添加到文件结尾now=$(date +"%Y_%m_%d_%H_%M_%S")#指定项目的scheme名称scheme="Xitu"#指定要打包的配置名configuration="Adhoc"#指定打包所使用的输出方式，目前支持app-store, package, ad-hoc, enterprise, development, 和developer-id，即xcodebuild的method参数export_method='ad-hoc'#指定项目地址workspace_path="$project_path/Xitu.xcworkspace"#指定输出路径output_path="project_path/APP"#指定输出归档文件地址archive_path="$output_path/Xitu$&#123;now&#125;.xcarchive"#指定输出ipa地址ipa_path="$output_path/Xitu$&#123;now&#125;.ipa"#指定输出ipa名称ipa_name="Xitu$&#123;now&#125;.ipa"#获取执行命令时的commit messagecommit_msg="$1"#输出设定的变量值echo "===workspace path: $&#123;workspace_path&#125;==="echo "===archive path: $&#123;archive_path&#125;==="echo "===ipa path: $&#123;ipa_path&#125;==="echo "===export method: $&#123;export_method&#125;==="echo "===commit msg: $1==="#先清空前一次buildgym --workspace $&#123;workspace_path&#125; --scheme $&#123;scheme&#125; --clean --configuration $&#123;configuration&#125; --archive_path $&#123;archive_path&#125; --export_method $&#123;export_method&#125; --output_directory $&#123;output_path&#125; --output_name $&#123;ipa_name&#125;#输出总用时echo "===Finished. Total time: $&#123;SECONDS&#125;s===" 把如上脚本中Xitu改成你的项目名称即可. 为脚本执行提升权限 $ chmod +x gym.sh 执行一下脚本看一下打包效果: $ ./gym.sh 经过572s，Adhoc版本的ipa文件打包成功，我们在项目根目录下找到App目录： =========================================== #上传Bugly fastlane中定义action$ fastlane new_action 这时命令行会要求你输入自定义action名字，直接以bugly上传文件命名 $ upload_app_to_bugly wei wan]]></content>
@@ -1196,6 +1203,14 @@
         <category>iOS</category>
         <category>Tool</category>
         <category>FastLane</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Blog-配置]]></title>
+<url>../../../../../../../../2017/11/23/Blog/Blog-配置/</url>
+    <content type="text"><![CDATA[博客配置01博客配置02]]></content>
+      <categories>
+        <category>Blog</category>
       </categories>
   </entry>
   <entry>
