@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="UIKit,iOS,Autoreleasepool," />
 
 
 
@@ -105,16 +105,21 @@
 
 
 
-<meta name="description" content="ReactNative">
-<meta property="og:type" content="website">
-<meta property="og:title" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:url" content="http://yoursite.com/archives/2017/page/5/index.html">
+<meta name="description" content="Autoreleasepool释放时机 每个个Runloop已经默认会创建一个Autoreleasepool 新增对Runloop的Observer, 及时获取Runloop的状态变化确认释放时机  添加一个监听者 创建监听者  - (void)addRunLoopObserver &amp;#123;    CFRunLoopObserverRef observer = CFRunLoopObserve">
+<meta name="keywords" content="UIKit,iOS,Autoreleasepool">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-UIKit-Autoreleasepool">
+<meta property="og:url" content="http://yoursite.com/2017/11/22/iOS-UIKit/iOS-UIKit-Autoreleasepool/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="ReactNative">
+<meta property="og:description" content="Autoreleasepool释放时机 每个个Runloop已经默认会创建一个Autoreleasepool 新增对Runloop的Observer, 及时获取Runloop的状态变化确认释放时机  添加一个监听者 创建监听者  - (void)addRunLoopObserver &amp;#123;    CFRunLoopObserverRef observer = CFRunLoopObserve">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/iOS-Func-Autoreleasepool-001.png">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/iOS-Func-Autoreleasepool-002.png">
+<meta property="og:updated_time" content="2017-12-14T05:50:07.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="千夜、おれはおまえをずっと爱している">
-<meta name="twitter:description" content="ReactNative">
+<meta name="twitter:title" content="iOS-UIKit-Autoreleasepool">
+<meta name="twitter:description" content="Autoreleasepool释放时机 每个个Runloop已经默认会创建一个Autoreleasepool 新增对Runloop的Observer, 及时获取Runloop的状态变化确认释放时机  添加一个监听者 创建监听者  - (void)addRunLoopObserver &amp;#123;    CFRunLoopObserverRef observer = CFRunLoopObserve">
+<meta name="twitter:image" content="http://ozr735s7e.bkt.clouddn.com/iOS-Func-Autoreleasepool-001.png">
 
 
 
@@ -143,13 +148,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2017/page/5/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/11/22/iOS-UIKit/iOS-UIKit-Autoreleasepool/"/>
 
 
 
 
 
-  <title>归档 | 千夜、おれはおまえをずっと爱している</title>
+  <title>iOS-UIKit-Autoreleasepool | 千夜、おれはおまえをずっと爱している</title>
   
 
 
@@ -168,7 +173,7 @@
     
   
 
-  <div class="container sidebar-position-left  page-archive  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -316,410 +321,242 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/22/iOS-UIKit/iOS-UIKit-Autoreleasepool/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
-         
+          <h1 class="post-title" itemprop="name headline">iOS-UIKit-Autoreleasepool</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-22T15:43:49+08:00">
+                2017-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        很好! 目前共计 114 篇日志。 继续努力。
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
 
-      
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/UIKit/" itemprop="url" rel="index">
+                    <span itemprop="name">UIKit</span>
+                  </a>
+                </span>
 
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
+             <span id="/2017/11/22/iOS-UIKit/iOS-UIKit-Autoreleasepool/" class="leancloud_visitors" data-flag-title="iOS-UIKit-Autoreleasepool">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/07/iOS-Code/iOS-Code-Error-AFN/" itemprop="url">
-              
-                <span itemprop="name">iOS-Error-AFN</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-07T11:33:14+08:00"
-              content="2017-12-07" >
-          12-07
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/07/iOS-Func/iOS-Func-网络状况侦测/" itemprop="url">
-              
-                <span itemprop="name">iOS-Func-网络状况侦测</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-07T11:05:40+08:00"
-              content="2017-12-07" >
-          12-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/07/Swift-UIKit/Swift-UIKit-UIWebView-WKWebView/" itemprop="url">
-              
-                <span itemprop="name">Swift-UIKit-UIWebView/WKWebView</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-07T10:47:29+08:00"
-              content="2017-12-07" >
-          12-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/07/Swift-UIKit/Swift-UIKit-UIImageView/" itemprop="url">
-              
-                <span itemprop="name">Swift-UIKit-UIImageView</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-07T10:40:47+08:00"
-              content="2017-12-07" >
-          12-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h1 id="Autoreleasepool释放时机"><a href="#Autoreleasepool释放时机" class="headerlink" title="Autoreleasepool释放时机"></a>Autoreleasepool释放时机</h1><ul>
+<li>每个个Runloop已经默认会创建一个Autoreleasepool</li>
+<li>新增对Runloop的Observer, 及时获取Runloop的状态变化确认释放时机</li>
+</ul>
+<h2 id="添加一个监听者"><a href="#添加一个监听者" class="headerlink" title="添加一个监听者"></a>添加一个监听者</h2><blockquote>
+<p>创建监听者</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">- (void)addRunLoopObserver &#123;</div><div class="line">    CFRunLoopObserverRef observer = CFRunLoopObserverCreateWithHandler(kCFAllocatorDefault, kCFRunLoopAllActivities, YES, 0, ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) &#123;</div><div class="line"></div><div class="line">        switch (activity) &#123;</div><div class="line">            case kCFRunLoopEntry:</div><div class="line">                NSLog(@&quot;进入RunLoop&quot;);</div><div class="line">                break;</div><div class="line">            case kCFRunLoopBeforeTimers:</div><div class="line">                NSLog(@&quot;即将处理Timer事件&quot;);</div><div class="line">                break;</div><div class="line">            case kCFRunLoopBeforeSources:</div><div class="line">                NSLog(@&quot;即将处理Source事件&quot;);</div><div class="line">                break;</div><div class="line">            case kCFRunLoopBeforeWaiting:</div><div class="line">                NSLog(@&quot;即将休眠&quot;);</div><div class="line">                break;</div><div class="line">            case kCFRunLoopAfterWaiting:</div><div class="line">                NSLog(@&quot;被唤醒&quot;);</div><div class="line">                break;</div><div class="line">            case kCFRunLoopExit:</div><div class="line">                NSLog(@&quot;退出RunLoop&quot;);</div><div class="line">                break;</div><div class="line">            default:</div><div class="line">                break;</div><div class="line">        &#125;</div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>添加监听者</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">    CFRunLoopAddObserver(CFRunLoopGetMain(), observer, kCFRunLoopCommonModes);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><blockquote>
+<p>不手动添加autoreleasepool</p>
+</blockquote>
+<ul>
+<li>方法运行连续运行两次, 不手动添加autoreleasepool</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">- (void)test1 &#123;</div><div class="line"></div><div class="line">    NSLog(@&quot;test1 begin!&quot;);</div><div class="line">    for (int i = 0; i &lt; 10e5 * 2; i++) &#123;</div><div class="line">        //@autoreleasepool &#123;</div><div class="line">            NSString *str = [NSString stringWithFormat:@&quot;hi + %d&quot;, i];</div><div class="line">        //&#125;</div><div class="line">    &#125;</div><div class="line">    NSLog(@&quot;test1 finished!&quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)test2 &#123;</div><div class="line"></div><div class="line">    NSLog(@&quot;test2 begin!&quot;);</div><div class="line">    for (int i = 0; i &lt; 10e5 * 2; i++) &#123;</div><div class="line">        //@autoreleasepool &#123;</div><div class="line">            NSString *str = [NSString stringWithFormat:@&quot;hi + %d&quot;, i];</div><div class="line">        //&#125;</div><div class="line">    &#125;</div><div class="line">    NSLog(@&quot;test2 finished!&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/iOS-Func-Autoreleasepool-001.png" alt="001"></p>
+<ul>
+<li>Runloop没有完成一次循环之前所有内存都未释放, </li>
+<li>即使局部变量出了作用域也必须等待Runloop循环完成</li>
+</ul>
+<blockquote>
+<p>手动添加autoreleasepool观察释放时机</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/iOS-Func-Autoreleasepool-002.png" alt="002"></p>
+<ul>
+<li>for{@autoreleasepool{}} 效果好于  @autoreleasepool{for…}<h1 id="autoreleasepool"><a href="#autoreleasepool" class="headerlink" title="@autoreleasepool{}"></a>@autoreleasepool{}</h1></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">@autoreleasepool&#123;&#125;</div></pre></td></tr></table></figure>
+<p>等价于</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">void *context = objc_autoreleasePoolPush();</div><div class="line">// &#123;&#125;中的代码</div><div class="line">objc_autoreleasePoolPop(context);</div></pre></td></tr></table></figure>
+<ul>
+<li>每次出了{}时objc_autoreleasePoolPop()就被调用, 所以直接释放掉了. </li>
+<li>当然, 系统自动创建的autoreleasepool也是一样, 只是调用的时机不同:  线程与Runloop是一一对应, Runloop与系统创建的autoreleasepool也是一一对应, 所以不论是Runloop完成了一次循环还是线程被关闭时,  autoreleasepool都会释放, 当然手动添加的也会被管理</li>
+<li>主要就是一个类:AutoreleasePoolPage</li>
+<li>两个函数: objc_autoreleasePoolPush()、objc_autoreleasePoolPop()</li>
+<li>运作方式: autoreleasepool由若干个autoreleasePoolPage类以双向链表的形式组合而成</li>
+<li>当程序运行到@autoreleasepool{时, objc_autoreleasePoolPush()将被调用, runtime会向当前的AutoreleasePoolPage中添加一个nil对象作为哨兵,在{}中创建的对象会被依次记录到AutoreleasePoolPage的栈顶指针,当运行完@autoreleasepool{}时, objc_autoreleasePoolPop(哨兵)将被调用, runtime就会向AutoreleasePoolPage中记录的对象发送release消息直到哨兵的位置, 即完成了一次完整的运作. </li>
+<li>主线程中的自动释放池是自动创建的, 文档中说子线程中的自动释放池是需要手动创建的, 但实测, 其实我们常用的多线程管理方式(GCD, NSOprationQueue, NSThread)都已经帮我们处理好了, 其中NSThread在iOS7之后才自动创建线程中的AutoreleasePool</li>
+<li>我们常用的for循环, 以及enumerate其实跟autoreleasepool也有关, for循环是不自动创建autoreleasepool的, 而enumerate中已经自动创建了autoreleasepool, 值得注意的是高并发enumerate常常会出一些意外的问题, 例如对象被提前释放, 所以建议高并发情况下使用for循环(性能高于enumerate), 再手动添加autoreleasepool.</li>
+</ul>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/07/Swift-UIKit/Swift-UIKit-UISegmentedControl-分段选择控件/" itemprop="url">
-              
-                <span itemprop="name">Swift-UIKit-UISegmentedControl-分段选择控件</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-07T10:28:53+08:00"
-              content="2017-12-07" >
-          12-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/07/Swift-UIKit/Swift-UIKit-UISwitch/" itemprop="url">
-              
-                <span itemprop="name">Swift-UIKit-UISwitch</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-07T10:18:42+08:00"
-              content="2017-12-07" >
-          12-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/07/Swift-UIKit/Swift-UIKit-UIStepper/" itemprop="url">
-              
-                <span itemprop="name">Swift-UIKit-UIStepper</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-07T09:58:12+08:00"
-              content="2017-12-07" >
-          12-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/07/Swift-UIKit/Swift-UIKit-UISlider/" itemprop="url">
-              
-                <span itemprop="name">Swift—UIKit-UISlider</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-07T09:47:37+08:00"
-              content="2017-12-07" >
-          12-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/07/Swift-UIKit/Swift-UIKit-UITextField/" itemprop="url">
-              
-                <span itemprop="name">Swift-UIKit-UITextField</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-07T09:24:54+08:00"
-              content="2017-12-07" >
-          12-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/06/Swift-UIKit/Swift-UIKit-UIButton/" itemprop="url">
-              
-                <span itemprop="name">Swift-UIKit-UIButton</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-06T16:59:28+08:00"
-              content="2017-12-06" >
-          12-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/UIKit/" rel="tag"># UIKit</a>
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/Autoreleasepool/" rel="tag"># Autoreleasepool</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/22/iOS-Garmmar/iOS-RunTime-方法交换-拦截基础使用/" rel="next" title="iOS-RunTime-方法交换/拦截基础使用">
+                <i class="fa fa-chevron-left"></i> iOS-RunTime-方法交换/拦截基础使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/22/iOS-UIKit/iOS-UIKit-Shadow阴影/" rel="prev" title="iOS-UIKit-Layer-Shadow阴影">
+                iOS-UIKit-Layer-Shadow阴影 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2017/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2017/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2017/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/archives/2017/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2017/page/12/">12</a><a class="extend next" rel="next" href="/archives/2017/page/6/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -727,6 +564,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -747,8 +588,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -810,6 +660,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Autoreleasepool释放时机"><span class="nav-number">1.</span> <span class="nav-text">Autoreleasepool释放时机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加一个监听者"><span class="nav-number">1.1.</span> <span class="nav-text">添加一个监听者</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试"><span class="nav-number">1.2.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#autoreleasepool"><span class="nav-number">2.</span> <span class="nav-text">@autoreleasepool{}</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -944,11 +810,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
 
 
   
