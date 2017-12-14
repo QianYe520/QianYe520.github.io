@@ -25,8 +25,8 @@
 
 <script>
     (function(){
-        if('520'){
-            if (prompt('请输入文章密码') !== '520'){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
                 alert('密码错误！');
                 history.back();
             }
@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Swift,Func," />
 
 
 
@@ -105,17 +105,18 @@
 
 
 
-<meta name="description" content="Properties Swift中，属性大致分为两种，存储属性+计算属性  Stored Properties存储属性 存储属性:能保存数据的属性。枚举类、结构体、类都具有存储属性存储属性可以设为var 或let。分别对应常量和变量  struct CPU &amp;#123;      var clockSpeed = 1.0   //变量      let coreNum = 2        //常">
+<meta name="description" content="#常用的正则表达式方式 在NSpredicate中使用   let email = &quot;lifusc464@qq.com&quot;  let regex = &quot;[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]&amp;#123;2,4&amp;#125;&quot;  let predicate = NSPredicate(format: &quot;SELF MATCHES %@&quot;, regex)  l">
+<meta name="keywords" content="Swift,Func">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift-Grammar-Properties-属性">
-<meta property="og:url" content="http://yoursite.com/2017/12/01/Swift-Grammar/Swift-Grammar-Properties-属性/index.html">
+<meta property="og:title" content="Swift-Func-正则表达式">
+<meta property="og:url" content="http://yoursite.com/2017/12/14/Swift-Func-正则表达式/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="Properties Swift中，属性大致分为两种，存储属性+计算属性  Stored Properties存储属性 存储属性:能保存数据的属性。枚举类、结构体、类都具有存储属性存储属性可以设为var 或let。分别对应常量和变量  struct CPU &amp;#123;      var clockSpeed = 1.0   //变量      let coreNum = 2        //常">
+<meta property="og:description" content="#常用的正则表达式方式 在NSpredicate中使用   let email = &quot;lifusc464@qq.com&quot;  let regex = &quot;[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]&amp;#123;2,4&amp;#125;&quot;  let predicate = NSPredicate(format: &quot;SELF MATCHES %@&quot;, regex)  l">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-01T05:25:10.000Z">
+<meta property="og:updated_time" content="2017-12-14T13:00:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift-Grammar-Properties-属性">
-<meta name="twitter:description" content="Properties Swift中，属性大致分为两种，存储属性+计算属性  Stored Properties存储属性 存储属性:能保存数据的属性。枚举类、结构体、类都具有存储属性存储属性可以设为var 或let。分别对应常量和变量  struct CPU &amp;#123;      var clockSpeed = 1.0   //变量      let coreNum = 2        //常">
+<meta name="twitter:title" content="Swift-Func-正则表达式">
+<meta name="twitter:description" content="#常用的正则表达式方式 在NSpredicate中使用   let email = &quot;lifusc464@qq.com&quot;  let regex = &quot;[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]&amp;#123;2,4&amp;#125;&quot;  let predicate = NSPredicate(format: &quot;SELF MATCHES %@&quot;, regex)  l">
 
 
 
@@ -144,13 +145,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/01/Swift-Grammar/Swift-Grammar-Properties-属性/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/14/Swift-Func-正则表达式/"/>
 
 
 
 
 
-  <title>Swift-Grammar-Properties-属性 | 千夜、おれはおまえをずっと爱している</title>
+  <title>Swift-Func-正则表达式 | 千夜、おれはおまえをずっと爱している</title>
   
 
 
@@ -331,7 +332,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/01/Swift-Grammar/Swift-Grammar-Properties-属性/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/14/Swift-Func-正则表达式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -348,7 +349,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Swift-Grammar-Properties-属性</h1>
+          <h1 class="post-title" itemprop="name headline">Swift-Func-正则表达式</h1>
         
 
         <div class="post-meta">
@@ -360,8 +361,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-01T13:14:40+08:00">
-                2017-12-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-14T20:58:31+08:00">
+                2017-12-14
               </time>
             
 
@@ -394,8 +395,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/Grammar/" itemprop="url" rel="index">
-                    <span itemprop="name">Grammar</span>
+                  <a href="/categories/Swift/Func/" itemprop="url" rel="index">
+                    <span itemprop="name">Func</span>
                   </a>
                 </span>
 
@@ -411,7 +412,7 @@
 
           
           
-             <span id="/2017/12/01/Swift-Grammar/Swift-Grammar-Properties-属性/" class="leancloud_visitors" data-flag-title="Swift-Grammar-Properties-属性">
+             <span id="/2017/12/14/Swift-Func-正则表达式/" class="leancloud_visitors" data-flag-title="Swift-Func-正则表达式">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -442,60 +443,16 @@
       
 
       
-        <h1 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h1><blockquote>
-<p>Swift中，属性大致分为两种，存储属性+计算属性</p>
+        <p>#常用的正则表达式方式</p>
+<h2 id="在NSpredicate中使用"><a href="#在NSpredicate中使用" class="headerlink" title="在NSpredicate中使用"></a>在NSpredicate中使用</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> email = <span class="string">"lifusc464@qq.com"</span>  </div><div class="line"><span class="keyword">let</span> regex = <span class="string">"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]&#123;2,4&#125;"</span>  </div><div class="line"><span class="keyword">let</span> predicate = <span class="type">NSPredicate</span>(format: <span class="string">"SELF MATCHES %@"</span>, regex)  </div><div class="line"><span class="keyword">let</span> isValid = predicate.evaluate(with: email)  </div><div class="line"><span class="built_in">print</span>(isValid ? <span class="string">"正确的邮箱地址"</span> : <span class="string">"错误的邮箱地址"</span>)</div></pre></td></tr></table></figure>
+<h2 id="利用String的RangeOfString-option-直接查找"><a href="#利用String的RangeOfString-option-直接查找" class="headerlink" title="利用String的RangeOfString: option: 直接查找"></a>利用String的RangeOfString: option: 直接查找</h2><blockquote>
+<p>正则表达判断是否含有结果值 </p>
 </blockquote>
-<h2 id="Stored-Properties存储属性"><a href="#Stored-Properties存储属性" class="headerlink" title="Stored Properties存储属性"></a>Stored Properties存储属性</h2><blockquote>
-<p>存储属性:能保存数据的属性。枚举类、结构体、类都具有存储属性<br>存储属性可以设为var 或let。分别对应常量和变量</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">CPU</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> clockSpeed = <span class="number">1.0</span>   <span class="comment">//变量  </span></div><div class="line">    <span class="keyword">let</span> coreNum = <span class="number">2</span>        <span class="comment">//常量  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="comment">/** </span></div><div class="line"><span class="comment"> 正则表达判断是否含有结果值 </span></div><div class="line"><span class="comment"> - parameter pattern: 一个字符串类型的正则表达式 </span></div><div class="line"><span class="comment"> - parameter str: 需要比较判断的对象 </span></div><div class="line"><span class="comment"> - returns: 返回布尔值判断结果 </span></div><div class="line"><span class="comment"> - warning: 注意匹配到结果的话就会返回true，没有匹配到结果就会返回false </span></div><div class="line"><span class="comment"> */</span>  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">regex</span>(<span class="title">pattern</span>:<span class="title">String</span>, <span class="title">str</span>:<span class="title">String</span>) -&gt; <span class="title">Bool</span> </span>&#123;  </div><div class="line">    <span class="keyword">let</span> regex = <span class="keyword">try</span>! <span class="type">NSRegularExpression</span>(pattern: pattern, options:[<span class="type">NSRegularExpression</span>.<span class="type">Options</span>.caseInsensitive])  </div><div class="line">    <span class="keyword">let</span> resultNum = regex.numberOfMatches(<span class="keyword">in</span>: str, options: <span class="type">NSRegularExpression</span>.<span class="type">MatchingOptions</span>(rawValue: <span class="number">0</span>) , range: <span class="type">NSMakeRange</span>(<span class="number">0</span>, str.characters.<span class="built_in">count</span>))  </div><div class="line">    <span class="keyword">if</span> resultNum&gt;=<span class="number">1</span> &#123;  </div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
-<p>计算属性就是它本身不保存数据，而是通过处理其他的数据得到返回值。 结构体和类才具有计算属性<br>然后我们初始化一个CPU实例，但是这个实例我们设置为常量。这样会导致一个后果：对应值传递的结构体，当实例是常量的时候，即使存储属性是变量，也不能修改里面属性的值</p>
+<p> 正则表达式获取目的值</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">let</span> cpu = <span class="type">CPU</span>(clockSpeed: <span class="number">3.2</span>)   <span class="comment">//注意到这个初始化方法只有一个参数，因为我们设置了coreNum为常量，并且给了初始值，所以构造方法会发生变化  </span></div><div class="line">cpu.clockSpeed = <span class="number">3.3</span>      <span class="comment">//这句会报错</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>然而对于引用传递的类来讲，即使实例是常量，里面设置为变量的存储属性还是可以更改值的</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  </div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Telephone</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> cpu = <span class="type">CPU</span>()  </div><div class="line">    <span class="keyword">var</span> screenSize: <span class="type">Int</span>?  </div><div class="line">    <span class="keyword">var</span> price: <span class="type">Int</span>?  </div><div class="line">&#125;  </div><div class="line"><span class="keyword">let</span> myTelephont = <span class="type">Telephone</span>()  </div><div class="line">myTelephont.screenSize = <span class="number">4</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>懒加载存储属性<br>Swift需要保证一个类或结构体或枚举类在初始化之后，所以的存储属性都必须有初始值（除开可选类型）。所以当实例初始化完成以后，所以的存储属性都初始化了。但是有些时候某些存储属性不一定会用到，所以我们可以把这些存储属性设置为lazy存储属性。那么它在要用到的时候才会进行初始化。lazy存储属性只能是变量。而且在多线程调用的时候，如果lazy属性没有初始化，那么不能保证只会初始化一次</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">struct</span> <span class="title">CPU</span> </span>&#123;  </div><div class="line">    <span class="built_in">lazy</span> <span class="keyword">var</span> clockSpeed = <span class="number">1.0</span>  </div><div class="line">    <span class="keyword">let</span> coreNum = <span class="number">2</span>  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">let</span> cpu = <span class="type">CPU</span>()  <span class="comment">//这时候clockSpeed还是为nil</span></div></pre></td></tr></table></figure>
-<h2 id="Computed-Properties-计算属性"><a href="#Computed-Properties-计算属性" class="headerlink" title="Computed Properties 计算属性"></a>Computed Properties 计算属性</h2><blockquote>
-<p>故名思议，它本身不保存数据，只是用其他数据得到返回值，或者当设置它的时候修改其他数据。下面的例子利用存储属性得到apple的总价。或者修改总价的时候修改重量</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Apple</span> </span>&#123;  </div><div class="line">    <span class="keyword">let</span> pricePerKg = <span class="number">6.0</span>  </div><div class="line">    <span class="keyword">var</span> weight: <span class="type">Double</span>  </div><div class="line">    <span class="keyword">var</span> totalPrice: <span class="type">Double</span> &#123;  </div><div class="line">        <span class="keyword">get</span> &#123;  </div><div class="line">            <span class="keyword">return</span> pricePerKg * weight  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">set</span>(newTotalPrice) &#123;  </div><div class="line">            weight = newTotalPrice / pricePerKg  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">var</span> apple = <span class="type">Apple</span>(weight: <span class="number">2.0</span>)  </div><div class="line"><span class="built_in">print</span>(apple.totalPrice)    <span class="comment">//12.0  </span></div><div class="line">apple.totalPrice = <span class="number">6.0</span>  </div><div class="line"><span class="built_in">print</span>(apple.weight)       <span class="comment">//1.0</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>算属性的setter方法新值自带一个默认名 newValue，所以上面的定义可以改为 </p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">Apple</span> </span>&#123;  </div><div class="line">    <span class="keyword">let</span> pricePerKg = <span class="number">6.0</span>  </div><div class="line">    <span class="keyword">var</span> weight: <span class="type">Double</span>  </div><div class="line">    <span class="keyword">var</span> totalPrice: <span class="type">Double</span> &#123;  </div><div class="line">        <span class="keyword">get</span> &#123;  </div><div class="line">            <span class="keyword">return</span> pricePerKg * weight  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">set</span> &#123;  </div><div class="line">            weight = newValue / pricePerKg  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>可以将计算属性的setter去掉，那么这个计算数据就变成了只读的。这时候还可以省去get关键字 </p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Apple</span> </span>&#123;  </div><div class="line">    <span class="keyword">let</span> pricePerKg = <span class="number">6.0</span>  </div><div class="line">    <span class="keyword">var</span> weight: <span class="type">Double</span>  </div><div class="line">    <span class="keyword">var</span> totalPrice: <span class="type">Double</span> &#123;  </div><div class="line">        <span class="keyword">return</span> pricePerKg * weight  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>不要在计算属性的setter和getter里面获取该计算属性，这样会导致循环调用</li>
-</ul>
-<h2 id="Property-Observers属性观察器"><a href="#Property-Observers属性观察器" class="headerlink" title="Property Observers属性观察器"></a>Property Observers属性观察器</h2><blockquote>
-<p>有了属性观察器，我们可以在属性被修改的时候做一些事情。注意的是对于非继承而来的计算属性，没有必要设置属性观察器，因为直接可以在计算属性的setter定义中完成这项功能。</p>
-<p>属性观察器有两个方法<br>willSet 在属性将要赋值的时候调用，这时候属性的值还没改变<br>didSet在属性值被赋值完的时候就会调用。（即使是赋值和原来值一样的值）这时候属性的值已经改变。<br>willSet方法里面会传递新值过来，你可以自己定义这个新值的名称，如果不定义，会具有默认值newValue<br>didSet方法里面会传递属性的旧值过来，你可以自己定义这个旧值的名称，如果不定义，会具有默认值oldValue。如果你在didSet方法里面又对这个存储属性赋值，那么这个值会覆盖掉刚刚赋值的值。且不会导致循环调用。比如下面例子里面，当pricePerKg小于3的时候，会把它改为3</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Apple</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> pricePerKg = <span class="number">6.0</span> &#123;  </div><div class="line">        <span class="keyword">willSet</span>(priceNewValue)&#123;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"In willSet, priceNewValue="</span>,priceNewValue)  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"In willSet, pricePerKg="</span>,pricePerKg)  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">didSet</span>&#123;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"In didSet, oldValue="</span>,oldValue)  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"In didSet, pricePerKg="</span>,pricePerKg)  </div><div class="line">            <span class="keyword">if</span> pricePerKg &lt; <span class="number">3</span> &#123;  </div><div class="line">                pricePerKg = <span class="number">3</span>  </div><div class="line">            &#125;  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">var</span> weight: <span class="type">Double</span>  </div><div class="line">    <span class="keyword">var</span> totalPrice: <span class="type">Double</span> &#123;  </div><div class="line">        <span class="keyword">get</span> &#123;  </div><div class="line">            <span class="keyword">return</span> pricePerKg * weight  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">set</span> &#123;  </div><div class="line">            weight = newValue / pricePerKg  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">var</span> apple = <span class="type">Apple</span>(pricePerKg: <span class="number">6.0</span>, weight: <span class="number">1.0</span>)  </div><div class="line">apple.pricePerKg = <span class="number">2.0</span>  </div><div class="line"><span class="built_in">print</span>(<span class="string">"apple.pricePerKg="</span>,apple.pricePerKg)  </div><div class="line"><span class="comment">/* 输出 </span></div><div class="line"><span class="comment">In willSet, priceNewValue= 2.0 </span></div><div class="line"><span class="comment">In willSet, pricePerKg= 6.0 </span></div><div class="line"><span class="comment">In didSet, oldValue= 6.0 </span></div><div class="line"><span class="comment">In didSet, pricePerKg= 2.0 </span></div><div class="line"><span class="comment">apple.pricePerKg= 3.0 </span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
-<h2 id="Global-and-Local-Variables全局变量和局部变量"><a href="#Global-and-Local-Variables全局变量和局部变量" class="headerlink" title="Global and Local Variables全局变量和局部变量"></a>Global and Local Variables全局变量和局部变量</h2><blockquote>
-<p>所谓的局部变量，就是定义在函数、方法、闭包、类型上下文里面的变量。<br>全局变量就是定义在函数、方法、闭包、类型上下文之外的变量。<br>局部变量和全局变量都称为存储变量。<br>在全局和局部范围内，都可以定义计算变量，或者为存储变量定义观察器</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">var</span> apple = <span class="type">Apple</span>(pricePerKg: <span class="number">6.0</span>, weight: <span class="number">1.0</span>) &#123;  <span class="comment">//为apple变量定义观察器  </span></div><div class="line"><span class="keyword">willSet</span> &#123;  </div><div class="line">    <span class="built_in">print</span>(<span class="string">"newApple"</span>,newValue)  </div><div class="line">&#125;  </div><div class="line"><span class="keyword">didSet</span>&#123;  </div><div class="line">    <span class="built_in">print</span>(<span class="string">"oldApple"</span>,oldValue)  </div><div class="line">&#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">apple = <span class="type">Apple</span>(pricePerKg: <span class="number">6.0</span>, weight: <span class="number">2.0</span>)  </div><div class="line">  </div><div class="line"><span class="keyword">var</span> <span class="built_in">c</span>: <span class="type">Double</span> &#123;  <span class="comment">//定义一个计算变量  </span></div><div class="line"><span class="keyword">get</span>&#123;  </div><div class="line">    <span class="keyword">return</span> <span class="number">9</span>  </div><div class="line">&#125;  </div><div class="line"><span class="keyword">set</span> &#123;  </div><div class="line">    <span class="built_in">print</span>(<span class="string">"In setter,"</span>,newValue)  </div><div class="line">&#125;  </div><div class="line">&#125;  </div><div class="line"><span class="built_in">c</span> = <span class="number">2</span>  </div><div class="line"><span class="built_in">print</span>(<span class="built_in">c</span>)  </div><div class="line"><span class="comment">/* </span></div><div class="line"><span class="comment">newApple Apple(pricePerKg: 6.0, weight: 2.0) </span></div><div class="line"><span class="comment">oldApple Apple(pricePerKg: 6.0, weight: 1.0) </span></div><div class="line"><span class="comment">In setter, 2.0 </span></div><div class="line"><span class="comment">9.0 </span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
-<ul>
-<li>官方文档说全局变量常量都是懒加载，局部变量常量都不是懒加载</li>
-</ul>
-<h2 id="Type-Properties类型属性"><a href="#Type-Properties类型属性" class="headerlink" title="Type Properties类型属性"></a>Type Properties类型属性</h2><blockquote>
-<p>所谓的类型属性，就是这个属性是属于这个类型的，即使这个类型由多个实例，也只会有一个类型变量。</p>
-</blockquote>
-<p>类型属性是懒加载的，而且必须在定义的时候给初始值。</p>
-<p>一般是用static来定义类型属性。特别的，对应类的计算类型属性，还可以用class关键字定义，这样可以使得子类可以覆盖它。</p>
-<p>注意类型属性访问的时候用的是类名，不能使用实例来访问</p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">SomeStructure</span> </span>&#123;  </div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> storedTypeProperty = <span class="string">"Some value."</span>  </div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> computedTypeProperty: <span class="type">Int</span> &#123;  </div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">SomeEnumeration</span> </span>&#123;  </div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> storedTypeProperty = <span class="string">"Some value."</span>  </div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> computedTypeProperty: <span class="type">Int</span> &#123;  </div><div class="line">        <span class="keyword">return</span> <span class="number">6</span>  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span> </span>&#123;  </div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> storedTypeProperty = <span class="string">"Some value."</span>  </div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> computedTypeProperty: <span class="type">Int</span> &#123;  </div><div class="line">        <span class="keyword">return</span> <span class="number">27</span>  </div><div class="line">    &#125;  </div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">var</span> <span class="title">overrideableComputedTypeProperty</span>: <span class="title">Int</span> </span>&#123;  </div><div class="line">        <span class="keyword">return</span> <span class="number">107</span>  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="built_in">print</span>(<span class="type">SomeStructure</span>.storedTypeProperty)  </div><div class="line"><span class="comment">// prints "Some value."  </span></div><div class="line"><span class="type">SomeStructure</span>.storedTypeProperty = <span class="string">"Another value."</span>  </div><div class="line"><span class="built_in">print</span>(<span class="type">SomeStructure</span>.storedTypeProperty)  </div><div class="line"><span class="comment">// prints "Another value."  </span></div><div class="line"><span class="built_in">print</span>(<span class="type">SomeEnumeration</span>.computedTypeProperty)  </div><div class="line"><span class="comment">// prints "6"  </span></div><div class="line"><span class="built_in">print</span>(<span class="type">SomeClass</span>.computedTypeProperty)  </div><div class="line"><span class="comment">// prints "27"</span></div></pre></td></tr></table></figure>
-
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="comment">/** </span></div><div class="line"><span class="comment"> 正则表达式获取目的值 </span></div><div class="line"><span class="comment"> - parameter pattern: 一个字符串类型的正则表达式 </span></div><div class="line"><span class="comment"> - parameter str: 需要比较判断的对象 </span></div><div class="line"><span class="comment"> - imports: 这里子串的获取先转话为NSString的[以后处理结果含NS的还是可以转换为NS前缀的方便] </span></div><div class="line"><span class="comment"> - returns: 返回目的字符串结果值数组(目前将String转换为NSString获得子串方法较为容易) </span></div><div class="line"><span class="comment"> - warning: 注意匹配到结果的话就会返回true，没有匹配到结果就会返回false </span></div><div class="line"><span class="comment"> */</span>  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">regexGetSub</span>(<span class="title">pattern</span>:<span class="title">String</span>, <span class="title">str</span>:<span class="title">String</span>) -&gt; [<span class="title">String</span>] </span>&#123;  </div><div class="line">    <span class="keyword">var</span> subStr = [<span class="type">String</span>]()  </div><div class="line">    <span class="keyword">let</span> regex = <span class="keyword">try</span>! <span class="type">NSRegularExpression</span>(pattern: pattern, options:[<span class="type">NSRegularExpression</span>.<span class="type">Options</span>.caseInsensitive])  </div><div class="line">    <span class="keyword">let</span> results = regex.matches(<span class="keyword">in</span>: str, options: <span class="type">NSRegularExpression</span>.<span class="type">MatchingOptions</span>.<span class="keyword">init</span>(rawValue: <span class="number">0</span>), range: <span class="type">NSMakeRange</span>(<span class="number">0</span>, str.characters.<span class="built_in">count</span>))  </div><div class="line">    <span class="comment">//解析出子串  </span></div><div class="line">    <span class="keyword">for</span>  rst <span class="keyword">in</span> results &#123;  </div><div class="line">        <span class="keyword">let</span> nsStr = str <span class="keyword">as</span>  <span class="type">NSString</span>  <span class="comment">//可以方便通过range获取子串  </span></div><div class="line">        subStr.append(nsStr.substring(with: rst.range))  </div><div class="line">        <span class="comment">//str.substring(with: Range&lt;String.Index&gt;) //本应该用这个的，可以无法直接获得参数，必须自己手动获取starIndex 和 endIndex作为区间  </span></div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">return</span> subStr  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -510,6 +467,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+            <a href="/tags/Func/" rel="tag"># Func</a>
+          
+        </div>
+      
 
       
       
@@ -519,8 +484,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/30/iOS-Func/iOS-Func-图片的解压缩/" rel="next" title="iOS-Func-图片的解压缩">
-                <i class="fa fa-chevron-left"></i> iOS-Func-图片的解压缩
+              <a href="/2017/12/14/Swift-Func-使用iconfont图标/" rel="next" title="Swift-Func-使用iconfont图标">
+                <i class="fa fa-chevron-left"></i> Swift-Func-使用iconfont图标
               </a>
             
           </div>
@@ -528,10 +493,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/01/Swift-Grammar/Swift-Grammar-Method-方法/" rel="prev" title="Swift-Grammar-Method-方法">
-                Swift-Grammar-Method-方法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -665,7 +626,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Properties"><span class="nav-number">1.</span> <span class="nav-text">Properties</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Stored-Properties存储属性"><span class="nav-number">1.1.</span> <span class="nav-text">Stored Properties存储属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Computed-Properties-计算属性"><span class="nav-number">1.2.</span> <span class="nav-text">Computed Properties 计算属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Property-Observers属性观察器"><span class="nav-number">1.3.</span> <span class="nav-text">Property Observers属性观察器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Global-and-Local-Variables全局变量和局部变量"><span class="nav-number">1.4.</span> <span class="nav-text">Global and Local Variables全局变量和局部变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Type-Properties类型属性"><span class="nav-number">1.5.</span> <span class="nav-text">Type Properties类型属性</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#在NSpredicate中使用"><span class="nav-number">1.</span> <span class="nav-text">在NSpredicate中使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用String的RangeOfString-option-直接查找"><span class="nav-number">2.</span> <span class="nav-text">利用String的RangeOfString: option: 直接查找</span></a></li></ol></div>
             
 
           </div>
