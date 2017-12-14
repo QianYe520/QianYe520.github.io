@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Swift-UIKit-UIImage-简介]]></title>
+<url>../../../../../../../../2017/12/14/Swift-UIKit/Swift-UIKit-UIImage-简介/</url>
+    <content type="text"><![CDATA[UIImage的状态 UIImageOrientation enum UIImageOrientation : Int &#123; case Up //默认方向 case Down //180°旋转 case Left //逆时针旋转90° case Right //顺时针旋转90° case UpMirrored //水平向上翻转 case DownMirrored //水平向下翻转 case LeftMirrored //逆时针旋转90°后再垂直翻转 case RightMirrored //顺时针旋转90°后再垂直翻转&#125; UIImageResizingMode enum UIImageResizingMode : Int &#123; case Tile //平铺到调整完位置的图像 case Stretch //拉伸到调整完位置的图像&#125; UIImageRenderingMode enum UIImageRenderingMode : Int &#123; case Automatic //默认上下文显示的图像位置 case AlwaysOriginal //总是以图片为模板 case AlwaysTemplate //会把图像作为绘画的模板, 忽略其他颜色&#125; 常用的属性 UIImage里面虽然有很多属性, 但唯一常用的属性就只有设置获取image名字的属性. init?(named name: String) -&gt; UIImage]]></content>
+      <categories>
+        <category>Swift</category>
+        <category>UIKit</category>
+        <category>UIImage</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>UIKit</tag>
+        <tag>UIImage</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Swift-UIKit-UITableViewCell-简单使用]]></title>
 <url>../../../../../../../../2017/12/14/Swift-UIKit/Swift-UIKit-UITableViewCell-简单使用/</url>
     <content type="text"><![CDATA[UITableViewCell-简单使用 由于 TableViewCell 是不可以单独存在的, 所以必须得依赖于 UITableView 遵守 TableView 代理协议以及数据源协议 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate &#123;&#125; 自定义 TableVIewfunc myTableView() &#123; var tableView = UITableView(frame: self.view.frame, style: UITableViewStyle.Plain) tableView.dataSource = self tableView.delegate = self self.view.addSubview(tableView) &#125; 实现数据源方法func numberOfSectionsInTableView(tableView: UITableView) -&gt; Int &#123; return 1 &#125; func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -&gt; Int &#123; return 5 &#125; 自定义 UITableViewCellfunc tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -&gt; UITableViewCell &#123; // 1.自定义 UITableViewCell 的样式以及标签, reuseIdentifier 是 Cell 得标签, 作用和 Tag 类似 var cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "cell") // 2.设置 UITableViewCell 的标题Label cell.textLabel!.text = "我是 Cell" // 3.设置 UITableViewCell 的简介Label cell.detailTextLabel?.text = "Cell" // 4.设置 UITableViewCell 的 imageView 图片 cell.imageView?.image = UIImage(named: "image_black.jpg") // 5.设置 UITableViewCell 的编辑模式是否开启, 以及是否执行动画效果 cell.setEditing(true, animated: true) // 6.设置 UITableViewCell 的背景色 cell.backgroundColor = UIColor.greenColor() // 7.设置 UITableViewCell 的编辑模式辅助按钮 cell.editingAccessoryType = UITableViewCellAccessoryType.DisclosureIndicator // 8.设置 UITableViewCell 被选中的样式 cell.selectionStyle = UITableViewCellSelectionStyle.Default // 9.设置 UITableViewCell 分割线的位置 cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 20) // 10.设置 UITableViewCell 被选中时的背景View cell.selectedBackgroundView = nil // 11.设置 UITableViewCell 的辅助按钮样式 cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator // 返回自定的 Cell return cell &#125; 开启 TableViewCell 的编辑模式 func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) &#123; &#125;]]></content>
