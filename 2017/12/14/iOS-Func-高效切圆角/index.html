@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="iOS,Func," />
 
 
 
@@ -105,16 +105,18 @@
 
 
 
-<meta name="description" content="ReactNative">
-<meta property="og:type" content="website">
-<meta property="og:title" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:url" content="http://yoursite.com/categories/Swift/page/8/index.html">
+<meta name="description" content="UIView（不包括其子类） UIView 只要设置图层的 cornerRadius 属性即可（不明白的话，可以看看官方文档里对 cornerRadius 的描述）设置 layer.masksToBounds = YES，会造成不必要的离屏渲染  UIView *view = [[UIView alloc] init];view.backgroundColor = [UIColor blackCo">
+<meta name="keywords" content="iOS,Func">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS-Func-高效切圆角">
+<meta property="og:url" content="http://yoursite.com/2017/12/14/iOS-Func-高效切圆角/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="ReactNative">
+<meta property="og:description" content="UIView（不包括其子类） UIView 只要设置图层的 cornerRadius 属性即可（不明白的话，可以看看官方文档里对 cornerRadius 的描述）设置 layer.masksToBounds = YES，会造成不必要的离屏渲染  UIView *view = [[UIView alloc] init];view.backgroundColor = [UIColor blackCo">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-14T09:49:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="千夜、おれはおまえをずっと爱している">
-<meta name="twitter:description" content="ReactNative">
+<meta name="twitter:title" content="iOS-Func-高效切圆角">
+<meta name="twitter:description" content="UIView（不包括其子类） UIView 只要设置图层的 cornerRadius 属性即可（不明白的话，可以看看官方文档里对 cornerRadius 的描述）设置 layer.masksToBounds = YES，会造成不必要的离屏渲染  UIView *view = [[UIView alloc] init];view.backgroundColor = [UIColor blackCo">
 
 
 
@@ -143,13 +145,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/Swift/page/8/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/14/iOS-Func-高效切圆角/"/>
 
 
 
 
 
-  <title>分类: Swift | 千夜、おれはおまえをずっと爱している</title>
+  <title>iOS-Func-高效切圆角 | 千夜、おれはおまえをずっと爱している</title>
   
 
 
@@ -168,7 +170,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -316,171 +318,228 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block category">
-
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Swift<small>分类</small>
-        </h1>
-      </div>
-
-      
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/14/iOS-Func-高效切圆角/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/11/24/Swift-Grammar/Swift-Grammar-String-字符串/" itemprop="url">
-              
-                <span itemprop="name">Swift-Grammar-String-Character</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">iOS-Func-高效切圆角</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-24T16:11:26+08:00"
-              content="2017-11-24" >
-          11-24
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-14T17:41:27+08:00">
+                2017-12-14
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/Func/" itemprop="url" rel="index">
+                    <span itemprop="name">Func</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/12/14/iOS-Func-高效切圆角/" class="leancloud_visitors" data-flag-title="iOS-Func-高效切圆角">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/24/Swift-Grammar/Swift-Grammar-嵌套类型&类型转换/" itemprop="url">
-              
-                <span itemprop="name">Swift-Grammar-嵌套类型&类型转换</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-24T15:39:27+08:00"
-              content="2017-11-24" >
-          11-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/24/Swift-Grammar/Swift-Grammar-Protocol协议/" itemprop="url">
-              
-                <span itemprop="name">Swift-Grammar-Protocol协议</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-24T09:50:59+08:00"
-              content="2017-11-24" >
-          11-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/23/1/" itemprop="url">
-              
-                <span itemprop="name">Swift-Document-Develpe-文档</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-23T22:33:07+08:00"
-              content="2017-11-23" >
-          11-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2016/11/24/Swift-Grammar/Swift-Grammar-基本类型与运算/" itemprop="url">
-              
-                <span itemprop="name">Swift-Grammar--基本类型与运算</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-24T15:39:27+08:00"
-              content="2016-11-24" >
-          11-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <h1 id="UIView（不包括其子类）"><a href="#UIView（不包括其子类）" class="headerlink" title="UIView（不包括其子类）"></a>UIView（不包括其子类）</h1><blockquote>
+<p>UIView 只要设置图层的 cornerRadius 属性即可<br>（不明白的话，可以看看官方文档里对 cornerRadius 的描述）<br>设置 layer.masksToBounds = YES，会造成不必要的离屏渲染</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">UIView</span> *view = [[<span class="built_in">UIView</span> alloc] init];</div><div class="line">view.backgroundColor = [<span class="built_in">UIColor</span> blackColor];</div><div class="line">view.layer.cornerRadius = <span class="number">3.</span>f;</div><div class="line"><span class="comment">// 以下两行，任写一行</span></div><div class="line">view.layer.masksToBounds = <span class="literal">NO</span>;</div><div class="line">view.clipToBounds = <span class="literal">NO</span>;</div></pre></td></tr></table></figure>
+<blockquote>
+<p> 以下两行，千万不要加！</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">view.layer.masksToBounds = <span class="literal">YES</span>;</div><div class="line">view.clipToBounds = <span class="literal">YES</span>;</div></pre></td></tr></table></figure>
+<h1 id="文本类视图"><a href="#文本类视图" class="headerlink" title="文本类视图"></a>文本类视图</h1><h2 id="UITextField"><a href="#UITextField" class="headerlink" title="UITextField"></a>UITextField</h2><blockquote>
+<p>UITextField有两种实现方法</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 支持设置圆角边框</span></div><div class="line"><span class="built_in">UITextField</span> *textField = [[<span class="built_in">UITextField</span> alloc] init];</div><div class="line">textField.borderStyle = <span class="built_in">UITextBorderStyleRoundedRect</span>;</div><div class="line"></div><div class="line"><span class="comment">// 与 UIView 类似</span></div><div class="line"><span class="built_in">UITextField</span> *textField = [[<span class="built_in">UITextField</span> alloc] init];</div><div class="line">textField.layer.cornerRadius = cornerRadius;</div></pre></td></tr></table></figure>
+<h2 id="UITextView"><a href="#UITextView" class="headerlink" title="UITextView"></a>UITextView</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 与 UIView 类似</span></div><div class="line"><span class="built_in">UITextView</span> *textView = [[<span class="built_in">UITextView</span> alloc] init];</div><div class="line">textView.layer.cornerRadius = cornerRadius;</div></pre></td></tr></table></figure>
+<h2 id="UILabel"><a href="#UILabel" class="headerlink" title="UILabel"></a>UILabel</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">UILabel</span> *label = [[<span class="built_in">UILabel</span> alloc] init];</div><div class="line"><span class="comment">// 重点在此！！设置视图的图层背景色，千万不要直接设置 label.backgroundColor</span></div><div class="line">label.layer.backgroundColor = [<span class="built_in">UIColor</span> grayColor].CGColor;</div><div class="line">label.layer.cornerRadius = cornerRadius;</div></pre></td></tr></table></figure>
+<h1 id="UIButton"><a href="#UIButton" class="headerlink" title="UIButton"></a>UIButton</h1><blockquote>
+<p>UIButton 的背景图片，如果是复杂的图片，可以依靠 UI 切图来实现<br>如果是简单的纯色背景图片，可以利用代码绘制带圆角的图片</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">UIButton</span> *button = [<span class="built_in">UIButton</span> buttonWithType:<span class="built_in">UIButtonTypeCustom</span>];</div><div class="line"></div><div class="line"><span class="comment">// 设置 UIButton 的背景图片。</span></div><div class="line">[button setBackgroundImage:image forState:<span class="built_in">UIControlStateNormal</span>];</div></pre></td></tr></table></figure>
+<blockquote>
+<p>背景图片绘制方法</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">    + (<span class="built_in">UIImage</span> *)pureColorImageWithSize:(<span class="built_in">CGSize</span>)size color:(<span class="built_in">UIColor</span> *)color cornRadius:(<span class="built_in">CGFloat</span>)cornRadius &#123;</div><div class="line">      <span class="built_in">UIView</span> *view = [[<span class="built_in">UIView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0.0</span>f, <span class="number">0.0</span>f, size.width, size.height)];</div><div class="line">      view.backgroundColor = color;</div><div class="line">      view.layer.cornerRadius = cornerRadius;</div><div class="line">      <span class="comment">// 下面方法，第一个参数表示区域大小。第二个参数表示是否是非透明的。如果需要显示半透明效果，需要传NO，否则传YES。第三个参数是屏幕密度</span></div><div class="line"><span class="built_in">UIGraphicsBeginImageContextWithOptions</span>(view.bounds.size, <span class="literal">NO</span>, [<span class="built_in">UIScreen</span> mainScreen].scale);</div><div class="line">      [view.layer renderInContext:<span class="built_in">UIGraphicsGetCurrentContext</span>()];</div><div class="line">      <span class="built_in">UIImage</span> *image = <span class="built_in">UIGraphicsGetImageFromCurrentImageContext</span>();</div><div class="line">      <span class="built_in">UIGraphicsEndImageContext</span>();</div><div class="line">      <span class="keyword">return</span> image;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h1 id="UIImageView"><a href="#UIImageView" class="headerlink" title="UIImageView"></a>UIImageView</h1><blockquote>
+<p>方式一：贝塞尔曲线切割圆角</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">UIImageView</span> *)roundedRectImageViewWithCornerRadius:(<span class="built_in">CGFloat</span>)cornerRadius &#123;</div><div class="line">    <span class="built_in">UIBezierPath</span> *bezierPath = [<span class="built_in">UIBezierPath</span> bezierPathWithRoundedRect:<span class="keyword">self</span>.bounds cornerRadius:cornerRadius];</div><div class="line">    <span class="built_in">CAShapeLayer</span> *layer = [<span class="built_in">CAShapeLayer</span> layer];</div><div class="line">    layer.path = bezierPath.CGPath;</div><div class="line">    <span class="keyword">self</span>.layer.mask = layer;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>绘制四个角的遮罩（使用场景受限）</p>
+</blockquote>
+<ul>
+<li>在 UIImageView 上添加一个四个角有内容，其它部分是透明的视图，只对 UIImageView 圆角部分进行遮挡。但要保证被遮挡的部分背景色要与周围背景相同，避免穿帮。所以当 UIImageView 处于一个复杂的背景时，是不适合使用这个方法的</li>
+</ul>
+<blockquote>
+<p>最不推荐做法（当一个页面只有少量圆角图片时才推荐使用）</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">UIImageView</span> *imageView = [[<span class="built_in">UIImageView</span> alloc] init];</div><div class="line">imageView.layer.cornerRadius = <span class="number">5.</span>f;</div><div class="line">imageView.layer.masksToBounds = <span class="literal">YES</span>;</div></pre></td></tr></table></figure>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/Func/" rel="tag"># Func</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/14/Swift-UIKit/Swift-UIKit-UISearchController-简介/" rel="next" title="Swift-UIKit-UISearchController-简介">
+                <i class="fa fa-chevron-left"></i> Swift-UIKit-UISearchController-简介
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/categories/Swift/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/categories/Swift/">1</a><span class="space">&hellip;</span><a class="page-number" href="/categories/Swift/page/7/">7</a><span class="page-number current">8</span>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -488,6 +547,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -508,8 +571,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -571,6 +643,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UIView（不包括其子类）"><span class="nav-number">1.</span> <span class="nav-text">UIView（不包括其子类）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文本类视图"><span class="nav-number">2.</span> <span class="nav-text">文本类视图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#UITextField"><span class="nav-number">2.1.</span> <span class="nav-text">UITextField</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UITextView"><span class="nav-number">2.2.</span> <span class="nav-text">UITextView</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UILabel"><span class="nav-number">2.3.</span> <span class="nav-text">UILabel</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UIButton"><span class="nav-number">3.</span> <span class="nav-text">UIButton</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UIImageView"><span class="nav-number">4.</span> <span class="nav-text">UIImageView</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -705,10 +793,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
