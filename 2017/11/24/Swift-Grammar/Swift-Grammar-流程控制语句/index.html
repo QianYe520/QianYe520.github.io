@@ -481,7 +481,7 @@
 <blockquote>
 <p>对Tuple 的匹配<br>你可以匹配Tuple的两个值，也可以只匹配一个值，还可以匹配范围</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">//下面case的条件都是可以匹配的，把前面的case注释掉的话就会匹配下一个case。</span></div><div class="line"><span class="keyword">var</span> tuple = (<span class="number">2</span>,<span class="number">1</span>)</div><div class="line"><span class="keyword">switch</span> tuple &#123;</div><div class="line"><span class="keyword">case</span> (<span class="number">2</span>,<span class="number">1</span>):</div><div class="line">    <span class="built_in">print</span>(<span class="string">"(2,1)"</span>)  <span class="comment">//因为自动添加break的机制，所以不会往下走</span></div><div class="line"><span class="keyword">case</span> (<span class="keyword">let</span> x,<span class="number">1</span>): <span class="comment">//可以用变量来自由化其中一个值，只需要另外一个值匹配了，就会匹配这个。如果你不关注x的值，你也可以把x换为_</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"x = \(x)"</span>)</div><div class="line"><span class="keyword">case</span> (-<span class="number">1</span>...<span class="number">3</span>,<span class="number">0</span>...<span class="number">4</span>):</div><div class="line">    <span class="built_in">print</span>(<span class="string">"(-1~3,0~4)"</span>)</div><div class="line"><span class="keyword">default</span> :</div><div class="line">    <span class="built_in">print</span>(<span class="string">"other"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">//下面case的条件都是可以匹配的，把前面的case注释掉的话就会匹配下一个case。</span></div><div class="line"><span class="keyword">var</span> tuple = (<span class="number">2</span>,<span class="number">1</span>)</div><div class="line"><span class="keyword">switch</span> tuple &#123;</div><div class="line"><span class="keyword">case</span> (<span class="number">2</span>,<span class="number">1</span>):</div><div class="line">    <span class="built_in">print</span>(<span class="string">"(2,1)"</span>)  <span class="comment">//因为自动添加break的机制，所以不会往下走</span></div><div class="line"><span class="keyword">case</span> (<span class="keyword">let</span> x,<span class="number">1</span>): <span class="comment">//可以用变量来自由化其中一个值，只需要另外一个值匹配了，就会匹配这个。如果你不关注x的值，你也可以把x换为_</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"x = <span class="subst">\(x)</span>"</span>)</div><div class="line"><span class="keyword">case</span> (-<span class="number">1</span>...<span class="number">3</span>,<span class="number">0</span>...<span class="number">4</span>):</div><div class="line">    <span class="built_in">print</span>(<span class="string">"(-1~3,0~4)"</span>)</div><div class="line"><span class="keyword">default</span> :</div><div class="line">    <span class="built_in">print</span>(<span class="string">"other"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h1 id="Where语句在switch中"><a href="#Where语句在switch中" class="headerlink" title="Where语句在switch中"></a>Where语句在switch中</h1><blockquote>
 <p>where可以用来进一步对case添加约束</p>
 </blockquote>
@@ -624,7 +624,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">106</span>
+                <span class="site-state-item-count">107</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -635,7 +635,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-count">76</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -646,7 +646,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
