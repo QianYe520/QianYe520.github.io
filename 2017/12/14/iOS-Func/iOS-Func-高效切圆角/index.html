@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Swift,UIKit,AppDelegate," />
+  <meta name="keywords" content="iOS,Func," />
 
 
 
@@ -105,18 +105,18 @@
 
 
 
-<meta name="description" content="AppDelegate.swift //import是导入文件的/库的关键字//UIKit是iOS中所有的控件的所在库文件import UIKit@UIApplicationMain //调用了OC中的UIApplicationMain函数;//UIApplicationMain是IOS应用程序的入口//UIApplacationMain:1.创建了一个UIApplication对象,代表当前应用">
-<meta name="keywords" content="Swift,UIKit,AppDelegate">
+<meta name="description" content="UIView（不包括其子类） UIView 只要设置图层的 cornerRadius 属性即可（不明白的话，可以看看官方文档里对 cornerRadius 的描述）设置 layer.masksToBounds = YES，会造成不必要的离屏渲染  UIView *view = [[UIView alloc] init];view.backgroundColor = [UIColor blackCo">
+<meta name="keywords" content="iOS,Func">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift-UIKit-AppDelegate项目入口">
-<meta property="og:url" content="http://yoursite.com/2017/12/06/Swift-UIKit/Swift-UIKit-AppDelegate项目入口/index.html">
+<meta property="og:title" content="iOS-Func-高效切圆角">
+<meta property="og:url" content="http://yoursite.com/2017/12/14/iOS-Func/iOS-Func-高效切圆角/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="AppDelegate.swift //import是导入文件的/库的关键字//UIKit是iOS中所有的控件的所在库文件import UIKit@UIApplicationMain //调用了OC中的UIApplicationMain函数;//UIApplicationMain是IOS应用程序的入口//UIApplacationMain:1.创建了一个UIApplication对象,代表当前应用">
+<meta property="og:description" content="UIView（不包括其子类） UIView 只要设置图层的 cornerRadius 属性即可（不明白的话，可以看看官方文档里对 cornerRadius 的描述）设置 layer.masksToBounds = YES，会造成不必要的离屏渲染  UIView *view = [[UIView alloc] init];view.backgroundColor = [UIColor blackCo">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-14T05:44:13.000Z">
+<meta property="og:updated_time" content="2017-12-14T09:49:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift-UIKit-AppDelegate项目入口">
-<meta name="twitter:description" content="AppDelegate.swift //import是导入文件的/库的关键字//UIKit是iOS中所有的控件的所在库文件import UIKit@UIApplicationMain //调用了OC中的UIApplicationMain函数;//UIApplicationMain是IOS应用程序的入口//UIApplacationMain:1.创建了一个UIApplication对象,代表当前应用">
+<meta name="twitter:title" content="iOS-Func-高效切圆角">
+<meta name="twitter:description" content="UIView（不包括其子类） UIView 只要设置图层的 cornerRadius 属性即可（不明白的话，可以看看官方文档里对 cornerRadius 的描述）设置 layer.masksToBounds = YES，会造成不必要的离屏渲染  UIView *view = [[UIView alloc] init];view.backgroundColor = [UIColor blackCo">
 
 
 
@@ -145,13 +145,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/06/Swift-UIKit/Swift-UIKit-AppDelegate项目入口/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/14/iOS-Func/iOS-Func-高效切圆角/"/>
 
 
 
 
 
-  <title>Swift-UIKit-AppDelegate项目入口 | 千夜、おれはおまえをずっと爱している</title>
+  <title>iOS-Func-高效切圆角 | 千夜、おれはおまえをずっと爱している</title>
   
 
 
@@ -332,7 +332,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/06/Swift-UIKit/Swift-UIKit-AppDelegate项目入口/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/14/iOS-Func/iOS-Func-高效切圆角/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -349,7 +349,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Swift-UIKit-AppDelegate项目入口</h1>
+          <h1 class="post-title" itemprop="name headline">iOS-Func-高效切圆角</h1>
         
 
         <div class="post-meta">
@@ -361,8 +361,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-06T16:51:02+08:00">
-                2017-12-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-14T17:41:27+08:00">
+                2017-12-14
               </time>
             
 
@@ -384,8 +384,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
                   </a>
                 </span>
 
@@ -395,19 +395,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/UIKit/" itemprop="url" rel="index">
-                    <span itemprop="name">UIKit</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/UIKit/AppDelegate/" itemprop="url" rel="index">
-                    <span itemprop="name">AppDelegate</span>
+                  <a href="/categories/iOS/Func/" itemprop="url" rel="index">
+                    <span itemprop="name">Func</span>
                   </a>
                 </span>
 
@@ -423,7 +412,7 @@
 
           
           
-             <span id="/2017/12/06/Swift-UIKit/Swift-UIKit-AppDelegate项目入口/" class="leancloud_visitors" data-flag-title="Swift-UIKit-AppDelegate项目入口">
+             <span id="/2017/12/14/iOS-Func/iOS-Func-高效切圆角/" class="leancloud_visitors" data-flag-title="iOS-Func-高效切圆角">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -454,9 +443,42 @@
       
 
       
-        <h1 id="AppDelegate-swift"><a href="#AppDelegate-swift" class="headerlink" title="AppDelegate.swift"></a>AppDelegate.swift</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="comment">//import是导入文件的/库的关键字</span></div><div class="line"><span class="comment">//UIKit是iOS中所有的控件的所在库文件</span></div><div class="line"><span class="keyword">import</span> UIKit</div><div class="line"><span class="meta">@UIApplicationMain</span> <span class="comment">//调用了OC中的UIApplicationMain函数;</span></div><div class="line"><span class="comment">//UIApplicationMain是IOS应用程序的入口</span></div><div class="line"><span class="comment">//UIApplacationMain:1.创建了一个UIApplication对象,代表当前应用程序.作用是用来检测当前应用程序状态的改变</span></div><div class="line"><span class="comment">//                  2.创建一个遵守UIApplicationDelegate的协议的子类对象作为UIApplication的代理,作用是处理应用程序状态的改变(创建AppDelegate对象并且设置为UIApplication对象的代理)</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AppDelegate</span>: <span class="title">UIResponder</span>, <span class="title">UIApplicationDelegate</span> </span>&#123;</div><div class="line">    <span class="comment">//属性:</span></div><div class="line">    <span class="keyword">var</span> window: <span class="type">UIWindow</span>?</div><div class="line"></div><div class="line">    <span class="comment">//方法:</span></div><div class="line">    <span class="comment">//一.当应用程序已经启动成功后,会自动调用这个方法</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">application</span><span class="params">(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?)</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">        <span class="comment">// Override point for customization after application launch.</span></div><div class="line">        <span class="comment">//1.在这个方法中来搭建应用程序中的所有的界面</span></div><div class="line">        <span class="comment">//2.获取应用程序需要展示的数据</span></div><div class="line">        <span class="comment">//3.使用界面展示数据</span></div><div class="line">        <span class="comment">//注意:如果不再做这个方法中去创建window,那么程序会通过Main.stroyboard去创建应用程序的界面</span></div><div class="line">        </div><div class="line">        <span class="built_in">print</span>(<span class="string">"程序启动成功"</span>)</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//二.当应用程序将要成为非活跃状态的时候会自动调用这个方法.</span></div><div class="line">    <span class="comment">//活跃状态:程序在屏幕上可见</span></div><div class="line">    <span class="comment">//非活跃状态:程序没有显示在屏幕上(按home键进入后台,来电打断,在当前应用程序中打开其他的应用程序)</span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">applicationWillResignActive</span><span class="params">(application: UIApplication)</span></span> &#123;</div><div class="line">        <span class="comment">//按下home键:command + shift + h</span></div><div class="line">        <span class="comment">//在这个方法中一般去暂停视频/音频播放;游戏需要暂停;保存数据</span></div><div class="line">        <span class="built_in">print</span>(<span class="string">"将要成为非活跃状态"</span>)</div><div class="line">        </div><div class="line">        </div><div class="line">        </div><div class="line">        </div><div class="line">       </div><div class="line">    &#125;</div><div class="line">    <span class="comment">//三.应用程序已经进入后台的时候会自动调用</span></div><div class="line">    <span class="comment">//进入后台:按home键</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">applicationDidEnterBackground</span><span class="params">(application: UIApplication)</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"进入后台"</span>)</div><div class="line">          </div><div class="line">    &#125;</div><div class="line"></div><div class="line">    </div><div class="line">    <span class="comment">//四.应用程序将要进入前台的时候会自动调用</span></div><div class="line">    <span class="comment">//进入前台:</span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">applicationWillEnterForeground</span><span class="params">(application: UIApplication)</span></span> &#123;</div><div class="line">        </div><div class="line">        </div><div class="line">        <span class="built_in">print</span>(<span class="string">"将要进入前台"</span>)</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    <span class="comment">//五.应用程序已经变成活跃状态的时候会自动调用</span></div><div class="line">    <span class="comment">//1.程序启动成功后</span></div><div class="line">    <span class="comment">//2.程序从后台重新进入前台</span></div><div class="line">    <span class="comment">//3.来电打断结束...</span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">applicationDidBecomeActive</span><span class="params">(application: UIApplication)</span></span> &#123;</div><div class="line">        </div><div class="line">        <span class="built_in">print</span>(<span class="string">"已经变成活跃状态"</span>)</div><div class="line">         </div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//六.应用程序将要终止的时候会调用这个方法</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">applicationWillTerminate</span><span class="params">(application: UIApplication)</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"应用程序将要终止"</span>)</div><div class="line">        </div><div class="line">        </div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="ViewController-swift"><a href="#ViewController-swift" class="headerlink" title="ViewController.swift"></a>ViewController.swift</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.viewDidLoad()</div><div class="line">        <span class="comment">//UIView:是IOS中所有视图(控件)直接/间接的父类;所以UIView的属性和方法,对于其他类型的视图都有效</span></div><div class="line">        </div><div class="line">        <span class="comment">//视图:在屏幕上能看到的所有的东西都属于视图</span></div><div class="line">        </div><div class="line">        <span class="comment">//一.创建UIView的对象</span></div><div class="line">        <span class="keyword">let</span> redView = <span class="type">UIView</span>.<span class="keyword">init</span>()</div><div class="line">        </div><div class="line">        </div><div class="line">        <span class="comment">//想要将视图展示在屏幕上的两个必要条件</span></div><div class="line">            <span class="comment">//1.必须设置坐标的大小(默认坐标是(0,0),大小(0,0,))</span></div><div class="line">            <span class="comment">//2.将视图添加到已经展示在屏幕上的视图上</span></div><div class="line">        </div><div class="line">        <span class="comment">//二.设置frame属性(由坐标(x,y)和大小(width,height)两个部分组成)</span></div><div class="line">        </div><div class="line">        redView.frame = <span class="type">CGRect</span>(x: <span class="number">10</span>, y: <span class="number">10</span>, width: <span class="number">100</span>, height: <span class="number">100</span>)</div><div class="line">        <span class="comment">//IOS中所有的结构体都有一个对应的Make方法用来快速的创建一个结构体变量</span></div><div class="line">        redView.frame = <span class="type">CGRectMake</span>(<span class="number">10</span>, <span class="number">10</span>, <span class="number">100</span>, <span class="number">100</span>)</div><div class="line">        <span class="comment">//三.将视图添加到界面上</span></div><div class="line">        <span class="keyword">self</span>.view.addSubview(redView)</div><div class="line">        </div><div class="line">        <span class="comment">//四.设置背景颜色</span></div><div class="line">        <span class="comment">//视图的背景颜色默认是透明色</span></div><div class="line">        <span class="comment">//颜色的创建方式:</span></div><div class="line">        <span class="comment">//1.通过类型方法创建指定颜色</span></div><div class="line">        <span class="comment">//</span></div><div class="line">        redView.backgroundColor = <span class="type">UIColor</span>.redColor()</div><div class="line">        <span class="comment">//通过三原色来创建颜色</span></div><div class="line">        <span class="comment">//CGFloat就是UI中的浮点型</span></div><div class="line">        <span class="comment">//参数1,2,3:红,绿,蓝的值(0~1)-(0/255~255/255)</span></div><div class="line">        <span class="comment">//参数4:透明度</span></div><div class="line">        </div><div class="line">        <span class="comment">//redView.backgroundColor = UIColor(red: 149/255.0, green: 106/255.0, blue: 55/255.0, alpha: 1)</span></div><div class="line">        <span class="comment">//设置不同程度的灰色</span></div><div class="line">        <span class="comment">//redView.backgroundColor = UIColor(white: 0.2, alpha: 1)</span></div><div class="line">        </div><div class="line">        <span class="comment">//练习:创建一个黄色的矩形,显示在红色视图的中心位置,大小(50,50)</span></div><div class="line">        <span class="comment">//方式1:</span></div><div class="line">        <span class="comment">//创建视图对象并且设置frame属性</span></div><div class="line">        <span class="comment">/*</span></div><div class="line"><span class="comment">        let yellowView = UIView.init()</span></div><div class="line"><span class="comment">        yellowView.frame = CGRectMake(35, 35, 50, 50)</span></div><div class="line"><span class="comment">        //添加到界面上</span></div><div class="line"><span class="comment">        self.view.addSubview(yellowView)</span></div><div class="line"><span class="comment">        //设置背景颜色</span></div><div class="line"><span class="comment">        yellowView.backgroundColor = UIColor.yellowColor()</span></div><div class="line"><span class="comment">        */</span></div><div class="line">        </div><div class="line">        <span class="comment">//方式2:</span></div><div class="line">        <span class="keyword">let</span> yellowView = <span class="type">UIView</span>(frame: <span class="type">CGRectMake</span>(<span class="number">25</span>,<span class="number">25</span>,<span class="number">50</span>,<span class="number">50</span>))</div><div class="line">        redView.addSubview(yellowView)</div><div class="line">        yellowView.backgroundColor = <span class="type">UIColor</span>.yellowColor()</div><div class="line">        </div><div class="line">        <span class="comment">//GET:计算视图的坐标的时候,注意相对性.当前视图被添加到那个视图上,那么当前视图的坐标就是相对于谁来算的</span></div><div class="line">        </div><div class="line">        </div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="视图对象的基本属性"><a href="#视图对象的基本属性" class="headerlink" title="视图对象的基本属性"></a>视图对象的基本属性</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  mport <span class="type">UIKit</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.viewDidLoad()</div><div class="line">        </div><div class="line">        <span class="comment">//创建一个视图对象</span></div><div class="line">        </div><div class="line">        <span class="keyword">let</span> redView = <span class="type">UIView</span>.<span class="keyword">init</span>()</div><div class="line">        <span class="comment">//添加到界面上</span></div><div class="line">        <span class="keyword">self</span>.view.addSubview(redView)</div><div class="line">        <span class="comment">//设置背景颜色</span></div><div class="line">        redView.backgroundColor = <span class="type">UIColor</span>.redColor()</div><div class="line">        </div><div class="line">        <span class="comment">//1.frame(坐标和大小)</span></div><div class="line">        redView.frame = <span class="type">CGRectMake</span>(<span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>)</div><div class="line">        <span class="comment">//2.center(中心点坐标)</span></div><div class="line">        <span class="comment">//通过frame和确定视图的中心点坐标</span></div><div class="line">        <span class="built_in">print</span>(redView.center)</div><div class="line">        <span class="built_in">print</span>(redView.frame)</div><div class="line">        </div><div class="line">        </div><div class="line">        redView.center = <span class="type">CGPointMake</span>(<span class="number">200</span>, <span class="number">200</span>)</div><div class="line">        </div><div class="line">        <span class="built_in">print</span>(redView.frame)</div><div class="line">        <span class="comment">//3.bounds(坐标和大小)</span></div><div class="line">        <span class="comment">//默认情况下bounds的坐标(0,0),大小和视图的frame大小一样</span></div><div class="line">        <span class="built_in">print</span>(redView.bounds)</div><div class="line">        </div><div class="line">        <span class="comment">//了解:</span></div><div class="line">        <span class="comment">//如果改变bounds的大小,不改变center的坐标,改变frame的坐标和大小</span></div><div class="line">        <span class="comment">/*</span></div><div class="line"><span class="comment">        redView.bounds = CGRectMake(0, 0, 200, 200)</span></div><div class="line"><span class="comment">        </span></div><div class="line"><span class="comment">        print(redView.frame)</span></div><div class="line"><span class="comment">        print("center\(redView.center)")</span></div><div class="line"><span class="comment">        */</span></div><div class="line">        </div><div class="line">        <span class="comment">//如果改变bounds的坐标,不影响当前视图的位置.但是影响添加到当前视图上的子视图的坐标,不建议修改bounds</span></div><div class="line">        </div><div class="line">        redView.bounds = <span class="type">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">100</span>)</div><div class="line">        </div><div class="line">        </div><div class="line">        </div><div class="line">        <span class="keyword">let</span> yellowView = <span class="type">UIView</span>.<span class="keyword">init</span>(frame:<span class="type">CGRectMake</span>(<span class="number">10</span>, <span class="number">10</span>, <span class="number">40</span>, <span class="number">40</span>))</div><div class="line">        yellowView.backgroundColor = <span class="type">UIColor</span>.yellowColor()</div><div class="line">        redView.addSubview(yellowView)</div><div class="line">        </div><div class="line">        </div><div class="line">        <span class="comment">//4.transform(形变)</span></div><div class="line">        <span class="comment">// 当前视图发生形变,那么添加到当前视图上的所有的视图会跟着一起形变</span></div><div class="line">        <span class="comment">//1). 缩放</span></div><div class="line">        <span class="comment">//参数1:x方向上的缩放比例</span></div><div class="line">        <span class="comment">//参数2:y方向上的缩放比例</span></div><div class="line">        redView.transform = <span class="type">CGAffineTransformMakeScale</span>(<span class="number">0.5</span>, <span class="number">0.5</span>)</div><div class="line">        <span class="comment">//2).旋转</span></div><div class="line">        <span class="comment">//参数:旋转角度(圆周率对应的角度)</span></div><div class="line">        redView.transform = <span class="type">CGAffineTransformMakeRotation</span>(<span class="type">CGFloat</span>(<span class="type">M_PI_4</span>))</div><div class="line">        <span class="comment">//3).平移</span></div><div class="line">        <span class="comment">//参数1:在x方向上平移的距离</span></div><div class="line">        <span class="comment">//参数2:在y方向上平移的距离</span></div><div class="line">        redView.transform = <span class="type">CGAffineTransformMakeTranslation</span>(<span class="number">0</span>, <span class="number">300</span>)</div><div class="line">        </div><div class="line">        <span class="comment">//4).多个形变同时进行</span></div><div class="line">        <span class="comment">//在另外一个形变的前提下旋转</span></div><div class="line">        <span class="comment">//参数1:另外一个形变</span></div><div class="line">        </div><div class="line">        <span class="comment">//在拥有缩放这个形变的前提下旋转(既可以缩放又可以旋转)</span></div><div class="line">        redView.transform = <span class="type">CGAffineTransformRotate</span>(<span class="type">CGAffineTransformMakeScale</span>(<span class="number">0.5</span>, <span class="number">0.5</span>), <span class="type">CGFloat</span>(<span class="type">M_PI_4</span> / <span class="number">2</span>))</div><div class="line">        <span class="comment">//在另外一个形变的前提下平移(既可以缩放和旋转又可以平移)</span></div><div class="line">        redView.transform = <span class="type">CGAffineTransformTranslate</span>(redView.transform, <span class="number">0</span>, <span class="number">100</span>)</div><div class="line">        </div><div class="line">        <span class="comment">//既可以平移又可以缩放</span></div><div class="line">        </div><div class="line">        redView.transform = <span class="type">CGAffineTransformScale</span>(<span class="type">CGAffineTransformMakeTranslation</span>(<span class="number">100</span>, <span class="number">0</span>), <span class="number">0.5</span>, <span class="number">2</span>)</div><div class="line">        </div><div class="line">        </div><div class="line">        <span class="comment">//组合两个形变</span></div><div class="line">        <span class="comment">//旋转形变</span></div><div class="line">        <span class="keyword">let</span> rotate = <span class="type">CGAffineTransformMakeRotation</span>(<span class="number">0.2</span>)</div><div class="line">        </div><div class="line">        <span class="comment">//平移形变</span></div><div class="line">        </div><div class="line">        <span class="keyword">let</span> transLation = <span class="type">CGAffineTransformMakeTranslation</span>(<span class="number">100</span>, <span class="number">100</span>)</div><div class="line">        </div><div class="line">        <span class="comment">//将旋转形变和平移形变组合</span></div><div class="line">        redView.transform = <span class="type">CGAffineTransformConcat</span>(rotate, transLation)</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <h1 id="UIView（不包括其子类）"><a href="#UIView（不包括其子类）" class="headerlink" title="UIView（不包括其子类）"></a>UIView（不包括其子类）</h1><blockquote>
+<p>UIView 只要设置图层的 cornerRadius 属性即可<br>（不明白的话，可以看看官方文档里对 cornerRadius 的描述）<br>设置 layer.masksToBounds = YES，会造成不必要的离屏渲染</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">UIView</span> *view = [[<span class="built_in">UIView</span> alloc] init];</div><div class="line">view.backgroundColor = [<span class="built_in">UIColor</span> blackColor];</div><div class="line">view.layer.cornerRadius = <span class="number">3.</span>f;</div><div class="line"><span class="comment">// 以下两行，任写一行</span></div><div class="line">view.layer.masksToBounds = <span class="literal">NO</span>;</div><div class="line">view.clipToBounds = <span class="literal">NO</span>;</div></pre></td></tr></table></figure>
+<blockquote>
+<p> 以下两行，千万不要加！</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">view.layer.masksToBounds = <span class="literal">YES</span>;</div><div class="line">view.clipToBounds = <span class="literal">YES</span>;</div></pre></td></tr></table></figure>
+<h1 id="文本类视图"><a href="#文本类视图" class="headerlink" title="文本类视图"></a>文本类视图</h1><h2 id="UITextField"><a href="#UITextField" class="headerlink" title="UITextField"></a>UITextField</h2><blockquote>
+<p>UITextField有两种实现方法</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 支持设置圆角边框</span></div><div class="line"><span class="built_in">UITextField</span> *textField = [[<span class="built_in">UITextField</span> alloc] init];</div><div class="line">textField.borderStyle = <span class="built_in">UITextBorderStyleRoundedRect</span>;</div><div class="line"></div><div class="line"><span class="comment">// 与 UIView 类似</span></div><div class="line"><span class="built_in">UITextField</span> *textField = [[<span class="built_in">UITextField</span> alloc] init];</div><div class="line">textField.layer.cornerRadius = cornerRadius;</div></pre></td></tr></table></figure>
+<h2 id="UITextView"><a href="#UITextView" class="headerlink" title="UITextView"></a>UITextView</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 与 UIView 类似</span></div><div class="line"><span class="built_in">UITextView</span> *textView = [[<span class="built_in">UITextView</span> alloc] init];</div><div class="line">textView.layer.cornerRadius = cornerRadius;</div></pre></td></tr></table></figure>
+<h2 id="UILabel"><a href="#UILabel" class="headerlink" title="UILabel"></a>UILabel</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">UILabel</span> *label = [[<span class="built_in">UILabel</span> alloc] init];</div><div class="line"><span class="comment">// 重点在此！！设置视图的图层背景色，千万不要直接设置 label.backgroundColor</span></div><div class="line">label.layer.backgroundColor = [<span class="built_in">UIColor</span> grayColor].CGColor;</div><div class="line">label.layer.cornerRadius = cornerRadius;</div></pre></td></tr></table></figure>
+<h1 id="UIButton"><a href="#UIButton" class="headerlink" title="UIButton"></a>UIButton</h1><blockquote>
+<p>UIButton 的背景图片，如果是复杂的图片，可以依靠 UI 切图来实现<br>如果是简单的纯色背景图片，可以利用代码绘制带圆角的图片</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">UIButton</span> *button = [<span class="built_in">UIButton</span> buttonWithType:<span class="built_in">UIButtonTypeCustom</span>];</div><div class="line"></div><div class="line"><span class="comment">// 设置 UIButton 的背景图片。</span></div><div class="line">[button setBackgroundImage:image forState:<span class="built_in">UIControlStateNormal</span>];</div></pre></td></tr></table></figure>
+<blockquote>
+<p>背景图片绘制方法</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">    + (<span class="built_in">UIImage</span> *)pureColorImageWithSize:(<span class="built_in">CGSize</span>)size color:(<span class="built_in">UIColor</span> *)color cornRadius:(<span class="built_in">CGFloat</span>)cornRadius &#123;</div><div class="line">      <span class="built_in">UIView</span> *view = [[<span class="built_in">UIView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0.0</span>f, <span class="number">0.0</span>f, size.width, size.height)];</div><div class="line">      view.backgroundColor = color;</div><div class="line">      view.layer.cornerRadius = cornerRadius;</div><div class="line">      <span class="comment">// 下面方法，第一个参数表示区域大小。第二个参数表示是否是非透明的。如果需要显示半透明效果，需要传NO，否则传YES。第三个参数是屏幕密度</span></div><div class="line"><span class="built_in">UIGraphicsBeginImageContextWithOptions</span>(view.bounds.size, <span class="literal">NO</span>, [<span class="built_in">UIScreen</span> mainScreen].scale);</div><div class="line">      [view.layer renderInContext:<span class="built_in">UIGraphicsGetCurrentContext</span>()];</div><div class="line">      <span class="built_in">UIImage</span> *image = <span class="built_in">UIGraphicsGetImageFromCurrentImageContext</span>();</div><div class="line">      <span class="built_in">UIGraphicsEndImageContext</span>();</div><div class="line">      <span class="keyword">return</span> image;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h1 id="UIImageView"><a href="#UIImageView" class="headerlink" title="UIImageView"></a>UIImageView</h1><blockquote>
+<p>方式一：贝塞尔曲线切割圆角</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">UIImageView</span> *)roundedRectImageViewWithCornerRadius:(<span class="built_in">CGFloat</span>)cornerRadius &#123;</div><div class="line">    <span class="built_in">UIBezierPath</span> *bezierPath = [<span class="built_in">UIBezierPath</span> bezierPathWithRoundedRect:<span class="keyword">self</span>.bounds cornerRadius:cornerRadius];</div><div class="line">    <span class="built_in">CAShapeLayer</span> *layer = [<span class="built_in">CAShapeLayer</span> layer];</div><div class="line">    layer.path = bezierPath.CGPath;</div><div class="line">    <span class="keyword">self</span>.layer.mask = layer;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>绘制四个角的遮罩（使用场景受限）</p>
+</blockquote>
+<ul>
+<li>在 UIImageView 上添加一个四个角有内容，其它部分是透明的视图，只对 UIImageView 圆角部分进行遮挡。但要保证被遮挡的部分背景色要与周围背景相同，避免穿帮。所以当 UIImageView 处于一个复杂的背景时，是不适合使用这个方法的</li>
+</ul>
+<blockquote>
+<p>最不推荐做法（当一个页面只有少量圆角图片时才推荐使用）</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">UIImageView</span> *imageView = [[<span class="built_in">UIImageView</span> alloc] init];</div><div class="line">imageView.layer.cornerRadius = <span class="number">5.</span>f;</div><div class="line">imageView.layer.masksToBounds = <span class="literal">YES</span>;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -474,11 +496,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Swift/" rel="tag"># Swift</a>
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
           
-            <a href="/tags/UIKit/" rel="tag"># UIKit</a>
-          
-            <a href="/tags/AppDelegate/" rel="tag"># AppDelegate</a>
+            <a href="/tags/Func/" rel="tag"># Func</a>
           
         </div>
       
@@ -491,8 +511,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/06/Swift-Grammar/Swift-Grammar-基础/" rel="next" title="Swift-Grammar-基础">
-                <i class="fa fa-chevron-left"></i> Swift-Grammar-基础
+              <a href="/2017/12/14/Swift-UIKit/Swift-UIKit-UISearchController-简介/" rel="next" title="Swift-UIKit-UISearchController-简介">
+                <i class="fa fa-chevron-left"></i> Swift-UIKit-UISearchController-简介
               </a>
             
           </div>
@@ -500,10 +520,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/06/Swift-UIKit/Swift-UIKit-UILabel/" rel="prev" title="Swift-UIKit-UILabel">
-                Swift-UIKit-UILabel <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -637,7 +653,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#AppDelegate-swift"><span class="nav-number">1.</span> <span class="nav-text">AppDelegate.swift</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ViewController-swift"><span class="nav-number">2.</span> <span class="nav-text">ViewController.swift</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#视图对象的基本属性"><span class="nav-number">3.</span> <span class="nav-text">视图对象的基本属性</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UIView（不包括其子类）"><span class="nav-number">1.</span> <span class="nav-text">UIView（不包括其子类）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文本类视图"><span class="nav-number">2.</span> <span class="nav-text">文本类视图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#UITextField"><span class="nav-number">2.1.</span> <span class="nav-text">UITextField</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UITextView"><span class="nav-number">2.2.</span> <span class="nav-text">UITextView</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UILabel"><span class="nav-number">2.3.</span> <span class="nav-text">UILabel</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UIButton"><span class="nav-number">3.</span> <span class="nav-text">UIButton</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UIImageView"><span class="nav-number">4.</span> <span class="nav-text">UIImageView</span></a></li></ol></div>
             
 
           </div>
