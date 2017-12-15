@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Swift,RxSwift," />
 
 
 
@@ -105,16 +105,22 @@
 
 
 
-<meta name="description" content="ReactNative">
-<meta property="og:type" content="website">
-<meta property="og:title" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:url" content="http://yoursite.com/categories/iOS/GCD/index.html">
+<meta name="description" content="Subject 可以把 Subject 当作一个桥梁（或者说是代理）Subject 既是 Observable 也是 Observer    作为一个 Observer ，它可以订阅序列 同时作为一个 Observable ，它可以转发或者发射数据  Subject 有以下几种 PublishSubject 只发射给观察者订阅后的数据。 ReplaySubject BehaviorSubject">
+<meta name="keywords" content="Swift,RxSwift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift-RxSwift-Subject">
+<meta property="og:url" content="http://yoursite.com/2017/12/15/Swift-RxSwift-Subject/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="ReactNative">
+<meta property="og:description" content="Subject 可以把 Subject 当作一个桥梁（或者说是代理）Subject 既是 Observable 也是 Observer    作为一个 Observer ，它可以订阅序列 同时作为一个 Observable ，它可以转发或者发射数据  Subject 有以下几种 PublishSubject 只发射给观察者订阅后的数据。 ReplaySubject BehaviorSubject">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/Swift-RxSwift-Subject-001.png">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/Swift-RxSwift-Subject-003.png">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/Swift-RxSwift-Subject-004.png">
+<meta property="og:updated_time" content="2017-12-15T07:34:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="千夜、おれはおまえをずっと爱している">
-<meta name="twitter:description" content="ReactNative">
+<meta name="twitter:title" content="Swift-RxSwift-Subject">
+<meta name="twitter:description" content="Subject 可以把 Subject 当作一个桥梁（或者说是代理）Subject 既是 Observable 也是 Observer    作为一个 Observer ，它可以订阅序列 同时作为一个 Observable ，它可以转发或者发射数据  Subject 有以下几种 PublishSubject 只发射给观察者订阅后的数据。 ReplaySubject BehaviorSubject">
+<meta name="twitter:image" content="http://ozr735s7e.bkt.clouddn.com/Swift-RxSwift-Subject-001.png">
 
 
 
@@ -143,13 +149,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/iOS/GCD/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/15/Swift-RxSwift-Subject/"/>
 
 
 
 
 
-  <title>分类: GCD | 千夜、おれはおまえをずっと爱している</title>
+  <title>Swift-RxSwift-Subject | 千夜、おれはおまえをずっと爱している</title>
   
 
 
@@ -168,7 +174,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -316,55 +322,232 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>GCD<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/15/Swift-RxSwift-Subject/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/11/30/iOS-Garmmar/iOS-GCD-多线程编程GCD/" itemprop="url">
-              
-                <span itemprop="name">iOS-GCD-多线程编程GCD</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Swift-RxSwift-Subject</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-30T17:07:50+08:00"
-              content="2017-11-30" >
-          11-30
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T15:15:17+08:00">
+                2017-12-15
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/12/15/Swift-RxSwift-Subject/" class="leancloud_visitors" data-flag-title="Swift-RxSwift-Subject">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Subject"><a href="#Subject" class="headerlink" title="Subject"></a>Subject</h1><blockquote>
+<p>可以把 Subject 当作一个桥梁（或者说是代理）<br>Subject 既是 Observable 也是 Observer </p>
+</blockquote>
+<ul>
+<li>作为一个 Observer ，它可以订阅序列</li>
+<li>同时作为一个 Observable ，它可以转发或者发射数据</li>
+</ul>
+<h1 id="Subject-有以下几种"><a href="#Subject-有以下几种" class="headerlink" title="Subject 有以下几种"></a>Subject 有以下几种</h1><ul>
+<li>PublishSubject 只发射给观察者订阅后的数据。</li>
+<li>ReplaySubject</li>
+<li>BehaviorSubject</li>
+<li>Variable</li>
+</ul>
+<h2 id="PublishSubject"><a href="#PublishSubject" class="headerlink" title="PublishSubject"></a>PublishSubject</h2><blockquote>
+<p>当有观察者订阅 PublishSubject 时，PublishSubject 会发射订阅之后的数据给这个观察者<br>于是这里存在丢失数据的问题，如果需要全部数据，我推荐改用 ReplaySubject</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/Swift-RxSwift-Subject-001.png" alt="001"></p>
+<blockquote>
+<p>如果序列因为错误终止发射序列，此时 PublishSubject 就不会发射数据，只是传递这次错误事件</p>
+</blockquote>
+<p><img src="" alt="002"></p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> publishSubject = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"></div><div class="line">publishSubject.subscribe &#123; e <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Subscription: 1, event: <span class="subst">\(e)</span>"</span>)</div><div class="line">    &#125;.addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">publishSubject.on(.<span class="type">Next</span>(<span class="string">"a"</span>))</div><div class="line">publishSubject.on(.<span class="type">Next</span>(<span class="string">"b"</span>))</div><div class="line"></div><div class="line">publishSubject.subscribe &#123; e <span class="keyword">in</span> <span class="comment">/// 我们可以在这里看到，这个订阅只收到了两个数据，只有 "c" 和 "d"</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Subscription: 2, event: <span class="subst">\(e)</span>"</span>)</div><div class="line">    &#125;.addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">publishSubject.on(.<span class="type">Next</span>(<span class="string">"c"</span>))</div><div class="line">publishSubject.on(.<span class="type">Next</span>(<span class="string">"d"</span>))</div></pre></td></tr></table></figure>
+<h2 id="ReplaySubject"><a href="#ReplaySubject" class="headerlink" title="ReplaySubject"></a>ReplaySubject</h2><blockquote>
+<p>和 PushblishSubject 不同，不论观察者什么时候订阅， ReplaySubject 都会发射完整的数据给观察者</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/Swift-RxSwift-Subject-003.png" alt="003"></p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> replaySubject = <span class="type">ReplaySubject</span>&lt;<span class="type">String</span>&gt;.create(bufferSize: <span class="number">2</span>)</div><div class="line"></div><div class="line">replaySubject.subscribe &#123; e <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Subscription: 1, event: <span class="subst">\(e)</span>"</span>)</div><div class="line">    &#125;.addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">replaySubject.on(.<span class="type">Next</span>(<span class="string">"a"</span>))</div><div class="line">replaySubject.on(.<span class="type">Next</span>(<span class="string">"b"</span>))</div><div class="line"></div><div class="line">replaySubject.subscribe &#123; e <span class="keyword">in</span> <span class="comment">/// 我们可以在这里看到，这个订阅收到了四个数据</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Subscription: 2, event: <span class="subst">\(e)</span>"</span>)</div><div class="line">    &#125;.addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">replaySubject.on(.<span class="type">Next</span>(<span class="string">"c"</span>))</div><div class="line">replaySubject.on(.<span class="type">Next</span>(<span class="string">"d"</span>))</div></pre></td></tr></table></figure>
+<h2 id="BehaviorSubject"><a href="#BehaviorSubject" class="headerlink" title="BehaviorSubject"></a>BehaviorSubject</h2><blockquote>
+<p>当一个观察者订阅一个 BehaviorSubject ，它会发送原序列最近的那个值（如果原序列还有没发射值那就用一个默认值代替），之后继续发射原序列的值</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/Swift-RxSwift-Subject-004.png" alt="004"></p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> behaviorSubject = <span class="type">BehaviorSubject</span>(value: <span class="string">"z"</span>)</div><div class="line">behaviorSubject.subscribe &#123; e <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Subscription: 1, event: <span class="subst">\(e)</span>"</span>)</div><div class="line">    &#125;.addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">behaviorSubject.on(.<span class="type">Next</span>(<span class="string">"a"</span>))</div><div class="line">behaviorSubject.on(.<span class="type">Next</span>(<span class="string">"b"</span>))</div><div class="line"></div><div class="line">behaviorSubject.subscribe &#123; e <span class="keyword">in</span> <span class="comment">/// 我们可以在这里看到，这个订阅收到了四个数据</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Subscription: 2, event: <span class="subst">\(e)</span>"</span>)</div><div class="line">    &#125;.addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">behaviorSubject.on(.<span class="type">Next</span>(<span class="string">"c"</span>))</div><div class="line">behaviorSubject.on(.<span class="type">Next</span>(<span class="string">"d"</span>))</div><div class="line">behaviorSubject.on(.<span class="type">Completed</span>)</div></pre></td></tr></table></figure>
+<h2 id="Variable"><a href="#Variable" class="headerlink" title="Variable"></a>Variable</h2><blockquote>
+<p>Variable 是 BehaviorSubject 的一个封装<br>相比 BehaviorSubject ，它不会因为错误终止也不会正常终止，是一个无限序列</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> variable = <span class="type">Variable</span>(<span class="string">"z"</span>)</div><div class="line">variable.asObservable().subscribe &#123; e <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Subscription: 1, event: <span class="subst">\(e)</span>"</span>)</div><div class="line">    &#125;.addDisposableTo(disposeBag)</div><div class="line">variable.value = <span class="string">"a"</span></div><div class="line">variable.value = <span class="string">"b"</span></div><div class="line">variable.asObservable().subscribe &#123; e <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Subscription: 1, event: <span class="subst">\(e)</span>"</span>)</div><div class="line">    &#125;.addDisposableTo(disposeBag)</div><div class="line">variable.value = <span class="string">"c"</span></div><div class="line">variable.value = <span class="string">"d"</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>最常用的 Subject 应该就是 Variable<br>Variable 很适合做数据源，比如作为一个 UITableView 的数据源，我们可以在这里保留一个完整的 Array 数据，每一个订阅者都可以获得这个 Array</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> elements = <span class="type">Variable</span>&lt;[<span class="type">String</span>]&gt;([])</div></pre></td></tr></table></figure>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/15/Swift-RxSwift/Swift-RxSwift-基本概念/" rel="next" title="Swift-RxSwift-基本概念">
+                <i class="fa fa-chevron-left"></i> Swift-RxSwift-基本概念
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -372,6 +555,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -392,8 +579,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -455,6 +651,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Subject"><span class="nav-number">1.</span> <span class="nav-text">Subject</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Subject-有以下几种"><span class="nav-number">2.</span> <span class="nav-text">Subject 有以下几种</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PublishSubject"><span class="nav-number">2.1.</span> <span class="nav-text">PublishSubject</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ReplaySubject"><span class="nav-number">2.2.</span> <span class="nav-text">ReplaySubject</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BehaviorSubject"><span class="nav-number">2.3.</span> <span class="nav-text">BehaviorSubject</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Variable"><span class="nav-number">2.4.</span> <span class="nav-text">Variable</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -589,10 +801,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
