@@ -25,8 +25,8 @@
 
 <script>
     (function(){
-        if('520'){
-            if (prompt('请输入文章密码') !== '520'){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
                 alert('密码错误！');
                 history.back();
             }
@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Swift,RxSwift," />
 
 
 
@@ -105,17 +105,18 @@
 
 
 
-<meta name="description" content="Extension扩展 Swift中的扩展就是OC中的分类。但是这里的扩展可以对类、结构体、枚举类进行添加。使用扩展，我们可以在不接触源代码的前提下，对已有的代码进行功能上的添加。 Swift中的扩展提供的一些功能：   1、添加计算属性或类计算属性，但是不能添加存储属性。 2、添加实例方法或类别方法。但是不能覆盖已经存在的方法。 3、定义新的构造器。 4、定义和使用新的嵌套类。 5、令已经存在的">
+<meta name="description" content="Rx 几种创建方式 asObservable 返回一个序列 create 使用 Swift 闭包的方式创建序列 deferred 只有在有观察者订阅时，才去创建序列 empty 创建一个空的序列，只发射一个 .Completed error 创建一个发射 error 终止的序列 toObservable 使用 SequenceType 创建序列 interval 创建一个每隔一段时间就发射的递增序">
+<meta name="keywords" content="Swift,RxSwift">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift-Grammar-Extension扩展">
-<meta property="og:url" content="http://yoursite.com/2017/12/01/Swift-Grammar/Swift-Grammar-Extension扩展/index.html">
+<meta property="og:title" content="Swift-RxSwift-创建序列Observable">
+<meta property="og:url" content="http://yoursite.com/2017/12/15/Swift-RxSwift/Swift-RxSwift-创建序列Observable/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="Extension扩展 Swift中的扩展就是OC中的分类。但是这里的扩展可以对类、结构体、枚举类进行添加。使用扩展，我们可以在不接触源代码的前提下，对已有的代码进行功能上的添加。 Swift中的扩展提供的一些功能：   1、添加计算属性或类计算属性，但是不能添加存储属性。 2、添加实例方法或类别方法。但是不能覆盖已经存在的方法。 3、定义新的构造器。 4、定义和使用新的嵌套类。 5、令已经存在的">
+<meta property="og:description" content="Rx 几种创建方式 asObservable 返回一个序列 create 使用 Swift 闭包的方式创建序列 deferred 只有在有观察者订阅时，才去创建序列 empty 创建一个空的序列，只发射一个 .Completed error 创建一个发射 error 终止的序列 toObservable 使用 SequenceType 创建序列 interval 创建一个每隔一段时间就发射的递增序">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-01T09:32:02.000Z">
+<meta property="og:updated_time" content="2017-12-15T07:11:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift-Grammar-Extension扩展">
-<meta name="twitter:description" content="Extension扩展 Swift中的扩展就是OC中的分类。但是这里的扩展可以对类、结构体、枚举类进行添加。使用扩展，我们可以在不接触源代码的前提下，对已有的代码进行功能上的添加。 Swift中的扩展提供的一些功能：   1、添加计算属性或类计算属性，但是不能添加存储属性。 2、添加实例方法或类别方法。但是不能覆盖已经存在的方法。 3、定义新的构造器。 4、定义和使用新的嵌套类。 5、令已经存在的">
+<meta name="twitter:title" content="Swift-RxSwift-创建序列Observable">
+<meta name="twitter:description" content="Rx 几种创建方式 asObservable 返回一个序列 create 使用 Swift 闭包的方式创建序列 deferred 只有在有观察者订阅时，才去创建序列 empty 创建一个空的序列，只发射一个 .Completed error 创建一个发射 error 终止的序列 toObservable 使用 SequenceType 创建序列 interval 创建一个每隔一段时间就发射的递增序">
 
 
 
@@ -144,13 +145,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/01/Swift-Grammar/Swift-Grammar-Extension扩展/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/15/Swift-RxSwift/Swift-RxSwift-创建序列Observable/"/>
 
 
 
 
 
-  <title>Swift-Grammar-Extension扩展 | 千夜、おれはおまえをずっと爱している</title>
+  <title>Swift-RxSwift-创建序列Observable | 千夜、おれはおまえをずっと爱している</title>
   
 
 
@@ -331,7 +332,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/01/Swift-Grammar/Swift-Grammar-Extension扩展/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/15/Swift-RxSwift/Swift-RxSwift-创建序列Observable/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -348,7 +349,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Swift-Grammar-Extension扩展</h1>
+          <h1 class="post-title" itemprop="name headline">Swift-RxSwift-创建序列Observable</h1>
         
 
         <div class="post-meta">
@@ -360,8 +361,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-01T17:29:19+08:00">
-                2017-12-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T10:28:28+08:00">
+                2017-12-15
               </time>
             
 
@@ -394,8 +395,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/Grammar/" itemprop="url" rel="index">
-                    <span itemprop="name">Grammar</span>
+                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
                   </a>
                 </span>
 
@@ -411,7 +412,7 @@
 
           
           
-             <span id="/2017/12/01/Swift-Grammar/Swift-Grammar-Extension扩展/" class="leancloud_visitors" data-flag-title="Swift-Grammar-Extension扩展">
+             <span id="/2017/12/15/Swift-RxSwift/Swift-RxSwift-创建序列Observable/" class="leancloud_visitors" data-flag-title="Swift-RxSwift-创建序列Observable">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -442,35 +443,69 @@
       
 
       
-        <h1 id="Extension扩展"><a href="#Extension扩展" class="headerlink" title="Extension扩展"></a>Extension扩展</h1><blockquote>
-<p>Swift中的扩展就是OC中的分类。但是这里的扩展可以对类、结构体、枚举类进行添加。使用扩展，我们可以在不接触源代码的前提下，对已有的代码进行功能上的添加。</p>
-<p>Swift中的扩展提供的一些功能：</p>
-</blockquote>
-<ul>
-<li>1、添加计算属性或类计算属性，但是不能添加存储属性。</li>
-<li>2、添加实例方法或类别方法。但是不能覆盖已经存在的方法。</li>
-<li>3、定义新的构造器。</li>
-<li>4、定义和使用新的嵌套类。</li>
-<li>5、令已经存在的类型遵守协议。</li>
+        <h1 id="Rx-几种创建方式"><a href="#Rx-几种创建方式" class="headerlink" title="Rx 几种创建方式"></a>Rx 几种创建方式</h1><ul>
+<li>asObservable 返回一个序列</li>
+<li>create 使用 Swift 闭包的方式创建序列</li>
+<li>deferred 只有在有观察者订阅时，才去创建序列</li>
+<li>empty 创建一个空的序列，只发射一个 .Completed</li>
+<li>error 创建一个发射 error 终止的序列</li>
+<li>toObservable 使用 SequenceType 创建序列</li>
+<li>interval 创建一个每隔一段时间就发射的递增序列</li>
+<li>never 不创建序列，也不发送通知</li>
+<li>just 只创建包含一个元素的序列。换言之，只发送一个值和 .Completed</li>
+<li>of 通过一组元素创建一个序列</li>
+<li>range 创建一个有范围的递增序列</li>
+<li>repeatElement 创建一个发射重复值的序列</li>
+<li>timer 创建一个带延迟的序列</li>
 </ul>
-<blockquote>
-<p>假设我们已经有了一个Animal类，但是不能得到它的源代码</p>
+<h1 id="create"><a href="#create" class="headerlink" title="create"></a>create</h1><blockquote>
+<p>使用 Swift 闭包的方式创建序列，这里创建了一个 Just 的示例</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> life: <span class="type">Int</span> = <span class="number">0</span>  </div><div class="line">    <span class="keyword">var</span> height: <span class="type">Double</span> = <span class="number">0</span>  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>我们利用扩展，对Animal添加一个计算属性和方法、构造器还有嵌套类。 当然也可以添加下标，但这里不演示了</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> myJust = &#123; (singleElement: <span class="type">Int</span>) -&gt; <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt; <span class="keyword">in</span></div><div class="line">    <span class="keyword">return</span> <span class="type">Observable</span>.create &#123; observer <span class="keyword">in</span></div><div class="line">        observer.on(.<span class="type">Next</span>(singleElement))</div><div class="line">        observer.on(.<span class="type">Completed</span>)</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> <span class="type">NopDisposable</span>.instance</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="number">_</span> = myJust(<span class="number">5</span>)</div><div class="line">    .subscribe &#123; event <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="deferred"><a href="#deferred" class="headerlink" title="deferred"></a>deferred</h1><blockquote>
+<p>只有在有观察者订阅时，才去创建序列</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">extension</span> <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="comment">//扩展计算属性  </span></div><div class="line">    <span class="keyword">var</span> lifeYear : <span class="type">Double</span> &#123; <span class="keyword">return</span> <span class="type">Double</span>(<span class="keyword">self</span>.life) / <span class="number">365</span> &#125;  </div><div class="line">    <span class="comment">//扩展构造器  </span></div><div class="line">    <span class="keyword">convenience</span> <span class="keyword">init</span>(life: <span class="type">Int</span>, height: <span class="type">Double</span>) &#123;  </div><div class="line">        <span class="keyword">self</span>.<span class="keyword">init</span>()  </div><div class="line">        <span class="keyword">self</span>.life = life  </div><div class="line">        <span class="keyword">self</span>.height = height  </div><div class="line">    &#125;  </div><div class="line">    <span class="comment">//扩展方法  </span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">makeSound</span><span class="params">()</span></span> -&gt; <span class="type">String</span> &#123;  </div><div class="line">        <span class="keyword">return</span> <span class="string">"I can live \(lifeYear) years"</span>  </div><div class="line">    &#125;  </div><div class="line">    <span class="comment">// 扩展嵌套类  </span></div><div class="line">    <span class="class"><span class="keyword">enum</span> <span class="title">Size</span> </span>&#123;  </div><div class="line">        <span class="keyword">case</span> <span class="type">Big</span>, <span class="type">Small</span>, <span class="type">SuperSmall</span>  </div><div class="line">    &#125;  </div><div class="line">    <span class="comment">// 扩展一个使用嵌套类的计算属性  </span></div><div class="line">    <span class="keyword">var</span> size: <span class="type">Size</span> &#123;  </div><div class="line">        <span class="keyword">switch</span> height &#123;  </div><div class="line">        <span class="keyword">case</span> <span class="keyword">let</span> h <span class="keyword">where</span> h &gt; <span class="number">10</span>:  </div><div class="line">            <span class="keyword">return</span> .<span class="type">Big</span>  </div><div class="line">        <span class="keyword">case</span> <span class="keyword">let</span> h <span class="keyword">where</span> h &gt; <span class="number">0.1</span>:  </div><div class="line">            <span class="keyword">return</span> .<span class="type">Small</span>  </div><div class="line">        <span class="keyword">default</span>:  </div><div class="line">            <span class="keyword">return</span> .<span class="type">SuperSmall</span>  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">var</span> a = <span class="type">Animal</span>(life: <span class="number">3365</span> * <span class="number">7</span>, height: <span class="number">0.001</span>)  </div><div class="line"><span class="built_in">print</span>(a.size)   <span class="comment">// SuperSmall  </span></div><div class="line"><span class="built_in">print</span>(a.lifeYear)   <span class="comment">// 7.0  </span></div><div class="line"><span class="built_in">print</span>(a.makeSound())   <span class="comment">// I can live 7.0 years</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>面代码需要注意的是扩展构造器的时候，在构造器的时候讲过，在扩展中添加构造器是不会影响默认构造器的产生。不能添加原来已有的构造器。<br>另外在类扩展里面，是不给添加指定构造器或析构器，只能添加便利构造器。在便利构造器中，要先调用原来的构造器来初始化类后，才能对类进行访问。</p>
-<p>扩展还有一个作用就是让类遵守协议。这部分留到协议里面讲<br>下面将以前将过的麻烦的String类型做一个扩展，使得方便截串和获取长度</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">  let deferredSequence: Observable&lt;Int&gt; = Observable.deferred &#123;</div><div class="line">    print(&quot;creating&quot;)</div><div class="line">    return Observable.create &#123; observer in</div><div class="line">        print(&quot;emmiting&quot;)</div><div class="line">        observer.on(.Next(0))</div><div class="line">        observer.on(.Next(1))</div><div class="line">        observer.on(.Next(2))</div><div class="line">        </div><div class="line">        return NopDisposable.instance</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">_ = deferredSequence</div><div class="line">    .subscribe &#123; event in</div><div class="line">        print(event)</div><div class="line">&#125;</div><div class="line"></div><div class="line">_ = deferredSequence</div><div class="line">    .subscribe &#123; event in</div><div class="line">        print(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="empty"><a href="#empty" class="headerlink" title="empty"></a>empty</h1><blockquote>
+<p>创建一个空的序列，只发射一个 .Completed：</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">extension</span> <span class="title">String</span> </span>&#123;  </div><div class="line">    <span class="comment">//获取字符串长度  </span></div><div class="line">    <span class="keyword">var</span> length: <span class="type">Int</span> &#123; <span class="keyword">return</span> <span class="keyword">self</span>.characters.<span class="built_in">count</span> &#125;  </div><div class="line">      </div><div class="line">    <span class="comment">//获取部分字符串，如果不在范围内，返回nil。如果end大于字符串长度，那么截取到最后  </span></div><div class="line">    <span class="keyword">subscript</span> (start: <span class="type">Int</span>, end: <span class="type">Int</span>) -&gt; <span class="type">String</span>? &#123;  </div><div class="line">        <span class="keyword">if</span> start &gt; <span class="keyword">self</span>.length || start &lt; <span class="number">0</span> || start &gt; end &#123;  </div><div class="line">            <span class="keyword">return</span> <span class="literal">nil</span>  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">let</span> begin = <span class="keyword">self</span>.startIndex.advancedBy(start)  </div><div class="line">        <span class="keyword">var</span> terminal: <span class="type">Index</span>  </div><div class="line">        <span class="keyword">if</span> end &gt;= length &#123;  </div><div class="line">            terminal = <span class="keyword">self</span>.startIndex.advancedBy(length)  </div><div class="line">        &#125; <span class="keyword">else</span> &#123;  </div><div class="line">            terminal = <span class="keyword">self</span>.startIndex.advancedBy(end + <span class="number">1</span>)  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">let</span> range = <span class="type">Range</span>(start: begin, end: terminal)  </div><div class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.substringWithRange(range)  </div><div class="line">    &#125;  </div><div class="line">    <span class="comment">//获取某个字符，如果不在范围内，返回nil  </span></div><div class="line">    <span class="keyword">subscript</span> (index: <span class="type">Int</span>) -&gt; <span class="type">Character</span>? &#123;  </div><div class="line">        <span class="keyword">if</span> index &gt; <span class="keyword">self</span>.length - <span class="number">1</span> || index &lt; <span class="number">0</span> &#123;  </div><div class="line">            <span class="keyword">return</span> <span class="literal">nil</span>  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> <span class="keyword">self</span>[<span class="keyword">self</span>.startIndex.advancedBy(index)]  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>然后就可以这样截串</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> emptySequence = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.empty()</div><div class="line"></div><div class="line"><span class="number">_</span> = emptySequence</div><div class="line">    .subscribe &#123; event <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="error"><a href="#error" class="headerlink" title="error"></a>error</h1><blockquote>
+<p>创建一个发射 error 终止的序列</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">var</span> s = <span class="string">"哈0123456789"</span>  </div><div class="line"><span class="built_in">print</span>(s.length) <span class="comment">// 11  </span></div><div class="line"><span class="built_in">print</span>(s[<span class="number">0</span>,<span class="number">2</span>])    <span class="comment">// Optional("哈01")  </span></div><div class="line"><span class="built_in">print</span>(s[<span class="number">9</span>])     <span class="comment">// Optional("8")</span></div></pre></td></tr></table></figure>
-
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> error = <span class="type">NSError</span>(domain: <span class="string">"Test"</span>, code: -<span class="number">1</span>, userInfo: <span class="literal">nil</span>)</div><div class="line"></div><div class="line"><span class="keyword">let</span> erroredSequence = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.error(error)</div><div class="line"></div><div class="line"><span class="number">_</span> = erroredSequence</div><div class="line">    .subscribe &#123; event <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="toObservable"><a href="#toObservable" class="headerlink" title="toObservable"></a>toObservable</h1><blockquote>
+<p>使用 SequenceType 创建序列：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> sequenceFromArray = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>].toObservable()</div><div class="line"></div><div class="line"><span class="number">_</span> = sequenceFromArray</div><div class="line">    .subscribe &#123; event <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="interval"><a href="#interval" class="headerlink" title="interval"></a>interval</h1><blockquote>
+<p>创建一个每隔一段时间就发射的递增序列：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> intervalSequence = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.interval(<span class="number">3</span>, scheduler: <span class="type">MainScheduler</span>.instance)</div><div class="line"></div><div class="line"><span class="number">_</span> = intervalSequence.subscribe &#123; event <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="never"><a href="#never" class="headerlink" title="never"></a>never</h1><blockquote>
+<p>不创建序列，也不发送通知：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> neverSequence = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.never()</div><div class="line"></div><div class="line"><span class="number">_</span> = neverSequence</div><div class="line">    .subscribe &#123; <span class="number">_</span> <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(<span class="string">"这句话永远不会打出来."</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="just"><a href="#just" class="headerlink" title="just"></a>just</h1><blockquote>
+<p>只创建包含一个元素的序列。换言之，只发送一个值和 .Completed：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   et singleElementSequence = <span class="type">Observable</span>.just(<span class="number">32</span>)</div><div class="line"></div><div class="line"><span class="number">_</span> = singleElementSequence</div><div class="line">    .subscribe &#123; event <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="of"><a href="#of" class="headerlink" title="of"></a>of</h1><blockquote>
+<p>通过一组元素创建一个序列：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> sequenceOfElements<span class="comment">/* : Observable&lt;Int&gt; */</span> = <span class="type">Observable</span>.of(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>)</div><div class="line"></div><div class="line"><span class="number">_</span> = sequenceOfElements</div><div class="line">    .subscribe &#123; event <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="range"><a href="#range" class="headerlink" title="range"></a>range</h1><blockquote>
+<p>创建一个有范围的递增序列：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> rangeSequence = <span class="type">Observable</span>.range(start: <span class="number">1</span>, <span class="built_in">count</span>: <span class="number">10</span>)</div><div class="line"></div><div class="line"><span class="number">_</span> = rangeSequence.subscribe &#123; event <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="repeatElement"><a href="#repeatElement" class="headerlink" title="repeatElement"></a>repeatElement</h1><blockquote>
+<p>创建一个发射重复值的序列：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> repeatElementSequence = <span class="type">Observable</span>.repeatElement(<span class="number">1</span>)</div><div class="line"></div><div class="line"><span class="number">_</span> = repeatElementSequence.subscribe &#123; event <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="timer"><a href="#timer" class="headerlink" title="timer"></a>timer</h1><blockquote>
+<p>创建一个带延迟的序列：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> timerSequence = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.timer(<span class="number">1</span>, period: <span class="number">1</span>, scheduler: <span class="type">MainScheduler</span>.instance)</div><div class="line"></div><div class="line"><span class="number">_</span> = timerSequence.subscribe &#123; event <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -485,6 +520,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
+          
+        </div>
+      
 
       
       
@@ -494,8 +537,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/01/Swift-Grammar/Swift-Grammar-Error-Handling-错误处理/" rel="next" title="Swift-Grammar-Error-Handling错误处理">
-                <i class="fa fa-chevron-left"></i> Swift-Grammar-Error-Handling错误处理
+              <a href="/2017/12/14/Swift-UIKit/Swift-UIKit-UIImagePickerController/" rel="next" title="Swift-UIKit-UIImagePickerController">
+                <i class="fa fa-chevron-left"></i> Swift-UIKit-UIImagePickerController
               </a>
             
           </div>
@@ -504,8 +547,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/01/Swift-Grammar/Swift-Grammar-Generics-泛型/" rel="prev" title="Swift-Grammar-Generics-泛型">
-                Swift-Grammar-Generics-泛型 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/15/Swift-RxSwift/Swift-RxSwift-简介以及简单学习使用/" rel="prev" title="Swift-RxSwift-简介以及简单学习使用">
+                Swift-RxSwift-简介以及简单学习使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -640,7 +683,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Extension扩展"><span class="nav-number">1.</span> <span class="nav-text">Extension扩展</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Rx-几种创建方式"><span class="nav-number">1.</span> <span class="nav-text">Rx 几种创建方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#create"><span class="nav-number">2.</span> <span class="nav-text">create</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#deferred"><span class="nav-number">3.</span> <span class="nav-text">deferred</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#empty"><span class="nav-number">4.</span> <span class="nav-text">empty</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#error"><span class="nav-number">5.</span> <span class="nav-text">error</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#toObservable"><span class="nav-number">6.</span> <span class="nav-text">toObservable</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#interval"><span class="nav-number">7.</span> <span class="nav-text">interval</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#never"><span class="nav-number">8.</span> <span class="nav-text">never</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#just"><span class="nav-number">9.</span> <span class="nav-text">just</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#of"><span class="nav-number">10.</span> <span class="nav-text">of</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#range"><span class="nav-number">11.</span> <span class="nav-text">range</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#repeatElement"><span class="nav-number">12.</span> <span class="nav-text">repeatElement</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#timer"><span class="nav-number">13.</span> <span class="nav-text">timer</span></a></li></ol></div>
             
 
           </div>

@@ -25,8 +25,8 @@
 
 <script>
     (function(){
-        if('520'){
-            if (prompt('请输入文章密码') !== '520'){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
                 alert('密码错误！');
                 history.back();
             }
@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Swift,RxSwift," />
 
 
 
@@ -105,17 +105,22 @@
 
 
 
-<meta name="description" content="Extension扩展 Swift中的扩展就是OC中的分类。但是这里的扩展可以对类、结构体、枚举类进行添加。使用扩展，我们可以在不接触源代码的前提下，对已有的代码进行功能上的添加。 Swift中的扩展提供的一些功能：   1、添加计算属性或类计算属性，但是不能添加存储属性。 2、添加实例方法或类别方法。但是不能覆盖已经存在的方法。 3、定义新的构造器。 4、定义和使用新的嵌套类。 5、令已经存在的">
+<meta name="description" content="Subject 可以把 Subject 当作一个桥梁（或者说是代理）Subject 既是 Observable 也是 Observer    作为一个 Observer ，它可以订阅序列 同时作为一个 Observable ，它可以转发或者发射数据  Subject 有以下几种 PublishSubject 只发射给观察者订阅后的数据。 ReplaySubject BehaviorSubject">
+<meta name="keywords" content="Swift,RxSwift">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift-Grammar-Extension扩展">
-<meta property="og:url" content="http://yoursite.com/2017/12/01/Swift-Grammar/Swift-Grammar-Extension扩展/index.html">
+<meta property="og:title" content="Swift-RxSwift-Subject">
+<meta property="og:url" content="http://yoursite.com/2017/12/15/Swift-RxSwift/Swift-RxSwift-Subject/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="Extension扩展 Swift中的扩展就是OC中的分类。但是这里的扩展可以对类、结构体、枚举类进行添加。使用扩展，我们可以在不接触源代码的前提下，对已有的代码进行功能上的添加。 Swift中的扩展提供的一些功能：   1、添加计算属性或类计算属性，但是不能添加存储属性。 2、添加实例方法或类别方法。但是不能覆盖已经存在的方法。 3、定义新的构造器。 4、定义和使用新的嵌套类。 5、令已经存在的">
+<meta property="og:description" content="Subject 可以把 Subject 当作一个桥梁（或者说是代理）Subject 既是 Observable 也是 Observer    作为一个 Observer ，它可以订阅序列 同时作为一个 Observable ，它可以转发或者发射数据  Subject 有以下几种 PublishSubject 只发射给观察者订阅后的数据。 ReplaySubject BehaviorSubject">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-01T09:32:02.000Z">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/Swift-RxSwift-Subject-001.png">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/Swift-RxSwift-Subject-003.png">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/Swift-RxSwift-Subject-004.png">
+<meta property="og:updated_time" content="2017-12-15T07:34:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift-Grammar-Extension扩展">
-<meta name="twitter:description" content="Extension扩展 Swift中的扩展就是OC中的分类。但是这里的扩展可以对类、结构体、枚举类进行添加。使用扩展，我们可以在不接触源代码的前提下，对已有的代码进行功能上的添加。 Swift中的扩展提供的一些功能：   1、添加计算属性或类计算属性，但是不能添加存储属性。 2、添加实例方法或类别方法。但是不能覆盖已经存在的方法。 3、定义新的构造器。 4、定义和使用新的嵌套类。 5、令已经存在的">
+<meta name="twitter:title" content="Swift-RxSwift-Subject">
+<meta name="twitter:description" content="Subject 可以把 Subject 当作一个桥梁（或者说是代理）Subject 既是 Observable 也是 Observer    作为一个 Observer ，它可以订阅序列 同时作为一个 Observable ，它可以转发或者发射数据  Subject 有以下几种 PublishSubject 只发射给观察者订阅后的数据。 ReplaySubject BehaviorSubject">
+<meta name="twitter:image" content="http://ozr735s7e.bkt.clouddn.com/Swift-RxSwift-Subject-001.png">
 
 
 
@@ -144,13 +149,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/01/Swift-Grammar/Swift-Grammar-Extension扩展/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/15/Swift-RxSwift/Swift-RxSwift-Subject/"/>
 
 
 
 
 
-  <title>Swift-Grammar-Extension扩展 | 千夜、おれはおまえをずっと爱している</title>
+  <title>Swift-RxSwift-Subject | 千夜、おれはおまえをずっと爱している</title>
   
 
 
@@ -331,7 +336,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/01/Swift-Grammar/Swift-Grammar-Extension扩展/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/15/Swift-RxSwift/Swift-RxSwift-Subject/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -348,7 +353,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Swift-Grammar-Extension扩展</h1>
+          <h1 class="post-title" itemprop="name headline">Swift-RxSwift-Subject</h1>
         
 
         <div class="post-meta">
@@ -360,8 +365,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-01T17:29:19+08:00">
-                2017-12-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T15:15:17+08:00">
+                2017-12-15
               </time>
             
 
@@ -394,8 +399,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/Grammar/" itemprop="url" rel="index">
-                    <span itemprop="name">Grammar</span>
+                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
                   </a>
                 </span>
 
@@ -411,7 +416,7 @@
 
           
           
-             <span id="/2017/12/01/Swift-Grammar/Swift-Grammar-Extension扩展/" class="leancloud_visitors" data-flag-title="Swift-Grammar-Extension扩展">
+             <span id="/2017/12/15/Swift-RxSwift/Swift-RxSwift-Subject/" class="leancloud_visitors" data-flag-title="Swift-RxSwift-Subject">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -442,34 +447,46 @@
       
 
       
-        <h1 id="Extension扩展"><a href="#Extension扩展" class="headerlink" title="Extension扩展"></a>Extension扩展</h1><blockquote>
-<p>Swift中的扩展就是OC中的分类。但是这里的扩展可以对类、结构体、枚举类进行添加。使用扩展，我们可以在不接触源代码的前提下，对已有的代码进行功能上的添加。</p>
-<p>Swift中的扩展提供的一些功能：</p>
+        <h1 id="Subject"><a href="#Subject" class="headerlink" title="Subject"></a>Subject</h1><blockquote>
+<p>可以把 Subject 当作一个桥梁（或者说是代理）<br>Subject 既是 Observable 也是 Observer </p>
 </blockquote>
 <ul>
-<li>1、添加计算属性或类计算属性，但是不能添加存储属性。</li>
-<li>2、添加实例方法或类别方法。但是不能覆盖已经存在的方法。</li>
-<li>3、定义新的构造器。</li>
-<li>4、定义和使用新的嵌套类。</li>
-<li>5、令已经存在的类型遵守协议。</li>
+<li>作为一个 Observer ，它可以订阅序列</li>
+<li>同时作为一个 Observable ，它可以转发或者发射数据</li>
 </ul>
-<blockquote>
-<p>假设我们已经有了一个Animal类，但是不能得到它的源代码</p>
+<h1 id="Subject-有以下几种"><a href="#Subject-有以下几种" class="headerlink" title="Subject 有以下几种"></a>Subject 有以下几种</h1><ul>
+<li>PublishSubject 只发射给观察者订阅后的数据。</li>
+<li>ReplaySubject</li>
+<li>BehaviorSubject</li>
+<li>Variable</li>
+</ul>
+<h2 id="PublishSubject"><a href="#PublishSubject" class="headerlink" title="PublishSubject"></a>PublishSubject</h2><blockquote>
+<p>当有观察者订阅 PublishSubject 时，PublishSubject 会发射订阅之后的数据给这个观察者<br>于是这里存在丢失数据的问题，如果需要全部数据，我推荐改用 ReplaySubject</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> life: <span class="type">Int</span> = <span class="number">0</span>  </div><div class="line">    <span class="keyword">var</span> height: <span class="type">Double</span> = <span class="number">0</span>  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/Swift-RxSwift-Subject-001.png" alt="001"></p>
 <blockquote>
-<p>我们利用扩展，对Animal添加一个计算属性和方法、构造器还有嵌套类。 当然也可以添加下标，但这里不演示了</p>
+<p>如果序列因为错误终止发射序列，此时 PublishSubject 就不会发射数据，只是传递这次错误事件</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">extension</span> <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="comment">//扩展计算属性  </span></div><div class="line">    <span class="keyword">var</span> lifeYear : <span class="type">Double</span> &#123; <span class="keyword">return</span> <span class="type">Double</span>(<span class="keyword">self</span>.life) / <span class="number">365</span> &#125;  </div><div class="line">    <span class="comment">//扩展构造器  </span></div><div class="line">    <span class="keyword">convenience</span> <span class="keyword">init</span>(life: <span class="type">Int</span>, height: <span class="type">Double</span>) &#123;  </div><div class="line">        <span class="keyword">self</span>.<span class="keyword">init</span>()  </div><div class="line">        <span class="keyword">self</span>.life = life  </div><div class="line">        <span class="keyword">self</span>.height = height  </div><div class="line">    &#125;  </div><div class="line">    <span class="comment">//扩展方法  </span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">makeSound</span><span class="params">()</span></span> -&gt; <span class="type">String</span> &#123;  </div><div class="line">        <span class="keyword">return</span> <span class="string">"I can live \(lifeYear) years"</span>  </div><div class="line">    &#125;  </div><div class="line">    <span class="comment">// 扩展嵌套类  </span></div><div class="line">    <span class="class"><span class="keyword">enum</span> <span class="title">Size</span> </span>&#123;  </div><div class="line">        <span class="keyword">case</span> <span class="type">Big</span>, <span class="type">Small</span>, <span class="type">SuperSmall</span>  </div><div class="line">    &#125;  </div><div class="line">    <span class="comment">// 扩展一个使用嵌套类的计算属性  </span></div><div class="line">    <span class="keyword">var</span> size: <span class="type">Size</span> &#123;  </div><div class="line">        <span class="keyword">switch</span> height &#123;  </div><div class="line">        <span class="keyword">case</span> <span class="keyword">let</span> h <span class="keyword">where</span> h &gt; <span class="number">10</span>:  </div><div class="line">            <span class="keyword">return</span> .<span class="type">Big</span>  </div><div class="line">        <span class="keyword">case</span> <span class="keyword">let</span> h <span class="keyword">where</span> h &gt; <span class="number">0.1</span>:  </div><div class="line">            <span class="keyword">return</span> .<span class="type">Small</span>  </div><div class="line">        <span class="keyword">default</span>:  </div><div class="line">            <span class="keyword">return</span> .<span class="type">SuperSmall</span>  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">var</span> a = <span class="type">Animal</span>(life: <span class="number">3365</span> * <span class="number">7</span>, height: <span class="number">0.001</span>)  </div><div class="line"><span class="built_in">print</span>(a.size)   <span class="comment">// SuperSmall  </span></div><div class="line"><span class="built_in">print</span>(a.lifeYear)   <span class="comment">// 7.0  </span></div><div class="line"><span class="built_in">print</span>(a.makeSound())   <span class="comment">// I can live 7.0 years</span></div></pre></td></tr></table></figure>
+<p><img src="" alt="002"></p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> publishSubject = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"></div><div class="line">publishSubject.subscribe &#123; e <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Subscription: 1, event: \(e)"</span>)</div><div class="line">    &#125;.addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">publishSubject.on(.<span class="type">Next</span>(<span class="string">"a"</span>))</div><div class="line">publishSubject.on(.<span class="type">Next</span>(<span class="string">"b"</span>))</div><div class="line"></div><div class="line">publishSubject.subscribe &#123; e <span class="keyword">in</span> <span class="comment">/// 我们可以在这里看到，这个订阅只收到了两个数据，只有 "c" 和 "d"</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Subscription: 2, event: \(e)"</span>)</div><div class="line">    &#125;.addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">publishSubject.on(.<span class="type">Next</span>(<span class="string">"c"</span>))</div><div class="line">publishSubject.on(.<span class="type">Next</span>(<span class="string">"d"</span>))</div></pre></td></tr></table></figure>
+<h2 id="ReplaySubject"><a href="#ReplaySubject" class="headerlink" title="ReplaySubject"></a>ReplaySubject</h2><blockquote>
+<p>和 PushblishSubject 不同，不论观察者什么时候订阅， ReplaySubject 都会发射完整的数据给观察者</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/Swift-RxSwift-Subject-003.png" alt="003"></p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> replaySubject = <span class="type">ReplaySubject</span>&lt;<span class="type">String</span>&gt;.create(bufferSize: <span class="number">2</span>)</div><div class="line"></div><div class="line">replaySubject.subscribe &#123; e <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Subscription: 1, event: \(e)"</span>)</div><div class="line">    &#125;.addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">replaySubject.on(.<span class="type">Next</span>(<span class="string">"a"</span>))</div><div class="line">replaySubject.on(.<span class="type">Next</span>(<span class="string">"b"</span>))</div><div class="line"></div><div class="line">replaySubject.subscribe &#123; e <span class="keyword">in</span> <span class="comment">/// 我们可以在这里看到，这个订阅收到了四个数据</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Subscription: 2, event: \(e)"</span>)</div><div class="line">    &#125;.addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">replaySubject.on(.<span class="type">Next</span>(<span class="string">"c"</span>))</div><div class="line">replaySubject.on(.<span class="type">Next</span>(<span class="string">"d"</span>))</div></pre></td></tr></table></figure>
+<h2 id="BehaviorSubject"><a href="#BehaviorSubject" class="headerlink" title="BehaviorSubject"></a>BehaviorSubject</h2><blockquote>
+<p>当一个观察者订阅一个 BehaviorSubject ，它会发送原序列最近的那个值（如果原序列还有没发射值那就用一个默认值代替），之后继续发射原序列的值</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/Swift-RxSwift-Subject-004.png" alt="004"></p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> behaviorSubject = <span class="type">BehaviorSubject</span>(value: <span class="string">"z"</span>)</div><div class="line">behaviorSubject.subscribe &#123; e <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Subscription: 1, event: \(e)"</span>)</div><div class="line">    &#125;.addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">behaviorSubject.on(.<span class="type">Next</span>(<span class="string">"a"</span>))</div><div class="line">behaviorSubject.on(.<span class="type">Next</span>(<span class="string">"b"</span>))</div><div class="line"></div><div class="line">behaviorSubject.subscribe &#123; e <span class="keyword">in</span> <span class="comment">/// 我们可以在这里看到，这个订阅收到了四个数据</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Subscription: 2, event: \(e)"</span>)</div><div class="line">    &#125;.addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">behaviorSubject.on(.<span class="type">Next</span>(<span class="string">"c"</span>))</div><div class="line">behaviorSubject.on(.<span class="type">Next</span>(<span class="string">"d"</span>))</div><div class="line">behaviorSubject.on(.<span class="type">Completed</span>)</div></pre></td></tr></table></figure>
+<h2 id="Variable"><a href="#Variable" class="headerlink" title="Variable"></a>Variable</h2><blockquote>
+<p>Variable 是 BehaviorSubject 的一个封装<br>相比 BehaviorSubject ，它不会因为错误终止也不会正常终止，是一个无限序列</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> variable = <span class="type">Variable</span>(<span class="string">"z"</span>)</div><div class="line">variable.asObservable().subscribe &#123; e <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Subscription: 1, event: \(e)"</span>)</div><div class="line">    &#125;.addDisposableTo(disposeBag)</div><div class="line">variable.value = <span class="string">"a"</span></div><div class="line">variable.value = <span class="string">"b"</span></div><div class="line">variable.asObservable().subscribe &#123; e <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Subscription: 1, event: \(e)"</span>)</div><div class="line">    &#125;.addDisposableTo(disposeBag)</div><div class="line">variable.value = <span class="string">"c"</span></div><div class="line">variable.value = <span class="string">"d"</span></div></pre></td></tr></table></figure>
 <blockquote>
-<p>面代码需要注意的是扩展构造器的时候，在构造器的时候讲过，在扩展中添加构造器是不会影响默认构造器的产生。不能添加原来已有的构造器。<br>另外在类扩展里面，是不给添加指定构造器或析构器，只能添加便利构造器。在便利构造器中，要先调用原来的构造器来初始化类后，才能对类进行访问。</p>
-<p>扩展还有一个作用就是让类遵守协议。这部分留到协议里面讲<br>下面将以前将过的麻烦的String类型做一个扩展，使得方便截串和获取长度</p>
+<p>最常用的 Subject 应该就是 Variable<br>Variable 很适合做数据源，比如作为一个 UITableView 的数据源，我们可以在这里保留一个完整的 Array 数据，每一个订阅者都可以获得这个 Array</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">extension</span> <span class="title">String</span> </span>&#123;  </div><div class="line">    <span class="comment">//获取字符串长度  </span></div><div class="line">    <span class="keyword">var</span> length: <span class="type">Int</span> &#123; <span class="keyword">return</span> <span class="keyword">self</span>.characters.<span class="built_in">count</span> &#125;  </div><div class="line">      </div><div class="line">    <span class="comment">//获取部分字符串，如果不在范围内，返回nil。如果end大于字符串长度，那么截取到最后  </span></div><div class="line">    <span class="keyword">subscript</span> (start: <span class="type">Int</span>, end: <span class="type">Int</span>) -&gt; <span class="type">String</span>? &#123;  </div><div class="line">        <span class="keyword">if</span> start &gt; <span class="keyword">self</span>.length || start &lt; <span class="number">0</span> || start &gt; end &#123;  </div><div class="line">            <span class="keyword">return</span> <span class="literal">nil</span>  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">let</span> begin = <span class="keyword">self</span>.startIndex.advancedBy(start)  </div><div class="line">        <span class="keyword">var</span> terminal: <span class="type">Index</span>  </div><div class="line">        <span class="keyword">if</span> end &gt;= length &#123;  </div><div class="line">            terminal = <span class="keyword">self</span>.startIndex.advancedBy(length)  </div><div class="line">        &#125; <span class="keyword">else</span> &#123;  </div><div class="line">            terminal = <span class="keyword">self</span>.startIndex.advancedBy(end + <span class="number">1</span>)  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">let</span> range = <span class="type">Range</span>(start: begin, end: terminal)  </div><div class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.substringWithRange(range)  </div><div class="line">    &#125;  </div><div class="line">    <span class="comment">//获取某个字符，如果不在范围内，返回nil  </span></div><div class="line">    <span class="keyword">subscript</span> (index: <span class="type">Int</span>) -&gt; <span class="type">Character</span>? &#123;  </div><div class="line">        <span class="keyword">if</span> index &gt; <span class="keyword">self</span>.length - <span class="number">1</span> || index &lt; <span class="number">0</span> &#123;  </div><div class="line">            <span class="keyword">return</span> <span class="literal">nil</span>  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> <span class="keyword">self</span>[<span class="keyword">self</span>.startIndex.advancedBy(index)]  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>然后就可以这样截串</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">var</span> s = <span class="string">"哈0123456789"</span>  </div><div class="line"><span class="built_in">print</span>(s.length) <span class="comment">// 11  </span></div><div class="line"><span class="built_in">print</span>(s[<span class="number">0</span>,<span class="number">2</span>])    <span class="comment">// Optional("哈01")  </span></div><div class="line"><span class="built_in">print</span>(s[<span class="number">9</span>])     <span class="comment">// Optional("8")</span></div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> elements = <span class="type">Variable</span>&lt;[<span class="type">String</span>]&gt;([])</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -485,6 +502,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
+          
+        </div>
+      
 
       
       
@@ -494,8 +519,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/01/Swift-Grammar/Swift-Grammar-Error-Handling-错误处理/" rel="next" title="Swift-Grammar-Error-Handling错误处理">
-                <i class="fa fa-chevron-left"></i> Swift-Grammar-Error-Handling错误处理
+              <a href="/2017/12/15/Swift-RxSwift/Swift-RxSwift-基本概念/" rel="next" title="Swift-RxSwift-基本概念">
+                <i class="fa fa-chevron-left"></i> Swift-RxSwift-基本概念
               </a>
             
           </div>
@@ -503,10 +528,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/01/Swift-Grammar/Swift-Grammar-Generics-泛型/" rel="prev" title="Swift-Grammar-Generics-泛型">
-                Swift-Grammar-Generics-泛型 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -640,7 +661,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Extension扩展"><span class="nav-number">1.</span> <span class="nav-text">Extension扩展</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Subject"><span class="nav-number">1.</span> <span class="nav-text">Subject</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Subject-有以下几种"><span class="nav-number">2.</span> <span class="nav-text">Subject 有以下几种</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PublishSubject"><span class="nav-number">2.1.</span> <span class="nav-text">PublishSubject</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ReplaySubject"><span class="nav-number">2.2.</span> <span class="nav-text">ReplaySubject</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BehaviorSubject"><span class="nav-number">2.3.</span> <span class="nav-text">BehaviorSubject</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Variable"><span class="nav-number">2.4.</span> <span class="nav-text">Variable</span></a></li></ol></li></ol></div>
             
 
           </div>
