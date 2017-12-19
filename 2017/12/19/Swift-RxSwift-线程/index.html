@@ -113,7 +113,7 @@
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
 <meta property="og:description" content="#线程 线程切换 RxSwift 中切换线程  sequence1.observeOn(backgroundScheduler) // 切换到后台线程.map &amp;#123; n in    print(&quot;在 background scheduler 执行&quot;)&amp;#125;.observeOn(MainScheduler.instance) // 切换到主线程.map &amp;#123; n in    p">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-19T06:07:56.647Z">
+<meta property="og:updated_time" content="2017-12-19T06:15:50.220Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift-RxSwift-线程">
 <meta name="twitter:description" content="#线程 线程切换 RxSwift 中切换线程  sequence1.observeOn(backgroundScheduler) // 切换到后台线程.map &amp;#123; n in    print(&quot;在 background scheduler 执行&quot;)&amp;#125;.observeOn(MainScheduler.instance) // 切换到主线程.map &amp;#123; n in    p">
@@ -462,6 +462,60 @@
 <blockquote>
 <p>两个方法的声明几乎都是一样的，我们只需要传入一个满足 ImmediateSchedulerType 协议的东西</p>
 </blockquote>
+<h2 id="MainScheduler-串行"><a href="#MainScheduler-串行" class="headerlink" title="MainScheduler 串行"></a>MainScheduler 串行</h2><blockquote>
+<p>在 Rx 中我们已经有主线程切换</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">.observeOn(<span class="type">MainScheduler</span>.instance)<span class="comment">//切换到了主线程</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>MainScheduler 有一个很有用的功能</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">ensureExecutingOnScheduler</span>()</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>可以在需要保证代码一定执行在主线程的地方调用 MainScheduler.ensureExecutingOnScheduler()<br>特别是在线程切换来切换去的情况下，或者是调用其他的库，我们不确定当前是否在执行在主线程<br>毕竟 UI 的更新还是要在主线程执行的</p>
+</blockquote>
+<h2 id="SerialDispatchQueueScheduler-串行"><a href="#SerialDispatchQueueScheduler-串行" class="headerlink" title="SerialDispatchQueueScheduler 串行"></a>SerialDispatchQueueScheduler 串行</h2><ul>
+<li>SerialDispatchQueueScheduler ，这个就是一个串行的调度器，上面的 MainScheduler 就是继承的这个</li>
+</ul>
+<blockquote>
+<p>DispatchQueueSchedulerQOS<br>iOS 8 新增加了 QOS ，分别有以下五种等级：</p>
+</blockquote>
+<ul>
+<li>QOS_CLASS_USER_INTERACTIVE</li>
+<li>QOS_CLASS_USER_INITIATED</li>
+<li>QOS_CLASS_DEFAULT</li>
+<li>QOS_CLASS_UTILITY</li>
+<li>QOS_CLASS_BACKGROUND</li>
+</ul>
+<blockquote>
+<p>在 Rx 中，我们用 enum 创建了 DispatchQueueSchedulerQOS ：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">DispatchQueueSchedulerQOS</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">UserInteractive</span></div><div class="line">    <span class="keyword">case</span> <span class="type">UserInitiated</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Default</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Utility</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Background</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>和上面的等级是一一对应的<br>用 QOS 创建一个 DispatchQueueSchedulerQOS 非常方便</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">convenience</span> <span class="keyword">init</span>(globalConcurrentQueueQOS: <span class="type">DispatchQueueSchedulerQOS</span>, </div><div class="line">internalSerialQueueName: <span class="type">String</span> = <span class="string">"rx.global_dispatch_queue.serial"</span>)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>用一个初始化就 OK ：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">SerialDispatchQueueScheduler</span>(globalConcurrentQueueQOS: .<span class="type">Background</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>更推荐你使用已有的 QOS 管理多线程问题，毕竟这是一个线程等级更明确的方案。即便是创建自己的 GCD 我也建议直接使用 SerialDispatchQueueScheduler ，毕竟自己再去实现那些协议很麻烦不是吗</li>
+</ul>
+<blockquote>
+<p>可以通过以下两种方式创建自己的 GCD ：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">public</span> <span class="keyword">convenience</span> <span class="keyword">init</span>(internalSerialQueueName: <span class="type">String</span>, serialQueueConfiguration: ((dispatch_queue_t) -&gt; <span class="type">Void</span>)? = <span class="literal">nil</span>)</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">convenience</span> <span class="keyword">init</span>(queue: dispatch_queue_t, internalSerialQueueName: <span class="type">String</span>)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>MainScheduler 是继承 SerialDispatchQueueScheduler 的</p>
+</blockquote>
+<h2 id="ConcurrentDispatchQueueScheduler-并行"><a href="#ConcurrentDispatchQueueScheduler-并行" class="headerlink" title="ConcurrentDispatchQueueScheduler 并行"></a>ConcurrentDispatchQueueScheduler 并行</h2><blockquote>
+<p>同样我们还有一个并行的 Scheduler ：ConcurrentDispatchQueueScheduler<br>API 的使用和 SerialDispatchQueueScheduler 是一样的</p>
+</blockquote>
+<h2 id="OperationQueueScheduler-并行"><a href="#OperationQueueScheduler-并行" class="headerlink" title="OperationQueueScheduler 并行"></a>OperationQueueScheduler 并行</h2><blockquote>
+<p>使用 NSOperationQueue 最大的好处就是我们可以很方便的定制最大并发线程数量，即设置 maxConcurrentOperationCount<br>创建方法也很简单，只需要传入一个 NSOperationQueue</p>
+</blockquote>
+<p>难懂啊</p>
+<p><a href="http://t.swift.gg/t/rxswift-course" target="_blank" rel="external">原文</a></p>
 
       
     </div>
@@ -638,7 +692,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#线程切换"><span class="nav-number">1.</span> <span class="nav-text">线程切换</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#线程切换"><span class="nav-number">1.</span> <span class="nav-text">线程切换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MainScheduler-串行"><span class="nav-number">2.</span> <span class="nav-text">MainScheduler 串行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SerialDispatchQueueScheduler-串行"><span class="nav-number">3.</span> <span class="nav-text">SerialDispatchQueueScheduler 串行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ConcurrentDispatchQueueScheduler-并行"><span class="nav-number">4.</span> <span class="nav-text">ConcurrentDispatchQueueScheduler 并行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OperationQueueScheduler-并行"><span class="nav-number">5.</span> <span class="nav-text">OperationQueueScheduler 并行</span></a></li></ol></div>
             
 
           </div>
