@@ -25,8 +25,8 @@
 
 <script>
     (function(){
-        if('520'){
-            if (prompt('请输入文章密码') !== '520'){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
                 alert('密码错误！');
                 history.back();
             }
@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Swift,RxSwift,线程," />
 
 
 
@@ -105,17 +105,18 @@
 
 
 
-<meta name="description" content="类继承.&amp;gt;继承是类独有的，结构体和枚举类都不具有这个功能。继承就好像子承父业一样，一个继承的类（称为子类subClass）可以获得被继承的类（称为父类superClass）的属性，方法和其他特性。  子类可以重写父类的方法，也可以添加自己的属性，还可以为继承而来的属性添加观察器（对继承而来的存储和计算属性都可以）  基类 一个不继承自任何类的类称为基类。在Swift中，是没有共同的终极父类的">
+<meta name="description" content="#线程 线程切换 RxSwift 中切换线程  sequence1.observeOn(backgroundScheduler) // 切换到后台线程.map &amp;#123; n in    print(&quot;在 background scheduler 执行&quot;)&amp;#125;.observeOn(MainScheduler.instance) // 切换到主线程.map &amp;#123; n in    p">
+<meta name="keywords" content="Swift,RxSwift,线程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift-Grammar-Inheritance-类继承基本用法">
-<meta property="og:url" content="http://yoursite.com/2017/12/01/Swift-Grammar/Swift-Grammar-Inheritance-类继承基本用法/index.html">
+<meta property="og:title" content="Swift-RxSwift-线程">
+<meta property="og:url" content="http://yoursite.com/2017/12/19/Swift-RxSwift/Swift-RxSwift-线程/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="类继承.&amp;gt;继承是类独有的，结构体和枚举类都不具有这个功能。继承就好像子承父业一样，一个继承的类（称为子类subClass）可以获得被继承的类（称为父类superClass）的属性，方法和其他特性。  子类可以重写父类的方法，也可以添加自己的属性，还可以为继承而来的属性添加观察器（对继承而来的存储和计算属性都可以）  基类 一个不继承自任何类的类称为基类。在Swift中，是没有共同的终极父类的">
+<meta property="og:description" content="#线程 线程切换 RxSwift 中切换线程  sequence1.observeOn(backgroundScheduler) // 切换到后台线程.map &amp;#123; n in    print(&quot;在 background scheduler 执行&quot;)&amp;#125;.observeOn(MainScheduler.instance) // 切换到主线程.map &amp;#123; n in    p">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-09T16:25:39.000Z">
+<meta property="og:updated_time" content="2017-12-19T06:15:50.220Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift-Grammar-Inheritance-类继承基本用法">
-<meta name="twitter:description" content="类继承.&amp;gt;继承是类独有的，结构体和枚举类都不具有这个功能。继承就好像子承父业一样，一个继承的类（称为子类subClass）可以获得被继承的类（称为父类superClass）的属性，方法和其他特性。  子类可以重写父类的方法，也可以添加自己的属性，还可以为继承而来的属性添加观察器（对继承而来的存储和计算属性都可以）  基类 一个不继承自任何类的类称为基类。在Swift中，是没有共同的终极父类的">
+<meta name="twitter:title" content="Swift-RxSwift-线程">
+<meta name="twitter:description" content="#线程 线程切换 RxSwift 中切换线程  sequence1.observeOn(backgroundScheduler) // 切换到后台线程.map &amp;#123; n in    print(&quot;在 background scheduler 执行&quot;)&amp;#125;.observeOn(MainScheduler.instance) // 切换到主线程.map &amp;#123; n in    p">
 
 
 
@@ -144,13 +145,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/01/Swift-Grammar/Swift-Grammar-Inheritance-类继承基本用法/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/19/Swift-RxSwift/Swift-RxSwift-线程/"/>
 
 
 
 
 
-  <title>Swift-Grammar-Inheritance-类继承基本用法 | 千夜、おれはおまえをずっと爱している</title>
+  <title>Swift-RxSwift-线程 | 千夜、おれはおまえをずっと爱している</title>
   
 
 
@@ -331,7 +332,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/01/Swift-Grammar/Swift-Grammar-Inheritance-类继承基本用法/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/19/Swift-RxSwift/Swift-RxSwift-线程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -348,7 +349,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Swift-Grammar-Inheritance-类继承基本用法</h1>
+          <h1 class="post-title" itemprop="name headline">Swift-RxSwift-线程</h1>
         
 
         <div class="post-meta">
@@ -360,8 +361,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-01T16:23:00+08:00">
-                2017-12-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-19T14:04:51+08:00">
+                2017-12-19
               </time>
             
 
@@ -394,19 +395,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/Grammar/" itemprop="url" rel="index">
-                    <span itemprop="name">Grammar</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/Grammar/Inheritance/" itemprop="url" rel="index">
-                    <span itemprop="name">Inheritance</span>
+                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
                   </a>
                 </span>
 
@@ -422,7 +412,7 @@
 
           
           
-             <span id="/2017/12/01/Swift-Grammar/Swift-Grammar-Inheritance-类继承基本用法/" class="leancloud_visitors" data-flag-title="Swift-Grammar-Inheritance-类继承基本用法">
+             <span id="/2017/12/19/Swift-RxSwift/Swift-RxSwift-线程/" class="leancloud_visitors" data-flag-title="Swift-RxSwift-线程">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -453,55 +443,80 @@
       
 
       
-        <h1 id="类继承"><a href="#类继承" class="headerlink" title="类继承"></a>类继承</h1><p>.&gt;继承是类独有的，结构体和枚举类都不具有这个功能。<br>继承就好像子承父业一样，一个继承的类（称为子类subClass）可以获得被继承的类（称为父类superClass）的属性，方法和其他特性。</p>
+        <p>#线程</p>
+<h2 id="线程切换"><a href="#线程切换" class="headerlink" title="线程切换"></a>线程切换</h2><blockquote>
+<p>RxSwift 中切换线程</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">sequence1</div><div class="line">.observeOn(backgroundScheduler) <span class="comment">// 切换到后台线程</span></div><div class="line">.<span class="built_in">map</span> &#123; n <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"在 background scheduler 执行"</span>)</div><div class="line">&#125;</div><div class="line">.observeOn(<span class="type">MainScheduler</span>.instance) <span class="comment">// 切换到主线程</span></div><div class="line">.<span class="built_in">map</span> &#123; n <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"在 main scheduler"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
-<p>子类可以重写父类的方法，也可以添加自己的属性，还可以为继承而来的属性添加观察器（对继承而来的存储和计算属性都可以）</p>
-</blockquote>
-<h1 id="基类"><a href="#基类" class="headerlink" title="基类"></a>基类</h1><blockquote>
-<p>一个不继承自任何类的类称为基类。<br>在Swift中，是没有共同的终极父类的。oc和java都是有终级父类的</p>
-<p>定义一个Animal基类</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;  </div><div class="line">     <span class="keyword">var</span> life : <span class="type">Int</span> = <span class="number">0</span>  </div><div class="line">     <span class="keyword">var</span> description: <span class="type">String</span>&#123;  </div><div class="line">         <span class="keyword">return</span> <span class="string">"An animal with a life of \(life)"</span>  </div><div class="line">     &#125;  </div><div class="line">       </div><div class="line">     <span class="function"><span class="keyword">func</span> <span class="title">makeSounds</span><span class="params">()</span></span> &#123;  </div><div class="line">       </div><div class="line">     &#125;  </div><div class="line"> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>继承语法</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  &lt;span style=<span class="string">"color:#ff0000;"</span>&gt;<span class="class"><span class="keyword">class</span> <span class="title">Dog</span>: <span class="title">Animal</span>&lt;/<span class="title">span</span>&gt; </span>&#123;  </div><div class="line">    <span class="keyword">var</span> name : <span class="type">String</span> = <span class="string">"larry"</span>  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>上面的Dog类继承自Animal类，并且添加了自己的name属性。我们可以修改一下dog继承的属性，然后打印一下 </p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> dog = <span class="type">Dog</span>()  </div><div class="line">dog.life = <span class="number">10</span>  </div><div class="line"><span class="built_in">print</span>(<span class="string">"dog's life is"</span>,dog.life)  <span class="comment">//dog's life is 10</span></div></pre></td></tr></table></figure>
-<h1 id="覆盖（override）父类属性"><a href="#覆盖（override）父类属性" class="headerlink" title="覆盖（override）父类属性"></a>覆盖（override）父类属性</h1><blockquote>
-<p>对于继承而来的存储属性或者计算属性，我们可以通过重写这个属性的getter和setter方法来实现覆盖。下面是几条规则：</p>
+<p>调用一下 observeOn 就切换到我们想要的线程了<br>当前的线程切换支持 GCD 和 NSOperation<br>在线程这部分主要有两个操作符：observeOn 和 subscribeOn ，常用的还是 observeOn</p>
 </blockquote>
 <ul>
-<li><p>1、当你重写了setter方法的时候，一定要重写getter方法。但是可以只重写getter方法。</p>
-</li>
-<li><p>2、覆盖属性的时候，属性名和类型都必须和继承的属性一致才算覆盖。并且前面要加上override关键字。</p>
-</li>
-<li><p>3、你可以将继承的只读属性重写为读写属性，但是不能将继承的读写属性重写为只读属性。</p>
-</li>
+<li>调用 observeOn 指定接下来的操作在哪个线程</li>
+<li>调用 subscribeOn 决定订阅者的操作执行在哪个线程</li>
 </ul>
 <blockquote>
-<p>下面重写Animal的description属性</p>
+<p>当然，如果我们没有明确调用这两个操作，后面的操作都是在当前线程执行的</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span>: <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> name : <span class="type">String</span> = <span class="string">"larry"</span>  </div><div class="line">    <span class="keyword">override</span> <span class="keyword">var</span> description: <span class="type">String</span> &#123;  </div><div class="line">        <span class="keyword">get</span>&#123;  </div><div class="line">            <span class="keyword">return</span> <span class="string">"It's a dog with the name of \(name)"</span>  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="覆盖属性观察器"><a href="#覆盖属性观察器" class="headerlink" title="覆盖属性观察器"></a>覆盖属性观察器</h1><blockquote>
-<p>规则：</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="class"><span class="keyword">extension</span> <span class="title">ObservableType</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">observeOn</span><span class="params">(scheduler: ImmediateSchedulerType)</span></span> -&gt; <span class="type">RxSwift</span>.<span class="type">Observable</span>&lt;<span class="type">Self</span>.<span class="type">E</span>&gt;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">subscribeOn</span><span class="params">(scheduler: ImmediateSchedulerType)</span></span> -&gt; <span class="type">RxSwift</span>.<span class="type">Observable</span>&lt;<span class="type">Self</span>.<span class="type">E</span>&gt;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>两个方法的声明几乎都是一样的，我们只需要传入一个满足 ImmediateSchedulerType 协议的东西</p>
+</blockquote>
+<h2 id="MainScheduler-串行"><a href="#MainScheduler-串行" class="headerlink" title="MainScheduler 串行"></a>MainScheduler 串行</h2><blockquote>
+<p>在 Rx 中我们已经有主线程切换</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">.observeOn(<span class="type">MainScheduler</span>.instance)<span class="comment">//切换到了主线程</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>MainScheduler 有一个很有用的功能</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">ensureExecutingOnScheduler</span>()</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>可以在需要保证代码一定执行在主线程的地方调用 MainScheduler.ensureExecutingOnScheduler()<br>特别是在线程切换来切换去的情况下，或者是调用其他的库，我们不确定当前是否在执行在主线程<br>毕竟 UI 的更新还是要在主线程执行的</p>
+</blockquote>
+<h2 id="SerialDispatchQueueScheduler-串行"><a href="#SerialDispatchQueueScheduler-串行" class="headerlink" title="SerialDispatchQueueScheduler 串行"></a>SerialDispatchQueueScheduler 串行</h2><ul>
+<li>SerialDispatchQueueScheduler ，这个就是一个串行的调度器，上面的 MainScheduler 就是继承的这个</li>
+</ul>
+<blockquote>
+<p>DispatchQueueSchedulerQOS<br>iOS 8 新增加了 QOS ，分别有以下五种等级：</p>
 </blockquote>
 <ul>
-<li><p>1、不能对继承的常量，或者只读属性添加属性观察器</p>
-</li>
-<li><p>2、不能同时对一个继承属性同时添加属性观察器和setter方法。因为setter方法已经可以提供属性观察器的功能。</p>
-</li>
-<li><p>3、即使覆盖了之后，如果父类的该属性有观察器，那么当值修改的时候，父类的观察器也会被调用</p>
-</li>
+<li>QOS_CLASS_USER_INTERACTIVE</li>
+<li>QOS_CLASS_USER_INITIATED</li>
+<li>QOS_CLASS_DEFAULT</li>
+<li>QOS_CLASS_UTILITY</li>
+<li>QOS_CLASS_BACKGROUND</li>
 </ul>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Dog</span>: <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> name : <span class="type">String</span> = <span class="string">"larry"</span>  </div><div class="line">      </div><div class="line">    <span class="keyword">override</span> <span class="keyword">var</span> life: <span class="type">Int</span> &#123;  </div><div class="line">        <span class="keyword">didSet</span>&#123;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"The dog's life is \(life)"</span>)  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="keyword">override</span> <span class="keyword">var</span> description: <span class="type">String</span> &#123;  </div><div class="line">        <span class="keyword">get</span>&#123;  </div><div class="line">            <span class="keyword">return</span> <span class="string">"It's a dog with the name of \(name)"</span>  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="覆盖父类方法"><a href="#覆盖父类方法" class="headerlink" title="覆盖父类方法"></a>覆盖父类方法</h1><blockquote>
-<p>同样的，加上override后，重写父类方法就可以</p>
+<blockquote>
+<p>在 Rx 中，我们用 enum 创建了 DispatchQueueSchedulerQOS ：</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">makeSounds</span><span class="params">()</span></span> &#123;  </div><div class="line">        <span class="built_in">print</span>(<span class="string">"wang! wang!"</span>)  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="防止覆盖"><a href="#防止覆盖" class="headerlink" title="防止覆盖"></a>防止覆盖</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">用<span class="keyword">final</span>关键字去修饰就可以了。比如<span class="keyword">final</span> <span class="keyword">var</span>，<span class="keyword">final</span> <span class="function"><span class="keyword">func</span>， <span class="title">final</span> <span class="title">class</span> <span class="title">func</span>， <span class="title">final</span> <span class="title">subscript</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">DispatchQueueSchedulerQOS</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">UserInteractive</span></div><div class="line">    <span class="keyword">case</span> <span class="type">UserInitiated</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Default</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Utility</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Background</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>和上面的等级是一一对应的<br>用 QOS 创建一个 DispatchQueueSchedulerQOS 非常方便</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">convenience</span> <span class="keyword">init</span>(globalConcurrentQueueQOS: <span class="type">DispatchQueueSchedulerQOS</span>, </div><div class="line">internalSerialQueueName: <span class="type">String</span> = <span class="string">"rx.global_dispatch_queue.serial"</span>)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>用一个初始化就 OK ：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">SerialDispatchQueueScheduler</span>(globalConcurrentQueueQOS: .<span class="type">Background</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>更推荐你使用已有的 QOS 管理多线程问题，毕竟这是一个线程等级更明确的方案。即便是创建自己的 GCD 我也建议直接使用 SerialDispatchQueueScheduler ，毕竟自己再去实现那些协议很麻烦不是吗</li>
+</ul>
+<blockquote>
+<p>可以通过以下两种方式创建自己的 GCD ：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">public</span> <span class="keyword">convenience</span> <span class="keyword">init</span>(internalSerialQueueName: <span class="type">String</span>, serialQueueConfiguration: ((dispatch_queue_t) -&gt; <span class="type">Void</span>)? = <span class="literal">nil</span>)</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">convenience</span> <span class="keyword">init</span>(queue: dispatch_queue_t, internalSerialQueueName: <span class="type">String</span>)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>MainScheduler 是继承 SerialDispatchQueueScheduler 的</p>
+</blockquote>
+<h2 id="ConcurrentDispatchQueueScheduler-并行"><a href="#ConcurrentDispatchQueueScheduler-并行" class="headerlink" title="ConcurrentDispatchQueueScheduler 并行"></a>ConcurrentDispatchQueueScheduler 并行</h2><blockquote>
+<p>同样我们还有一个并行的 Scheduler ：ConcurrentDispatchQueueScheduler<br>API 的使用和 SerialDispatchQueueScheduler 是一样的</p>
+</blockquote>
+<h2 id="OperationQueueScheduler-并行"><a href="#OperationQueueScheduler-并行" class="headerlink" title="OperationQueueScheduler 并行"></a>OperationQueueScheduler 并行</h2><blockquote>
+<p>使用 NSOperationQueue 最大的好处就是我们可以很方便的定制最大并发线程数量，即设置 maxConcurrentOperationCount<br>创建方法也很简单，只需要传入一个 NSOperationQueue</p>
+</blockquote>
+<p>难懂啊</p>
+<p><a href="http://t.swift.gg/t/rxswift-course" target="_blank" rel="external">原文</a></p>
+
       
     </div>
     
@@ -516,6 +531,16 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
+          
+            <a href="/tags/线程/" rel="tag"># 线程</a>
+          
+        </div>
+      
 
       
       
@@ -525,8 +550,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/01/Swift-Grammar/Swift-Grammar-Subscripts-下标/" rel="next" title="Swift-Grammar-Subscripts-下标">
-                <i class="fa fa-chevron-left"></i> Swift-Grammar-Subscripts-下标
+              <a href="/2017/12/19/Swift-RxSwift/Swift-RxSwift-操作/" rel="next" title="Swift-RxSwift-操作">
+                <i class="fa fa-chevron-left"></i> Swift-RxSwift-操作
               </a>
             
           </div>
@@ -534,10 +559,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/01/Swift-Grammar/Swift-Grammar-初始化-析构/" rel="prev" title="Swift-Grammar-Initialization初始化&Deinitialization析构">
-                Swift-Grammar-Initialization初始化&Deinitialization析构 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -671,7 +692,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#类继承"><span class="nav-number">1.</span> <span class="nav-text">类继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基类"><span class="nav-number">2.</span> <span class="nav-text">基类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#覆盖（override）父类属性"><span class="nav-number">3.</span> <span class="nav-text">覆盖（override）父类属性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#覆盖属性观察器"><span class="nav-number">4.</span> <span class="nav-text">覆盖属性观察器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#覆盖父类方法"><span class="nav-number">5.</span> <span class="nav-text">覆盖父类方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#防止覆盖"><span class="nav-number">6.</span> <span class="nav-text">防止覆盖</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#线程切换"><span class="nav-number">1.</span> <span class="nav-text">线程切换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MainScheduler-串行"><span class="nav-number">2.</span> <span class="nav-text">MainScheduler 串行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SerialDispatchQueueScheduler-串行"><span class="nav-number">3.</span> <span class="nav-text">SerialDispatchQueueScheduler 串行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ConcurrentDispatchQueueScheduler-并行"><span class="nav-number">4.</span> <span class="nav-text">ConcurrentDispatchQueueScheduler 并行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OperationQueueScheduler-并行"><span class="nav-number">5.</span> <span class="nav-text">OperationQueueScheduler 并行</span></a></li></ol></div>
             
 
           </div>

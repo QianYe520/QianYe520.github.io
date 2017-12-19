@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title><![CDATA[Swift-RxSwift-线程]]></title>
-<url>../../../../../../../../2017/12/19/Swift-RxSwift-线程/</url>
+<url>../../../../../../../../2017/12/19/Swift-RxSwift/Swift-RxSwift-线程/</url>
     <content type="text"><![CDATA[#线程 线程切换 RxSwift 中切换线程 sequence1.observeOn(backgroundScheduler) // 切换到后台线程.map &#123; n in print("在 background scheduler 执行")&#125;.observeOn(MainScheduler.instance) // 切换到主线程.map &#123; n in print("在 main scheduler")&#125; 调用一下 observeOn 就切换到我们想要的线程了当前的线程切换支持 GCD 和 NSOperation在线程这部分主要有两个操作符：observeOn 和 subscribeOn ，常用的还是 observeOn 调用 observeOn 指定接下来的操作在哪个线程 调用 subscribeOn 决定订阅者的操作执行在哪个线程 当然，如果我们没有明确调用这两个操作，后面的操作都是在当前线程执行的 extension ObservableType &#123; public func observeOn(scheduler: ImmediateSchedulerType) -&gt; RxSwift.Observable&lt;Self.E&gt; public func subscribeOn(scheduler: ImmediateSchedulerType) -&gt; RxSwift.Observable&lt;Self.E&gt;&#125; 两个方法的声明几乎都是一样的，我们只需要传入一个满足 ImmediateSchedulerType 协议的东西 MainScheduler 串行 在 Rx 中我们已经有主线程切换 .observeOn(MainScheduler.instance)//切换到了主线程 MainScheduler 有一个很有用的功能 public class func ensureExecutingOnScheduler() 可以在需要保证代码一定执行在主线程的地方调用 MainScheduler.ensureExecutingOnScheduler()特别是在线程切换来切换去的情况下，或者是调用其他的库，我们不确定当前是否在执行在主线程毕竟 UI 的更新还是要在主线程执行的 SerialDispatchQueueScheduler 串行 SerialDispatchQueueScheduler ，这个就是一个串行的调度器，上面的 MainScheduler 就是继承的这个 DispatchQueueSchedulerQOSiOS 8 新增加了 QOS ，分别有以下五种等级： QOS_CLASS_USER_INTERACTIVE QOS_CLASS_USER_INITIATED QOS_CLASS_DEFAULT QOS_CLASS_UTILITY QOS_CLASS_BACKGROUND 在 Rx 中，我们用 enum 创建了 DispatchQueueSchedulerQOS ： public enum DispatchQueueSchedulerQOS &#123; case UserInteractive case UserInitiated case Default case Utility case Background&#125; 和上面的等级是一一对应的用 QOS 创建一个 DispatchQueueSchedulerQOS 非常方便 public convenience init(globalConcurrentQueueQOS: DispatchQueueSchedulerQOS, internalSerialQueueName: String = "rx.global_dispatch_queue.serial") 用一个初始化就 OK ： SerialDispatchQueueScheduler(globalConcurrentQueueQOS: .Background) 更推荐你使用已有的 QOS 管理多线程问题，毕竟这是一个线程等级更明确的方案。即便是创建自己的 GCD 我也建议直接使用 SerialDispatchQueueScheduler ，毕竟自己再去实现那些协议很麻烦不是吗 可以通过以下两种方式创建自己的 GCD ： public convenience init(internalSerialQueueName: String, serialQueueConfiguration: ((dispatch_queue_t) -&gt; Void)? = nil)public convenience init(queue: dispatch_queue_t, internalSerialQueueName: String) MainScheduler 是继承 SerialDispatchQueueScheduler 的 ConcurrentDispatchQueueScheduler 并行 同样我们还有一个并行的 Scheduler ：ConcurrentDispatchQueueSchedulerAPI 的使用和 SerialDispatchQueueScheduler 是一样的 OperationQueueScheduler 并行 使用 NSOperationQueue 最大的好处就是我们可以很方便的定制最大并发线程数量，即设置 maxConcurrentOperationCount创建方法也很简单，只需要传入一个 NSOperationQueue 难懂啊 原文]]></content>
       <categories>
         <category>Swift</category>
@@ -1078,8 +1078,8 @@
         <category>NSSet</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>iOS</tag>
+        <tag>UIKit</tag>
         <tag>NSSet</tag>
       </tags>
   </entry>
@@ -1093,8 +1093,8 @@
         <category>NSDictionary</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>iOS</tag>
+        <tag>UIKit</tag>
         <tag>NSDictionary</tag>
       </tags>
   </entry>
@@ -1107,8 +1107,8 @@
         <category>UIKit</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>iOS</tag>
+        <tag>UIKit</tag>
       </tags>
   </entry>
   <entry>
@@ -1477,8 +1477,8 @@
         <category>Layer</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>iOS</tag>
+        <tag>UIKit</tag>
         <tag>Layer</tag>
         <tag>Shadow</tag>
       </tags>
@@ -1492,8 +1492,8 @@
         <category>UIKit</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>iOS</tag>
+        <tag>UIKit</tag>
         <tag>Autoreleasepool</tag>
       </tags>
   </entry>
@@ -1519,9 +1519,9 @@
         <category>UIScrollView</category>
       </categories>
       <tags>
+        <tag>iOS</tag>
         <tag>UIKit</tag>
         <tag>UIScrollView</tag>
-        <tag>iOS</tag>
       </tags>
   </entry>
   <entry>
