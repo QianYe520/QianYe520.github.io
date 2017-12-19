@@ -461,7 +461,7 @@
 <p>一个不继承自任何类的类称为基类。<br>在Swift中，是没有共同的终极父类的。oc和java都是有终级父类的</p>
 <p>定义一个Animal基类</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;  </div><div class="line">     <span class="keyword">var</span> life : <span class="type">Int</span> = <span class="number">0</span>  </div><div class="line">     <span class="keyword">var</span> description: <span class="type">String</span>&#123;  </div><div class="line">         <span class="keyword">return</span> <span class="string">"An animal with a life of \(life)"</span>  </div><div class="line">     &#125;  </div><div class="line">       </div><div class="line">     <span class="function"><span class="keyword">func</span> <span class="title">makeSounds</span><span class="params">()</span></span> &#123;  </div><div class="line">       </div><div class="line">     &#125;  </div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;  </div><div class="line">     <span class="keyword">var</span> life : <span class="type">Int</span> = <span class="number">0</span>  </div><div class="line">     <span class="keyword">var</span> description: <span class="type">String</span>&#123;  </div><div class="line">         <span class="keyword">return</span> <span class="string">"An animal with a life of <span class="subst">\(life)</span>"</span>  </div><div class="line">     &#125;  </div><div class="line">       </div><div class="line">     <span class="function"><span class="keyword">func</span> <span class="title">makeSounds</span><span class="params">()</span></span> &#123;  </div><div class="line">       </div><div class="line">     &#125;  </div><div class="line"> &#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>继承语法</p>
 </blockquote>
@@ -484,7 +484,7 @@
 <blockquote>
 <p>下面重写Animal的description属性</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span>: <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> name : <span class="type">String</span> = <span class="string">"larry"</span>  </div><div class="line">    <span class="keyword">override</span> <span class="keyword">var</span> description: <span class="type">String</span> &#123;  </div><div class="line">        <span class="keyword">get</span>&#123;  </div><div class="line">            <span class="keyword">return</span> <span class="string">"It's a dog with the name of \(name)"</span>  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span>: <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> name : <span class="type">String</span> = <span class="string">"larry"</span>  </div><div class="line">    <span class="keyword">override</span> <span class="keyword">var</span> description: <span class="type">String</span> &#123;  </div><div class="line">        <span class="keyword">get</span>&#123;  </div><div class="line">            <span class="keyword">return</span> <span class="string">"It's a dog with the name of <span class="subst">\(name)</span>"</span>  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h1 id="覆盖属性观察器"><a href="#覆盖属性观察器" class="headerlink" title="覆盖属性观察器"></a>覆盖属性观察器</h1><blockquote>
 <p>规则：</p>
 </blockquote>
@@ -496,7 +496,7 @@
 <li><p>3、即使覆盖了之后，如果父类的该属性有观察器，那么当值修改的时候，父类的观察器也会被调用</p>
 </li>
 </ul>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Dog</span>: <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> name : <span class="type">String</span> = <span class="string">"larry"</span>  </div><div class="line">      </div><div class="line">    <span class="keyword">override</span> <span class="keyword">var</span> life: <span class="type">Int</span> &#123;  </div><div class="line">        <span class="keyword">didSet</span>&#123;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"The dog's life is \(life)"</span>)  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="keyword">override</span> <span class="keyword">var</span> description: <span class="type">String</span> &#123;  </div><div class="line">        <span class="keyword">get</span>&#123;  </div><div class="line">            <span class="keyword">return</span> <span class="string">"It's a dog with the name of \(name)"</span>  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Dog</span>: <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> name : <span class="type">String</span> = <span class="string">"larry"</span>  </div><div class="line">      </div><div class="line">    <span class="keyword">override</span> <span class="keyword">var</span> life: <span class="type">Int</span> &#123;  </div><div class="line">        <span class="keyword">didSet</span>&#123;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"The dog's life is <span class="subst">\(life)</span>"</span>)  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="keyword">override</span> <span class="keyword">var</span> description: <span class="type">String</span> &#123;  </div><div class="line">        <span class="keyword">get</span>&#123;  </div><div class="line">            <span class="keyword">return</span> <span class="string">"It's a dog with the name of <span class="subst">\(name)</span>"</span>  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h1 id="覆盖父类方法"><a href="#覆盖父类方法" class="headerlink" title="覆盖父类方法"></a>覆盖父类方法</h1><blockquote>
 <p>同样的，加上override后，重写父类方法就可以</p>
 </blockquote>
@@ -614,7 +614,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">136</span>
+                <span class="site-state-item-count">137</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -636,7 +636,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">55</span>
+                <span class="site-state-item-count">56</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
