@@ -178,9 +178,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Swift-RxSwift-简介以及简单学习使用]]></title>
-<url>../../../../../../../../2017/12/15/Swift-RxSwift/Swift-RxSwift-简介以及简单学习使用/</url>
-    <content type="text"><![CDATA[Swift-RxSwift-简介以及简单学习使用 RxSwift 项目文档中 Why 已有详细介绍 Bindings [RxWhy] -&gt; [Bindings] -&gt; [BindingsViewController.swift] Observable.combineLatest(firstName.rx_text, lastName.rx_text) &#123; $0 + " " + $1 &#125; // ① .map &#123; "Greeting \($0)" &#125; // ② .bindTo(greetingLabel.rx_text) // ③ 将 firstName 和 lastName 的 text 属性结合起来，并进行合并处理，也就是 $0 + “ “ + $1 这部分，用空格将两个值合并起来作为结果传递给后面使用 使用 map 的方法，将上一步得到值前面加上一个 Greeting ，并将该值传递给后面使用 bindTo 就是绑定，将上一步的值绑定到 greetingLabel 的 text 代码就是实时的执行 greetingLabel.text = "Greeting " + firstName.text + " " + lastName.text 要求是实时 每当 fisrtName.text 或者 lastName.text 改变时， greetingLabel.text 都要随之改变 ContentOffset 经常通过 delegate 处理 scrollView 的 contentOffset 变化问题 public func scrollViewDidScroll(scrollView: UIScrollView) &#123; self.title = "contentOffset.x = \(scrollView.contentOffset.y)"&#125; 可能就和关联的逻辑分家了，内聚性啊…而且多个 scrollView ，还要做额外的判断处理，复杂性可想而知也有写过通过 closure 来解决的，其实可以认为 Rx 自带了这些功能（而且更强大[RxWhy] -&gt; [ContentOffset] -&gt; [ContentOffsetViewController.swift]Note: 在使用了 rx_contentOffset 后，最好不要去更改 delegate同样 button 也有类似的功能 tableView.rx_contentOffset .map &#123; $0.y &#125; .subscribeNext &#123; [unowned self] in self.title = "contentOffset.x = \($0)" &#125;.addDisposableTo(disposeBag) Tap button 的点击事件是一个很棘手的问题了，建立一个 target ，同时还使用的带字符串的 Select，button 的点击也和响应逻辑分家了处理方式会有两个问题 使用了带 String 的 Target 点击的关联事件代码和处理的逻辑分开了 button.addTarget(self, action: "tapButton", forControlEvents: .TouchDragInside) Rx 已经提供了 closure 的功能 button.rx_tap .subscribeNext &#123; print("Tap") &#125;.addDisposableTo(disposeBag) 资料来源]]></content>
+    <title><![CDATA[Swift-RxSwift-创建序列Observable]]></title>
+<url>../../../../../../../../2017/12/15/Swift-RxSwift/Swift-RxSwift-创建序列Observable/</url>
+    <content type="text"><![CDATA[Rx 几种创建方式 asObservable 返回一个序列 create 使用 Swift 闭包的方式创建序列 deferred 只有在有观察者订阅时，才去创建序列 empty 创建一个空的序列，只发射一个 .Completed error 创建一个发射 error 终止的序列 toObservable 使用 SequenceType 创建序列 interval 创建一个每隔一段时间就发射的递增序列 never 不创建序列，也不发送通知 just 只创建包含一个元素的序列。换言之，只发送一个值和 .Completed of 通过一组元素创建一个序列 range 创建一个有范围的递增序列 repeatElement 创建一个发射重复值的序列 timer 创建一个带延迟的序列 create 使用 Swift 闭包的方式创建序列，这里创建了一个 Just 的示例 let myJust = &#123; (singleElement: Int) -&gt; Observable&lt;Int&gt; in return Observable.create &#123; observer in observer.on(.Next(singleElement)) observer.on(.Completed) return NopDisposable.instance &#125;&#125;_ = myJust(5) .subscribe &#123; event in print(event)&#125; deferred 只有在有观察者订阅时，才去创建序列 let deferredSequence: Observable&lt;Int&gt; = Observable.deferred &#123; print(&quot;creating&quot;) return Observable.create &#123; observer in print(&quot;emmiting&quot;) observer.on(.Next(0)) observer.on(.Next(1)) observer.on(.Next(2)) return NopDisposable.instance &#125;&#125;_ = deferredSequence .subscribe &#123; event in print(event)&#125;_ = deferredSequence .subscribe &#123; event in print(event)&#125; empty 创建一个空的序列，只发射一个 .Completed： let emptySequence = Observable&lt;Int&gt;.empty()_ = emptySequence .subscribe &#123; event in print(event)&#125; error 创建一个发射 error 终止的序列 let error = NSError(domain: "Test", code: -1, userInfo: nil)let erroredSequence = Observable&lt;Int&gt;.error(error)_ = erroredSequence .subscribe &#123; event in print(event)&#125; toObservable 使用 SequenceType 创建序列： let sequenceFromArray = [1, 2, 3, 4, 5].toObservable()_ = sequenceFromArray .subscribe &#123; event in print(event)&#125; interval 创建一个每隔一段时间就发射的递增序列： let intervalSequence = Observable&lt;Int&gt;.interval(3, scheduler: MainScheduler.instance)_ = intervalSequence.subscribe &#123; event in print(event)&#125; never 不创建序列，也不发送通知： let neverSequence = Observable&lt;Int&gt;.never()_ = neverSequence .subscribe &#123; _ in print("这句话永远不会打出来.")&#125; just 只创建包含一个元素的序列。换言之，只发送一个值和 .Completed： et singleElementSequence = Observable.just(32)_ = singleElementSequence .subscribe &#123; event in print(event)&#125; of 通过一组元素创建一个序列： let sequenceOfElements/* : Observable&lt;Int&gt; */ = Observable.of(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)_ = sequenceOfElements .subscribe &#123; event in print(event)&#125; range 创建一个有范围的递增序列： let rangeSequence = Observable.range(start: 1, count: 10)_ = rangeSequence.subscribe &#123; event in print(event)&#125; repeatElement 创建一个发射重复值的序列： let repeatElementSequence = Observable.repeatElement(1)_ = repeatElementSequence.subscribe &#123; event in print(event)&#125; timer 创建一个带延迟的序列： let timerSequence = Observable&lt;Int&gt;.timer(1, period: 1, scheduler: MainScheduler.instance)_ = timerSequence.subscribe &#123; event in print(event)&#125;]]></content>
       <categories>
         <category>Swift</category>
         <category>RxSwift</category>
@@ -191,9 +191,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Swift-RxSwift-创建序列Observable]]></title>
-<url>../../../../../../../../2017/12/15/Swift-RxSwift/Swift-RxSwift-创建序列Observable/</url>
-    <content type="text"><![CDATA[Rx 几种创建方式 asObservable 返回一个序列 create 使用 Swift 闭包的方式创建序列 deferred 只有在有观察者订阅时，才去创建序列 empty 创建一个空的序列，只发射一个 .Completed error 创建一个发射 error 终止的序列 toObservable 使用 SequenceType 创建序列 interval 创建一个每隔一段时间就发射的递增序列 never 不创建序列，也不发送通知 just 只创建包含一个元素的序列。换言之，只发送一个值和 .Completed of 通过一组元素创建一个序列 range 创建一个有范围的递增序列 repeatElement 创建一个发射重复值的序列 timer 创建一个带延迟的序列 create 使用 Swift 闭包的方式创建序列，这里创建了一个 Just 的示例 let myJust = &#123; (singleElement: Int) -&gt; Observable&lt;Int&gt; in return Observable.create &#123; observer in observer.on(.Next(singleElement)) observer.on(.Completed) return NopDisposable.instance &#125;&#125;_ = myJust(5) .subscribe &#123; event in print(event)&#125; deferred 只有在有观察者订阅时，才去创建序列 let deferredSequence: Observable&lt;Int&gt; = Observable.deferred &#123; print(&quot;creating&quot;) return Observable.create &#123; observer in print(&quot;emmiting&quot;) observer.on(.Next(0)) observer.on(.Next(1)) observer.on(.Next(2)) return NopDisposable.instance &#125;&#125;_ = deferredSequence .subscribe &#123; event in print(event)&#125;_ = deferredSequence .subscribe &#123; event in print(event)&#125; empty 创建一个空的序列，只发射一个 .Completed： let emptySequence = Observable&lt;Int&gt;.empty()_ = emptySequence .subscribe &#123; event in print(event)&#125; error 创建一个发射 error 终止的序列 let error = NSError(domain: "Test", code: -1, userInfo: nil)let erroredSequence = Observable&lt;Int&gt;.error(error)_ = erroredSequence .subscribe &#123; event in print(event)&#125; toObservable 使用 SequenceType 创建序列： let sequenceFromArray = [1, 2, 3, 4, 5].toObservable()_ = sequenceFromArray .subscribe &#123; event in print(event)&#125; interval 创建一个每隔一段时间就发射的递增序列： let intervalSequence = Observable&lt;Int&gt;.interval(3, scheduler: MainScheduler.instance)_ = intervalSequence.subscribe &#123; event in print(event)&#125; never 不创建序列，也不发送通知： let neverSequence = Observable&lt;Int&gt;.never()_ = neverSequence .subscribe &#123; _ in print("这句话永远不会打出来.")&#125; just 只创建包含一个元素的序列。换言之，只发送一个值和 .Completed： et singleElementSequence = Observable.just(32)_ = singleElementSequence .subscribe &#123; event in print(event)&#125; of 通过一组元素创建一个序列： let sequenceOfElements/* : Observable&lt;Int&gt; */ = Observable.of(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)_ = sequenceOfElements .subscribe &#123; event in print(event)&#125; range 创建一个有范围的递增序列： let rangeSequence = Observable.range(start: 1, count: 10)_ = rangeSequence.subscribe &#123; event in print(event)&#125; repeatElement 创建一个发射重复值的序列： let repeatElementSequence = Observable.repeatElement(1)_ = repeatElementSequence.subscribe &#123; event in print(event)&#125; timer 创建一个带延迟的序列： let timerSequence = Observable&lt;Int&gt;.timer(1, period: 1, scheduler: MainScheduler.instance)_ = timerSequence.subscribe &#123; event in print(event)&#125;]]></content>
+    <title><![CDATA[Swift-RxSwift-简介以及简单学习使用]]></title>
+<url>../../../../../../../../2017/12/15/Swift-RxSwift/Swift-RxSwift-简介以及简单学习使用/</url>
+    <content type="text"><![CDATA[Swift-RxSwift-简介以及简单学习使用 RxSwift 项目文档中 Why 已有详细介绍 Bindings [RxWhy] -&gt; [Bindings] -&gt; [BindingsViewController.swift] Observable.combineLatest(firstName.rx_text, lastName.rx_text) &#123; $0 + " " + $1 &#125; // ① .map &#123; "Greeting \($0)" &#125; // ② .bindTo(greetingLabel.rx_text) // ③ 将 firstName 和 lastName 的 text 属性结合起来，并进行合并处理，也就是 $0 + “ “ + $1 这部分，用空格将两个值合并起来作为结果传递给后面使用 使用 map 的方法，将上一步得到值前面加上一个 Greeting ，并将该值传递给后面使用 bindTo 就是绑定，将上一步的值绑定到 greetingLabel 的 text 代码就是实时的执行 greetingLabel.text = "Greeting " + firstName.text + " " + lastName.text 要求是实时 每当 fisrtName.text 或者 lastName.text 改变时， greetingLabel.text 都要随之改变 ContentOffset 经常通过 delegate 处理 scrollView 的 contentOffset 变化问题 public func scrollViewDidScroll(scrollView: UIScrollView) &#123; self.title = "contentOffset.x = \(scrollView.contentOffset.y)"&#125; 可能就和关联的逻辑分家了，内聚性啊…而且多个 scrollView ，还要做额外的判断处理，复杂性可想而知也有写过通过 closure 来解决的，其实可以认为 Rx 自带了这些功能（而且更强大[RxWhy] -&gt; [ContentOffset] -&gt; [ContentOffsetViewController.swift]Note: 在使用了 rx_contentOffset 后，最好不要去更改 delegate同样 button 也有类似的功能 tableView.rx_contentOffset .map &#123; $0.y &#125; .subscribeNext &#123; [unowned self] in self.title = "contentOffset.x = \($0)" &#125;.addDisposableTo(disposeBag) Tap button 的点击事件是一个很棘手的问题了，建立一个 target ，同时还使用的带字符串的 Select，button 的点击也和响应逻辑分家了处理方式会有两个问题 使用了带 String 的 Target 点击的关联事件代码和处理的逻辑分开了 button.addTarget(self, action: "tapButton", forControlEvents: .TouchDragInside) Rx 已经提供了 closure 的功能 button.rx_tap .subscribeNext &#123; print("Tap") &#125;.addDisposableTo(disposeBag) 资料来源]]></content>
       <categories>
         <category>Swift</category>
         <category>RxSwift</category>
@@ -1052,20 +1052,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Swift-UIKit-UIButton]]></title>
-<url>../../../../../../../../2017/12/06/Swift-UIKit/Swift-UIKit-UIButton/</url>
-    <content type="text"><![CDATA[UIButton UIButton继承自UIControl 创建btnlet btn: UIButton = UIButton() //没有样式//let btns:UIButton =UIButton(type: UIButtonType)//有样式//let button = UIButton(frame:CGRect(x:10, y:150, width:100, height:30))//简化创建方式self.view.addSubview(button) UIButtonType有以下类型public enum UIButtonType : Int &#123; case custom // no button type @available(iOS 7.0, *) case system // standard system button case detailDisclosure case infoLight case infoDark case contactAdd public static var roundedRect: UIButtonType &#123; get &#125; // Deprecated, use UIButtonTypeSystem instead&#125;//使用let btn: UIButton = UIButton(type: .Custom) UIButton设置字内容和颜色 UIButton所对应的状态有几种 /** Normal (默认状态) Highlighted （高亮状态）点击按钮不放 Disabled （使能状态）就是是否可用状态--&gt;禁用的状态才会显现 Selected （选中状态）通过selected属性设置 */ /显示文字button1.setTitle("普通状态", for: .normal)button1.setTitle("高粱状态", for: .highlighted)button1.setTitle("禁用状态", for: .disabled)//显示文字颜色button1.setTitleColor(UIColor.red, for: .normal)button1.setTitleColor(UIColor.blue, for: .highlighted)button1.setTitleColor(UIColor.cyan, for: .selected)button1.setTitleColor(UIColor.cyan, for: .disabled)//阴影文字颜色设置button1.setTitleShadowColor(UIColor.cyan, for: .normal)button1.setTitleShadowColor(UIColor.green, for: .highlighted)button1.setTitleShadowColor(UIColor.brown, for: .disabled)button1.setTitleShadowColor(UIColor.darkGray, for: .selected) UIButton设置背景颜色和背景图片 //背景颜色button2.backgroundColor = UIColor.orange//背景图片 button4.setBackgroundImage(UIImage(named:"XXX"), for: .normal) UIButton设置字体大小button.titleLabel?.font = UIFont.systemFont(ofSize: 12) 禁用UIButton button.isEnabled = falsebutton.isEnabled = true 设置圆角 button.layer.cornerRadius = 5button.layer.masksToBounds = true 设置边框宽度/颜色 button.layer.borderWidth = 2button.layer.borderColor = UIColor.red.cgColor 设置背景图片为圆角 buttonImage.setImage(UIImage(named:"1") , forState: UIControlState.Normal)//设置背景图片为圆角buttonImage.imageView?.layer.cornerRadius = 50默认情况下按钮会被渲染成单一颜色；系统蓝button.setImage(UIImage(named:"icon1"),forState:.Normal) //设置图标button.adjustsImageWhenHighlighted=false //使触摸模式下按钮也不会变暗（半透明）button.adjustsImageWhenDisabled=false //使禁用模式下按钮也不会变暗（半透明）也可以设置成保留图标原来的颜色let iconImage = UIImage(named:"icon2")?.withRenderingMode(.alwaysOriginal)button.setImage(iconImage, for:.normal) //设置图标button.adjustsImageWhenHighlighted = false //使触摸模式下按钮也不会变暗（半透明）button.adjustsImageWhenDisabled = false //使禁用模式下按钮也不会变暗（半透明） UIButton上图片和文字调整 UIButton上添加图片和文字，有时需要我们调整,方向为逆时针方向，上、左、下、右依次去设置的 btn.imageEdgeInsets =UIEdgeInsetsMake(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat)btn.titleEdgeInsets =UIEdgeInsetsMake(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) //创建一个图片一个文字的按钮 let btn2: UIButton = UIButton(type: .Custom) btn2.frame = CGRectMake(50, 100, 120, 35) btn2.setImage(UIImage(named: "1"), forState: .Normal) btn2.backgroundColor = UIColor.blackColor() btn2.titleLabel?.font = UIFont.systemFontOfSize(20) btn2.imageView?.contentMode = UIViewContentMode.ScaleAspectFit btn2.setTitle("图片按钮", forState: .Normal) //偏移量，分别为上下左右 btn2.imageEdgeInsets = UIEdgeInsetsMake(0, -50, 0, 0) btn2.titleEdgeInsets = UIEdgeInsetsMake(0, -80, 0, 5) btn2.setTitleColor(UIColor.whiteColor(), forState: .Normal) btn2.adjustsImageWhenHighlighted = false self.view.addSubview(btn2) 添加按钮的点击事件 按钮的触摸时间有以下类型 touchDown：单点触摸按下事件，点触屏幕touchDownRepeat：多点触摸按下事件，点触计数大于1，按下第2、3或第4根手指的时候touchDragInside：触摸在控件内拖动时touchDragOutside：触摸在控件外拖动时touchDragEnter：触摸从控件之外拖动到内部时touchDragExit：触摸从控件内部拖动到外部时touchUpInside：在控件之内触摸并抬起事件touchUpOutside：在控件之外触摸抬起事件touchCancel：触摸取消事件，即一次触摸因为放上太多手指而被取消，或者电话打断 button1.addTarget(self,action:#selector(methodName), for: .touchUpInside)button1.addTarget(self, action:#selector(someMethod(button:)), for:.touchUpInside)//上 func methodName() &#123; print("tapped") &#125;//下 func someMethod(button:UIButton) &#123; print("你是谁啊，其实就是一个按钮") &#125; 按钮文字过长时候的显示处理 修改 button 按钮中 titleLabel 的 lineBreakMode 属性，便可以调整按钮在文字超长的情况下如何显示，以及是否换行 let button = UIButton(frame:CGRect(x:20, y:50, width:130, height:50))button.setTitle("这个是一长长长长长长长长长长的文字", for:.normal) //普通状态下的文字button.setTitleColor(UIColor.white, for: .normal) //普通状态下文字的颜色button.titleLabel?.lineBreakMode = .byTruncatingTailbutton.backgroundColor = UIColor.orangeself.view.addSubview(button) NSLineBreakMode样式可供选择，API的介绍也是简单明 public enum NSLineBreakMode : Int &#123; case byWordWrapping // Wrap at word boundaries, default case byCharWrapping // Wrap at character boundaries case byClipping // Simply clip case byTruncatingHead // Truncate at head of line: "...wxyz" case byTruncatingTail // Truncate at tail of line: "abcd..." case byTruncatingMiddle // Truncate middle of line: "ab...yz"&#125;]]></content>
-      <categories>
-        <category>Swift</category>
-        <category>UIKit</category>
-        <category>UIButton</category>
-      </categories>
-      <tags>
-        <tag>Swift</tag>
-        <tag>UIButton</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Swift-UIKit-UILabel]]></title>
 <url>../../../../../../../../2017/12/06/Swift-UIKit/Swift-UIKit-UILabel/</url>
     <content type="text"><![CDATA[lab 创建&amp;&amp; 设置frame let lab = UILabel(frame:CGRect(x:10,y:100,width:self.view.frame.size.width - 40,height:200)) 或 let lab = UILabel()lab.frame = CGRect(x:10,y:100,width:self.view.frame.size.width - 40,height:200) 添加父层 self.view.addSubview(lab); 显示文本内容 lab.text = "chen jian !" 设置bg颜色 lab.backgroundColor = UIColor.green 文字颜色 lab.textColor = UIColor.white 文字对齐方式 lab.textAlignment = NSTextAlignment.left 高亮文字颜色 lab.highlightedTextColor = UIColor.cyan 阴影颜色 lab.shadowColor = UIColor.black 阴影偏移位置 lab.shadowOffset = CGSize(width:-5,height:5) 设置圆角 lab.layer.cornerRadius = 20lab.layer.masksToBounds = true 边框的宽度和颜色 lab.layer.borderColor = UIColor.green.cgColorlab.layer.borderWidth = 2 文字类型/大小 lab.font = UIFont.boldSystemFont(ofSize: 20) //加粗类型lab.font = UIFont.systemFont(ofSize: 20) //文字大小lab.font = UIFont.italicSystemFont(ofSize: 20)//斜体类型lab.font = UIFont(name:"您好",size:50) //大小和文字一起设置 显示de样式 lab.lineBreakMode = NSLineBreakMode.byCharWrapping // NSParagraphStyle@available(iOS 6.0, *)public enum NSLineBreakMode : Int &#123;case byWordWrapping // Wrap at word boundaries, defaultcase byCharWrapping // Wrap at character boundariescase byClipping // Simply clipcase byTruncatingHead // Truncate at head of line: "...wxyz"case byTruncatingTail // Truncate at tail of line: "abcd..."case byTruncatingMiddle // Truncate middle of line: "ab...yz"&#125; 多行de显示 lab.numberOfLines = 2 //最多显示2行lab.numberOfLines = 0 // 默认没有行数显示lab.numberOfLines = 1 //只能显示一行 自动调整文字de大小 lab.adjustsFontSizeToFitWidth = true 富文本设置 //创建对象let attributeString = NSMutableAttributedString(string:"Welcome to Swift! Welcome to Swift! Welcome to Swift! Welcome to Swift!")//设置字体大小/字体类型attributeString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Bold", size: 16)!, range: NSMakeRange(0, 6))//设置背景颜色 attributeString.addAttribute(NSForegroundColorAttributeName, value: UIColor.red, range: NSMakeRange(0, 3)) //设置文档背景色 attributeString.addAttribute(NSBackgroundColorDocumentAttribute, value: UIColor.lightGray, range: NSMakeRange(10, 10))//设置下划线attributeString.addAttribute(NSUnderlineStyleAttributeName, value:NSUnderlineStyle.StyleSingle.rawValue, range: NSMakeRange(5,12)) testLable.attributedText = attributeString; 文本高度计算 extension NSString &#123; func textSizeWithFont(font: UIFont, constrainedToSize size:CGSize) -&gt; CGSize &#123; var textSize:CGSize! if CGSizeEqualToSize(size, CGSizeZero) &#123; let attributes = NSDictionary(object: font, forKey: NSFontAttributeName) textSize = self.sizeWithAttributes(attributes) &#125; else &#123; let option = NSStringDrawingOptions.UsesLineFragmentOrigin let attributes = NSDictionary(object: font, forKey: NSFontAttributeName) let stringRect = self.boundingRectWithSize(size, options: option, attributes: attributes, context: nil) textSize = stringRect.size &#125; return textSize &#125;&#125;]]></content>
@@ -1078,6 +1064,20 @@
         <tag>Swift</tag>
         <tag>UIKit</tag>
         <tag>UILabel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Swift-UIKit-UIButton]]></title>
+<url>../../../../../../../../2017/12/06/Swift-UIKit/Swift-UIKit-UIButton/</url>
+    <content type="text"><![CDATA[UIButton UIButton继承自UIControl 创建btnlet btn: UIButton = UIButton() //没有样式//let btns:UIButton =UIButton(type: UIButtonType)//有样式//let button = UIButton(frame:CGRect(x:10, y:150, width:100, height:30))//简化创建方式self.view.addSubview(button) UIButtonType有以下类型public enum UIButtonType : Int &#123; case custom // no button type @available(iOS 7.0, *) case system // standard system button case detailDisclosure case infoLight case infoDark case contactAdd public static var roundedRect: UIButtonType &#123; get &#125; // Deprecated, use UIButtonTypeSystem instead&#125;//使用let btn: UIButton = UIButton(type: .Custom) UIButton设置字内容和颜色 UIButton所对应的状态有几种 /** Normal (默认状态) Highlighted （高亮状态）点击按钮不放 Disabled （使能状态）就是是否可用状态--&gt;禁用的状态才会显现 Selected （选中状态）通过selected属性设置 */ /显示文字button1.setTitle("普通状态", for: .normal)button1.setTitle("高粱状态", for: .highlighted)button1.setTitle("禁用状态", for: .disabled)//显示文字颜色button1.setTitleColor(UIColor.red, for: .normal)button1.setTitleColor(UIColor.blue, for: .highlighted)button1.setTitleColor(UIColor.cyan, for: .selected)button1.setTitleColor(UIColor.cyan, for: .disabled)//阴影文字颜色设置button1.setTitleShadowColor(UIColor.cyan, for: .normal)button1.setTitleShadowColor(UIColor.green, for: .highlighted)button1.setTitleShadowColor(UIColor.brown, for: .disabled)button1.setTitleShadowColor(UIColor.darkGray, for: .selected) UIButton设置背景颜色和背景图片 //背景颜色button2.backgroundColor = UIColor.orange//背景图片 button4.setBackgroundImage(UIImage(named:"XXX"), for: .normal) UIButton设置字体大小button.titleLabel?.font = UIFont.systemFont(ofSize: 12) 禁用UIButton button.isEnabled = falsebutton.isEnabled = true 设置圆角 button.layer.cornerRadius = 5button.layer.masksToBounds = true 设置边框宽度/颜色 button.layer.borderWidth = 2button.layer.borderColor = UIColor.red.cgColor 设置背景图片为圆角 buttonImage.setImage(UIImage(named:"1") , forState: UIControlState.Normal)//设置背景图片为圆角buttonImage.imageView?.layer.cornerRadius = 50默认情况下按钮会被渲染成单一颜色；系统蓝button.setImage(UIImage(named:"icon1"),forState:.Normal) //设置图标button.adjustsImageWhenHighlighted=false //使触摸模式下按钮也不会变暗（半透明）button.adjustsImageWhenDisabled=false //使禁用模式下按钮也不会变暗（半透明）也可以设置成保留图标原来的颜色let iconImage = UIImage(named:"icon2")?.withRenderingMode(.alwaysOriginal)button.setImage(iconImage, for:.normal) //设置图标button.adjustsImageWhenHighlighted = false //使触摸模式下按钮也不会变暗（半透明）button.adjustsImageWhenDisabled = false //使禁用模式下按钮也不会变暗（半透明） UIButton上图片和文字调整 UIButton上添加图片和文字，有时需要我们调整,方向为逆时针方向，上、左、下、右依次去设置的 btn.imageEdgeInsets =UIEdgeInsetsMake(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat)btn.titleEdgeInsets =UIEdgeInsetsMake(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) //创建一个图片一个文字的按钮 let btn2: UIButton = UIButton(type: .Custom) btn2.frame = CGRectMake(50, 100, 120, 35) btn2.setImage(UIImage(named: "1"), forState: .Normal) btn2.backgroundColor = UIColor.blackColor() btn2.titleLabel?.font = UIFont.systemFontOfSize(20) btn2.imageView?.contentMode = UIViewContentMode.ScaleAspectFit btn2.setTitle("图片按钮", forState: .Normal) //偏移量，分别为上下左右 btn2.imageEdgeInsets = UIEdgeInsetsMake(0, -50, 0, 0) btn2.titleEdgeInsets = UIEdgeInsetsMake(0, -80, 0, 5) btn2.setTitleColor(UIColor.whiteColor(), forState: .Normal) btn2.adjustsImageWhenHighlighted = false self.view.addSubview(btn2) 添加按钮的点击事件 按钮的触摸时间有以下类型 touchDown：单点触摸按下事件，点触屏幕touchDownRepeat：多点触摸按下事件，点触计数大于1，按下第2、3或第4根手指的时候touchDragInside：触摸在控件内拖动时touchDragOutside：触摸在控件外拖动时touchDragEnter：触摸从控件之外拖动到内部时touchDragExit：触摸从控件内部拖动到外部时touchUpInside：在控件之内触摸并抬起事件touchUpOutside：在控件之外触摸抬起事件touchCancel：触摸取消事件，即一次触摸因为放上太多手指而被取消，或者电话打断 button1.addTarget(self,action:#selector(methodName), for: .touchUpInside)button1.addTarget(self, action:#selector(someMethod(button:)), for:.touchUpInside)//上 func methodName() &#123; print("tapped") &#125;//下 func someMethod(button:UIButton) &#123; print("你是谁啊，其实就是一个按钮") &#125; 按钮文字过长时候的显示处理 修改 button 按钮中 titleLabel 的 lineBreakMode 属性，便可以调整按钮在文字超长的情况下如何显示，以及是否换行 let button = UIButton(frame:CGRect(x:20, y:50, width:130, height:50))button.setTitle("这个是一长长长长长长长长长长的文字", for:.normal) //普通状态下的文字button.setTitleColor(UIColor.white, for: .normal) //普通状态下文字的颜色button.titleLabel?.lineBreakMode = .byTruncatingTailbutton.backgroundColor = UIColor.orangeself.view.addSubview(button) NSLineBreakMode样式可供选择，API的介绍也是简单明 public enum NSLineBreakMode : Int &#123; case byWordWrapping // Wrap at word boundaries, default case byCharWrapping // Wrap at character boundaries case byClipping // Simply clip case byTruncatingHead // Truncate at head of line: "...wxyz" case byTruncatingTail // Truncate at tail of line: "abcd..." case byTruncatingMiddle // Truncate middle of line: "ab...yz"&#125;]]></content>
+      <categories>
+        <category>Swift</category>
+        <category>UIKit</category>
+        <category>UIButton</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>UIButton</tag>
       </tags>
   </entry>
   <entry>
@@ -1132,8 +1132,8 @@
         <category>NSSet</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>iOS</tag>
+        <tag>UIKit</tag>
         <tag>NSSet</tag>
       </tags>
   </entry>
@@ -1147,8 +1147,8 @@
         <category>NSDictionary</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>iOS</tag>
+        <tag>UIKit</tag>
         <tag>NSDictionary</tag>
       </tags>
   </entry>
@@ -1161,8 +1161,8 @@
         <category>UIKit</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>iOS</tag>
+        <tag>UIKit</tag>
       </tags>
   </entry>
   <entry>
@@ -1531,8 +1531,8 @@
         <category>Layer</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>iOS</tag>
+        <tag>UIKit</tag>
         <tag>Layer</tag>
         <tag>Shadow</tag>
       </tags>
@@ -1546,8 +1546,8 @@
         <category>UIKit</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>iOS</tag>
+        <tag>UIKit</tag>
         <tag>Autoreleasepool</tag>
       </tags>
   </entry>
@@ -1573,9 +1573,9 @@
         <category>UIScrollView</category>
       </categories>
       <tags>
+        <tag>iOS</tag>
         <tag>UIKit</tag>
         <tag>UIScrollView</tag>
-        <tag>iOS</tag>
       </tags>
   </entry>
   <entry>
