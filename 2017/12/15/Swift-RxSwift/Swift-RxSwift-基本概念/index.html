@@ -105,13 +105,13 @@
 
 
 
-<meta name="description" content="基本概念核心概念 核心概念就是一个观察者(Observer)订阅一个可观察序列(Observable)观察者对 Observable 发射的数据或数据序列作出响应Button 的点击这个情景   把用户一次又一次的点击 Button 看做是序列(sequence) 通过调用 subscribe 来订阅这个点击事件 每次点击都会发射一个数据 作为订阅者的 subscribe 收到这个这个数据进行某些">
+<meta name="description" content="基本概念核心概念 核心概念就是一个观察者(Observer)订阅一个可观察序列(Observable)-每一个Observable的实例都是一个序列观察者对 Observable 发射的数据或数据序列作出响应Button 的点击这个情景   把用户一次又一次的点击 Button 看做是序列(sequence) 通过调用 subscribe 来订阅这个点击事件 每次点击都会发射一个数据 作为订阅者的">
 <meta name="keywords" content="Swift,RxSwift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift-RxSwift-基本概念">
 <meta property="og:url" content="http://yoursite.com/2017/12/15/Swift-RxSwift/Swift-RxSwift-基本概念/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="基本概念核心概念 核心概念就是一个观察者(Observer)订阅一个可观察序列(Observable)观察者对 Observable 发射的数据或数据序列作出响应Button 的点击这个情景   把用户一次又一次的点击 Button 看做是序列(sequence) 通过调用 subscribe 来订阅这个点击事件 每次点击都会发射一个数据 作为订阅者的 subscribe 收到这个这个数据进行某些">
+<meta property="og:description" content="基本概念核心概念 核心概念就是一个观察者(Observer)订阅一个可观察序列(Observable)-每一个Observable的实例都是一个序列观察者对 Observable 发射的数据或数据序列作出响应Button 的点击这个情景   把用户一次又一次的点击 Button 看做是序列(sequence) 通过调用 subscribe 来订阅这个点击事件 每次点击都会发射一个数据 作为订阅者的">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/RxSwift-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5001.png">
 <meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/RxSwift-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5002.png">
@@ -120,10 +120,10 @@
 <meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/RxSwift-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5007.png">
 <meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/RxSwift-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5008.png">
 <meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/RxSwift-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5010.png">
-<meta property="og:updated_time" content="2017-12-19T02:10:51.258Z">
+<meta property="og:updated_time" content="2018-01-01T07:54:24.853Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift-RxSwift-基本概念">
-<meta name="twitter:description" content="基本概念核心概念 核心概念就是一个观察者(Observer)订阅一个可观察序列(Observable)观察者对 Observable 发射的数据或数据序列作出响应Button 的点击这个情景   把用户一次又一次的点击 Button 看做是序列(sequence) 通过调用 subscribe 来订阅这个点击事件 每次点击都会发射一个数据 作为订阅者的 subscribe 收到这个这个数据进行某些">
+<meta name="twitter:description" content="基本概念核心概念 核心概念就是一个观察者(Observer)订阅一个可观察序列(Observable)-每一个Observable的实例都是一个序列观察者对 Observable 发射的数据或数据序列作出响应Button 的点击这个情景   把用户一次又一次的点击 Button 看做是序列(sequence) 通过调用 subscribe 来订阅这个点击事件 每次点击都会发射一个数据 作为订阅者的">
 <meta name="twitter:image" content="http://ozr735s7e.bkt.clouddn.com/RxSwift-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5001.png">
 
 
@@ -452,7 +452,7 @@
 
       
         <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><blockquote>
-<p>核心概念就是一个观察者(Observer)订阅一个可观察序列(Observable)<br>观察者对 Observable 发射的数据或数据序列作出响应<br>Button 的点击这个情景</p>
+<p>核心概念就是一个观察者(Observer)订阅一个可观察序列(Observable)<br>-每一个Observable的实例都是一个序列<br>观察者对 Observable 发射的数据或数据序列作出响应<br>Button 的点击这个情景</p>
 </blockquote>
 <ul>
 <li>把用户一次又一次的点击 Button 看做是序列(sequence)</li>
@@ -461,7 +461,15 @@
 <li>作为订阅者的 subscribe 收到这个这个数据进行某些响应</li>
 </ul>
 <blockquote>
-<p>Rx 的基本概念，有Observer观察者观察一个序列sequence，每当序列发射值的时候，观察者根据序列做一些事情</p>
+<p>Rx 的基本概念，有Observer观察者观察一个序列sequence，每当序列发射值的时候，观察者根据序列做一些事情<br>Observable序列相比于Swift序列的关键优势点在于它能够异步地接收元素</p>
+</blockquote>
+<ul>
+<li>Observable(ObservableType)等效于Sequence</li>
+<li>observableType.subscribe(_:)方法等效于Sequence.makeIterator()</li>
+<li>ObservableType.subscribe(_:)接收一个观察者ObserverType参数,它将被订阅自动接收由可观察到的序列事件和元素，而不是在返回的生成器上手动调用next()</li>
+</ul>
+<blockquote>
+<p>如果一个Observable发出一个next事件(Event.next(Element)),它还能够继续发出更多的事件。但是，如果一个Observable发出一个error事件(Event.error(ErrorType))或者一个completed事件(Event.completed)，那么这个Observable序列就不能给订阅者发送其他的事件了</p>
 </blockquote>
 <h1 id="可观察序列-Observables-aka-Sequences"><a href="#可观察序列-Observables-aka-Sequences" class="headerlink" title="可观察序列 (Observables aka Sequences)"></a>可观察序列 (Observables aka Sequences)</h1><blockquote>
 <p>可观察序列 存在三种情况:<br>①发射数据(Next)<br>②遇到问题(Error)<br>③发射完成(Completed)</p>
@@ -600,8 +608,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/15/Swift-RxSwift/Swift-RxSwift-创建序列Observable/" rel="next" title="Swift-RxSwift-创建序列Observable">
-                <i class="fa fa-chevron-left"></i> Swift-RxSwift-创建序列Observable
+              <a href="/2017/12/15/Swift-RxSwift/Swift-RxSwift-简介以及简单学习使用/" rel="next" title="Swift-RxSwift-简介以及简单学习使用">
+                <i class="fa fa-chevron-left"></i> Swift-RxSwift-简介以及简单学习使用
               </a>
             
           </div>
