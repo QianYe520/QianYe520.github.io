@@ -105,18 +105,20 @@
 
 
 
-<meta name="description" content="ReactNative">
+<meta name="description" content="SceneKitSceneKit 的三维坐标系 右手坐标系(笛卡尔坐标系)与其他3D框架共享数据，了解其框架是右、左手坐标系（就是Z 轴的正负不一样）   相关类          SCNViewSCNSceneRenderer 类似UIView 用来显示 SceneKit 的内容，定义了一些代理方法，可以用 addSubView 方法添加到UiView 中   SCNScene SceneKit">
 <meta name="keywords" content="iOS,SceneKit,3D引擎">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS-SceneKit-Base">
 <meta property="og:url" content="http://yoursite.com/2018/01/08/iOS-SceneKit/iOS-SceneKit- Base/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="ReactNative">
+<meta property="og:description" content="SceneKitSceneKit 的三维坐标系 右手坐标系(笛卡尔坐标系)与其他3D框架共享数据，了解其框架是右、左手坐标系（就是Z 轴的正负不一样）   相关类          SCNViewSCNSceneRenderer 类似UIView 用来显示 SceneKit 的内容，定义了一些代理方法，可以用 addSubView 方法添加到UiView 中   SCNScene SceneKit">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-09T03:10:01.865Z">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/SceneKit%20%E7%9A%84%E4%B8%89%E7%BB%B4%E5%9D%90%E6%A0%87%E7%B3%BB.jpg">
+<meta property="og:updated_time" content="2018-01-09T03:26:20.644Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS-SceneKit-Base">
-<meta name="twitter:description" content="ReactNative">
+<meta name="twitter:description" content="SceneKitSceneKit 的三维坐标系 右手坐标系(笛卡尔坐标系)与其他3D框架共享数据，了解其框架是右、左手坐标系（就是Z 轴的正负不一样）   相关类          SCNViewSCNSceneRenderer 类似UIView 用来显示 SceneKit 的内容，定义了一些代理方法，可以用 addSubView 方法添加到UiView 中   SCNScene SceneKit">
+<meta name="twitter:image" content="http://ozr735s7e.bkt.clouddn.com/SceneKit%20%E7%9A%84%E4%B8%89%E7%BB%B4%E5%9D%90%E6%A0%87%E7%B3%BB.jpg">
 
 
 
@@ -443,7 +445,57 @@
       
 
       
-        
+        <h1 id="SceneKit"><a href="#SceneKit" class="headerlink" title="SceneKit"></a>SceneKit</h1><h2 id="SceneKit-的三维坐标系"><a href="#SceneKit-的三维坐标系" class="headerlink" title="SceneKit 的三维坐标系"></a>SceneKit 的三维坐标系</h2><blockquote>
+<p>右手坐标系(笛卡尔坐标系)<br>与其他3D框架共享数据，了解其框架是右、左手坐标系（就是Z 轴的正负不一样）</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/SceneKit%20%E7%9A%84%E4%B8%89%E7%BB%B4%E5%9D%90%E6%A0%87%E7%B3%BB.jpg" alt="三维坐标系"></p>
+<h2 id="相关类"><a href="#相关类" class="headerlink" title="相关类"></a>相关类</h2><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SCNView<br>SCNSceneRenderer</td>
+<td>类似UIView</td>
+<td>用来显示 SceneKit 的内容，定义了一些代理方法，可以用 addSubView 方法添加到UiView 中</td>
+</tr>
+<tr>
+<td>SCNScene</td>
+<td>SceneKit 内容的容器</td>
+<td>从3D建模工具生成的.dae文件中加载一个场景，或者用代码创建一个 ，然后把它显示在视图上</td>
+</tr>
+<tr>
+<td>SCNNode</td>
+<td>一个场景的基本构建块</td>
+<td>可以把摄像机，灯光，几何体附加到节点上</td>
+</tr>
+<tr>
+<td>SCNGeometry</td>
+<td>一个可以连接到一个节点的三维物体</td>
+<td>一个几何体（有时称为模型或网格）只定义了一个可见物体的形状。要定义对象的表面颜色图案，你必需要给几何体要附加材料。然后给材料贴图，或者上色，这个几何体表面才会有颜色，或者图案。SceneKit 提供了几种常见几何体，是SCNGeometry的子类，比如长方体，球，圆柱球等等</td>
+</tr>
+<tr>
+<td>SCNMaterial</td>
+<td>材质</td>
+<td>由于在3D建模工具中呈现球形，所以也叫材质球。上色，贴图全靠它</td>
+</tr>
+<tr>
+<td>SCNLight</td>
+<td>光源</td>
+<td>光源可以附加到节点上，在渲染场景中提供着色</td>
+</tr>
+<tr>
+<td>SCNCamera</td>
+<td>虚拟摄像机</td>
+<td>虚拟摄像机可以附加到节点上，提供了一个场景的视图</td>
+</tr>
+</tbody>
+</table>
+
       
     </div>
     
@@ -541,8 +593,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -604,6 +665,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SceneKit"><span class="nav-number">1.</span> <span class="nav-text">SceneKit</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SceneKit-的三维坐标系"><span class="nav-number">1.1.</span> <span class="nav-text">SceneKit 的三维坐标系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关类"><span class="nav-number">1.2.</span> <span class="nav-text">相关类</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
