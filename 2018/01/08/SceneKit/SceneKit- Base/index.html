@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Swift,UIKit,UILabel," />
+  <meta name="keywords" content="iOS,SceneKit,3D引擎," />
 
 
 
@@ -105,18 +105,20 @@
 
 
 
-<meta name="description" content="lab 创建&amp;amp;&amp;amp; 设置frame   let lab = UILabel(frame:CGRect(x:10,y:100,width:self.view.frame.size.width - 40,height:200)) 或 let lab = UILabel()lab.frame = CGRect(x:10,y:100,width:self.view.frame.size.wi">
-<meta name="keywords" content="Swift,UIKit,UILabel">
+<meta name="description" content="SceneKitSceneKit 的三维坐标系 右手坐标系(笛卡尔坐标系)与其他3D框架共享数据，了解其框架是右、左手坐标系（就是Z 轴的正负不一样）   相关类          SCNViewSCNSceneRenderer 类似UIView 用来显示 SceneKit 的内容，定义了一些代理方法，可以用 addSubView 方法添加到UiView 中   SCNScene SceneKit">
+<meta name="keywords" content="iOS,SceneKit,3D引擎">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift-UIKit-UILabel">
-<meta property="og:url" content="http://yoursite.com/2017/12/06/Swift-UIKit/Swift-UIKit-UILabel/index.html">
+<meta property="og:title" content="iOS-SceneKit-Base">
+<meta property="og:url" content="http://yoursite.com/2018/01/08/SceneKit/SceneKit- Base/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="lab 创建&amp;amp;&amp;amp; 设置frame   let lab = UILabel(frame:CGRect(x:10,y:100,width:self.view.frame.size.width - 40,height:200)) 或 let lab = UILabel()lab.frame = CGRect(x:10,y:100,width:self.view.frame.size.wi">
+<meta property="og:description" content="SceneKitSceneKit 的三维坐标系 右手坐标系(笛卡尔坐标系)与其他3D框架共享数据，了解其框架是右、左手坐标系（就是Z 轴的正负不一样）   相关类          SCNViewSCNSceneRenderer 类似UIView 用来显示 SceneKit 的内容，定义了一些代理方法，可以用 addSubView 方法添加到UiView 中   SCNScene SceneKit">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-14T05:38:49.000Z">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/SceneKit%20%E7%9A%84%E4%B8%89%E7%BB%B4%E5%9D%90%E6%A0%87%E7%B3%BB.jpg">
+<meta property="og:updated_time" content="2018-01-10T08:32:45.778Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift-UIKit-UILabel">
-<meta name="twitter:description" content="lab 创建&amp;amp;&amp;amp; 设置frame   let lab = UILabel(frame:CGRect(x:10,y:100,width:self.view.frame.size.width - 40,height:200)) 或 let lab = UILabel()lab.frame = CGRect(x:10,y:100,width:self.view.frame.size.wi">
+<meta name="twitter:title" content="iOS-SceneKit-Base">
+<meta name="twitter:description" content="SceneKitSceneKit 的三维坐标系 右手坐标系(笛卡尔坐标系)与其他3D框架共享数据，了解其框架是右、左手坐标系（就是Z 轴的正负不一样）   相关类          SCNViewSCNSceneRenderer 类似UIView 用来显示 SceneKit 的内容，定义了一些代理方法，可以用 addSubView 方法添加到UiView 中   SCNScene SceneKit">
+<meta name="twitter:image" content="http://ozr735s7e.bkt.clouddn.com/SceneKit%20%E7%9A%84%E4%B8%89%E7%BB%B4%E5%9D%90%E6%A0%87%E7%B3%BB.jpg">
 
 
 
@@ -145,13 +147,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/06/Swift-UIKit/Swift-UIKit-UILabel/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/08/SceneKit/SceneKit- Base/"/>
 
 
 
 
 
-  <title>Swift-UIKit-UILabel | 千夜、おれはおまえをずっと爱している</title>
+  <title>iOS-SceneKit-Base | 千夜、おれはおまえをずっと爱している</title>
   
 
 
@@ -332,7 +334,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/06/Swift-UIKit/Swift-UIKit-UILabel/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/08/SceneKit/SceneKit- Base/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -349,7 +351,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Swift-UIKit-UILabel</h1>
+          <h1 class="post-title" itemprop="name headline">iOS-SceneKit-Base</h1>
         
 
         <div class="post-meta">
@@ -361,8 +363,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-06T16:59:28+08:00">
-                2017-12-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-08T14:55:20+08:00">
+                2018-01-08
               </time>
             
 
@@ -384,30 +386,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/UIKit/" itemprop="url" rel="index">
-                    <span itemprop="name">UIKit</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/UIKit/UILabel/" itemprop="url" rel="index">
-                    <span itemprop="name">UILabel</span>
+                  <a href="/categories/SceneKit/" itemprop="url" rel="index">
+                    <span itemprop="name">SceneKit</span>
                   </a>
                 </span>
 
@@ -423,7 +403,7 @@
 
           
           
-             <span id="/2017/12/06/Swift-UIKit/Swift-UIKit-UILabel/" class="leancloud_visitors" data-flag-title="Swift-UIKit-UILabel">
+             <span id="/2018/01/08/SceneKit/SceneKit- Base/" class="leancloud_visitors" data-flag-title="iOS-SceneKit-Base">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -454,68 +434,56 @@
       
 
       
-        <h1 id="lab"><a href="#lab" class="headerlink" title="lab"></a>lab</h1><blockquote>
-<p>创建&amp;&amp; 设置frame</p>
+        <h1 id="SceneKit"><a href="#SceneKit" class="headerlink" title="SceneKit"></a>SceneKit</h1><h2 id="SceneKit-的三维坐标系"><a href="#SceneKit-的三维坐标系" class="headerlink" title="SceneKit 的三维坐标系"></a>SceneKit 的三维坐标系</h2><blockquote>
+<p>右手坐标系(笛卡尔坐标系)<br>与其他3D框架共享数据，了解其框架是右、左手坐标系（就是Z 轴的正负不一样）</p>
 </blockquote>
- <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> lab = <span class="type">UILabel</span>(frame:<span class="type">CGRect</span>(x:<span class="number">10</span>,y:<span class="number">100</span>,width:<span class="keyword">self</span>.view.frame.size.width - <span class="number">40</span>,height:<span class="number">200</span>))</div><div class="line"></div><div class="line"> 或</div><div class="line"> </div><div class="line"><span class="keyword">let</span> lab = <span class="type">UILabel</span>()</div><div class="line">lab.frame = <span class="type">CGRect</span>(x:<span class="number">10</span>,y:<span class="number">100</span>,width:<span class="keyword">self</span>.view.frame.size.width - <span class="number">40</span>,height:<span class="number">200</span>)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>添加父层</p>
-</blockquote>
- <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">self</span>.view.addSubview(lab);</div></pre></td></tr></table></figure>
-<blockquote>
-<p>显示文本内容</p>
-</blockquote>
- <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">lab.text = <span class="string">"chen jian !"</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>设置bg颜色</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">lab.backgroundColor = <span class="type">UIColor</span>.green</div></pre></td></tr></table></figure>
-<blockquote>
-<p>文字颜色</p>
-</blockquote>
- <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">lab.textColor = <span class="type">UIColor</span>.white</div></pre></td></tr></table></figure>
-<blockquote>
-<p>文字对齐方式</p>
-</blockquote>
- <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> </div><div class="line">lab.textAlignment = <span class="type">NSTextAlignment</span>.<span class="keyword">left</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>高亮文字颜色</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">lab.highlightedTextColor = <span class="type">UIColor</span>.cyan</div></pre></td></tr></table></figure>
-<blockquote>
-<p>阴影颜色</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">lab.shadowColor = <span class="type">UIColor</span>.black</div></pre></td></tr></table></figure>
-<blockquote>
-<p>阴影偏移位置</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">lab.shadowOffset = <span class="type">CGSize</span>(width:-<span class="number">5</span>,height:<span class="number">5</span>)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>设置圆角</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">lab.layer.cornerRadius = <span class="number">20</span></div><div class="line">lab.layer.masksToBounds = <span class="literal">true</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>边框的宽度和颜色</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">lab.layer.borderColor = <span class="type">UIColor</span>.green.cgColor</div><div class="line">lab.layer.borderWidth = <span class="number">2</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>文字类型/大小</p>
-</blockquote>
- <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">lab.font = <span class="type">UIFont</span>.boldSystemFont(ofSize: <span class="number">20</span>)  <span class="comment">//加粗类型</span></div><div class="line">lab.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">20</span>)      <span class="comment">//文字大小</span></div><div class="line">lab.font = <span class="type">UIFont</span>.italicSystemFont(ofSize: <span class="number">20</span>)<span class="comment">//斜体类型</span></div><div class="line">lab.font = <span class="type">UIFont</span>(name:<span class="string">"您好"</span>,size:<span class="number">50</span>)         <span class="comment">//大小和文字一起设置</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>显示de样式</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   lab.lineBreakMode = <span class="type">NSLineBreakMode</span>.byCharWrapping</div><div class="line">   </div><div class="line">   <span class="comment">// NSParagraphStyle</span></div><div class="line"><span class="meta">@available</span>(iOS <span class="number">6.0</span>, *)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">NSLineBreakMode</span> : <span class="title">Int</span> </span>&#123;</div><div class="line"></div><div class="line"><span class="keyword">case</span> byWordWrapping <span class="comment">// Wrap at word boundaries, default</span></div><div class="line"></div><div class="line"><span class="keyword">case</span> byCharWrapping <span class="comment">// Wrap at character boundaries</span></div><div class="line"></div><div class="line"><span class="keyword">case</span> byClipping <span class="comment">// Simply clip</span></div><div class="line"></div><div class="line"><span class="keyword">case</span> byTruncatingHead <span class="comment">// Truncate at head of line: "...wxyz"</span></div><div class="line"></div><div class="line"><span class="keyword">case</span> byTruncatingTail <span class="comment">// Truncate at tail of line: "abcd..."</span></div><div class="line"></div><div class="line"><span class="keyword">case</span> byTruncatingMiddle <span class="comment">// Truncate middle of line:  "ab...yz"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>多行de显示</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">lab.numberOfLines = <span class="number">2</span> <span class="comment">//最多显示2行</span></div><div class="line">lab.numberOfLines = <span class="number">0</span> <span class="comment">// 默认没有行数显示</span></div><div class="line">lab.numberOfLines = <span class="number">1</span> <span class="comment">//只能显示一行</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>自动调整文字de大小</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">lab.adjustsFontSizeToFitWidth  =  <span class="literal">true</span></div></pre></td></tr></table></figure>
-<h1 id="富文本设置"><a href="#富文本设置" class="headerlink" title="富文本设置"></a>富文本设置</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="comment">//创建对象</span></div><div class="line"><span class="keyword">let</span> attributeString = <span class="type">NSMutableAttributedString</span>(string:<span class="string">"Welcome to Swift! Welcome to Swift! Welcome to Swift! Welcome to Swift!"</span>)</div><div class="line"><span class="comment">//设置字体大小/字体类型</span></div><div class="line">attributeString.addAttribute(<span class="type">NSFontAttributeName</span>, value: <span class="type">UIFont</span>(name: <span class="string">"HelveticaNeue-Bold"</span>, size: <span class="number">16</span>)!, range: <span class="type">NSMakeRange</span>(<span class="number">0</span>, <span class="number">6</span>))</div><div class="line"><span class="comment">//设置背景颜色           </span></div><div class="line">attributeString.addAttribute(<span class="type">NSForegroundColorAttributeName</span>, value: <span class="type">UIColor</span>.red, range: <span class="type">NSMakeRange</span>(<span class="number">0</span>, <span class="number">3</span>))          </div><div class="line"><span class="comment">//设置文档背景色     attributeString.addAttribute(NSBackgroundColorDocumentAttribute, value: UIColor.lightGray, range: NSMakeRange(10, 10))</span></div><div class="line"><span class="comment">//设置下划线</span></div><div class="line">attributeString.addAttribute(<span class="type">NSUnderlineStyleAttributeName</span>, value:<span class="type">NSUnderlineStyle</span>.<span class="type">StyleSingle</span>.rawValue, range: <span class="type">NSMakeRange</span>(<span class="number">5</span>,<span class="number">12</span>))</div><div class="line">        </div><div class="line">testLable.attributedText = attributeString;</div></pre></td></tr></table></figure>
-<h1 id="文本高度计算"><a href="#文本高度计算" class="headerlink" title="文本高度计算"></a>文本高度计算</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">extension</span> <span class="title">NSString</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">textSizeWithFont</span><span class="params">(font: UIFont, constrainedToSize size:CGSize)</span></span> -&gt; <span class="type">CGSize</span> &#123;</div><div class="line">        <span class="keyword">var</span> textSize:<span class="type">CGSize</span>!</div><div class="line">        <span class="keyword">if</span> <span class="type">CGSizeEqualToSize</span>(size, <span class="type">CGSizeZero</span>) &#123;</div><div class="line">            <span class="keyword">let</span> attributes = <span class="type">NSDictionary</span>(object: font, forKey: <span class="type">NSFontAttributeName</span>)</div><div class="line">            textSize = <span class="keyword">self</span>.sizeWithAttributes(attributes)</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">let</span> option = <span class="type">NSStringDrawingOptions</span>.<span class="type">UsesLineFragmentOrigin</span></div><div class="line">            <span class="keyword">let</span> attributes = <span class="type">NSDictionary</span>(object: font, forKey: <span class="type">NSFontAttributeName</span>)</div><div class="line">            <span class="keyword">let</span> stringRect = <span class="keyword">self</span>.boundingRectWithSize(size, options: option, attributes: attributes, context: <span class="literal">nil</span>)</div><div class="line">            textSize = stringRect.size</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> textSize</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/SceneKit%20%E7%9A%84%E4%B8%89%E7%BB%B4%E5%9D%90%E6%A0%87%E7%B3%BB.jpg" alt="三维坐标系"></p>
+<h2 id="相关类"><a href="#相关类" class="headerlink" title="相关类"></a>相关类</h2><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SCNView<br>SCNSceneRenderer</td>
+<td>类似UIView</td>
+<td>用来显示 SceneKit 的内容，定义了一些代理方法，可以用 addSubView 方法添加到UiView 中</td>
+</tr>
+<tr>
+<td>SCNScene</td>
+<td>SceneKit 内容的容器</td>
+<td>从3D建模工具生成的.dae文件中加载一个场景，或者用代码创建一个 ，然后把它显示在视图上</td>
+</tr>
+<tr>
+<td>SCNNode</td>
+<td>一个场景的基本构建块</td>
+<td>可以把摄像机，灯光，几何体附加到节点上</td>
+</tr>
+<tr>
+<td>SCNGeometry</td>
+<td>一个可以连接到一个节点的三维物体</td>
+<td>一个几何体（有时称为模型或网格）只定义了一个可见物体的形状。要定义对象的表面颜色图案，你必需要给几何体要附加材料。然后给材料贴图，或者上色，这个几何体表面才会有颜色，或者图案。SceneKit 提供了几种常见几何体，是SCNGeometry的子类，比如长方体，球，圆柱球等等</td>
+</tr>
+<tr>
+<td>SCNMaterial</td>
+<td>材质</td>
+<td>由于在3D建模工具中呈现球形，所以也叫材质球。上色，贴图全靠它</td>
+</tr>
+<tr>
+<td>SCNLight</td>
+<td>光源</td>
+<td>光源可以附加到节点上，在渲染场景中提供着色</td>
+</tr>
+<tr>
+<td>SCNCamera</td>
+<td>虚拟摄像机</td>
+<td>虚拟摄像机可以附加到节点上，提供了一个场景的视图</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
@@ -533,11 +501,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Swift/" rel="tag"># Swift</a>
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
           
-            <a href="/tags/UIKit/" rel="tag"># UIKit</a>
+            <a href="/tags/SceneKit/" rel="tag"># SceneKit</a>
           
-            <a href="/tags/UILabel/" rel="tag"># UILabel</a>
+            <a href="/tags/3D引擎/" rel="tag"># 3D引擎</a>
           
         </div>
       
@@ -550,8 +518,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/06/Swift-UIKit/Swift-UIKit-AppDelegate项目入口/" rel="next" title="Swift-UIKit-AppDelegate项目入口">
-                <i class="fa fa-chevron-left"></i> Swift-UIKit-AppDelegate项目入口
+              <a href="/2018/01/08/iOS-Lib/iOS-Lib-ArcGIS-大图加载/" rel="next" title="iOS-Lib-ArcGIS-大图加载">
+                <i class="fa fa-chevron-left"></i> iOS-Lib-ArcGIS-大图加载
               </a>
             
           </div>
@@ -560,8 +528,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/06/Swift-UIKit/Swift-UIKit-UIButton/" rel="prev" title="Swift-UIKit-UIButton">
-                Swift-UIKit-UIButton <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/08/SceneKit/SceneKit-加载obj文件/" rel="prev" title="iOS-SceneKit-加载obj文件">
+                iOS-SceneKit-加载obj文件 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -696,7 +664,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#lab"><span class="nav-number">1.</span> <span class="nav-text">lab</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#富文本设置"><span class="nav-number">2.</span> <span class="nav-text">富文本设置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文本高度计算"><span class="nav-number">3.</span> <span class="nav-text">文本高度计算</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SceneKit"><span class="nav-number">1.</span> <span class="nav-text">SceneKit</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SceneKit-的三维坐标系"><span class="nav-number">1.1.</span> <span class="nav-text">SceneKit 的三维坐标系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关类"><span class="nav-number">1.2.</span> <span class="nav-text">相关类</span></a></li></ol></li></ol></div>
             
 
           </div>
