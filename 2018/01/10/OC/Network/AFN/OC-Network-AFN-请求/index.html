@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Swift,UIKit,UIWebView," />
+  <meta name="keywords" content="OC,Network,AFN," />
 
 
 
@@ -105,18 +105,18 @@
 
 
 
-<meta name="description" content="UIWebView的常用属性 1.设置 UIWebView 的代理对象  var delegate: UIWebViewDelegate?  2.获取 UIWebView 的 UIScrollView 属性  var scrollView: UIScrollView &amp;#123; get &amp;#125;  3.获取 UIWebView 的网络请求  var request: NSURLRequest">
-<meta name="keywords" content="Swift,UIKit,UIWebView">
+<meta name="description" content="PutDeleteGetPost获取用户权限以及登录请求的封装方法  Get  + (void)requestGETWithURLStr:(NSString *)urlStr paramDic:(NSDictionary *)paramDic Api_key:(NSString *)api_key finish:(void(^)(id responseObject))finish enError">
+<meta name="keywords" content="OC,Network,AFN">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift-UIKit-UIWebView-简介">
-<meta property="og:url" content="http://yoursite.com/2017/12/14/Swift-UIKit/Swift-UIKit-UIWebView-简介/index.html">
+<meta property="og:title" content="OC-Network-AFN-4种请求">
+<meta property="og:url" content="http://yoursite.com/2018/01/10/OC/Network/AFN/OC-Network-AFN-请求/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="UIWebView的常用属性 1.设置 UIWebView 的代理对象  var delegate: UIWebViewDelegate?  2.获取 UIWebView 的 UIScrollView 属性  var scrollView: UIScrollView &amp;#123; get &amp;#125;  3.获取 UIWebView 的网络请求  var request: NSURLRequest">
+<meta property="og:description" content="PutDeleteGetPost获取用户权限以及登录请求的封装方法  Get  + (void)requestGETWithURLStr:(NSString *)urlStr paramDic:(NSDictionary *)paramDic Api_key:(NSString *)api_key finish:(void(^)(id responseObject))finish enError">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-14T05:18:31.000Z">
+<meta property="og:updated_time" content="2018-01-12T02:44:06.591Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift-UIKit-UIWebView-简介">
-<meta name="twitter:description" content="UIWebView的常用属性 1.设置 UIWebView 的代理对象  var delegate: UIWebViewDelegate?  2.获取 UIWebView 的 UIScrollView 属性  var scrollView: UIScrollView &amp;#123; get &amp;#125;  3.获取 UIWebView 的网络请求  var request: NSURLRequest">
+<meta name="twitter:title" content="OC-Network-AFN-4种请求">
+<meta name="twitter:description" content="PutDeleteGetPost获取用户权限以及登录请求的封装方法  Get  + (void)requestGETWithURLStr:(NSString *)urlStr paramDic:(NSDictionary *)paramDic Api_key:(NSString *)api_key finish:(void(^)(id responseObject))finish enError">
 
 
 
@@ -145,13 +145,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/14/Swift-UIKit/Swift-UIKit-UIWebView-简介/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/10/OC/Network/AFN/OC-Network-AFN-请求/"/>
 
 
 
 
 
-  <title>Swift-UIKit-UIWebView-简介 | 千夜、おれはおまえをずっと爱している</title>
+  <title>OC-Network-AFN-4种请求 | 千夜、おれはおまえをずっと爱している</title>
   
 
 
@@ -332,7 +332,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/14/Swift-UIKit/Swift-UIKit-UIWebView-简介/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/10/OC/Network/AFN/OC-Network-AFN-请求/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -349,7 +349,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Swift-UIKit-UIWebView-简介</h1>
+          <h1 class="post-title" itemprop="name headline">OC-Network-AFN-4种请求</h1>
         
 
         <div class="post-meta">
@@ -361,8 +361,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-14T12:45:06+08:00">
-                2017-12-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T17:19:33+08:00">
+                2018-01-10
               </time>
             
 
@@ -384,8 +384,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
+                  <a href="/categories/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
                   </a>
                 </span>
 
@@ -395,8 +395,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/UIKit/" itemprop="url" rel="index">
-                    <span itemprop="name">UIKit</span>
+                  <a href="/categories/OC/Network/" itemprop="url" rel="index">
+                    <span itemprop="name">Network</span>
                   </a>
                 </span>
 
@@ -406,8 +406,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/UIKit/UIWebView/" itemprop="url" rel="index">
-                    <span itemprop="name">UIWebView</span>
+                  <a href="/categories/OC/Network/AFN/" itemprop="url" rel="index">
+                    <span itemprop="name">AFN</span>
                   </a>
                 </span>
 
@@ -423,7 +423,7 @@
 
           
           
-             <span id="/2017/12/14/Swift-UIKit/Swift-UIKit-UIWebView-简介/" class="leancloud_visitors" data-flag-title="Swift-UIKit-UIWebView-简介">
+             <span id="/2018/01/10/OC/Network/AFN/OC-Network-AFN-请求/" class="leancloud_visitors" data-flag-title="OC-Network-AFN-4种请求">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -454,107 +454,15 @@
       
 
       
-        <h1 id="UIWebView的常用属性"><a href="#UIWebView的常用属性" class="headerlink" title="UIWebView的常用属性"></a>UIWebView的常用属性</h1><blockquote>
-<p>1.设置 UIWebView 的代理对象</p>
+        <blockquote>
+<p>Put<br>Delete<br>Get<br>Post<br>获取用户权限以及登录请求的封装方法</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> delegate: <span class="type">UIWebViewDelegate</span>?</div></pre></td></tr></table></figure>
-<blockquote>
-<p>2.获取 UIWebView 的 UIScrollView 属性</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> scrollView: <span class="type">UIScrollView</span> &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>3.获取 UIWebView 的网络请求</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> request: <span class="type">NSURLRequest</span>? &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>4.获取 UIWebView 是否在接收数据的时候可以退后一步</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> canGoBack: <span class="type">Bool</span> &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>5.获取 UIWebView 是否在接收数据的时候可以前进一步</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">var</span> canGoForward: <span class="type">Bool</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">```  </div><div class="line"></div><div class="line">&gt; <span class="number">6</span>.获取 <span class="type">UIWebView</span> 是否接受完数据</div><div class="line"></div><div class="line">```swift</div><div class="line">   <span class="keyword">var</span> loading: <span class="type">Bool</span> &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>7.设置 UIWebView 接收的数据是否可以通过手势来调整页面内容大小</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> scalesPageToFit: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>8.设置 UIWebView 接收的数据是什么类型</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> dataDetectorTypes: <span class="type">UIDataDetectorTypes</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>9.设置 UIWebView 内是否可以回放媒体</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> allowsInlineMediaPlayback: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>10.设置 UIWebView 中的 HTML5 视频是否自动播放(默认是True)</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> mediaPlaybackRequiresUserAction: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>11.设置 UIWebView 是否可以使用 Air 播放(默认是True)</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> mediaPlaybackAllowsAirPlay: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>12.设置 UIWebView 是否使用同步加载(默认是False)</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> suppressesIncrementalRendering: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>13.设置 UIWebView 在点击视图或者元素时是否显示键盘(默认是True)</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> keyboardDisplayRequiresUserAction: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>14.设置 UIWebView 的分页模式</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> paginationMode: <span class="type">UIWebPaginationMode</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>15.设置 UIWebView 的分页打破模式</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> paginationBreakingMode: <span class="type">UIWebPaginationBreakingMode</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>16.设置 UIWebView 的分页长度</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> pageLength: <span class="type">CGFloat</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>17.设置 UIWebView 之间的页面宽度</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> gapBetweenPages: <span class="type">CGFloat</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>18.获取 UIWebView 的页面数量</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> pageCount: <span class="type">Int</span> &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<h1 id="常用类型"><a href="#常用类型" class="headerlink" title="常用类型"></a>常用类型</h1><blockquote>
-<p>1.获取 UIWebView 的数据类型</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">UIDataDetectorTypes</span> : <span class="title">RawOptionSetType</span> </span>&#123;</div><div class="line">    <span class="keyword">init</span>(<span class="number">_</span> rawValue: <span class="type">UInt</span>)</div><div class="line">    <span class="keyword">init</span>(rawValue: <span class="type">UInt</span>)</div><div class="line"></div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> <span class="type">PhoneNumber</span>: <span class="type">UIDataDetectorTypes</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> <span class="type">Link</span>: <span class="type">UIDataDetectorTypes</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> <span class="type">Address</span>: <span class="type">UIDataDetectorTypes</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> <span class="type">CalendarEvent</span>: <span class="type">UIDataDetectorTypes</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> <span class="type">None</span>: <span class="type">UIDataDetectorTypes</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> <span class="type">All</span>: <span class="type">UIDataDetectorTypes</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>2.设置 UIWebView 的 Navigation 类型</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">UIWebViewNavigationType</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">LinkClicked</span></div><div class="line">    <span class="keyword">case</span> <span class="type">FormSubmitted</span></div><div class="line">    <span class="keyword">case</span> <span class="type">BackForward</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Reload</span></div><div class="line">    <span class="keyword">case</span> <span class="type">FormResubmitted</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Other</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>3.设置 UIWebView 的分页样式</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">UIWebPaginationMode</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Unpaginated</span></div><div class="line">    <span class="keyword">case</span> <span class="type">LeftToRight</span></div><div class="line">    <span class="keyword">case</span> <span class="type">TopToBottom</span></div><div class="line">    <span class="keyword">case</span> <span class="type">BottomToTop</span></div><div class="line">    <span class="keyword">case</span> <span class="type">RightToLeft</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>4.设置 UIWebView 打破分页样式的样式</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">UIWebPaginationBreakingMode</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Page</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Column</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="UIWebView的代理方法"><a href="#UIWebView的代理方法" class="headerlink" title="UIWebView的代理方法"></a>UIWebView的代理方法</h1><blockquote>
-<p>1.该方法是用来设置是否在 UIWebView 加载之前发送一个请求</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">webView</span><span class="params">(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType)</span></span> -&gt; <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>2.该方法是在 UIWebView 在开发加载时调用</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">webViewDidStartLoad</span><span class="params">(webView: UIWebView)</span></span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>3.该方法是在 UIWebView 加载完之后才调用</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">webViewDidFinishLoad</span><span class="params">(webView: UIWebView)</span></span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>4.该方法是在 UIWebView 请求失败的时候调用</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">webView</span><span class="params">(webView: UIWebView, didFailLoadWithError error: NSError)</span></span></div></pre></td></tr></table></figure>
-
+<h1 id="Get"><a href="#Get" class="headerlink" title="Get"></a>Get</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">  + (void)requestGETWithURLStr:(NSString *)urlStr paramDic:(NSDictionary *)paramDic Api_key:(NSString *)api_key finish:(void(^)(id responseObject))finish enError:(void(^)(NSError *error))enError&#123;</div><div class="line">   </div><div class="line">   AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];</div><div class="line"></div><div class="line">   manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@&quot;text/html&quot;,@&quot;application/json&quot;,@&quot;text/javascript&quot;,@&quot;text/json&quot;,@&quot;text/plain&quot;,@&quot;charset=UTF-8&quot;, nil];</div><div class="line">   </div><div class="line">   // 设置请求头</div><div class="line">   [manager.requestSerializer setValue:@&quot;application/json&quot; forHTTPHeaderField:@&quot;Accept&quot;];</div><div class="line"> </div><div class="line">   [manager.requestSerializer setValue:api_key forHTTPHeaderField:@&quot;api_key&quot;];</div><div class="line">  </div><div class="line">   [manager GET:urlStr parameters:paramDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) &#123;</div><div class="line">       </div><div class="line">       NSString *errcode = [NSString stringWithFormat:@&quot;%@&quot;,[responseObject objectForKey:@&quot;errcode&quot;]];</div><div class="line">       </div><div class="line">       if ([errcode isEqualToString:@&quot;0&quot;]) &#123;</div><div class="line">           finish(responseObject);  </div><div class="line">       &#125;else  &#123;</div><div class="line">           NSString *errmsg = [responseObject objectForKey:@&quot;errmsg&quot;];</div><div class="line">       &#125;</div><div class="line">   &#125; failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) &#123;</div><div class="line">       enError(error);</div><div class="line">   &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="POST请求"><a href="#POST请求" class="headerlink" title="POST请求"></a>POST请求</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">  + (void)requestPOSTWithURLStr:(NSString *)urlStr paramDic:(NSDictionary *)paramDic Api_key:(NSString *)api_key finish:(void(^)(id responseObject))finish enError:(void(^)(NSError *error))enError&#123;</div><div class="line">    </div><div class="line">    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];</div><div class="line">    manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@&quot;text/html&quot;,@&quot;application/json&quot;,@&quot;text/javascript&quot;,@&quot;text/json&quot;,@&quot;text/plain&quot;,@&quot;charset=UTF-8&quot;, nil];</div><div class="line">    </div><div class="line">    // 设置请求头</div><div class="line">    [manager.requestSerializer setValue:@&quot;application/json&quot; forHTTPHeaderField:@&quot;Accept&quot;];</div><div class="line">    [manager.requestSerializer setValue:api_key forHTTPHeaderField:@&quot;api_key&quot;];</div><div class="line">    </div><div class="line">    [manager POST:urlStr parameters:paramDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) &#123;</div><div class="line">        NSString *errcode = [NSString stringWithFormat:@&quot;%@&quot;,[responseObject objectForKey:@&quot;errcode&quot;]];</div><div class="line">        if ([errcode isEqualToString:@&quot;0&quot;]) &#123;</div><div class="line">            </div><div class="line">            finish(responseObject);</div><div class="line">        &#125;else if ([errcode isEqualToString:@&quot;100000&quot;]) &#123;</div><div class="line">            NSString *errmsg = [responseObject objectForKey:@&quot;errmsg&quot;];</div><div class="line">            // 弹出提示信息</div><div class="line">            [[NetworkManager shareNetworkManager].mdelegate showMessage:errmsg];</div><div class="line">        &#125;else&#123;</div><div class="line">            NSString *errmsg = [responseObject objectForKey:@&quot;errmsg&quot;]；</div><div class="line">        &#125;</div><div class="line">    &#125; failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) &#123;</div><div class="line">        enError(error);</div><div class="line">    &#125;];</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="PUT"><a href="#PUT" class="headerlink" title="PUT"></a>PUT</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">  + (void)requestPUTWithURLStr:(NSString *)urlStr paramDic:(NSDictionary *)paramDic Api_key:(NSString *)api_key finish:(void(^)(id responseObject))finish enError:(void(^)(NSError *error))enError&#123;</div><div class="line"></div><div class="line">    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];</div><div class="line">    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@&quot;text/html&quot;,@&quot;application/json&quot;,@&quot;text/javascript&quot;,@&quot;text/json&quot;,@&quot;text/plain&quot;, nil];</div><div class="line">    </div><div class="line">    // 设置请求头</div><div class="line">    [manager.requestSerializer setValue:@&quot;application/json&quot; forHTTPHeaderField:@&quot;Accept&quot;];</div><div class="line">    [manager.requestSerializer setValue:api_key forHTTPHeaderField:@&quot;api_key&quot;];</div><div class="line">    [manager PUT:urlStr parameters:paramDic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) &#123;</div><div class="line">        NSString *errcode = [NSString stringWithFormat:@&quot;%@&quot;,[responseObject objectForKey:@&quot;errcode&quot;]];</div><div class="line">        </div><div class="line">        if ([errcode isEqualToString:@&quot;0&quot;]) &#123;</div><div class="line">            </div><div class="line">            finish(responseObject);</div><div class="line">            </div><div class="line">        &#125;else&#123;</div><div class="line">            NSString *errmsg = [responseObject objectForKey:@&quot;errmsg&quot;];</div><div class="line">        &#125;</div><div class="line">    &#125; failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) &#123;</div><div class="line">        enError(error);</div><div class="line">    &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="上传图片"><a href="#上传图片" class="headerlink" title="上传图片"></a>上传图片</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">  + (void)requestAddImgPOSTWithURLStr:(NSString *)url paramDic:(NSDictionary *)paramDic image:(UIImage *)image name:(NSString *)name success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure&#123;</div><div class="line">    </div><div class="line">    // 1.创建网络管理者</div><div class="line">    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];</div><div class="line">    manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@&quot;text/html&quot;,@&quot;application/json&quot;,@&quot;text/javascript&quot;,@&quot;text/json&quot;,@&quot;text/plain&quot;, nil];</div><div class="line">    //请求图片,请求网页时需要加入这句,因为AFN默认的请求的是json</div><div class="line">    manager.responseSerializer = [AFHTTPResponseSerializer serializer];</div><div class="line">    manager.requestSerializer = [AFHTTPRequestSerializer serializer];</div><div class="line">    // 2.发送请求(字典只能放非文件参数)</div><div class="line">    [manager POST:url parameters:paramDic constructingBodyWithBlock:^(id&lt;AFMultipartFormData&gt;  _Nonnull formData) &#123;</div><div class="line">        NSData *imageData = UIImageJPEGRepresentation(image, 0.5);//进行图片压缩</div><div class="line">        // 使用日期生成图片名称</div><div class="line">        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];</div><div class="line">        formatter.dateFormat = @&quot;yyyyMMddHHmmss&quot;;</div><div class="line">        NSString *fileName = [NSString stringWithFormat:@&quot;%@.png&quot;,[formatter stringFromDate:[NSDate date]]];</div><div class="line">        </div><div class="line">        // 上传图片，以文件流的格式</div><div class="line">        // 任意的二进制数据MIMEType application/octet-stream</div><div class="line">        // 特别注意，这里的图片的名字不要写错，必须是接口的图片的参数名字如我这里是file</div><div class="line">        if (imageData!=nil) &#123; // 图片数据不为空才传递</div><div class="line">            [formData appendPartWithFileData:imageData name:name fileName:fileName mimeType:@&quot;image/png&quot;];</div><div class="line">        &#125; </div><div class="line">    &#125; progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) &#123;</div><div class="line">        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:(NSJSONReadingMutableContainers) error:nil];</div><div class="line">        if ([[dic objectForKey:@&quot;status&quot;]isEqualToString:@&quot;success&quot;]) &#123;</div><div class="line">             success(responseObject);  </div><div class="line">        &#125;else&#123;</div><div class="line">            NSString *message = [responseObject objectForKey:@&quot;message&quot;];</div><div class="line">            NSLog(@&quot;messageImg == %@&quot;,message);</div><div class="line">             [[NetworkManager shareNetworkManager].mdelegate showMessage:message];</div><div class="line">        &#125;</div><div class="line">    &#125; failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) &#123;</div><div class="line">        failure(error);</div><div class="line">    &#125;]; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="GET超级api"><a href="#GET超级api" class="headerlink" title="GET超级api"></a>GET超级api</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"> + (void)requestGETSuperAPIWithURLStr:(NSString *)urlStr WithAuthorization:(NSString *)authorization paramDic:(NSDictionary *)paramDic finish:(void(^)(id responseObject))finish enError:(void(^)(NSError *error))enError&#123;</div><div class="line"></div><div class="line">   AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];</div><div class="line">   manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@&quot;text/html&quot;,@&quot;application/json&quot;,@&quot;text/javascript&quot;,@&quot;text/json&quot;,@&quot;text/plain&quot;,@&quot;charset=UTF-8&quot;, nil];</div><div class="line">   </div><div class="line">   // 设置请求头</div><div class="line">   [manager.requestSerializer setValue:authorization forHTTPHeaderField:@&quot;Authorization&quot;];</div><div class="line">    [manager.requestSerializer setValue:@&quot;application/json&quot; forHTTPHeaderField:@&quot;Accept&quot;];</div><div class="line">   </div><div class="line">   [manager GET:urlStr parameters:paramDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) &#123;</div><div class="line">       // 成功回调</div><div class="line">       finish(responseObject);</div><div class="line">       // 如果superapikey过期，重新保存加密获取新的</div><div class="line">       // 如果用户apikey过期，则重新登录</div><div class="line">   &#125; failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) &#123;</div><div class="line">       // 失败回调</div><div class="line">       enError(error);</div><div class="line">       </div><div class="line">   &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="POST请求-立即登录"><a href="#POST请求-立即登录" class="headerlink" title="POST请求 立即登录"></a>POST请求 立即登录</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">  + (void)requestLoginPOSTWithURLStr:(NSString *)urlStr WithAuthorization:(NSString *)authorization paramDic:(NSDictionary *)paramDic finish:(void(^)(id responseObject))finish enError:(void(^)(NSError *error))enError&#123;</div><div class="line">   </div><div class="line">   AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];</div><div class="line">   </div><div class="line">   manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@&quot;text/html&quot;,@&quot;application/json&quot;,@&quot;text/javascript&quot;,@&quot;text/json&quot;,@&quot;text/plain&quot;,@&quot;charset=UTF-8&quot;, nil];</div><div class="line"></div><div class="line">   // 设置请求头</div><div class="line">   [manager.requestSerializer setValue:@&quot;application/json&quot; forHTTPHeaderField:@&quot;Accept&quot;];</div><div class="line">   [manager.requestSerializer setValue:authorization forHTTPHeaderField:@&quot;Authorization&quot;];</div><div class="line">   [manager POST:urlStr parameters:paramDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) &#123;</div><div class="line">       </div><div class="line">       NSString *errcode = [NSString stringWithFormat:@&quot;%@&quot;,[responseObject objectForKey:@&quot;errcode&quot;]];</div><div class="line">       if ([errcode isEqualToString:@&quot;0&quot;]) &#123;</div><div class="line">           finish(responseObject);</div><div class="line">       &#125;else &#123;</div><div class="line">           NSString *errmsg = [responseObject objectForKey:@&quot;errmsg&quot;];</div><div class="line">       &#125;</div><div class="line">   &#125; failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) &#123;</div><div class="line">       // 失败回调</div><div class="line">       enError(error);</div><div class="line">   &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -571,11 +479,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Swift/" rel="tag"># Swift</a>
+            <a href="/tags/OC/" rel="tag"># OC</a>
           
-            <a href="/tags/UIKit/" rel="tag"># UIKit</a>
+            <a href="/tags/Network/" rel="tag"># Network</a>
           
-            <a href="/tags/UIWebView/" rel="tag"># UIWebView</a>
+            <a href="/tags/AFN/" rel="tag"># AFN</a>
           
         </div>
       
@@ -588,8 +496,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/14/Swift-UIKit/Swift-UIKit-UINavigationController-简单使用/" rel="next" title="Swift-UIKit-UINavigationController-简单使用">
-                <i class="fa fa-chevron-left"></i> Swift-UIKit-UINavigationController-简单使用
+              <a href="/2018/01/10/SceneKit/SceneKit-Panorama-全景图/" rel="next" title="SceneKit-Panorama-全景图">
+                <i class="fa fa-chevron-left"></i> SceneKit-Panorama-全景图
               </a>
             
           </div>
@@ -598,8 +506,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/14/Swift-UIKit/Swift-UIKit-UIWebView-简单使用/" rel="prev" title="Swift-UIKit-UIWebView-简单使用">
-                Swift-UIKit-UIWebView-简单使用 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/10/iOS-Lib/iOS-Lib-CYLTabBarCtl/" rel="prev" title="iOS-Lib-CYLTabBarCtl">
+                iOS-Lib-CYLTabBarCtl <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -734,7 +642,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UIWebView的常用属性"><span class="nav-number">1.</span> <span class="nav-text">UIWebView的常用属性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用类型"><span class="nav-number">2.</span> <span class="nav-text">常用类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UIWebView的代理方法"><span class="nav-number">3.</span> <span class="nav-text">UIWebView的代理方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Get"><span class="nav-number">1.</span> <span class="nav-text">Get</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#POST请求"><span class="nav-number">2.</span> <span class="nav-text">POST请求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PUT"><span class="nav-number">3.</span> <span class="nav-text">PUT</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#上传图片"><span class="nav-number">4.</span> <span class="nav-text">上传图片</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GET超级api"><span class="nav-number">5.</span> <span class="nav-text">GET超级api</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#POST请求-立即登录"><span class="nav-number">6.</span> <span class="nav-text">POST请求 立即登录</span></a></li></ol></div>
             
 
           </div>
