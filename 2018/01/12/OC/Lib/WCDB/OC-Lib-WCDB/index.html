@@ -113,7 +113,7 @@
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
 <meta property="og:description" content="WCDB 文档  WCDB 使用 官方iOS文档  CocoaPods  pod &amp;apos;WCDB&amp;apos;  引入  #import &amp;lt;WCDB/WCDB.h&amp;gt;  ⚠️引用注意  WCDB是基于Objective-C++，需要将引用WCDB的源文件后缀.m改为.mm。  iOS 11中Bug   需要在pod中指定该库的地址，并且指定分支master    target &amp;ap">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-12T02:28:44.212Z">
+<meta property="og:updated_time" content="2018-01-12T02:53:11.779Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OC-Lib-WCDB">
 <meta name="twitter:description" content="WCDB 文档  WCDB 使用 官方iOS文档  CocoaPods  pod &amp;apos;WCDB&amp;apos;  引入  #import &amp;lt;WCDB/WCDB.h&amp;gt;  ⚠️引用注意  WCDB是基于Objective-C++，需要将引用WCDB的源文件后缀.m改为.mm。  iOS 11中Bug   需要在pod中指定该库的地址，并且指定分支master    target &amp;ap">
@@ -493,6 +493,9 @@
 <p>ORM(Object Relational Mapping)</p>
 </blockquote>
 <ul>
+<li>将一个ObjC的类，映射到数据库的表和索引；</li>
+<li>将类的property，映射到数据库表的字段</li>
+<li>通过ORM，可以达到直接通过Object进行数据库操作，省去拼装过程的目的</li>
 <li>WCDB支持灵活、易用的ORM</li>
 <li>开发者可以很便捷地定义表、索引、约束，并进行增删改查操作</li>
 </ul>
@@ -536,6 +539,64 @@
 <h2 id="③使用WCDB-PROPERTY宏"><a href="#③使用WCDB-PROPERTY宏" class="headerlink" title="③使用WCDB_PROPERTY宏"></a>③使用WCDB_PROPERTY宏</h2><blockquote>
 <p>使用WCDB_PROPERTY宏在头文件声明需要绑定到数据库表的字段(也就是把你的表里面需要的字段在这里用这宏声明一次)<br>使用WCDB_IMPLEMENTATIO宏在类文件定义绑定到数据库表的类（把这个类绑定到数据库的表，你会在下面创建数据库的时候创建相应的表，表会和类绑定）<br>使用WCDB_SYNTHESIZE宏在类文件定义绑定到数据库表的类（第二步声明了表需要的字段，第三步绑定了表中的类，第四步就等于把表和字段绑定）</p>
 </blockquote>
+<table>
+<thead>
+<tr>
+<th>宏</th>
+<th>声明</th>
+<th>绑定到数据库表</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WCDB_PROPERTY</td>
+<td>头文件声明</td>
+<td>字段</td>
+<td></td>
+</tr>
+<tr>
+<td>WCDB_IMPLEMENTATIO</td>
+<td>类类文件定义</td>
+<td>类</td>
+<td></td>
+</tr>
+<tr>
+<td>WCDB_SYNTHESIZE</td>
+<td>类文件定义</td>
+<td>字段</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>WCDB_PRIMARY</td>
+<td></td>
+<td>主键</td>
+<td>可选的宏</td>
+</tr>
+<tr>
+<td>WCDB_INDEX</td>
+<td></td>
+<td>索引</td>
+<td>可选的宏</td>
+</tr>
+<tr>
+<td>WCDB_UNIQUE</td>
+<td></td>
+<td>唯一约束</td>
+<td>可选的宏</td>
+</tr>
+<tr>
+<td>WCDB_NOT_NULL</td>
+<td></td>
+<td>非空约束</td>
+<td>可选的宏</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
