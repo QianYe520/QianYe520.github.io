@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[OC-Lib-WCDB -简单使用参考]]></title>
+<url>../../../../../../../../2018/01/12/OC/Lib/WCDB/OC-Lib-WCDB -简单使用参考/</url>
+    <content type="text"><![CDATA[创建model Message.h @interface Message : NSObject@property int localID;@property(retain) NSString *content;@property(retain) NSDate *createTime;@property(retain) NSDate *modifiedTime;@end Message.mm 绑定到表的类 绑定到表中的字段 主键 索引属性 @implementation Message // 利用这个宏定义绑定到表的类WCDB_IMPLEMENTATION(Message) // 下面四个宏定义绑定到表中的字段WCDB_SYNTHESIZE(Message, localID)WCDB_SYNTHESIZE(Message, content)WCDB_SYNTHESIZE(Message, createTime)WCDB_SYNTHESIZE(Message, modifiedTime) // 约束宏定义数据库的主键WCDB_PRIMARY(Message, localID) // 定义数据库的索引属性，它直接定义createTime字段为索引// 同时 WCDB 会将表名 + "_index" 作为该索引的名称WCDB_INDEX(Message, "_index", createTime) 类别扩展（model） Message+WCTTableCoding.h 协议 WCTTableCoding #import "Message.h"#import &lt;WCDB/WCDB.h&gt;@interface Message (WCTTableCoding) &lt;WCTTableCoding&gt;// 需要绑定到表中的字段在这里声明，在.mm中去绑定WCDB_PROPERTY(localID)WCDB_PROPERTY(content)WCDB_PROPERTY(createTime)WCDB_PROPERTY(modifiedTime) 创建数据库//获取沙盒根目录 NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]; // 文件路径 NSString *filePath = [documentsPath stringByAppendingPathComponent:@"model.sqlite"]; NSLog(@"path = %@",filePath); database = [[WCTDatabase alloc]initWithPath:filePath]; // 数据库加密 NSData *password = [@"MyPassword" dataUsingEncoding:NSASCIIStringEncoding]; [database setCipherKey:password]; //测试数据库是否能够打开 if ([database canOpen]) &#123; // WCDB大量使用延迟初始化（Lazy initialization）的方式管理对象，因此SQLite连接会在第一次被访问时被打开。开发者不需要手动打开数据库。 // 先判断表是不是已经存在 if ([database isOpened]) &#123; if ([database isTableExists:tableName]) &#123; NSLog(@"表已经存在"); &#125;else &#123; [database createTableAndIndexesOfName:tableName withClass:Message.class]; &#125; &#125; 插入数据Message *message = [[Message alloc] init];message.localID = 1;message.content = @"Hello, WCDB!";message.createTime = [NSDate date];message.modifiedTime = [NSDate date];/* INSERT INTO message(localID, content, createTime, modifiedTime) VALUES(1, "Hello, WCDB!", 1496396165, 1496396165); */ [database insertObject:message into:@"message"]; 更新数据//UPDATE message SET content="Hello, Wechat!";Message *message = [[Message alloc] init];message.content = @"Hello, Wechat!"; //下面这句在17号的时候和微信团队的人在学习群里面沟通过，这个方法确实是不存在的，使用教程应该会更新，要是没更新注意这个方法//BOOL result = [database updateTable:@"message" onProperties:Message.content withObject:message];[database updateAllRowsInTable:@"message" onProperty:Message.content withObject:message]; 查询数据 //SELECT * FROM message ORDER BY localIDNSArray&lt;Message *&gt; * message = [database getObjectsOfClass:Message.class fromTable:@"message" orderBy:Message.localID.order()];NSLog(@"&gt;&gt;&gt;&gt; %@",message); 删除数据[database deleteObjectsFromTable:@"message" where:Message.localID &gt; 0]; WCTDatabase 事务操作，利用WCTTransactionBOOL ret = [database beginTransaction]; ret = [self insertMessage]; if (ret) &#123; [database commitTransaction]; &#125;else [database rollbackTransaction]; return ret; 使用Block处理事务BOOL commit = [database runTransaction:^BOOL&#123; BOOL ret = [self insertMessage]; if (ret) &#123; return YES; &#125;else return NO; &#125; event:^(WCTTransactionEvent event) &#123; NSLog(@"Event %d", event); &#125;]; return commit; FMDB迁移到WCDBFMDB迁移到WCDB]]></content>
+      <categories>
+        <category>OC</category>
+        <category>Lib</category>
+        <category>WCDB</category>
+      </categories>
+      <tags>
+        <tag>Lib</tag>
+        <tag>OC</tag>
+        <tag>WCDB</tag>
+        <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[OC-Lib-WCDB]]></title>
-<url>../../../../../../../../2018/01/12/OC-Lib-WCDB/</url>
+<url>../../../../../../../../2018/01/12/OC/Lib/WCDB/OC-Lib-WCDB/</url>
     <content type="text"><![CDATA[WCDB 文档 WCDB 使用 官方iOS文档 CocoaPods pod &apos;WCDB&apos; 引入 #import &lt;WCDB/WCDB.h&gt; ⚠️引用注意 WCDB是基于Objective-C++，需要将引用WCDB的源文件后缀.m改为.mm。 iOS 11中Bug 需要在pod中指定该库的地址，并且指定分支master target &apos;WCDBDemo&apos; doplatform:ios,&quot;8.0&quot;pod &apos;WCDB&apos;,git: &apos;https://github.com/Tencent/wcdb.git&apos; , branch: &apos;master&apos;pod &apos;YYModel&apos;end 基本简介WCDB 易用 WCDB支持一句代码即可将数据取出并组合为object WINQ(WCDB语言集成查询) 通过WINQ，开发者无须为了拼接SQL的字符串而写一大坨胶水代码 ORM(Object Relational Mapping) WCDB支持灵活、易用的ORM 开发者可以很便捷地定义表、索引、约束，并进行增删改查操作 [database getObjectsOfClass:WCTSampleConvenient.class fromTable:tableName where:WCTSampleConvenient.intValue&gt;=10 limit:20]; 高效 WCDB通过框架层和sqlcipher源码优化，使其更高效的表现 多线程高并发 WCDB支持多线程读与读、读与写并发执行，写与写串行执行 批量写操作性能测试 性能数据，请参考benchmark 完整(WCDB覆盖了数据库相关各种场景的所需功能) 加密：WCDB提供基于SQLCipher的数据库加密 损坏修复：WCDB内建了Repair Kit用于修复损坏的数据库 反注入：WCDB内建了对SQL注入的保护 已有的OC类QRM绑定的过程①协议、定义 定义该类遵守WCTTableCoding协议可以在类声明上定义也可以通过文件模版在category内定义 推荐用第2种，通过文件模板在category内定义，为了隔离Objective-C++代码 不通过category定义，而是选择了在类声明中写，这样的话Message.h 中就需要有宏WCDB_PROPERTY，这样你就在Message.h使用了WCDB的代码，当你把Message.h在其他Controller/View中引用的时候，那相应的Controller/View的.m就需要修改成.mm 。造成不必要的工作，但你用第二种方法写的时候，你就发现在Message.h中是没有任何的关于WCDB的代码的，后面你引用也不需要再去修改 ②修改文件 WCDB基于WINQ，引入了Objective-C++代码，所以对于引入了WCDB的源文件，都需要把后缀.m改为.mm为减少影响范围，可以通过Objective-C的category特性将其隔离，达到只在model层使用Objective-C++编译，而不影响Controller和View这一点在Wiki中是有提到的 ③使用WCDB_PROPERTY宏 使用WCDB_PROPERTY宏在头文件声明需要绑定到数据库表的字段(也就是把你的表里面需要的字段在这里用这宏声明一次)使用WCDB_IMPLEMENTATIO宏在类文件定义绑定到数据库表的类（把这个类绑定到数据库的表，你会在下面创建数据库的时候创建相应的表，表会和类绑定）使用WCDB_SYNTHESIZE宏在类文件定义绑定到数据库表的类（第二步声明了表需要的字段，第三步绑定了表中的类，第四步就等于把表和字段绑定）]]></content>
       <categories>
         <category>OC</category>
@@ -16,7 +32,7 @@
   </entry>
   <entry>
     <title><![CDATA[OC-QMUIKit]]></title>
-<url>../../../../../../../../2018/01/12/OC-QMUIKit/</url>
+<url>../../../../../../../../2018/01/12/OC/Lib/QMUIKit/OC-QMUIKit/</url>
     <content type="text"><![CDATA[QMUIKitQMUIKit 使用 官方文档 CocoaPodspod &apos;QMUIKit&apos;#import &lt;QMUIKit/QMUIKit.h&gt; QMUI iOS 主要由 5 大部分组成：QMUICore 配置表、全局的宏、工具方法等，是所有 QMUI 类的基础代码 QMUIMainFrame 几个常用的 UIViewController 的基类，建议将这几个基类作为你项目里的对应 class 的父类，QMUI iOS 有大量功能也是基于这几个基类实现 UIKitExtensions 对系统 UIKit 的拓展，所有 Category 的方法、属性均会带 qmui_ 前缀，以避免冲突 QMUIComponents 提供大量常用的控件，具体的控件列表、效果展示、使用代码示例请查看 QMUI Demo。 QMUIResources存储 QMUI 控件里可能用到的一些图，例如表情面板的删除按钮、选图控件的 checkbox、QMUITips 那些成功、失败的 icon 等。 功能列表 Other腾讯开源iOS自动内存泄露检测工具MLeaksFinder 腾讯开源的数据库框架 QMUI iOS——致力于提高项目 UI 开发效率的解决方案 专注于提升H5首屏速度优化]]></content>
       <categories>
         <category>OC</category>
@@ -1802,9 +1818,9 @@
         <category>JSBadgeView</category>
       </categories>
       <tags>
-        <tag>Lib</tag>
         <tag>iOS</tag>
         <tag>UI</tag>
+        <tag>Lib</tag>
       </tags>
   </entry>
   <entry>
