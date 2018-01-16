@@ -10,8 +10,8 @@
         <category>WCDB</category>
       </categories>
       <tags>
-        <tag>Lib</tag>
         <tag>OC</tag>
+        <tag>Lib</tag>
         <tag>WCDB</tag>
         <tag>数据库</tag>
       </tags>
@@ -36,6 +36,7 @@
     <content type="text"><![CDATA[QMUIKitQMUIKit 使用 官方文档 CocoaPodspod &apos;QMUIKit&apos;#import &lt;QMUIKit/QMUIKit.h&gt; QMUI iOS 主要由 5 大部分组成：QMUICore 配置表、全局的宏、工具方法等，是所有 QMUI 类的基础代码 QMUIMainFrame 几个常用的 UIViewController 的基类，建议将这几个基类作为你项目里的对应 class 的父类，QMUI iOS 有大量功能也是基于这几个基类实现 UIKitExtensions 对系统 UIKit 的拓展，所有 Category 的方法、属性均会带 qmui_ 前缀，以避免冲突 QMUIComponents 提供大量常用的控件，具体的控件列表、效果展示、使用代码示例请查看 QMUI Demo。 QMUIResources存储 QMUI 控件里可能用到的一些图，例如表情面板的删除按钮、选图控件的 checkbox、QMUITips 那些成功、失败的 icon 等。 功能列表 Other腾讯开源iOS自动内存泄露检测工具MLeaksFinder 腾讯开源的数据库框架 QMUI iOS——致力于提高项目 UI 开发效率的解决方案 专注于提升H5首屏速度优化]]></content>
       <categories>
         <category>OC</category>
+        <category>Lib</category>
         <category>QMUIKit</category>
       </categories>
       <tags>
@@ -44,10 +45,12 @@
   </entry>
   <entry>
     <title><![CDATA[iOS-Lib-CYLTabBarCtl]]></title>
-<url>../../../../../../../../2018/01/10/iOS-Lib/iOS-Lib-CYLTabBarCtl/</url>
+<url>../../../../../../../../2018/01/10/OC/Lib/CYLTabBarCtl/OC-Lib-CYLTabBarCtl/</url>
     <content type="text"><![CDATA[Github Adress]]></content>
       <categories>
-        <category>520</category>
+        <category>OC</category>
+        <category>Lib</category>
+        <category>CYLTabBarCtl</category>
       </categories>
   </entry>
   <entry>
@@ -76,7 +79,7 @@
   </entry>
   <entry>
     <title><![CDATA[Git-Gitlab代码托管配置]]></title>
-<url>../../../../../../../../2018/01/09/Git-Gitlab代码托管配置/</url>
+<url>../../../../../../../../2018/01/09/Git/Git-Gitlab代码托管配置/</url>
     <content type="text"><![CDATA[Gitlab平台设置为Project添加Gitcd “本地项目的路径” git init //初始化 git remote add origin git@gitlab.com:USERNAME/PROJECTNAME.git //将”USERNAME”和”PROJECTNAME”替换为自己的用户名和项目名 git add . //注意add和”.”之间的空格 git commit -m ‘commit description’ //提交改动到本地库git push -u origin master //push到Gitlab 问题1 需要注意，输入commit命令后会提示输入commit message，如下图，对终端不熟悉的同学可能要抓狂了，这里需要按s键进入INSERT模式,开始输入commit message，最后按ESC，然后输入:wq退出commit message输入模式 注意：建议commit message第一行输入标题（概要），空一行再输入详细信息。当然，这是建议，如果你觉得无所谓，也可以随意输入或直接:wq跳过 输入commit message 坑No.2git push -u origin master命令后可以看到提示：error: src refspec master does not match any.error: failed to push some refs to ‘git@gitlab.com:int1987/testProject.git’ 这是因为没有项目说明书，所以push失败 解决方案：touch README //生成说明文件 git add README //添加说明文件到 git commit -m ‘commit readme file’ //提交改动 Push到Gitlab添加README后再重新输入git push -u origin master，push项目到Gitlab， 首次push会提示gitlab.com的真实性无法确定，输入yes，确定即可。之后gitlab.com就会被添加到已知服务器（可以在~/.ssh文件夹中查看到多了一个known_hosts文件，它就是存储已知服务器的文件） Gitlab https://baijiahao.baidu.com/s?id=1560915146966961&amp;wfr=spider&amp;for=pc http://blog.csdn.net/lemonaha/article/details/69977098]]></content>
       <categories>
         <category>Git</category>
@@ -137,12 +140,19 @@
   </entry>
   <entry>
     <title><![CDATA[iOS-Lib-ArcGIS-大图加载]]></title>
-<url>../../../../../../../../2018/01/08/iOS-Lib/iOS-Lib-ArcGIS-大图加载/</url>
+<url>../../../../../../../../2018/01/08/OC/Lib/ArcGIS/OC-Lib-ArcGIS-大图加载/</url>
     <content type="text"><![CDATA[资料 https://developers.arcgis.com http://blog.csdn.net/pzhtpf/article/details/51027047]]></content>
       <categories>
-        <category>iOS</category>
+        <category>OC</category>
         <category>Lib</category>
+        <category>ArcGIS</category>
       </categories>
+      <tags>
+        <tag>OC</tag>
+        <tag>Lib</tag>
+        <tag>ArcGIS</tag>
+        <tag>大图加载</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Git-常用的命令]]></title>
@@ -913,7 +923,7 @@
   </entry>
   <entry>
     <title><![CDATA[iOS-Lib-SSKeychain-数据本地化方式之一]]></title>
-<url>../../../../../../../../2017/12/13/iOS-Lib/iOS-Lib-SSKeychain-数据本地化方式之一/</url>
+<url>../../../../../../../../2017/12/13/OC/Lib/OC-Lib-SSKeychain-数据本地化方式之一/</url>
     <content type="text"><![CDATA[keychain与userdefaults keychain 将数据加密后存储在本地,更安全.路径:Library/Application Support/iPhone Simulator/模拟器版本/Library/Keychains/ 当你删除APP后,keychain存储的数据不会删除 userdefaults 数据以明文的形式保存在.plist文件中.路径:Library/Application Support/iPhone Simulator/模拟器版本/Applications/应用对应的数字/Library/Preference/.plist文件 当你删除APP后,user defaults存储的数据会随着APP而删掉 流程 导入 pod &apos;SSKeychain&apos; 实现 #import &quot;ViewController.h&quot;#import &lt;SSKeychain.h&gt;#import &lt;SSKeychainQuery.h&gt;//应用名称(保证唯一性)#define ServiceName @&quot;com.zx.tec.SSKeychainTest&quot;//账号#define Account @&quot;test2&quot;@interface ViewController ()@end@implementation ViewController- (void)viewDidLoad &#123; [superviewDidLoad]; /** * SSKeychain 是一种本地存储方式不会因为程序卸载而清除 用于存储私密 及唯一 的标示 * * 五个方法:(用到两个) * + (NSArray *)allAccounts; * + (NSArray *)accountsForService:(NSString *)serviceName; * + (NSString *)passwordForService:(NSString *)serviceName account:(NSString *)account; * + (BOOL)deletePasswordForService:(NSString *)serviceName account:(NSString *)account; * + (BOOL)setPassword:(NSString *)password forService:(NSString *)serviceName account:(NSString *)account; */ #pragma mark - 开始使用 SSKeychain //获取uuid(如果想获取唯一标示,存储以 uuid为密码存储 下次登陆直接读取检测是否安装) //CFUUIDRef uuid = CFUUIDCreate(NULL); //assert(uuid != NULL); //CFStringRef uuidStr = CFUUIDCreateString(NULL, uuid); // NSLog(@&quot;%@~~%@&quot;, uuidStr, [NSString stringWithFormat:@&quot;%@&quot;, uuidStr]); /** * + (NSString *)passwordForService:(NSString *)serviceName account:(NSString *)account;//获取指定 serviceName和 account 的密码 * * + (BOOL)setPassword:(NSString *)password forService:(NSString *)serviceName account:(NSString *)account;//存储指定 serviceName和 account 的密码 * */ NSString *passWord = @&quot;123456&quot;; if (![SSKeychainpasswordForService:ServiceNameaccount:Account]) &#123;//查看本地是否存储指定 serviceName和 account 的密码 //如果没设置密码则设定密码 并存储 [SSKeychainsetPassword:passWord forService:ServiceNameaccount:Account]; //打印密码信息 NSString *retrieveuuid = [SSKeychainpasswordForService:ServiceNameaccount:Account]; NSLog(@&quot;SSKeychain存储显示:未安装过:%@&quot;, retrieveuuid); &#125;else&#123; //曾经安装过则直接能打印出密码信息(即使删除了程序再次安装也会打印密码信息) 区别于 NSUSerDefault NSString *retrieveuuid = [SSKeychainpasswordForService:ServiceNameaccount:Account]; NSLog(@&quot;SSKeychain存储显示 :已安装过:%@&quot;, retrieveuuid); &#125;#warning 区别于 NSUSerDefault (删除应用程序后存储的数据就会消失) if (![[NSUserDefaultsstandardUserDefaults]boolForKey:@&quot;TestOne&quot;]) &#123; [[NSUserDefaultsstandardUserDefaults]setBool:YESforKey:@&quot;TestOne&quot;]; NSLog(@&quot;NSUSerDefault存储显示:未安装&quot;); &#125;else&#123; NSLog(@&quot;NSUSerDefault存储显示:安装过&quot;); &#125;&#125;]]></content>
       <categories>
         <category>iOS</category>
@@ -1611,12 +1621,20 @@
   </entry>
   <entry>
     <title><![CDATA[iOS-Lib-YYKit-YYmodel]]></title>
-<url>../../../../../../../../2017/11/23/iOS-Lib/iOS-Lib-YYKit-YYmodel/</url>
+<url>../../../../../../../../2017/11/23/OC/Lib/OC-Lib-YYKit-YYmodel/</url>
     <content type="text"></content>
       <categories>
-        <category>iOS</category>
+        <category>OC</category>
         <category>Lib</category>
         <category>YYKit</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Blog-配置]]></title>
+<url>../../../../../../../../2017/11/23/Blog/Blog-配置/</url>
+    <content type="text"><![CDATA[博客配置01博客配置02 RxSwift]]></content>
+      <categories>
+        <category>Blog</category>
       </categories>
   </entry>
   <entry>
@@ -1627,14 +1645,6 @@
         <category>iOS</category>
         <category>Tool</category>
         <category>FastLane</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[Blog-配置]]></title>
-<url>../../../../../../../../2017/11/23/Blog/Blog-配置/</url>
-    <content type="text"><![CDATA[博客配置01博客配置02 RxSwift]]></content>
-      <categories>
-        <category>Blog</category>
       </categories>
   </entry>
   <entry>
@@ -1786,11 +1796,11 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[SDWebImag加载高分辨率图问题]]></title>
-<url>../../../../../../../../2017/11/20/iOS-Lib/iOS-Lib-SDWebImag加载高分辨率图问题/</url>
+    <title><![CDATA[OC-Lib-SDWebImag加载高分辨率图问题]]></title>
+<url>../../../../../../../../2017/11/20/OC/Lib/SDWebImag/OC-Lib-SDWebImag加载高分辨率图问题/</url>
     <content type="text"><![CDATA[SDWebImage_图片分辨率过高内存过高问题#高分辨率多图问题： 高分辨率图，导致内存飙升，卡顿，设置闪退,提示： Restore the connection to &quot;“XXX”的 iPod&quot; and run &quot;XXX&quot; again, or if &quot;XXX&quot; is still running, you can attach to it by selecting Debug &gt; Attach to Process &gt; XXX. 由于应用程序突然消耗了大量内存，然后再分配调度内存的时候，出现错误，致使系统将APP进程关闭。能够去查看一下是不是载入了大量的图片等等，或者哪里有消耗内存的地方改动一下。 分析SDWebimage， 1.判断本地是否有这张图2.二有的时候直接从本地取图片3.没有的时候去网络下载 if(imgStr.length&gt;0)&#123; [[SDImageCache sharedImageCache] queryDiskCacheForKey:imgStr done:^(UIImage *image, SDImageCacheType cacheType) &#123; if (image) &#123; [_oneImage setImage:image]; &#125;else&#123; [_oneImage sd_setImageWithURL:kNSUrl(imgStr) placeholderImage:IMGNAMED(@&quot;defaultAvatar2&quot;) options:SDWebImageRefreshCached completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) &#123; if (image) &#123; [[SDImageCache sharedImageCache] storeImage:image forKey:imgStr toDisk:YES]; &#125; &#125;]; &#125; &#125;];&#125; 内部会调用下面这个方法- (UIImage *)diskImageForKey:(NSString *)key &#123; NSData *data = [self diskImageDataBySearchingAllPathsForKey:key]; if (data) &#123; UIImage *image = [UIImage sd_imageWithData:data]; image = [self scaledImageForKey:key image:image]; image = [UIImage decodedImageWithImage:image]; return image; &#125; else &#123; return nil; &#125; &#125; UIImage *image = [UIImage sd_imageWithData:data];图片取出来的时候就已经巨大无比，占用了很大的内存，导致内存来不及释放就崩溃 解决UIImage+MultiFormat这个类里面添加如下压缩方法，+(UIImage *)compressImageWith:(UIImage *)image &#123; float imageWidth = image.size.width; float imageHeight = image.size.height; float width = 640; float height = image.size.height/(image.size.width/width); float widthScale = imageWidth /width; float heightScale = imageHeight /height; // 创建一个bitmap的context // 并把它设置成为当前正在使用的context UIGraphicsBeginImageContext(CGSizeMake(width, height)); if (widthScale &gt; heightScale) &#123; [image drawInRect:CGRectMake(0, 0, imageWidth /heightScale , height)]; &#125; else &#123; [image drawInRect:CGRectMake(0, 0, width , imageHeight /widthScale)]; &#125; // 从当前context中创建一个改变大小后的图片 UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext(); // 使当前的context出堆栈 UIGraphicsEndImageContext(); return newImage; &#125; 修改第三方方法#ifdef SD_WEBP else if ([imageContentType isEqualToString:@&quot;image/webp&quot;]) &#123; image = [UIImage sd_imageWithWebPData:data]; &#125; #endif else &#123; image = [[UIImage alloc] initWithData:data]; if (data.length/1024 &gt; 128) &#123; image = [self compressImageWith:image]; &#125; UIImageOrientation orientation = [self sd_imageOrientationFromImageData:data]; if (orientation != UIImageOrientationUp) &#123; image = [UIImage imageWithCGImage:image.CGImage scale:image.scale orientation:orientation]; &#125; 设置加载在SDWebImageDownloaderOperation的connectionDidFinishLoading方法里面的 UIImage *image = [UIImage sd_imageWithData:self.imageData]; //将等比压缩过的image在赋在转成data赋给self.imageData NSData *data = UIImageJPEGRepresentation(image, 1); self.imageData = [NSMutableData dataWithData:data]; 再配合 [[SDImageCache sharedImageCache] setValue:nil forKey:@&quot;memCache&quot;];（图片加载后使用）大功告成，亲测内存基本变化不大，自动释放也来得及]]></content>
       <categories>
-        <category>iOS</category>
+        <category>OC</category>
         <category>Lib</category>
         <category>SDWebImage</category>
       </categories>
@@ -1800,26 +1810,26 @@
   </entry>
   <entry>
     <title><![CDATA[iOS-Lib-UM-UMAnalytics友盟统计]]></title>
-<url>../../../../../../../../2017/11/20/iOS-Lib/iOS-Lib-UM-UMAnalytics友盟统计/</url>
+<url>../../../../../../../../2017/11/20/OC/Lib/OC-Lib-UM-UMAnalytics友盟统计/</url>
     <content type="text"><![CDATA[UMAnalytics友盟统计埋点官方 配置 文档—&gt; Go! 配置集成Appkey不同平台的应用禁止使用相同的Appkey，需要分开注册友盟后台的应用名与实际应用名和包名无关，建议命名为“应用名+平台（IOS/Android)” 使用 Cocoapods 安装 SDK //标准SDK，含IDFA pod &apos;UMengAnalytics&apos; 无IDFA版SDK（请根据需要选择其中一个） pod &apos;UMengAnalytics-NO-IDFA&apos; 基本功能集成配置 AppDelegate.m 主要包括填写Appkey，设置发送策略和填写渠道id三部分UMConfigInstance为SDK参数配置的实例类，只需要将其成员中标注为required的参数赋值，optional的为可选项。appKey: 统计分析-&gt;设置-&gt;应用信息ChannelId: 应用的渠道标识。默认为 @”App Store” 头文件：&quot;UMMobClick/MobClick.h&quot;- (BOOL])application:(UIApplication] *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions&#123; UMConfigInstance.appKey = @&quot;xxxxxxxxxxxxxx...&quot;; UMConfigInstance.ChannelId = @&quot;App Store&quot;; //仅适用于游戏场景，应用统计不用设置 UMConfigInstance.eSType = E_UM_GAME; //配置以上参数后调用此方法初始化SDK！ [MobClick startWithConfigure:UMConfigInstance];&#125; 页面的统计 runtime写交换方法不太好基础类可增加 - (void)viewWillAppear:(BOOL)animated &#123; [super viewWillAppear:animated]; [MobClick beginLogPageView:@&quot;PageOne&quot;];//(&quot;PageOne&quot;为页面名称，可自定义) &#125;- (void)viewWillDisappear:(BOOL)animated &#123; [super viewWillDisappear:animated]; [MobClick endLogPageView:@&quot;PageOne&quot;]; &#125; 自定义事件的统计 计数事件+计算事件 计数事件统计发生次数 某个事件发生的次数 [MobClick event:(NSString *)eventId]; 统计点击行为各属性被触发的次数[MobClick event:(NSString *)eventId attributes:(NSDictionary *)attributes];NSDictionary *dict = @&#123;@&quot;type&quot; : @&quot;book&quot;, @&quot;quantity&quot; : @&quot;3&quot;&#125;;[MobClick event:@&quot;purchase&quot; attributes:dict]; 计算事件 使用计算事件需要在后台添加事件时选择“计算事件” 统计数值型变量的值的分布 统计一个数值类型的连续变量（该变量必须为整数），用户每次触发的数值的分布情况，如事件持续时间、每次付款金额等，可以调用如下方法: +[MobClick event:(NSString *)eventId attributes:(NSDictionary *)attributes counter:(int)number]; 示例：购买《Swift Fundamentals》这本书，花了110元 [MobClick event:@&quot;pay&quot; attributes:@&#123;@&quot;book&quot; : @&quot;Swift Fundamentals&quot;&#125; counter:110]; 如果您使用的是V3.1.2以下版本的SDK，请使用下面的方法： -(void)umengEvent:(NSString *)eventId attributes:(NSDictionary *)attributes number:(NSNumber *)number&#123; NSString *numberKey = @&quot;__ct__&quot;; NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionaryWithDictionary:attributes]; [mutableDictionary setObject:[number stringValue] forKey:numberKey]; [MobClick event:eventId attributes:mutableDictionary]; &#125; 示例：购买《Swift Fundamentals》这本书，花了110元 [self umengEvent:@&quot;pay&quot; attributes:@&#123;@&quot;book&quot; : @&quot;Swift Fundamentals&quot;&#125; number:@(110)];]]></content>
       <categories>
-        <category>iOS</category>
+        <category>OC</category>
         <category>Lib</category>
         <category>UM</category>
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[iOS -Lib-JSBadgeView数字角标]]></title>
-<url>../../../../../../../../2017/11/14/iOS-Lib/iOS-Lib-JSBadgeView数字角标/</url>
+    <title><![CDATA[OC -Lib-JSBadgeView数字角标]]></title>
+<url>../../../../../../../../2017/11/14/OC/Lib/JSBadgeView/OC-Lib-JSBadgeView数字角标/</url>
     <content type="text"><![CDATA[使用方法//在父控件上显示，//显示的位置TopRight self.badgeView = [[JSBadgeView alloc]initWithParentView:parentView alignment:JSBadgeViewAlignmentTopRight]; //位置 self.badgeView.badgePositionAdjustment = CGPointMake(-15, 10);//设置tag要辨别 self.badgeView.tag = 10086;//背景色self.badgeView.badgeBackgroundColor = [UIColor redColor]; //没有反光面self.badgeView.badgeOverlayColor = [UIColor clearColor]; //外圈的颜色，默认是白色 self.badgeView.badgeStrokeColor = [UIColor redColor]; 设置数字//1、用字符self.badgeView.badgeText = @&quot;1&quot;; //2、如果不显示就设置为空self.badgeView.badgeText = nil; //当更新数字时，最好刷新，不然由于frame固定的，数字为2位时，红圈变形 [self.badgeView setNeedsLayout];]]></content>
       <categories>
-        <category>iOS</category>
+        <category>OC</category>
         <category>Lib</category>
         <category>JSBadgeView</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>UI</tag>
+        <tag>OC</tag>
         <tag>Lib</tag>
       </tags>
   </entry>
