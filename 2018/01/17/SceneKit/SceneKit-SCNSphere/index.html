@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
 <meta property="og:description" content="Sphere 几何-球 SCNPlane : SCNGeometry  初始化 radius:球的半径  + (instancetype)sphereWithRadius:(CGFloat)radius; 属性           radius CGFloat 球的半径 默认值是0.5   geodesic BOOL 测地线 表示几何是一个岩石圈默认值为NO   segmentCount NSIn">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-17T03:03:34.772Z">
+<meta property="og:updated_time" content="2018-01-17T03:07:02.757Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SceneKit-SCNSphere">
 <meta name="twitter:description" content="Sphere 几何-球 SCNPlane : SCNGeometry  初始化 radius:球的半径  + (instancetype)sphereWithRadius:(CGFloat)radius; 属性           radius CGFloat 球的半径 默认值是0.5   geodesic BOOL 测地线 表示几何是一个岩石圈默认值为NO   segmentCount NSIn">
@@ -472,7 +472,18 @@
 </tr>
 </tbody>
 </table>
-
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><blockquote>
+<p>创建 C 原子模型</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"> - (<span class="built_in">SCNGeometry</span> *) carbonAtom</div><div class="line">&#123;</div><div class="line">    <span class="built_in">SCNSphere</span> *phere = [<span class="built_in">SCNSphere</span> sphereWithRadius:<span class="number">1.7</span>];</div><div class="line">    phere.firstMaterial.diffuse.contents = [<span class="built_in">UIColor</span> darkGrayColor];</div><div class="line">    phere.firstMaterial.specular.contents = [<span class="built_in">UIColor</span> whiteColor];</div><div class="line">    <span class="keyword">return</span> phere;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>原子添加到节点</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">  <span class="built_in">SCNNode</span> *tempNode = [<span class="built_in">SCNNode</span> node];</div><div class="line"><span class="built_in">SCNNode</span> *carbonNode = [<span class="built_in">SCNNode</span> nodeWithGeometry:[<span class="keyword">self</span> carbonAtom]];</div><div class="line">[tempNode addChildNode:carbonNode];</div></pre></td></tr></table></figure>
+<blockquote>
+<p>将创建的原子节点添加到根节点</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">[<span class="keyword">self</span>.scene.rootNode addChildNode:[<span class="keyword">self</span> AddFunction]];</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -638,7 +649,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Sphere-几何-球"><span class="nav-number">1.</span> <span class="nav-text">Sphere 几何-球</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化"><span class="nav-number">1.1.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性"><span class="nav-number">1.2.</span> <span class="nav-text">属性</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Sphere-几何-球"><span class="nav-number">1.</span> <span class="nav-text">Sphere 几何-球</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化"><span class="nav-number">1.1.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性"><span class="nav-number">1.2.</span> <span class="nav-text">属性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number">2.</span> <span class="nav-text">使用</span></a></li></ol></div>
             
 
           </div>
