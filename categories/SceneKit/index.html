@@ -408,7 +408,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">158</span>
+                <span class="site-state-item-count">159</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -430,7 +430,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1072,7 +1072,29 @@
 
 </body>
 </html>
-tem.get('time');
+(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
             var element = document.getElementById(url);
 
             $(element).find(COUNT_CONTAINER_REF).text(time);
