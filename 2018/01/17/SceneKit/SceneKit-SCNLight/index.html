@@ -105,18 +105,18 @@
 
 
 
-<meta name="description" content="SCNLight 光源 光源可以附加到节点上，在渲染场景中提供着色  初始化 初始化  + (instancetype)light; 属性 type  @property(nonatomic, copy) SCNLightType type;  clolor  @property(nonatomic, retain) id color;  temperature  温度值  @property(n">
+<meta name="description" content="SCNLight 光源 光源可以附加到节点上，在渲染场景中提供着色  初始化 初始化  + (instancetype)light; 属性 type  @property(nonatomic, copy) SCNLightType type;    SCNLightType      SCNLightTypeAmbient 环境光   SCNLightTypeOmni 向各方向发出的光照强度一样">
 <meta name="keywords" content="SceneKit,SCNLight">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SceneKit-SCNLight">
 <meta property="og:url" content="http://yoursite.com/2018/01/17/SceneKit/SceneKit-SCNLight/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="SCNLight 光源 光源可以附加到节点上，在渲染场景中提供着色  初始化 初始化  + (instancetype)light; 属性 type  @property(nonatomic, copy) SCNLightType type;  clolor  @property(nonatomic, retain) id color;  temperature  温度值  @property(n">
+<meta property="og:description" content="SCNLight 光源 光源可以附加到节点上，在渲染场景中提供着色  初始化 初始化  + (instancetype)light; 属性 type  @property(nonatomic, copy) SCNLightType type;    SCNLightType      SCNLightTypeAmbient 环境光   SCNLightTypeOmni 向各方向发出的光照强度一样">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-17T02:04:07.917Z">
+<meta property="og:updated_time" content="2018-01-17T02:09:34.345Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SceneKit-SCNLight">
-<meta name="twitter:description" content="SCNLight 光源 光源可以附加到节点上，在渲染场景中提供着色  初始化 初始化  + (instancetype)light; 属性 type  @property(nonatomic, copy) SCNLightType type;  clolor  @property(nonatomic, retain) id color;  temperature  温度值  @property(n">
+<meta name="twitter:description" content="SCNLight 光源 光源可以附加到节点上，在渲染场景中提供着色  初始化 初始化  + (instancetype)light; 属性 type  @property(nonatomic, copy) SCNLightType type;    SCNLightType      SCNLightTypeAmbient 环境光   SCNLightTypeOmni 向各方向发出的光照强度一样">
 
 
 
@@ -443,8 +443,41 @@
 <p>type</p>
 </blockquote>
 <figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">SCNLightType</span> type;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>SCNLightType</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SCNLightTypeAmbient</td>
+<td>环境光</td>
+</tr>
+<tr>
+<td>SCNLightTypeOmni</td>
+<td>向各方向发出的光照强度一样</td>
+</tr>
+<tr>
+<td>SCNLightTypeDirectional</td>
+<td>平行光</td>
+</tr>
+<tr>
+<td>SCNLightTypeSpot</td>
+<td>聚焦光</td>
+</tr>
+<tr>
+<td>SCNLightTypeIES</td>
+<td></td>
+</tr>
+<tr>
+<td>SCNLightTypeProbe</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
-<p>clolor</p>
+<p>clolor </p>
 </blockquote>
 <figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">retain</span>) <span class="keyword">id</span> color;</div></pre></td></tr></table></figure>
 <blockquote>
