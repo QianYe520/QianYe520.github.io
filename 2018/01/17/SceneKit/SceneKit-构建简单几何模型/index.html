@@ -25,8 +25,8 @@
 
 <script>
     (function(){
-        if('520'){
-            if (prompt('请输入文章密码') !== '520'){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
                 alert('密码错误！');
                 history.back();
             }
@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="SceneKit," />
 
 
 
@@ -105,17 +105,18 @@
 
 
 
-<meta name="description" content="Properties Swift中，属性大致分为两种，存储属性+计算属性  Stored Properties存储属性 存储属性:能保存数据的属性。枚举类、结构体、类都具有存储属性存储属性可以设为var 或let。分别对应常量和变量  struct CPU &amp;#123;      var clockSpeed = 1.0   //变量      let coreNum = 2        //常">
+<meta name="description" content="属性构建3D节点@property (nonatomic,strong) SCNScene    *scene;           //场景，存放元素节点@property (nonatomic,strong) SCNView     *sceneView;       //用来展示3D图形的控件@property (nonatomic,strong) SCNNode     *lightNod">
+<meta name="keywords" content="SceneKit">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift-Grammar-Properties-属性">
-<meta property="og:url" content="http://yoursite.com/2017/12/01/Swift-Grammar/Swift-Grammar-Properties-属性/index.html">
+<meta property="og:title" content="SceneKit-构建简单几何模型">
+<meta property="og:url" content="http://yoursite.com/2018/01/17/SceneKit/SceneKit-构建简单几何模型/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="Properties Swift中，属性大致分为两种，存储属性+计算属性  Stored Properties存储属性 存储属性:能保存数据的属性。枚举类、结构体、类都具有存储属性存储属性可以设为var 或let。分别对应常量和变量  struct CPU &amp;#123;      var clockSpeed = 1.0   //变量      let coreNum = 2        //常">
+<meta property="og:description" content="属性构建3D节点@property (nonatomic,strong) SCNScene    *scene;           //场景，存放元素节点@property (nonatomic,strong) SCNView     *sceneView;       //用来展示3D图形的控件@property (nonatomic,strong) SCNNode     *lightNod">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-01T05:25:10.000Z">
+<meta property="og:updated_time" content="2018-01-17T14:14:51.716Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift-Grammar-Properties-属性">
-<meta name="twitter:description" content="Properties Swift中，属性大致分为两种，存储属性+计算属性  Stored Properties存储属性 存储属性:能保存数据的属性。枚举类、结构体、类都具有存储属性存储属性可以设为var 或let。分别对应常量和变量  struct CPU &amp;#123;      var clockSpeed = 1.0   //变量      let coreNum = 2        //常">
+<meta name="twitter:title" content="SceneKit-构建简单几何模型">
+<meta name="twitter:description" content="属性构建3D节点@property (nonatomic,strong) SCNScene    *scene;           //场景，存放元素节点@property (nonatomic,strong) SCNView     *sceneView;       //用来展示3D图形的控件@property (nonatomic,strong) SCNNode     *lightNod">
 
 
 
@@ -144,13 +145,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/01/Swift-Grammar/Swift-Grammar-Properties-属性/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/17/SceneKit/SceneKit-构建简单几何模型/"/>
 
 
 
 
 
-  <title>Swift-Grammar-Properties-属性 | 千夜、おれはおまえをずっと爱している</title>
+  <title>SceneKit-构建简单几何模型 | 千夜、おれはおまえをずっと爱している</title>
   
 
 
@@ -331,7 +332,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/01/Swift-Grammar/Swift-Grammar-Properties-属性/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/17/SceneKit/SceneKit-构建简单几何模型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -348,7 +349,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Swift-Grammar-Properties-属性</h1>
+          <h1 class="post-title" itemprop="name headline">SceneKit-构建简单几何模型</h1>
         
 
         <div class="post-meta">
@@ -360,8 +361,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-01T13:14:40+08:00">
-                2017-12-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T21:36:05+08:00">
+                2018-01-17
               </time>
             
 
@@ -383,19 +384,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/Grammar/" itemprop="url" rel="index">
-                    <span itemprop="name">Grammar</span>
+                  <a href="/categories/SceneKit/" itemprop="url" rel="index">
+                    <span itemprop="name">SceneKit</span>
                   </a>
                 </span>
 
@@ -411,7 +401,7 @@
 
           
           
-             <span id="/2017/12/01/Swift-Grammar/Swift-Grammar-Properties-属性/" class="leancloud_visitors" data-flag-title="Swift-Grammar-Properties-属性">
+             <span id="/2018/01/17/SceneKit/SceneKit-构建简单几何模型/" class="leancloud_visitors" data-flag-title="SceneKit-构建简单几何模型">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -442,60 +432,36 @@
       
 
       
-        <h1 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h1><blockquote>
-<p>Swift中，属性大致分为两种，存储属性+计算属性</p>
+        <h1 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h1><h2 id="构建3D节点"><a href="#构建3D节点" class="headerlink" title="构建3D节点"></a>构建3D节点</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">SCNScene</span>    *scene;           <span class="comment">//场景，存放元素节点</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">SCNView</span>     *sceneView;       <span class="comment">//用来展示3D图形的控件</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">SCNNode</span>     *lightNode;       <span class="comment">//环境光Node</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">SCNNode</span>     *assistLightNode; <span class="comment">//增加一个副光</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">SCNNode</span>     *caremaNode;      <span class="comment">//添加摄像机节点</span></div></pre></td></tr></table></figure>
+<p>##创建几何模型</p>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">SCNGeometry</span> *carbonAtom;   <span class="comment">// C 原子</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">SCNGeometry</span> *hydrogenAtom; <span class="comment">// H 原子</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">SCNGeometry</span> *oxyGenAtom;   <span class="comment">// O 原子</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">SCNGeometry</span> *fluorAtom;    <span class="comment">// F 原子</span></div></pre></td></tr></table></figure>
+<h1 id="添加场景"><a href="#添加场景" class="headerlink" title="添加场景"></a>添加场景</h1><h2 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">[<span class="keyword">self</span> addScene];</div></pre></td></tr></table></figure>
+<h2 id="构建场景设置节点"><a href="#构建场景设置节点" class="headerlink" title="构建场景设置节点"></a>构建场景设置节点</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)addScene&#123;</div><div class="line"><span class="comment">//    SCNBox *box = [SCNBox boxWithWidth:10 height:10 length:10 chamferRadius:1];</span></div><div class="line"><span class="comment">//    SCNNode *node = [SCNNode nodeWithGeometry:box];</span></div><div class="line">     <span class="comment">//添加摄像机</span></div><div class="line">    <span class="comment">//[self.scene.rootNode addChildNode:self.caremaNode];</span></div><div class="line">    <span class="comment">//添加环境副光</span></div><div class="line">      [<span class="keyword">self</span>.scene.rootNode addChildNode:<span class="keyword">self</span>.assistLightNode];</div><div class="line">    <span class="comment">//添加环境光</span></div><div class="line"><span class="comment">//[self.scene.rootNode addChildNode:self.lightNode];//添加环境光</span></div><div class="line">    <span class="comment">//添加正方体</span></div><div class="line">    <span class="comment">// [self.scene.rootNode addChildNode:node];</span></div><div class="line">    <span class="comment">//将创建的原子节点添加到根节点</span></div><div class="line">    [<span class="keyword">self</span>.scene.rootNode addChildNode:[<span class="keyword">self</span> addGeometryToSCNNode]];</div><div class="line">    <span class="keyword">self</span>.sceneView.scene = <span class="keyword">self</span>.scene;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="几何体添加到节点"><a href="#几何体添加到节点" class="headerlink" title="几何体添加到节点"></a>几何体添加到节点</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">SCNNode</span> *)addGeometryToSCNNode&#123;</div><div class="line">    <span class="comment">//Creates and initializes a node instance with the specified geometry attached</span></div><div class="line">    <span class="comment">//指定几何图形添加到节点</span></div><div class="line">    <span class="built_in">SCNNode</span> *carbonNode = [<span class="built_in">SCNNode</span> nodeWithGeometry:[<span class="keyword">self</span> carbonAtom]];</div><div class="line">    <span class="built_in">SCNNode</span> *hydrogenNode = [<span class="built_in">SCNNode</span> nodeWithGeometry:[<span class="keyword">self</span> hydrogenAtom]];</div><div class="line">    <span class="built_in">SCNNode</span> *oxygenNode = [<span class="built_in">SCNNode</span> nodeWithGeometry:[<span class="keyword">self</span> oxyGenAtom]];</div><div class="line">    <span class="built_in">SCNNode</span> *fluorNode = [<span class="built_in">SCNNode</span> nodeWithGeometry:[<span class="keyword">self</span> fluorAtom]];</div><div class="line">    </div><div class="line">    <span class="comment">//节点位置</span></div><div class="line">    carbonNode.position = <span class="built_in">SCNVector3Make</span>(<span class="number">-6</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">    hydrogenNode.position = <span class="built_in">SCNVector3Make</span>(<span class="number">-2</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">    oxygenNode.position = <span class="built_in">SCNVector3Make</span>(<span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">    fluorNode.position = <span class="built_in">SCNVector3Make</span>(<span class="number">6</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">    </div><div class="line">    <span class="comment">//子节点添加到某个父节点</span></div><div class="line">    <span class="built_in">SCNNode</span> *tempNode = [<span class="built_in">SCNNode</span> node];</div><div class="line">    [tempNode addChildNode:carbonNode];</div><div class="line">    [tempNode addChildNode:hydrogenNode];</div><div class="line">    [tempNode addChildNode:oxygenNode];</div><div class="line">    [tempNode addChildNode:fluorNode];</div><div class="line">    <span class="keyword">return</span> tempNode;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Getetr"><a href="#Getetr" class="headerlink" title="Getetr"></a>Getetr</h1><h2 id="SCNView"><a href="#SCNView" class="headerlink" title="SCNView"></a>SCNView</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">SCNView</span> *)sceneView&#123;</div><div class="line">    <span class="keyword">if</span> (!_sceneView) &#123;</div><div class="line">        _sceneView = [[<span class="built_in">SCNView</span> alloc]initWithFrame:<span class="keyword">self</span>.view.bounds];</div><div class="line">        _sceneView.center = <span class="keyword">self</span>.view.center;</div><div class="line">        _sceneView.backgroundColor = [<span class="built_in">UIColor</span> grayColor];</div><div class="line">        _sceneView.allowsCameraControl = <span class="literal">YES</span>;</div><div class="line">        _sceneView.autoenablesDefaultLighting = <span class="literal">YES</span>;</div><div class="line">        [<span class="keyword">self</span>.view addSubview:_sceneView];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _sceneView;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="SCNScene"><a href="#SCNScene" class="headerlink" title="SCNScene"></a>SCNScene</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">SCNScene</span> *)scene&#123;</div><div class="line">    <span class="keyword">if</span> (!_scene) &#123;</div><div class="line">        _scene =[<span class="built_in">SCNScene</span> scene];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _scene;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="环境光"><a href="#环境光" class="headerlink" title="环境光"></a>环境光</h2><blockquote>
+<p>添加一个环境光node<br>前后都是亮滴</p>
 </blockquote>
-<h2 id="Stored-Properties存储属性"><a href="#Stored-Properties存储属性" class="headerlink" title="Stored Properties存储属性"></a>Stored Properties存储属性</h2><blockquote>
-<p>存储属性:能保存数据的属性。枚举类、结构体、类都具有存储属性<br>存储属性可以设为var 或let。分别对应常量和变量</p>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">SCNNode</span> *)lightNode&#123;</div><div class="line">    <span class="keyword">if</span> (!_lightNode) &#123;</div><div class="line">        _lightNode = [<span class="built_in">SCNNode</span> node];</div><div class="line">        _lightNode.light = [<span class="built_in">SCNLight</span> light];</div><div class="line">        _lightNode.light.type = <span class="built_in">SCNLightTypeAmbient</span>;</div><div class="line">        _lightNode.light.color = [<span class="built_in">UIColor</span> colorWithWhite:<span class="number">0.4</span></div><div class="line">                                                   alpha:<span class="number">1.0</span>];</div><div class="line">        <span class="comment">//_lightNode.light.color = [UIColor redColor];</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _lightNode;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="增加一个副光"><a href="#增加一个副光" class="headerlink" title="增加一个副光"></a>增加一个副光</h2><blockquote>
+<p>SCNLightTypeDirectional 平行光  SCNLightTypeSpot   聚焦光<br>小球前表面亮。后表面暗</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">CPU</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> clockSpeed = <span class="number">1.0</span>   <span class="comment">//变量  </span></div><div class="line">    <span class="keyword">let</span> coreNum = <span class="number">2</span>        <span class="comment">//常量  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">SCNNode</span> *)assistLightNode&#123;</div><div class="line">    <span class="keyword">if</span> (!_assistLightNode) &#123;</div><div class="line">        _assistLightNode =  [<span class="built_in">SCNNode</span> node];</div><div class="line">        _assistLightNode.light = [<span class="built_in">SCNLight</span> light];</div><div class="line">        _assistLightNode.light.type = <span class="built_in">SCNLightTypeOmni</span>;<span class="comment">//像各方向发出的光照强度一样</span></div><div class="line">        _assistLightNode.light.color = [<span class="built_in">UIColor</span> colorWithWhite:<span class="number">0.75</span> alpha:<span class="number">1</span>];</div><div class="line">         _assistLightNode.light.color = [<span class="built_in">UIColor</span> redColor];</div><div class="line">        _assistLightNode.position = <span class="built_in">SCNVector3Make</span>(<span class="number">0</span>, <span class="number">-50</span>, <span class="number">50</span>);<span class="comment">//设置光源</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _assistLightNode;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="添加摄像机节点"><a href="#添加摄像机节点" class="headerlink" title="添加摄像机节点"></a>添加摄像机节点</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">SCNNode</span> *)caremaNode&#123;</div><div class="line">    <span class="keyword">if</span> (!_caremaNode) &#123;</div><div class="line">        _caremaNode =  [<span class="built_in">SCNNode</span> node];</div><div class="line">        _caremaNode.camera = [<span class="built_in">SCNCamera</span> camera];<span class="comment">//Creates and returns a camera instance.</span></div><div class="line">        _caremaNode.position = <span class="built_in">SCNVector3Make</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">50</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _caremaNode;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>##几何模型-C 原子</p>
 <blockquote>
-<p>计算属性就是它本身不保存数据，而是通过处理其他的数据得到返回值。 结构体和类才具有计算属性<br>然后我们初始化一个CPU实例，但是这个实例我们设置为常量。这样会导致一个后果：对应值传递的结构体，当实例是常量的时候，即使存储属性是变量，也不能修改里面属性的值</p>
+<p>SCNSphere  有半径属性，类似iOS 剪切</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">let</span> cpu = <span class="type">CPU</span>(clockSpeed: <span class="number">3.2</span>)   <span class="comment">//注意到这个初始化方法只有一个参数，因为我们设置了coreNum为常量，并且给了初始值，所以构造方法会发生变化  </span></div><div class="line">cpu.clockSpeed = <span class="number">3.3</span>      <span class="comment">//这句会报错</span></div></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">SCNGeometry</span> *)carbonAtom&#123;</div><div class="line">    <span class="keyword">if</span>(!_carbonAtom)&#123;</div><div class="line">        <span class="built_in">SCNSphere</span> *phere = [<span class="built_in">SCNSphere</span> sphereWithRadius:<span class="number">1.7</span>];</div><div class="line">        phere.firstMaterial.diffuse.contents = [<span class="built_in">UIColor</span> darkGrayColor];</div><div class="line">        phere.firstMaterial.specular.contents = [<span class="built_in">UIColor</span> whiteColor];</div><div class="line">        _carbonAtom = phere;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _carbonAtom;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>##几何模型 -  H 原子</p>
 <blockquote>
-<p>然而对于引用传递的类来讲，即使实例是常量，里面设置为变量的存储属性还是可以更改值的</p>
+<p>contents 扩散de 内容 颜色(NSColor, UIColor, CGColorRef)，一个图像(NSImage, UIImage, CGImageRef)，一个层(CALayer)，一个路径(NSString或NSURL)，一个SpriteKit场景(SKScene)，一个纹理(sk纹理，id&lt; mtl纹理&gt;或GLKTextureInfo)，或一个浮动值在0到1 (NSNumber)之间的金属和粗糙度属性</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  </div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Telephone</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> cpu = <span class="type">CPU</span>()  </div><div class="line">    <span class="keyword">var</span> screenSize: <span class="type">Int</span>?  </div><div class="line">    <span class="keyword">var</span> price: <span class="type">Int</span>?  </div><div class="line">&#125;  </div><div class="line"><span class="keyword">let</span> myTelephont = <span class="type">Telephone</span>()  </div><div class="line">myTelephont.screenSize = <span class="number">4</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>懒加载存储属性<br>Swift需要保证一个类或结构体或枚举类在初始化之后，所以的存储属性都必须有初始值（除开可选类型）。所以当实例初始化完成以后，所以的存储属性都初始化了。但是有些时候某些存储属性不一定会用到，所以我们可以把这些存储属性设置为lazy存储属性。那么它在要用到的时候才会进行初始化。lazy存储属性只能是变量。而且在多线程调用的时候，如果lazy属性没有初始化，那么不能保证只会初始化一次</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">struct</span> <span class="title">CPU</span> </span>&#123;  </div><div class="line">    <span class="built_in">lazy</span> <span class="keyword">var</span> clockSpeed = <span class="number">1.0</span>  </div><div class="line">    <span class="keyword">let</span> coreNum = <span class="number">2</span>  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">let</span> cpu = <span class="type">CPU</span>()  <span class="comment">//这时候clockSpeed还是为nil</span></div></pre></td></tr></table></figure>
-<h2 id="Computed-Properties-计算属性"><a href="#Computed-Properties-计算属性" class="headerlink" title="Computed Properties 计算属性"></a>Computed Properties 计算属性</h2><blockquote>
-<p>故名思议，它本身不保存数据，只是用其他数据得到返回值，或者当设置它的时候修改其他数据。下面的例子利用存储属性得到apple的总价。或者修改总价的时候修改重量</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Apple</span> </span>&#123;  </div><div class="line">    <span class="keyword">let</span> pricePerKg = <span class="number">6.0</span>  </div><div class="line">    <span class="keyword">var</span> weight: <span class="type">Double</span>  </div><div class="line">    <span class="keyword">var</span> totalPrice: <span class="type">Double</span> &#123;  </div><div class="line">        <span class="keyword">get</span> &#123;  </div><div class="line">            <span class="keyword">return</span> pricePerKg * weight  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">set</span>(newTotalPrice) &#123;  </div><div class="line">            weight = newTotalPrice / pricePerKg  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">var</span> apple = <span class="type">Apple</span>(weight: <span class="number">2.0</span>)  </div><div class="line"><span class="built_in">print</span>(apple.totalPrice)    <span class="comment">//12.0  </span></div><div class="line">apple.totalPrice = <span class="number">6.0</span>  </div><div class="line"><span class="built_in">print</span>(apple.weight)       <span class="comment">//1.0</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>算属性的setter方法新值自带一个默认名 newValue，所以上面的定义可以改为 </p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">Apple</span> </span>&#123;  </div><div class="line">    <span class="keyword">let</span> pricePerKg = <span class="number">6.0</span>  </div><div class="line">    <span class="keyword">var</span> weight: <span class="type">Double</span>  </div><div class="line">    <span class="keyword">var</span> totalPrice: <span class="type">Double</span> &#123;  </div><div class="line">        <span class="keyword">get</span> &#123;  </div><div class="line">            <span class="keyword">return</span> pricePerKg * weight  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">set</span> &#123;  </div><div class="line">            weight = newValue / pricePerKg  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>可以将计算属性的setter去掉，那么这个计算数据就变成了只读的。这时候还可以省去get关键字 </p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Apple</span> </span>&#123;  </div><div class="line">    <span class="keyword">let</span> pricePerKg = <span class="number">6.0</span>  </div><div class="line">    <span class="keyword">var</span> weight: <span class="type">Double</span>  </div><div class="line">    <span class="keyword">var</span> totalPrice: <span class="type">Double</span> &#123;  </div><div class="line">        <span class="keyword">return</span> pricePerKg * weight  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>不要在计算属性的setter和getter里面获取该计算属性，这样会导致循环调用</li>
-</ul>
-<h2 id="Property-Observers属性观察器"><a href="#Property-Observers属性观察器" class="headerlink" title="Property Observers属性观察器"></a>Property Observers属性观察器</h2><blockquote>
-<p>有了属性观察器，我们可以在属性被修改的时候做一些事情。注意的是对于非继承而来的计算属性，没有必要设置属性观察器，因为直接可以在计算属性的setter定义中完成这项功能。</p>
-<p>属性观察器有两个方法<br>willSet 在属性将要赋值的时候调用，这时候属性的值还没改变<br>didSet在属性值被赋值完的时候就会调用。（即使是赋值和原来值一样的值）这时候属性的值已经改变。<br>willSet方法里面会传递新值过来，你可以自己定义这个新值的名称，如果不定义，会具有默认值newValue<br>didSet方法里面会传递属性的旧值过来，你可以自己定义这个旧值的名称，如果不定义，会具有默认值oldValue。如果你在didSet方法里面又对这个存储属性赋值，那么这个值会覆盖掉刚刚赋值的值。且不会导致循环调用。比如下面例子里面，当pricePerKg小于3的时候，会把它改为3</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Apple</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> pricePerKg = <span class="number">6.0</span> &#123;  </div><div class="line">        <span class="keyword">willSet</span>(priceNewValue)&#123;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"In willSet, priceNewValue="</span>,priceNewValue)  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"In willSet, pricePerKg="</span>,pricePerKg)  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">didSet</span>&#123;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"In didSet, oldValue="</span>,oldValue)  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"In didSet, pricePerKg="</span>,pricePerKg)  </div><div class="line">            <span class="keyword">if</span> pricePerKg &lt; <span class="number">3</span> &#123;  </div><div class="line">                pricePerKg = <span class="number">3</span>  </div><div class="line">            &#125;  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">var</span> weight: <span class="type">Double</span>  </div><div class="line">    <span class="keyword">var</span> totalPrice: <span class="type">Double</span> &#123;  </div><div class="line">        <span class="keyword">get</span> &#123;  </div><div class="line">            <span class="keyword">return</span> pricePerKg * weight  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">set</span> &#123;  </div><div class="line">            weight = newValue / pricePerKg  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">var</span> apple = <span class="type">Apple</span>(pricePerKg: <span class="number">6.0</span>, weight: <span class="number">1.0</span>)  </div><div class="line">apple.pricePerKg = <span class="number">2.0</span>  </div><div class="line"><span class="built_in">print</span>(<span class="string">"apple.pricePerKg="</span>,apple.pricePerKg)  </div><div class="line"><span class="comment">/* 输出 </span></div><div class="line"><span class="comment">In willSet, priceNewValue= 2.0 </span></div><div class="line"><span class="comment">In willSet, pricePerKg= 6.0 </span></div><div class="line"><span class="comment">In didSet, oldValue= 6.0 </span></div><div class="line"><span class="comment">In didSet, pricePerKg= 2.0 </span></div><div class="line"><span class="comment">apple.pricePerKg= 3.0 </span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
-<h2 id="Global-and-Local-Variables全局变量和局部变量"><a href="#Global-and-Local-Variables全局变量和局部变量" class="headerlink" title="Global and Local Variables全局变量和局部变量"></a>Global and Local Variables全局变量和局部变量</h2><blockquote>
-<p>所谓的局部变量，就是定义在函数、方法、闭包、类型上下文里面的变量。<br>全局变量就是定义在函数、方法、闭包、类型上下文之外的变量。<br>局部变量和全局变量都称为存储变量。<br>在全局和局部范围内，都可以定义计算变量，或者为存储变量定义观察器</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">var</span> apple = <span class="type">Apple</span>(pricePerKg: <span class="number">6.0</span>, weight: <span class="number">1.0</span>) &#123;  <span class="comment">//为apple变量定义观察器  </span></div><div class="line"><span class="keyword">willSet</span> &#123;  </div><div class="line">    <span class="built_in">print</span>(<span class="string">"newApple"</span>,newValue)  </div><div class="line">&#125;  </div><div class="line"><span class="keyword">didSet</span>&#123;  </div><div class="line">    <span class="built_in">print</span>(<span class="string">"oldApple"</span>,oldValue)  </div><div class="line">&#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">apple = <span class="type">Apple</span>(pricePerKg: <span class="number">6.0</span>, weight: <span class="number">2.0</span>)  </div><div class="line">  </div><div class="line"><span class="keyword">var</span> <span class="built_in">c</span>: <span class="type">Double</span> &#123;  <span class="comment">//定义一个计算变量  </span></div><div class="line"><span class="keyword">get</span>&#123;  </div><div class="line">    <span class="keyword">return</span> <span class="number">9</span>  </div><div class="line">&#125;  </div><div class="line"><span class="keyword">set</span> &#123;  </div><div class="line">    <span class="built_in">print</span>(<span class="string">"In setter,"</span>,newValue)  </div><div class="line">&#125;  </div><div class="line">&#125;  </div><div class="line"><span class="built_in">c</span> = <span class="number">2</span>  </div><div class="line"><span class="built_in">print</span>(<span class="built_in">c</span>)  </div><div class="line"><span class="comment">/* </span></div><div class="line"><span class="comment">newApple Apple(pricePerKg: 6.0, weight: 2.0) </span></div><div class="line"><span class="comment">oldApple Apple(pricePerKg: 6.0, weight: 1.0) </span></div><div class="line"><span class="comment">In setter, 2.0 </span></div><div class="line"><span class="comment">9.0 </span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
-<ul>
-<li>官方文档说全局变量常量都是懒加载，局部变量常量都不是懒加载</li>
-</ul>
-<h2 id="Type-Properties类型属性"><a href="#Type-Properties类型属性" class="headerlink" title="Type Properties类型属性"></a>Type Properties类型属性</h2><blockquote>
-<p>所谓的类型属性，就是这个属性是属于这个类型的，即使这个类型由多个实例，也只会有一个类型变量。</p>
-</blockquote>
-<p>类型属性是懒加载的，而且必须在定义的时候给初始值。</p>
-<p>一般是用static来定义类型属性。特别的，对应类的计算类型属性，还可以用class关键字定义，这样可以使得子类可以覆盖它。</p>
-<p>注意类型属性访问的时候用的是类名，不能使用实例来访问</p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">SomeStructure</span> </span>&#123;  </div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> storedTypeProperty = <span class="string">"Some value."</span>  </div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> computedTypeProperty: <span class="type">Int</span> &#123;  </div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">SomeEnumeration</span> </span>&#123;  </div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> storedTypeProperty = <span class="string">"Some value."</span>  </div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> computedTypeProperty: <span class="type">Int</span> &#123;  </div><div class="line">        <span class="keyword">return</span> <span class="number">6</span>  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span> </span>&#123;  </div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> storedTypeProperty = <span class="string">"Some value."</span>  </div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> computedTypeProperty: <span class="type">Int</span> &#123;  </div><div class="line">        <span class="keyword">return</span> <span class="number">27</span>  </div><div class="line">    &#125;  </div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">var</span> <span class="title">overrideableComputedTypeProperty</span>: <span class="title">Int</span> </span>&#123;  </div><div class="line">        <span class="keyword">return</span> <span class="number">107</span>  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="built_in">print</span>(<span class="type">SomeStructure</span>.storedTypeProperty)  </div><div class="line"><span class="comment">// prints "Some value."  </span></div><div class="line"><span class="type">SomeStructure</span>.storedTypeProperty = <span class="string">"Another value."</span>  </div><div class="line"><span class="built_in">print</span>(<span class="type">SomeStructure</span>.storedTypeProperty)  </div><div class="line"><span class="comment">// prints "Another value."  </span></div><div class="line"><span class="built_in">print</span>(<span class="type">SomeEnumeration</span>.computedTypeProperty)  </div><div class="line"><span class="comment">// prints "6"  </span></div><div class="line"><span class="built_in">print</span>(<span class="type">SomeClass</span>.computedTypeProperty)  </div><div class="line"><span class="comment">// prints "27"</span></div></pre></td></tr></table></figure>
-
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">SCNGeometry</span> *)hydrogenAtom&#123;</div><div class="line">    <span class="keyword">if</span> (!_hydrogenAtom) &#123;</div><div class="line">        <span class="built_in">SCNSphere</span> *sphere = [<span class="built_in">SCNSphere</span> sphereWithRadius:<span class="number">1.2</span>];</div><div class="line">        sphere.firstMaterial.diffuse.contents = [<span class="built_in">UIColor</span> lightGrayColor];</div><div class="line">        <span class="comment">//specular - 镜面</span></div><div class="line">        sphere.firstMaterial.specular.contents = [<span class="built_in">UIColor</span> whiteColor];</div><div class="line">        _hydrogenAtom = sphere;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _hydrogenAtom;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="几何模型-O-原子"><a href="#几何模型-O-原子" class="headerlink" title="几何模型 -  O 原子"></a>几何模型 -  O 原子</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">SCNGeometry</span> *)oxyGenAtom&#123;</div><div class="line">    <span class="keyword">if</span> (!_oxyGenAtom) &#123;</div><div class="line">        <span class="built_in">SCNSphere</span> *sphere = [<span class="built_in">SCNSphere</span> sphereWithRadius:<span class="number">1.52</span>];</div><div class="line">        sphere.firstMaterial.diffuse.contents = [<span class="built_in">UIColor</span> redColor];</div><div class="line">        sphere.firstMaterial.specular.contents = [<span class="built_in">UIColor</span> whiteColor];</div><div class="line">        _oxyGenAtom = sphere;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _oxyGenAtom;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>##几何模型 -  F 原子</p>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">SCNGeometry</span> *)fluorAtom</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (!_fluorAtom) &#123;</div><div class="line">        <span class="built_in">SCNSphere</span> *sphere = [<span class="built_in">SCNSphere</span> sphereWithRadius:<span class="number">1.47</span>];</div><div class="line">        sphere.firstMaterial.diffuse.contents = [<span class="built_in">UIColor</span> yellowColor];</div><div class="line">        sphere.firstMaterial.specular.contents = [<span class="built_in">UIColor</span> whiteColor];</div><div class="line">        _fluorAtom = sphere;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _fluorAtom;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -510,6 +476,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/SceneKit/" rel="tag"># SceneKit</a>
+          
+        </div>
+      
 
       
       
@@ -519,8 +491,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/30/iOS-Func/iOS-Func-图片的解压缩/" rel="next" title="iOS-Func-图片的解压缩">
-                <i class="fa fa-chevron-left"></i> iOS-Func-图片的解压缩
+              <a href="/2018/01/17/SceneKit/SceneKit-SCNNode/" rel="next" title="SceneKit-SCNNode">
+                <i class="fa fa-chevron-left"></i> SceneKit-SCNNode
               </a>
             
           </div>
@@ -528,10 +500,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/01/Swift-Grammar/Swift-Grammar-Method-方法/" rel="prev" title="Swift-Grammar-Method-方法">
-                Swift-Grammar-Method-方法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -665,7 +633,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Properties"><span class="nav-number">1.</span> <span class="nav-text">Properties</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Stored-Properties存储属性"><span class="nav-number">1.1.</span> <span class="nav-text">Stored Properties存储属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Computed-Properties-计算属性"><span class="nav-number">1.2.</span> <span class="nav-text">Computed Properties 计算属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Property-Observers属性观察器"><span class="nav-number">1.3.</span> <span class="nav-text">Property Observers属性观察器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Global-and-Local-Variables全局变量和局部变量"><span class="nav-number">1.4.</span> <span class="nav-text">Global and Local Variables全局变量和局部变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Type-Properties类型属性"><span class="nav-number">1.5.</span> <span class="nav-text">Type Properties类型属性</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#属性"><span class="nav-number">1.</span> <span class="nav-text">属性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#构建3D节点"><span class="nav-number">1.1.</span> <span class="nav-text">构建3D节点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加场景"><span class="nav-number">2.</span> <span class="nav-text">添加场景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#加载"><span class="nav-number">2.1.</span> <span class="nav-text">加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建场景设置节点"><span class="nav-number">2.2.</span> <span class="nav-text">构建场景设置节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#几何体添加到节点"><span class="nav-number">2.3.</span> <span class="nav-text">几何体添加到节点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Getetr"><span class="nav-number">3.</span> <span class="nav-text">Getetr</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SCNView"><span class="nav-number">3.1.</span> <span class="nav-text">SCNView</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SCNScene"><span class="nav-number">3.2.</span> <span class="nav-text">SCNScene</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境光"><span class="nav-number">3.3.</span> <span class="nav-text">环境光</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增加一个副光"><span class="nav-number">3.4.</span> <span class="nav-text">增加一个副光</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加摄像机节点"><span class="nav-number">3.5.</span> <span class="nav-text">添加摄像机节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#几何模型-O-原子"><span class="nav-number">3.6.</span> <span class="nav-text">几何模型 -  O 原子</span></a></li></ol></li></ol></div>
             
 
           </div>
