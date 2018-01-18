@@ -105,19 +105,19 @@
 
 
 
-<meta name="description" content="SceneKitSceneKit 的三维坐标系 右手坐标系(笛卡尔坐标系)与其他3D框架共享数据，了解其框架是右、左手坐标系（就是Z 轴的正负不一样）   相关类          SCNViewSCNSceneRenderer 类似UIView 用来显示 SceneKit 的内容，定义了一些代理方法，可以用 addSubView 方法添加到UiView 中   SCNScene SceneKit">
+<meta name="description" content="SceneKitSceneKit 的三维坐标系 右手坐标系(笛卡尔坐标系)与其他3D框架共享数据，了解其框架是右、左手坐标系（就是Z 轴的正负不一样）   相关类          SCNViewSCNSceneRenderer 类似UIView 用来显示 SceneKit 的内容，定义了一些代理方法，可以用 addSubView 方法添加到UiView 中   SCNScene 场景图(Scen">
 <meta name="keywords" content="iOS,SceneKit,3D引擎">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS-SceneKit-Base">
 <meta property="og:url" content="http://yoursite.com/2018/01/08/SceneKit/SceneKit- Base/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="SceneKitSceneKit 的三维坐标系 右手坐标系(笛卡尔坐标系)与其他3D框架共享数据，了解其框架是右、左手坐标系（就是Z 轴的正负不一样）   相关类          SCNViewSCNSceneRenderer 类似UIView 用来显示 SceneKit 的内容，定义了一些代理方法，可以用 addSubView 方法添加到UiView 中   SCNScene SceneKit">
+<meta property="og:description" content="SceneKitSceneKit 的三维坐标系 右手坐标系(笛卡尔坐标系)与其他3D框架共享数据，了解其框架是右、左手坐标系（就是Z 轴的正负不一样）   相关类          SCNViewSCNSceneRenderer 类似UIView 用来显示 SceneKit 的内容，定义了一些代理方法，可以用 addSubView 方法添加到UiView 中   SCNScene 场景图(Scen">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/SceneKit%20%E7%9A%84%E4%B8%89%E7%BB%B4%E5%9D%90%E6%A0%87%E7%B3%BB.jpg">
-<meta property="og:updated_time" content="2018-01-17T00:59:11.831Z">
+<meta property="og:updated_time" content="2018-01-18T14:35:07.788Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS-SceneKit-Base">
-<meta name="twitter:description" content="SceneKitSceneKit 的三维坐标系 右手坐标系(笛卡尔坐标系)与其他3D框架共享数据，了解其框架是右、左手坐标系（就是Z 轴的正负不一样）   相关类          SCNViewSCNSceneRenderer 类似UIView 用来显示 SceneKit 的内容，定义了一些代理方法，可以用 addSubView 方法添加到UiView 中   SCNScene SceneKit">
+<meta name="twitter:description" content="SceneKitSceneKit 的三维坐标系 右手坐标系(笛卡尔坐标系)与其他3D框架共享数据，了解其框架是右、左手坐标系（就是Z 轴的正负不一样）   相关类          SCNViewSCNSceneRenderer 类似UIView 用来显示 SceneKit 的内容，定义了一些代理方法，可以用 addSubView 方法添加到UiView 中   SCNScene 场景图(Scen">
 <meta name="twitter:image" content="http://ozr735s7e.bkt.clouddn.com/SceneKit%20%E7%9A%84%E4%B8%89%E7%BB%B4%E5%9D%90%E6%A0%87%E7%B3%BB.jpg">
 
 
@@ -454,12 +454,12 @@
 </tr>
 <tr>
 <td>SCNScene</td>
-<td>SceneKit 内容的容器</td>
+<td>场景图(SceneKit内容的容器)</td>
 <td>从3D建模工具生成的.dae文件中加载一个场景，或者用代码创建一个 ，然后把它显示在视图上</td>
 </tr>
 <tr>
 <td>SCNNode</td>
-<td>一个场景的基本构建块</td>
+<td>节点树的模型类对象</td>
 <td>可以把摄像机，灯光，几何体附加到节点上</td>
 </tr>
 <tr>
@@ -479,8 +479,8 @@
 </tr>
 <tr>
 <td>SCNCamera</td>
-<td>虚拟摄像机</td>
-<td>虚拟摄像机可以附加到节点上，提供了一个场景的视图</td>
+<td>虚拟摄像机,观察场景的视角</td>
+<td>虚拟摄像机可以附加到节点上，提供了一个场景的视图<br>要显示场景中的内容, 必须为节点指定一个SCNCamera对象<br>相机的视角始终沿着节点的局部坐标系的负z轴</td>
 </tr>
 </tbody>
 </table>
