@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Swift,UIKit,UITxtxField," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="UITxtxField的常用状态TextField边框的样式 enum UITextBorderStyle : Int &amp;#123;    case None // TextField边框什么都没有, 默认是方角    case Line // TextField边框有一条黑色的实现围着, 默认也是方角的    case Bezel // TextField边框有两条线围着, 形成一定的层次感,">
+<meta name="keywords" content="Swift,UIKit,UITxtxField">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift-UIKit-UITxtxField-简介">
+<meta property="og:url" content="http://yoursite.com/2017/12/14/Swift/UIKit/Swift-UIKit-UITxtxField-简介/index.html">
+<meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
+<meta property="og:description" content="UITxtxField的常用状态TextField边框的样式 enum UITextBorderStyle : Int &amp;#123;    case None // TextField边框什么都没有, 默认是方角    case Line // TextField边框有一条黑色的实现围着, 默认也是方角的    case Bezel // TextField边框有两条线围着, 形成一定的层次感,">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-14T03:11:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift-UIKit-UITxtxField-简介">
+<meta name="twitter:description" content="UITxtxField的常用状态TextField边框的样式 enum UITextBorderStyle : Int &amp;#123;    case None // TextField边框什么都没有, 默认是方角    case Line // TextField边框有一条黑色的实现围着, 默认也是方角的    case Bezel // TextField边框有两条线围着, 形成一定的层次感,">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/14/Swift/UIKit/Swift-UIKit-UITxtxField-简介/"/>
+
+
+
+
+
+  <title>Swift-UIKit-UITxtxField-简介 | 千夜、おれはおまえをずっと爱している</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">千夜、おれはおまえをずっと爱している</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-read">
+          <a href="/read/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            阅读榜
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/14/Swift/UIKit/Swift-UIKit-UITxtxField-简介/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swift-UIKit-UITxtxField-简介</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-14T10:57:04+08:00">
+                2017-12-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/UIKit/" itemprop="url" rel="index">
+                    <span itemprop="name">UIKit</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/UIKit/UITxtxField/" itemprop="url" rel="index">
+                    <span itemprop="name">UITxtxField</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/12/14/Swift/UIKit/Swift-UIKit-UITxtxField-简介/" class="leancloud_visitors" data-flag-title="Swift-UIKit-UITxtxField-简介">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="UITxtxField的常用状态"><a href="#UITxtxField的常用状态" class="headerlink" title="UITxtxField的常用状态"></a>UITxtxField的常用状态</h1><h2 id="TextField边框的样式"><a href="#TextField边框的样式" class="headerlink" title="TextField边框的样式"></a>TextField边框的样式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UITextBorderStyle</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">None</span> <span class="comment">// TextField边框什么都没有, 默认是方角</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Line</span> <span class="comment">// TextField边框有一条黑色的实现围着, 默认也是方角的</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Bezel</span> <span class="comment">// TextField边框有两条线围着, 形成一定的层次感, 默认也是方角的</span></div><div class="line">    <span class="keyword">case</span> <span class="type">RoundedRect</span> <span class="comment">// TextField边框什么都没有, 默认是圆角</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="TextField的快速删除状态"><a href="#TextField的快速删除状态" class="headerlink" title="TextField的快速删除状态"></a>TextField的快速删除状态</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UITextFieldViewMode</span> : <span class="title">Int</span> </span>&#123;    </div><div class="line">    <span class="keyword">case</span> <span class="type">Never</span> <span class="comment">// 永远都不打开</span></div><div class="line">    <span class="keyword">case</span> <span class="type">WhileEditing</span> <span class="comment">// 在编辑的状态才打开</span></div><div class="line">    <span class="keyword">case</span> <span class="type">UnlessEditing</span> <span class="comment">// 在非编辑的状态才打开</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Always</span> <span class="comment">// 一直打开</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="TextField的键盘样式"><a href="#TextField的键盘样式" class="headerlink" title="TextField的键盘样式"></a>TextField的键盘样式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UIKeyboardType</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Default</span> <span class="comment">// 显示默认的键盘</span></div><div class="line">    <span class="keyword">case</span> <span class="type">ASCIICapable</span> <span class="comment">// 显示所有ASCII表的所有字符</span></div><div class="line">    <span class="keyword">case</span> <span class="type">NumbersAndPunctuation</span> <span class="comment">// 数字和标点符号的键盘</span></div><div class="line">    <span class="keyword">case</span> <span class="type">URL</span> <span class="comment">// 输入网站所使用的键盘</span></div><div class="line">    <span class="keyword">case</span> <span class="type">NumberPad</span> <span class="comment">// 纯数字键盘</span></div><div class="line">    <span class="keyword">case</span> <span class="type">PhonePad</span> <span class="comment">// 为了方便输入手机号码所使用的键盘</span></div><div class="line">    <span class="keyword">case</span> <span class="type">NamePhonePad</span> <span class="comment">// 为了方便输入名字和电话号码所使用的键盘</span></div><div class="line">    <span class="keyword">case</span> <span class="type">EmailAddress</span> <span class="comment">// 面向邮箱所使用的键盘</span></div><div class="line">    <span class="keyword">case</span> <span class="type">DecimalPad</span> <span class="comment">// 面向带小数点的数字键盘</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Twitter</span> <span class="comment">// 面向Twitter等社交所使用的键盘, 为了方便@和#</span></div><div class="line">    <span class="keyword">case</span> <span class="type">WebSearch</span> <span class="comment">// 面向网站所使用的键盘</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="TextField的大写样式"><a href="#TextField的大写样式" class="headerlink" title="TextField的大写样式"></a>TextField的大写样式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UITextAutocapitalizationType</span> : <span class="title">Int</span> </span>&#123;   </div><div class="line">    <span class="keyword">case</span> <span class="type">None</span> <span class="comment">// 不自动大写</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Words</span> <span class="comment">// 单个单词首字母大写</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Sentences</span> <span class="comment">// 句子首字母大写</span></div><div class="line">    <span class="keyword">case</span> <span class="type">AllCharacters</span> <span class="comment">// 全部大写</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="TextField的键盘外观颜色"><a href="#TextField的键盘外观颜色" class="headerlink" title="TextField的键盘外观颜色"></a>TextField的键盘外观颜色</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UIKeyboardAppearance</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Default</span> <span class="comment">// 默认是光亮的</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Dark</span> <span class="comment">// 设置为黑暗颜色</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Light</span> <span class="comment">// 设置为光亮的颜色</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="TextField的Return样式"><a href="#TextField的Return样式" class="headerlink" title="TextField的Return样式"></a>TextField的Return样式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UIReturnKeyType</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Default</span> <span class="comment">// 模样的样式</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Go</span> <span class="comment">// 标着有Go的蓝色样式</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Google</span> <span class="comment">// 标着Google的蓝色样式, 用于语音搜索, 显示的样式是Search</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Join</span> <span class="comment">// 标有Join的蓝色按钮</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Next</span> <span class="comment">// 标着有Next的蓝色按钮</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Route</span> <span class="comment">// 标着有Route的蓝色按钮</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Search</span> <span class="comment">// 标着有Search的蓝色按钮</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Send</span> <span class="comment">// 标着有Send的蓝色按钮</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Yahoo</span> <span class="comment">// 标着有Yahoo的蓝色按钮, 显示的样式是Search</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Done</span> <span class="comment">// 标着有Done的蓝色按钮</span></div><div class="line">    <span class="keyword">case</span> <span class="type">EmergencyCall</span> <span class="comment">// 标着有EmergencyCall的蓝色按钮, 紧急呼救的按钮</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="TextField的右边显示图样式"><a href="#TextField的右边显示图样式" class="headerlink" title="TextField的右边显示图样式"></a>TextField的右边显示图样式</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UITextFieldViewMode</span> : <span class="title">Int</span> </span>&#123;   </div><div class="line">    <span class="keyword">case</span> <span class="type">Never</span> <span class="comment">// 永远不显示</span></div><div class="line">    <span class="keyword">case</span> <span class="type">WhileEditing</span> <span class="comment">// 在编辑的情况下显示</span></div><div class="line">    <span class="keyword">case</span> <span class="type">UnlessEditing</span> <span class="comment">// 在非编辑的情况下显示</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Always</span> <span class="comment">// 永远显示</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="UITextField的垂直排列方式"><a href="#UITextField的垂直排列方式" class="headerlink" title="UITextField的垂直排列方式"></a>UITextField的垂直排列方式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UIControlContentVerticalAlignment</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Center</span> <span class="comment">// 居中对齐, 默认</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Top</span> <span class="comment">// 顶部对齐</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Bottom</span> <span class="comment">// 底部对齐</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Fill</span> <span class="comment">// 平铺整个TextField的高度</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="UITextField的水平排列方式"><a href="#UITextField的水平排列方式" class="headerlink" title="UITextField的水平排列方式"></a>UITextField的水平排列方式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UIControlContentHorizontalAlignment</span> : <span class="title">Int</span> </span>&#123;   </div><div class="line">    <span class="keyword">case</span> <span class="type">Center</span> <span class="comment">// 居中对齐</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Left</span> <span class="comment">// 左对齐, 默认</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Right</span> <span class="comment">// 右对齐</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Fill</span> <span class="comment">// 平铺整个TextField的宽度</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="UITextField的常用属性"><a href="#UITextField的常用属性" class="headerlink" title="UITextField的常用属性"></a>UITextField的常用属性</h1><blockquote>
+<p>字体颜色, 默认的字体颜色是黑色</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> textColor: <span class="type">UIColor</span>!</div></pre></td></tr></table></figure>
+<blockquote>
+<p>字体大小, 默认的字体大小是12</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">var</span> font: <span class="type">UIFont</span>!</div><div class="line">``` </div><div class="line"></div><div class="line">&gt;字体对齐方式, 默认是向左对齐</div><div class="line"></div><div class="line">```swift</div><div class="line">   <span class="keyword">var</span> textAlignment: <span class="type">NSTextAlignment</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>边框的样式, 默认是None. </p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> borderStyle: <span class="type">UITextBorderStyle</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>快捷清楚的按钮, 默认是不打开的</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> clearButtonMode: <span class="type">UITextFieldViewMode</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>提示文本, 默认是nil, 字体颜色是70%的灰</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> placeholder: <span class="type">String</span>?</div></pre></td></tr></table></figure>
+<blockquote>
+<p>再次编辑时对旧内容进行自动清除, 默认是false</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> clearsOnBeginEditing: <span class="type">Bool</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>根据TextField的大小自动缩放字体大小, 默认是false</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> adjustsFontSizeToFitWidth: <span class="type">Bool</span></div></pre></td></tr></table></figure>
+<h1 id="常用代理方法"><a href="#常用代理方法" class="headerlink" title="常用代理方法"></a>常用代理方法</h1><blockquote>
+<p>点击return会结束编辑, 也可以在这里设置取消TextField的第一响应者, 使键盘隐藏</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">textFieldShouldReturn</span><span class="params">(textField: UITextField)</span></span> -&gt; <span class="type">Bool</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>可限制文字输入的长度以及特定的字符, 如果返回true, 那么就是可以修改, 如果返回false就不可修改</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">textField</span><span class="params">(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String)</span></span> -&gt; <span class="type">Bool</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+            <a href="/tags/UIKit/" rel="tag"># UIKit</a>
+          
+            <a href="/tags/UITxtxField/" rel="tag"># UITxtxField</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/14/Swift/UIKit/Swift-UIKit-UIImage-简单使用/" rel="next" title="Swift-UIKit-UIImage-简单使用">
+                <i class="fa fa-chevron-left"></i> Swift-UIKit-UIImage-简单使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/14/Swift/UIKit/Swift-UIKit-UITextField-简单使用/" rel="prev" title="Swift-UIKit-UITextField-简单使用">
+                Swift-UIKit-UITextField-简单使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="千夜 QQ:738816656" />
+          <p class="site-author-name" itemprop="name">千夜 QQ:738816656</p>
+           
+              <p class="site-description motion-element" itemprop="description">ReactNative</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">169</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">86</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">72</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UITxtxField的常用状态"><span class="nav-number">1.</span> <span class="nav-text">UITxtxField的常用状态</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TextField边框的样式"><span class="nav-number">1.1.</span> <span class="nav-text">TextField边框的样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TextField的快速删除状态"><span class="nav-number">1.2.</span> <span class="nav-text">TextField的快速删除状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TextField的键盘样式"><span class="nav-number">1.3.</span> <span class="nav-text">TextField的键盘样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TextField的大写样式"><span class="nav-number">1.4.</span> <span class="nav-text">TextField的大写样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TextField的键盘外观颜色"><span class="nav-number">1.5.</span> <span class="nav-text">TextField的键盘外观颜色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TextField的Return样式"><span class="nav-number">1.6.</span> <span class="nav-text">TextField的Return样式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TextField的右边显示图样式"><span class="nav-number">2.</span> <span class="nav-text">TextField的右边显示图样式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#UITextField的垂直排列方式"><span class="nav-number">2.1.</span> <span class="nav-text">UITextField的垂直排列方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UITextField的水平排列方式"><span class="nav-number">2.2.</span> <span class="nav-text">UITextField的水平排列方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UITextField的常用属性"><span class="nav-number">3.</span> <span class="nav-text">UITextField的常用属性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用代理方法"><span class="nav-number">4.</span> <span class="nav-text">常用代理方法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+# 访客数
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">千夜 QQ:738816656</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === '') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("GGOhuU9q4e5a7HISgedllhyN-gzGzoHsz", "1Dlb2KyTymPIvsleHp8s02I8");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
