@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<script>
+    (function(){
+        if('520'){
+            if (prompt('请输入文章密码') !== '520'){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="闭包 闭包可以看做是匿名的函数 回想一下函数作为参数的情况定义一个函数，它最后的参数是一个函数类型  func doMath(first: Int, second: Int, mathFunc: (Int, Int) -&amp;gt; Int) &amp;#123;    print(&quot;mathFunc =&quot;,mathFunc(first,second))&amp;#125;  定义一个函数，它有两个整形参数，并有一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift-Grammar-Closures闭包">
+<meta property="og:url" content="http://yoursite.com/2017/11/27/Swift/Swift-Grammar/Swift-Grammar-Closures闭包/index.html">
+<meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
+<meta property="og:description" content="闭包 闭包可以看做是匿名的函数 回想一下函数作为参数的情况定义一个函数，它最后的参数是一个函数类型  func doMath(first: Int, second: Int, mathFunc: (Int, Int) -&amp;gt; Int) &amp;#123;    print(&quot;mathFunc =&quot;,mathFunc(first,second))&amp;#125;  定义一个函数，它有两个整形参数，并有一个">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-27T11:10:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift-Grammar-Closures闭包">
+<meta name="twitter:description" content="闭包 闭包可以看做是匿名的函数 回想一下函数作为参数的情况定义一个函数，它最后的参数是一个函数类型  func doMath(first: Int, second: Int, mathFunc: (Int, Int) -&amp;gt; Int) &amp;#123;    print(&quot;mathFunc =&quot;,mathFunc(first,second))&amp;#125;  定义一个函数，它有两个整形参数，并有一个">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/27/Swift/Swift-Grammar/Swift-Grammar-Closures闭包/"/>
+
+
+
+
+
+  <title>Swift-Grammar-Closures闭包 | 千夜、おれはおまえをずっと爱している</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">千夜、おれはおまえをずっと爱している</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-read">
+          <a href="/read/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            阅读榜
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/27/Swift/Swift-Grammar/Swift-Grammar-Closures闭包/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swift-Grammar-Closures闭包</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-27T18:18:21+08:00">
+                2017-11-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/Grammar/" itemprop="url" rel="index">
+                    <span itemprop="name">Grammar</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/11/27/Swift/Swift-Grammar/Swift-Grammar-Closures闭包/" class="leancloud_visitors" data-flag-title="Swift-Grammar-Closures闭包">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><blockquote>
+<p>闭包可以看做是匿名的函数</p>
+<h2 id="回想一下函数作为参数的情况"><a href="#回想一下函数作为参数的情况" class="headerlink" title="回想一下函数作为参数的情况"></a>回想一下函数作为参数的情况</h2><p>定义一个函数，它最后的参数是一个函数类型</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">doMath</span><span class="params">(first: Int, second: Int, mathFunc: <span class="params">(Int, Int)</span></span></span> -&gt; <span class="type">Int</span>) &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"mathFunc ="</span>,mathFunc(first,second))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>定义一个函数，它有两个整形参数，并有一个整形返回值</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(first: Int, <span class="number">_</span> second: Int)</span></span> -&gt; <span class="type">Int</span>&#123;</div><div class="line">    <span class="keyword">return</span> first + second</div></pre></td></tr></table></figure>
+<blockquote>
+<p>调用第一个函数，将第二个函数作为参数传入</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">doMath(<span class="number">1</span>, second: <span class="number">3</span>, mathFunc: add)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>打印</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">mathFunc = 4</div></pre></td></tr></table></figure>
+<blockquote>
+<p>如果我们想用doMath实现两个数相减的方法，那么必须再写定义一个sub函数，然后将其作为参数传入。这样在功能多了之后会显得很麻烦，一堆函数，而所以有了闭包这个概念</p>
+</blockquote>
+<h2 id="闭包的语法"><a href="#闭包的语法" class="headerlink" title="闭包的语法"></a>闭包的语法</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">&#123; (参数列表) -&gt; 返回类型 <span class="keyword">in</span> </div><div class="line"></div><div class="line">      <span class="comment">//闭包体</span></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>有了闭包，我们可以将上面的代码改为</p>
+<p>定义一个函数，它最后的参数是一个函数类型</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">doMath</span><span class="params">(f:Int,s:Int,mathFunc:<span class="params">(Int,Int)</span></span></span>-&gt;)&#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"mathFunc = "</span>,mathunc(first,second))</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>调用</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">doMath(<span class="number">1</span>, second: <span class="number">3</span>, mathFunc: &#123;(f: <span class="type">Int</span>, s: <span class="type">Int</span>) -&gt; <span class="type">Int</span> <span class="keyword">in</span></div><div class="line">    <span class="keyword">return</span> f + s</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>还是很麻烦是吧？ 别忘了 <strong>Swift有类型推断功能</strong>，所以我们可以继续简化上面的闭包部分代码 </p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">doMath(<span class="number">1</span>, second: <span class="number">3</span>, mathFunc: &#123;f, s <span class="keyword">in</span></div><div class="line">    <span class="keyword">return</span> f + s</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>对应只有一行代码的闭包，return关键字还可以省略</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">doMath(<span class="number">1</span>, second: <span class="number">3</span>, mathFunc: &#123;f, s <span class="keyword">in</span> f + s &#125;)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>此外，闭包对参数提供了默认名字，依次为 $0,$1,$2….所以上面的闭包仍可以简化</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">doMath(<span class="number">1</span>, second: <span class="number">3</span>, mathFunc: &#123;$<span class="number">0</span> + $<span class="number">1</span> &#125;)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>对于闭包在参数列表最后一项的情况，可以将闭包写到小括号外部，并且可以省略掉外部参数名</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> doMath(<span class="number">1</span>, second: <span class="number">3</span>)&#123;</div><div class="line">    <span class="keyword">var</span> f = $<span class="number">0</span> + <span class="number">1</span></div><div class="line">    <span class="keyword">return</span> f + $<span class="number">1</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Autoclosures"><a href="#Autoclosures" class="headerlink" title="Autoclosures"></a>Autoclosures</h1><blockquote>
+<p>姑且叫自动打包吧。用大括号括起来就好，编译器自动判断这个大括号里面的是什么返回类型。但是有时候不准确，需要自己写。下面是这个概念的解释，其实也是一种定义闭包变量的方法</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> t = &#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">1</span></div><div class="line">&#125;</div><div class="line"><span class="built_in">print</span>(t())</div></pre></td></tr></table></figure>
+<blockquote>
+<p>定义了一个Void-&gt;Void类型的闭包。因为没有参数，所以可以省略参数列表和in关键字。如果有参数的话，就不能省略in关键字。 </p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> b: <span class="type">Void</span>-&gt;<span class="type">Int</span> = &#123;  <span class="comment">//定义了一个类型为 Void-&gt;Int的闭包</span></div><div class="line">    <span class="keyword">var</span> i = <span class="number">1</span></div><div class="line">    i++</div><div class="line">    <span class="built_in">print</span>(i)</div><div class="line">    <span class="keyword">return</span> i</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>因为闭包其实就是函数，调用这个闭包就和调用函数一样。但是有区别的就是闭包都是没有外部外部参数名，调用的时候不要把内部参数名但做外部参数名使用。</p>
+<p>有时候函数需要传递一个闭包的时候，可以在调用的时候使用大括号将一段代码生成为闭包</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> b: <span class="type">Void</span>-&gt;<span class="type">Int</span> = &#123;</div><div class="line">    <span class="keyword">var</span> i = <span class="number">1</span></div><div class="line">    <span class="keyword">return</span> i</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">doClosures</span><span class="params">(<span class="built_in">c</span>: Void-&gt;Void)</span></span> &#123;</div><div class="line">    <span class="built_in">c</span>()</div><div class="line">&#125;</div><div class="line">doClosures(&#123;b()&#125;)  <span class="comment">//虽然b是一个Void-&gt;Int的闭包，但是其调用再封装之后变为了Void-&gt;Void的闭包</span></div><div class="line">doClosures(&#123;    </div><div class="line">    <span class="keyword">var</span> i = <span class="number">3</span></div><div class="line">    i++</div><div class="line">    <span class="built_in">print</span>(i)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>此外，可以在函数参数列表里面使用@autoclosure关键字，这样就不用使用大括号封装了。但是对于多句的代码情况不行（上面的第二种），有时候自动封装也会出错，比如用上面的第一种情况，它把b()看做了Int，然后报错。需要将返回类型重新定义一下 </p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> b: <span class="type">Void</span>-&gt;<span class="type">Void</span> = &#123;</div><div class="line">    <span class="keyword">var</span> i = <span class="number">1</span></div><div class="line">    i++</div><div class="line">    <span class="built_in">print</span>(i)</div><div class="line"><span class="comment">//    return i</span></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">doClosures</span><span class="params">(@autoclosure <span class="built_in">c</span>: Void-&gt;Void)</span></span> &#123;   <span class="comment">//或者不改b的类型，将这里的c的类型改为 Void-&gt;Int也可以</span></div><div class="line">    <span class="built_in">c</span>()</div><div class="line">&#125;</div><div class="line">doClosures(b())</div></pre></td></tr></table></figure>
+<blockquote>
+<p>如果想要自动封装的闭包可以在doClosures函数的作用域以外使用，那么加上escaping关键字。这个关键字只能用在@autoclosure后面</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> b: <span class="type">Void</span>-&gt;<span class="type">Void</span> = &#123;</div><div class="line">    <span class="keyword">var</span> i = <span class="number">1</span></div><div class="line">    i++</div><div class="line">    <span class="built_in">print</span>(i)</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> t: (<span class="type">Void</span>-&gt;<span class="type">Void</span>)?</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">doClosures</span><span class="params">(@autoclosure<span class="params">(escaping)</span></span></span> <span class="built_in">c</span>: <span class="type">Void</span>-&gt;<span class="type">Void</span>) &#123;</div><div class="line">    <span class="built_in">c</span>()</div><div class="line">    t = <span class="built_in">c</span>  <span class="comment">//将自动封装的c赋值给外部变量t</span></div><div class="line">&#125;</div><div class="line">doClosures(b())</div><div class="line">t!()</div></pre></td></tr></table></figure>
+<blockquote>
+<p>闭包的值捕获<br>在生成一个闭包的时候，闭包会将它用到的参数和变量都保存一份。提醒一下，其实闭包就是函数</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">func</span> <span class="title">giveMeFunc2</span><span class="params">(step: Int)</span></span> -&gt; (<span class="type">Void</span> -&gt; <span class="type">Int</span>)? &#123;</div><div class="line">    <span class="keyword">var</span> total = <span class="number">0</span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">()</span></span> -&gt; <span class="type">Int</span> &#123; total += step; <span class="keyword">return</span> total &#125;</div><div class="line">    <span class="keyword">return</span> add</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>上面的函数里面生成了嵌套函数，通过输入不同的符号，返回不同的函数。这里有两个变量需要注意，一个是total，一个是step。当生成嵌套函数的时候，嵌套函数会将这两个变量都copy一份，然后保存起来。下面是对上面代码的一个使用</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">上面的函数里面生成了嵌套函数，通过输入不同的符号，返回不同的函数。这里有两个变量需要注意，一个是total，一个是step。当生成嵌套函数的时候，嵌套函数会将这两个变量都copy一份，然后保存起来。下面是对上面代码的一个使用</div></pre></td></tr></table></figure>
+<blockquote>
+<p>可以看到，f1和f2的total和step是不会相互干涉的。</p>
+</blockquote>
+<p>再来看看这个值捕获的时间，看下面代码。这里可以看到，值捕获是发生在返回之前。这个和OC的block是一样的</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">func</span> <span class="title">giveMeFunc2</span><span class="params">(step: Int)</span></span> -&gt; (<span class="type">Void</span> -&gt; <span class="type">Int</span>)? &#123;</div><div class="line">    <span class="keyword">var</span> total = <span class="number">0</span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">()</span></span> -&gt; <span class="type">Int</span> &#123; total += step; <span class="keyword">return</span> total &#125;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"before +100"</span>,add())  <span class="comment">// total = 0</span></div><div class="line">    total += <span class="number">100</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"after +100"</span>,add())  <span class="comment">// total = 100</span></div><div class="line">    <span class="keyword">return</span> add</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> f1 = giveMeFunc2(<span class="number">1</span>)! <span class="comment">//得到一个函数，它会将传入的参数累加，并且每次调用都会加上一次step</span></div><div class="line"><span class="built_in">print</span>(<span class="string">"f1="</span>,f1())  <span class="comment">// 103</span></div><div class="line"><span class="built_in">print</span>(<span class="string">"f1="</span>,f1())  <span class="comment">// 104</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>看到这里，可能大家会以为这个值捕获和OC的block差不多，但是其实差远了。这个值捕获的时间很有区别。这里明显的一点就是我们在函数内部改变外部变量total的时候，没有加任何修饰符，OC里面必须加上__block，要么就是对全局变量进行修改。</p>
+<p>我们先看一段OC代码</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">int t =<span class="number">1</span>;</div><div class="line">int(^b)() = ^() &#123; <span class="keyword">return</span> t; &#125;;</div><div class="line">t = <span class="number">3</span>;</div><div class="line"><span class="type">NSLog</span>(@<span class="string">"%d"</span>,b()); <span class="comment">//输出1，理由就不多说了。</span></div><div class="line"></div><div class="line">假如我们把t改为__block。那么将会输出<span class="number">3</span>。改为<span class="keyword">static</span>同样的效果。</div><div class="line"></div><div class="line">__block int t =<span class="number">1</span>;</div><div class="line">int(^b)() = ^() &#123;  <span class="keyword">return</span> t;   &#125;;</div><div class="line">t = <span class="number">3</span>;</div><div class="line"><span class="type">NSLog</span>(@<span class="string">"%d"</span>,b());  <span class="comment">//3</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>来看OC和swift中两段很类似的代码 </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">//OC</div><div class="line">typedef int(^BLOCK)(void);</div><div class="line">BLOCK OCFunc (int step) &#123;</div><div class="line">    __block int total = 0;</div><div class="line">    BLOCK b = ^() &#123; total +=step; return total; &#125;;</div><div class="line">    step = 100;</div><div class="line">    NSLog(@&quot;before +100,%d&quot;,b());  //1</div><div class="line">    total +=100;</div><div class="line">    NSLog(@&quot;after +100,%d&quot;,b());   //102</div><div class="line">    return b;</div><div class="line">&#125;</div><div class="line">//在main方法里面调用</div><div class="line">BLOCK b = OCFunc(1);</div><div class="line">NSLog(@&quot;%d&quot;,b());  // 103</div><div class="line">NSLog(@&quot;%d&quot;,b());  // 104</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">swiftFunc</span><span class="params">(<span class="keyword">var</span> step: Int)</span></span> -&gt; <span class="type">Void</span> -&gt; <span class="type">Int</span>&#123;</div><div class="line">    <span class="keyword">var</span> total = <span class="number">0</span></div><div class="line">    <span class="keyword">let</span> b: <span class="type">Void</span> -&gt; <span class="type">Int</span> = &#123; <span class="type">Void</span> <span class="keyword">in</span> total += step; <span class="keyword">return</span> total &#125;</div><div class="line">    step = <span class="number">100</span>;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"before +100,"</span>,b())  <span class="comment">// 100</span></div><div class="line">    total+=<span class="number">100</span>                 <span class="comment">// total = 200</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"after +100,"</span>,b())   <span class="comment">//300</span></div><div class="line">    <span class="keyword">return</span> b</div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> d = swiftFunc(<span class="number">1</span>)</div><div class="line"><span class="built_in">print</span>(<span class="string">"d="</span>,d())   <span class="comment">//400</span></div><div class="line"><span class="built_in">print</span>(<span class="string">"d="</span>,d())   <span class="comment">//500</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>这里可以看到，OC中的step在block定义的时候就绑定了，后面在更改step的值也不影响block。但是在swift中，step仍然是可以改变的，直到step离开作用域后，闭包才将其捕获。</p>
+</blockquote>
+<p>如果要OC中产生同样的效果，只需定义一个<strong>block变量，如下。可以这么看，Swift中的变量默认都是</strong>block的</p>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="comment">//OC</span></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">int</span>(^BLOCK)(<span class="keyword">void</span>);</div><div class="line">BLOCK OCFunc (<span class="keyword">int</span> step) &#123;</div><div class="line">    __block <span class="keyword">int</span> total = <span class="number">0</span>;</div><div class="line">    __block <span class="keyword">int</span> step2 = step;</div><div class="line">    BLOCK b = ^() &#123; total +=step2; <span class="keyword">return</span> total; &#125;;</div><div class="line">    step2 = <span class="number">100</span>;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"before +100,%d"</span>,b());  <span class="comment">//100</span></div><div class="line">    total +=<span class="number">100</span>;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"after +100,%d"</span>,b());   <span class="comment">//300</span></div><div class="line">    <span class="keyword">return</span> b;</div><div class="line">&#125;</div><div class="line"><span class="comment">//在main方法里面调用</span></div><div class="line">BLOCK b = OCFunc(<span class="number">1</span>);</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,b());  <span class="comment">//400</span></div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,b());  <span class="comment">//500</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>这个值捕获和OC的block一样，也会产生循环引用问题。OC里面是使用__weak来解决，这里差不多，它可以在参数列表前面加上捕获列表，并且对捕获类别的参数进行权限控制，附上一个官方例子，以后写ARC的时候详细讲</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="built_in">lazy</span> <span class="keyword">var</span> someClosure: (<span class="type">Int</span>, <span class="type">String</span>) -&gt; <span class="type">String</span> = &#123;</div><div class="line">    [<span class="keyword">unowned</span> <span class="keyword">self</span>, <span class="keyword">weak</span> delegate = <span class="keyword">self</span>.delegate!] (index: <span class="type">Int</span>, stringToProcess: <span class="type">String</span>) -&gt; <span class="type">String</span> <span class="keyword">in</span></div><div class="line">    <span class="comment">// closure body goes here</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/27/FF-Beichoo/FF-Beichoo-有读1.1.0版本问题/" rel="next" title="FF-Beichoo-有读1.1.0版本问题">
+                <i class="fa fa-chevron-left"></i> FF-Beichoo-有读1.1.0版本问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/29/520/" rel="prev" title="Swift-Garmmar-Enumerations枚举类">
+                Swift-Garmmar-Enumerations枚举类 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="千夜 QQ:738816656" />
+          <p class="site-author-name" itemprop="name">千夜 QQ:738816656</p>
+           
+              <p class="site-description motion-element" itemprop="description">ReactNative</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">169</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">87</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">73</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#闭包"><span class="nav-number">1.</span> <span class="nav-text">闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#回想一下函数作为参数的情况"><span class="nav-number">1.1.</span> <span class="nav-text">回想一下函数作为参数的情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包的语法"><span class="nav-number">1.2.</span> <span class="nav-text">闭包的语法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Autoclosures"><span class="nav-number">2.</span> <span class="nav-text">Autoclosures</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+# 访客数
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">千夜 QQ:738816656</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === '') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("GGOhuU9q4e5a7HISgedllhyN-gzGzoHsz", "1Dlb2KyTymPIvsleHp8s02I8");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

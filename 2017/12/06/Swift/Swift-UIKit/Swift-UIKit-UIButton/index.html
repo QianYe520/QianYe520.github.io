@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<script>
+    (function(){
+        if('520'){
+            if (prompt('请输入文章密码') !== '520'){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Swift,UIButton," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="UIButton UIButton继承自UIControl  创建btnlet btn: UIButton = UIButton()   //没有样式//let btns:UIButton =UIButton(type: UIButtonType)//有样式//let button = UIButton(frame:CGRect(x:10, y:150, width:100, height:30)">
+<meta name="keywords" content="Swift,UIButton">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift-UIKit-UIButton">
+<meta property="og:url" content="http://yoursite.com/2017/12/06/Swift/Swift-UIKit/Swift-UIKit-UIButton/index.html">
+<meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
+<meta property="og:description" content="UIButton UIButton继承自UIControl  创建btnlet btn: UIButton = UIButton()   //没有样式//let btns:UIButton =UIButton(type: UIButtonType)//有样式//let button = UIButton(frame:CGRect(x:10, y:150, width:100, height:30)">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-14T05:37:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift-UIKit-UIButton">
+<meta name="twitter:description" content="UIButton UIButton继承自UIControl  创建btnlet btn: UIButton = UIButton()   //没有样式//let btns:UIButton =UIButton(type: UIButtonType)//有样式//let button = UIButton(frame:CGRect(x:10, y:150, width:100, height:30)">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/06/Swift/Swift-UIKit/Swift-UIKit-UIButton/"/>
+
+
+
+
+
+  <title>Swift-UIKit-UIButton | 千夜、おれはおまえをずっと爱している</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">千夜、おれはおまえをずっと爱している</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-read">
+          <a href="/read/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            阅读榜
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/06/Swift/Swift-UIKit/Swift-UIKit-UIButton/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swift-UIKit-UIButton</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-06T16:59:28+08:00">
+                2017-12-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/UIKit/" itemprop="url" rel="index">
+                    <span itemprop="name">UIKit</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/UIKit/UIButton/" itemprop="url" rel="index">
+                    <span itemprop="name">UIButton</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/12/06/Swift/Swift-UIKit/Swift-UIKit-UIButton/" class="leancloud_visitors" data-flag-title="Swift-UIKit-UIButton">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="UIButton"><a href="#UIButton" class="headerlink" title="UIButton"></a>UIButton</h1><blockquote>
+<p>UIButton继承自UIControl</p>
+</blockquote>
+<h2 id="创建btn"><a href="#创建btn" class="headerlink" title="创建btn"></a>创建btn</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> btn: <span class="type">UIButton</span> = <span class="type">UIButton</span>()   <span class="comment">//没有样式</span></div><div class="line"><span class="comment">//let btns:UIButton =UIButton(type: UIButtonType)//有样式</span></div><div class="line"><span class="comment">//let button = UIButton(frame:CGRect(x:10, y:150, width:100, height:30))//简化创建方式</span></div><div class="line"><span class="keyword">self</span>.view.addSubview(button)</div></pre></td></tr></table></figure>
+<h2 id="UIButtonType有以下类型"><a href="#UIButtonType有以下类型" class="headerlink" title="UIButtonType有以下类型"></a>UIButtonType有以下类型</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">UIButtonType</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> custom <span class="comment">// no button type</span></div><div class="line">    <span class="meta">@available</span>(iOS <span class="number">7.0</span>, *)</div><div class="line">    <span class="keyword">case</span> system <span class="comment">// standard system button</span></div><div class="line">    <span class="keyword">case</span> detailDisclosure</div><div class="line">    <span class="keyword">case</span> infoLight</div><div class="line">    <span class="keyword">case</span> infoDark</div><div class="line">    <span class="keyword">case</span> contactAdd</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">var</span> roundedRect: <span class="type">UIButtonType</span> &#123; <span class="keyword">get</span> &#125; <span class="comment">// Deprecated, use UIButtonTypeSystem instead</span></div><div class="line">&#125;</div><div class="line"><span class="comment">//使用</span></div><div class="line"><span class="keyword">let</span>  btn: <span class="type">UIButton</span> = <span class="type">UIButton</span>(type: .<span class="type">Custom</span>)</div></pre></td></tr></table></figure>
+<h2 id="UIButton设置字内容和颜色"><a href="#UIButton设置字内容和颜色" class="headerlink" title="UIButton设置字内容和颜色"></a>UIButton设置字内容和颜色</h2><blockquote>
+<p>UIButton所对应的状态有几种</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="comment">/**</span></div><div class="line"><span class="comment">     Normal          (默认状态)</span></div><div class="line"><span class="comment">     Highlighted    （高亮状态）点击按钮不放</span></div><div class="line"><span class="comment">     Disabled       （使能状态）就是是否可用状态--&gt;禁用的状态才会显现</span></div><div class="line"><span class="comment">     Selected       （选中状态）通过selected属性设置</span></div><div class="line"><span class="comment"> */</span></div><div class="line"> </div><div class="line"> </div><div class="line"> /显示文字</div><div class="line">button1.setTitle(<span class="string">"普通状态"</span>, <span class="keyword">for</span>: .normal)</div><div class="line">button1.setTitle(<span class="string">"高粱状态"</span>, <span class="keyword">for</span>: .highlighted)</div><div class="line">button1.setTitle(<span class="string">"禁用状态"</span>, <span class="keyword">for</span>: .disabled)</div><div class="line"><span class="comment">//显示文字颜色</span></div><div class="line">button1.setTitleColor(<span class="type">UIColor</span>.red, <span class="keyword">for</span>: .normal)</div><div class="line">button1.setTitleColor(<span class="type">UIColor</span>.blue, <span class="keyword">for</span>: .highlighted)</div><div class="line">button1.setTitleColor(<span class="type">UIColor</span>.cyan, <span class="keyword">for</span>: .selected)</div><div class="line">button1.setTitleColor(<span class="type">UIColor</span>.cyan, <span class="keyword">for</span>: .disabled)</div><div class="line"><span class="comment">//阴影文字颜色设置</span></div><div class="line">button1.setTitleShadowColor(<span class="type">UIColor</span>.cyan, <span class="keyword">for</span>: .normal)</div><div class="line">button1.setTitleShadowColor(<span class="type">UIColor</span>.green, <span class="keyword">for</span>: .highlighted)</div><div class="line">button1.setTitleShadowColor(<span class="type">UIColor</span>.brown, <span class="keyword">for</span>: .disabled)</div><div class="line">button1.setTitleShadowColor(<span class="type">UIColor</span>.darkGray, <span class="keyword">for</span>: .selected)</div></pre></td></tr></table></figure>
+<h2 id="UIButton设置背景颜色和背景图片"><a href="#UIButton设置背景颜色和背景图片" class="headerlink" title="UIButton设置背景颜色和背景图片"></a>UIButton设置背景颜色和背景图片</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="comment">//背景颜色</span></div><div class="line">button2.backgroundColor = <span class="type">UIColor</span>.orange</div><div class="line"><span class="comment">//背景图片    button4.setBackgroundImage(UIImage(named:"XXX"), for: .normal)</span></div></pre></td></tr></table></figure>
+<h2 id="UIButton设置字体大小"><a href="#UIButton设置字体大小" class="headerlink" title="UIButton设置字体大小"></a>UIButton设置字体大小</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">button.titleLabel?.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">12</span>)</div></pre></td></tr></table></figure>
+<h2 id="禁用UIButton"><a href="#禁用UIButton" class="headerlink" title="禁用UIButton"></a>禁用UIButton</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> button.isEnabled = <span class="literal">false</span></div><div class="line">button.isEnabled = <span class="literal">true</span></div></pre></td></tr></table></figure>
+<h2 id="设置圆角"><a href="#设置圆角" class="headerlink" title="设置圆角"></a>设置圆角</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> button.layer.cornerRadius = <span class="number">5</span></div><div class="line">button.layer.masksToBounds = <span class="literal">true</span></div></pre></td></tr></table></figure>
+<h2 id="设置边框宽度-颜色"><a href="#设置边框宽度-颜色" class="headerlink" title="设置边框宽度/颜色"></a>设置边框宽度/颜色</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> button.layer.borderWidth = <span class="number">2</span></div><div class="line">button.layer.borderColor = <span class="type">UIColor</span>.red.cgColor</div></pre></td></tr></table></figure>
+<h2 id="设置背景图片为圆角"><a href="#设置背景图片为圆角" class="headerlink" title="设置背景图片为圆角"></a>设置背景图片为圆角</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> buttonImage.setImage(<span class="type">UIImage</span>(named:<span class="string">"1"</span>) , forState: <span class="type">UIControlState</span>.<span class="type">Normal</span>)</div><div class="line"><span class="comment">//设置背景图片为圆角</span></div><div class="line">buttonImage.imageView?.layer.cornerRadius = <span class="number">50</span></div><div class="line"></div><div class="line">默认情况下按钮会被渲染成单一颜色；系统蓝</div><div class="line">button.setImage(<span class="type">UIImage</span>(named:<span class="string">"icon1"</span>),forState:.<span class="type">Normal</span>)  <span class="comment">//设置图标</span></div><div class="line">button.adjustsImageWhenHighlighted=<span class="literal">false</span> <span class="comment">//使触摸模式下按钮也不会变暗（半透明）</span></div><div class="line">button.adjustsImageWhenDisabled=<span class="literal">false</span> <span class="comment">//使禁用模式下按钮也不会变暗（半透明）</span></div><div class="line"></div><div class="line">也可以设置成保留图标原来的颜色</div><div class="line"><span class="keyword">let</span> iconImage = <span class="type">UIImage</span>(named:<span class="string">"icon2"</span>)?.withRenderingMode(.alwaysOriginal)</div><div class="line">button.setImage(iconImage, <span class="keyword">for</span>:.normal)  <span class="comment">//设置图标</span></div><div class="line">button.adjustsImageWhenHighlighted = <span class="literal">false</span> <span class="comment">//使触摸模式下按钮也不会变暗（半透明）</span></div><div class="line">button.adjustsImageWhenDisabled = <span class="literal">false</span> <span class="comment">//使禁用模式下按钮也不会变暗（半透明）</span></div></pre></td></tr></table></figure>
+<h2 id="UIButton上图片和文字调整"><a href="#UIButton上图片和文字调整" class="headerlink" title="UIButton上图片和文字调整"></a>UIButton上图片和文字调整</h2><blockquote>
+<p>UIButton上添加图片和文字，有时需要我们调整,方向为逆时针方向，上、左、下、右依次去设置的</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  btn.imageEdgeInsets =<span class="type">UIEdgeInsetsMake</span>(top: <span class="type">CGFloat</span>, <span class="keyword">left</span>: <span class="type">CGFloat</span>, bottom: <span class="type">CGFloat</span>, <span class="keyword">right</span>: <span class="type">CGFloat</span>)</div><div class="line"></div><div class="line">btn.titleEdgeInsets =<span class="type">UIEdgeInsetsMake</span>(top: <span class="type">CGFloat</span>, <span class="keyword">left</span>: <span class="type">CGFloat</span>, bottom: <span class="type">CGFloat</span>, <span class="keyword">right</span>: <span class="type">CGFloat</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="comment">//创建一个图片一个文字的按钮  </span></div><div class="line"><span class="keyword">let</span> btn2: <span class="type">UIButton</span> = <span class="type">UIButton</span>(type: .<span class="type">Custom</span>)  </div><div class="line">btn2.frame = <span class="type">CGRectMake</span>(<span class="number">50</span>, <span class="number">100</span>, <span class="number">120</span>, <span class="number">35</span>)  </div><div class="line">btn2.setImage(<span class="type">UIImage</span>(named: <span class="string">"1"</span>), forState: .<span class="type">Normal</span>)  </div><div class="line">btn2.backgroundColor = <span class="type">UIColor</span>.blackColor()  </div><div class="line">btn2.titleLabel?.font = <span class="type">UIFont</span>.systemFontOfSize(<span class="number">20</span>)  </div><div class="line">btn2.imageView?.contentMode = <span class="type">UIViewContentMode</span>.<span class="type">ScaleAspectFit</span>  </div><div class="line">btn2.setTitle(<span class="string">"图片按钮"</span>, forState: .<span class="type">Normal</span>)  </div><div class="line"><span class="comment">//偏移量，分别为上下左右  </span></div><div class="line">btn2.imageEdgeInsets = <span class="type">UIEdgeInsetsMake</span>(<span class="number">0</span>, -<span class="number">50</span>, <span class="number">0</span>, <span class="number">0</span>)  </div><div class="line">btn2.titleEdgeInsets = <span class="type">UIEdgeInsetsMake</span>(<span class="number">0</span>, -<span class="number">80</span>, <span class="number">0</span>, <span class="number">5</span>)  </div><div class="line">btn2.setTitleColor(<span class="type">UIColor</span>.whiteColor(), forState: .<span class="type">Normal</span>)  </div><div class="line">btn2.adjustsImageWhenHighlighted = <span class="literal">false</span>  </div><div class="line"><span class="keyword">self</span>.view.addSubview(btn2)</div></pre></td></tr></table></figure>
+<h2 id="添加按钮的点击事件"><a href="#添加按钮的点击事件" class="headerlink" title="添加按钮的点击事件"></a>添加按钮的点击事件</h2><blockquote>
+<p>按钮的触摸时间有以下类型</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> touchDown：单点触摸按下事件，点触屏幕</div><div class="line">touchDownRepeat：多点触摸按下事件，点触计数大于<span class="number">1</span>，按下第<span class="number">2</span>、<span class="number">3</span>或第<span class="number">4</span>根手指的时候</div><div class="line">touchDragInside：触摸在控件内拖动时</div><div class="line">touchDragOutside：触摸在控件外拖动时</div><div class="line">touchDragEnter：触摸从控件之外拖动到内部时</div><div class="line">touchDragExit：触摸从控件内部拖动到外部时</div><div class="line">touchUpInside：在控件之内触摸并抬起事件</div><div class="line">touchUpOutside：在控件之外触摸抬起事件</div><div class="line">touchCancel：触摸取消事件，即一次触摸因为放上太多手指而被取消，或者电话打断</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  button1.addTarget(<span class="keyword">self</span>,action:#selector(methodName), <span class="keyword">for</span>: .touchUpInside)</div><div class="line">button1.addTarget(<span class="keyword">self</span>, action:#selector(someMethod(button:)), <span class="keyword">for</span>:.touchUpInside)</div><div class="line"><span class="comment">//上</span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">methodName</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"tapped"</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="comment">//下</span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">someMethod</span><span class="params">(button:UIButton)</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"你是谁啊，其实就是一个按钮"</span>)</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h2 id="按钮文字过长时候的显示处理"><a href="#按钮文字过长时候的显示处理" class="headerlink" title="按钮文字过长时候的显示处理"></a>按钮文字过长时候的显示处理</h2><blockquote>
+<p>修改 button 按钮中 titleLabel 的 lineBreakMode 属性，便可以调整按钮在文字超长的情况下如何显示，以及是否换行</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">let</span> button = <span class="type">UIButton</span>(frame:<span class="type">CGRect</span>(x:<span class="number">20</span>, y:<span class="number">50</span>, width:<span class="number">130</span>, height:<span class="number">50</span>))</div><div class="line">button.setTitle(<span class="string">"这个是一长长长长长长长长长长的文字"</span>, <span class="keyword">for</span>:.normal) <span class="comment">//普通状态下的文字</span></div><div class="line">button.setTitleColor(<span class="type">UIColor</span>.white, <span class="keyword">for</span>: .normal) <span class="comment">//普通状态下文字的颜色</span></div><div class="line">button.titleLabel?.lineBreakMode = .byTruncatingTail</div><div class="line">button.backgroundColor = <span class="type">UIColor</span>.orange</div><div class="line"><span class="keyword">self</span>.view.addSubview(button)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>NSLineBreakMode样式可供选择，API的介绍也是简单明</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">NSLineBreakMode</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">case</span> byWordWrapping <span class="comment">// Wrap at word boundaries, default</span></div><div class="line"></div><div class="line">    <span class="keyword">case</span> byCharWrapping <span class="comment">// Wrap at character boundaries</span></div><div class="line"></div><div class="line">    <span class="keyword">case</span> byClipping <span class="comment">// Simply clip</span></div><div class="line"></div><div class="line">    <span class="keyword">case</span> byTruncatingHead <span class="comment">// Truncate at head of line: "...wxyz"</span></div><div class="line"></div><div class="line">    <span class="keyword">case</span> byTruncatingTail <span class="comment">// Truncate at tail of line: "abcd..."</span></div><div class="line"></div><div class="line">    <span class="keyword">case</span> byTruncatingMiddle <span class="comment">// Truncate middle of line:  "ab...yz"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+            <a href="/tags/UIButton/" rel="tag"># UIButton</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/06/Swift/Swift-UIKit/Swift-UIKit-UILabel/" rel="next" title="Swift-UIKit-UILabel">
+                <i class="fa fa-chevron-left"></i> Swift-UIKit-UILabel
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/07/Swift/Swift-UIKit/Swift-UIKit-UITextField/" rel="prev" title="Swift-UIKit-UITextField">
+                Swift-UIKit-UITextField <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="千夜 QQ:738816656" />
+          <p class="site-author-name" itemprop="name">千夜 QQ:738816656</p>
+           
+              <p class="site-description motion-element" itemprop="description">ReactNative</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">169</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">87</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">73</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UIButton"><span class="nav-number">1.</span> <span class="nav-text">UIButton</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建btn"><span class="nav-number">1.1.</span> <span class="nav-text">创建btn</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIButtonType有以下类型"><span class="nav-number">1.2.</span> <span class="nav-text">UIButtonType有以下类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIButton设置字内容和颜色"><span class="nav-number">1.3.</span> <span class="nav-text">UIButton设置字内容和颜色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIButton设置背景颜色和背景图片"><span class="nav-number">1.4.</span> <span class="nav-text">UIButton设置背景颜色和背景图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIButton设置字体大小"><span class="nav-number">1.5.</span> <span class="nav-text">UIButton设置字体大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#禁用UIButton"><span class="nav-number">1.6.</span> <span class="nav-text">禁用UIButton</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置圆角"><span class="nav-number">1.7.</span> <span class="nav-text">设置圆角</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置边框宽度-颜色"><span class="nav-number">1.8.</span> <span class="nav-text">设置边框宽度/颜色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置背景图片为圆角"><span class="nav-number">1.9.</span> <span class="nav-text">设置背景图片为圆角</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIButton上图片和文字调整"><span class="nav-number">1.10.</span> <span class="nav-text">UIButton上图片和文字调整</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加按钮的点击事件"><span class="nav-number">1.11.</span> <span class="nav-text">添加按钮的点击事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按钮文字过长时候的显示处理"><span class="nav-number">1.12.</span> <span class="nav-text">按钮文字过长时候的显示处理</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+# 访客数
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">千夜 QQ:738816656</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === '') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("GGOhuU9q4e5a7HISgedllhyN-gzGzoHsz", "1Dlb2KyTymPIvsleHp8s02I8");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
