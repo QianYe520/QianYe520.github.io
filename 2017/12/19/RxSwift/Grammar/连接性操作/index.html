@@ -105,18 +105,18 @@
 
 
 
-<meta name="description" content="数学操作toArray 将sequence转换成一个array，并转换成单一事件信号，然后结束     let disposeBag = DisposeBag()    Observable.range(start: 1, count: 10)    .toArray()    .subscribe &amp;#123; print($0) &amp;#125;    .addDisposableTo(dispo">
+<meta name="description" content="连接性操作 Connectable Observable有订阅时不开始发射事件消息，而是仅当调用它们的connect（）方法时。这样就可以等待所有我们想要的订阅者都已经订阅了以后，再开始发出事件消息，这样能保证我们想要的所有订阅者都能接收到事件消息。其实也就是等大家都就位以后，开始发出消息  publish 将一个正常的sequence转换成一个connectable sequence     l">
 <meta name="keywords" content="Swift,RxSwift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift-RxSwift-连接性操作">
 <meta property="og:url" content="http://yoursite.com/2017/12/19/RxSwift/Grammar/连接性操作/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="数学操作toArray 将sequence转换成一个array，并转换成单一事件信号，然后结束     let disposeBag = DisposeBag()    Observable.range(start: 1, count: 10)    .toArray()    .subscribe &amp;#123; print($0) &amp;#125;    .addDisposableTo(dispo">
+<meta property="og:description" content="连接性操作 Connectable Observable有订阅时不开始发射事件消息，而是仅当调用它们的connect（）方法时。这样就可以等待所有我们想要的订阅者都已经订阅了以后，再开始发出事件消息，这样能保证我们想要的所有订阅者都能接收到事件消息。其实也就是等大家都就位以后，开始发出消息  publish 将一个正常的sequence转换成一个connectable sequence     l">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-11T08:33:29.291Z">
+<meta property="og:updated_time" content="2018-02-11T08:33:56.527Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift-RxSwift-连接性操作">
-<meta name="twitter:description" content="数学操作toArray 将sequence转换成一个array，并转换成单一事件信号，然后结束     let disposeBag = DisposeBag()    Observable.range(start: 1, count: 10)    .toArray()    .subscribe &amp;#123; print($0) &amp;#125;    .addDisposableTo(dispo">
+<meta name="twitter:description" content="连接性操作 Connectable Observable有订阅时不开始发射事件消息，而是仅当调用它们的connect（）方法时。这样就可以等待所有我们想要的订阅者都已经订阅了以后，再开始发出事件消息，这样能保证我们想要的所有订阅者都能接收到事件消息。其实也就是等大家都就位以后，开始发出消息  publish 将一个正常的sequence转换成一个connectable sequence     l">
 
 
 
@@ -443,19 +443,7 @@
       
 
       
-        <h1 id="数学操作"><a href="#数学操作" class="headerlink" title="数学操作"></a>数学操作</h1><h2 id="toArray"><a href="#toArray" class="headerlink" title="toArray"></a>toArray</h2><blockquote>
-<p>将sequence转换成一个array，并转换成单一事件信号，然后结束</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">    </div><div class="line"><span class="type">Observable</span>.range(start: <span class="number">1</span>, <span class="built_in">count</span>: <span class="number">10</span>)</div><div class="line">    .toArray()</div><div class="line">    .subscribe &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line"></div><div class="line"><span class="comment">///</span></div><div class="line">next([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>])</div><div class="line">completed</div></pre></td></tr></table></figure>
-<h2 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h2><blockquote>
-<p>用一个初始值，对事件数据进行累计操作<br>reduce接受一个初始值，和一个操作符号</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">    </div><div class="line"><span class="type">Observable</span>.of(<span class="number">10</span>, <span class="number">100</span>, <span class="number">1000</span>)</div><div class="line">    .<span class="built_in">reduce</span>(<span class="number">1</span>, accumulator: +)</div><div class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line"></div><div class="line"><span class="comment">///</span></div><div class="line">  <span class="number">1111</span></div></pre></td></tr></table></figure>
-<h2 id="concat"><a href="#concat" class="headerlink" title="concat"></a>concat</h2><blockquote>
-<p>oncat会把多个sequence和并为一个sequence，并且当前面一个sequence发出了completed事件，才会开始下一个sequence的事件<br>在第一sequence完成之前，第二个sequence发出的事件都会被忽略，但会接收一完成之前的二发出的最后一个事件。不好解释，看例子说明</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">    </div><div class="line"><span class="keyword">let</span> subject1 = <span class="type">BehaviorSubject</span>(value: <span class="string">"🍎"</span>)</div><div class="line"><span class="keyword">let</span> subject2 = <span class="type">BehaviorSubject</span>(value: <span class="string">"🐶"</span>)</div><div class="line">    </div><div class="line"><span class="keyword">let</span> variable = <span class="type">Variable</span>(subject1)</div><div class="line">    </div><div class="line">variable.asObservable()</div><div class="line">    .concat()</div><div class="line">    .subscribe &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line">    </div><div class="line">subject1.onNext(<span class="string">"🍐"</span>)</div><div class="line">subject1.onNext(<span class="string">"🍊"</span>)</div><div class="line">    </div><div class="line">variable.value = subject2</div><div class="line">    </div><div class="line"></div><div class="line">subject2.onNext(<span class="string">"🐱"</span>)   <span class="comment">//1完成前，会被忽略</span></div><div class="line">subject2.onNext(<span class="string">"teng"</span>) <span class="comment">//1完成前，会被忽略</span></div><div class="line">subject2.onNext(<span class="string">"fei"</span>)  <span class="comment">//1完成前的最后一个，会被接收</span></div><div class="line">    </div><div class="line">subject1.onCompleted()</div><div class="line">    </div><div class="line">subject2.onNext(<span class="string">"🐭"</span>)</div><div class="line"></div><div class="line">next(🍎)</div><div class="line">next(🍐)</div><div class="line">next(🍊)</div><div class="line">next(fei)</div><div class="line">next(🐭)</div></pre></td></tr></table></figure>
-<h1 id="连接性操作"><a href="#连接性操作" class="headerlink" title="连接性操作"></a>连接性操作</h1><blockquote>
+        <h1 id="连接性操作"><a href="#连接性操作" class="headerlink" title="连接性操作"></a>连接性操作</h1><blockquote>
 <p>Connectable Observable有订阅时不开始发射事件消息，而是仅当调用它们的connect（）方法时。这样就可以等待所有我们想要的订阅者都已经订阅了以后，再开始发出事件消息，这样能保证我们想要的所有订阅者都能接收到事件消息。其实也就是等大家都就位以后，开始发出消息</p>
 </blockquote>
 <h2 id="publish"><a href="#publish" class="headerlink" title="publish"></a>publish</h2><blockquote>
@@ -522,8 +510,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/19/RxSwift/Grammar/数学操作/" rel="next" title="Swift-RxSwift-数学操作">
-                <i class="fa fa-chevron-left"></i> Swift-RxSwift-数学操作
+              <a href="/2017/12/19/RxSwift/Grammar/过滤和条件操作符/" rel="next" title="Swift-RxSwift-过滤和条件操作符">
+                <i class="fa fa-chevron-left"></i> Swift-RxSwift-过滤和条件操作符
               </a>
             
           </div>
@@ -532,8 +520,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/21/Swift/UIKit/Swift-UIKit-UIWKWebView/" rel="prev" title="Swift-UIKit-UIWKWebView">
-                Swift-UIKit-UIWKWebView <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/19/RxSwift/Grammar/错误处理操作/" rel="prev" title="Swift-RxSwift-错误处理操作">
+                Swift-RxSwift-错误处理操作 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -611,7 +599,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">185</span>
+                <span class="site-state-item-count">186</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -668,7 +656,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数学操作"><span class="nav-number">1.</span> <span class="nav-text">数学操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#toArray"><span class="nav-number">1.1.</span> <span class="nav-text">toArray</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reduce"><span class="nav-number">1.2.</span> <span class="nav-text">reduce</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#concat"><span class="nav-number">1.3.</span> <span class="nav-text">concat</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#连接性操作"><span class="nav-number">2.</span> <span class="nav-text">连接性操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#publish"><span class="nav-number">2.1.</span> <span class="nav-text">publish</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#replay"><span class="nav-number">2.2.</span> <span class="nav-text">replay</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#multicast"><span class="nav-number">2.3.</span> <span class="nav-text">multicast</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#错误处理"><span class="nav-number">3.</span> <span class="nav-text">错误处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#catchErrorJustReturn"><span class="nav-number">3.1.</span> <span class="nav-text">catchErrorJustReturn</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#catchError"><span class="nav-number">3.2.</span> <span class="nav-text">catchError</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#retry"><span class="nav-number">3.3.</span> <span class="nav-text">retry</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#debug"><span class="nav-number">4.</span> <span class="nav-text">debug</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RxSwift-Resources-total"><span class="nav-number">5.</span> <span class="nav-text">RxSwift.Resources.total</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#连接性操作"><span class="nav-number">1.</span> <span class="nav-text">连接性操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#publish"><span class="nav-number">1.1.</span> <span class="nav-text">publish</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#replay"><span class="nav-number">1.2.</span> <span class="nav-text">replay</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#multicast"><span class="nav-number">1.3.</span> <span class="nav-text">multicast</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#错误处理"><span class="nav-number">2.</span> <span class="nav-text">错误处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#catchErrorJustReturn"><span class="nav-number">2.1.</span> <span class="nav-text">catchErrorJustReturn</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#catchError"><span class="nav-number">2.2.</span> <span class="nav-text">catchError</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#retry"><span class="nav-number">2.3.</span> <span class="nav-text">retry</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#debug"><span class="nav-number">3.</span> <span class="nav-text">debug</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RxSwift-Resources-total"><span class="nav-number">4.</span> <span class="nav-text">RxSwift.Resources.total</span></a></li></ol></div>
             
 
           </div>
