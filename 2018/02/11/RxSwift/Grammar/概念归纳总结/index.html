@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Grammar,RxSwift," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="概念  ①Observable 和 Observer  ②subscribe 和 subscribe(onNext:)  ③Dispose 和 DisposeBag  ④observeOn() 和 subscribeOn()  ⑤shareReplay  ⑥自定义operator  ⑦Driver  ⑧map 和 flatMap 何时使用  ⑨UIBindingObserver ①Observa">
+<meta name="keywords" content="Grammar,RxSwift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RxSwift-Grammar-基本概念简单总结使用">
+<meta property="og:url" content="http://yoursite.com/2018/02/11/RxSwift/Grammar/概念归纳总结/index.html">
+<meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
+<meta property="og:description" content="概念  ①Observable 和 Observer  ②subscribe 和 subscribe(onNext:)  ③Dispose 和 DisposeBag  ④observeOn() 和 subscribeOn()  ⑤shareReplay  ⑥自定义operator  ⑦Driver  ⑧map 和 flatMap 何时使用  ⑨UIBindingObserver ①Observa">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-11T09:07:56.691Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RxSwift-Grammar-基本概念简单总结使用">
+<meta name="twitter:description" content="概念  ①Observable 和 Observer  ②subscribe 和 subscribe(onNext:)  ③Dispose 和 DisposeBag  ④observeOn() 和 subscribeOn()  ⑤shareReplay  ⑥自定义operator  ⑦Driver  ⑧map 和 flatMap 何时使用  ⑨UIBindingObserver ①Observa">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/11/RxSwift/Grammar/概念归纳总结/"/>
+
+
+
+
+
+  <title>RxSwift-Grammar-基本概念简单总结使用 | 千夜、おれはおまえをずっと爱している</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">千夜、おれはおまえをずっと爱している</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-read">
+          <a href="/read/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            阅读榜
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/11/RxSwift/Grammar/概念归纳总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">RxSwift-Grammar-基本概念简单总结使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-11T12:49:46+08:00">
+                2018-02-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/02/11/RxSwift/Grammar/概念归纳总结/" class="leancloud_visitors" data-flag-title="RxSwift-Grammar-基本概念简单总结使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://www.cnblogs.com/scott-mr/p/7234769.html" target="_blank" rel="external"></a></p>
+<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>  ①Observable 和 Observer<br>  ②subscribe 和 subscribe(onNext:)<br>  ③Dispose 和 DisposeBag<br>  ④observeOn() 和 subscribeOn()<br>  ⑤shareReplay<br>  ⑥自定义operator<br>  ⑦Driver<br>  ⑧map 和 flatMap 何时使用<br>  ⑨UIBindingObserver</p>
+<h2 id="①Observable-和-Observer"><a href="#①Observable-和-Observer" class="headerlink" title="①Observable 和 Observer"></a>①Observable 和 Observer</h2><blockquote>
+<p>Observable就是可被观察的，也就是我们说的宝宝，他也是事件源。而Observer就是我们的观察者，也就是当收到事件的时候去做某些处理的爸爸妈妈。观察者需要去订阅(subscribe)被观察者，才能收到Observable的事件通知消息</p>
+</blockquote>
+<h2 id="②subscribe-和-subscribe-onNext"><a href="#②subscribe-和-subscribe-onNext" class="headerlink" title="②subscribe 和 subscribe(onNext:)"></a>②subscribe 和 subscribe(onNext:)</h2><blockquote>
+<p>subscribe是订阅sequence发出的事件，比如next事件，error事件等。<br>而subscribe(onNext:)是监听sequence发出的next事件中的element进行处理，他会忽略error和completed事件<br>相对应的还有subscribe(onError:) 和 subscribe(onCompleted:)</p>
+</blockquote>
+<h2 id="③Dispose-和-DisposeBag"><a href="#③Dispose-和-DisposeBag" class="headerlink" title="③Dispose 和 DisposeBag"></a>③Dispose 和 DisposeBag</h2><blockquote>
+<p>当监听一个sequence的时候，有消息事件来了，我们做某些事情。但是这个sequence不再发送消息事件了，那么我们的监听也就没有什么存在的价值了，所以我们需要释放我们这些监听资源，其实也就是内存资源释放。<br>释放某一个监听的时候，我们有两种方式处理：</p>
+<p>可以手动调用释放方式，但是我们一般不适用这种方式</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="comment">// 关于scheduler，我们会在下面讲到</span></div><div class="line"><span class="keyword">let</span> subscription = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.interval(<span class="number">0.3</span>, scheduler: <span class="type">SerialDispatchQueueScheduler</span>.<span class="keyword">init</span>(internalSerialQueueName: <span class="string">"scott"</span>))</div><div class="line">    .observeOn(<span class="type">MainScheduler</span>.instance)  <span class="comment">//observeOn也会在下面讲到</span></div><div class="line">    .subscribe &#123; event <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(event)</div><div class="line">&#125;</div><div class="line">    </div><div class="line"><span class="type">Thread</span>.sleep(forTimeInterval: <span class="number">2.0</span>)</div><div class="line">    </div><div class="line">subscription.dispose()</div><div class="line"></div><div class="line">打印结果：</div><div class="line"></div><div class="line">next(<span class="number">0</span>)</div><div class="line">next(<span class="number">1</span>)</div><div class="line">next(<span class="number">2</span>)</div><div class="line">next(<span class="number">3</span>)</div><div class="line">next(<span class="number">4</span>)</div><div class="line">next(<span class="number">5</span>)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>比如上面这个例子，创建了一个subscription监听，在两秒以后我们不需要了，手动调用dispose()方法，就能释放监听资源，不再打印信息。上面的subscription不论是在哪个线程中监听，就算在主线程中调用的dispose()方法一样会销毁资源</p>
+<p>除了上述手动释放资源外，还有一种自动方式，推荐大家使用这种方式，这种方式就像iOS中的ARC，会在适当的时候销毁观察者，自动释放资源</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">   </div><div class="line"><span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.empty()</div><div class="line">   .subscribe &#123; event <span class="keyword">in</span></div><div class="line">       <span class="built_in">print</span>(event)</div><div class="line">   &#125;</div><div class="line">   .addDisposableTo(disposeBag)</div><div class="line">``` </div><div class="line">&gt;如上个例子，我们创建一个disposeBag来盛放我们需要管理的资源，然后把新建的监听都放进去，会在适当的时候销毁这些资源。如果你需要立即释放资源只需要新建一个<span class="type">DisposeBag</span>()，那么上一个<span class="type">DisposeBag</span>就会被销毁</div><div class="line"></div><div class="line">## ④observeOn() 和 subscribeOn()</div><div class="line"></div><div class="line">&gt; 这两个东西刚开始看的时候也是一脸懵逼，就知道最好多用observeOn()，但是不知道为什么，下面我们就来揭开它们的面纱看下它们的真面目吧</div><div class="line"></div><div class="line">区别其实我感觉就一句话，subscribeOn()设置起点在哪个线程，observeOn()设置了后续工作在哪个线程。例如：</div><div class="line"></div><div class="line">```swift</div><div class="line"> someObservable </div><div class="line">    .doOneThing()  <span class="comment">// 1</span></div><div class="line">    .observeOn(<span class="type">MainRouteScheduler</span>.instance) <span class="comment">// 2</span></div><div class="line">    .subscribeOn(<span class="type">OtherScheduler</span>.instance) <span class="comment">// 3</span></div><div class="line">    .subscribeNext &#123; <span class="comment">// 4</span></div><div class="line">        ......</div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<ul>
+<li>所有动作都发生在当前的默认线程</li>
+<li>observeOn()转换线程到主线程，下面所有的操作都在主线程</li>
+<li>subscribeOn()规定动作一开始不是发生在默认线程，而是在OtherScheduler了。</li>
+<li>如果我们之前没有调用observeOn()，那么这边会在OtherScheduler发生，但是我们前面调用了observeOn()，所以这个动作会在主线程中调用</li>
+<li>总结一下：subscribeOn()只是影响事件链开始默认的线程，而observeOn()规定了下一步动作发生在哪个线程中。</li>
+</ul>
+<h2 id="⑤shareReplay"><a href="#⑤shareReplay" class="headerlink" title="⑤shareReplay"></a>⑤shareReplay</h2><blockquote>
+<p>看官方项目里面的Demo时，我也很疑惑，为什么很多的sequence后面都有shareReplay(1)呢？想的昏头涨脑。<br>这里我就给大家讲解一下我的理解吧。先看一个例子：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">   </div><div class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>.just(<span class="string">"🤣"</span>).<span class="built_in">map</span>&#123;<span class="built_in">print</span>($<span class="number">0</span>)&#125;</div><div class="line">    </div><div class="line">observable.subscribe&#123;<span class="built_in">print</span>(<span class="string">"Even:\($0)"</span>)&#125;.disposed(by: disposeBag)</div><div class="line">observable.subscribe&#123;<span class="built_in">print</span>(<span class="string">"Even:\($0)"</span>)&#125;.disposed(by: disposeBag)</div><div class="line"></div><div class="line"><span class="comment">//打印结果：</span></div><div class="line">🤣</div><div class="line"><span class="type">Even</span>:next(())</div><div class="line"><span class="type">Even</span>:completed</div><div class="line">🤣</div><div class="line"><span class="type">Even</span>:next(())</div><div class="line"><span class="type">Even</span>:completed</div></pre></td></tr></table></figure>
+<blockquote>
+<p>大家发现没有，map()函数执行了两次，但是有些时候，我们并不想让map()函数里面的东西执行两次，比如map()函数里面执行的是网络请求，我只需要执行一次请求，然后把结果提供给大家使用就行了，多余的请求会增加负担。所以这时候就需要使用shareReplay(1)了。这里面的数字一般是1，只执行一次。(ps:我改成 2，3 也只打印一次)</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">   </div><div class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>.just(<span class="string">"🤣"</span>).<span class="built_in">map</span>&#123;<span class="built_in">print</span>($<span class="number">0</span>)&#125;.shareReplay(<span class="number">1</span>)</div><div class="line">    </div><div class="line">observable.subscribe&#123;<span class="built_in">print</span>(<span class="string">"Even:\($0)"</span>)&#125;.disposed(by: disposeBag)</div><div class="line">observable.subscribe&#123;<span class="built_in">print</span>(<span class="string">"Even:\($0)"</span>)&#125;.disposed(by: disposeBag)</div><div class="line"><span class="comment">//打印结果：</span></div><div class="line">🤣</div><div class="line"><span class="type">Even</span>:next(())</div><div class="line"><span class="type">Even</span>:completed</div><div class="line"><span class="type">Even</span>:next(())</div><div class="line"><span class="type">Even</span>:completed</div></pre></td></tr></table></figure>
+<h2 id="⑥自定义operator"><a href="#⑥自定义operator" class="headerlink" title="⑥自定义operator"></a>⑥自定义operator</h2><blockquote>
+<p>自定义操作符很简单，官方推荐尽量使用标准的操作符，但是你也可以定义自己的操作符，文档上说有两种方法，这里介绍一下常用的一种方法吧。</p>
+</blockquote>
+<p>例如我们自定义一个map操作符:</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">extension</span> <span class="title">ObserverType</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">myMap</span>&lt;R&gt;<span class="params">(transform: E -&gt; R)</span></span> -&gt; <span class="type">Observable</span>&lt;<span class="type">R</span>&gt; &#123;</div><div class="line">        <span class="keyword">return</span> <span class="type">Observable</span>.create&#123; observer <span class="keyword">in</span></div><div class="line">            <span class="keyword">let</span> subscription = <span class="keyword">self</span>.subscribe &#123;e <span class="keyword">in</span></div><div class="line">                <span class="keyword">switch</span> e&#123;</div><div class="line">                <span class="keyword">case</span> .next(<span class="keyword">let</span> value):</div><div class="line">                    <span class="keyword">let</span> result = transform(value)</div><div class="line">                    observer.on(.next(result))</div><div class="line">                <span class="keyword">case</span> .error(<span class="keyword">let</span> error):</div><div class="line">                    observer.on(.error(error))</div><div class="line">                <span class="keyword">case</span> .completed:</div><div class="line">                    observer.on(.completed)</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> subscription</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>参数是一个闭包，其中闭包参数是E类型返回值是R类型，map函数的返回值是一个Observable类型</p>
+</blockquote>
+<h2 id="⑦Driver"><a href="#⑦Driver" class="headerlink" title="⑦Driver"></a>⑦Driver</h2><blockquote>
+<p>讲解Driver之前我们现在看看下面的🌰：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> results = query.rx.text</div><div class="line">    .throttle(<span class="number">0.3</span>, scheduler: <span class="type">MainScheduler</span>.instance)</div><div class="line">    .flatMapLatest &#123; query <span class="keyword">in</span></div><div class="line">        fetchAutoCompleteItems(query)</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">results</div><div class="line">    .<span class="built_in">map</span> &#123; <span class="string">"\($0.count)"</span> &#125;</div><div class="line">    .bindTo(resultCount.rx.text)</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line">    </div><div class="line">results</div><div class="line">    .bindTo(resultsTableView.rx.items(cellIdentifier: <span class="string">"Cell"</span>)) &#123; (<span class="number">_</span>, result, cell) <span class="keyword">in</span></div><div class="line">        cell.textLabel?.text = <span class="string">"\(result)"</span></div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<ul>
+<li>首先创建一个可监听序列results，其中flatMapLatest下面会讲;</li>
+<li>然后将results绑定到resultCount.rx.text上;</li>
+<li>将results绑定到resultsTableView上.</li>
+</ul>
+<blockquote>
+<p>上面程序会出现下面几个异常：</p>
+</blockquote>
+<ul>
+<li>如果fetchAutoCompleteItems出错，那么它绑定的UI将不再收到任何事件消息；</li>
+<li>如果fetchAutoCompleteItems发生在后台线程，那么它绑定的事件也将在后台线程执行，这样更新UI会造成crash；</li>
+<li>有两次绑定，fetchAutoCompleteItems就会执行两次</li>
+</ul>
+<blockquote>
+<p>当然针对以上问题，我们也有解决方案，针对第三点，我们可以使用神器shareReplay(1)保证只执行一次，可以使用observeOn()保证后面所有操作在主线程完成</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">let</span> results = query.rx.text</div><div class="line">    .throttle(<span class="number">0.3</span>, scheduler: <span class="type">MainScheduler</span>.instance)</div><div class="line">    .flatMapLatest &#123; query <span class="keyword">in</span></div><div class="line">        fetchAutoCompleteItems(query)</div><div class="line">            .observeOn(<span class="type">MainScheduler</span>.instance)</div><div class="line">            .catchErrorJustReturn([])           </div><div class="line">    &#125;</div><div class="line">    .shareReplay(<span class="number">1</span>)</div><div class="line">                                 </div><div class="line">results</div><div class="line">    .<span class="built_in">map</span> &#123; <span class="string">"\($0.count)"</span> &#125;</div><div class="line">    .bindTo(resultCount.rx.text)</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line">    </div><div class="line">results</div><div class="line">    .bindTo(resultTableView.rx.items(cellIdentifier: <span class="string">"Cell"</span>)) &#123; (<span class="number">_</span>, result, cell) <span class="keyword">in</span></div><div class="line">        cell.textLabel?.text = <span class="string">"\(result)"</span></div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>也可以使用Driver来解决</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">let</span> results = query.rx.text.asDriver()</div><div class="line">    .throttle(<span class="number">0.3</span>, scheduler: <span class="type">MainScheduler</span>.instance)</div><div class="line">    .flatMapLatest &#123; query <span class="keyword">in</span></div><div class="line">        fetchAutoCompleteItems(query)</div><div class="line">            .asDriver(onErrorJustReturn: [])  <span class="comment">//当遇见错误需要返回什么</span></div><div class="line">    &#125;   <span class="comment">//不需要添加shareReplay(1)</span></div><div class="line">    </div><div class="line">results</div><div class="line">    .<span class="built_in">map</span> &#123; <span class="string">"\($0.count)"</span> &#125;</div><div class="line">    .drive(resultCount.rx.text)     <span class="comment">//和bingTo()功能一样</span></div><div class="line">    .addDisposableTo(disposeBag) </div><div class="line">                                             </div><div class="line">results</div><div class="line">    .drive(resultTableView.rx.items(cellIdentifier: <span class="string">"Cell"</span>)) &#123; (<span class="number">_</span>, result, cell) <span class="keyword">in</span></div><div class="line">        cell.textLabel?.text = <span class="string">"\(result)"</span></div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>drive方法只能在Driver序列中使用，Driver有以下特点：</p>
+</blockquote>
+<ul>
+<li>Driver序列不允许发出error，</li>
+<li>Driver序列的监听只会在主线程中。</li>
+</ul>
+<blockquote>
+<p>所以Driver是专为UI绑定量身打造的东西。<br>以下情况你可以使用Driver替换BindTo:</p>
+</blockquote>
+<ul>
+<li>不能发出error;</li>
+<li>在主线程中监听;</li>
+<li>共享事件流;</li>
+</ul>
+<h2 id="⑧map-和-flatMap-何时使用"><a href="#⑧map-和-flatMap-何时使用" class="headerlink" title="⑧map 和 flatMap 何时使用"></a>⑧map 和 flatMap 何时使用</h2><blockquote>
+<p>map函数，接收一个R类型的序列，返回一个R类型的序列，还是原来的序列</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">map</span>&lt;R&gt;<span class="params">(<span class="number">_</span> transform: @escaping <span class="params">(<span class="keyword">Self</span>.E)</span></span></span> <span class="keyword">throws</span> -&gt; <span class="type">R</span>) -&gt; <span class="type">RxSwift</span>.<span class="type">Observable</span>&lt;<span class="type">R</span>&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>flatMap函数，接收一个O类型的序列，返回一个O.E类型的序列，也就是有原来序列里元素组成的新序列</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">flatMap</span>&lt;O: ObservableConvertibleType&gt;<span class="params">(<span class="number">_</span> selector: @escaping <span class="params">(E)</span></span></span> <span class="keyword">throws</span> -&gt; <span class="type">O</span>)</div><div class="line">       -&gt; <span class="type">Observable</span>&lt;<span class="type">O</span>.<span class="type">E</span>&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>其实这里的map和flatMap在swift中的作用是一样的。map函数可以对原有序列里面的事件元素进行改造，返回的还是原来的序列。而flatMap对原有序列中的元素进行改造和处理，每一个元素返回一个新的sequence，然后把每一个元素对应的sequence合并为一个新的sequence序列</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">   </div><div class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>.of(<span class="string">"1"</span>,<span class="string">"2"</span>,<span class="string">"3"</span>,<span class="string">"4"</span>,<span class="string">"5"</span>).<span class="built_in">map</span>&#123;$<span class="number">0</span> + <span class="string">"scott"</span>&#125;</div><div class="line">    </div><div class="line">observable.subscribe(onNext: &#123;<span class="built_in">print</span>($<span class="number">0</span>)&#125;).disposed(by: disposeBag</div><div class="line"></div><div class="line"><span class="comment">//打印结果：</span></div><div class="line"></div><div class="line">1scott</div><div class="line">2scott</div><div class="line">3scott</div><div class="line">4scott</div><div class="line">5scott</div></pre></td></tr></table></figure>
+<blockquote>
+<p>使用map对序列中每一个元素进行了处理，返回的是一个元素，而使用flatMap需要返回的序列。那么使用map也返回一个序列看看</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">let</span> test = <span class="type">Observable</span>.of(<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>)</div><div class="line">    .<span class="built_in">map</span> &#123; <span class="type">Observable</span>.just($<span class="number">0</span>) &#125;</div><div class="line">    </div><div class="line">test.subscribe(onNext: &#123;</div><div class="line">        <span class="built_in">print</span>($<span class="number">0</span>)</div><div class="line">    &#125;)</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line">    <span class="comment">//运行结果:</span></div><div class="line">    <span class="type">RxSwift</span>.(<span class="type">Just</span> <span class="keyword">in</span> _BD9B9D4356C4038796FB16D0D54A9F8E)&lt;<span class="type">Swift</span>.<span class="type">String</span>&gt;</div><div class="line"><span class="type">RxSwift</span>.(<span class="type">Just</span> <span class="keyword">in</span> _BD9B9D4356C4038796FB16D0D54A9F8E)&lt;<span class="type">Swift</span>.<span class="type">String</span>&gt;</div><div class="line"><span class="type">RxSwift</span>.(<span class="type">Just</span> <span class="keyword">in</span> _BD9B9D4356C4038796FB16D0D54A9F8E)&lt;<span class="type">Swift</span>.<span class="type">String</span>&gt;</div><div class="line"><span class="type">RxSwift</span>.(<span class="type">Just</span> <span class="keyword">in</span> _BD9B9D4356C4038796FB16D0D54A9F8E)&lt;<span class="type">Swift</span>.<span class="type">String</span>&gt;</div><div class="line"><span class="type">RxSwift</span>.(<span class="type">Just</span> <span class="keyword">in</span> _BD9B9D4356C4038796FB16D0D54A9F8E)&lt;<span class="type">Swift</span>.<span class="type">String</span>&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>看到结果会打印出每一个序列，下面我们使用merge()方法将这几个序列进行合并:</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">let</span> test = <span class="type">Observable</span>.of(<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>)</div><div class="line">    .<span class="built_in">map</span> &#123; <span class="type">Observable</span>.just($<span class="number">0</span>) &#125;.merge()</div><div class="line">    </div><div class="line">test.subscribe(onNext: &#123;</div><div class="line">        <span class="built_in">print</span>($<span class="number">0</span>)</div><div class="line">    &#125;)</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line">    运行结果:</div><div class="line">	<span class="number">1</span></div><div class="line">	<span class="number">2</span></div><div class="line">	<span class="number">3</span></div><div class="line">	<span class="number">4</span></div><div class="line">	<span class="number">5</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>合并为一个新序列后我们就可以正常打印元素了。下面看看使用faltMap()函数干这件事:</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">let</span> test = <span class="type">Observable</span>.of(<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>)</div><div class="line">    .flatMap &#123; <span class="type">Observable</span>.just($<span class="number">0</span>) &#125;</div><div class="line">    </div><div class="line">test.subscribe(onNext: &#123;</div><div class="line">        <span class="built_in">print</span>($<span class="number">0</span>)</div><div class="line">    &#125;)</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line">    </div><div class="line">    <span class="comment">//运行结果:</span></div><div class="line">	<span class="number">1</span></div><div class="line">	<span class="number">2</span></div><div class="line">	<span class="number">3</span></div><div class="line">	<span class="number">4</span></div><div class="line">	<span class="number">5</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>看下对比是不是一样，这样子对比就清晰了吧。</p>
+</blockquote>
+<ul>
+<li>map函数只能返回原来的那一个序列，里面的参数的返回值被当做原来序列中所对应的元素。</li>
+<li>flatMap函数返回的是一个新的序列，将原来元素进行了处理，返回这些处理后的元素组成的新序列</li>
+<li><p>map函数 + 合并函数 = flatMap函数</p>
+</li>
+<li><p>flatMap函数在实际应用中有很多地方需要用到，比如网络请求，网络请求可能会发生错误，我们需要对这个请求过程进行监听，然后处理错误。只要继续他返回的是一个新的序列</p>
+</li>
+</ul>
+<h2 id="⑨UIBindingObserver"><a href="#⑨UIBindingObserver" class="headerlink" title="⑨UIBindingObserver"></a>⑨UIBindingObserver</h2><blockquote>
+<p>UIBindingObserver这个东西很有用的，创建我们自己的监听者，有时候RxCocoa(RxSwift中对UIKit的一个扩展库)给的扩展不够我们使用，比如一个UITextField有个isEnabled属性，我想把这个isEnabled变为一个observer，我们可以这样做</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">extension</span> <span class="title">Reactive</span> <span class="title">where</span> <span class="title">Base</span>: <span class="title">UITextField</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> inputEnabled: <span class="type">UIBindingObserver</span>&lt;<span class="type">Base</span>, <span class="type">Result</span>&gt; &#123;</div><div class="line">        <span class="keyword">return</span> <span class="type">UIBindingObserver</span>(<span class="type">UIElement</span>: base) &#123; textFiled, result <span class="keyword">in</span></div><div class="line">            textFiled.isEnabled = result.isValid</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>UIBindingObserver是一个类，他的初始化方法中，有两个参数，第一个参数是一个元素本身，第一个参数是一个闭包，闭包参数是元素本身，还有他的一个属性</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">init</span>(<span class="type">UIElement</span>: <span class="type">UIElementType</span>, binding: @escaping (<span class="type">UIElementType</span>, <span class="type">Value</span>) -&gt; <span class="type">Swift</span>.<span class="type">Void</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>自定义了一个inputEnabled关联了UITextField的isEnabled属性</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Grammar/" rel="tag"># Grammar</a>
+          
+            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/05/SceneKit/SceneKit/SCNCamera-相机-开发文档/" rel="next" title="SceneKit-Grammar-SCNCamera-相机-开发文档">
+                <i class="fa fa-chevron-left"></i> SceneKit-Grammar-SCNCamera-相机-开发文档
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/15/SceneKit/SceneKit/SCNMaterial-材质-Base/" rel="prev" title="SceneKit-SCNMaterial-材质-Base">
+                SceneKit-SCNMaterial-材质-Base <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="千夜 QQ:738816656" />
+          <p class="site-author-name" itemprop="name">千夜 QQ:738816656</p>
+           
+              <p class="site-description motion-element" itemprop="description">ReactNative</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">187</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">96</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">73</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#①Observable-和-Observer"><span class="nav-number">1.1.</span> <span class="nav-text">①Observable 和 Observer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#②subscribe-和-subscribe-onNext"><span class="nav-number">1.2.</span> <span class="nav-text">②subscribe 和 subscribe(onNext:)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#③Dispose-和-DisposeBag"><span class="nav-number">1.3.</span> <span class="nav-text">③Dispose 和 DisposeBag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#⑤shareReplay"><span class="nav-number">1.4.</span> <span class="nav-text">⑤shareReplay</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#⑥自定义operator"><span class="nav-number">1.5.</span> <span class="nav-text">⑥自定义operator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#⑦Driver"><span class="nav-number">1.6.</span> <span class="nav-text">⑦Driver</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#⑧map-和-flatMap-何时使用"><span class="nav-number">1.7.</span> <span class="nav-text">⑧map 和 flatMap 何时使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#⑨UIBindingObserver"><span class="nav-number">1.8.</span> <span class="nav-text">⑨UIBindingObserver</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+# 访客数
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">千夜 QQ:738816656</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === '') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("GGOhuU9q4e5a7HISgedllhyN-gzGzoHsz", "1Dlb2KyTymPIvsleHp8s02I8");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
