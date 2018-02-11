@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Swift,UIKit,UIWebView," />
+  <meta name="keywords" content="Swift,RxSwift,线程," />
 
 
 
@@ -105,18 +105,18 @@
 
 
 
-<meta name="description" content="UIWebView的常用属性 1.设置 UIWebView 的代理对象  var delegate: UIWebViewDelegate?  2.获取 UIWebView 的 UIScrollView 属性  var scrollView: UIScrollView &amp;#123; get &amp;#125;  3.获取 UIWebView 的网络请求  var request: NSURLRequest">
-<meta name="keywords" content="Swift,UIKit,UIWebView">
+<meta name="description" content="#线程 线程切换 RxSwift 中切换线程  sequence1.observeOn(backgroundScheduler) // 切换到后台线程.map &amp;#123; n in    print(&quot;在 background scheduler 执行&quot;)&amp;#125;.observeOn(MainScheduler.instance) // 切换到主线程.map &amp;#123; n in    p">
+<meta name="keywords" content="Swift,RxSwift,线程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift-UIKit-UIWebView-简介">
-<meta property="og:url" content="http://yoursite.com/2017/12/14/Swift/UIKit/Swift-UIKit-UIWebView-简介/index.html">
+<meta property="og:title" content="Swift-RxSwift-线程">
+<meta property="og:url" content="http://yoursite.com/2017/12/19/RxSwift/Grammar/线程/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="UIWebView的常用属性 1.设置 UIWebView 的代理对象  var delegate: UIWebViewDelegate?  2.获取 UIWebView 的 UIScrollView 属性  var scrollView: UIScrollView &amp;#123; get &amp;#125;  3.获取 UIWebView 的网络请求  var request: NSURLRequest">
+<meta property="og:description" content="#线程 线程切换 RxSwift 中切换线程  sequence1.observeOn(backgroundScheduler) // 切换到后台线程.map &amp;#123; n in    print(&quot;在 background scheduler 执行&quot;)&amp;#125;.observeOn(MainScheduler.instance) // 切换到主线程.map &amp;#123; n in    p">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-14T05:18:31.000Z">
+<meta property="og:updated_time" content="2017-12-19T06:15:50.220Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift-UIKit-UIWebView-简介">
-<meta name="twitter:description" content="UIWebView的常用属性 1.设置 UIWebView 的代理对象  var delegate: UIWebViewDelegate?  2.获取 UIWebView 的 UIScrollView 属性  var scrollView: UIScrollView &amp;#123; get &amp;#125;  3.获取 UIWebView 的网络请求  var request: NSURLRequest">
+<meta name="twitter:title" content="Swift-RxSwift-线程">
+<meta name="twitter:description" content="#线程 线程切换 RxSwift 中切换线程  sequence1.observeOn(backgroundScheduler) // 切换到后台线程.map &amp;#123; n in    print(&quot;在 background scheduler 执行&quot;)&amp;#125;.observeOn(MainScheduler.instance) // 切换到主线程.map &amp;#123; n in    p">
 
 
 
@@ -145,13 +145,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/14/Swift/UIKit/Swift-UIKit-UIWebView-简介/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/19/RxSwift/Grammar/线程/"/>
 
 
 
 
 
-  <title>Swift-UIKit-UIWebView-简介 | 千夜、おれはおまえをずっと爱している</title>
+  <title>Swift-RxSwift-线程 | 千夜、おれはおまえをずっと爱している</title>
   
 
 
@@ -332,7 +332,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/14/Swift/UIKit/Swift-UIKit-UIWebView-简介/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/19/RxSwift/Grammar/线程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -349,7 +349,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Swift-UIKit-UIWebView-简介</h1>
+          <h1 class="post-title" itemprop="name headline">Swift-RxSwift-线程</h1>
         
 
         <div class="post-meta">
@@ -361,8 +361,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-14T12:45:06+08:00">
-                2017-12-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-19T14:04:51+08:00">
+                2017-12-19
               </time>
             
 
@@ -395,19 +395,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/UIKit/" itemprop="url" rel="index">
-                    <span itemprop="name">UIKit</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/UIKit/UIWebView/" itemprop="url" rel="index">
-                    <span itemprop="name">UIWebView</span>
+                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
                   </a>
                 </span>
 
@@ -423,7 +412,7 @@
 
           
           
-             <span id="/2017/12/14/Swift/UIKit/Swift-UIKit-UIWebView-简介/" class="leancloud_visitors" data-flag-title="Swift-UIKit-UIWebView-简介">
+             <span id="/2017/12/19/RxSwift/Grammar/线程/" class="leancloud_visitors" data-flag-title="Swift-RxSwift-线程">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -454,106 +443,79 @@
       
 
       
-        <h1 id="UIWebView的常用属性"><a href="#UIWebView的常用属性" class="headerlink" title="UIWebView的常用属性"></a>UIWebView的常用属性</h1><blockquote>
-<p>1.设置 UIWebView 的代理对象</p>
+        <p>#线程</p>
+<h2 id="线程切换"><a href="#线程切换" class="headerlink" title="线程切换"></a>线程切换</h2><blockquote>
+<p>RxSwift 中切换线程</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> delegate: <span class="type">UIWebViewDelegate</span>?</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">sequence1</div><div class="line">.observeOn(backgroundScheduler) <span class="comment">// 切换到后台线程</span></div><div class="line">.<span class="built_in">map</span> &#123; n <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"在 background scheduler 执行"</span>)</div><div class="line">&#125;</div><div class="line">.observeOn(<span class="type">MainScheduler</span>.instance) <span class="comment">// 切换到主线程</span></div><div class="line">.<span class="built_in">map</span> &#123; n <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"在 main scheduler"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
-<p>2.获取 UIWebView 的 UIScrollView 属性</p>
+<p>调用一下 observeOn 就切换到我们想要的线程了<br>当前的线程切换支持 GCD 和 NSOperation<br>在线程这部分主要有两个操作符：observeOn 和 subscribeOn ，常用的还是 observeOn</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> scrollView: <span class="type">UIScrollView</span> &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>调用 observeOn 指定接下来的操作在哪个线程</li>
+<li>调用 subscribeOn 决定订阅者的操作执行在哪个线程</li>
+</ul>
 <blockquote>
-<p>3.获取 UIWebView 的网络请求</p>
+<p>当然，如果我们没有明确调用这两个操作，后面的操作都是在当前线程执行的</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> request: <span class="type">NSURLRequest</span>? &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="class"><span class="keyword">extension</span> <span class="title">ObservableType</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">observeOn</span><span class="params">(scheduler: ImmediateSchedulerType)</span></span> -&gt; <span class="type">RxSwift</span>.<span class="type">Observable</span>&lt;<span class="type">Self</span>.<span class="type">E</span>&gt;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">subscribeOn</span><span class="params">(scheduler: ImmediateSchedulerType)</span></span> -&gt; <span class="type">RxSwift</span>.<span class="type">Observable</span>&lt;<span class="type">Self</span>.<span class="type">E</span>&gt;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
-<p>4.获取 UIWebView 是否在接收数据的时候可以退后一步</p>
+<p>两个方法的声明几乎都是一样的，我们只需要传入一个满足 ImmediateSchedulerType 协议的东西</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> canGoBack: <span class="type">Bool</span> &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
+<h2 id="MainScheduler-串行"><a href="#MainScheduler-串行" class="headerlink" title="MainScheduler 串行"></a>MainScheduler 串行</h2><blockquote>
+<p>在 Rx 中我们已经有主线程切换</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">.observeOn(<span class="type">MainScheduler</span>.instance)<span class="comment">//切换到了主线程</span></div></pre></td></tr></table></figure>
 <blockquote>
-<p>5.获取 UIWebView 是否在接收数据的时候可以前进一步</p>
+<p>MainScheduler 有一个很有用的功能</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">var</span> canGoForward: <span class="type">Bool</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">```  </div><div class="line"></div><div class="line">&gt; <span class="number">6</span>.获取 <span class="type">UIWebView</span> 是否接受完数据</div><div class="line"></div><div class="line">```swift</div><div class="line">   <span class="keyword">var</span> loading: <span class="type">Bool</span> &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">ensureExecutingOnScheduler</span>()</span></div></pre></td></tr></table></figure>
 <blockquote>
-<p>7.设置 UIWebView 接收的数据是否可以通过手势来调整页面内容大小</p>
+<p>可以在需要保证代码一定执行在主线程的地方调用 MainScheduler.ensureExecutingOnScheduler()<br>特别是在线程切换来切换去的情况下，或者是调用其他的库，我们不确定当前是否在执行在主线程<br>毕竟 UI 的更新还是要在主线程执行的</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> scalesPageToFit: <span class="type">Bool</span></div></pre></td></tr></table></figure>
+<h2 id="SerialDispatchQueueScheduler-串行"><a href="#SerialDispatchQueueScheduler-串行" class="headerlink" title="SerialDispatchQueueScheduler 串行"></a>SerialDispatchQueueScheduler 串行</h2><ul>
+<li>SerialDispatchQueueScheduler ，这个就是一个串行的调度器，上面的 MainScheduler 就是继承的这个</li>
+</ul>
 <blockquote>
-<p>8.设置 UIWebView 接收的数据是什么类型</p>
+<p>DispatchQueueSchedulerQOS<br>iOS 8 新增加了 QOS ，分别有以下五种等级：</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> dataDetectorTypes: <span class="type">UIDataDetectorTypes</span></div></pre></td></tr></table></figure>
+<ul>
+<li>QOS_CLASS_USER_INTERACTIVE</li>
+<li>QOS_CLASS_USER_INITIATED</li>
+<li>QOS_CLASS_DEFAULT</li>
+<li>QOS_CLASS_UTILITY</li>
+<li>QOS_CLASS_BACKGROUND</li>
+</ul>
 <blockquote>
-<p>9.设置 UIWebView 内是否可以回放媒体</p>
+<p>在 Rx 中，我们用 enum 创建了 DispatchQueueSchedulerQOS ：</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> allowsInlineMediaPlayback: <span class="type">Bool</span></div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">DispatchQueueSchedulerQOS</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">UserInteractive</span></div><div class="line">    <span class="keyword">case</span> <span class="type">UserInitiated</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Default</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Utility</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Background</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
-<p>10.设置 UIWebView 中的 HTML5 视频是否自动播放(默认是True)</p>
+<p>和上面的等级是一一对应的<br>用 QOS 创建一个 DispatchQueueSchedulerQOS 非常方便</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> mediaPlaybackRequiresUserAction: <span class="type">Bool</span></div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">convenience</span> <span class="keyword">init</span>(globalConcurrentQueueQOS: <span class="type">DispatchQueueSchedulerQOS</span>, </div><div class="line">internalSerialQueueName: <span class="type">String</span> = <span class="string">"rx.global_dispatch_queue.serial"</span>)</div></pre></td></tr></table></figure>
 <blockquote>
-<p>11.设置 UIWebView 是否可以使用 Air 播放(默认是True)</p>
+<p>用一个初始化就 OK ：</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> mediaPlaybackAllowsAirPlay: <span class="type">Bool</span></div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">SerialDispatchQueueScheduler</span>(globalConcurrentQueueQOS: .<span class="type">Background</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>更推荐你使用已有的 QOS 管理多线程问题，毕竟这是一个线程等级更明确的方案。即便是创建自己的 GCD 我也建议直接使用 SerialDispatchQueueScheduler ，毕竟自己再去实现那些协议很麻烦不是吗</li>
+</ul>
 <blockquote>
-<p>12.设置 UIWebView 是否使用同步加载(默认是False)</p>
+<p>可以通过以下两种方式创建自己的 GCD ：</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> suppressesIncrementalRendering: <span class="type">Bool</span></div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">public</span> <span class="keyword">convenience</span> <span class="keyword">init</span>(internalSerialQueueName: <span class="type">String</span>, serialQueueConfiguration: ((dispatch_queue_t) -&gt; <span class="type">Void</span>)? = <span class="literal">nil</span>)</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">convenience</span> <span class="keyword">init</span>(queue: dispatch_queue_t, internalSerialQueueName: <span class="type">String</span>)</div></pre></td></tr></table></figure>
 <blockquote>
-<p>13.设置 UIWebView 在点击视图或者元素时是否显示键盘(默认是True)</p>
+<p>MainScheduler 是继承 SerialDispatchQueueScheduler 的</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> keyboardDisplayRequiresUserAction: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>14.设置 UIWebView 的分页模式</p>
+<h2 id="ConcurrentDispatchQueueScheduler-并行"><a href="#ConcurrentDispatchQueueScheduler-并行" class="headerlink" title="ConcurrentDispatchQueueScheduler 并行"></a>ConcurrentDispatchQueueScheduler 并行</h2><blockquote>
+<p>同样我们还有一个并行的 Scheduler ：ConcurrentDispatchQueueScheduler<br>API 的使用和 SerialDispatchQueueScheduler 是一样的</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> paginationMode: <span class="type">UIWebPaginationMode</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>15.设置 UIWebView 的分页打破模式</p>
+<h2 id="OperationQueueScheduler-并行"><a href="#OperationQueueScheduler-并行" class="headerlink" title="OperationQueueScheduler 并行"></a>OperationQueueScheduler 并行</h2><blockquote>
+<p>使用 NSOperationQueue 最大的好处就是我们可以很方便的定制最大并发线程数量，即设置 maxConcurrentOperationCount<br>创建方法也很简单，只需要传入一个 NSOperationQueue</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> paginationBreakingMode: <span class="type">UIWebPaginationBreakingMode</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>16.设置 UIWebView 的分页长度</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> pageLength: <span class="type">CGFloat</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>17.设置 UIWebView 之间的页面宽度</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> gapBetweenPages: <span class="type">CGFloat</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>18.获取 UIWebView 的页面数量</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> pageCount: <span class="type">Int</span> &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<h1 id="常用类型"><a href="#常用类型" class="headerlink" title="常用类型"></a>常用类型</h1><blockquote>
-<p>1.获取 UIWebView 的数据类型</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">UIDataDetectorTypes</span> : <span class="title">RawOptionSetType</span> </span>&#123;</div><div class="line">    <span class="keyword">init</span>(<span class="number">_</span> rawValue: <span class="type">UInt</span>)</div><div class="line">    <span class="keyword">init</span>(rawValue: <span class="type">UInt</span>)</div><div class="line"></div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> <span class="type">PhoneNumber</span>: <span class="type">UIDataDetectorTypes</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> <span class="type">Link</span>: <span class="type">UIDataDetectorTypes</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> <span class="type">Address</span>: <span class="type">UIDataDetectorTypes</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> <span class="type">CalendarEvent</span>: <span class="type">UIDataDetectorTypes</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> <span class="type">None</span>: <span class="type">UIDataDetectorTypes</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> <span class="type">All</span>: <span class="type">UIDataDetectorTypes</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>2.设置 UIWebView 的 Navigation 类型</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">UIWebViewNavigationType</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">LinkClicked</span></div><div class="line">    <span class="keyword">case</span> <span class="type">FormSubmitted</span></div><div class="line">    <span class="keyword">case</span> <span class="type">BackForward</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Reload</span></div><div class="line">    <span class="keyword">case</span> <span class="type">FormResubmitted</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Other</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>3.设置 UIWebView 的分页样式</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">UIWebPaginationMode</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Unpaginated</span></div><div class="line">    <span class="keyword">case</span> <span class="type">LeftToRight</span></div><div class="line">    <span class="keyword">case</span> <span class="type">TopToBottom</span></div><div class="line">    <span class="keyword">case</span> <span class="type">BottomToTop</span></div><div class="line">    <span class="keyword">case</span> <span class="type">RightToLeft</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>4.设置 UIWebView 打破分页样式的样式</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">UIWebPaginationBreakingMode</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Page</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Column</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="UIWebView的代理方法"><a href="#UIWebView的代理方法" class="headerlink" title="UIWebView的代理方法"></a>UIWebView的代理方法</h1><blockquote>
-<p>1.该方法是用来设置是否在 UIWebView 加载之前发送一个请求</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">webView</span><span class="params">(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType)</span></span> -&gt; <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>2.该方法是在 UIWebView 在开发加载时调用</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">webViewDidStartLoad</span><span class="params">(webView: UIWebView)</span></span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>3.该方法是在 UIWebView 加载完之后才调用</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">webViewDidFinishLoad</span><span class="params">(webView: UIWebView)</span></span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>4.该方法是在 UIWebView 请求失败的时候调用</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">webView</span><span class="params">(webView: UIWebView, didFailLoadWithError error: NSError)</span></span></div></pre></td></tr></table></figure>
+<p>难懂啊</p>
+<p><a href="http://t.swift.gg/t/rxswift-course" target="_blank" rel="external">原文</a></p>
 
       
     </div>
@@ -573,9 +535,9 @@
           
             <a href="/tags/Swift/" rel="tag"># Swift</a>
           
-            <a href="/tags/UIKit/" rel="tag"># UIKit</a>
+            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
           
-            <a href="/tags/UIWebView/" rel="tag"># UIWebView</a>
+            <a href="/tags/线程/" rel="tag"># 线程</a>
           
         </div>
       
@@ -588,8 +550,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/14/Swift/UIKit/Swift-UIKit-UINavigationController-简单使用/" rel="next" title="Swift-UIKit-UINavigationController-简单使用">
-                <i class="fa fa-chevron-left"></i> Swift-UIKit-UINavigationController-简单使用
+              <a href="/2017/12/19/RxSwift/Grammar/Transforming-Operators-转换操作符/" rel="next" title="Swift-RxSwift-操作">
+                <i class="fa fa-chevron-left"></i> Swift-RxSwift-操作
               </a>
             
           </div>
@@ -598,8 +560,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/14/Swift/UIKit/Swift-UIKit-UIWebView-简单使用/" rel="prev" title="Swift-UIKit-UIWebView-简单使用">
-                Swift-UIKit-UIWebView-简单使用 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/19/RxSwift/Demo/Swift-RxSwift-转换操作符/" rel="prev" title="Swift-RxSwift-转换操作符">
+                Swift-RxSwift-转换操作符 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -734,7 +696,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UIWebView的常用属性"><span class="nav-number">1.</span> <span class="nav-text">UIWebView的常用属性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用类型"><span class="nav-number">2.</span> <span class="nav-text">常用类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UIWebView的代理方法"><span class="nav-number">3.</span> <span class="nav-text">UIWebView的代理方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#线程切换"><span class="nav-number">1.</span> <span class="nav-text">线程切换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MainScheduler-串行"><span class="nav-number">2.</span> <span class="nav-text">MainScheduler 串行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SerialDispatchQueueScheduler-串行"><span class="nav-number">3.</span> <span class="nav-text">SerialDispatchQueueScheduler 串行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ConcurrentDispatchQueueScheduler-并行"><span class="nav-number">4.</span> <span class="nav-text">ConcurrentDispatchQueueScheduler 并行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OperationQueueScheduler-并行"><span class="nav-number">5.</span> <span class="nav-text">OperationQueueScheduler 并行</span></a></li></ol></div>
             
 
           </div>

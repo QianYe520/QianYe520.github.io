@@ -25,8 +25,8 @@
 
 <script>
     (function(){
-        if(''){
-            if (prompt('请输入文章密码') !== ''){
+        if('520'){
+            if (prompt('请输入文章密码') !== '520'){
                 alert('密码错误！');
                 history.back();
             }
@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Swift,UIKit,UIWebView," />
+  <meta name="keywords" content="Swift,RxSwift," />
 
 
 
@@ -105,18 +105,18 @@
 
 
 
-<meta name="description" content="UIWebView的常用属性 1.设置 UIWebView 的代理对象  var delegate: UIWebViewDelegate?  2.获取 UIWebView 的 UIScrollView 属性  var scrollView: UIScrollView &amp;#123; get &amp;#125;  3.获取 UIWebView 的网络请求  var request: NSURLRequest">
-<meta name="keywords" content="Swift,UIKit,UIWebView">
+<meta name="description" content="创建操作符         asObservable   create   deferred   empty   error   toObservable/from   interval   never   just   of   range   repeatElement   timer    资料">
+<meta name="keywords" content="Swift,RxSwift">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift-UIKit-UIWebView-简介">
-<meta property="og:url" content="http://yoursite.com/2017/12/14/Swift/UIKit/Swift-UIKit-UIWebView-简介/index.html">
+<meta property="og:title" content="RxSwift-Grammar-创建Observable对象的方法">
+<meta property="og:url" content="http://yoursite.com/2018/01/31/RxSwift/Grammar/创建Observable对象的方法/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="UIWebView的常用属性 1.设置 UIWebView 的代理对象  var delegate: UIWebViewDelegate?  2.获取 UIWebView 的 UIScrollView 属性  var scrollView: UIScrollView &amp;#123; get &amp;#125;  3.获取 UIWebView 的网络请求  var request: NSURLRequest">
+<meta property="og:description" content="创建操作符         asObservable   create   deferred   empty   error   toObservable/from   interval   never   just   of   range   repeatElement   timer    资料">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-14T05:18:31.000Z">
+<meta property="og:updated_time" content="2018-01-31T06:06:11.872Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift-UIKit-UIWebView-简介">
-<meta name="twitter:description" content="UIWebView的常用属性 1.设置 UIWebView 的代理对象  var delegate: UIWebViewDelegate?  2.获取 UIWebView 的 UIScrollView 属性  var scrollView: UIScrollView &amp;#123; get &amp;#125;  3.获取 UIWebView 的网络请求  var request: NSURLRequest">
+<meta name="twitter:title" content="RxSwift-Grammar-创建Observable对象的方法">
+<meta name="twitter:description" content="创建操作符         asObservable   create   deferred   empty   error   toObservable/from   interval   never   just   of   range   repeatElement   timer    资料">
 
 
 
@@ -145,13 +145,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/14/Swift/UIKit/Swift-UIKit-UIWebView-简介/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/31/RxSwift/Grammar/创建Observable对象的方法/"/>
 
 
 
 
 
-  <title>Swift-UIKit-UIWebView-简介 | 千夜、おれはおまえをずっと爱している</title>
+  <title>RxSwift-Grammar-创建Observable对象的方法 | 千夜、おれはおまえをずっと爱している</title>
   
 
 
@@ -332,7 +332,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/14/Swift/UIKit/Swift-UIKit-UIWebView-简介/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/31/RxSwift/Grammar/创建Observable对象的方法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -349,7 +349,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Swift-UIKit-UIWebView-简介</h1>
+          <h1 class="post-title" itemprop="name headline">RxSwift-Grammar-创建Observable对象的方法</h1>
         
 
         <div class="post-meta">
@@ -361,8 +361,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-14T12:45:06+08:00">
-                2017-12-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-31T14:00:13+08:00">
+                2018-01-31
               </time>
             
 
@@ -395,19 +395,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/UIKit/" itemprop="url" rel="index">
-                    <span itemprop="name">UIKit</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/UIKit/UIWebView/" itemprop="url" rel="index">
-                    <span itemprop="name">UIWebView</span>
+                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
                   </a>
                 </span>
 
@@ -423,7 +412,7 @@
 
           
           
-             <span id="/2017/12/14/Swift/UIKit/Swift-UIKit-UIWebView-简介/" class="leancloud_visitors" data-flag-title="Swift-UIKit-UIWebView-简介">
+             <span id="/2018/01/31/RxSwift/Grammar/创建Observable对象的方法/" class="leancloud_visitors" data-flag-title="RxSwift-Grammar-创建Observable对象的方法">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -454,106 +443,56 @@
       
 
       
-        <h1 id="UIWebView的常用属性"><a href="#UIWebView的常用属性" class="headerlink" title="UIWebView的常用属性"></a>UIWebView的常用属性</h1><blockquote>
-<p>1.设置 UIWebView 的代理对象</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> delegate: <span class="type">UIWebViewDelegate</span>?</div></pre></td></tr></table></figure>
-<blockquote>
-<p>2.获取 UIWebView 的 UIScrollView 属性</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> scrollView: <span class="type">UIScrollView</span> &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>3.获取 UIWebView 的网络请求</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> request: <span class="type">NSURLRequest</span>? &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>4.获取 UIWebView 是否在接收数据的时候可以退后一步</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> canGoBack: <span class="type">Bool</span> &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>5.获取 UIWebView 是否在接收数据的时候可以前进一步</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">var</span> canGoForward: <span class="type">Bool</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">```  </div><div class="line"></div><div class="line">&gt; <span class="number">6</span>.获取 <span class="type">UIWebView</span> 是否接受完数据</div><div class="line"></div><div class="line">```swift</div><div class="line">   <span class="keyword">var</span> loading: <span class="type">Bool</span> &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>7.设置 UIWebView 接收的数据是否可以通过手势来调整页面内容大小</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> scalesPageToFit: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>8.设置 UIWebView 接收的数据是什么类型</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> dataDetectorTypes: <span class="type">UIDataDetectorTypes</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>9.设置 UIWebView 内是否可以回放媒体</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> allowsInlineMediaPlayback: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>10.设置 UIWebView 中的 HTML5 视频是否自动播放(默认是True)</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> mediaPlaybackRequiresUserAction: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>11.设置 UIWebView 是否可以使用 Air 播放(默认是True)</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> mediaPlaybackAllowsAirPlay: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>12.设置 UIWebView 是否使用同步加载(默认是False)</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> suppressesIncrementalRendering: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>13.设置 UIWebView 在点击视图或者元素时是否显示键盘(默认是True)</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> keyboardDisplayRequiresUserAction: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>14.设置 UIWebView 的分页模式</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> paginationMode: <span class="type">UIWebPaginationMode</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>15.设置 UIWebView 的分页打破模式</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> paginationBreakingMode: <span class="type">UIWebPaginationBreakingMode</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>16.设置 UIWebView 的分页长度</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> pageLength: <span class="type">CGFloat</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>17.设置 UIWebView 之间的页面宽度</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> gapBetweenPages: <span class="type">CGFloat</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>18.获取 UIWebView 的页面数量</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> pageCount: <span class="type">Int</span> &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<h1 id="常用类型"><a href="#常用类型" class="headerlink" title="常用类型"></a>常用类型</h1><blockquote>
-<p>1.获取 UIWebView 的数据类型</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">UIDataDetectorTypes</span> : <span class="title">RawOptionSetType</span> </span>&#123;</div><div class="line">    <span class="keyword">init</span>(<span class="number">_</span> rawValue: <span class="type">UInt</span>)</div><div class="line">    <span class="keyword">init</span>(rawValue: <span class="type">UInt</span>)</div><div class="line"></div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> <span class="type">PhoneNumber</span>: <span class="type">UIDataDetectorTypes</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> <span class="type">Link</span>: <span class="type">UIDataDetectorTypes</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> <span class="type">Address</span>: <span class="type">UIDataDetectorTypes</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> <span class="type">CalendarEvent</span>: <span class="type">UIDataDetectorTypes</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> <span class="type">None</span>: <span class="type">UIDataDetectorTypes</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> <span class="type">All</span>: <span class="type">UIDataDetectorTypes</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>2.设置 UIWebView 的 Navigation 类型</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">UIWebViewNavigationType</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">LinkClicked</span></div><div class="line">    <span class="keyword">case</span> <span class="type">FormSubmitted</span></div><div class="line">    <span class="keyword">case</span> <span class="type">BackForward</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Reload</span></div><div class="line">    <span class="keyword">case</span> <span class="type">FormResubmitted</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Other</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>3.设置 UIWebView 的分页样式</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">UIWebPaginationMode</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Unpaginated</span></div><div class="line">    <span class="keyword">case</span> <span class="type">LeftToRight</span></div><div class="line">    <span class="keyword">case</span> <span class="type">TopToBottom</span></div><div class="line">    <span class="keyword">case</span> <span class="type">BottomToTop</span></div><div class="line">    <span class="keyword">case</span> <span class="type">RightToLeft</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>4.设置 UIWebView 打破分页样式的样式</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">UIWebPaginationBreakingMode</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Page</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Column</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="UIWebView的代理方法"><a href="#UIWebView的代理方法" class="headerlink" title="UIWebView的代理方法"></a>UIWebView的代理方法</h1><blockquote>
-<p>1.该方法是用来设置是否在 UIWebView 加载之前发送一个请求</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">webView</span><span class="params">(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType)</span></span> -&gt; <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>2.该方法是在 UIWebView 在开发加载时调用</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">webViewDidStartLoad</span><span class="params">(webView: UIWebView)</span></span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>3.该方法是在 UIWebView 加载完之后才调用</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">webViewDidFinishLoad</span><span class="params">(webView: UIWebView)</span></span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>4.该方法是在 UIWebView 请求失败的时候调用</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">webView</span><span class="params">(webView: UIWebView, didFailLoadWithError error: NSError)</span></span></div></pre></td></tr></table></figure>
+        <h1 id="创建操作符"><a href="#创建操作符" class="headerlink" title="创建操作符"></a>创建操作符</h1><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>asObservable</td>
+</tr>
+<tr>
+<td>create</td>
+</tr>
+<tr>
+<td>deferred</td>
+</tr>
+<tr>
+<td>empty</td>
+</tr>
+<tr>
+<td>error</td>
+</tr>
+<tr>
+<td>toObservable/from</td>
+</tr>
+<tr>
+<td>interval</td>
+</tr>
+<tr>
+<td>never</td>
+</tr>
+<tr>
+<td>just</td>
+</tr>
+<tr>
+<td>of</td>
+</tr>
+<tr>
+<td>range</td>
+</tr>
+<tr>
+<td>repeatElement</td>
+</tr>
+<tr>
+<td>timer</td>
+</tr>
+</tbody>
+</table>
+<p><a href="http://blog.csdn.net/xwl198937/article/details/50823558" target="_blank" rel="external">资料</a></p>
 
       
     </div>
@@ -573,9 +512,7 @@
           
             <a href="/tags/Swift/" rel="tag"># Swift</a>
           
-            <a href="/tags/UIKit/" rel="tag"># UIKit</a>
-          
-            <a href="/tags/UIWebView/" rel="tag"># UIWebView</a>
+            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
           
         </div>
       
@@ -588,8 +525,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/14/Swift/UIKit/Swift-UIKit-UINavigationController-简单使用/" rel="next" title="Swift-UIKit-UINavigationController-简单使用">
-                <i class="fa fa-chevron-left"></i> Swift-UIKit-UINavigationController-简单使用
+              <a href="/2018/01/31/RxSwift/Grammar/基本概念/" rel="next" title="RxSwift-Grammar-基本概念">
+                <i class="fa fa-chevron-left"></i> RxSwift-Grammar-基本概念
               </a>
             
           </div>
@@ -598,8 +535,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/14/Swift/UIKit/Swift-UIKit-UIWebView-简单使用/" rel="prev" title="Swift-UIKit-UIWebView-简单使用">
-                Swift-UIKit-UIWebView-简单使用 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/31/RxSwift/Grammar/RxSwift-Grammar-支持的操作符/" rel="prev" title="RxSwift-Grammar-支持的操作符">
+                RxSwift-Grammar-支持的操作符 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -734,7 +671,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UIWebView的常用属性"><span class="nav-number">1.</span> <span class="nav-text">UIWebView的常用属性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用类型"><span class="nav-number">2.</span> <span class="nav-text">常用类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UIWebView的代理方法"><span class="nav-number">3.</span> <span class="nav-text">UIWebView的代理方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建操作符"><span class="nav-number">1.</span> <span class="nav-text">创建操作符</span></a></li></ol></div>
             
 
           </div>
