@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ARC," />
+  <meta name="keywords" content="Swift,RxSwift," />
 
 
 
@@ -105,18 +105,25 @@
 
 
 
-<meta name="description" content="ARC 自动引用计数Swift引入ARC 对于类实例，它可能存在被多个变量引用的情况如果在还有变量引用的情况下释放了改实例的话，那么其他变量再尝试访问这个实例的方法或属性的时候，程序就会崩溃。所以必须确保在以后都没有变量使用这个实例的情况下，才能去释放这个实例对于值类型（结构体等），因为不存在多个变量对应一个实例的情况，所以不会有上述问题为了解决这个问题，Swift使用自动引用计数(ARC)来管理">
-<meta name="keywords" content="ARC">
+<meta name="description" content="联合操作Observable流 联合操作就是把多个Observable流合成单个Observable流   ①startWith ②merge ③zip ④combineLatest ⑤switchLatest  ①startWith 在发出事件消息之前，先发出某个特定的事件消息。比如发出事件2 ，3然后我startWith(1)，那么就会先发出1，然后2 ，3    let disposeBag">
+<meta name="keywords" content="Swift,RxSwift">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift-Grammar-ARC-自动引用计数">
-<meta property="og:url" content="http://yoursite.com/2017/12/01/Swift/Grammar/Swift-Grammar-ARC-自动引用计数/index.html">
+<meta property="og:title" content="Swift-RxSwift-Combination Operators-联合操作Observable流">
+<meta property="og:url" content="http://yoursite.com/2017/12/19/RxSwift/Grammar/Combination Operators-联合操作Observable流/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="ARC 自动引用计数Swift引入ARC 对于类实例，它可能存在被多个变量引用的情况如果在还有变量引用的情况下释放了改实例的话，那么其他变量再尝试访问这个实例的方法或属性的时候，程序就会崩溃。所以必须确保在以后都没有变量使用这个实例的情况下，才能去释放这个实例对于值类型（结构体等），因为不存在多个变量对应一个实例的情况，所以不会有上述问题为了解决这个问题，Swift使用自动引用计数(ARC)来管理">
+<meta property="og:description" content="联合操作Observable流 联合操作就是把多个Observable流合成单个Observable流   ①startWith ②merge ③zip ④combineLatest ⑤switchLatest  ①startWith 在发出事件消息之前，先发出某个特定的事件消息。比如发出事件2 ，3然后我startWith(1)，那么就会先发出1，然后2 ，3    let disposeBag">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-19T11:16:50.318Z">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/startWith.png">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/merge.png">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/combineLatest.png">
+<meta property="og:image" content="http://ot0mms4k8.bkt.clouddn.com/Combination-Operators-4-2.png">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/switchLatest.png">
+<meta property="og:image" content="http://ot0mms4k8.bkt.clouddn.com/switchLatest-002.png">
+<meta property="og:updated_time" content="2018-02-11T07:42:48.516Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift-Grammar-ARC-自动引用计数">
-<meta name="twitter:description" content="ARC 自动引用计数Swift引入ARC 对于类实例，它可能存在被多个变量引用的情况如果在还有变量引用的情况下释放了改实例的话，那么其他变量再尝试访问这个实例的方法或属性的时候，程序就会崩溃。所以必须确保在以后都没有变量使用这个实例的情况下，才能去释放这个实例对于值类型（结构体等），因为不存在多个变量对应一个实例的情况，所以不会有上述问题为了解决这个问题，Swift使用自动引用计数(ARC)来管理">
+<meta name="twitter:title" content="Swift-RxSwift-Combination Operators-联合操作Observable流">
+<meta name="twitter:description" content="联合操作Observable流 联合操作就是把多个Observable流合成单个Observable流   ①startWith ②merge ③zip ④combineLatest ⑤switchLatest  ①startWith 在发出事件消息之前，先发出某个特定的事件消息。比如发出事件2 ，3然后我startWith(1)，那么就会先发出1，然后2 ，3    let disposeBag">
+<meta name="twitter:image" content="http://ozr735s7e.bkt.clouddn.com/startWith.png">
 
 
 
@@ -145,13 +152,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/01/Swift/Grammar/Swift-Grammar-ARC-自动引用计数/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/19/RxSwift/Grammar/Combination Operators-联合操作Observable流/"/>
 
 
 
 
 
-  <title>Swift-Grammar-ARC-自动引用计数 | 千夜、おれはおまえをずっと爱している</title>
+  <title>Swift-RxSwift-Combination Operators-联合操作Observable流 | 千夜、おれはおまえをずっと爱している</title>
   
 
 
@@ -332,7 +339,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/01/Swift/Grammar/Swift-Grammar-ARC-自动引用计数/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/19/RxSwift/Grammar/Combination Operators-联合操作Observable流/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -349,7 +356,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Swift-Grammar-ARC-自动引用计数</h1>
+          <h1 class="post-title" itemprop="name headline">Swift-RxSwift-Combination Operators-联合操作Observable流</h1>
         
 
         <div class="post-meta">
@@ -361,8 +368,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-01T16:54:28+08:00">
-                2017-12-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-19T13:13:56+08:00">
+                2017-12-19
               </time>
             
 
@@ -395,8 +402,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/Grammar/" itemprop="url" rel="index">
-                    <span itemprop="name">Grammar</span>
+                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
                   </a>
                 </span>
 
@@ -412,7 +419,7 @@
 
           
           
-             <span id="/2017/12/01/Swift/Grammar/Swift-Grammar-ARC-自动引用计数/" class="leancloud_visitors" data-flag-title="Swift-Grammar-ARC-自动引用计数">
+             <span id="/2017/12/19/RxSwift/Grammar/Combination Operators-联合操作Observable流/" class="leancloud_visitors" data-flag-title="Swift-RxSwift-Combination Operators-联合操作Observable流">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -443,95 +450,55 @@
       
 
       
-        <h1 id="ARC-自动引用计数"><a href="#ARC-自动引用计数" class="headerlink" title="ARC 自动引用计数"></a>ARC 自动引用计数</h1><h2 id="Swift引入ARC"><a href="#Swift引入ARC" class="headerlink" title="Swift引入ARC"></a>Swift引入ARC</h2><blockquote>
-<p>对于类实例，它可能存在被多个变量引用的情况<br>如果在还有变量引用的情况下释放了改实例的话，那么其他变量再尝试访问这个实例的方法或属性的时候，程序就会崩溃。所以必须确保在以后都没有变量使用这个实例的情况下，才能去释放这个实例<br>对于值类型（结构体等），因为不存在多个变量对应一个实例的情况，所以不会有上述问题<br>为了解决这个问题，Swift使用自动引用计数(ARC)来管理内存。它只对引用类型起作用，对于值类型不起作用</p>
-</blockquote>
-<h2 id="引用计数的概念"><a href="#引用计数的概念" class="headerlink" title="引用计数的概念"></a>引用计数的概念</h2><blockquote>
-<p>当你给一个创建一个类实例，并且把这个类实例赋值给某个变量或常量的时候，那么这个变量或常量就“拥有”这个实例，我们称为有了一个“强引用”。<br>所谓的引用计数，就是这个实例被多少个常量或变量强引用了</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Apple</span> </span>&#123;  </div><div class="line">    <span class="keyword">deinit</span>&#123;  </div><div class="line">        <span class="built_in">print</span>(<span class="string">"deinit"</span>)  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line"><span class="keyword">var</span> a:<span class="type">Apple</span>! = <span class="type">Apple</span>()</div></pre></td></tr></table></figure>
-<blockquote>
-<p>上面这最后一句代码就是变量a对一个Apple类的实例有了一个强引用。这时候这个实例的引用计数为1。<br>因为类实例是引用类型，所以你可以把这个引用传递给其他的常量或变量</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> b = a  </div><div class="line"><span class="keyword">let</span> v = a</div></pre></td></tr></table></figure>
-<blockquote>
-<p>这时候这个实例就被三个变量或常量所引用，这个时候它的引用计数为3.<br>当你把其中的b设为nil的时候，引用计数就会变为2.<br>当该实例的引用计数变为0的时候，这个实例就会被销毁，销毁的时候就会调用它的deinit方法。注：因为上面用了常量，所以不能手动把常量设为nil，只能等这个常量离开作用域后被系统自动销毁。(如果你是在main.swift的全局中定义这些变量或常量的话，因为在main执行完之后才会释放这些变量或常量，所以不会打印deinit。但是你可以把他们放到一个函数里面，然后在main.swift里面调用这个函数。当这个函数执行完之后，这些变量或常量就会被释放。)</p>
-<p>自动引用计数的规：</p>
+        <h1 id="联合操作Observable流"><a href="#联合操作Observable流" class="headerlink" title="联合操作Observable流"></a>联合操作Observable流</h1><blockquote>
+<p>联合操作就是把多个Observable流合成单个Observable流</p>
 </blockquote>
 <ul>
-<li><p>1、赋值给不加修饰符的常量和变量的时候，实例的引用计数加1。</p>
-</li>
-<li><p>2、当一个变量设为nil，或者变量(常量)离开作用域的时候，这个常量或变量所引用实例的引用计数减1。</p>
-</li>
-<li><p>3、当一个实例的引用计数为0的时候，它就会被销毁。</p>
-</li>
+<li>①startWith</li>
+<li>②merge</li>
+<li>③zip</li>
+<li>④combineLatest</li>
+<li>⑤switchLatest</li>
 </ul>
-<p>但是上面看似简单的规则也会有很多问题。比如下面的循环引用问题。</p>
-<p>先定义两个类，一个Telephone类和一个Person类。Telephone类有一个Person类的属性，Person类里面有一个Telephone类的属性</p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Telephone</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> person: <span class="type">Person</span>?  </div><div class="line">    <span class="keyword">deinit</span>&#123;  </div><div class="line">        <span class="built_in">print</span>(<span class="string">"Telephone deinit"</span>)  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> telephone: <span class="type">Telephone</span>?  </div><div class="line">    <span class="keyword">deinit</span>&#123;  </div><div class="line">        <span class="built_in">print</span>(<span class="string">"Person deinit"</span>)  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>定义一个Person类的实例和一个Telephone类的实例。并对他们赋值</p>
+<h2 id="①startWith"><a href="#①startWith" class="headerlink" title="①startWith"></a>①startWith</h2><blockquote>
+<p>在发出事件消息之前，先发出某个特定的事件消息。比如发出事件2 ，3然后我startWith(1)，那么就会先发出1，然后2 ，3</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> </div><div class="line"></div><div class="line"><span class="keyword">var</span> person = <span class="type">Person</span>()  </div><div class="line"><span class="keyword">var</span> telephone = <span class="type">Telephone</span>()  </div><div class="line">person.telephone = telephone  </div><div class="line">telephone.person = person</div></pre></td></tr></table></figure>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/startWith.png" alt="startWith"></p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"> <span class="type">Observable</span>.of(<span class="string">"2"</span>,<span class="string">"3"</span>)</div><div class="line">           .startWith(<span class="string">"1"</span>)</div><div class="line">           .subscribe(onNext:&#123;<span class="built_in">print</span>($<span class="number">0</span>)&#125;)</div><div class="line">           .addDisposableTo(disposeBag)</div><div class="line">           </div><div class="line">  </div><div class="line"><span class="comment">//</span></div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">2</span></div><div class="line"><span class="number">3</span></div></pre></td></tr></table></figure>
 <blockquote>
-<p>下面分析一下Person实例和Telephone实例的引用计数。</p>
-<p>在定义Person实例的时候，赋值给了变量person，所以第一句代码后，Person实例的引用计数为1。同样第二句代码后，Telephone实例的引用计数也为1。</p>
-<p>然后第三句代码把telephone赋值给了person.telephone。也就是person.telephone也对这个Telephone实例有了强引用，这时候Telephone实例的引用计数为2。</p>
-<p>同样，第四局过后，Person实例的引用计数也为2。</p>
-<p>现在的状态是一个Person实例强引用了一个Telephone实例，这个Telephone实例又强引用了这个Person实例。你强引用我，我强引用你。这样就成了一个循环引用。</p>
-<p>接着执行下面代码，person变量和telephone变量释放对实例的强引用</p>
+<p>在Observable释放元素之前，发射指定的元素序列<br>在发送一个东西之前，我先发送一个指定的东西</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> person = <span class="literal">nil</span>  </div><div class="line">telephone = <span class="literal">nil</span></div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">let disposeBag = DisposeBag()</div><div class="line">  Observable.of([&quot;C&quot;,&quot;C++&quot;,&quot;OC&quot;]).startWith([&quot;指定内容&quot;]).subscribe(&#123; (event) in</div><div class="line">       print(event)</div><div class="line">   &#125;).disposed(by: disposeBag)</div><div class="line">  //打印结果</div><div class="line">   next([&quot;先吃饱饭再学习&quot;])</div><div class="line">   next([&quot;C&quot;, &quot;C++&quot;, &quot;OC&quot;])</div><div class="line">   completed</div></pre></td></tr></table></figure>
+<h2 id="②merge"><a href="#②merge" class="headerlink" title="②merge"></a>②merge</h2><blockquote>
+<p>将多个Observable组合成单个Observable,并且按照时间顺序发射对应事件</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/merge.png" alt="merge"></p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="keyword">let</span> sbj1 = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"><span class="keyword">let</span> sbj2 = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"></div><div class="line"><span class="type">Observable</span>.of(sbj1,sbj2)</div><div class="line">          .merge()</div><div class="line">          .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>)&#125;)</div><div class="line">          .addDisposableTo(disposeBag)</div><div class="line">subject1.onNext(<span class="string">"🅰️"</span>)</div><div class="line">subject1.onNext(<span class="string">"🅱️"</span>)</div><div class="line">subject2.onNext(<span class="string">"①"</span>)</div><div class="line">subject2.onNext(<span class="string">"②"</span>)</div><div class="line">subject1.onNext(<span class="string">"🆎"</span>)</div><div class="line">subject2.onNext(<span class="string">"③"</span>)</div><div class="line"></div><div class="line"><span class="comment">//</span></div><div class="line">🅰️</div><div class="line">🅱️</div><div class="line">①</div><div class="line">②</div><div class="line">🆎</div><div class="line">③</div></pre></td></tr></table></figure>
+<h2 id="③zip"><a href="#③zip" class="headerlink" title="③zip"></a>③zip</h2><blockquote>
+<p>绑定超过最多不超过8个的Observable流，结合在一起处理<br>注意Zip是一个事件对应另一个流一个事件<br>将多个Observable(注意：必须是要成对)组合成单个Observable，当有事件到达时，会在每个序列中对应的索引上对应的元素发出。(ps:之前版本的RxSwift好像最多只能组合8个Observable)</p>
+</blockquote>
+<p><img src="" alt="zip"></p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"></div><div class="line"><span class="keyword">let</span> strSbj = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"><span class="keyword">let</span> intSbj = <span class="type">PublishSubject</span>&lt;<span class="type">Int</span>&gt;()</div><div class="line"></div><div class="line"><span class="type">Observable</span>.<span class="built_in">zip</span>(strSbj, intSbj)&#123;</div><div class="line">  strElement,intElement  <span class="keyword">in</span> </div><div class="line">   <span class="string">"\(strElement) \(intElement)"</span></div><div class="line">&#125;.subscribe(<span class="type">OnNext</span>: &#123;pint($<span class="number">0</span>)&#125;)</div><div class="line"> .addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">strSbj.onNext(<span class="string">"🅰️"</span>)</div><div class="line">strSbj.onNext(<span class="string">"🅱️"</span>)</div><div class="line"></div><div class="line">intSbj.onNext(<span class="number">1</span>)</div><div class="line">intSbj.onNext(<span class="number">2</span>)</div><div class="line"></div><div class="line">strSbj.onNext(<span class="string">"🆎"</span>)</div><div class="line">intSbj.onNext(<span class="number">2</span>)</div><div class="line"></div><div class="line"><span class="comment">//</span></div><div class="line">🅰️ <span class="number">1</span>   将stringSubject和intSubject压缩到一起共同处理</div><div class="line">🅱️ <span class="number">2</span></div><div class="line">🆎 <span class="number">3</span></div></pre></td></tr></table></figure>
+<h2 id="④combineLatest"><a href="#④combineLatest" class="headerlink" title="④combineLatest"></a>④combineLatest</h2><blockquote>
+<p>绑定超过最多不超过8个的Observable流，结合在一起处理<br>和Zip不同的是combineLatest是一个流的事件对应另一个流的最新的事件，两个事件都会是最新的事件，可将下图与Zip的图进行对比<br>邻近事件一起处理</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/combineLatest.png" alt="combineLatest"></p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="keyword">let</span> strSbj = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"><span class="keyword">let</span> intSbj = <span class="type">PublishSubject</span>&lt;<span class="type">Int</span>&gt;()</div><div class="line"></div><div class="line"><span class="type">Observable</span>.combineLatest(strSbj, intSbj)&#123; strElement,intElement <span class="keyword">in</span></div><div class="line">    <span class="string">"\(strElement) \(intElement)"</span></div><div class="line">&#125;</div><div class="line">.addscribe(onNext: &#123;<span class="built_in">print</span>($<span class="number">0</span>)&#125;)</div><div class="line">.addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">strSbj.onNext(<span class="string">"🅰️"</span>)</div><div class="line">strSbj.onNext(<span class="string">"🅱️"</span>)</div><div class="line">intSbj.onNext(<span class="number">1</span>)</div><div class="line">intSbj.onNext(<span class="number">2</span>)</div><div class="line">strSbj.onNext(<span class="string">"🆎"</span>)</div><div class="line"><span class="comment">// ????</span></div><div class="line">🅱️ <span class="number">1</span></div><div class="line">🅱️ <span class="number">2</span></div><div class="line">🆎 <span class="number">2</span></div></pre></td></tr></table></figure>
 <blockquote>
-<p>但是Person实例中的telephone属性仍然强引用着Telephone实例。同样的Telephone实例的person属性也引用着Person实例。所以Person实例和Telephone实例的引用计数都为1。但此时我们已经没办法再访问Person和Telephone的实例了。同时又因为他们的引用计数都为1，系统也不会释放他们。这样就造成了内存泄露。</p>
-<p>为了解决这种循环引用的问题，办法就是截断这个循环。<br>第一种笨笨的解决方法就是在你把person或telephone变量设为nil之前，把person.telephone或telephone.person设为nil。这样就手动切断了循环引用。<br>而通用的解决方法就是引用一个新概念——弱引用（Weak Reference）<br>弱引用和强引用最大区别就是：当你把一个实例赋值给一个弱引用变量的时候，这个变量的引用计数不会加1。<br>为了实现这一点，在定义变量的时候在最前面加上weak关键字。下面我们重新定义Person类和Telephone类</p>
+<p>当一个项目由两个Observables发射时，通过一个指定的功能将每个Observable观察到的最新项目组合起来，并根据该功能的结果发射事件</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">class</span> <span class="title">Telephone</span> </span>&#123;  </div><div class="line">    <span class="keyword">weak</span> <span class="keyword">var</span> person: <span class="type">Person</span>?   <span class="comment">//把这个变量定义为了一个弱引用变量  </span></div><div class="line">    <span class="keyword">deinit</span>&#123;  </div><div class="line">        <span class="built_in">print</span>(<span class="string">"Telephone deinit"</span>)  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> telephone: <span class="type">Telephone</span>?  </div><div class="line">    <span class="keyword">deinit</span>&#123;  </div><div class="line">        <span class="built_in">print</span>(<span class="string">"Person deinit"</span>)  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://ot0mms4k8.bkt.clouddn.com/Combination-Operators-4-2.png" alt=""></p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"></div><div class="line"><span class="keyword">let</span> subject1 = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"><span class="keyword">let</span> subject2 = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line">    </div><div class="line"><span class="type">Observable</span>.combineLatest(subject1, subject2) &#123; string1,string2 <span class="keyword">in</span></div><div class="line">    <span class="string">"\(string1)--\(string2)"</span></div><div class="line">    &#125;.subscribe(onNext: &#123;<span class="built_in">print</span>($<span class="number">0</span>)&#125;).disposed(by: disposeBag)</div><div class="line">    </div><div class="line">subject1.onNext(<span class="string">"A"</span>)</div><div class="line">    </div><div class="line">subject2.onNext(<span class="string">"1"</span>)</div><div class="line">subject2.onNext(<span class="string">"2"</span>)</div><div class="line">    </div><div class="line">subject1.onNext(<span class="string">"B"</span>)</div><div class="line">subject1.onNext(<span class="string">"C"</span>)</div><div class="line"></div><div class="line">  <span class="comment">//输出结果</span></div><div class="line">  <span class="type">A</span>--<span class="number">1</span></div><div class="line">  <span class="type">A</span>--<span class="number">2</span></div><div class="line">  <span class="type">B</span>--<span class="number">2</span></div><div class="line">  <span class="type">C</span>--<span class="number">2</span></div></pre></td></tr></table></figure>
+<h2 id="⑤switchLatest"><a href="#⑤switchLatest" class="headerlink" title="⑤switchLatest"></a>⑤switchLatest</h2><blockquote>
+<p>切换Observable队列<br>switchLatest可以对事件流进行转换，本来监听的sbj1，可以通过更改variable里面的value更换事件源—&gt;变成监听sbj2</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/switchLatest.png" alt="switchLatest"></p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">  </div><div class="line">  <span class="keyword">let</span> sbj1 = <span class="type">BehaviorSubject</span>(value: <span class="string">"⚽️"</span>)</div><div class="line">  <span class="keyword">let</span> sbj2 = <span class="type">BehaviorSubject</span>(value: <span class="string">"🍎"</span>)</div><div class="line">  </div><div class="line">  <span class="keyword">let</span> variable = <span class="type">Variable</span>(sbj1)</div><div class="line">  variable.asObservable()</div><div class="line">   .switchLatest()</div><div class="line">   .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</div><div class="line">   .addDisposableTo(disposeBag)</div><div class="line">   </div><div class="line">sbj1.onNext(<span class="string">"🏈"</span>)</div><div class="line">sbj1.onNext(<span class="string">"🏀"</span>)</div><div class="line">    </div><div class="line">variable.value = sbj1</div><div class="line">    </div><div class="line">subject1.onNext(<span class="string">"⚾️"</span>)</div><div class="line">    </div><div class="line">sbj2.onNext(<span class="string">"🍐"</span>)</div><div class="line">variable.value = sbj1</div><div class="line">sbj2.onNext(<span class="string">"54321"</span>)</div><div class="line">sbj1.onNext(<span class="string">"12345"</span>)</div><div class="line">  <span class="comment">///</span></div><div class="line">  ⚽️</div><div class="line">🏈</div><div class="line">🏀</div><div class="line">🍎</div><div class="line">🍐</div><div class="line">⚾️</div><div class="line"><span class="number">12345</span></div></pre></td></tr></table></figure>
 <blockquote>
-<p>然后我们再次调用下面的代码</p>
+<p>例子分析</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">var</span> person: <span class="type">Person</span>? = <span class="type">Person</span>()  </div><div class="line"><span class="keyword">var</span> telephone: <span class="type">Telephone</span>? = <span class="type">Telephone</span>()  </div><div class="line">person!.telephone = telephone  </div><div class="line">telephone!.person = person     <span class="comment">//第4句  </span></div><div class="line">person = <span class="literal">nil</span>                 <span class="comment">// 执行完这句后打印  Person deinit  </span></div><div class="line">telephone = <span class="literal">nil</span>              <span class="comment">// 执行完这句后打印  Telephone deinit</span></div></pre></td></tr></table></figure>
-<p>因为Telephone类里面的person属性是弱引用的，所以执行完了第4句之后，Telephone实例被telephone变量和person.telephone实例所引用，引用计数为2。而Person实例只被person变量所引用，引用计数为1.</p>
-<p>当执行完person = nil 之后，person的引用计数就变为了0， 这个时候系统就会释放Person实例，这个过程中，person.telephone也会被释放，所以会导致Telephone实例的引用计数减1，变为1。</p>
-<p>当执行完telephone = nil 之后，Telephone实例的引用计数变为0。系统释放Telephone实例。</p>
-<p>关于这个弱引用再补充几点</p>
-<p>第一、当一个弱引用变量所引用的实例被释放的时候，这个弱引用变量会被自动置为nil。</p>
-<p>第二、因为第一条的内容，所以弱引用只能对变量使用，并且必须是可选类型。</p>
-<p>第三、如果你在创建实例的时候就把它复制给一个弱引用变量，因为弱引用变量不会增加这个实例的引用计数，所以这个实例创建后立马就会被销毁。</p>
-<p>第四、如果你将一个已经赋值的弱引用变量赋值给一个强引用变量(常量)，那么这个实例的引用计数会加1。</p>
-<p>Unowned Reference</p>
-<p>Unowned Reference和弱引用一样，不会对实例产生强引用。区别在于Unowned Reference假设它所指向的实例总是有值的。所以Unowned Reference一般不会设置为可选类型。但缺点就是当Unowned Reference所指向的实例被释放的时候，Unowned Reference变量不会自动置为nil。</p>
-<p>语法就是将weak关键字替换为unowned。但一个变量永远不会为nil的时候，建议使用unowned修饰。</p>
-<p>循环引用第二种情况——闭包循环引用</p>
-<pre><code>在闭包的时候我们说过，闭包是引用类型，且会捕获值。设想，你把一个闭包声明为一个类的属性的时候，这个类的实例拥有了对这个闭包的强引用。此时如果你在这个闭包里面访问了这个类的其他属性(self.someProperty)或者方法(self.someMethod)的话。那么这个闭包就会捕获所访问的属性或方法，统称&quot;捕获了self&quot;。在访问实例的属性或方法的时候，必须使用self.的方式。Swift此意在提醒你可能会产生循环引用。
-</code></pre><p>那么这时候又是一个循环引用了，self引用闭包，闭包引用self。导致这个实例永远不会被释放。</p>
-<p>下面定义一个有闭包的Person类</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"> class Person &#123;  </div><div class="line">    var name: String?  </div><div class="line">    lazy var printName: Void-&gt;Void = &#123;  </div><div class="line">        print(self.name)  </div><div class="line">    &#125;  </div><div class="line">    init(name: String)&#123;  </div><div class="line">        self.name = name;  </div><div class="line">    &#125;  </div><div class="line">    deinit&#123;  </div><div class="line">        print(&quot;Person deinit&quot;)  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>这个闭包我们声明为了lazy类型，因为如果你想要在闭包里面访问到self的话，必须是在类初始化之后才行。而一般的属性是在类初始化的最开头阶段初始化的，所以不加lazy的闭包不能访问self关键字。上面的代码很明显闭包和类实例已经可能会产生循环引用了。为什么说可能呢？因为如果你一直没用到闭包的话，那么这个闭包就不会被初始化，所以也不会产生闭包对self的强引用，也就谈不上循环引用了。</p>
-</blockquote>
-<p>所以如果仅仅执行下面代码</p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> p: <span class="type">Person</span>? = <span class="type">Person</span>(name: <span class="string">"Kate"</span>)  </div><div class="line">p = <span class="literal">nil</span>  </div><div class="line"><span class="comment">//打印出 Person deinit</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>但是如果执行下面代码 </p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">var p: Person? = Person(name: &quot;Kate&quot;)  </div><div class="line">p?.printName()  </div><div class="line">p = nil  </div><div class="line">//打印出 Optional(&quot;Kate&quot;)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>这时候因为循环引用导致Person实例不会被释放。<br>解决这个循环引用同样有两种方式。</p>
-</blockquote>
-<ul>
-<li><p>第一种是在不需要这个实例的时候，将这个可能会引起循环引用的闭包设为nil。</p>
-</li>
-<li><p>第二种是利用闭包的捕获列表。下面是第二种方法的介绍</p>
-</li>
-</ul>
-<blockquote>
-<p>下面是语法定义例子，分别是有参数和没参数的闭包。在这种情况下，闭包对捕获的self不会产生强引用。（题外话，在OC中是通过定义另外一个对self的弱引用变量，然后将这个弱引用变量传递给block来实现的。）</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> </div><div class="line"></div><div class="line"><span class="comment">//有参数的情况  </span></div><div class="line"><span class="built_in">lazy</span> <span class="keyword">var</span> printName: ((<span class="type">String</span>)-&gt;<span class="type">Void</span>)? = &#123;  </div><div class="line">    [<span class="keyword">unowned</span> <span class="keyword">self</span>] (say: <span class="type">String</span>) -&gt; <span class="type">Void</span> <span class="keyword">in</span>  </div><div class="line">    <span class="built_in">print</span>(say,<span class="keyword">self</span>.name)  </div><div class="line">&#125;  </div><div class="line"><span class="comment">//没参数的情况  </span></div><div class="line"><span class="built_in">lazy</span> <span class="keyword">var</span> printName2: (<span class="type">Void</span>-&gt;<span class="type">Void</span>)? = &#123;  </div><div class="line">    [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">in</span>  </div><div class="line">    <span class="built_in">print</span>(<span class="keyword">self</span>!.name)  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>这里就是用两个关键字weak和unowned将self修饰。weak和unowned的区别和之前所讲的是一样的。</p>
-</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> et disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">    </div><div class="line"><span class="keyword">let</span> subject1 = <span class="type">BehaviorSubject</span>(value: <span class="string">"1"</span>)</div><div class="line"><span class="keyword">let</span> subject2 = <span class="type">BehaviorSubject</span>(value: <span class="string">"A"</span>)</div><div class="line">    </div><div class="line"><span class="keyword">let</span> variable = <span class="type">Variable</span>(subject1)</div><div class="line">    </div><div class="line">variable.asObservable()</div><div class="line">        .switchLatest()</div><div class="line">        .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</div><div class="line">        .disposed(by: disposeBag)</div><div class="line">    </div><div class="line">subject1.onNext(<span class="string">"2"</span>)</div><div class="line">subject1.onNext(<span class="string">"3"</span>)</div><div class="line">    </div><div class="line">variable.value = subject2</div><div class="line">    </div><div class="line">subject1.onNext(<span class="string">"4"</span>)</div><div class="line">subject2.onNext(<span class="string">"B"</span>)</div><div class="line"></div><div class="line"><span class="comment">//打印结果</span></div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">2</span></div><div class="line"><span class="number">3</span></div><div class="line"><span class="type">A</span></div><div class="line"><span class="type">B</span></div></pre></td></tr></table></figure>
+<p><img src="http://ot0mms4k8.bkt.clouddn.com/switchLatest-002.png" alt=""></p>
 
       
     </div>
@@ -549,7 +516,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ARC/" rel="tag"># ARC</a>
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
           
         </div>
       
@@ -562,8 +531,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/01/Swift/Grammar/Swift-Grammar-初始化-析构/" rel="next" title="Swift-Grammar-Initialization初始化&Deinitialization析构">
-                <i class="fa fa-chevron-left"></i> Swift-Grammar-Initialization初始化&Deinitialization析构
+              <a href="/2017/12/18/RxSwift/Grammar/Swift-RxSwift-进阶理解/" rel="next" title="Swift-RxSwift-进阶理解">
+                <i class="fa fa-chevron-left"></i> Swift-RxSwift-进阶理解
               </a>
             
           </div>
@@ -572,8 +541,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/01/Swift/Grammar/Swift-Grammar-可选链/" rel="prev" title="Swift-Grammar-Optional Chaining-可选链">
-                Swift-Grammar-Optional Chaining-可选链 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/19/RxSwift/Grammar/操作/" rel="prev" title="Swift-RxSwift-操作">
+                Swift-RxSwift-操作 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -708,7 +677,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ARC-自动引用计数"><span class="nav-number">1.</span> <span class="nav-text">ARC 自动引用计数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Swift引入ARC"><span class="nav-number">1.1.</span> <span class="nav-text">Swift引入ARC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用计数的概念"><span class="nav-number">1.2.</span> <span class="nav-text">引用计数的概念</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#联合操作Observable流"><span class="nav-number">1.</span> <span class="nav-text">联合操作Observable流</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#①startWith"><span class="nav-number">1.1.</span> <span class="nav-text">①startWith</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#②merge"><span class="nav-number">1.2.</span> <span class="nav-text">②merge</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#③zip"><span class="nav-number">1.3.</span> <span class="nav-text">③zip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#④combineLatest"><span class="nav-number">1.4.</span> <span class="nav-text">④combineLatest</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#⑤switchLatest"><span class="nav-number">1.5.</span> <span class="nav-text">⑤switchLatest</span></a></li></ol></li></ol></div>
             
 
           </div>
