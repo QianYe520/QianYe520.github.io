@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Swift,RxSwift," />
 
 
 
@@ -105,17 +105,18 @@
 
 
 
-<meta name="description" content="泛型 接受其它函数作为参数的函数有时被称为高阶函数泛型函数 写一个函数的时，一般都会指明参数的类型一般默认在函数中定义的参数都是常量参数，也就是这个参数你只可以查询使用，不能改变它的值如果想要声明一个变量参数，可以在前面加上var，这样就可以改变这个参数的值    //此时这个id值可以在函数中改变 func  getName(var id:String).........  一般默认的参数传递都">
+<meta name="description" content="数学操作toArray 将sequence转换成一个array，并转换成单一事件信号，然后结束     let disposeBag = DisposeBag()    Observable.range(start: 1, count: 10)    .toArray()    .subscribe &amp;#123; print($0) &amp;#125;    .addDisposableTo(dispo">
+<meta name="keywords" content="Swift,RxSwift">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift-Grammar-Generics-泛型">
-<meta property="og:url" content="http://yoursite.com/2017/12/01/Swift/Grammar/Swift-Grammar-Generics-泛型/index.html">
+<meta property="og:title" content="Swift-RxSwift-数学操作">
+<meta property="og:url" content="http://yoursite.com/2017/12/19/RxSwift/Grammar/数学操作/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="泛型 接受其它函数作为参数的函数有时被称为高阶函数泛型函数 写一个函数的时，一般都会指明参数的类型一般默认在函数中定义的参数都是常量参数，也就是这个参数你只可以查询使用，不能改变它的值如果想要声明一个变量参数，可以在前面加上var，这样就可以改变这个参数的值    //此时这个id值可以在函数中改变 func  getName(var id:String).........  一般默认的参数传递都">
+<meta property="og:description" content="数学操作toArray 将sequence转换成一个array，并转换成单一事件信号，然后结束     let disposeBag = DisposeBag()    Observable.range(start: 1, count: 10)    .toArray()    .subscribe &amp;#123; print($0) &amp;#125;    .addDisposableTo(dispo">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-19T11:17:48.513Z">
+<meta property="og:updated_time" content="2018-02-11T08:31:38.044Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift-Grammar-Generics-泛型">
-<meta name="twitter:description" content="泛型 接受其它函数作为参数的函数有时被称为高阶函数泛型函数 写一个函数的时，一般都会指明参数的类型一般默认在函数中定义的参数都是常量参数，也就是这个参数你只可以查询使用，不能改变它的值如果想要声明一个变量参数，可以在前面加上var，这样就可以改变这个参数的值    //此时这个id值可以在函数中改变 func  getName(var id:String).........  一般默认的参数传递都">
+<meta name="twitter:title" content="Swift-RxSwift-数学操作">
+<meta name="twitter:description" content="数学操作toArray 将sequence转换成一个array，并转换成单一事件信号，然后结束     let disposeBag = DisposeBag()    Observable.range(start: 1, count: 10)    .toArray()    .subscribe &amp;#123; print($0) &amp;#125;    .addDisposableTo(dispo">
 
 
 
@@ -144,13 +145,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/01/Swift/Grammar/Swift-Grammar-Generics-泛型/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/19/RxSwift/Grammar/数学操作/"/>
 
 
 
 
 
-  <title>Swift-Grammar-Generics-泛型 | 千夜、おれはおまえをずっと爱している</title>
+  <title>Swift-RxSwift-数学操作 | 千夜、おれはおまえをずっと爱している</title>
   
 
 
@@ -331,7 +332,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/01/Swift/Grammar/Swift-Grammar-Generics-泛型/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/19/RxSwift/Grammar/数学操作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -348,7 +349,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Swift-Grammar-Generics-泛型</h1>
+          <h1 class="post-title" itemprop="name headline">Swift-RxSwift-数学操作</h1>
         
 
         <div class="post-meta">
@@ -360,8 +361,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-01T17:33:07+08:00">
-                2017-12-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-19T16:06:59+08:00">
+                2017-12-19
               </time>
             
 
@@ -394,8 +395,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/Grammar/" itemprop="url" rel="index">
-                    <span itemprop="name">Grammar</span>
+                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
                   </a>
                 </span>
 
@@ -411,7 +412,7 @@
 
           
           
-             <span id="/2017/12/01/Swift/Grammar/Swift-Grammar-Generics-泛型/" class="leancloud_visitors" data-flag-title="Swift-Grammar-Generics-泛型">
+             <span id="/2017/12/19/RxSwift/Grammar/数学操作/" class="leancloud_visitors" data-flag-title="Swift-RxSwift-数学操作">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -442,63 +443,53 @@
       
 
       
-        <h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><ul>
-<li>接受其它函数作为参数的函数有时被称为高阶函数<h1 id="泛型函数"><a href="#泛型函数" class="headerlink" title="泛型函数"></a>泛型函数</h1><blockquote>
-<p>写一个函数的时，一般都会指明参数的类型<br>一般默认在函数中定义的参数都是常量参数，也就是这个参数你只可以查询使用，不能改变它的值<br>如果想要声明一个变量参数，可以在前面加上var，这样就可以改变这个参数的值</p>
+        <h1 id="数学操作"><a href="#数学操作" class="headerlink" title="数学操作"></a>数学操作</h1><h2 id="toArray"><a href="#toArray" class="headerlink" title="toArray"></a>toArray</h2><blockquote>
+<p>将sequence转换成一个array，并转换成单一事件信号，然后结束</p>
 </blockquote>
-</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">//此时这个id值可以在函数中改变</span></div><div class="line"> <span class="function"><span class="keyword">func</span>  <span class="title">getName</span><span class="params">(<span class="keyword">var</span> id:String)</span></span>.........</div></pre></td></tr></table></figure>
-<blockquote>
-<p>一般默认的参数传递都是传值调用的，而不是传引用。<strong>所以传入的参数在函数内改变，并不影响原来的那个参数</strong>。传入的只是这个参数的副本<br>下面两个实现交换变量的函数</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">    </div><div class="line"><span class="type">Observable</span>.range(start: <span class="number">1</span>, <span class="built_in">count</span>: <span class="number">10</span>)</div><div class="line">    .toArray()</div><div class="line">    .subscribe &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line"></div><div class="line"><span class="comment">///</span></div><div class="line">next([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>])</div><div class="line">completed</div></pre></td></tr></table></figure>
+<h2 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h2><blockquote>
+<p>用一个初始值，对事件数据进行累计操作<br>reduce接受一个初始值，和一个操作符号</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">swapTwoInts</span><span class="params">( a:<span class="keyword">inout</span> Int, b:<span class="keyword">inout</span> Int)</span></span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">let</span> t = a   <span class="comment">//  0</span></div><div class="line">    a = b       <span class="comment">// 100</span></div><div class="line">    b = t       <span class="comment">//  0</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> x = <span class="number">0</span>,y = <span class="number">100</span></div><div class="line"><span class="built_in">print</span>(<span class="string">"x = \(x) ;y = \(y)"</span>)</div><div class="line"></div><div class="line"><span class="comment">//打印</span></div><div class="line">x = <span class="number">0</span> ;y = <span class="number">100</span></div><div class="line"><span class="comment">//交换变量的函数</span></div><div class="line">swapTwoInts(a: &amp;x, b: &amp;y)</div><div class="line"><span class="built_in">print</span>(<span class="string">"x = \(x) ;y = \(y)"</span>)</div><div class="line">x = <span class="number">100</span> ;y = <span class="number">0</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>上面的只是限于交换整形。但是如果我们相对Double或Float类型，甚至是任何类型的数据实现交换的功能，我们都要分别写一个函数。这是无比麻烦的</p>
-<p>所以有了泛型这个概念，泛型就是<strong>模糊的类型</strong><br>函数的功能实现和具体类型没关系的时候，就可以使用泛型(感觉类似OC的 id 类型)<br>将上面实现两个变量交换的功能用一个方法完成，这个方法可以用于不同的数据类型<br>swapTwoInts <t> 理解为一个函数族,类型参数 T 的每个选择都会确定一个新函数,该函数接受一个T型数组和一个 T -&gt; T类型的函数作为参数,并返回一个[T]类型的数组</t></p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">    </div><div class="line"><span class="type">Observable</span>.of(<span class="number">10</span>, <span class="number">100</span>, <span class="number">1000</span>)</div><div class="line">    .<span class="built_in">reduce</span>(<span class="number">1</span>, accumulator: +)</div><div class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line"></div><div class="line"><span class="comment">///</span></div><div class="line">  <span class="number">1111</span></div></pre></td></tr></table></figure>
+<h2 id="concat"><a href="#concat" class="headerlink" title="concat"></a>concat</h2><blockquote>
+<p>oncat会把多个sequence和并为一个sequence，并且当前面一个sequence发出了completed事件，才会开始下一个sequence的事件<br>在第一sequence完成之前，第二个sequence发出的事件都会被忽略，但会接收一完成之前的二发出的最后一个事件。不好解释，看例子说明</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">swapTwoInts</span>&lt;T&gt;<span class="params">( a: <span class="keyword">inout</span> T, <span class="number">_</span> b: <span class="keyword">inout</span> T)</span></span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">let</span> t = a</div><div class="line">    a = b</div><div class="line">    b = t</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> x = <span class="number">8.12</span>,y = <span class="number">100.1</span></div><div class="line"><span class="built_in">print</span>(<span class="string">"x = \(x) ;y = \(y)"</span>)   <span class="comment">//x = 8.12 ;y = 100.1</span></div><div class="line">swapTwoInts( a: &amp;x,  &amp;y)</div><div class="line"><span class="built_in">print</span>(<span class="string">"x = \(x) ;y = \(y)"</span>)   <span class="comment">//x = 100.1 ;y = 8.12</span></div><div class="line"></div><div class="line"></div><div class="line">问题：x = <span class="number">8</span>  y = <span class="number">100.1</span> 发生错误，整数和浮点型数如何写交换方法？？？</div></pre></td></tr></table></figure>
-<blockquote>
-<p>主要的语法就是上面的<t>，这个T就是代表某个类型，但是没有指明具体是哪种类型。而且这个T，可以换成你希望的标示符，只要不是关键字。并且一般要求单词的首字母要大写，比如Element、Value等。而且能指定多个类型，见下面的类型约束</t></p>
-<p>泛型的函数调用方法和普通函数是一样的<br>下面创建了两个Animal实例，然后使用刚刚定义的函数交换数据。</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">    </div><div class="line"><span class="keyword">let</span> subject1 = <span class="type">BehaviorSubject</span>(value: <span class="string">"🍎"</span>)</div><div class="line"><span class="keyword">let</span> subject2 = <span class="type">BehaviorSubject</span>(value: <span class="string">"🐶"</span>)</div><div class="line">    </div><div class="line"><span class="keyword">let</span> variable = <span class="type">Variable</span>(subject1)</div><div class="line">    </div><div class="line">variable.asObservable()</div><div class="line">    .concat()</div><div class="line">    .subscribe &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line">    </div><div class="line">subject1.onNext(<span class="string">"🍐"</span>)</div><div class="line">subject1.onNext(<span class="string">"🍊"</span>)</div><div class="line">    </div><div class="line">variable.value = subject2</div><div class="line">    </div><div class="line"></div><div class="line">subject2.onNext(<span class="string">"🐱"</span>)   <span class="comment">//1完成前，会被忽略</span></div><div class="line">subject2.onNext(<span class="string">"teng"</span>) <span class="comment">//1完成前，会被忽略</span></div><div class="line">subject2.onNext(<span class="string">"fei"</span>)  <span class="comment">//1完成前的最后一个，会被接收</span></div><div class="line">    </div><div class="line">subject1.onCompleted()</div><div class="line">    </div><div class="line">subject2.onNext(<span class="string">"🐭"</span>)</div><div class="line"></div><div class="line">next(🍎)</div><div class="line">next(🍐)</div><div class="line">next(🍊)</div><div class="line">next(fei)</div><div class="line">next(🐭)</div></pre></td></tr></table></figure>
+<h1 id="连接性操作"><a href="#连接性操作" class="headerlink" title="连接性操作"></a>连接性操作</h1><blockquote>
+<p>Connectable Observable有订阅时不开始发射事件消息，而是仅当调用它们的connect（）方法时。这样就可以等待所有我们想要的订阅者都已经订阅了以后，再开始发出事件消息，这样能保证我们想要的所有订阅者都能接收到事件消息。其实也就是等大家都就位以后，开始发出消息</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;</div><div class="line">    <span class="keyword">var</span> life = <span class="number">0</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> cat = <span class="type">Animal</span>()</div><div class="line">cat.life = <span class="number">1</span></div><div class="line"><span class="keyword">var</span> dog = <span class="type">Animal</span>()</div><div class="line">dog.life = <span class="number">2</span></div><div class="line"></div><div class="line">swapTwoInts(cat.life, dog.life)  <span class="comment">//报错！！ 方面交换方法不能交换。。醉了</span></div><div class="line"><span class="built_in">print</span>(cat.life)  </div><div class="line"><span class="built_in">print</span>(dog.life)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>泛型举例分析</p>
+<h2 id="publish"><a href="#publish" class="headerlink" title="publish"></a>publish</h2><blockquote>
+<p>将一个正常的sequence转换成一个connectable sequence</p>
 </blockquote>
-<p><a href="http://lib.csdn.net/article/swift/48384?knId=10" target="_blank" rel="external">参考</a></p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="comment">//  map</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">map</span>&lt;Element,T&gt;<span class="params">(xs:[Element],transfom:<span class="params">(Element)</span></span></span> -&gt;<span class="type">T</span>)-&gt;[<span class="type">T</span>]&#123;</div><div class="line">    <span class="keyword">var</span> result :[<span class="type">T</span>] = []</div><div class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> xs&#123;</div><div class="line">        result.append(transfom(x))</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> result</div><div class="line">    </div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">genericComputeArray</span>&lt;T&gt;<span class="params">(xs: [Int], transfom: <span class="params">(Int)</span></span></span> -&gt; <span class="type">T</span>) -&gt; [<span class="type">T</span>] &#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">map</span>(xs: xs, transfom: transfom)</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">这块 不是很理解</div></pre></td></tr></table></figure>
-<blockquote>
-<p>顶层函数和扩展<br>写一个函数,它接受一个给定的整型数组,通过计算得到并返回一个新数组。要求：新数组各项为原数组中对应的整型数据加一。for 循环能实现</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> intSequence = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.interval(<span class="number">1</span>, scheduler: <span class="type">MainScheduler</span>.instance)</div><div class="line">    .publish()</div><div class="line">    </div><div class="line"><span class="number">_</span> = intSequence</div><div class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>(<span class="string">"Subscription 1:, Event: \($0)"</span>) &#125;)</div><div class="line">    </div><div class="line">delay(<span class="number">2</span>) &#123; <span class="number">_</span> = intSequence.connect() &#125; <span class="comment">//相当于把事件消息推迟了两秒</span></div><div class="line">    </div><div class="line">delay(<span class="number">4</span>) &#123;</div><div class="line">    <span class="number">_</span> = intSequence</div><div class="line">        .subscribe(onNext: &#123; <span class="built_in">print</span>(<span class="string">"Subscription 2:, Event: \($0)"</span>) &#125;)</div><div class="line">&#125;</div><div class="line">    </div><div class="line">delay(<span class="number">6</span>) &#123;</div><div class="line">    <span class="number">_</span> = intSequence</div><div class="line">        .subscribe(onNext: &#123; <span class="built_in">print</span>(<span class="string">"Subscription 3:, Event: \($0)"</span>) &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="type">Subscription</span> <span class="number">1</span>:, <span class="type">Event</span>: <span class="number">0</span></div><div class="line"><span class="type">Subscription</span> <span class="number">1</span>:, <span class="type">Event</span>: <span class="number">1</span></div><div class="line"><span class="type">Subscription</span> <span class="number">2</span>:, <span class="type">Event</span>: <span class="number">1</span></div><div class="line"><span class="type">Subscription</span> <span class="number">1</span>:, <span class="type">Event</span>: <span class="number">2</span></div><div class="line"><span class="type">Subscription</span> <span class="number">2</span>:, <span class="type">Event</span>: <span class="number">2</span></div><div class="line"><span class="type">Subscription</span> <span class="number">1</span>:, <span class="type">Event</span>: <span class="number">3</span></div><div class="line"><span class="type">Subscription</span> <span class="number">3</span>:, <span class="type">Event</span>: <span class="number">3</span></div><div class="line"><span class="type">Subscription</span> <span class="number">2</span>:, <span class="type">Event</span>: <span class="number">3</span></div><div class="line"><span class="type">Subscription</span> <span class="number">1</span>:, <span class="type">Event</span>: <span class="number">4</span></div><div class="line"><span class="type">Subscription</span> <span class="number">3</span>:, <span class="type">Event</span>: <span class="number">4</span></div></pre></td></tr></table></figure>
+<h2 id="replay"><a href="#replay" class="headerlink" title="replay"></a>replay</h2><blockquote>
+<p>将一个正常的sequence转换成一个connectable sequence，然后和replaySubject相似，能接收到订阅之前的事件消息</p>
 </blockquote>
-<h1 id="泛型类型"><a href="#泛型类型" class="headerlink" title="泛型类型"></a>泛型类型</h1><blockquote>
-<p>定义一个类型，但是它可以对不同类型的数据进行操作<br>比如Array和Dictionary这两个集合结构体，他们可以装不同类型的数据，这就是泛型类型</p>
-<h2 id="官方文档展示一个泛型类型的栈，使用Array来实现"><a href="#官方文档展示一个泛型类型的栈，使用Array来实现" class="headerlink" title="官方文档展示一个泛型类型的栈，使用Array来实现"></a>官方文档展示一个泛型类型的栈，使用Array来实现</h2></blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">struct Stack&lt;Element&gt; &#123;  </div><div class="line">    var items = [Element]()  </div><div class="line">    mutating func push(item: Element) &#123;  </div><div class="line">        items.append(item)  </div><div class="line">    &#125;  </div><div class="line">    mutating func pop() -&gt; Element &#123;  </div><div class="line">        return items.removeLast()  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>然后在创建这种泛型类型实例的时候，我们必须指定所属的类型</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">let</span> intSequence = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.interval(<span class="number">1</span>, scheduler: <span class="type">MainScheduler</span>.instance)</div><div class="line">    .replay(<span class="number">5</span>)  <span class="comment">//接收到订阅之前的5条事件消息</span></div><div class="line">    </div><div class="line"><span class="number">_</span> = intSequence</div><div class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>(<span class="string">"Subscription 1:, Event: \($0)"</span>) &#125;)</div><div class="line">    </div><div class="line">delay(<span class="number">2</span>) &#123; <span class="number">_</span> = intSequence.connect() &#125;</div><div class="line">    </div><div class="line">delay(<span class="number">4</span>) &#123;</div><div class="line">    <span class="number">_</span> = intSequence</div><div class="line">        .subscribe(onNext: &#123; <span class="built_in">print</span>(<span class="string">"Subscription 2:, Event: \($0)"</span>) &#125;)</div><div class="line">&#125;</div><div class="line">    </div><div class="line">delay(<span class="number">8</span>) &#123;</div><div class="line">    <span class="number">_</span> = intSequence</div><div class="line">        .subscribe(onNext: &#123; <span class="built_in">print</span>(<span class="string">"Subscription 3:, Event: \($0)"</span>) &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="multicast"><a href="#multicast" class="headerlink" title="multicast"></a>multicast</h2><blockquote>
+<p>将一个正常的sequence转换成一个connectable sequence，并且通过特性的subject发送出去，比如PublishSubject，或者replaySubject，behaviorSubject等。不同的Subject会有不同的结果</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> </div><div class="line"></div><div class="line"><span class="keyword">var</span> stackOfStrings = <span class="type">Stack</span>&lt;<span class="type">String</span>&gt;()  </div><div class="line">stackOfStrings.push(<span class="string">"uno"</span>)</div></pre></td></tr></table></figure>
-<h1 id="泛型约束"><a href="#泛型约束" class="headerlink" title="泛型约束"></a>泛型约束</h1><blockquote>
-<p>我们可以对泛型进行约束，让他们必须遵守某些协议，官方文档语法如下</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">let</span> subject = <span class="type">PublishSubject</span>&lt;<span class="type">Int</span>&gt;()</div><div class="line">    </div><div class="line"><span class="number">_</span> = subject</div><div class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>(<span class="string">"Subject: \($0)"</span>) &#125;)</div><div class="line">    </div><div class="line"><span class="keyword">let</span> intSequence = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.interval(<span class="number">1</span>, scheduler: <span class="type">MainScheduler</span>.instance)</div><div class="line">    .multicast(subject)</div><div class="line">    </div><div class="line"><span class="number">_</span> = intSequence</div><div class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>(<span class="string">"\tSubscription 1:, Event: \($0)"</span>) &#125;)</div><div class="line">    </div><div class="line">delay(<span class="number">2</span>) &#123; <span class="number">_</span> = intSequence.connect() &#125;</div><div class="line">    </div><div class="line">delay(<span class="number">4</span>) &#123;</div><div class="line">    <span class="number">_</span> = intSequence</div><div class="line">        .subscribe(onNext: &#123; <span class="built_in">print</span>(<span class="string">"\tSubscription 2:, Event: \($0)"</span>) &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h1><h2 id="catchErrorJustReturn"><a href="#catchErrorJustReturn" class="headerlink" title="catchErrorJustReturn"></a>catchErrorJustReturn</h2><blockquote>
+<p>遇到error事件的时候，就return一个值，然后结束</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">someFunction</span>&lt;T: SomeClass, U: SomeProtocol&gt;<span class="params">(someT: T, someU: U)</span></span> &#123;  </div><div class="line">    <span class="comment">// function body goes here  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>同时还可以添加where约束符再对泛型进行限制</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">    </div><div class="line"><span class="keyword">let</span> sequenceThatFails = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line">    </div><div class="line">sequenceThatFails</div><div class="line">    .catchErrorJustReturn(<span class="string">"😊"</span>)</div><div class="line">    .subscribe &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line">    </div><div class="line">sequenceThatFails.onNext(<span class="string">"😬"</span>)</div><div class="line">sequenceThatFails.onNext(<span class="string">"😨"</span>)</div><div class="line">sequenceThatFails.onNext(<span class="string">"😡"</span>)</div><div class="line">sequenceThatFails.onNext(<span class="string">"🔴"</span>)</div><div class="line">sequenceThatFails.onError(<span class="type">TestError</span>.test)</div><div class="line"></div><div class="line"><span class="comment">///</span></div><div class="line">next(😬)</div><div class="line">next(😨)</div><div class="line">next(😡)</div><div class="line">next(🔴)</div><div class="line">next(😊)</div><div class="line">completed</div></pre></td></tr></table></figure>
+<h2 id="catchError"><a href="#catchError" class="headerlink" title="catchError"></a>catchError</h2><blockquote>
+<p>捕获error进行处理，可以返回另一个sequence进行订阅</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">someFunction</span>&lt;T: SomeClass, U: SomeProtocol where T.someItem == U, U.someItem: SomeClass2&gt;<span class="params">(someT: T, someU: U)</span></span> &#123;  </div><div class="line">    <span class="comment">// function body goes here  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="关联类型"><a href="#关联类型" class="headerlink" title="关联类型"></a>关联类型</h1><blockquote>
-<p>在定义协议的时候，我们可能需要定义一个或多个类型作为我们协议的一部分。而这些类型是不确定的，只有到具体的类实现协议的时候才能确定，这个时候我们可以使用关联类型来实现。所谓的关联类型就是一个占位符，等到具体实现协议的时候才知道它具体是什么类型。官方例子如下</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">    </div><div class="line"><span class="keyword">let</span> sequenceThatFails = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"><span class="keyword">let</span> recoverySequence = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line">    </div><div class="line">sequenceThatFails</div><div class="line">    .catchError &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"Error:"</span>, $<span class="number">0</span>)</div><div class="line">        <span class="keyword">return</span> recoverySequence</div><div class="line">    &#125;</div><div class="line">    .subscribe &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line">    </div><div class="line">sequenceThatFails.onNext(<span class="string">"😬"</span>)</div><div class="line">sequenceThatFails.onNext(<span class="string">"😨"</span>)</div><div class="line">sequenceThatFails.onNext(<span class="string">"😡"</span>)</div><div class="line">sequenceThatFails.onNext(<span class="string">"🔴"</span>)</div><div class="line">sequenceThatFails.onError(<span class="type">TestError</span>.test)</div><div class="line">    </div><div class="line">recoverySequence.onNext(<span class="string">"😊"</span>)</div><div class="line"></div><div class="line"><span class="comment">//</span></div><div class="line">next(😬)</div><div class="line">next(😨)</div><div class="line">next(😡)</div><div class="line">next(🔴)</div><div class="line"><span class="type">Error</span>: test</div><div class="line">next(😊)</div></pre></td></tr></table></figure>
+<h2 id="retry"><a href="#retry" class="headerlink" title="retry"></a>retry</h2><blockquote>
+<p>遇见error事件可以进行重试，比如网络请求失败，可以进行重新连接</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">protocol</span> <span class="title">Container</span> </span>&#123;  </div><div class="line">    <span class="keyword">typealias</span> <span class="type">ItemType</span>  </div><div class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">append</span><span class="params">(item: ItemType)</span></span>  </div><div class="line">    <span class="keyword">var</span> <span class="built_in">count</span>: <span class="type">Int</span> &#123; <span class="keyword">get</span> &#125;  </div><div class="line">    <span class="keyword">subscript</span>(i: <span class="type">Int</span>) -&gt; <span class="type">ItemType</span> &#123; <span class="keyword">get</span> &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>然后在实现协议的时候，我们可以指定ItemType具体是什么类型</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="keyword">var</span> <span class="built_in">count</span> = <span class="number">1</span></div><div class="line">    </div><div class="line"><span class="keyword">let</span> sequenceThatErrors = <span class="type">Observable</span>&lt;<span class="type">String</span>&gt;.create &#123; observer <span class="keyword">in</span></div><div class="line">    observer.onNext(<span class="string">"🍎"</span>)</div><div class="line">    observer.onNext(<span class="string">"🍐"</span>)</div><div class="line">    observer.onNext(<span class="string">"🍊"</span>)</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> <span class="built_in">count</span> == <span class="number">1</span> &#123;</div><div class="line">        observer.onError(<span class="type">TestError</span>.test)</div><div class="line">        <span class="built_in">print</span>(<span class="string">"Error encountered"</span>)</div><div class="line">        <span class="built_in">count</span> += <span class="number">1</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    observer.onNext(<span class="string">"🐶"</span>)</div><div class="line">    observer.onNext(<span class="string">"🐱"</span>)</div><div class="line">    observer.onNext(<span class="string">"🐭"</span>)</div><div class="line">    observer.onCompleted()</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="type">Disposables</span>.create()</div><div class="line">&#125;</div><div class="line">    </div><div class="line">sequenceThatErrors</div><div class="line">    .retry(<span class="number">3</span>)       <span class="comment">//不传入数字的话，只会重试一次</span></div><div class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<h1 id="debug"><a href="#debug" class="headerlink" title="debug"></a>debug</h1><blockquote>
+<p>打印所有的订阅, 事件和disposals</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">IntStack</span>: <span class="title">Container</span> </span>&#123;  </div><div class="line">    <span class="comment">// original IntStack implementation  </span></div><div class="line">    <span class="keyword">var</span> items = [<span class="type">Int</span>]()  </div><div class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">push</span><span class="params">(item: Int)</span></span> &#123;  </div><div class="line">        items.append(item)  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">pop</span><span class="params">()</span></span> -&gt; <span class="type">Int</span> &#123;  </div><div class="line">        <span class="keyword">return</span> items.removeLast()  </div><div class="line">    &#125;  </div><div class="line">    <span class="comment">// conformance to the Container protocol  </span></div><div class="line">    <span class="keyword">typealias</span> <span class="type">ItemType</span> = <span class="type">Int</span>  </div><div class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">append</span><span class="params">(item: Int)</span></span> &#123;  </div><div class="line">        <span class="keyword">self</span>.push(item)  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">var</span> <span class="built_in">count</span>: <span class="type">Int</span> &#123;  </div><div class="line">        <span class="keyword">return</span> items.<span class="built_in">count</span>  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">subscript</span>(i: <span class="type">Int</span>) -&gt; <span class="type">Int</span> &#123;  </div><div class="line">        <span class="keyword">return</span> items[i]  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>&gt;<br>同时又因为有Swift的类型判断机制，所以我们在实现了协议的其他方法之后，编译器会自动判断关联类型是什么，不需要我们显式地指定。所以上面代码指定关联类型为Int的那行可以删去。</p>
-<blockquote>
-<p>泛型OC是不支持的，但是java支持。使用泛型能给编程带来很大的便利</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   </div><div class="line"></div><div class="line">sequenceThatErrors</div><div class="line">    .retry(<span class="number">3</span>)</div><div class="line">    .debug()</div><div class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<h1 id="RxSwift-Resources-total"><a href="#RxSwift-Resources-total" class="headerlink" title="RxSwift.Resources.total"></a>RxSwift.Resources.total</h1><blockquote>
+<p>查看RxSwift所有资源的占用</p>
 </blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="built_in">print</span>(<span class="type">RxSwift</span>.<span class="type">Resources</span>.total)</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -514,6 +505,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
+          
+        </div>
+      
 
       
       
@@ -523,8 +522,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/01/Swift/Grammar/Swift-Grammar-Extension扩展/" rel="next" title="Swift-Grammar-Extension扩展">
-                <i class="fa fa-chevron-left"></i> Swift-Grammar-Extension扩展
+              <a href="/2017/12/19/RxSwift/Demo/Swift-RxSwift-转换操作符/" rel="next" title="Swift-RxSwift-转换操作符">
+                <i class="fa fa-chevron-left"></i> Swift-RxSwift-转换操作符
               </a>
             
           </div>
@@ -533,8 +532,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/01/Swift/Grammar/Swift-Grammar-AccessControl-访问控制/" rel="prev" title="Swift-Grammar-AccessControl-访问控制">
-                Swift-Grammar-AccessControl-访问控制 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/19/RxSwift/Grammar/过滤和条件操作符/" rel="prev" title="Swift-RxSwift-过滤和条件操作符">
+                Swift-RxSwift-过滤和条件操作符 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -669,7 +668,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#泛型"><span class="nav-number">1.</span> <span class="nav-text">泛型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#泛型函数"><span class="nav-number">2.</span> <span class="nav-text">泛型函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#泛型类型"><span class="nav-number">3.</span> <span class="nav-text">泛型类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#官方文档展示一个泛型类型的栈，使用Array来实现"><span class="nav-number">3.1.</span> <span class="nav-text">官方文档展示一个泛型类型的栈，使用Array来实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#泛型约束"><span class="nav-number">4.</span> <span class="nav-text">泛型约束</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关联类型"><span class="nav-number">5.</span> <span class="nav-text">关联类型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数学操作"><span class="nav-number">1.</span> <span class="nav-text">数学操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#toArray"><span class="nav-number">1.1.</span> <span class="nav-text">toArray</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reduce"><span class="nav-number">1.2.</span> <span class="nav-text">reduce</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#concat"><span class="nav-number">1.3.</span> <span class="nav-text">concat</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#连接性操作"><span class="nav-number">2.</span> <span class="nav-text">连接性操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#publish"><span class="nav-number">2.1.</span> <span class="nav-text">publish</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#replay"><span class="nav-number">2.2.</span> <span class="nav-text">replay</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#multicast"><span class="nav-number">2.3.</span> <span class="nav-text">multicast</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#错误处理"><span class="nav-number">3.</span> <span class="nav-text">错误处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#catchErrorJustReturn"><span class="nav-number">3.1.</span> <span class="nav-text">catchErrorJustReturn</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#catchError"><span class="nav-number">3.2.</span> <span class="nav-text">catchError</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#retry"><span class="nav-number">3.3.</span> <span class="nav-text">retry</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#debug"><span class="nav-number">4.</span> <span class="nav-text">debug</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RxSwift-Resources-total"><span class="nav-number">5.</span> <span class="nav-text">RxSwift.Resources.total</span></a></li></ol></div>
             
 
           </div>
