@@ -25,8 +25,8 @@
 
 <script>
     (function(){
-        if('213123'){
-            if (prompt('请输入文章密码') !== '213123'){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
                 alert('密码错误！');
                 history.back();
             }
@@ -113,7 +113,7 @@
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
 <meta property="og:description" content="项目 根据网上demo仿写原文  结构          Controller      LXFViewController.swift 主视图控制器   Extension      Response+ObjectMapper.swift Response分类，Moya请求完进行Json转模型或模型数组   Model      LXFModel.swift 模型   Protocol">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-01T08:35:58.943Z">
+<meta property="og:updated_time" content="2018-03-01T11:50:14.303Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RxSwift+Moya+列表展示">
 <meta name="twitter:description" content="项目 根据网上demo仿写原文  结构          Controller      LXFViewController.swift 主视图控制器   Extension      Response+ObjectMapper.swift Response分类，Moya请求完进行Json转模型或模型数组   Model      LXFModel.swift 模型   Protocol">
@@ -361,7 +361,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-01T12:32:50+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-01T19:32:50+08:00">
                 2018-03-01
               </time>
             
@@ -635,7 +635,71 @@
 <blockquote>
 <p>自定义Section<br>Model中创建一个Section的结构体，并且创建一个扩展，遵循SectionModelType协议，实现相应的协议方法</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">LXFModel</span>.swift</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">LXFSection</span> </span>&#123;</div><div class="line">  <span class="comment">// items就是rows</span></div><div class="line">  <span class="keyword">var</span> items : [<span class="type">Item</span>]</div><div class="line">  <span class="comment">//这里加你需要的东西，比如 headerView 的 title</span></div><div class="line">  </div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">LXFSection</span> : <span class="title">SectionModelType</span> </span>&#123;</div><div class="line">  <span class="comment">// 重定义 Item 的类型为 LXFModel</span></div><div class="line">  <span class="keyword">typealias</span> <span class="type">Item</span> = <span class="type">LXFModel</span></div><div class="line">  </div><div class="line">  <span class="comment">// 实现协议中的方式</span></div><div class="line">    <span class="keyword">init</span>(original: <span class="type">LXFSection</span>, items: [<span class="type">LXFSection</span>.<span class="type">Item</span>]) &#123;</div><div class="line">        <span class="keyword">self</span> = original</div><div class="line">        <span class="keyword">self</span>.items = items</div><div class="line"></div><div class="line">    &#125;</div><div class="line">  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">LXFModel</span>.swift</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">LXFSection</span> </span>&#123;</div><div class="line">  <span class="comment">// items就是rows</span></div><div class="line">  <span class="keyword">var</span> items : [<span class="type">Item</span>]</div><div class="line">  <span class="comment">//这里加你需要的东西，比如 headerView 的 title</span></div><div class="line">  </div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">LXFSection</span> : <span class="title">SectionModelType</span> </span>&#123;</div><div class="line">  <span class="comment">// 重定义 Item 的类型为 LXFModel</span></div><div class="line">  <span class="keyword">typealias</span> <span class="type">Item</span> = <span class="type">LXFModel</span></div><div class="line">  </div><div class="line">  <span class="comment">// 实现协议中的方式</span></div><div class="line">    <span class="keyword">init</span>(original: <span class="type">LXFSection</span>, items: [<span class="type">LXFSection</span>.<span class="type">Item</span>]) &#123;</div><div class="line">        <span class="keyword">self</span> = original</div><div class="line">        <span class="keyword">self</span>.items = items</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>❷控制器下创建数据源属性<br>LXFViewController.swift</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">//创建一个数据源属性，类型为自定义的Section类型</span></div><div class="line">   <span class="keyword">let</span> dataSource = <span class="type">RxTableViewSectionedReloadDataSource</span>&lt;<span class="type">LXFSection</span>&gt;()</div><div class="line">   </div><div class="line"> <span class="comment">//使用数据源属性绑定cell</span></div><div class="line"> dataSource.configureCell = &#123; ds,tv,ip,iteam <span class="keyword">in</span></div><div class="line">   <span class="comment">// 这个地方使用了Reusable这个库，在LXFViewCell中遵守了相应的协议</span></div><div class="line">   <span class="comment">// 使其方便转换cell为非可选型的相应的cell类型</span></div><div class="line">   <span class="keyword">let</span> cell = tv.dequeueReusableCell(<span class="keyword">for</span> : ip) <span class="keyword">as</span> <span class="type">LXFViewCell</span></div><div class="line">   cell.picView.kf.setImgage(with : <span class="type">URL</span>(string: item.url))</div><div class="line">   cell.descLabel.text = <span class="string">"描述 : (item.desc)"</span></div><div class="line">   cell.sourceLabel.text = <span class="string">"来源 : (item.source)"</span></div><div class="line">   <span class="keyword">return</span> cell;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>❸sections序列绑定给我们的rows</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">output.sections</div><div class="line">      .asDriver()</div><div class="line">      .drive(tableView.rx</div><div class="line">                      .items(dataSource : dataSource))</div><div class="line">       .addDisposable(rx_disposeBag)</div></pre></td></tr></table></figure>
+<h3 id="ViewModel的规范"><a href="#ViewModel的规范" class="headerlink" title="ViewModel的规范"></a>ViewModel的规范</h3><ul>
+<li>MVVM思想是将原本在ViewController的视图显示逻辑、验证逻辑、网络请求等代码存放于ViewModel中，达到ViewController瘦身-</li>
+<li>逻辑由ViewModel负责，外界不需要关心，外界只需要结果，ViewModel也只需要将结果给到外界</li>
+<li>基于此，我们定义了一个协议LXFViewModelType</li>
+</ul>
+<blockquote>
+<p>❶创建LXFViewModelType.swift</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">LXFViewModelType</span>.swift</div><div class="line"></div><div class="line"><span class="comment">// associatedtype 关键字 用来声明一个类型的占位符作为协议定义的一部分</span></div><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">LXFViewModelType</span> </span>&#123;</div><div class="line"></div><div class="line">  associatedtype <span class="type">Input</span></div><div class="line">  associatedtype <span class="type">Output</span></div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">transform</span><span class="params">(input : Input )</span></span> - &gt; <span class="type">Output</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>❷viewModel遵守LXFViewModelType协议</p>
+</blockquote>
+<ul>
+<li>可以为XFViewModelType的Input和Output定义别名，以示区分,如：这个viewModel的用于请求首页模块相关联的，则可以命名为：HomeInput 和 HomeOutput</li>
+<li>可以丰富我们的 Input 和 Output 。可以看到为Output添加了一个序列，类型为自定义的LXFSection数组，在Input里面添加了一个请求类型(即要请求什么数据，比如首页的数据)</li>
+<li>通过 transform 方法将input携带的数据进行处理，生成了一个Output</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">LXFViewModel</span>.swift</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">LXFViewModel</span> :<span class="title">LXFViewModelType</span> </span>&#123;</div><div class="line">        <span class="comment">// 存放着解析完成的模型数组</span></div><div class="line">        <span class="keyword">let</span> models = <span class="type">Variable</span> &lt;[<span class="type">LXFModel</span>]&gt;([])</div><div class="line">        </div><div class="line">        <span class="comment">// 为LXFViewModelType的Input和Output定义别名</span></div><div class="line">        <span class="keyword">typealias</span> <span class="type">Input</span> = <span class="type">LXFInput</span></div><div class="line">        <span class="keyword">typealias</span> <span class="type">Output</span> = <span class="type">LXFOutput</span></div><div class="line">        </div><div class="line">        <span class="comment">// 丰富Input和Output</span></div><div class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">LXFInput</span> </span>&#123;</div><div class="line">           <span class="comment">//网络请求类型</span></div><div class="line">           <span class="keyword">let</span> category : <span class="type">LXFNetworkTool</span>.<span class="type">LXFNetworkCategory</span></div><div class="line">           int(category : <span class="type">LXFNetworkTool</span>.<span class="type">LXFNetworkCategory</span>)&#123;</div><div class="line">              <span class="keyword">self</span>.category = category</div><div class="line">        &#125;</div><div class="line">     &#125;</div><div class="line">     </div><div class="line">     <span class="class"><span class="keyword">struct</span> <span class="title">LXFOutput</span> </span>&#123;</div><div class="line">            <span class="comment">//tableView的sections数据</span></div><div class="line">            <span class="keyword">let</span> sections : <span class="type">Driver</span> &lt;<span class="type">LXFsection</span>&gt;</div><div class="line">            </div><div class="line">            <span class="keyword">init</span>(sections : <span class="type">Driver</span> &lt;[<span class="type">LXFSection</span>]&gt;)&#123;</div><div class="line">               <span class="keyword">self</span>.sections = sections</div><div class="line">             &#125;</div><div class="line">      &#125;</div><div class="line">      </div><div class="line">      <span class="function"><span class="keyword">func</span> <span class="title">transform</span><span class="params">(input : LXFViewModel.LXFInput)</span></span> -&gt; <span class="type">LXFViewModel</span>.<span class="type">LXFOutput</span>&#123;</div><div class="line">           <span class="keyword">let</span> sections = models.asObservable()</div><div class="line">                                .<span class="built_in">map</span>&#123; (models) -&gt; [<span class="type">LXFSection</span>] <span class="keyword">in</span> </div><div class="line">                                 <span class="comment">// 当models的值被改变时会调用，这是Variable的特性</span></div><div class="line">                                 <span class="comment">// 返回section数组</span></div><div class="line">                                 <span class="keyword">return</span> [<span class="type">LXFSection</span>(item : models)]</div><div class="line">                                 &#125;</div><div class="line">                                 .asDriver(onErrorJustReturn : [])</div><div class="line">           <span class="keyword">let</span> output = <span class="type">LXFOutput</span>(sections : sections)</div><div class="line">       <span class="comment">// 接下来的代码是网络请求</span></div><div class="line">      &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>❸在ViewController中初始化我们的input，通过transform得到output，<br>然后将output中的sections序列绑定tableView的items</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">LXFViewController</span>.swift</div><div class="line"></div><div class="line"><span class="comment">// 初始化input</span></div><div class="line"><span class="keyword">let</span> vmInput = <span class="type">LXFViewModel</span>.<span class="type">LXFInput</span>(category : welfare)</div><div class="line"><span class="comment">// 通过transform得到output</span></div><div class="line"><span class="keyword">let</span> vmOutput = viewModel.transform(input : vmInput)</div><div class="line">vmOutput.sections</div><div class="line">        .asDriver()</div><div class="line">        .drive(tableView.rx</div><div class="line">                        .items(dataSource : dataSource))</div><div class="line">        .addDisposableTo(rx_disposeBag)</div></pre></td></tr></table></figure>
+<h3 id="MJRefresh"><a href="#MJRefresh" class="headerlink" title="MJRefresh"></a>MJRefresh</h3><blockquote>
+<p>❶定义枚举LXFRefreshStatus，用于标志当前刷新状态</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">LXFRefreshStatus</span> </span>&#123;</div><div class="line">     <span class="keyword">case</span> <span class="keyword">none</span></div><div class="line">     <span class="keyword">case</span> beingHeaderRefresh</div><div class="line">     <span class="keyword">case</span> endHeaderRefresh</div><div class="line">     <span class="keyword">case</span> beingFooterRefresh</div><div class="line">     <span class="keyword">case</span> endFooterRefresh</div><div class="line">     <span class="keyword">case</span> noMoreData</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>❷LXFOutput添加一个refreshStatus序列，类型为LXFRefreshStatus<br>给外界订阅，告诉外界的tableView当前的刷新状态</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> refreshStatus = <span class="type">Variable</span>&lt;<span class="type">LXFRefreshStatus</span>&gt;(.<span class="keyword">none</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>进行网络请求并得到结果之后，修改refreshStatus的value为相应的LXFRefreshStatus项</li>
+</ul>
+<blockquote>
+<p>❸外界订阅output的refreshStatus,并且根据接收到的值进行相应的操作</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">vmOutput.refreshStatus</div><div class="line">        .asObservable()</div><div class="line">        .subscribe(onNext : &#123;[<span class="keyword">weak</span> <span class="keyword">self</span>] status <span class="keyword">in</span> </div><div class="line">          <span class="keyword">switch</span> status &#123;</div><div class="line">           <span class="keyword">case</span> .beingHeaderRefresh:</div><div class="line">                <span class="keyword">self</span>?.tableView.mj_header</div><div class="line">                     .beginRefreshing()</div><div class="line">           <span class="keyword">case</span> .endHeaderRefresh:</div><div class="line">                <span class="keyword">self</span>?.tableView</div><div class="line">                     .mj_header</div><div class="line">                     .endRefreshing()</div><div class="line">           <span class="keyword">case</span> .beingFooterRefresh:</div><div class="line">                <span class="keyword">self</span>?.tableView</div><div class="line">                     .mj_footer</div><div class="line">                     .beginRefreshing()</div><div class="line">           <span class="keyword">case</span> .endFooterRefresh:</div><div class="line">                <span class="keyword">self</span>?.tableView</div><div class="line">                     .mj_footer</div><div class="line">                     .endRefreshing</div><div class="line">           <span class="keyword">case</span> .noMoreData :</div><div class="line">                 <span class="keyword">self</span>?.tableView</div><div class="line">                       .endRefreshingWithNoMoreData()</div><div class="line">            <span class="keyword">default</span> :</div><div class="line">             <span class="keyword">break</span></div><div class="line">        &#125;</div><div class="line">  &#125;).addDisposable(rx_disposeBag)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>❹output提供一个requestCommond用于请求数据<br>PublishSubject 的特点：即可以作为Observable，也可以作为Observer，就是可以发送信号，也可以订阅信号<br>外界通过该属性告诉viewModel加载数据（传入的值是为了标志是否重新加载）</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> requestCommond = <span class="type">PublishSubject</span>&lt;<span class="type">Bool</span>&gt;()</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在transform中，对生成的output的requestCommond进行订阅</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">output.requestCommond</div><div class="line">      .subscribe(onNext : &#123; [<span class="keyword">unowned</span> <span class="keyword">self</span>] isReloadData <span class="keyword">in</span></div><div class="line">      <span class="keyword">self</span>.index = isReload ?<span class="number">1</span>:<span class="keyword">self</span>.index+<span class="number">1</span></div><div class="line">      lxfNetTool.request(.data(type:input.category,</div><div class="line">                               size:<span class="number">10</span>,</div><div class="line">                               index:<span class="keyword">self</span>.index</div><div class="line">                               )</div><div class="line">                         )</div><div class="line">                 .mapArray(<span class="type">LXFModel</span>.<span class="keyword">self</span>)</div><div class="line">                 .subscribe(&#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] (event) <span class="keyword">in</span></div><div class="line">                     <span class="keyword">switch</span> event &#123;</div><div class="line">                        <span class="keyword">case</span> <span class="keyword">let</span>.next(modelArr):</div><div class="line">                           <span class="keyword">self</span>?.models.value = isReloadData?modelArr:(<span class="keyword">self</span>?.models.value??[])+modelArr</div><div class="line">                           <span class="type">LXFProgressHUD</span>.showSuccess(<span class="string">"加载成功"</span>)</div><div class="line">                        <span class="keyword">case</span> <span class="keyword">let</span>.error(error):</div><div class="line">                           <span class="type">LXFProgressHUD</span>.showError(error.localizedDescription)</div><div class="line">                        <span class="keyword">case</span> .completed:</div><div class="line">                           output.refreshStatus.value = isReloadData?.endHeaderRefresh:.endFooterRefresh</div><div class="line">                     &#125;</div><div class="line">                  &#125;)</div><div class="line">                  .addDisposableTo(slf.rx_disposeBag)</div><div class="line">     &#125;)</div><div class="line">     .addDisposableTo(rx_disposeBag)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>❺在ViewController中初始化刷新控件<br>为tableView设置刷新控件，并且在创建刷新控件的回调中使用output的requestCommond发射信号</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">tableView.mj_header = <span class="type">MJRefreshNormalHeader</span>(refreshingBlock:&#123;</div><div class="line">  vmOutput.requestCommond</div><div class="line">          .onNext(<span class="literal">true</span>)</div><div class="line"> &#125;)</div><div class="line"></div><div class="line">tableView.mj_footer = <span class="type">MJRefreshAutoNormalFooter</span>(refreshingBlock:&#123;</div><div class="line">  vmOutput.requestCommond</div><div class="line">          .onNext(<span class="literal">false</span>)</div></pre></td></tr></table></figure>
+<h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><ul>
+<li>ViewController已经拿到output，当下拉加载数据的时候，使用output的requestCommond发射信息，告诉viewModel我们要加载数据</li>
+<li>viewModel请求数据，在处理完json转模型或模型数组后修改models，当models的值被修改的时候会发信号给sections，sections在ViewController已经绑定到tableView的items了，所以此时tableView的数据会被更新。接着我们根据请求结果，修改output的refreshStatus属性的值</li>
+<li>当output的refreshStatus属性的值改变后，会发射信号，由于外界之前已经订阅了output的refreshStatus，此时就会根据refreshStatus的新值来处理刷新控件的状态</li>
+</ul>
+<p><a href="https://github.com/LinXunFeng/RxSwiftDemo" target="_blank" rel="external">原文Demo</a></p>
+
       
     </div>
     
@@ -669,8 +733,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/01/RxSwift/Demo/RxSwift+Moya+登录+搜索/" rel="next" title="RxSwift+Moya+登录+搜索">
-                <i class="fa fa-chevron-left"></i> RxSwift+Moya+登录+搜索
+              <a href="/2018/03/01/Swift/Grammar/Protocol协议-Base/" rel="next" title="Swift-Grammar-Protocol协议-Base">
+                <i class="fa fa-chevron-left"></i> Swift-Grammar-Protocol协议-Base
               </a>
             
           </div>
@@ -678,10 +742,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/01/Swift/Grammar/Protocol协议-Base/" rel="prev" title="Swift-Grammar-Protocol协议-Base">
-                Swift-Grammar-Protocol协议-Base <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -815,7 +875,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#项目"><span class="nav-number">1.</span> <span class="nav-text">项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#结构"><span class="nav-number">1.1.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三方库"><span class="nav-number">1.2.</span> <span class="nav-text">第三方库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Moya"><span class="nav-number">1.2.1.</span> <span class="nav-text">Moya</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RxDataSources"><span class="nav-number">1.2.2.</span> <span class="nav-text">RxDataSources</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#项目"><span class="nav-number">1.</span> <span class="nav-text">项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#结构"><span class="nav-number">1.1.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三方库"><span class="nav-number">1.2.</span> <span class="nav-text">第三方库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Moya"><span class="nav-number">1.2.1.</span> <span class="nav-text">Moya</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RxDataSources"><span class="nav-number">1.2.2.</span> <span class="nav-text">RxDataSources</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ViewModel的规范"><span class="nav-number">1.2.3.</span> <span class="nav-text">ViewModel的规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MJRefresh"><span class="nav-number">1.2.4.</span> <span class="nav-text">MJRefresh</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#流程"><span class="nav-number">2.</span> <span class="nav-text">流程</span></a></li></ol></div>
             
 
           </div>
