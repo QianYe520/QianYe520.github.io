@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
 <meta property="og:description" content="OC-Block Block通常会用在网络请求中，请求到数据后然后回调  @implementation HttpTool-(void)loadData:(void(^)(NSString * json))callBack&amp;#123;        dispatch_async(dispatch_get_global_queue(0, 0), ^&amp;#123;         NSLog(@&quot;%@&quot;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-28T11:32:15.029Z">
+<meta property="og:updated_time" content="2018-03-01T01:26:48.575Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift-Grammar-Closures闭包-使用分析">
 <meta name="twitter:description" content="OC-Block Block通常会用在网络请求中，请求到数据后然后回调  @implementation HttpTool-(void)loadData:(void(^)(NSString * json))callBack&amp;#123;        dispatch_async(dispatch_get_global_queue(0, 0), ^&amp;#123;         NSLog(@&quot;%@&quot;">
@@ -453,8 +453,12 @@
 <h1 id="用闭包来重写上面的逻辑"><a href="#用闭包来重写上面的逻辑" class="headerlink" title="用闭包来重写上面的逻辑"></a>用闭包来重写上面的逻辑</h1><blockquote>
 <p>1，闭包的类型：(参数列表) -&gt; (返回值列表)</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
-<p><a href="https://www.jianshu.com/p/3a4e72b5eefd" target="_blank" rel="external"></a></p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> UIKit</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HttpTool</span>:<span class="title">NSObject</span></span>&#123;</div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">loadData</span><span class="params">(callBack:<span class="params">(json:String)</span></span></span>-&gt;())&#123;</div><div class="line">  dispatch_async(dispatch_get_global_queue(<span class="number">0</span>, <span class="number">0</span>)) &#123;</div><div class="line">      <span class="built_in">print</span>(<span class="string">"\(NSthread.currentThread)"</span>)</div><div class="line">      dispatch_sync(dispatch_get_main_queue(), &#123;</div><div class="line">      <span class="built_in">print</span>(<span class="string">"\((NSThread.currentThread())"</span>)</div><div class="line">      callBack(json:<span class="string">"json"</span>)</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>2.调用</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> UIKit</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span> </span>&#123;</div><div class="line"><span class="keyword">var</span> tool : <span class="type">HttpTool</span> = <span class="type">HttpTool</span>()</div><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">    <span class="keyword">super</span>.viewDidLoad()</div><div class="line">&#125;</div><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">touchesBegan</span><span class="params">(touches: Set&lt;UITouch&gt;, withEvent event: UIEvent?)</span></span> &#123;</div><div class="line">  tool.loadData&#123;(json) <span class="keyword">in</span></div><div class="line">  <span class="built_in">print</span>(<span class="string">"\(json)"</span>)</div><div class="line"> &#125;</div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="闭包的循环引用"><a href="#闭包的循环引用" class="headerlink" title="闭包的循环引用"></a>闭包的循环引用</h1><p><a href="https://www.jianshu.com/p/3a4e72b5eefd" target="_blank" rel="external"></a></p>
 
       
     </div>
@@ -625,7 +629,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OC-Block"><span class="nav-number">1.</span> <span class="nav-text">OC-Block</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用闭包来重写上面的逻辑"><span class="nav-number">2.</span> <span class="nav-text">用闭包来重写上面的逻辑</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OC-Block"><span class="nav-number">1.</span> <span class="nav-text">OC-Block</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用闭包来重写上面的逻辑"><span class="nav-number">2.</span> <span class="nav-text">用闭包来重写上面的逻辑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#闭包的循环引用"><span class="nav-number">3.</span> <span class="nav-text">闭包的循环引用</span></a></li></ol></div>
             
 
           </div>
