@@ -113,7 +113,7 @@
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
 <meta property="og:description" content="Model赋值 某个key（比如has_next_page）没var，但数据里有(forUndefinedKey)  reason:this class is not key value coding-compliant for the key has_next_page.&apos;  forKey/forUndefinedKey  //forKeyoverride func setValue(_ val">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-14T08:36:56.000Z">
+<meta property="og:updated_time" content="2018-03-07T05:44:56.151Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift-Error-开发错误锦集">
 <meta name="twitter:description" content="Model赋值 某个key（比如has_next_page）没var，但数据里有(forUndefinedKey)  reason:this class is not key value coding-compliant for the key has_next_page.&apos;  forKey/forUndefinedKey  //forKeyoverride func setValue(_ val">
@@ -459,6 +459,16 @@
 <p>添加环境变量 </p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">【product】-【scheme】-【Edit Scheme】-【Run】-【Argument】-【Environment Variable】添加key Value【OS_ACTIVITY_MODE disable】</div></pre></td></tr></table></figure>
+<p>#检查字典或者数组的形式是否正确</p>
+<blockquote>
+<p>Swift编译时报错：Command failed due to signal: Segmentation fault: 11<br>在网络请求完，解析的时候遇到这个问题：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">Alamofire</span>.request(.<span class="type">GET</span>, <span class="string">"http://api.budejie.com/api/api_open.php"</span>, parameters: [<span class="string">"a"</span>:<span class="string">"newlist"</span>, <span class="string">"c"</span>:<span class="string">"data"</span>, <span class="string">"type"</span>:<span class="number">1</span>]).responseJSON() &#123; response <span class="keyword">in</span></div><div class="line"></div><div class="line">        <span class="keyword">let</span> json = <span class="type">JSON</span>(response.result.value!)</div><div class="line">        arr = json[<span class="string">"list"</span>].arrayObject!</div><div class="line">        <span class="type">DRLog</span>(arr)</div><div class="line">        <span class="keyword">self</span>.tableView.reloadData()</div><div class="line">      &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在控制台上看到的确实是arr是一个数组形式，里面有多个NSDictionary形式，但是如果我们直接这个用：arr[index][“text”]是错误的。必须先将arr中的每个类似NSDictionary形式转换成NSDictionary：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">let</span> dic = arr[index] <span class="keyword">as</span>! <span class="type">NSDictionary</span></div><div class="line"><span class="keyword">let</span> text = dic[<span class="string">"text"</span>] <span class="keyword">as</span>? <span class="type">String</span></div></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -490,8 +500,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/14/Swift/UIKit/Swift-UIKit-UIWebView-简介/" rel="next" title="Swift-UIKit-UIWebView-简介">
-                <i class="fa fa-chevron-left"></i> Swift-UIKit-UIWebView-简介
+              <a href="/2017/12/14/Swift/UIKit/Swift-UIKit-UIWebView-简单使用/" rel="next" title="Swift-UIKit-UIWebView-简单使用">
+                <i class="fa fa-chevron-left"></i> Swift-UIKit-UIWebView-简单使用
               </a>
             
           </div>
