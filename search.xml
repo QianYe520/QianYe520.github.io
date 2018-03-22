@@ -91,8 +91,8 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Error</tag>
+        <tag>Swift</tag>
         <tag>RxSwift</tag>
       </tags>
   </entry>
@@ -130,8 +130,8 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Func</tag>
+        <tag>Swift</tag>
         <tag>RxSwift</tag>
       </tags>
   </entry>
@@ -144,8 +144,8 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Func</tag>
+        <tag>Swift</tag>
         <tag>RxSwift</tag>
       </tags>
   </entry>
@@ -207,8 +207,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>SceneKit</tag>
         <tag>Func</tag>
+        <tag>SceneKit</tag>
       </tags>
   </entry>
   <entry>
@@ -221,9 +221,9 @@
         <category>NSSet</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
-        <tag>UIKit</tag>
         <tag>OC</tag>
+        <tag>UIKit</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -264,14 +264,13 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[iOS-SceneKit-Reference-资料]]></title>
-    <url>%2F2018%2F02%2F05%2FSceneKit%2FReference-%E8%B5%84%E6%96%99%2F</url>
+    <title><![CDATA[SceneKit-Reference-资料]]></title>
+    <url>%2F2018%2F02%2F05%2FSceneKit%2FReference%2FReference-%E8%B5%84%E6%96%99%2F</url>
     <content type="text"><![CDATA[]]></content>
       <categories>
         <category>SceneKit</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>SceneKit</tag>
         <tag>Reference</tag>
       </tags>
@@ -407,8 +406,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>SceneKit</tag>
         <tag>Grammar</tag>
+        <tag>SceneKit</tag>
       </tags>
   </entry>
   <entry>
@@ -420,8 +419,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>SceneKit</tag>
         <tag>Grammar</tag>
+        <tag>SceneKit</tag>
       </tags>
   </entry>
   <entry>
@@ -433,9 +432,9 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>SceneKit</tag>
         <tag>Grammar</tag>
         <tag>Swift</tag>
+        <tag>SceneKit</tag>
       </tags>
   </entry>
   <entry>
@@ -547,8 +546,8 @@
         <category>WCDB</category>
       </categories>
       <tags>
-        <tag>Lib</tag>
         <tag>OC</tag>
+        <tag>Lib</tag>
         <tag>WCDB</tag>
         <tag>数据库</tag>
       </tags>
@@ -669,8 +668,8 @@
         <category>ArcGIS</category>
       </categories>
       <tags>
-        <tag>Lib</tag>
         <tag>OC</tag>
+        <tag>Lib</tag>
         <tag>ArcGIS</tag>
         <tag>大图加载</tag>
       </tags>
@@ -706,8 +705,8 @@
         <category>WKWebView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>WKWebView</tag>
       </tags>
   </entry>
@@ -875,9 +874,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Swift-RxSwift-创建序列Observable]]></title>
-    <url>%2F2017%2F12%2F15%2FRxSwift%2FGrammar%2F%E5%88%9B%E5%BB%BA%E5%BA%8F%E5%88%97Observable%2F</url>
-    <content type="text"><![CDATA[Rx 几种创建方式 asObservable 返回一个序列 create 使用 Swift 闭包的方式创建序列 deferred 只有在有观察者订阅时，才去创建序列 empty 创建一个空的序列，只发射一个 .Completed error 创建一个发射 error 终止的序列 toObservable 使用 SequenceType 创建序列 interval 创建一个每隔一段时间就发射的递增序列 never 不创建序列，也不发送通知 just 只创建包含一个元素的序列。换言之，只发送一个值和 .Completed of 通过一组元素创建一个序列 range 创建一个有范围的递增序列 repeatElement 创建一个发射重复值的序列 timer 创建一个带延迟的序列 create 使用 Swift 闭包的方式创建序列，这里创建了一个 Just 的示例 let myJust = &#123; (singleElement: Int) -&gt; Observable&lt;Int&gt; in return Observable.create &#123; observer in observer.on(.Next(singleElement)) observer.on(.Completed) return NopDisposable.instance &#125;&#125;_ = myJust(5) .subscribe &#123; event in print(event)&#125; deferred 只有在有观察者订阅时，才去创建序列 let deferredSequence: Observable&lt;Int&gt; = Observable.deferred &#123; print(&quot;creating&quot;) return Observable.create &#123; observer in print(&quot;emmiting&quot;) observer.on(.Next(0)) observer.on(.Next(1)) observer.on(.Next(2)) return NopDisposable.instance &#125;&#125;_ = deferredSequence .subscribe &#123; event in print(event)&#125;_ = deferredSequence .subscribe &#123; event in print(event)&#125; empty 创建一个空的序列，只发射一个 .Completed： let emptySequence = Observable&lt;Int&gt;.empty()_ = emptySequence .subscribe &#123; event in print(event)&#125; error 创建一个发射 error 终止的序列 let error = NSError(domain: "Test", code: -1, userInfo: nil)let erroredSequence = Observable&lt;Int&gt;.error(error)_ = erroredSequence .subscribe &#123; event in print(event)&#125; toObservable 使用 SequenceType 创建序列： let sequenceFromArray = [1, 2, 3, 4, 5].toObservable()_ = sequenceFromArray .subscribe &#123; event in print(event)&#125; interval 创建一个每隔一段时间就发射的递增序列： let intervalSequence = Observable&lt;Int&gt;.interval(3, scheduler: MainScheduler.instance)_ = intervalSequence.subscribe &#123; event in print(event)&#125; never 不创建序列，也不发送通知： let neverSequence = Observable&lt;Int&gt;.never()_ = neverSequence .subscribe &#123; _ in print("这句话永远不会打出来.")&#125; just 只创建包含一个元素的序列。换言之，只发送一个值和 .Completed： et singleElementSequence = Observable.just(32)_ = singleElementSequence .subscribe &#123; event in print(event)&#125; of 通过一组元素创建一个序列： let sequenceOfElements/* : Observable&lt;Int&gt; */ = Observable.of(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)_ = sequenceOfElements .subscribe &#123; event in print(event)&#125; range 创建一个有范围的递增序列： let rangeSequence = Observable.range(start: 1, count: 10)_ = rangeSequence.subscribe &#123; event in print(event)&#125; repeatElement 创建一个发射重复值的序列： let repeatElementSequence = Observable.repeatElement(1)_ = repeatElementSequence.subscribe &#123; event in print(event)&#125; timer 创建一个带延迟的序列： let timerSequence = Observable&lt;Int&gt;.timer(1, period: 1, scheduler: MainScheduler.instance)_ = timerSequence.subscribe &#123; event in print(event)&#125;]]></content>
+    <title><![CDATA[Swift-RxSwift-简介以及简单学习使用]]></title>
+    <url>%2F2017%2F12%2F15%2FRxSwift%2FGrammar%2F%E7%AE%80%E4%BB%8B%E4%BB%A5%E5%8F%8A%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[Swift-RxSwift-简介以及简单学习使用 RxSwift 项目文档中 Why 已有详细介绍 Bindings [RxWhy] -&gt; [Bindings] -&gt; [BindingsViewController.swift] Observable.combineLatest(firstName.rx_text, lastName.rx_text) &#123; $0 + " " + $1 &#125; // ① .map &#123; "Greeting \($0)" &#125; // ② .bindTo(greetingLabel.rx_text) // ③ 将 firstName 和 lastName 的 text 属性结合起来，并进行合并处理，也就是 $0 + “ “ + $1 这部分，用空格将两个值合并起来作为结果传递给后面使用 使用 map 的方法，将上一步得到值前面加上一个 Greeting ，并将该值传递给后面使用 bindTo 就是绑定，将上一步的值绑定到 greetingLabel 的 text 代码就是实时的执行 greetingLabel.text = "Greeting " + firstName.text + " " + lastName.text 要求是实时 每当 fisrtName.text 或者 lastName.text 改变时， greetingLabel.text 都要随之改变 ContentOffset 经常通过 delegate 处理 scrollView 的 contentOffset 变化问题 public func scrollViewDidScroll(scrollView: UIScrollView) &#123; self.title = "contentOffset.x = \(scrollView.contentOffset.y)"&#125; 可能就和关联的逻辑分家了，内聚性啊…而且多个 scrollView ，还要做额外的判断处理，复杂性可想而知也有写过通过 closure 来解决的，其实可以认为 Rx 自带了这些功能（而且更强大[RxWhy] -&gt; [ContentOffset] -&gt; [ContentOffsetViewController.swift]Note: 在使用了 rx_contentOffset 后，最好不要去更改 delegate同样 button 也有类似的功能 tableView.rx_contentOffset .map &#123; $0.y &#125; .subscribeNext &#123; [unowned self] in self.title = "contentOffset.x = \($0)" &#125;.addDisposableTo(disposeBag) Tap button 的点击事件是一个很棘手的问题了，建立一个 target ，同时还使用的带字符串的 Select，button 的点击也和响应逻辑分家了处理方式会有两个问题 使用了带 String 的 Target 点击的关联事件代码和处理的逻辑分开了 button.addTarget(self, action: "tapButton", forControlEvents: .TouchDragInside) Rx 已经提供了 closure 的功能 button.rx_tap .subscribeNext &#123; print("Tap") &#125;.addDisposableTo(disposeBag) 资料来源]]></content>
       <categories>
         <category>Swift</category>
         <category>RxSwift</category>
@@ -888,9 +887,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Swift-RxSwift-简介以及简单学习使用]]></title>
-    <url>%2F2017%2F12%2F15%2FRxSwift%2FGrammar%2F%E7%AE%80%E4%BB%8B%E4%BB%A5%E5%8F%8A%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8%2F</url>
-    <content type="text"><![CDATA[Swift-RxSwift-简介以及简单学习使用 RxSwift 项目文档中 Why 已有详细介绍 Bindings [RxWhy] -&gt; [Bindings] -&gt; [BindingsViewController.swift] Observable.combineLatest(firstName.rx_text, lastName.rx_text) &#123; $0 + " " + $1 &#125; // ① .map &#123; "Greeting \($0)" &#125; // ② .bindTo(greetingLabel.rx_text) // ③ 将 firstName 和 lastName 的 text 属性结合起来，并进行合并处理，也就是 $0 + “ “ + $1 这部分，用空格将两个值合并起来作为结果传递给后面使用 使用 map 的方法，将上一步得到值前面加上一个 Greeting ，并将该值传递给后面使用 bindTo 就是绑定，将上一步的值绑定到 greetingLabel 的 text 代码就是实时的执行 greetingLabel.text = "Greeting " + firstName.text + " " + lastName.text 要求是实时 每当 fisrtName.text 或者 lastName.text 改变时， greetingLabel.text 都要随之改变 ContentOffset 经常通过 delegate 处理 scrollView 的 contentOffset 变化问题 public func scrollViewDidScroll(scrollView: UIScrollView) &#123; self.title = "contentOffset.x = \(scrollView.contentOffset.y)"&#125; 可能就和关联的逻辑分家了，内聚性啊…而且多个 scrollView ，还要做额外的判断处理，复杂性可想而知也有写过通过 closure 来解决的，其实可以认为 Rx 自带了这些功能（而且更强大[RxWhy] -&gt; [ContentOffset] -&gt; [ContentOffsetViewController.swift]Note: 在使用了 rx_contentOffset 后，最好不要去更改 delegate同样 button 也有类似的功能 tableView.rx_contentOffset .map &#123; $0.y &#125; .subscribeNext &#123; [unowned self] in self.title = "contentOffset.x = \($0)" &#125;.addDisposableTo(disposeBag) Tap button 的点击事件是一个很棘手的问题了，建立一个 target ，同时还使用的带字符串的 Select，button 的点击也和响应逻辑分家了处理方式会有两个问题 使用了带 String 的 Target 点击的关联事件代码和处理的逻辑分开了 button.addTarget(self, action: "tapButton", forControlEvents: .TouchDragInside) Rx 已经提供了 closure 的功能 button.rx_tap .subscribeNext &#123; print("Tap") &#125;.addDisposableTo(disposeBag) 资料来源]]></content>
+    <title><![CDATA[Swift-RxSwift-创建序列Observable]]></title>
+    <url>%2F2017%2F12%2F15%2FRxSwift%2FGrammar%2F%E5%88%9B%E5%BB%BA%E5%BA%8F%E5%88%97Observable%2F</url>
+    <content type="text"><![CDATA[Rx 几种创建方式 asObservable 返回一个序列 create 使用 Swift 闭包的方式创建序列 deferred 只有在有观察者订阅时，才去创建序列 empty 创建一个空的序列，只发射一个 .Completed error 创建一个发射 error 终止的序列 toObservable 使用 SequenceType 创建序列 interval 创建一个每隔一段时间就发射的递增序列 never 不创建序列，也不发送通知 just 只创建包含一个元素的序列。换言之，只发送一个值和 .Completed of 通过一组元素创建一个序列 range 创建一个有范围的递增序列 repeatElement 创建一个发射重复值的序列 timer 创建一个带延迟的序列 create 使用 Swift 闭包的方式创建序列，这里创建了一个 Just 的示例 let myJust = &#123; (singleElement: Int) -&gt; Observable&lt;Int&gt; in return Observable.create &#123; observer in observer.on(.Next(singleElement)) observer.on(.Completed) return NopDisposable.instance &#125;&#125;_ = myJust(5) .subscribe &#123; event in print(event)&#125; deferred 只有在有观察者订阅时，才去创建序列 let deferredSequence: Observable&lt;Int&gt; = Observable.deferred &#123; print(&quot;creating&quot;) return Observable.create &#123; observer in print(&quot;emmiting&quot;) observer.on(.Next(0)) observer.on(.Next(1)) observer.on(.Next(2)) return NopDisposable.instance &#125;&#125;_ = deferredSequence .subscribe &#123; event in print(event)&#125;_ = deferredSequence .subscribe &#123; event in print(event)&#125; empty 创建一个空的序列，只发射一个 .Completed： let emptySequence = Observable&lt;Int&gt;.empty()_ = emptySequence .subscribe &#123; event in print(event)&#125; error 创建一个发射 error 终止的序列 let error = NSError(domain: "Test", code: -1, userInfo: nil)let erroredSequence = Observable&lt;Int&gt;.error(error)_ = erroredSequence .subscribe &#123; event in print(event)&#125; toObservable 使用 SequenceType 创建序列： let sequenceFromArray = [1, 2, 3, 4, 5].toObservable()_ = sequenceFromArray .subscribe &#123; event in print(event)&#125; interval 创建一个每隔一段时间就发射的递增序列： let intervalSequence = Observable&lt;Int&gt;.interval(3, scheduler: MainScheduler.instance)_ = intervalSequence.subscribe &#123; event in print(event)&#125; never 不创建序列，也不发送通知： let neverSequence = Observable&lt;Int&gt;.never()_ = neverSequence .subscribe &#123; _ in print("这句话永远不会打出来.")&#125; just 只创建包含一个元素的序列。换言之，只发送一个值和 .Completed： et singleElementSequence = Observable.just(32)_ = singleElementSequence .subscribe &#123; event in print(event)&#125; of 通过一组元素创建一个序列： let sequenceOfElements/* : Observable&lt;Int&gt; */ = Observable.of(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)_ = sequenceOfElements .subscribe &#123; event in print(event)&#125; range 创建一个有范围的递增序列： let rangeSequence = Observable.range(start: 1, count: 10)_ = rangeSequence.subscribe &#123; event in print(event)&#125; repeatElement 创建一个发射重复值的序列： let repeatElementSequence = Observable.repeatElement(1)_ = repeatElementSequence.subscribe &#123; event in print(event)&#125; timer 创建一个带延迟的序列： let timerSequence = Observable&lt;Int&gt;.timer(1, period: 1, scheduler: MainScheduler.instance)_ = timerSequence.subscribe &#123; event in print(event)&#125;]]></content>
       <categories>
         <category>Swift</category>
         <category>RxSwift</category>
@@ -910,8 +909,8 @@
         <category>UIImagePickerController</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UIImagePickerController</tag>
       </tags>
   </entry>
@@ -925,8 +924,8 @@
         <category>NSAttributedString</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>NSAttributedString</tag>
       </tags>
   </entry>
@@ -939,8 +938,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Func</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -952,8 +951,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Func</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -965,8 +964,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Func</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -979,8 +978,8 @@
         <category>NSNotificationCenter</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>NSNotificationCenter</tag>
       </tags>
   </entry>
@@ -1017,8 +1016,8 @@
         <category>UITableView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITableView</tag>
       </tags>
   </entry>
@@ -1031,8 +1030,8 @@
         <category>Error</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Error</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1044,8 +1043,8 @@
         <category>Error</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Error</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1058,8 +1057,8 @@
         <category>UIWebView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UIWebView</tag>
       </tags>
   </entry>
@@ -1073,8 +1072,8 @@
         <category>UIWebView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UIWebView</tag>
       </tags>
   </entry>
@@ -1088,8 +1087,8 @@
         <category>UINavigationController</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UINavigationController</tag>
       </tags>
   </entry>
@@ -1103,8 +1102,8 @@
         <category>UINavigationController</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UINavigationController</tag>
       </tags>
   </entry>
@@ -1118,8 +1117,8 @@
         <category>UISegmentedControl</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UISegmentedControl</tag>
       </tags>
   </entry>
@@ -1133,8 +1132,8 @@
         <category>UISegmentedControl</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UISegmentedControl</tag>
       </tags>
   </entry>
@@ -1148,8 +1147,8 @@
         <category>UISwitch</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UISwitch</tag>
       </tags>
   </entry>
@@ -1163,8 +1162,8 @@
         <category>UISwitch</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UISwitch</tag>
       </tags>
   </entry>
@@ -1178,8 +1177,8 @@
         <category>UITextField</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITextField</tag>
       </tags>
   </entry>
@@ -1193,8 +1192,8 @@
         <category>UITxtxField</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITxtxField</tag>
       </tags>
   </entry>
@@ -1208,8 +1207,8 @@
         <category>UIImage</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UIImage</tag>
       </tags>
   </entry>
@@ -1223,8 +1222,8 @@
         <category>UIImage</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UIImage</tag>
       </tags>
   </entry>
@@ -1238,8 +1237,8 @@
         <category>UITableViewCell</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITableViewCell</tag>
       </tags>
   </entry>
@@ -1253,8 +1252,8 @@
         <category>UITableViewCell</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITableViewCell</tag>
       </tags>
   </entry>
@@ -1268,8 +1267,8 @@
         <category>UITableView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITableView</tag>
       </tags>
   </entry>
@@ -1283,8 +1282,8 @@
         <category>UITableView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITableView</tag>
       </tags>
   </entry>
@@ -1298,9 +1297,9 @@
         <category>UIScrollView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
         <tag>UIScrollView</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1313,9 +1312,9 @@
         <category>UIScrollView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
         <tag>UIScrollView</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1328,8 +1327,8 @@
         <category>UITextView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITextView</tag>
       </tags>
   </entry>
@@ -1343,8 +1342,8 @@
         <category>UITextView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITextView</tag>
       </tags>
   </entry>
@@ -1358,8 +1357,8 @@
         <category>UIActionSheet</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UIActionSheet</tag>
       </tags>
   </entry>
@@ -1373,8 +1372,8 @@
         <category>UIActionSheet</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UIActionSheet</tag>
       </tags>
   </entry>
@@ -1387,8 +1386,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Func</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1401,8 +1400,8 @@
         <category>NSTimer</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>NSTimer</tag>
       </tags>
   </entry>
@@ -1416,8 +1415,8 @@
         <category>UICollectionView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UICollectionView</tag>
       </tags>
   </entry>
@@ -1431,8 +1430,8 @@
         <category>UICollectionView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UICollectionView</tag>
       </tags>
   </entry>
@@ -1447,16 +1446,6 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[Swift-Lib-Kingfisher-图片加载库]]></title>
-    <url>%2F2017%2F12%2F13%2FSwift%2FLib%2FKingfisher-%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%BA%93%2F</url>
-    <content type="text"><![CDATA[http://blog.csdn.net/djh996064549/article/details/71085679]]></content>
-      <categories>
-        <category>Swift</category>
-        <category>Lib</category>
-        <category>Kingfisher</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[Swift-Lib-SnapKit-自动布局]]></title>
     <url>%2F2017%2F12%2F13%2FSwift%2FLib%2FSnapKit-%E8%87%AA%E5%8A%A8%E5%B8%83%E5%B1%80%2F</url>
     <content type="text"><![CDATA[https://www.jianshu.com/p/2bad53a2a180]]></content>
@@ -1464,6 +1453,16 @@
         <category>Swift</category>
         <category>Lib</category>
         <category>SnapKit</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Swift-Lib-Kingfisher-图片加载库]]></title>
+    <url>%2F2017%2F12%2F13%2FSwift%2FLib%2FKingfisher-%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%BA%93%2F</url>
+    <content type="text"><![CDATA[http://blog.csdn.net/djh996064549/article/details/71085679]]></content>
+      <categories>
+        <category>Swift</category>
+        <category>Lib</category>
+        <category>Kingfisher</category>
       </categories>
   </entry>
   <entry>
@@ -1632,8 +1631,8 @@
         <category>UITableView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITableView</tag>
       </tags>
   </entry>
@@ -1647,8 +1646,8 @@
         <category>AFN</category>
       </categories>
       <tags>
-        <tag>Error</tag>
         <tag>OC</tag>
+        <tag>Error</tag>
         <tag>AFN</tag>
       </tags>
   </entry>
@@ -1681,8 +1680,8 @@
         <category>UIImageView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UIImageView</tag>
       </tags>
   </entry>
@@ -1696,8 +1695,8 @@
         <category>UISegmentedControl</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UISegmentedControl</tag>
       </tags>
   </entry>
@@ -1711,8 +1710,8 @@
         <category>UISwitch</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UISwitch</tag>
       </tags>
   </entry>
@@ -1726,8 +1725,8 @@
         <category>UIStepper</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UIStepper</tag>
       </tags>
   </entry>
@@ -1741,8 +1740,8 @@
         <category>UISlider</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UISlider</tag>
       </tags>
   </entry>
@@ -1756,8 +1755,8 @@
         <category>UITextField</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITextField</tag>
       </tags>
   </entry>
@@ -1785,8 +1784,8 @@
         <category>UILabel</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UILabel</tag>
       </tags>
   </entry>
@@ -1800,8 +1799,8 @@
         <category>AppDelegate</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>AppDelegate</tag>
       </tags>
   </entry>
@@ -2199,8 +2198,8 @@
         <category>Layer</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>OC</tag>
+        <tag>UIKit</tag>
         <tag>Layer</tag>
         <tag>Shadow</tag>
       </tags>
@@ -2227,9 +2226,9 @@
         <category>UIScrollView</category>
       </categories>
       <tags>
+        <tag>OC</tag>
         <tag>UIKit</tag>
         <tag>UIScrollView</tag>
-        <tag>OC</tag>
       </tags>
   </entry>
   <entry>
@@ -2315,8 +2314,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Func</tag>
         <tag>OC</tag>
+        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
@@ -2329,8 +2328,8 @@
         <category>JSBadgeView</category>
       </categories>
       <tags>
-        <tag>Lib</tag>
         <tag>OC</tag>
+        <tag>Lib</tag>
         <tag>UI</tag>
       </tags>
   </entry>
@@ -2434,8 +2433,8 @@
         <category>UIKit</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>OC</tag>
+        <tag>UIKit</tag>
         <tag>Autoreleasepool</tag>
       </tags>
   </entry>
