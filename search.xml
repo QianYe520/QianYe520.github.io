@@ -426,7 +426,7 @@
   </entry>
   <entry>
     <title><![CDATA[SceneKit-几何物体-正方体]]></title>
-    <url>%2F2018%2F01%2F18%2FSceneKit%2FSceneKit-%E5%87%A0%E4%BD%95%E7%89%A9%E4%BD%93-%E6%AD%A3%E6%96%B9%E4%BD%93(Swift)%2F</url>
+    <url>%2F2018%2F01%2F18%2FSceneKit%2FGrammar%2FSceneKit-%E5%87%A0%E4%BD%95%E7%89%A9%E4%BD%93-%E6%AD%A3%E6%96%B9%E4%BD%93(Swift)%2F</url>
     <content type="text"><![CDATA[//// ViewController.swift// SceneKit-几何物体-正方体(Swift)//// Created by RN on 2018/1/18.// Copyright © 2018年 YKK. All rights reserved.// import UIKitimport SceneKitclass ViewController: UIViewController {//显示3D场景的视图fileprivate lazy var scnView : SCNView = {let scnView = SCNView()scnView.showsStatistics = true// 2scnView.allowsCameraControl = true// 3scnView.autoenablesDefaultLighting = truereturn scnView}() //场景scenefileprivate lazy var scnScene : SCNScene = {let scnScene = SCNScene()//设置背景图片, GeometryFighter.scnassets是我设置的一个资源库, 存放3D资源的// scnScene.background.contents = “GeometryFighter.scnassets/Textures/Background_Diffuse.png”return scnScene}() //3. 添加一个SCNCamerafileprivate lazy var cameraNode : SCNNode = {// 创建一个节点let cameraNode = SCNNode()// 给相机节点赋值相机cameraNode.camera = SCNCamera()// 设置视角的位置, x:0,y:0就是中心点, z只代表观察的距离, z越大, 物体越小cameraNode.position = SCNVector3(x: 0, y: 0, z: 10)return cameraNode}() //4.几何物体fileprivate lazy var geometryNode : SCNNode = {//画一个立方体let shape = SCNBox(width: 1.0,height: 1.0,length: 1.0,chamferRadius: 0.0)//把立方体绑定到节点let geometryNode = SCNNode(geometry: shape)return geometryNode}() override func viewDidLoad() {super.viewDidLoad()//给当前的SCNView 赋值SCNScenescnView.scene = scnScene// 把相机的节点添加到根节点里面scnScene.rootNode.addChildNode(cameraNode)//把节点添加到场景scnScene.rootNode.addChildNode(geometryNode)}//控制屏幕旋转override var shouldAutorotate: Bool {return true}//隐藏状态栏override var prefersStatusBarHidden: Bool {return true} }]]></content>
       <categories>
         <category>SceneKit</category>
@@ -440,7 +440,7 @@
   </entry>
   <entry>
     <title><![CDATA[SceneKit-构建简单几何模型]]></title>
-    <url>%2F2018%2F01%2F17%2FSceneKit%2FSceneKit-%E6%9E%84%E5%BB%BA%E7%AE%80%E5%8D%95%E5%87%A0%E4%BD%95%E6%A8%A1%E5%9E%8B%2F</url>
+    <url>%2F2018%2F01%2F17%2FSceneKit%2FGrammar%2FSceneKit-%E6%9E%84%E5%BB%BA%E7%AE%80%E5%8D%95%E5%87%A0%E4%BD%95%E6%A8%A1%E5%9E%8B%2F</url>
     <content type="text"><![CDATA[属性构建3D节点@property (nonatomic,strong) SCNScene *scene; //场景，存放元素节点@property (nonatomic,strong) SCNView *sceneView; //用来展示3D图形的控件@property (nonatomic,strong) SCNNode *lightNode; //环境光Node@property (nonatomic,strong) SCNNode *assistLightNode; //增加一个副光@property (nonatomic,strong) SCNNode *caremaNode; //添加摄像机节点 ##创建几何模型 @property (nonatomic,strong) SCNGeometry *carbonAtom; // C 原子@property (nonatomic,strong) SCNGeometry *hydrogenAtom; // H 原子@property (nonatomic,strong) SCNGeometry *oxyGenAtom; // O 原子@property (nonatomic,strong) SCNGeometry *fluorAtom; // F 原子 添加场景加载[self addScene]; 构建场景设置节点- (void)addScene&#123;// SCNBox *box = [SCNBox boxWithWidth:10 height:10 length:10 chamferRadius:1];// SCNNode *node = [SCNNode nodeWithGeometry:box]; //添加摄像机 //[self.scene.rootNode addChildNode:self.caremaNode]; //添加环境副光 [self.scene.rootNode addChildNode:self.assistLightNode]; //添加环境光//[self.scene.rootNode addChildNode:self.lightNode];//添加环境光 //添加正方体 // [self.scene.rootNode addChildNode:node]; //将创建的原子节点添加到根节点 [self.scene.rootNode addChildNode:[self addGeometryToSCNNode]]; self.sceneView.scene = self.scene;&#125; 几何体添加到节点- (SCNNode *)addGeometryToSCNNode&#123; //Creates and initializes a node instance with the specified geometry attached //指定几何图形添加到节点 SCNNode *carbonNode = [SCNNode nodeWithGeometry:[self carbonAtom]]; SCNNode *hydrogenNode = [SCNNode nodeWithGeometry:[self hydrogenAtom]]; SCNNode *oxygenNode = [SCNNode nodeWithGeometry:[self oxyGenAtom]]; SCNNode *fluorNode = [SCNNode nodeWithGeometry:[self fluorAtom]]; //节点位置 carbonNode.position = SCNVector3Make(-6, 0, 0); hydrogenNode.position = SCNVector3Make(-2, 0, 0); oxygenNode.position = SCNVector3Make(2, 0, 0); fluorNode.position = SCNVector3Make(6, 0, 0); //子节点添加到某个父节点 SCNNode *tempNode = [SCNNode node]; [tempNode addChildNode:carbonNode]; [tempNode addChildNode:hydrogenNode]; [tempNode addChildNode:oxygenNode]; [tempNode addChildNode:fluorNode]; return tempNode;&#125; GetetrSCNView- (SCNView *)sceneView&#123; if (!_sceneView) &#123; _sceneView = [[SCNView alloc]initWithFrame:self.view.bounds]; _sceneView.center = self.view.center; _sceneView.backgroundColor = [UIColor grayColor]; _sceneView.allowsCameraControl = YES; _sceneView.autoenablesDefaultLighting = YES; [self.view addSubview:_sceneView]; &#125; return _sceneView;&#125; SCNScene- (SCNScene *)scene&#123; if (!_scene) &#123; _scene =[SCNScene scene]; &#125; return _scene;&#125; 环境光 添加一个环境光node前后都是亮滴 - (SCNNode *)lightNode&#123; if (!_lightNode) &#123; _lightNode = [SCNNode node]; _lightNode.light = [SCNLight light]; _lightNode.light.type = SCNLightTypeAmbient; _lightNode.light.color = [UIColor colorWithWhite:0.4 alpha:1.0]; //_lightNode.light.color = [UIColor redColor]; &#125; return _lightNode;&#125; 增加一个副光 SCNLightTypeDirectional 平行光 SCNLightTypeSpot 聚焦光小球前表面亮。后表面暗 - (SCNNode *)assistLightNode&#123; if (!_assistLightNode) &#123; _assistLightNode = [SCNNode node]; _assistLightNode.light = [SCNLight light]; _assistLightNode.light.type = SCNLightTypeOmni;//像各方向发出的光照强度一样 _assistLightNode.light.color = [UIColor colorWithWhite:0.75 alpha:1]; _assistLightNode.light.color = [UIColor redColor]; _assistLightNode.position = SCNVector3Make(0, -50, 50);//设置光源 &#125; return _assistLightNode;&#125; 添加摄像机节点- (SCNNode *)caremaNode&#123; if (!_caremaNode) &#123; _caremaNode = [SCNNode node]; _caremaNode.camera = [SCNCamera camera];//Creates and returns a camera instance. _caremaNode.position = SCNVector3Make(0, 0, 50); &#125; return _caremaNode;&#125; ##几何模型-C 原子 SCNSphere 有半径属性，类似iOS 剪切 - (SCNGeometry *)carbonAtom&#123; if(!_carbonAtom)&#123; SCNSphere *phere = [SCNSphere sphereWithRadius:1.7]; phere.firstMaterial.diffuse.contents = [UIColor darkGrayColor]; phere.firstMaterial.specular.contents = [UIColor whiteColor]; _carbonAtom = phere; &#125; return _carbonAtom;&#125; ##几何模型 - H 原子 contents 扩散de 内容 颜色(NSColor, UIColor, CGColorRef)，一个图像(NSImage, UIImage, CGImageRef)，一个层(CALayer)，一个路径(NSString或NSURL)，一个SpriteKit场景(SKScene)，一个纹理(sk纹理，id&lt; mtl纹理&gt;或GLKTextureInfo)，或一个浮动值在0到1 (NSNumber)之间的金属和粗糙度属性 - (SCNGeometry *)hydrogenAtom&#123; if (!_hydrogenAtom) &#123; SCNSphere *sphere = [SCNSphere sphereWithRadius:1.2]; sphere.firstMaterial.diffuse.contents = [UIColor lightGrayColor]; //specular - 镜面 sphere.firstMaterial.specular.contents = [UIColor whiteColor]; _hydrogenAtom = sphere; &#125; return _hydrogenAtom;&#125; 几何模型 - O 原子- (SCNGeometry *)oxyGenAtom&#123; if (!_oxyGenAtom) &#123; SCNSphere *sphere = [SCNSphere sphereWithRadius:1.52]; sphere.firstMaterial.diffuse.contents = [UIColor redColor]; sphere.firstMaterial.specular.contents = [UIColor whiteColor]; _oxyGenAtom = sphere; &#125; return _oxyGenAtom;&#125; ##几何模型 - F 原子 - (SCNGeometry *)fluorAtom&#123; if (!_fluorAtom) &#123; SCNSphere *sphere = [SCNSphere sphereWithRadius:1.47]; sphere.firstMaterial.diffuse.contents = [UIColor yellowColor]; sphere.firstMaterial.specular.contents = [UIColor whiteColor]; _fluorAtom = sphere; &#125; return _fluorAtom;&#125;]]></content>
       <categories>
         <category>SceneKit</category>
@@ -451,7 +451,7 @@
   </entry>
   <entry>
     <title><![CDATA[SceneKit-SCNNode]]></title>
-    <url>%2F2018%2F01%2F17%2FSceneKit%2FSceneKit-SCNNode%2F</url>
+    <url>%2F2018%2F01%2F17%2FSceneKit%2FGrammar%2FSceneKit-SCNNode%2F</url>
     <content type="text"><![CDATA[SCNNode SCNNode : NSObjectabstract SCNNode is the model class for node-tree object 属性 name NSString light SCNLight camera SCNGeometry skinner SCNSkinner 控制皮肤几何图形的变形 morpher SCNMorpher 控制变形的几何图形 transform SCNMatrix4 变换 worldTransform SCNMatrix4 世界转换 在世界空间中的转换(相对于场景的根节点) position SCNVector3 worldPosition SCNVector3 rotation SCNVector4 orientation SCNQuaternion worldOrientation SCNQuaternion eulerAngles SCNVector3 scale SCNVector3 pivot SCNMatrix4 hidden BOOL 否显示 dedault NO opacity CGFloat 不透明度 Default is 1 castsShadow BOOL 投下阴影 Defaults to YES movabilityHint SCNMovabilityHint 可动性暗示 与SceneKit的呈现系统沟通你想如何在场景中移动内容它不会影响您更改节点位置或向节点添加动画或物理的能力默认为SCNMovabilityHintFixed parentNode SCNNode 父节点 childNodes NSArray 子节点数组 方法 加载 + (instancetype)node; 加载geometry： 几何模型 + (SCNNode *)nodeWithGeometry:(nullable SCNGeometry *)geometry; 克隆 - (instancetype)clone; 被克隆 - (instancetype)flattenedClone 世界转换|在世界空间中的转换(相对于场景的根节点) - (void)setWorldTransform:(SCNMatrix4)worldTransform; 加子节点 - (void)addChildNode:(SCNNode *)child; 根据index加子节点 - (void)insertChildNode:(SCNNode *)child atIndex:(NSUInteger)index; 从父节点移除 - (void)removeFromParentNode; 新的子节点替换某个节点 - (void)replaceChildNode:(SCNNode *)oldChild with:(SCNNode *)newChild; Returns the first node found in the node tree with the specified name返回在节点树中找到具有指定名称的第一个节点recursively 递归 - (nullable SCNNode *)childNodeWithName:(NSString *)name recursively:(BOOL)recursively; 子节点通过测试Returns the child nodes of the receiver that passes a test in a given Block.返回在给定块中通过测试的接收方的子节点 predicate:谓词 - (NSArray&lt;SCNNode *&gt; *)childNodesPassingTest:(NS_NOESCAPE BOOL (^)(SCNNode *child, BOOL *stop))predicate; &gt; 系统文档太多了。。。]]></content>
       <categories>
         <category>SceneKit</category>
@@ -459,7 +459,7 @@
   </entry>
   <entry>
     <title><![CDATA[SceneKit-SCNMaterial- 材质]]></title>
-    <url>%2F2018%2F01%2F17%2FSceneKit%2FSceneKit-SCNMaterial%2F</url>
+    <url>%2F2018%2F01%2F17%2FSceneKit%2FGrammar%2FSceneKit-SCNMaterial%2F</url>
     <content type="text"><![CDATA[SCNMaterial- 材质 SCNMaterial : NSObject 初始化+ (instancetype)material; 属性 Properties name NSString diffuse SCNMaterialProperty 扩散 漫射属性指定从表面漫反射的光量漫射光在各个方向上都是均匀反射的，因此与视点无关 ambient SCNMaterialProperty 环境 环境属性指定要反射的环境光的数量这个属性对没有环境光的场景没有视觉效果如果将locksambientwith扩散设置为YES，则设置环境没有效果 specular SCNMaterialProperty 镜面 镜子的属性指定光的数量以类似镜子的方式反射当视点与反射光的方向一致时，镜面强度增加 emission SCNMaterialProperty 发射 发射属性指定材料发出的光量这种发射不会照亮场景中的其他表面 transparent SCNMaterialProperty 透明 透明属性指定材料的透明区域 reflective SCNMaterialProperty 反射 反射特性指定了表面的反射率表面不会真实地反映场景中的其他物体这个属性可以作为一个球体映射来反映一个预先计算的环境 multiply SCNMaterialProperty 乘法 乘法属性指定用于将输出片段相乘的颜色或图像计算出的片段与相乘值相乘以产生最后的片段此属性可用于阴影映射、淡出或tint 3d对象 normal SCNMaterialProperty 普通 普通属性指定表面方向当一个图像设置在正常的属性上时，每个像素的材料会自动被点亮设置颜色没有效果 displacement SCNMaterialProperty 位移 ambientOcclusion SCNMaterialProperty 环境闭塞 指定了表面的环境遮挡环境遮挡与环境光相乘，结果被添加到照明贡献这个属性对没有环境光的场景没有视觉效果当环境遮挡图被设置时，环境属性被忽略。 selfIllumination SCNMaterialProperty 纹理或颜色 属性指定一个纹理或颜色，它被添加到表面的照明贡献中当设置一个自填体时，会忽略发射特性 metalness SCNMaterialProperty 金属属性 金属属性指定材料表面的金属材质较低的值(较深的颜色)使材料看起来更像介质表面较高的值(较亮的颜色)会使表面看起来更有金属感此属性时才会被“lightingModelName”是“SCNLightingModelPhysicallyBased”。 roughness SCNMaterialProperty 粗糙度 粗糙度属性指定表面平滑度较低的颜色(较深的颜色)使材料看起来闪闪发亮，有明确的高光较高的值(较亮的颜色)会导致高光的高光，使材料的弥散性变得更强反射性此属性时才会被“lightingModelName”是“SCNLightingModelPhysicallyBased” shininess CGFloat 亮度值 默认为1.0 transparency CGFloat 透明度 默认为1.0 lightingModelName SCNLightingModel 明模型名称 决定了接收机的照明模型请参阅上面的照明模型列表默认为SCNLightingModelBlinn litPerPixel BOOL 否按像素点亮 默认YES doubleSided BOOL 是否为双面 默认NO fillMode SCNFillMode 栅格化 默认为SCNFillModeFill cullMode SCNCullMode 筛选模式 默认为SCNCullBack transparencyMode SCNTransparencyMode 透明模式 透明模式见上文默认为SCNTransparencyModeDefault locksAmbientWithDiffuse BOOL 环境属性自动匹配扩散属性 默认值为YES writesToDepthBuffer BOOL 是否写入到深度缓冲区 默认值为YES colorBufferWriteMask SCNColorMask 是否写入颜色缓冲区 默认为SCNColorMaskAll readsFromDepthBuffer BOOL 是否从深度缓冲区读取 默认值为YES fresnelExponent CGFloat y菲涅耳指数 默认为0.0反射率特性的影响fresnel指数改变了反射率的指数指数越大，反射就越集中在边缘 blendMode SCNBlendMode 混合模式 默认为SCNBlendModeAlpha]]></content>
       <categories>
         <category>SceneKit</category>
@@ -471,7 +471,7 @@
   </entry>
   <entry>
     <title><![CDATA[SceneKit-SCNSphere]]></title>
-    <url>%2F2018%2F01%2F17%2FSceneKit%2FSceneKit-SCNSphere%2F</url>
+    <url>%2F2018%2F01%2F17%2FSceneKit%2FGrammar%2FSceneKit-SCNSphere%2F</url>
     <content type="text"><![CDATA[Sphere 几何-球 SCNPlane : SCNGeometry 初始化 radius:球的半径 + (instancetype)sphereWithRadius:(CGFloat)radius; 属性 radius CGFloat 球的半径 默认值是0.5 geodesic BOOL 测地线 表示几何是一个岩石圈默认值为NO segmentCount NSInteger 段数 在两个球坐标下的线段数。可以做成动画如果值小于3，则该行为是未定义的。默认值是24 使用 创建 C 原子模型 - (SCNGeometry *) carbonAtom&#123; SCNSphere *phere = [SCNSphere sphereWithRadius:1.7]; phere.firstMaterial.diffuse.contents = [UIColor darkGrayColor]; phere.firstMaterial.specular.contents = [UIColor whiteColor]; return phere;&#125; 原子添加到节点 SCNNode *tempNode = [SCNNode node];SCNNode *carbonNode = [SCNNode nodeWithGeometry:[self carbonAtom]];[tempNode addChildNode:carbonNode]; 将创建的原子节点添加到根节点 [self.scene.rootNode addChildNode:[self AddFunction]];]]></content>
       <categories>
         <category>SceneKit</category>
@@ -479,7 +479,7 @@
   </entry>
   <entry>
     <title><![CDATA[SceneKit-SCNGeometry]]></title>
-    <url>%2F2018%2F01%2F17%2FSceneKit%2FSceneKit-SCNGeometry%2F</url>
+    <url>%2F2018%2F01%2F17%2FSceneKit%2FGrammar%2FSceneKit-SCNGeometry%2F</url>
     <content type="text"><![CDATA[SCNGeometry 几何创建 创建并返回一个空的几何对象 + (instancetype)geometry; 属性 name NSString materials NSArray 材料数组 firstMaterial SCNMaterial 决定几何的第一个材料如果几何图形没有材质，返回nil它等价于上面的“材料”数组中的第一个对象]]></content>
       <categories>
         <category>SceneKit</category>
@@ -487,7 +487,7 @@
   </entry>
   <entry>
     <title><![CDATA[SceneKit-SCNScene-场景]]></title>
-    <url>%2F2018%2F01%2F17%2FSceneKit%2FSceneKit-SCNScene%2F</url>
+    <url>%2F2018%2F01%2F17%2FSceneKit%2FGrammar%2FSceneKit-SCNScene%2F</url>
     <content type="text"><![CDATA[SCNScene-场景初始化 SCNScene : NSObject + (instancetype)scene; 属性 根节点 @property(nonatomic, readonly) SCNNode *rootNode; 物理世界 每个场景自动创建一个物理世界对象来模拟场景中的节点物理 使用此属性可访问场景的全局物理属性，例如重力 要将物理添加到特定的节点，请参阅物理体 @property(nonatomic, readonly) SCNPhysicsWorld *physicsWorld 背景（材料属性） @property(nonatomic, readonly) SCNMaterialProperty *background 照明环境 @property(nonatomic, readonly) SCNMaterialProperty *lightingEnvironment 雾开始距离 @property(nonatomic) CGFloat fogStartDistance ; 雾结束距离 @property(nonatomic) CGFloat fogEndDistance ; 雾密度指数 @property(nonatomic) CGFloat fogDensityExponent API_AVAILABLE(macos(10.10)); 雾的颜色 @property(nonatomic, retain) id fogColor ; 停顿 @property(nonatomic, getter=isPaused) BOOL paused API 关键属性 abstract:检索场景属性 指定要读取的属性的NSString对象 - (nullable id)attributeForKey:(NSString *)key; attributeForKey - (void)setAttribute:(nullable id)attribute forKey:(NSString *)key; name + (nullable instancetype)sceneNamed:(NSString *)name name + (nullable instancetype)sceneNamed:(NSString *)name inDirectory:(nullable NSString *)directory options:(nullable NSDictionary&lt;SCNSceneSourceLoadingOption, id&gt; *)options ; url + (nullable instancetype)sceneWithURL:(NSURL *)url options:(nullable NSDictionary&lt;SCNSceneSourceLoadingOption, id&gt; *)options error:(NSError **)error; writeToURL - (BOOL)writeToURL:(NSURL *)url options:(nullable NSDictionary&lt;NSString *, id&gt; *)options delegate:(nullable id &lt;SCNSceneExportDelegate&gt;)delegate progressHandler:(nullable SCNSceneExportProgressHandler)progressHandler; 代理协议 SCNSceneExportDelegate - (nullable NSURL *)writeImage:(UIImage *)image withSceneDocumentURL:(NSURL *)documentURL originalImageURL:(nullable NSURL *)originalImageURL;]]></content>
       <categories>
         <category>SceneKit</category>
@@ -495,7 +495,7 @@
   </entry>
   <entry>
     <title><![CDATA[SceneKit-SCNLight]]></title>
-    <url>%2F2018%2F01%2F17%2FSceneKit%2FSceneKit-SCNLight%2F</url>
+    <url>%2F2018%2F01%2F17%2FSceneKit%2FGrammar%2FSceneKit-SCNLight%2F</url>
     <content type="text"><![CDATA[SCNLight 光源 光源可以附加到节点上，在渲染场景中提供着色 初始化 初始化 + (instancetype)light; 属性 type @property(nonatomic, copy) SCNLightType type; SCNLightType SCNLightTypeAmbient 环境光 SCNLightTypeOmni 向各方向发出的光照强度一样 SCNLightTypeDirectional 平行光 SCNLightTypeSpot 聚焦光 SCNLightTypeIES SCNLightTypeProbe clolor @property(nonatomic, retain) id color; temperature 温度值 @property(nonatomic) CGFloat temperature; intensity 亮度值 @property(nonatomic) CGFloat intensity 确定接收方的名称 @property(nonatomic, copy, nullable) NSString *name;]]></content>
       <categories>
         <category>SceneKit</category>
@@ -507,7 +507,7 @@
   </entry>
   <entry>
     <title><![CDATA[SceneKit-SCNView]]></title>
-    <url>%2F2018%2F01%2F17%2FSceneKit%2FSceneKit-SCNView%2F</url>
+    <url>%2F2018%2F01%2F17%2FSceneKit%2FGrammar%2FSceneKit-SCNView%2F</url>
     <content type="text"><![CDATA[SCNViewSCNView : UIView &lt;SCNSceneRenderer, SCNTechniqueSupport&gt; 初始化 options 视图初始化选项 - (instancetype)initWithFrame:(CGRect)frame options:(nullable NSDictionary&lt;NSString *, id&gt; *)options; 属性 节点 @property(nonatomic, retain, nullable) SCNScene *scene; 是否开启连续绘制（类似定位是否持续定位） 当设置为YES时，视图会连续地重绘显示链路帧速率。 当设置为NO时，视图只会在接收方场景发生变化或动画时重新绘制。默认为没有。 @property(nonatomic, assign) BOOL rendersContinuously; 相机控制 @property(nonatomic) BOOL allowsCameraControl; 相机设置 @property(nonatomic, readonly) id &lt;SCNCameraControlConfiguration&gt; cameraControlConfiguration 默认相机控制器 返回默认的SCNCameraController用于驱动当前的视角，当允许cameracontroller设置为YES @property(nonnull, nonatomic, readonly) SCNCameraController* defaultCameraController 帧率 @property(nonatomic) NSInteger preferredFramesPerSecond 指定与接收方关联的EAGL上下文 @property(nonatomic, retain, nullable) EAGLContext *eaglContext; 抗锯齿模式 @property(nonatomic) SCNAntialiasingMode antialiasingMode 主要API 快照 绘制视图的内容并将其作为一个新的图像对象返回 方法是线程安全的，可以随时调用 - (UIImage *)snapshot 播放控制方法 play pause stop SCNView切换相机视角]]></content>
       <categories>
         <category>SceneKit</category>
@@ -519,7 +519,7 @@
   </entry>
   <entry>
     <title><![CDATA[SceneKit-SCNAction]]></title>
-    <url>%2F2018%2F01%2F17%2FSceneKit%2FSceneKit-SCNAction%2F</url>
+    <url>%2F2018%2F01%2F17%2FSceneKit%2FGrammar%2FSceneKit-SCNAction%2F</url>
     <content type="text"><![CDATA[使用 节点（Node） 动画移动到(19,18,17)这个位置，时间=5s SCNAction *action = [SCNAction moveTo:SCNVector3Make(19,18,17) duration:5];[oneNode runAction: action]; SCNAction 主要的APISCNAction 属性 时间间隔，真实时间间隔受speed影响 @property(nonatomic) NSTimeInterval duration 速度系数。假设duration 为10，但speed 为2的话，就是速度是以前的2倍，实际duration 就为5 @property(nonatomic) CGFloat speed 定时模式,有四个常量值：ConstantsSCNActionTimingModeLinear 匀速SCNActionTimingModeEaseIn 一开始慢，慢慢加快SCNActionTimingModeEaseOut 一开始快，逐渐变慢SCNActionTimingModeEaseInEaseOut 开始慢慢地,通过中间的时候加速,然后再次放缓 @property(nonatomic) SCNActionTimingMode timingMode SCNAction主要的API 将node从x,y,z上各移动到指定位置 + (SCNAction *)moveByX:(CGFloat)deltaX y:(CGFloat)deltaY z:(CGFloat)deltaZ duration:(NSTimeInterval)duration 向量方式输入参数，移动到指定位置 + (SCNAction *)moveBy:(SCNVector3)delta duration:(NSTimeInterval)duration 将node移动到location这个位置 + (SCNAction *)moveTo:(SCNVector3)location duration:(NSTimeInterval)duration 将node从x,y,z上各旋转多少度 + (SCNAction *)rotateByX:(CGFloat)xAngle y:(CGFloat)yAngle z:(CGFloat)zAngle duration:(NSTimeInterval)duration /将node从x,y,z上旋转到指定角度 + (SCNAction *)rotateToX:(CGFloat)xAngle y:(CGFloat)yAngle z:(CGFloat)zAngle duration:(NSTimeInterval)duration &gt; // 同上，与上面的方法区别在于多了shortestUnitArc 这个参数，BOOL值。//举个例子：我们需要将一个node从 0度旋转到270度，//如果将shortestUnitArc设置为NO，node会顺时针旋转到270度；//如果将shortestUnitArc设置为YES，node会逆时针旋转90度到270度，//即选择最小的旋转角度旋转到特定的度数。默认为NO + (SCNAction *)rotateToX:(CGFloat)xAngle y:(CGFloat)yAngle z:(CGFloat)zAngle duration:(NSTimeInterval)duration shortestUnitArc:(BOOL)shortestUnitArc // 沿着特定的轴旋转angle度。前面旋转都是沿x,y,z轴旋转，都是互相垂直的，//大家有没有想过如何沿着与x轴成45度夹角的方向旋转node？//这个API大家这里留意一下，//上篇提到的不在X-Z 这个平面旋转，会用这个方法在后面的demo中解决。 + (SCNAction *)rotateByAngle:(CGFloat)angle aroundAxis:(SCNVector3)axis duration:(NSTimeInterval)duration // SCNVector4(x,y,z,angle) 沿着特定的轴旋转到angle度。//这里解释一下angle 类似π，如果angle=2,//我们可不能理解为旋转到2度，而是旋转到2/π*180 度 + (SCNAction *)rotateToAxisAngle:(SCNVector4)axisAngle duration:(NSTimeInterval)duration 缩小（放大）By 多少 + (SCNAction *)scaleBy:(CGFloat)scale duration:(NSTimeInterval)sec 缩小（放大）到 To多少 + (SCNAction *)scaleTo:(CGFloat)scale duration:(NSTimeInterval)sec 淡入将node 的opacity 渐渐变成1 + (SCNAction *)fadeInWithDuration:(NSTimeInterval)sec 淡出 + (SCNAction *)fadeOutWithDuration:(NSTimeInterval)sec 将node 的opacity 渐渐变化特定的数值 + (SCNAction *)fadeOpacityBy:(CGFloat)factor duration:(NSTimeInterval)sec 将node 的opacity 渐渐变化到特定的数值 + (SCNAction *)fadeOpacityTo:(CGFloat)opacity duration:(NSTimeInterval)sec 隐藏node + (SCNAction *)hide 显示node + (SCNAction *)unhide 移除node + (SCNAction *)removeFromParentNode 播放音频 waitForCompletion，BOOL值 如果为YES Action的duration就是音频的时长 如果为NO，可以认为duration 为0 可以去看SCNAudioPlayer 的API + (SCNAction *)playAudioSource:(SCNAudioSource *)source waitForCompletion:(BOOL)wait roup 被用来并发执行多个SCNAction + (SCNAction *)group:(NSArray&lt;SCNAction *&gt; *)actions 顺序执行多个SCNAction，上个SCNAction执行结束后，才执行下个SCNAction + (SCNAction *)sequence:(NSArray&lt;SCNAction *&gt; *)actions 将一个SCNAction执行count 次 + (SCNAction *)repeatAction:(SCNAction *)action count:(NSUInteger)count 一直执行某个SCNAction + (SCNAction *)repeatActionForever:(SCNAction *)action 延迟SCNAction 比如用sequence 顺序执行多个SCNAction时， 可以给SCNAction a,c 中间添加一个SCNAction b, 等a执行结束后，延迟一会，再去执行c + (SCNAction *)waitForDuration:(NSTimeInterval)sec 自定义SCNAction ，你可以在block 做一些操作 + (SCNAction *)runBlock:(void (^)(SCNNode *node))block 在一个特定的队列中，执行block + (SCNAction *)runBlock:(void (^)(SCNNode *node))block queue:(dispatch_queue_t)queue 上篇数学旋转用到的方法，当这个SCNAction执行时，SceneKit 在这个时间间隔内会重复调用actionBlock，并将已逝去的时间传给actionBlock + (SCNAction *)customActionWithDuration:(NSTimeInterval)seconds actionBlock:(void (^)(SCNNode *node, CGFloat elapsedTime))block 在时间间隔内，执行一段JavaScript代码 + (SCNAction *)javaScriptActionWithScript:(NSString *)script duration:(NSTimeInterval)seconds 逆转一个已经创建的SCNAction 相当于CABasicAnimation的autoreverses属性 哪里来的，回哪里去 - (SCNAction *)reversedAction]]></content>
       <categories>
         <category>SceneKit</category>
@@ -531,7 +531,7 @@
   </entry>
   <entry>
     <title><![CDATA[Scenekit-Roation-旋转]]></title>
-    <url>%2F2018%2F01%2F16%2FSceneKit%2FScenekit-Roation-%E6%97%8B%E8%BD%AC%2F</url>
+    <url>%2F2018%2F01%2F16%2FSceneKit%2FGrammar%2FScenekit-Roation-%E6%97%8B%E8%BD%AC%2F</url>
     <content type="text"><![CDATA[旋转 每个SCNNode 都有自身的三维坐标系，用CABasicAnimation让SCNNode绕自身的三维坐标轴旋转，所以要特别注意是坐标轴，不是这个SCNNode的几何中心。一般SceneKit 的自带的几个几何体的坐标系原点(0,0,0)就是这个它的几何中心，比如说SCNBox；SCNSphere等等 先实现地球，月球自转]]></content>
       <categories>
         <category>SceneKit</category>
@@ -547,8 +547,8 @@
         <category>WCDB</category>
       </categories>
       <tags>
-        <tag>OC</tag>
         <tag>Lib</tag>
+        <tag>OC</tag>
         <tag>WCDB</tag>
         <tag>数据库</tag>
       </tags>
@@ -592,7 +592,7 @@
   </entry>
   <entry>
     <title><![CDATA[SceneKit-Panorama-全景图]]></title>
-    <url>%2F2018%2F01%2F10%2FSceneKit%2FSceneKit-Panorama-%E5%85%A8%E6%99%AF%E5%9B%BE%2F</url>
+    <url>%2F2018%2F01%2F10%2FSceneKit%2FGrammar%2FSceneKit-Panorama-%E5%85%A8%E6%99%AF%E5%9B%BE%2F</url>
     <content type="text"></content>
       <categories>
         <category>SceneKit</category>
@@ -612,7 +612,7 @@
   </entry>
   <entry>
     <title><![CDATA[iOS-SceneKit-Reference]]></title>
-    <url>%2F2018%2F01%2F09%2FSceneKit%2FSceneKit-Reference%2F</url>
+    <url>%2F2018%2F01%2F09%2FSceneKit%2FGrammar%2FSceneKit-Reference%2F</url>
     <content type="text"><![CDATA[资料 参考学习1 参考学习2 只能学习而已，太难 没找到博客]]></content>
       <categories>
         <category>SceneKit</category>
@@ -625,7 +625,7 @@
   </entry>
   <entry>
     <title><![CDATA[iOS-SceneKit-展示3D模型&施加动画]]></title>
-    <url>%2F2018%2F01%2F08%2FSceneKit%2FSceneKit-%E5%B1%95%E7%A4%BA3D%E6%A8%A1%E5%9E%8B%26%E6%96%BD%E5%8A%A0%E5%8A%A8%E7%94%BB%2F</url>
+    <url>%2F2018%2F01%2F08%2FSceneKit%2FGrammar%2FSceneKit-%E5%B1%95%E7%A4%BA3D%E6%A8%A1%E5%9E%8B%26%E6%96%BD%E5%8A%A0%E5%8A%A8%E7%94%BB%2F</url>
     <content type="text"></content>
       <categories>
         <category>SceneKit</category>
@@ -637,7 +637,7 @@
   </entry>
   <entry>
     <title><![CDATA[iOS-SceneKit-加载obj文件]]></title>
-    <url>%2F2018%2F01%2F08%2FSceneKit%2FSceneKit-%E5%8A%A0%E8%BD%BDobj%E6%96%87%E4%BB%B6%2F</url>
+    <url>%2F2018%2F01%2F08%2FSceneKit%2FGrammar%2FSceneKit-%E5%8A%A0%E8%BD%BDobj%E6%96%87%E4%BB%B6%2F</url>
     <content type="text"><![CDATA[]]></content>
       <categories>
         <category>SceneKit</category>
@@ -648,7 +648,7 @@
   </entry>
   <entry>
     <title><![CDATA[iOS-SceneKit-Base]]></title>
-    <url>%2F2018%2F01%2F08%2FSceneKit%2FSceneKit-%20Base%2F</url>
+    <url>%2F2018%2F01%2F08%2FSceneKit%2FGrammar%2FSceneKit-%20Base%2F</url>
     <content type="text"><![CDATA[SceneKitSceneKit 的三维坐标系 右手坐标系(笛卡尔坐标系)与其他3D框架共享数据，了解其框架是右、左手坐标系（就是Z 轴的正负不一样） 相关类 SCNViewSCNSceneRenderer 类似UIView 用来显示 SceneKit 的内容，定义了一些代理方法，可以用 addSubView 方法添加到UiView 中 SCNScene 场景图(SceneKit内容的容器) 从3D建模工具生成的.dae文件中加载一个场景，或者用代码创建一个 ，然后把它显示在视图上 SCNNode 节点树的模型类对象 可以把摄像机，灯光，几何体附加到节点上 SCNGeometry 一个可以连接到一个节点的三维物体 一个几何体（有时称为模型或网格）只定义了一个可见物体的形状。要定义对象的表面颜色图案，你必需要给几何体要附加材料。然后给材料贴图，或者上色，这个几何体表面才会有颜色，或者图案。SceneKit 提供了几种常见几何体，是SCNGeometry的子类，比如长方体，球，圆柱球等等 SCNMaterial 材质 由于在3D建模工具中呈现球形，所以也叫材质球。上色，贴图全靠它 SCNLight 光源 光源可以附加到节点上，在渲染场景中提供着色 SCNCamera 虚拟摄像机,观察场景的视角 虚拟摄像机可以附加到节点上，提供了一个场景的视图要显示场景中的内容, 必须为节点指定一个SCNCamera对象相机的视角始终沿着节点的局部坐标系的负z轴]]></content>
       <categories>
         <category>SceneKit</category>
@@ -669,8 +669,8 @@
         <category>ArcGIS</category>
       </categories>
       <tags>
-        <tag>OC</tag>
         <tag>Lib</tag>
+        <tag>OC</tag>
         <tag>ArcGIS</tag>
         <tag>大图加载</tag>
       </tags>
@@ -712,9 +712,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Swift-RxSwift-连接性操作]]></title>
-    <url>%2F2017%2F12%2F19%2FRxSwift%2FGrammar%2FOperators-%E8%BF%9E%E6%8E%A5%E6%80%A7%E6%93%8D%E4%BD%9C%2F</url>
-    <content type="text"><![CDATA[连接性操作 Connectable Observable有订阅时不开始发射事件消息，而是仅当调用它们的connect（）方法时。这样就可以等待所有我们想要的订阅者都已经订阅了以后，再开始发出事件消息，这样能保证我们想要的所有订阅者都能接收到事件消息。其实也就是等大家都就位以后，开始发出消息 publish 将一个正常的sequence转换成一个connectable sequence let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .publish() _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; //相当于把事件消息推迟了两秒 delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(6) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125;//Subscription 1:, Event: 0Subscription 1:, Event: 1Subscription 2:, Event: 1Subscription 1:, Event: 2Subscription 2:, Event: 2Subscription 1:, Event: 3Subscription 3:, Event: 3Subscription 2:, Event: 3Subscription 1:, Event: 4Subscription 3:, Event: 4 replay 将一个正常的sequence转换成一个connectable sequence，然后和replaySubject相似，能接收到订阅之前的事件消息 let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .replay(5) //接收到订阅之前的5条事件消息 _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(8) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125; multicast 将一个正常的sequence转换成一个connectable sequence，并且通过特性的subject发送出去，比如PublishSubject，或者replaySubject，behaviorSubject等。不同的Subject会有不同的结果 let subject = PublishSubject&lt;Int&gt;() _ = subject .subscribe(onNext: &#123; print("Subject: \($0)") &#125;) let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .multicast(subject) _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 2:, Event: \($0)") &#125;)&#125;]]></content>
+    <title><![CDATA[Swift-RxSwift-错误处理操作]]></title>
+    <url>%2F2017%2F12%2F19%2FRxSwift%2FGrammar%2FOperators-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[错误处理操作catchErrorJustReturn 遇到error事件的时候，就return一个值，然后结束 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;() sequenceThatFails .catchErrorJustReturn("😊") .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test)///next(😬)next(😨)next(😡)next(🔴)next(😊)completed catchError 捕获error进行处理，可以返回另一个sequence进行订阅 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;()let recoverySequence = PublishSubject&lt;String&gt;() sequenceThatFails .catchError &#123; print("Error:", $0) return recoverySequence &#125; .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test) recoverySequence.onNext("😊")//next(😬)next(😨)next(😡)next(🔴)Error: testnext(😊) retry 遇见error事件可以进行重试，比如网络请求失败，可以进行重新连接 let disposeBag = DisposeBag()var count = 1 let sequenceThatErrors = Observable&lt;String&gt;.create &#123; observer in observer.onNext("🍎") observer.onNext("🍐") observer.onNext("🍊") if count == 1 &#123; observer.onError(TestError.test) print("Error encountered") count += 1 &#125; observer.onNext("🐶") observer.onNext("🐱") observer.onNext("🐭") observer.onCompleted() return Disposables.create()&#125; sequenceThatErrors .retry(3) //不传入数字的话，只会重试一次 .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) debug 打印所有的订阅, 事件和disposals sequenceThatErrors .retry(3) .debug() .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) RxSwift.Resources.total 查看RxSwift所有资源的占用 print(RxSwift.Resources.total)]]></content>
       <categories>
         <category>Swift</category>
         <category>RxSwift</category>
@@ -725,9 +725,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Swift-RxSwift-错误处理操作]]></title>
-    <url>%2F2017%2F12%2F19%2FRxSwift%2FGrammar%2FOperators-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E6%93%8D%E4%BD%9C%2F</url>
-    <content type="text"><![CDATA[错误处理操作catchErrorJustReturn 遇到error事件的时候，就return一个值，然后结束 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;() sequenceThatFails .catchErrorJustReturn("😊") .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test)///next(😬)next(😨)next(😡)next(🔴)next(😊)completed catchError 捕获error进行处理，可以返回另一个sequence进行订阅 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;()let recoverySequence = PublishSubject&lt;String&gt;() sequenceThatFails .catchError &#123; print("Error:", $0) return recoverySequence &#125; .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test) recoverySequence.onNext("😊")//next(😬)next(😨)next(😡)next(🔴)Error: testnext(😊) retry 遇见error事件可以进行重试，比如网络请求失败，可以进行重新连接 let disposeBag = DisposeBag()var count = 1 let sequenceThatErrors = Observable&lt;String&gt;.create &#123; observer in observer.onNext("🍎") observer.onNext("🍐") observer.onNext("🍊") if count == 1 &#123; observer.onError(TestError.test) print("Error encountered") count += 1 &#125; observer.onNext("🐶") observer.onNext("🐱") observer.onNext("🐭") observer.onCompleted() return Disposables.create()&#125; sequenceThatErrors .retry(3) //不传入数字的话，只会重试一次 .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) debug 打印所有的订阅, 事件和disposals sequenceThatErrors .retry(3) .debug() .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) RxSwift.Resources.total 查看RxSwift所有资源的占用 print(RxSwift.Resources.total)]]></content>
+    <title><![CDATA[Swift-RxSwift-连接性操作]]></title>
+    <url>%2F2017%2F12%2F19%2FRxSwift%2FGrammar%2FOperators-%E8%BF%9E%E6%8E%A5%E6%80%A7%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[连接性操作 Connectable Observable有订阅时不开始发射事件消息，而是仅当调用它们的connect（）方法时。这样就可以等待所有我们想要的订阅者都已经订阅了以后，再开始发出事件消息，这样能保证我们想要的所有订阅者都能接收到事件消息。其实也就是等大家都就位以后，开始发出消息 publish 将一个正常的sequence转换成一个connectable sequence let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .publish() _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; //相当于把事件消息推迟了两秒 delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(6) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125;//Subscription 1:, Event: 0Subscription 1:, Event: 1Subscription 2:, Event: 1Subscription 1:, Event: 2Subscription 2:, Event: 2Subscription 1:, Event: 3Subscription 3:, Event: 3Subscription 2:, Event: 3Subscription 1:, Event: 4Subscription 3:, Event: 4 replay 将一个正常的sequence转换成一个connectable sequence，然后和replaySubject相似，能接收到订阅之前的事件消息 let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .replay(5) //接收到订阅之前的5条事件消息 _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(8) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125; multicast 将一个正常的sequence转换成一个connectable sequence，并且通过特性的subject发送出去，比如PublishSubject，或者replaySubject，behaviorSubject等。不同的Subject会有不同的结果 let subject = PublishSubject&lt;Int&gt;() _ = subject .subscribe(onNext: &#123; print("Subject: \($0)") &#125;) let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .multicast(subject) _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 2:, Event: \($0)") &#125;)&#125;]]></content>
       <categories>
         <category>Swift</category>
         <category>RxSwift</category>
@@ -1647,8 +1647,8 @@
         <category>AFN</category>
       </categories>
       <tags>
-        <tag>OC</tag>
         <tag>Error</tag>
+        <tag>OC</tag>
         <tag>AFN</tag>
       </tags>
   </entry>
@@ -2127,6 +2127,14 @@
       </categories>
   </entry>
   <entry>
+    <title><![CDATA[Blog-配置]]></title>
+    <url>%2F2017%2F11%2F23%2FBlog%2FBlog-%E9%85%8D%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[博客配置01博客配置02 RxSwift]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[iOS-Tool-FastLane自动化发布工具+上传Bugly]]></title>
     <url>%2F2017%2F11%2F23%2FOC%2FGrammar%2FiOS-Tool-FastLane%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8F%91%E5%B8%83%E5%B7%A5%E5%85%B7%2B%E4%B8%8A%E4%BC%A0Bugly%2F</url>
     <content type="text"><![CDATA[打包的流程 修改测试版本号 修改Build版本号 执行Archive 选择Adhoc导出IPA安装包文件 上传Bugly测试平台 分享测试链接二维码FastlaneFastlane本身包含两大模块，内核部分+ActionActionAction是Fastlane自动化流程中的最小执行单元，直观上来讲就是Fastfile脚本中的一个个命令，比如：git_pull，deliver，pod_install等等，而这些命令背后都对应其实是一个用Ruby编写的脚本 Fastlane 是一套用 Ruby 编写的 iOS 命令行工具集（后来也支持了 Android），主要组件包括： match / cert / sigh 协助管理代码签名 pem 自动生成 APNs 证书 scan 自动化测试 gym 自动化编译并打包生成签名的 .ipa 文件 snapshot / frameit 协助处理 iOS 屏幕快照 pilot 上传和管理 TestFlight deliver 将应用及其它信息上传到 App Store 而正是这些颗粒度极小的Action，根据自己需求组合成一个自动化的链条 安装 首先确保Xcode命令行工具是最新版本的 $ xcode-select --install 安装Fastlane: $ sudo gem install fastlane -NV 找到工程文件目录下执行 $ fastlane init 在执行“Your Apple ID” 这一步输入苹果开发者账号，fastlane 会自动获取工程文件名，目录等其他数据。这一步“Please confirm the above values”，确认信息，没问题则输入 y。然后，fastlane 会进行一系列的初始化操作，包括下载 App Store 上的元数据和截屏文件。等待初始化完成之后，工程目录下就多了一个 fastlane目录： $ cd fastlane &amp;&amp; lsAppfile Fastfile metadata report.xmlDeliverfile README.md screenshots 文件目录 metadata目录下存放整个元数据文件，包括关键词、版本更新日志、图标等. screenshots目录下存放应用截图 Appfile文件记录App的 bundle ID、Apple ID、Team ID三种信息. Fastfile脚本的核心执行文件.有几个默认的选项，可直接使用. report文件时每次执行fastlane时生成报告 安装fastlane成功后，首先拆解我们需要自动化的两个流程: 自动打包成Adhoc的安装包ipa文件 通过fastlane自动上传到bugly 自动化打包 自动化打包使用最多就是Fastlane中gym这个Action, 转为打包而生, 安装gym这个组件: $ sudo gem install gym cd项目根目录, 创建自动打包脚本: $ vim gym.sh 输入脚本内容: #!/bin/bash#计时SECONDS=0#假设脚本放置在与项目相同的路径下project_path=$(pwd)#取当前时间字符串添加到文件结尾now=$(date +"%Y_%m_%d_%H_%M_%S")#指定项目的scheme名称scheme="Xitu"#指定要打包的配置名configuration="Adhoc"#指定打包所使用的输出方式，目前支持app-store, package, ad-hoc, enterprise, development, 和developer-id，即xcodebuild的method参数export_method='ad-hoc'#指定项目地址workspace_path="$project_path/Xitu.xcworkspace"#指定输出路径output_path="project_path/APP"#指定输出归档文件地址archive_path="$output_path/Xitu$&#123;now&#125;.xcarchive"#指定输出ipa地址ipa_path="$output_path/Xitu$&#123;now&#125;.ipa"#指定输出ipa名称ipa_name="Xitu$&#123;now&#125;.ipa"#获取执行命令时的commit messagecommit_msg="$1"#输出设定的变量值echo "===workspace path: $&#123;workspace_path&#125;==="echo "===archive path: $&#123;archive_path&#125;==="echo "===ipa path: $&#123;ipa_path&#125;==="echo "===export method: $&#123;export_method&#125;==="echo "===commit msg: $1==="#先清空前一次buildgym --workspace $&#123;workspace_path&#125; --scheme $&#123;scheme&#125; --clean --configuration $&#123;configuration&#125; --archive_path $&#123;archive_path&#125; --export_method $&#123;export_method&#125; --output_directory $&#123;output_path&#125; --output_name $&#123;ipa_name&#125;#输出总用时echo "===Finished. Total time: $&#123;SECONDS&#125;s===" 把如上脚本中Xitu改成你的项目名称即可. 为脚本执行提升权限 $ chmod +x gym.sh 执行一下脚本看一下打包效果: $ ./gym.sh 经过572s，Adhoc版本的ipa文件打包成功，我们在项目根目录下找到App目录： =========================================== #上传Bugly fastlane中定义action$ fastlane new_action 这时命令行会要求你输入自定义action名字，直接以bugly上传文件命名 $ upload_app_to_bugly wei wan]]></content>
@@ -2134,14 +2142,6 @@
         <category>iOS</category>
         <category>Tool</category>
         <category>FastLane</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[Blog-配置]]></title>
-    <url>%2F2017%2F11%2F23%2FBlog%2FBlog-%E9%85%8D%E7%BD%AE%2F</url>
-    <content type="text"><![CDATA[博客配置01博客配置02 RxSwift]]></content>
-      <categories>
-        <category>Blog</category>
       </categories>
   </entry>
   <entry>
@@ -2228,8 +2228,8 @@
       </categories>
       <tags>
         <tag>UIKit</tag>
-        <tag>OC</tag>
         <tag>UIScrollView</tag>
+        <tag>OC</tag>
       </tags>
   </entry>
   <entry>
@@ -2315,8 +2315,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>OC</tag>
         <tag>Func</tag>
+        <tag>OC</tag>
       </tags>
   </entry>
   <entry>
@@ -2329,8 +2329,8 @@
         <category>JSBadgeView</category>
       </categories>
       <tags>
-        <tag>OC</tag>
         <tag>Lib</tag>
+        <tag>OC</tag>
         <tag>UI</tag>
       </tags>
   </entry>
