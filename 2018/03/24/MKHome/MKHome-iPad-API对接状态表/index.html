@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
 <meta property="og:description" content="===&amp;gt; 更新时间: 2018-3-24 16：00 #满屋研选iPad接口统计表 ✅：OK      ❌：出问题/为接通/未测试 ============================== 月笼纱  部分 ==============================  购物车主页面 ShoppingCartViewCtl   API-Action API-Status Model UI-">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-24T08:36:39.949Z">
+<meta property="og:updated_time" content="2018-03-24T08:37:54.082Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MKHome-iPad-API对接状态表">
 <meta name="twitter:description" content="===&amp;gt; 更新时间: 2018-3-24 16：00 #满屋研选iPad接口统计表 ✅：OK      ❌：出问题/为接通/未测试 ============================== 月笼纱  部分 ==============================  购物车主页面 ShoppingCartViewCtl   API-Action API-Status Model UI-">
@@ -486,11 +486,43 @@
 <td></td>
 </tr>
 <tr>
-<td><strong>商品-选择-删除</strong><br>✅/cart/remove</td>
+<td><strong>商品-选择-删除</strong><br>✅/cart/remove删除</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅本地删除</td>
+<td>❌我还没测</td>
+</tr>
+<tr>
+<td><strong>左上-分享</strong><br>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅UI</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>结算</strong><br>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅UI</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>放进我家（room对照表）</strong><br>✅api-dict/dict</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<p>删除|❌|❌|✅本地删除|❌我还没测|<br>|<strong>左上-分享</strong><br>❌|❌|❌|✅UI|||<br>|<strong>结算</strong><br>❌|❌|❌|✅UI|||<br>|<strong>放进我家（room对照表）</strong><br>✅api-dict/dict|✅|✅|✅|✅|<br>||||||</p>
 <h1 id="智能设计"><a href="#智能设计" class="headerlink" title="智能设计"></a>智能设计</h1><h2 id="智能设计主要页面-拖拽商品-SmartDesignMainCtl"><a href="#智能设计主要页面-拖拽商品-SmartDesignMainCtl" class="headerlink" title="智能设计主要页面(拖拽商品) SmartDesignMainCtl"></a>智能设计主要页面(拖拽商品) SmartDesignMainCtl</h2><table>
 <thead>
 <tr>
@@ -561,7 +593,7 @@
 </tr>
 </tbody>
 </table>
-<p>热点跳转|✅|✅|❌真实数据尚未测||<br>|<strong>房间列表（右下房间切换）</strong><br>✅/scheme/{parentId}/room|✅接口成功返回，无数据无结构|/|❌||<br>||||||<br>||||||<br>|<strong>商品清单</strong>❌<br>/scheme/{parentId}/item|❌|❌|❌|1.方案-方案-商品清单|<br>|<strong>商品清单-立即购买</strong><br>|❌|❌|❌|与寻竹对接|<br>|<strong>商品清单-加入购物车</strong><br>|❌|❌|❌|与寻竹对接|<br>||||||<br>||||||<br>|<strong>推荐样板间-热门推荐</strong><br>❌/scheme整屋方案|❌|❌|❌|1. 搜索-&gt;方案 2.hot  是否热门  1  0 |<br>|<strong>推荐样板间</strong><br>|❌|❌|❌||<br>||||||<br>||||||<br>|<strong>户型导航-列表</strong><br>❌api-scheme/house-type/{id} |❌|❌|❌|1.id为户型id全景图里有 <br>2.方案-户型 |<br>|<strong>左上-户型导航-一按适配（样板间）</strong><br>❌   | ❌ |❌|❌||<br>|<strong>左上-户型导航-实拍图（样板间）</strong><br>❌  | ❌ |❌|❌||<br>||||||<br>||||||<br>|<strong>左上-商品清单</strong>❌/scheme/{parentId}/item<br>❌  | ❌ |❌|❌||<br>|<strong>右侧-设置-VR</strong><br>api-scheme/scheme/{parentId}/vr❌  | ❌ |❌|❌|1.方案-&gt;方案|<br>|<strong>右侧-分享</strong><br>❌  | ❌ |❌|❌|H5对接|<br>|<strong>右侧-收藏</strong><br>❌ | ❌ |❌|❌||<br>||||||<br>||||||<br>||||||<br>||||||</p>
+<p>热点跳转|✅|✅|❌真实数据尚未测||<br>|<strong>房间列表（右下房间切换）</strong><br>✅/scheme/{parentId}/room|✅接口成功返回，无数据无结构|/|❌||<br>||||||<br>||||||<br>|<strong>商品清单</strong>❌<br>/scheme/{parentId}/item|❌|❌|❌|1.方案-方案-商品清单|<br>|<strong>商品清单-立即购买</strong><br>|❌|❌|❌|与寻竹对接|<br>|<strong>商品清单-加入购物车</strong><br>|❌|❌|❌|与寻竹对接|<br>||||||<br>||||||<br>|<strong>推荐样板间-热门推荐</strong><br>❌/scheme整屋方案|❌|❌|❌|1. 搜索-&gt;方案 2.hot  是否热门  1  0 |<br>|<strong>推荐样板间</strong><br>|❌|❌|❌||<br>||||||<br>||||||<br>|<strong>户型导航-列表</strong><br>❌api-scheme/house-type/{id} |❌|❌|❌|1.id为户型id全景图里有 <br>2.方案-户型 |<br>|<strong>左上-户型导航-一按适配（样板间）</strong><br>❌   | ❌ |❌|❌||<br>|<strong>左上-户型导航-实拍图（样板间）</strong><br>❌  | ❌ |❌|❌||<br>||||||<br>||||||<br>|<strong>左上-商品清单</strong>❌/scheme/{parentId}/item<br>❌  | ❌ |❌|❌||<br>|<strong>右侧-设置-VR</strong><br>api-scheme/scheme/{parentId}/vr❌  | ❌ |❌|❌|1.方案-&gt;方案|<br>|<strong>右侧-分享</strong><br>❌  | ❌ |❌|❌|H5对接|<br>|<strong>右侧-收藏</strong><br>❌ | ❌ |❌|❌||<br>||||||</p>
 <h1 id="全景图里商品详情-SDPMenuGoodsDetailViewCtl"><a href="#全景图里商品详情-SDPMenuGoodsDetailViewCtl" class="headerlink" title="全景图里商品详情 SDPMenuGoodsDetailViewCtl"></a>全景图里商品详情 SDPMenuGoodsDetailViewCtl</h1><table>
 <thead>
 <tr>
