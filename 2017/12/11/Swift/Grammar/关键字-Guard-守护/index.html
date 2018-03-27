@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Swift,Grammar,Guard," />
+  <meta name="keywords" content="Grammar,Swift,Guard," />
 
 
 
@@ -106,7 +106,7 @@
 
 
 <meta name="description" content="guard语句 guard语句判断其后的表达式布尔值为false时，才会执行之后代码块里的代码，如果为true，则跳过整个guard语句guard语句只会有一个代码块，if语句可以if else多个代码块类似  OC里的Continue   func checkup(person: [String: String!]) &amp;#123;       // 检查身份证，如果身份证没带，则不能进入考场">
-<meta name="keywords" content="Swift,Grammar,Guard">
+<meta name="keywords" content="Grammar,Swift,Guard">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift-Grammar-Guard-关键字&#x2F;守护">
 <meta property="og:url" content="http://yoursite.com/2017/12/11/Swift/Grammar/关键字-Guard-守护/index.html">
@@ -457,7 +457,7 @@
         <h1 id="guard语句"><a href="#guard语句" class="headerlink" title="guard语句"></a>guard语句</h1><blockquote>
 <p>guard语句判断其后的表达式布尔值为false时，才会执行之后代码块里的代码，如果为true，则跳过整个guard语句<br>guard语句只会有一个代码块，if语句可以if else多个代码块<br>类似  OC里的Continue</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">func</span> <span class="title">checkup</span><span class="params">(person: [String: String!])</span></span> &#123;</div><div class="line">   </div><div class="line">    <span class="comment">// 检查身份证，如果身份证没带，则不能进入考场</span></div><div class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> id = person[<span class="string">"id"</span>] <span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"没有身份证，不能进入考场!"</span>)</div><div class="line">        <span class="keyword">return</span></div><div class="line">    &#125;</div><div class="line">     </div><div class="line">    <span class="comment">// 检查准考证，如果准考证没带，则不能进入考场</span></div><div class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> examNumber = person[<span class="string">"examNumber"</span>] <span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"没有准考证，不能进入考场!"</span>)</div><div class="line">        <span class="keyword">return</span></div><div class="line">    &#125;</div><div class="line">     </div><div class="line">    <span class="comment">// 身份证和准考证齐全，方可进入考场</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"您的身份证号为:<span class="subst">\(id)</span>，准考证号为:<span class="subst">\(examNumber)</span>。请进入考场!"</span>)</div><div class="line">     </div><div class="line">&#125;</div><div class="line"> </div><div class="line">checkup([<span class="string">"id"</span>: <span class="string">"123456"</span>]) <span class="comment">// 没有准考证，不能进入考场!</span></div><div class="line">checkup([<span class="string">"examNumber"</span>: <span class="string">"654321"</span>]) <span class="comment">// 没有身份证，不能进入考场!</span></div><div class="line">checkup([<span class="string">"id"</span>: <span class="string">"123456"</span>, <span class="string">"examNumber"</span>: <span class="string">"654321"</span>]) <span class="comment">// 您的身份证号为:123456，准考证号为:654321。请进入考场!</span></div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">func</span> <span class="title">checkup</span><span class="params">(person: [String: String!])</span></span> &#123;</div><div class="line">   </div><div class="line">    <span class="comment">// 检查身份证，如果身份证没带，则不能进入考场</span></div><div class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> id = person[<span class="string">"id"</span>] <span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"没有身份证，不能进入考场!"</span>)</div><div class="line">        <span class="keyword">return</span></div><div class="line">    &#125;</div><div class="line">     </div><div class="line">    <span class="comment">// 检查准考证，如果准考证没带，则不能进入考场</span></div><div class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> examNumber = person[<span class="string">"examNumber"</span>] <span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"没有准考证，不能进入考场!"</span>)</div><div class="line">        <span class="keyword">return</span></div><div class="line">    &#125;</div><div class="line">     </div><div class="line">    <span class="comment">// 身份证和准考证齐全，方可进入考场</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"您的身份证号为:\(id)，准考证号为:\(examNumber)。请进入考场!"</span>)</div><div class="line">     </div><div class="line">&#125;</div><div class="line"> </div><div class="line">checkup([<span class="string">"id"</span>: <span class="string">"123456"</span>]) <span class="comment">// 没有准考证，不能进入考场!</span></div><div class="line">checkup([<span class="string">"examNumber"</span>: <span class="string">"654321"</span>]) <span class="comment">// 没有身份证，不能进入考场!</span></div><div class="line">checkup([<span class="string">"id"</span>: <span class="string">"123456"</span>, <span class="string">"examNumber"</span>: <span class="string">"654321"</span>]) <span class="comment">// 您的身份证号为:123456，准考证号为:654321。请进入考场!</span></div></pre></td></tr></table></figure>
 <blockquote>
 <p>上述代码中的第一个guard语句用于检查身份证，如果检查到身份证没带，也就是表达式为false时，执行大括号里的代码，并返回。第二个guard语句则检查准考证。<br>如果两证齐全，则执行最后一个打印语句，上面的两个guard语句大括号内的代码都不会执行，因为他们表达式的布尔值都是true。<br>这里值得注意的是，id和examNumber可以在guard语句之外使用，也就是说当guard对其表达式进行验证后，id和examNumber可在整个方法的作用域中使用，并且是解包后的</p>
 </blockquote>
@@ -481,9 +481,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Swift/" rel="tag"># Swift</a>
-          
             <a href="/tags/Grammar/" rel="tag"># Grammar</a>
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
           
             <a href="/tags/Guard/" rel="tag"># Guard</a>
           
