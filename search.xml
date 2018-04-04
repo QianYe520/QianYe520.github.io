@@ -9,8 +9,8 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -44,8 +44,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>Protocol</tag>
       </tags>
   </entry>
@@ -117,9 +117,9 @@
         <category>RxSwift</category>
       </categories>
       <tags>
+        <tag>Error</tag>
         <tag>Swift</tag>
         <tag>RxSwift</tag>
-        <tag>Error</tag>
       </tags>
   </entry>
   <entry>
@@ -156,9 +156,9 @@
         <category>RxSwift</category>
       </categories>
       <tags>
+        <tag>Func</tag>
         <tag>Swift</tag>
         <tag>RxSwift</tag>
-        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
@@ -170,9 +170,9 @@
         <category>RxSwift</category>
       </categories>
       <tags>
+        <tag>Func</tag>
         <tag>Swift</tag>
         <tag>RxSwift</tag>
-        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
@@ -247,9 +247,9 @@
         <category>NSSet</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>OC</tag>
         <tag>UIKit</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -275,8 +275,8 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -452,8 +452,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>SceneKit</tag>
       </tags>
   </entry>
@@ -727,15 +727,15 @@
         <category>WKWebView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>WKWebView</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Swift-RxSwift-错误处理操作]]></title>
-    <url>%2F2017%2F12%2F19%2FRxSwift%2FGrammar%2FOperators-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E6%93%8D%E4%BD%9C%2F</url>
-    <content type="text"><![CDATA[错误处理操作catchErrorJustReturn 遇到error事件的时候，就return一个值，然后结束 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;() sequenceThatFails .catchErrorJustReturn("😊") .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test)///next(😬)next(😨)next(😡)next(🔴)next(😊)completed catchError 捕获error进行处理，可以返回另一个sequence进行订阅 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;()let recoverySequence = PublishSubject&lt;String&gt;() sequenceThatFails .catchError &#123; print("Error:", $0) return recoverySequence &#125; .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test) recoverySequence.onNext("😊")//next(😬)next(😨)next(😡)next(🔴)Error: testnext(😊) retry 遇见error事件可以进行重试，比如网络请求失败，可以进行重新连接 let disposeBag = DisposeBag()var count = 1 let sequenceThatErrors = Observable&lt;String&gt;.create &#123; observer in observer.onNext("🍎") observer.onNext("🍐") observer.onNext("🍊") if count == 1 &#123; observer.onError(TestError.test) print("Error encountered") count += 1 &#125; observer.onNext("🐶") observer.onNext("🐱") observer.onNext("🐭") observer.onCompleted() return Disposables.create()&#125; sequenceThatErrors .retry(3) //不传入数字的话，只会重试一次 .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) debug 打印所有的订阅, 事件和disposals sequenceThatErrors .retry(3) .debug() .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) RxSwift.Resources.total 查看RxSwift所有资源的占用 print(RxSwift.Resources.total)]]></content>
+    <title><![CDATA[Swift-RxSwift-连接性操作]]></title>
+    <url>%2F2017%2F12%2F19%2FRxSwift%2FGrammar%2FOperators-%E8%BF%9E%E6%8E%A5%E6%80%A7%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[连接性操作 Connectable Observable有订阅时不开始发射事件消息，而是仅当调用它们的connect（）方法时。这样就可以等待所有我们想要的订阅者都已经订阅了以后，再开始发出事件消息，这样能保证我们想要的所有订阅者都能接收到事件消息。其实也就是等大家都就位以后，开始发出消息 publish 将一个正常的sequence转换成一个connectable sequence let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .publish() _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; //相当于把事件消息推迟了两秒 delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(6) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125;//Subscription 1:, Event: 0Subscription 1:, Event: 1Subscription 2:, Event: 1Subscription 1:, Event: 2Subscription 2:, Event: 2Subscription 1:, Event: 3Subscription 3:, Event: 3Subscription 2:, Event: 3Subscription 1:, Event: 4Subscription 3:, Event: 4 replay 将一个正常的sequence转换成一个connectable sequence，然后和replaySubject相似，能接收到订阅之前的事件消息 let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .replay(5) //接收到订阅之前的5条事件消息 _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(8) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125; multicast 将一个正常的sequence转换成一个connectable sequence，并且通过特性的subject发送出去，比如PublishSubject，或者replaySubject，behaviorSubject等。不同的Subject会有不同的结果 let subject = PublishSubject&lt;Int&gt;() _ = subject .subscribe(onNext: &#123; print("Subject: \($0)") &#125;) let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .multicast(subject) _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 2:, Event: \($0)") &#125;)&#125;]]></content>
       <categories>
         <category>Swift</category>
         <category>RxSwift</category>
@@ -746,9 +746,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Swift-RxSwift-连接性操作]]></title>
-    <url>%2F2017%2F12%2F19%2FRxSwift%2FGrammar%2FOperators-%E8%BF%9E%E6%8E%A5%E6%80%A7%E6%93%8D%E4%BD%9C%2F</url>
-    <content type="text"><![CDATA[连接性操作 Connectable Observable有订阅时不开始发射事件消息，而是仅当调用它们的connect（）方法时。这样就可以等待所有我们想要的订阅者都已经订阅了以后，再开始发出事件消息，这样能保证我们想要的所有订阅者都能接收到事件消息。其实也就是等大家都就位以后，开始发出消息 publish 将一个正常的sequence转换成一个connectable sequence let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .publish() _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; //相当于把事件消息推迟了两秒 delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(6) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125;//Subscription 1:, Event: 0Subscription 1:, Event: 1Subscription 2:, Event: 1Subscription 1:, Event: 2Subscription 2:, Event: 2Subscription 1:, Event: 3Subscription 3:, Event: 3Subscription 2:, Event: 3Subscription 1:, Event: 4Subscription 3:, Event: 4 replay 将一个正常的sequence转换成一个connectable sequence，然后和replaySubject相似，能接收到订阅之前的事件消息 let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .replay(5) //接收到订阅之前的5条事件消息 _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(8) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125; multicast 将一个正常的sequence转换成一个connectable sequence，并且通过特性的subject发送出去，比如PublishSubject，或者replaySubject，behaviorSubject等。不同的Subject会有不同的结果 let subject = PublishSubject&lt;Int&gt;() _ = subject .subscribe(onNext: &#123; print("Subject: \($0)") &#125;) let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .multicast(subject) _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 2:, Event: \($0)") &#125;)&#125;]]></content>
+    <title><![CDATA[Swift-RxSwift-错误处理操作]]></title>
+    <url>%2F2017%2F12%2F19%2FRxSwift%2FGrammar%2FOperators-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[错误处理操作catchErrorJustReturn 遇到error事件的时候，就return一个值，然后结束 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;() sequenceThatFails .catchErrorJustReturn("😊") .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test)///next(😬)next(😨)next(😡)next(🔴)next(😊)completed catchError 捕获error进行处理，可以返回另一个sequence进行订阅 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;()let recoverySequence = PublishSubject&lt;String&gt;() sequenceThatFails .catchError &#123; print("Error:", $0) return recoverySequence &#125; .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test) recoverySequence.onNext("😊")//next(😬)next(😨)next(😡)next(🔴)Error: testnext(😊) retry 遇见error事件可以进行重试，比如网络请求失败，可以进行重新连接 let disposeBag = DisposeBag()var count = 1 let sequenceThatErrors = Observable&lt;String&gt;.create &#123; observer in observer.onNext("🍎") observer.onNext("🍐") observer.onNext("🍊") if count == 1 &#123; observer.onError(TestError.test) print("Error encountered") count += 1 &#125; observer.onNext("🐶") observer.onNext("🐱") observer.onNext("🐭") observer.onCompleted() return Disposables.create()&#125; sequenceThatErrors .retry(3) //不传入数字的话，只会重试一次 .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) debug 打印所有的订阅, 事件和disposals sequenceThatErrors .retry(3) .debug() .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) RxSwift.Resources.total 查看RxSwift所有资源的占用 print(RxSwift.Resources.total)]]></content>
       <categories>
         <category>Swift</category>
         <category>RxSwift</category>
@@ -864,9 +864,9 @@
         <category>RxSwift</category>
       </categories>
       <tags>
+        <tag>Grammar</tag>
         <tag>Swift</tag>
         <tag>RxSwift</tag>
-        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -931,8 +931,8 @@
         <category>UIImagePickerController</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UIImagePickerController</tag>
       </tags>
   </entry>
@@ -946,8 +946,8 @@
         <category>NSAttributedString</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>NSAttributedString</tag>
       </tags>
   </entry>
@@ -960,8 +960,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Func</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -973,8 +973,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Func</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -986,8 +986,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Func</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1000,8 +1000,8 @@
         <category>NSNotificationCenter</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>NSNotificationCenter</tag>
       </tags>
   </entry>
@@ -1014,8 +1014,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Func</tag>
         <tag>iOS</tag>
+        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
@@ -1038,8 +1038,8 @@
         <category>UITableView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITableView</tag>
       </tags>
   </entry>
@@ -1052,8 +1052,8 @@
         <category>Error</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Error</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1065,8 +1065,8 @@
         <category>Error</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Error</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1079,8 +1079,8 @@
         <category>UIWebView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UIWebView</tag>
       </tags>
   </entry>
@@ -1094,8 +1094,8 @@
         <category>UIWebView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UIWebView</tag>
       </tags>
   </entry>
@@ -1109,8 +1109,8 @@
         <category>UINavigationController</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UINavigationController</tag>
       </tags>
   </entry>
@@ -1124,8 +1124,8 @@
         <category>UINavigationController</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UINavigationController</tag>
       </tags>
   </entry>
@@ -1139,8 +1139,8 @@
         <category>UISegmentedControl</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UISegmentedControl</tag>
       </tags>
   </entry>
@@ -1154,8 +1154,8 @@
         <category>UISegmentedControl</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UISegmentedControl</tag>
       </tags>
   </entry>
@@ -1169,8 +1169,8 @@
         <category>UISwitch</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UISwitch</tag>
       </tags>
   </entry>
@@ -1184,8 +1184,8 @@
         <category>UISwitch</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UISwitch</tag>
       </tags>
   </entry>
@@ -1199,8 +1199,8 @@
         <category>UITextField</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITextField</tag>
       </tags>
   </entry>
@@ -1214,8 +1214,8 @@
         <category>UITxtxField</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITxtxField</tag>
       </tags>
   </entry>
@@ -1229,8 +1229,8 @@
         <category>UIImage</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UIImage</tag>
       </tags>
   </entry>
@@ -1244,8 +1244,8 @@
         <category>UIImage</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UIImage</tag>
       </tags>
   </entry>
@@ -1259,8 +1259,8 @@
         <category>UITableViewCell</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITableViewCell</tag>
       </tags>
   </entry>
@@ -1274,8 +1274,8 @@
         <category>UITableViewCell</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITableViewCell</tag>
       </tags>
   </entry>
@@ -1289,8 +1289,8 @@
         <category>UITableView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITableView</tag>
       </tags>
   </entry>
@@ -1304,8 +1304,8 @@
         <category>UITableView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITableView</tag>
       </tags>
   </entry>
@@ -1319,9 +1319,9 @@
         <category>UIScrollView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
         <tag>UIScrollView</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1334,9 +1334,9 @@
         <category>UIScrollView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
         <tag>UIScrollView</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1349,8 +1349,8 @@
         <category>UITextView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITextView</tag>
       </tags>
   </entry>
@@ -1364,8 +1364,8 @@
         <category>UITextView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITextView</tag>
       </tags>
   </entry>
@@ -1379,8 +1379,8 @@
         <category>UIActionSheet</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UIActionSheet</tag>
       </tags>
   </entry>
@@ -1394,8 +1394,8 @@
         <category>UIActionSheet</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UIActionSheet</tag>
       </tags>
   </entry>
@@ -1408,8 +1408,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Func</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1422,8 +1422,8 @@
         <category>NSTimer</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>NSTimer</tag>
       </tags>
   </entry>
@@ -1437,8 +1437,8 @@
         <category>UICollectionView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UICollectionView</tag>
       </tags>
   </entry>
@@ -1452,8 +1452,8 @@
         <category>UICollectionView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UICollectionView</tag>
       </tags>
   </entry>
@@ -1519,8 +1519,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>AccessControl</tag>
         <tag>open</tag>
       </tags>
@@ -1535,8 +1535,8 @@
         <category>AccessControl</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>AccessControl</tag>
         <tag>fileprivate</tag>
       </tags>
@@ -1551,8 +1551,8 @@
         <category>RequiredInit</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>RequiredInit</tag>
       </tags>
   </entry>
@@ -1566,8 +1566,8 @@
         <category>Swift4.0</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>Swift4.0</tag>
       </tags>
   </entry>
@@ -1581,8 +1581,8 @@
         <category>Guard</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>Guard</tag>
       </tags>
   </entry>
@@ -1596,8 +1596,8 @@
         <category>Inheritance</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>Inheritance</tag>
       </tags>
   </entry>
@@ -1611,8 +1611,8 @@
         <category>String</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1625,8 +1625,8 @@
         <category>Lazy</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>Lazy</tag>
       </tags>
   </entry>
@@ -1639,8 +1639,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1653,8 +1653,8 @@
         <category>UITableView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITableView</tag>
       </tags>
   </entry>
@@ -1668,8 +1668,8 @@
         <category>AFN</category>
       </categories>
       <tags>
-        <tag>Error</tag>
         <tag>OC</tag>
+        <tag>Error</tag>
         <tag>AFN</tag>
       </tags>
   </entry>
@@ -1702,8 +1702,8 @@
         <category>UIImageView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UIImageView</tag>
       </tags>
   </entry>
@@ -1717,8 +1717,8 @@
         <category>UISegmentedControl</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UISegmentedControl</tag>
       </tags>
   </entry>
@@ -1732,8 +1732,8 @@
         <category>UISwitch</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UISwitch</tag>
       </tags>
   </entry>
@@ -1747,8 +1747,8 @@
         <category>UIStepper</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UIStepper</tag>
       </tags>
   </entry>
@@ -1762,8 +1762,8 @@
         <category>UISlider</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UISlider</tag>
       </tags>
   </entry>
@@ -1777,8 +1777,8 @@
         <category>UITextField</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITextField</tag>
       </tags>
   </entry>
@@ -1792,8 +1792,8 @@
         <category>UILabel</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UILabel</tag>
       </tags>
   </entry>
@@ -1821,8 +1821,8 @@
         <category>AppDelegate</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>AppDelegate</tag>
       </tags>
   </entry>
@@ -1906,8 +1906,8 @@
         <category>AccessControl</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>AccessControl</tag>
       </tags>
   </entry>
@@ -2336,8 +2336,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Func</tag>
         <tag>OC</tag>
+        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
@@ -2383,8 +2383,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Func</tag>
         <tag>iOS</tag>
+        <tag>Func</tag>
         <tag>Analyze</tag>
       </tags>
   </entry>
