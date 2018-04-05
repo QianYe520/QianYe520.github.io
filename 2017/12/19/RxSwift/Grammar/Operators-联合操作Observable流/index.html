@@ -105,13 +105,13 @@
 
 
 
-<meta name="description" content="联合操作Observable流①startWith②merge③zip④combineLatest⑤switchLatest 联合操作Observable流联合操作Observable流  联合操作就是把多个Observable流合成单个Observable流   ①startWith (优先插入特定的事件消息) ②merge （组合成单个Observable,并且按照时间顺序发射对应事件） ③z">
+<meta name="description" content="联合操作Observable流①startWith②merge③zip④combineLatest⑤switchLatest 联合操作Observable流 联合操作Observable流 联合操作就是把多个Observable流合成单个Observable流   ①startWith (优先插入特定的事件消息) ②merge （组合成单个Observable,并且按照时间顺序发射对应事件） ③z">
 <meta name="keywords" content="Swift,RxSwift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift-RxSwift-Combination Operators-联合操作Observable流">
 <meta property="og:url" content="http://yoursite.com/2017/12/19/RxSwift/Grammar/Operators-联合操作Observable流/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="联合操作Observable流①startWith②merge③zip④combineLatest⑤switchLatest 联合操作Observable流联合操作Observable流  联合操作就是把多个Observable流合成单个Observable流   ①startWith (优先插入特定的事件消息) ②merge （组合成单个Observable,并且按照时间顺序发射对应事件） ③z">
+<meta property="og:description" content="联合操作Observable流①startWith②merge③zip④combineLatest⑤switchLatest 联合操作Observable流 联合操作Observable流 联合操作就是把多个Observable流合成单个Observable流   ①startWith (优先插入特定的事件消息) ②merge （组合成单个Observable,并且按照时间顺序发射对应事件） ③z">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/startWith.png">
 <meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/merge.png">
@@ -119,10 +119,10 @@
 <meta property="og:image" content="http://ot0mms4k8.bkt.clouddn.com/Combination-Operators-4-2.png">
 <meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/switchLatest.png">
 <meta property="og:image" content="http://ot0mms4k8.bkt.clouddn.com/switchLatest-002.png">
-<meta property="og:updated_time" content="2018-04-05T02:56:44.248Z">
+<meta property="og:updated_time" content="2018-04-05T02:59:56.709Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift-RxSwift-Combination Operators-联合操作Observable流">
-<meta name="twitter:description" content="联合操作Observable流①startWith②merge③zip④combineLatest⑤switchLatest 联合操作Observable流联合操作Observable流  联合操作就是把多个Observable流合成单个Observable流   ①startWith (优先插入特定的事件消息) ②merge （组合成单个Observable,并且按照时间顺序发射对应事件） ③z">
+<meta name="twitter:description" content="联合操作Observable流①startWith②merge③zip④combineLatest⑤switchLatest 联合操作Observable流 联合操作Observable流 联合操作就是把多个Observable流合成单个Observable流   ①startWith (优先插入特定的事件消息) ②merge （组合成单个Observable,并且按照时间顺序发射对应事件） ③z">
 <meta name="twitter:image" content="http://ozr735s7e.bkt.clouddn.com/startWith.png">
 
 
@@ -451,8 +451,8 @@
 
       
         <p><a href="#1">联合操作Observable流</a><br><a href="#1.1">①startWith</a><br><a href="#②merge">②merge</a><br><a href="#1.3">③zip</a><br><a href="#1.4">④combineLatest</a><br><a href="#1.5">⑤switchLatest</a></p>
-<h1 id="联合操作Observable流"><a href="#联合操作Observable流" class="headerlink" title="联合操作Observable流"></a>联合操作Observable流</h1><p><span id="1">联合操作Observable流</span></p>
-<blockquote>
+<p><span id="1">联合操作Observable流</span></p>
+<h1 id="联合操作Observable流"><a href="#联合操作Observable流" class="headerlink" title="联合操作Observable流"></a>联合操作Observable流</h1><blockquote>
 <p>联合操作就是把多个<strong>Observable流</strong>合成<strong>单个Observable流</strong></p>
 </blockquote>
 <ul>
@@ -462,8 +462,8 @@
 <li>④combineLatest （一个流的事件对应另一个流的最新的事件）</li>
 <li>⑤switchLatest (事件流进行转换)</li>
 </ul>
-<h2 id="①startWith"><a href="#①startWith" class="headerlink" title="①startWith"></a>①startWith</h2><p><span id="1.1">①startWith</span></p>
-<blockquote>
+<p><span id="1.1">①startWith</span></p>
+<h2 id="①startWith"><a href="#①startWith" class="headerlink" title="①startWith"></a>①startWith</h2><blockquote>
 <p>在发出事件消息之前，先发出某个特定的事件消息。<br>比如发出事件2 ，3然后我startWith(1)，那么就会先发出1，然后2 ，3</p>
 </blockquote>
 <p><img src="http://ozr735s7e.bkt.clouddn.com/startWith.png" alt="startWith"></p>
@@ -472,20 +472,20 @@
 <p>在Observable释放元素之前，发射指定的元素序列<br>startWith和栈类似，先进后出<br>在发送一个东西前，先发送一个指定的</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">let disposeBag = DisposeBag()</div><div class="line">Observable.of([&quot;C&quot;,&quot;C++&quot;,&quot;OC&quot;])</div><div class="line">          .startWith([&quot;今晚吃鸡，大吉大利&quot;])</div><div class="line">          .subscribe(&#123; (event) in</div><div class="line">                 print(event)</div><div class="line">            &#125;)</div><div class="line">          .disposed(by: disposeBag)</div><div class="line">//打印</div><div class="line">next([&quot;今晚吃鸡，大吉大利&quot;])</div><div class="line">next([&quot;C&quot;, &quot;C++&quot;, &quot;OC&quot;])</div><div class="line">completed</div></pre></td></tr></table></figure>
-<h2 id="②merge"><a href="#②merge" class="headerlink" title="②merge"></a>②merge</h2><p><span id="1.2">②merge</span></p>
-<blockquote>
+<p><span id="1.2">②merge</span></p>
+<h2 id="②merge"><a href="#②merge" class="headerlink" title="②merge"></a>②merge</h2><blockquote>
 <p>将多个Observable组合成单个Observable,并且按照时间顺序发射对应事件</p>
 </blockquote>
 <p><img src="http://ozr735s7e.bkt.clouddn.com/merge.png" alt="merge"></p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="keyword">let</span> sbj1 = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"><span class="keyword">let</span> sbj2 = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"><span class="type">Observable</span>.of(sbj1,sbj2)</div><div class="line">          .merge()</div><div class="line">          .subscribe(onNext: &#123; </div><div class="line">                    <span class="built_in">print</span>($<span class="number">0</span>)</div><div class="line">               &#125;)</div><div class="line">          .addDisposableTo(disposeBag)</div><div class="line">subject1.onNext(<span class="string">"🅰️"</span>)</div><div class="line">subject1.onNext(<span class="string">"🅱️"</span>)</div><div class="line">subject2.onNext(<span class="string">"①"</span>)</div><div class="line">subject2.onNext(<span class="string">"②"</span>)</div><div class="line">subject1.onNext(<span class="string">"🆎"</span>)</div><div class="line">subject2.onNext(<span class="string">"③"</span>)</div><div class="line">   </div><div class="line"><span class="comment">//</span></div><div class="line">🅰️</div><div class="line">🅱️</div><div class="line">①</div><div class="line">②</div><div class="line">🆎</div><div class="line">③</div></pre></td></tr></table></figure>
-<h2 id="③zip"><a href="#③zip" class="headerlink" title="③zip"></a>③zip</h2><p><span id="1.3">③zip</span></p>
-<blockquote>
+<p><span id="1.3">③zip</span></p>
+<h2 id="③zip"><a href="#③zip" class="headerlink" title="③zip"></a>③zip</h2><blockquote>
 <p>绑定超过最多不超过8个的Observable流，结合在一起处理<br>注意Zip是一个事件对应另一个流一个事件<br>将多个Observable(注意：必须是要成对)组合成单个Observable，当有事件到达时，会在每个序列中对应的索引上对应的元素发出。(ps:之前版本的RxSwift好像最多只能组合8个Observable)</p>
 </blockquote>
 <p><a href="http://reactivex.io/documentation/operators/zip.html" target="_blank" rel="external">zip-文档</a></p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"> </div><div class="line"><span class="keyword">let</span> strSbj = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"><span class="keyword">let</span> intSbj = <span class="type">PublishSubject</span>&lt;<span class="type">Int</span>&gt;()</div><div class="line">   </div><div class="line"><span class="type">Observable</span>.<span class="built_in">zip</span>(strSbj, intSbj)&#123;</div><div class="line">				  strElement,intElement  <span class="keyword">in</span> </div><div class="line">				  <span class="string">"\(strElement) \(intElement)"</span></div><div class="line">				 &#125;</div><div class="line">         .subscribe(<span class="type">OnNext</span>: &#123;</div><div class="line">                   pint($<span class="number">0</span>)</div><div class="line">              &#125;)</div><div class="line">         .addDisposableTo(disposeBag)</div><div class="line">   </div><div class="line">strSbj.onNext(<span class="string">"🅰️"</span>)</div><div class="line">strSbj.onNext(<span class="string">"🅱️"</span>)</div><div class="line">   </div><div class="line">intSbj.onNext(<span class="number">1</span>)</div><div class="line">intSbj.onNext(<span class="number">2</span>)</div><div class="line">   </div><div class="line">strSbj.onNext(<span class="string">"🆎"</span>)</div><div class="line">intSbj.onNext(<span class="number">2</span>)</div><div class="line">   </div><div class="line"><span class="comment">//</span></div><div class="line">🅰️ <span class="number">1</span>   将stringSubject和intSubject压缩到一起共同处理</div><div class="line">🅱️ <span class="number">2</span></div><div class="line">🆎 <span class="number">3</span></div></pre></td></tr></table></figure>
-<h2 id="④combineLatest"><a href="#④combineLatest" class="headerlink" title="④combineLatest"></a>④combineLatest</h2><p><span id="1.4">④combineLatest</span></p>
-<blockquote>
+<p><span id="1.4">④combineLatest</span></p>
+<h2 id="④combineLatest"><a href="#④combineLatest" class="headerlink" title="④combineLatest"></a>④combineLatest</h2><blockquote>
 <p>绑定超过最多不超过8个的Observable流，结合在一起处理<br>和Zip不同的是combineLatest是一个流的事件对应另一个流的最新的事件，两个事件都会是最新的事件，可将下图与Zip的图进行对比<br>邻近事件一起处理</p>
 </blockquote>
 <p><img src="http://ozr735s7e.bkt.clouddn.com/combineLatest.png" alt="combineLatest"></p>
@@ -495,11 +495,11 @@
 </blockquote>
 <p><img src="http://ot0mms4k8.bkt.clouddn.com/Combination-Operators-4-2.png" alt=""></p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"></div><div class="line"><span class="keyword">let</span> subject1 = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"><span class="keyword">let</span> subject2 = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line">	    </div><div class="line"><span class="type">Observable</span>.combineLatest(subject1, subject2) &#123; string1,string2 <span class="keyword">in</span></div><div class="line">                <span class="string">"\(string1)--\(string2)"</span></div><div class="line">              &#125;</div><div class="line">		    .subscribe(onNext: &#123;</div><div class="line">		            <span class="built_in">print</span>($<span class="number">0</span>)</div><div class="line">		            &#125;)</div><div class="line">		    .disposed(by: disposeBag)</div><div class="line">	    </div><div class="line">subject1.onNext(<span class="string">"A"</span>)</div><div class="line">    </div><div class="line">subject2.onNext(<span class="string">"1"</span>)</div><div class="line">subject2.onNext(<span class="string">"2"</span>)</div><div class="line">    </div><div class="line">subject1.onNext(<span class="string">"B"</span>)</div><div class="line">subject1.onNext(<span class="string">"C"</span>)</div><div class="line">	</div><div class="line"><span class="comment">//输出结果</span></div><div class="line"><span class="type">A</span>--<span class="number">1</span></div><div class="line"><span class="type">A</span>--<span class="number">2</span></div><div class="line"><span class="type">B</span>--<span class="number">2</span></div><div class="line"><span class="type">C</span>--<span class="number">2</span></div></pre></td></tr></table></figure>
-<h2 id="⑤switchLatest"><a href="#⑤switchLatest" class="headerlink" title="⑤switchLatest"></a>⑤switchLatest</h2><p><span id="1.5">⑤switchLatest</span></p>
-<blockquote>
+<p><span id="1.5">⑤switchLatest</span></p>
+<h2 id="⑤switchLatest"><a href="#⑤switchLatest" class="headerlink" title="⑤switchLatest"></a>⑤switchLatest</h2><blockquote>
 <p>切换Observable队列<br>switchLatest可以对事件流进行转换，本来监听的sbj1，可以通过更改variable里面的value更换事件源—&gt;变成监听sbj2</p>
 </blockquote>
-<p><img src="http://ozr735s7e.bkt.clouddn.com/switchLatest.png" alt="switchLatest"></p>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/switchLatest.png" alt="hexo"></p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"></div><div class="line"><span class="keyword">let</span> sbj1 = <span class="type">BehaviorSubject</span>(value: <span class="string">"⚽️"</span>)</div><div class="line"><span class="keyword">let</span> sbj2 = <span class="type">BehaviorSubject</span>(value: <span class="string">"🍎"</span>)</div><div class="line">   </div><div class="line"><span class="keyword">let</span> variable = <span class="type">Variable</span>(sbj1)</div><div class="line">variable.asObservable()</div><div class="line">        .switchLatest()</div><div class="line">        .subscribe(onNext: &#123; </div><div class="line">                     <span class="built_in">print</span>($<span class="number">0</span>) </div><div class="line">                 &#125;)</div><div class="line">        .addDisposableTo(disposeBag)</div><div class="line">    </div><div class="line">sbj1.onNext(<span class="string">"🏈"</span>)</div><div class="line">sbj1.onNext(<span class="string">"🏀"</span>)</div><div class="line">	    </div><div class="line">variable.value = sbj1</div><div class="line">	    </div><div class="line">subject1.onNext(<span class="string">"⚾️"</span>)</div><div class="line">	    </div><div class="line">sbj2.onNext(<span class="string">"🍐"</span>)</div><div class="line">variable.value = sbj1</div><div class="line">sbj2.onNext(<span class="string">"54321"</span>)</div><div class="line">sbj1.onNext(<span class="string">"12345"</span>)</div><div class="line">   <span class="comment">///</span></div><div class="line">⚽️</div><div class="line">🏈</div><div class="line">🏀</div><div class="line">🍎</div><div class="line">🍐</div><div class="line">⚾️</div><div class="line"><span class="number">12345</span></div></pre></td></tr></table></figure>
 <blockquote>
 <p>例子分析</p>
