@@ -9,8 +9,8 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -35,8 +35,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>Protocol</tag>
       </tags>
   </entry>
@@ -121,8 +121,8 @@
       </categories>
       <tags>
         <tag>Swift</tag>
-        <tag>RxSwift</tag>
         <tag>Func</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -135,8 +135,8 @@
       </categories>
       <tags>
         <tag>Swift</tag>
-        <tag>RxSwift</tag>
         <tag>Func</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -197,8 +197,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Func</tag>
         <tag>SceneKit</tag>
+        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
@@ -212,8 +212,8 @@
       </categories>
       <tags>
         <tag>Grammar</tag>
-        <tag>OC</tag>
         <tag>UIKit</tag>
+        <tag>OC</tag>
       </tags>
   </entry>
   <entry>
@@ -239,8 +239,8 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -253,8 +253,8 @@
         <category>SCNCamera</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>SceneKit</tag>
+        <tag>Grammar</tag>
         <tag>SCNCamera</tag>
       </tags>
   </entry>
@@ -349,8 +349,8 @@
         <category>SCNCamera</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>SceneKit</tag>
+        <tag>Grammar</tag>
         <tag>SCNCamera</tag>
       </tags>
   </entry>
@@ -363,8 +363,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>SceneKit</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -376,8 +376,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>SceneKit</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -389,9 +389,9 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
-        <tag>Grammar</tag>
         <tag>SceneKit</tag>
+        <tag>Grammar</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -505,8 +505,8 @@
         <category>WCDB</category>
       </categories>
       <tags>
-        <tag>OC</tag>
         <tag>Lib</tag>
+        <tag>OC</tag>
         <tag>WCDB</tag>
         <tag>数据库</tag>
       </tags>
@@ -584,8 +584,8 @@
         <category>SceneKit</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>SceneKit</tag>
+        <tag>iOS</tag>
       </tags>
   </entry>
   <entry>
@@ -607,8 +607,8 @@
         <category>SceneKit</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>SceneKit</tag>
+        <tag>iOS</tag>
         <tag>3D引擎</tag>
       </tags>
   </entry>
@@ -622,8 +622,8 @@
         <category>ArcGIS</category>
       </categories>
       <tags>
-        <tag>OC</tag>
         <tag>Lib</tag>
+        <tag>OC</tag>
         <tag>ArcGIS</tag>
         <tag>大图加载</tag>
       </tags>
@@ -665,19 +665,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Swift-RxSwift-连接性操作]]></title>
-    <url>%2F2017%2F12%2F19%2FRxSwift%2FGrammar%2FOperators-%E8%BF%9E%E6%8E%A5%E6%80%A7%E6%93%8D%E4%BD%9C%2F</url>
-    <content type="text"><![CDATA[连接性操作 Connectable Observable有订阅时不开始发射事件消息，而是仅当调用它们的connect（）方法时。这样就可以等待所有我们想要的订阅者都已经订阅了以后，再开始发出事件消息，这样能保证我们想要的所有订阅者都能接收到事件消息。其实也就是等大家都就位以后，开始发出消息 publish 将一个正常的sequence转换成一个connectable sequence let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .publish() _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; //相当于把事件消息推迟了两秒 delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(6) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125;//Subscription 1:, Event: 0Subscription 1:, Event: 1Subscription 2:, Event: 1Subscription 1:, Event: 2Subscription 2:, Event: 2Subscription 1:, Event: 3Subscription 3:, Event: 3Subscription 2:, Event: 3Subscription 1:, Event: 4Subscription 3:, Event: 4 replay 将一个正常的sequence转换成一个connectable sequence，然后和replaySubject相似，能接收到订阅之前的事件消息 let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .replay(5) //接收到订阅之前的5条事件消息 _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(8) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125; multicast 将一个正常的sequence转换成一个connectable sequence，并且通过特性的subject发送出去，比如PublishSubject，或者replaySubject，behaviorSubject等。不同的Subject会有不同的结果 let subject = PublishSubject&lt;Int&gt;() _ = subject .subscribe(onNext: &#123; print("Subject: \($0)") &#125;) let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .multicast(subject) _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 2:, Event: \($0)") &#125;)&#125;]]></content>
-      <categories>
-        <category>Swift</category>
-        <category>RxSwift</category>
-      </categories>
-      <tags>
-        <tag>Swift</tag>
-        <tag>RxSwift</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Swift-RxSwift-错误处理操作]]></title>
     <url>%2F2017%2F12%2F19%2FRxSwift%2FGrammar%2FOperators-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E6%93%8D%E4%BD%9C%2F</url>
     <content type="text"><![CDATA[错误处理操作catchErrorJustReturn 遇到error事件的时候，就return一个值，然后结束 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;() sequenceThatFails .catchErrorJustReturn("😊") .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test)///next(😬)next(😨)next(😡)next(🔴)next(😊)completed catchError 捕获error进行处理，可以返回另一个sequence进行订阅 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;()let recoverySequence = PublishSubject&lt;String&gt;() sequenceThatFails .catchError &#123; print("Error:", $0) return recoverySequence &#125; .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test) recoverySequence.onNext("😊")//next(😬)next(😨)next(😡)next(🔴)Error: testnext(😊) retry 遇见error事件可以进行重试，比如网络请求失败，可以进行重新连接 let disposeBag = DisposeBag()var count = 1 let sequenceThatErrors = Observable&lt;String&gt;.create &#123; observer in observer.onNext("🍎") observer.onNext("🍐") observer.onNext("🍊") if count == 1 &#123; observer.onError(TestError.test) print("Error encountered") count += 1 &#125; observer.onNext("🐶") observer.onNext("🐱") observer.onNext("🐭") observer.onCompleted() return Disposables.create()&#125; sequenceThatErrors .retry(3) //不传入数字的话，只会重试一次 .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) debug 打印所有的订阅, 事件和disposals sequenceThatErrors .retry(3) .debug() .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) RxSwift.Resources.total 查看RxSwift所有资源的占用 print(RxSwift.Resources.total)]]></content>
@@ -691,9 +678,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Swift-RxSwift-过滤和条件操作符]]></title>
-    <url>%2F2017%2F12%2F19%2FRxSwift%2FGrammar%2FOperators-%E8%BF%87%E6%BB%A4%E5%92%8C%E6%9D%A1%E4%BB%B6%E6%93%8D%E4%BD%9C%E7%AC%A6%2F</url>
-    <content type="text"><![CDATA[过滤和条件操作符①filter ②distinctUntilChanged ③elementAt ④single ⑤take ⑥takeLast ⑦takeWhile ⑧takeUntil ⑨skip ⑩ skipWhile ⑪skipWhileWithIndex ⑫skipUntil filter 过滤掉某些不符合要求的事件在Observable序列中只发出满足过滤条件的事件 let disposeBag = DisposeBag() Observable.of( "🐱", "🐰", "🐶", "🐸", "🐱", "🐰", "🐹", "🐸", "🐱") .filter &#123; $0 == "🐱" &#125; .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag)///🐱🐱🐱 let disposeBag = DisposeBag() Observable.of(1,2,3,4,5) .filter( &#123;$0 &gt; 2&#125; ) .subscribe( onNext: &#123;print($0)&#125; ) .disposed(by: disposeBag)//打印结果345 ②distinctUntilChanged 过滤连续发出的相同事件distinctUntilChanged就是当下一个事件与前一个事件是不同事件的事件才进行处理操作 let disposeBag = DisposeBag() Observable.of("🐱", "🐷", "🐱", "🐱", "🐱", "🐵", "🐱") .distinctUntilChanged() .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag)///🐱🐷🐱🐵🐱 ③elementAt 只处理在指定位置的事件 let disposeBag = DisposeBag() Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .elementAt(3) .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag)//🐸 ④single 用法一：检测Observable序列是否发射一个元素。如果发射多个，会报错 let disposeBag = DisposeBag()// error:Sequence contains more than one element// Observable.of(1,2,3).single().subscribe(onNext: &#123;print($0)&#125;).disposed(by: disposeBag)Observable.of(1) .single() .subscribe( onNext: &#123;print($0)&#125; ) .disposed(by: disposeBag) 用法二:检测Observable序列发射的元素里面是否包含多个指定的元素，如果有多个或者没有，会报错。 let disposeBag = DisposeBag()Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .single &#123; $0 == "🐸" &#125; .subscribe &#123; print($0) &#125; .disposed(by: disposeBag) Observable.of("🐱", "🐰", "🐶", "🐱", "🐰", "🐶") .single &#123; $0 == "🐒" &#125; .subscribe &#123; print($0) &#125; .disposed(by: disposeBag) Observable.of("🐱", "🐰", "🐶", "🐶","🐸") .single &#123; $0 == "🐶" &#125; .subscribe &#123; print($0) &#125; .disposed(by: disposeBag //打印结果 next(🐸) completed error(Sequence doesn't contain any elements.) next(🐶) error(Sequence contains more than one element.) 出在sequence只发出一次的事件，如果超过一个就会发出error错误 Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .single() .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) 🐱 //单一信号超过了一个Received unhandled error: /var/folders/hz/v15ld5mj0nqf83d21j13y0tw0000gn/T/./lldb/7229/playground107.swift:69:__lldb_expr_107 -&gt; Sequence contains more than one element. Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .single &#123; $0 == "🐸" &#125; //青蛙只有一个，completed .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) Observable.of("🐱", "🐰", "🐶", "🐱", "🐰", "🐶") .single &#123; $0 == "🐰" &#125; //兔子有两个，会发出error .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .single &#123; $0 == "🔵" &#125; //没有蓝色球，会发出error .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) ⑤take 只处理前几个事件信号 let disposeBag = DisposeBag() Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .take(3) .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag)//🐱🐰🐶 从Observable序列开始点起只处理前几个事件 let disposeBag = DisposeBag() Observable.of(1,2,3) .take(2) .subscribe( onNext: &#123;print($0)&#125; ) .disposed(by: disposeBag)//打印结果: 1 2 ⑥takeLast 只处理后几个事件信号与take相反，从Observable序列的结束位置起，只处理前几个事件 let disposeBag = DisposeBag() Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .takeLast(3) .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag)//打印结果🐸🐷🐵let disposeBag = DisposeBag() Observable.of(1,2,3) .takeLast(2) .subscribe(onNext: &#123;print($0)&#125;) .disposed(by: disposeBag)//打印结果23 ⑦takeWhile 只处理满足条件的事件。感觉和filter没什么区别 let disposeBag = DisposeBag() Observable.of(1, 2, 3, 4, 5, 6) .takeWhile &#123; $0 &lt; 4 &#125; .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) //打印结果：123let disposeBag = DisposeBag()Observable.of(1,2,3,4,5) .takeWhile&#123;$0 &lt; 3&#125; .subscribe(onNext: &#123;print($0)&#125;) .disposed(by: disposeBag)//打印结果：12 ⑧takeUntil 接收事件消息，直到另一个sequence发出事件消息的时候 let disposeBag = DisposeBag() let sourceSequence = PublishSubject&lt;String&gt;()let referenceSequence = PublishSubject&lt;String&gt;() sourceSequence .takeUntil(referenceSequence) .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sourceSequence.onNext("🐱")sourceSequence.onNext("🐰")sourceSequence.onNext("🐶") referenceSequence.onNext("🔴") //停止接收消息 sourceSequence.onNext("🐸")sourceSequence.onNext("🐷")sourceSequence.onNext("🐵")///next(🐱)next(🐰)next(🐶)completed 直到另一个Observable序列发出一个信号，则原序列终 let disposeBag = DisposeBag() let orinSubject = PublishSubject&lt;Int&gt;()let refreSubject = PublishSubject&lt;Int&gt;() orinSubject.takeUntil(refreSubject) .subscribe(onNext: &#123;print($0)&#125;) .disposed(by: disposeBag) orinSubject.onNext(1)orinSubject.onNext(2)refreSubject.onNext(10)orinSubject.onNext(3)//打印结果12 ⑨skip 取消前几个事件 let disposeBag = DisposeBag() Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .skip(2) .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) // 🐶 🐸 🐷 🐵 从Observable序列的元素跳过指定个数 let disposeBag = DisposeBag()Observable.of(1,2,3,4,5,6) .skip(2) .subscribe(onNext: &#123;print($0)&#125;) .disposed(by: disposeBag)//打印结果：3456 ⑩ skipWhile 满足条件的事件消息都取消 let disposeBag = DisposeBag() Observable.of(1, 2, 3, 4, 5, 6) .skipWhile &#123; $0 &lt; 4 &#125; .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) /// 4 5 6 跳过满足条件的事件，只要遇见不满足条件的事件，则该事件以及之后的事件（不管是否满足条件）都会发出 let disposeBag = DisposeBag() Observable.of(1,2,3,4,5,6) .skipWhile&#123;$0 &lt; 3&#125; .subscribe(onNext: &#123;print($0)&#125;) .disposed(by: disposeBag)//打印结果3456 ⑪skipWhileWithIndex 满足条件的都被取消，传入的闭包同skipWhile有点区别而已 let disposeBag = DisposeBag() Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .skipWhileWithIndex &#123; element, index in index &lt; 3 &#125; .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) 跳过索引满足条件的事件 let disposeBag = DisposeBag()Observable.of(1,2,3,4,5,6).skipWhileWithIndex(&#123; (element, index) -&gt; Bool in index &lt; 3 &#125;).subscribe(onNext: &#123;print($0)&#125;).disposed(by: disposeBag) //打印结果: 456 ⑫skipUntil 直到某个sequence发出了事件消息，才开始接收当前sequence发出的事件消息 let disposeBag = DisposeBag() let sourceSequence = PublishSubject&lt;String&gt;()let referenceSequence = PublishSubject&lt;String&gt;() sourceSequence .skipUntil(referenceSequence) .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) sourceSequence.onNext("🐱")sourceSequence.onNext("🐰")sourceSequence.onNext("🐶") referenceSequence.onNext("🔴") sourceSequence.onNext("🐸")sourceSequence.onNext("🐷")sourceSequence.onNext("🐵")&#125; 跳过另一个Observable序列发出事件之前的所有事件与takeUntil相反。 let disposeBag = DisposeBag() let oriSubject = PublishSubject&lt;Int&gt;() let refreSubject = PublishSubject&lt;Int&gt;() oriSubject.skipUntil(refreSubject) .subscribe(onNext: &#123;print($0)&#125;) .disposed(by: disposeBag) oriSubject.onNext(1)oriSubject.onNext(2) refreSubject.onNext(10)oriSubject.onNext(3)oriSubject.onNext(4)//打印结果:34]]></content>
+    <title><![CDATA[Swift-RxSwift-连接性操作]]></title>
+    <url>%2F2017%2F12%2F19%2FRxSwift%2FGrammar%2FOperators-%E8%BF%9E%E6%8E%A5%E6%80%A7%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[连接性操作 Connectable Observable有订阅时不开始发射事件消息，而是仅当调用它们的connect（）方法时。这样就可以等待所有我们想要的订阅者都已经订阅了以后，再开始发出事件消息，这样能保证我们想要的所有订阅者都能接收到事件消息。其实也就是等大家都就位以后，开始发出消息 publish 将一个正常的sequence转换成一个connectable sequence let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .publish() _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; //相当于把事件消息推迟了两秒 delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(6) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125;//Subscription 1:, Event: 0Subscription 1:, Event: 1Subscription 2:, Event: 1Subscription 1:, Event: 2Subscription 2:, Event: 2Subscription 1:, Event: 3Subscription 3:, Event: 3Subscription 2:, Event: 3Subscription 1:, Event: 4Subscription 3:, Event: 4 replay 将一个正常的sequence转换成一个connectable sequence，然后和replaySubject相似，能接收到订阅之前的事件消息 let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .replay(5) //接收到订阅之前的5条事件消息 _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(8) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125; multicast 将一个正常的sequence转换成一个connectable sequence，并且通过特性的subject发送出去，比如PublishSubject，或者replaySubject，behaviorSubject等。不同的Subject会有不同的结果 let subject = PublishSubject&lt;Int&gt;() _ = subject .subscribe(onNext: &#123; print("Subject: \($0)") &#125;) let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .multicast(subject) _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 2:, Event: \($0)") &#125;)&#125;]]></content>
       <categories>
         <category>Swift</category>
         <category>RxSwift</category>
@@ -707,6 +694,19 @@
     <title><![CDATA[Swift-RxSwift-数学操作]]></title>
     <url>%2F2017%2F12%2F19%2FRxSwift%2FGrammar%2FOperators-%E6%95%B0%E5%AD%A6%E6%93%8D%E4%BD%9C%2F</url>
     <content type="text"><![CDATA[数学操作toArray 将sequence转换成一个array，并转换成单一事件信号，然后结束 let disposeBag = DisposeBag() Observable.range(start: 1, count: 10) .toArray() .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag)///next([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])completed reduce 用一个初始值，对事件数据进行累计操作reduce接受一个初始值，和一个操作符号 let disposeBag = DisposeBag() Observable.of(10, 100, 1000) .reduce(1, accumulator: +) .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag)/// 1111 concat oncat会把多个sequence和并为一个sequence，并且当前面一个sequence发出了completed事件，才会开始下一个sequence的事件在第一sequence完成之前，第二个sequence发出的事件都会被忽略，但会接收一完成之前的二发出的最后一个事件。不好解释，看例子说明 let disposeBag = DisposeBag() let subject1 = BehaviorSubject(value: "🍎")let subject2 = BehaviorSubject(value: "🐶") let variable = Variable(subject1) variable.asObservable() .concat() .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) subject1.onNext("🍐")subject1.onNext("🍊") variable.value = subject2 subject2.onNext("🐱") //1完成前，会被忽略subject2.onNext("teng") //1完成前，会被忽略subject2.onNext("fei") //1完成前的最后一个，会被接收 subject1.onCompleted() subject2.onNext("🐭")next(🍎)next(🍐)next(🍊)next(fei)next(🐭) 连接性操作 Connectable Observable有订阅时不开始发射事件消息，而是仅当调用它们的connect（）方法时。这样就可以等待所有我们想要的订阅者都已经订阅了以后，再开始发出事件消息，这样能保证我们想要的所有订阅者都能接收到事件消息。其实也就是等大家都就位以后，开始发出消息 publish 将一个正常的sequence转换成一个connectable sequence let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .publish() _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; //相当于把事件消息推迟了两秒 delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(6) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125;//Subscription 1:, Event: 0Subscription 1:, Event: 1Subscription 2:, Event: 1Subscription 1:, Event: 2Subscription 2:, Event: 2Subscription 1:, Event: 3Subscription 3:, Event: 3Subscription 2:, Event: 3Subscription 1:, Event: 4Subscription 3:, Event: 4 replay 将一个正常的sequence转换成一个connectable sequence，然后和replaySubject相似，能接收到订阅之前的事件消息 let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .replay(5) //接收到订阅之前的5条事件消息 _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(8) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125; multicast 将一个正常的sequence转换成一个connectable sequence，并且通过特性的subject发送出去，比如PublishSubject，或者replaySubject，behaviorSubject等。不同的Subject会有不同的结果 let subject = PublishSubject&lt;Int&gt;() _ = subject .subscribe(onNext: &#123; print("Subject: \($0)") &#125;) let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .multicast(subject) _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 2:, Event: \($0)") &#125;)&#125; 错误处理catchErrorJustReturn 遇到error事件的时候，就return一个值，然后结束 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;() sequenceThatFails .catchErrorJustReturn("😊") .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test)///next(😬)next(😨)next(😡)next(🔴)next(😊)completed catchError 捕获error进行处理，可以返回另一个sequence进行订阅 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;()let recoverySequence = PublishSubject&lt;String&gt;() sequenceThatFails .catchError &#123; print("Error:", $0) return recoverySequence &#125; .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test) recoverySequence.onNext("😊")//next(😬)next(😨)next(😡)next(🔴)Error: testnext(😊) retry 遇见error事件可以进行重试，比如网络请求失败，可以进行重新连接 let disposeBag = DisposeBag()var count = 1 let sequenceThatErrors = Observable&lt;String&gt;.create &#123; observer in observer.onNext("🍎") observer.onNext("🍐") observer.onNext("🍊") if count == 1 &#123; observer.onError(TestError.test) print("Error encountered") count += 1 &#125; observer.onNext("🐶") observer.onNext("🐱") observer.onNext("🐭") observer.onCompleted() return Disposables.create()&#125; sequenceThatErrors .retry(3) //不传入数字的话，只会重试一次 .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) debug 打印所有的订阅, 事件和disposals sequenceThatErrors .retry(3) .debug() .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) RxSwift.Resources.total 查看RxSwift所有资源的占用 print(RxSwift.Resources.total)]]></content>
+      <categories>
+        <category>Swift</category>
+        <category>RxSwift</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>RxSwift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Swift-RxSwift-过滤和条件操作符]]></title>
+    <url>%2F2017%2F12%2F19%2FRxSwift%2FGrammar%2FOperators-%E8%BF%87%E6%BB%A4%E5%92%8C%E6%9D%A1%E4%BB%B6%E6%93%8D%E4%BD%9C%E7%AC%A6%2F</url>
+    <content type="text"><![CDATA[过滤和条件操作符①filter ②distinctUntilChanged ③elementAt ④single ⑤take ⑥takeLast ⑦takeWhile ⑧takeUntil ⑨skip ⑩ skipWhile ⑪skipWhileWithIndex ⑫skipUntil filter 过滤掉某些不符合要求的事件在Observable序列中只发出满足过滤条件的事件 let disposeBag = DisposeBag() Observable.of( "🐱", "🐰", "🐶", "🐸", "🐱", "🐰", "🐹", "🐸", "🐱") .filter &#123; $0 == "🐱" &#125; .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag)///🐱🐱🐱 let disposeBag = DisposeBag() Observable.of(1,2,3,4,5) .filter( &#123;$0 &gt; 2&#125; ) .subscribe( onNext: &#123;print($0)&#125; ) .disposed(by: disposeBag)//打印结果345 ②distinctUntilChanged 过滤连续发出的相同事件distinctUntilChanged就是当下一个事件与前一个事件是不同事件的事件才进行处理操作 let disposeBag = DisposeBag() Observable.of("🐱", "🐷", "🐱", "🐱", "🐱", "🐵", "🐱") .distinctUntilChanged() .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag)///🐱🐷🐱🐵🐱 ③elementAt 只处理在指定位置的事件 let disposeBag = DisposeBag() Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .elementAt(3) .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag)//🐸 ④single 用法一：检测Observable序列是否发射一个元素。如果发射多个，会报错 let disposeBag = DisposeBag()// error:Sequence contains more than one element// Observable.of(1,2,3).single().subscribe(onNext: &#123;print($0)&#125;).disposed(by: disposeBag)Observable.of(1) .single() .subscribe( onNext: &#123;print($0)&#125; ) .disposed(by: disposeBag) 用法二:检测Observable序列发射的元素里面是否包含多个指定的元素，如果有多个或者没有，会报错。 let disposeBag = DisposeBag()Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .single &#123; $0 == "🐸" &#125; .subscribe &#123; print($0) &#125; .disposed(by: disposeBag) Observable.of("🐱", "🐰", "🐶", "🐱", "🐰", "🐶") .single &#123; $0 == "🐒" &#125; .subscribe &#123; print($0) &#125; .disposed(by: disposeBag) Observable.of("🐱", "🐰", "🐶", "🐶","🐸") .single &#123; $0 == "🐶" &#125; .subscribe &#123; print($0) &#125; .disposed(by: disposeBag //打印结果 next(🐸) completed error(Sequence doesn't contain any elements.) next(🐶) error(Sequence contains more than one element.) 出在sequence只发出一次的事件，如果超过一个就会发出error错误 Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .single() .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) 🐱 //单一信号超过了一个Received unhandled error: /var/folders/hz/v15ld5mj0nqf83d21j13y0tw0000gn/T/./lldb/7229/playground107.swift:69:__lldb_expr_107 -&gt; Sequence contains more than one element. Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .single &#123; $0 == "🐸" &#125; //青蛙只有一个，completed .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) Observable.of("🐱", "🐰", "🐶", "🐱", "🐰", "🐶") .single &#123; $0 == "🐰" &#125; //兔子有两个，会发出error .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .single &#123; $0 == "🔵" &#125; //没有蓝色球，会发出error .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) ⑤take 只处理前几个事件信号 let disposeBag = DisposeBag() Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .take(3) .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag)//🐱🐰🐶 从Observable序列开始点起只处理前几个事件 let disposeBag = DisposeBag() Observable.of(1,2,3) .take(2) .subscribe( onNext: &#123;print($0)&#125; ) .disposed(by: disposeBag)//打印结果: 1 2 ⑥takeLast 只处理后几个事件信号与take相反，从Observable序列的结束位置起，只处理前几个事件 let disposeBag = DisposeBag() Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .takeLast(3) .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag)//打印结果🐸🐷🐵let disposeBag = DisposeBag() Observable.of(1,2,3) .takeLast(2) .subscribe(onNext: &#123;print($0)&#125;) .disposed(by: disposeBag)//打印结果23 ⑦takeWhile 只处理满足条件的事件。感觉和filter没什么区别 let disposeBag = DisposeBag() Observable.of(1, 2, 3, 4, 5, 6) .takeWhile &#123; $0 &lt; 4 &#125; .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) //打印结果：123let disposeBag = DisposeBag()Observable.of(1,2,3,4,5) .takeWhile&#123;$0 &lt; 3&#125; .subscribe(onNext: &#123;print($0)&#125;) .disposed(by: disposeBag)//打印结果：12 ⑧takeUntil 接收事件消息，直到另一个sequence发出事件消息的时候 let disposeBag = DisposeBag() let sourceSequence = PublishSubject&lt;String&gt;()let referenceSequence = PublishSubject&lt;String&gt;() sourceSequence .takeUntil(referenceSequence) .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sourceSequence.onNext("🐱")sourceSequence.onNext("🐰")sourceSequence.onNext("🐶") referenceSequence.onNext("🔴") //停止接收消息 sourceSequence.onNext("🐸")sourceSequence.onNext("🐷")sourceSequence.onNext("🐵")///next(🐱)next(🐰)next(🐶)completed 直到另一个Observable序列发出一个信号，则原序列终 let disposeBag = DisposeBag() let orinSubject = PublishSubject&lt;Int&gt;()let refreSubject = PublishSubject&lt;Int&gt;() orinSubject.takeUntil(refreSubject) .subscribe(onNext: &#123;print($0)&#125;) .disposed(by: disposeBag) orinSubject.onNext(1)orinSubject.onNext(2)refreSubject.onNext(10)orinSubject.onNext(3)//打印结果12 ⑨skip 取消前几个事件 let disposeBag = DisposeBag() Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .skip(2) .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) // 🐶 🐸 🐷 🐵 从Observable序列的元素跳过指定个数 let disposeBag = DisposeBag()Observable.of(1,2,3,4,5,6) .skip(2) .subscribe(onNext: &#123;print($0)&#125;) .disposed(by: disposeBag)//打印结果：3456 ⑩ skipWhile 满足条件的事件消息都取消 let disposeBag = DisposeBag() Observable.of(1, 2, 3, 4, 5, 6) .skipWhile &#123; $0 &lt; 4 &#125; .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) /// 4 5 6 跳过满足条件的事件，只要遇见不满足条件的事件，则该事件以及之后的事件（不管是否满足条件）都会发出 let disposeBag = DisposeBag() Observable.of(1,2,3,4,5,6) .skipWhile&#123;$0 &lt; 3&#125; .subscribe(onNext: &#123;print($0)&#125;) .disposed(by: disposeBag)//打印结果3456 ⑪skipWhileWithIndex 满足条件的都被取消，传入的闭包同skipWhile有点区别而已 let disposeBag = DisposeBag() Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .skipWhileWithIndex &#123; element, index in index &lt; 3 &#125; .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) 跳过索引满足条件的事件 let disposeBag = DisposeBag()Observable.of(1,2,3,4,5,6).skipWhileWithIndex(&#123; (element, index) -&gt; Bool in index &lt; 3 &#125;).subscribe(onNext: &#123;print($0)&#125;).disposed(by: disposeBag) //打印结果: 456 ⑫skipUntil 直到某个sequence发出了事件消息，才开始接收当前sequence发出的事件消息 let disposeBag = DisposeBag() let sourceSequence = PublishSubject&lt;String&gt;()let referenceSequence = PublishSubject&lt;String&gt;() sourceSequence .skipUntil(referenceSequence) .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) sourceSequence.onNext("🐱")sourceSequence.onNext("🐰")sourceSequence.onNext("🐶") referenceSequence.onNext("🔴") sourceSequence.onNext("🐸")sourceSequence.onNext("🐷")sourceSequence.onNext("🐵")&#125; 跳过另一个Observable序列发出事件之前的所有事件与takeUntil相反。 let disposeBag = DisposeBag() let oriSubject = PublishSubject&lt;Int&gt;() let refreSubject = PublishSubject&lt;Int&gt;() oriSubject.skipUntil(refreSubject) .subscribe(onNext: &#123;print($0)&#125;) .disposed(by: disposeBag) oriSubject.onNext(1)oriSubject.onNext(2) refreSubject.onNext(10)oriSubject.onNext(3)oriSubject.onNext(4)//打印结果:34]]></content>
       <categories>
         <category>Swift</category>
         <category>RxSwift</category>
@@ -759,7 +759,7 @@
   <entry>
     <title><![CDATA[Swift-RxSwift-Combination Operators-联合操作Observable流]]></title>
     <url>%2F2017%2F12%2F19%2FRxSwift%2FGrammar%2FOperators-%E8%81%94%E5%90%88%E6%93%8D%E4%BD%9CObservable%E6%B5%81%2F</url>
-    <content type="text"><![CDATA[联合操作Observable流①startWith②merge③zip④combineLatest⑤switchLatest 联合操作Observable流1 联合操作就是把多个Observable流合成单个Observable流 ①startWith (优先插入特定的事件消息) ②merge （组合成单个Observable,并且按照时间顺序发射对应事件） ③zip （一个事件对应另一个流一个事件） ④combineLatest （一个流的事件对应另一个流的最新的事件） ⑤switchLatest (事件流进行转换) ①startWith1.1 在发出事件消息之前，先发出某个特定的事件消息。比如发出事件2 ，3然后我startWith(1)，那么就会先发出1，然后2 ，3 let disposeBag = DisposeBag()Observable.of("2","3") .startWith("1") .subscribe(onNext:&#123; print($0) &#125;) .addDisposableTo(disposeBag)//123 在Observable释放元素之前，发射指定的元素序列startWith和栈类似，先进后出在发送一个东西前，先发送一个指定的 let disposeBag = DisposeBag()Observable.of([&quot;C&quot;,&quot;C++&quot;,&quot;OC&quot;]) .startWith([&quot;今晚吃鸡，大吉大利&quot;]) .subscribe(&#123; (event) in print(event) &#125;) .disposed(by: disposeBag)//打印next([&quot;今晚吃鸡，大吉大利&quot;])next([&quot;C&quot;, &quot;C++&quot;, &quot;OC&quot;])completed ②merge1.2 将多个Observable组合成单个Observable,并且按照时间顺序发射对应事件 let disposeBag = DisposeBag()let sbj1 = PublishSubject&lt;String&gt;()let sbj2 = PublishSubject&lt;String&gt;()Observable.of(sbj1,sbj2) .merge() .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag)subject1.onNext("🅰️")subject1.onNext("🅱️")subject2.onNext("①")subject2.onNext("②")subject1.onNext("🆎")subject2.onNext("③") //🅰️🅱️①②🆎③ ③zip1.3 绑定超过最多不超过8个的Observable流，结合在一起处理注意Zip是一个事件对应另一个流一个事件将多个Observable(注意：必须是要成对)组合成单个Observable，当有事件到达时，会在每个序列中对应的索引上对应的元素发出。(ps:之前版本的RxSwift好像最多只能组合8个Observable) zip-文档 let disposeBag = DisposeBag() let strSbj = PublishSubject&lt;String&gt;()let intSbj = PublishSubject&lt;Int&gt;() Observable.zip(strSbj, intSbj)&#123; strElement,intElement in "\(strElement) \(intElement)" &#125; .subscribe(OnNext: &#123; pint($0) &#125;) .addDisposableTo(disposeBag) strSbj.onNext("🅰️")strSbj.onNext("🅱️") intSbj.onNext(1)intSbj.onNext(2) strSbj.onNext("🆎")intSbj.onNext(2) //🅰️ 1 将stringSubject和intSubject压缩到一起共同处理🅱️ 2🆎 3 ④combineLatest1.4 绑定超过最多不超过8个的Observable流，结合在一起处理和Zip不同的是combineLatest是一个流的事件对应另一个流的最新的事件，两个事件都会是最新的事件，可将下图与Zip的图进行对比邻近事件一起处理 let disposeBag = DisposeBag()let strSbj = PublishSubject&lt;String&gt;()let intSbj = PublishSubject&lt;Int&gt;() Observable.combineLatest(strSbj, intSbj)&#123; strElement,intElement in "\(strElement) \(intElement)" &#125; .addscribe(onNext: &#123;print( $0) &#125;) .addDisposableTo(disposeBag) strSbj.onNext("🅰️")strSbj.onNext("🅱️")intSbj.onNext(1)intSbj.onNext(2)strSbj.onNext("🆎")// 输出🅱️ 1🅱️ 2🆎 2 当一个项目由两个Observables发射时，通过一个指定的功能将每个Observable观察到的最新项目组合起来，并根据该功能的结果发射事件 let disposeBag = DisposeBag()let subject1 = PublishSubject&lt;String&gt;()let subject2 = PublishSubject&lt;String&gt;() Observable.combineLatest(subject1, subject2) &#123; string1,string2 in "\(string1)--\(string2)" &#125; .subscribe(onNext: &#123; print($0) &#125;) .disposed(by: disposeBag) subject1.onNext("A") subject2.onNext("1")subject2.onNext("2") subject1.onNext("B")subject1.onNext("C") //输出结果A--1A--2B--2C--2 ⑤switchLatest1.5 切换Observable队列switchLatest可以对事件流进行转换，本来监听的sbj1，可以通过更改variable里面的value更换事件源—&gt;变成监听sbj2 let disposeBag = DisposeBag()let sbj1 = BehaviorSubject(value: "⚽️")let sbj2 = BehaviorSubject(value: "🍎") let variable = Variable(sbj1)variable.asObservable() .switchLatest() .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) sbj1.onNext("🏈")sbj1.onNext("🏀") variable.value = sbj1 subject1.onNext("⚾️") sbj2.onNext("🍐")variable.value = sbj1sbj2.onNext("54321")sbj1.onNext("12345") ///⚽️🏈🏀🍎🍐⚾️12345 例子分析 et disposeBag = DisposeBag() let subject1 = BehaviorSubject(value: "1")let subject2 = BehaviorSubject(value: "A") let variable = Variable(subject1) variable.asObservable() .switchLatest() .subscribe(onNext: &#123; print($0) &#125;) .disposed(by: disposeBag) subject1.onNext("2")subject1.onNext("3") variable.value = subject2 subject1.onNext("4")subject2.onNext("B")//打印结果123AB]]></content>
+    <content type="text"><![CDATA[联合操作Observable流①startWith②merge③zip④combineLatest⑤switchLatest 联合操作Observable流联合操作Observable流 联合操作就是把多个Observable流合成单个Observable流 ①startWith (优先插入特定的事件消息) ②merge （组合成单个Observable,并且按照时间顺序发射对应事件） ③zip （一个事件对应另一个流一个事件） ④combineLatest （一个流的事件对应另一个流的最新的事件） ⑤switchLatest (事件流进行转换) ①startWith①startWith 在发出事件消息之前，先发出某个特定的事件消息。比如发出事件2 ，3然后我startWith(1)，那么就会先发出1，然后2 ，3 let disposeBag = DisposeBag()Observable.of("2","3") .startWith("1") .subscribe(onNext:&#123; print($0) &#125;) .addDisposableTo(disposeBag)//123 在Observable释放元素之前，发射指定的元素序列startWith和栈类似，先进后出在发送一个东西前，先发送一个指定的 let disposeBag = DisposeBag()Observable.of([&quot;C&quot;,&quot;C++&quot;,&quot;OC&quot;]) .startWith([&quot;今晚吃鸡，大吉大利&quot;]) .subscribe(&#123; (event) in print(event) &#125;) .disposed(by: disposeBag)//打印next([&quot;今晚吃鸡，大吉大利&quot;])next([&quot;C&quot;, &quot;C++&quot;, &quot;OC&quot;])completed ②merge②merge 将多个Observable组合成单个Observable,并且按照时间顺序发射对应事件 let disposeBag = DisposeBag()let sbj1 = PublishSubject&lt;String&gt;()let sbj2 = PublishSubject&lt;String&gt;()Observable.of(sbj1,sbj2) .merge() .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag)subject1.onNext("🅰️")subject1.onNext("🅱️")subject2.onNext("①")subject2.onNext("②")subject1.onNext("🆎")subject2.onNext("③") //🅰️🅱️①②🆎③ ③zip③zip 绑定超过最多不超过8个的Observable流，结合在一起处理注意Zip是一个事件对应另一个流一个事件将多个Observable(注意：必须是要成对)组合成单个Observable，当有事件到达时，会在每个序列中对应的索引上对应的元素发出。(ps:之前版本的RxSwift好像最多只能组合8个Observable) zip-文档 let disposeBag = DisposeBag() let strSbj = PublishSubject&lt;String&gt;()let intSbj = PublishSubject&lt;Int&gt;() Observable.zip(strSbj, intSbj)&#123; strElement,intElement in "\(strElement) \(intElement)" &#125; .subscribe(OnNext: &#123; pint($0) &#125;) .addDisposableTo(disposeBag) strSbj.onNext("🅰️")strSbj.onNext("🅱️") intSbj.onNext(1)intSbj.onNext(2) strSbj.onNext("🆎")intSbj.onNext(2) //🅰️ 1 将stringSubject和intSubject压缩到一起共同处理🅱️ 2🆎 3 ④combineLatest④combineLatest 绑定超过最多不超过8个的Observable流，结合在一起处理和Zip不同的是combineLatest是一个流的事件对应另一个流的最新的事件，两个事件都会是最新的事件，可将下图与Zip的图进行对比邻近事件一起处理 let disposeBag = DisposeBag()let strSbj = PublishSubject&lt;String&gt;()let intSbj = PublishSubject&lt;Int&gt;() Observable.combineLatest(strSbj, intSbj)&#123; strElement,intElement in "\(strElement) \(intElement)" &#125; .addscribe(onNext: &#123;print( $0) &#125;) .addDisposableTo(disposeBag) strSbj.onNext("🅰️")strSbj.onNext("🅱️")intSbj.onNext(1)intSbj.onNext(2)strSbj.onNext("🆎")// 输出🅱️ 1🅱️ 2🆎 2 当一个项目由两个Observables发射时，通过一个指定的功能将每个Observable观察到的最新项目组合起来，并根据该功能的结果发射事件 let disposeBag = DisposeBag()let subject1 = PublishSubject&lt;String&gt;()let subject2 = PublishSubject&lt;String&gt;() Observable.combineLatest(subject1, subject2) &#123; string1,string2 in "\(string1)--\(string2)" &#125; .subscribe(onNext: &#123; print($0) &#125;) .disposed(by: disposeBag) subject1.onNext("A") subject2.onNext("1")subject2.onNext("2") subject1.onNext("B")subject1.onNext("C") //输出结果A--1A--2B--2C--2 ⑤switchLatest⑤switchLatest 切换Observable队列switchLatest可以对事件流进行转换，本来监听的sbj1，可以通过更改variable里面的value更换事件源—&gt;变成监听sbj2 let disposeBag = DisposeBag()let sbj1 = BehaviorSubject(value: "⚽️")let sbj2 = BehaviorSubject(value: "🍎") let variable = Variable(sbj1)variable.asObservable() .switchLatest() .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) sbj1.onNext("🏈")sbj1.onNext("🏀") variable.value = sbj1 subject1.onNext("⚾️") sbj2.onNext("🍐")variable.value = sbj1sbj2.onNext("54321")sbj1.onNext("12345") ///⚽️🏈🏀🍎🍐⚾️12345 例子分析 et disposeBag = DisposeBag() let subject1 = BehaviorSubject(value: "1")let subject2 = BehaviorSubject(value: "A") let variable = Variable(subject1) variable.asObservable() .switchLatest() .subscribe(onNext: &#123; print($0) &#125;) .disposed(by: disposeBag) subject1.onNext("2")subject1.onNext("3") variable.value = subject2 subject1.onNext("4")subject2.onNext("B")//打印结果123AB]]></content>
       <categories>
         <category>Swift</category>
         <category>RxSwift</category>
@@ -796,9 +796,9 @@
         <category>RxSwift</category>
       </categories>
       <tags>
+        <tag>Grammar</tag>
         <tag>Swift</tag>
         <tag>RxSwift</tag>
-        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -946,8 +946,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Func</tag>
         <tag>iOS</tag>
+        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
@@ -1400,16 +1400,6 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[Swift-Lib-Kingfisher-图片加载库]]></title>
-    <url>%2F2017%2F12%2F13%2FSwift%2FLib%2FKingfisher-%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%BA%93%2F</url>
-    <content type="text"><![CDATA[http://blog.csdn.net/djh996064549/article/details/71085679]]></content>
-      <categories>
-        <category>Swift</category>
-        <category>Lib</category>
-        <category>Kingfisher</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[Swift-Lib-SnapKit-自动布局]]></title>
     <url>%2F2017%2F12%2F13%2FSwift%2FLib%2FSnapKit-%E8%87%AA%E5%8A%A8%E5%B8%83%E5%B1%80%2F</url>
     <content type="text"><![CDATA[https://www.jianshu.com/p/2bad53a2a180]]></content>
@@ -1417,6 +1407,16 @@
         <category>Swift</category>
         <category>Lib</category>
         <category>SnapKit</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Swift-Lib-Kingfisher-图片加载库]]></title>
+    <url>%2F2017%2F12%2F13%2FSwift%2FLib%2FKingfisher-%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%BA%93%2F</url>
+    <content type="text"><![CDATA[http://blog.csdn.net/djh996064549/article/details/71085679]]></content>
+      <categories>
+        <category>Swift</category>
+        <category>Lib</category>
+        <category>Kingfisher</category>
       </categories>
   </entry>
   <entry>
@@ -1451,8 +1451,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>AccessControl</tag>
         <tag>open</tag>
       </tags>
@@ -1467,8 +1467,8 @@
         <category>AccessControl</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>AccessControl</tag>
         <tag>fileprivate</tag>
       </tags>
@@ -1483,8 +1483,8 @@
         <category>RequiredInit</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>RequiredInit</tag>
       </tags>
   </entry>
@@ -1498,8 +1498,8 @@
         <category>Swift4.0</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>Swift4.0</tag>
       </tags>
   </entry>
@@ -1513,8 +1513,8 @@
         <category>Guard</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>Guard</tag>
       </tags>
   </entry>
@@ -1528,8 +1528,8 @@
         <category>Inheritance</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>Inheritance</tag>
       </tags>
   </entry>
@@ -1543,8 +1543,8 @@
         <category>String</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1557,8 +1557,8 @@
         <category>Lazy</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>Lazy</tag>
       </tags>
   </entry>
@@ -1571,8 +1571,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1715,20 +1715,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Swift-UIKit-UIButton]]></title>
-    <url>%2F2017%2F12%2F06%2FSwift%2FUIKit%2FUIButton%2F</url>
-    <content type="text"><![CDATA[UIButton UIButton继承自UIControl 创建btnlet btn: UIButton = UIButton() //没有样式//let btns:UIButton =UIButton(type: UIButtonType)//有样式//let button = UIButton(frame:CGRect(x:10, y:150, width:100, height:30))//简化创建方式self.view.addSubview(button) UIButtonType有以下类型public enum UIButtonType : Int &#123; case custom // no button type @available(iOS 7.0, *) case system // standard system button case detailDisclosure case infoLight case infoDark case contactAdd public static var roundedRect: UIButtonType &#123; get &#125; // Deprecated, use UIButtonTypeSystem instead&#125;//使用let btn: UIButton = UIButton(type: .Custom) UIButton设置字内容和颜色 UIButton所对应的状态有几种 /** Normal (默认状态) Highlighted （高亮状态）点击按钮不放 Disabled （使能状态）就是是否可用状态--&gt;禁用的状态才会显现 Selected （选中状态）通过selected属性设置 */ /显示文字button1.setTitle("普通状态", for: .normal)button1.setTitle("高粱状态", for: .highlighted)button1.setTitle("禁用状态", for: .disabled)//显示文字颜色button1.setTitleColor(UIColor.red, for: .normal)button1.setTitleColor(UIColor.blue, for: .highlighted)button1.setTitleColor(UIColor.cyan, for: .selected)button1.setTitleColor(UIColor.cyan, for: .disabled)//阴影文字颜色设置button1.setTitleShadowColor(UIColor.cyan, for: .normal)button1.setTitleShadowColor(UIColor.green, for: .highlighted)button1.setTitleShadowColor(UIColor.brown, for: .disabled)button1.setTitleShadowColor(UIColor.darkGray, for: .selected) UIButton设置背景颜色和背景图片 //背景颜色button2.backgroundColor = UIColor.orange//背景图片 button4.setBackgroundImage(UIImage(named:"XXX"), for: .normal) UIButton设置字体大小button.titleLabel?.font = UIFont.systemFont(ofSize: 12) 禁用UIButton button.isEnabled = falsebutton.isEnabled = true 设置圆角 button.layer.cornerRadius = 5button.layer.masksToBounds = true 设置边框宽度/颜色 button.layer.borderWidth = 2button.layer.borderColor = UIColor.red.cgColor 设置背景图片为圆角 buttonImage.setImage(UIImage(named:"1") , forState: UIControlState.Normal)//设置背景图片为圆角buttonImage.imageView?.layer.cornerRadius = 50默认情况下按钮会被渲染成单一颜色；系统蓝button.setImage(UIImage(named:"icon1"),forState:.Normal) //设置图标button.adjustsImageWhenHighlighted=false //使触摸模式下按钮也不会变暗（半透明）button.adjustsImageWhenDisabled=false //使禁用模式下按钮也不会变暗（半透明）也可以设置成保留图标原来的颜色let iconImage = UIImage(named:"icon2")?.withRenderingMode(.alwaysOriginal)button.setImage(iconImage, for:.normal) //设置图标button.adjustsImageWhenHighlighted = false //使触摸模式下按钮也不会变暗（半透明）button.adjustsImageWhenDisabled = false //使禁用模式下按钮也不会变暗（半透明） UIButton上图片和文字调整 UIButton上添加图片和文字，有时需要我们调整,方向为逆时针方向，上、左、下、右依次去设置的 btn.imageEdgeInsets =UIEdgeInsetsMake(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat)btn.titleEdgeInsets =UIEdgeInsetsMake(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) //创建一个图片一个文字的按钮 let btn2: UIButton = UIButton(type: .Custom) btn2.frame = CGRectMake(50, 100, 120, 35) btn2.setImage(UIImage(named: "1"), forState: .Normal) btn2.backgroundColor = UIColor.blackColor() btn2.titleLabel?.font = UIFont.systemFontOfSize(20) btn2.imageView?.contentMode = UIViewContentMode.ScaleAspectFit btn2.setTitle("图片按钮", forState: .Normal) //偏移量，分别为上下左右 btn2.imageEdgeInsets = UIEdgeInsetsMake(0, -50, 0, 0) btn2.titleEdgeInsets = UIEdgeInsetsMake(0, -80, 0, 5) btn2.setTitleColor(UIColor.whiteColor(), forState: .Normal) btn2.adjustsImageWhenHighlighted = false self.view.addSubview(btn2) 添加按钮的点击事件 按钮的触摸时间有以下类型 touchDown：单点触摸按下事件，点触屏幕touchDownRepeat：多点触摸按下事件，点触计数大于1，按下第2、3或第4根手指的时候touchDragInside：触摸在控件内拖动时touchDragOutside：触摸在控件外拖动时touchDragEnter：触摸从控件之外拖动到内部时touchDragExit：触摸从控件内部拖动到外部时touchUpInside：在控件之内触摸并抬起事件touchUpOutside：在控件之外触摸抬起事件touchCancel：触摸取消事件，即一次触摸因为放上太多手指而被取消，或者电话打断 button1.addTarget(self,action:#selector(methodName), for: .touchUpInside)button1.addTarget(self, action:#selector(someMethod(button:)), for:.touchUpInside)//上 func methodName() &#123; print("tapped") &#125;//下 func someMethod(button:UIButton) &#123; print("你是谁啊，其实就是一个按钮") &#125; 按钮文字过长时候的显示处理 修改 button 按钮中 titleLabel 的 lineBreakMode 属性，便可以调整按钮在文字超长的情况下如何显示，以及是否换行 let button = UIButton(frame:CGRect(x:20, y:50, width:130, height:50))button.setTitle("这个是一长长长长长长长长长长的文字", for:.normal) //普通状态下的文字button.setTitleColor(UIColor.white, for: .normal) //普通状态下文字的颜色button.titleLabel?.lineBreakMode = .byTruncatingTailbutton.backgroundColor = UIColor.orangeself.view.addSubview(button) NSLineBreakMode样式可供选择，API的介绍也是简单明 public enum NSLineBreakMode : Int &#123; case byWordWrapping // Wrap at word boundaries, default case byCharWrapping // Wrap at character boundaries case byClipping // Simply clip case byTruncatingHead // Truncate at head of line: "...wxyz" case byTruncatingTail // Truncate at tail of line: "abcd..." case byTruncatingMiddle // Truncate middle of line: "ab...yz"&#125;]]></content>
-      <categories>
-        <category>Swift</category>
-        <category>UIKit</category>
-        <category>UIButton</category>
-      </categories>
-      <tags>
-        <tag>Swift</tag>
-        <tag>UIButton</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Swift-UIKit-UILabel]]></title>
     <url>%2F2017%2F12%2F06%2FSwift%2FUIKit%2FUILabel%2F</url>
     <content type="text"><![CDATA[lab 创建&amp;&amp; 设置frame let lab = UILabel(frame:CGRect(x:10,y:100,width:self.view.frame.size.width - 40,height:200)) 或 let lab = UILabel()lab.frame = CGRect(x:10,y:100,width:self.view.frame.size.width - 40,height:200) 添加父层 self.view.addSubview(lab); 显示文本内容 lab.text = "chen jian !" 设置bg颜色 lab.backgroundColor = UIColor.green 文字颜色 lab.textColor = UIColor.white 文字对齐方式 lab.textAlignment = NSTextAlignment.left 高亮文字颜色 lab.highlightedTextColor = UIColor.cyan 阴影颜色 lab.shadowColor = UIColor.black 阴影偏移位置 lab.shadowOffset = CGSize(width:-5,height:5) 设置圆角 lab.layer.cornerRadius = 20lab.layer.masksToBounds = true 边框的宽度和颜色 lab.layer.borderColor = UIColor.green.cgColorlab.layer.borderWidth = 2 文字类型/大小 lab.font = UIFont.boldSystemFont(ofSize: 20) //加粗类型lab.font = UIFont.systemFont(ofSize: 20) //文字大小lab.font = UIFont.italicSystemFont(ofSize: 20)//斜体类型lab.font = UIFont(name:"您好",size:50) //大小和文字一起设置 显示de样式 lab.lineBreakMode = NSLineBreakMode.byCharWrapping // NSParagraphStyle@available(iOS 6.0, *)public enum NSLineBreakMode : Int &#123;case byWordWrapping // Wrap at word boundaries, defaultcase byCharWrapping // Wrap at character boundariescase byClipping // Simply clipcase byTruncatingHead // Truncate at head of line: "...wxyz"case byTruncatingTail // Truncate at tail of line: "abcd..."case byTruncatingMiddle // Truncate middle of line: "ab...yz"&#125; 多行de显示 lab.numberOfLines = 2 //最多显示2行lab.numberOfLines = 0 // 默认没有行数显示lab.numberOfLines = 1 //只能显示一行 自动调整文字de大小 lab.adjustsFontSizeToFitWidth = true 富文本设置 //创建对象let attributeString = NSMutableAttributedString(string:"Welcome to Swift! Welcome to Swift! Welcome to Swift! Welcome to Swift!")//设置字体大小/字体类型attributeString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Bold", size: 16)!, range: NSMakeRange(0, 6))//设置背景颜色 attributeString.addAttribute(NSForegroundColorAttributeName, value: UIColor.red, range: NSMakeRange(0, 3)) //设置文档背景色 attributeString.addAttribute(NSBackgroundColorDocumentAttribute, value: UIColor.lightGray, range: NSMakeRange(10, 10))//设置下划线attributeString.addAttribute(NSUnderlineStyleAttributeName, value:NSUnderlineStyle.StyleSingle.rawValue, range: NSMakeRange(5,12)) testLable.attributedText = attributeString; 文本高度计算 extension NSString &#123; func textSizeWithFont(font: UIFont, constrainedToSize size:CGSize) -&gt; CGSize &#123; var textSize:CGSize! if CGSizeEqualToSize(size, CGSizeZero) &#123; let attributes = NSDictionary(object: font, forKey: NSFontAttributeName) textSize = self.sizeWithAttributes(attributes) &#125; else &#123; let option = NSStringDrawingOptions.UsesLineFragmentOrigin let attributes = NSDictionary(object: font, forKey: NSFontAttributeName) let stringRect = self.boundingRectWithSize(size, options: option, attributes: attributes, context: nil) textSize = stringRect.size &#125; return textSize &#125;&#125;]]></content>
@@ -1741,6 +1727,20 @@
         <tag>Swift</tag>
         <tag>UIKit</tag>
         <tag>UILabel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Swift-UIKit-UIButton]]></title>
+    <url>%2F2017%2F12%2F06%2FSwift%2FUIKit%2FUIButton%2F</url>
+    <content type="text"><![CDATA[UIButton UIButton继承自UIControl 创建btnlet btn: UIButton = UIButton() //没有样式//let btns:UIButton =UIButton(type: UIButtonType)//有样式//let button = UIButton(frame:CGRect(x:10, y:150, width:100, height:30))//简化创建方式self.view.addSubview(button) UIButtonType有以下类型public enum UIButtonType : Int &#123; case custom // no button type @available(iOS 7.0, *) case system // standard system button case detailDisclosure case infoLight case infoDark case contactAdd public static var roundedRect: UIButtonType &#123; get &#125; // Deprecated, use UIButtonTypeSystem instead&#125;//使用let btn: UIButton = UIButton(type: .Custom) UIButton设置字内容和颜色 UIButton所对应的状态有几种 /** Normal (默认状态) Highlighted （高亮状态）点击按钮不放 Disabled （使能状态）就是是否可用状态--&gt;禁用的状态才会显现 Selected （选中状态）通过selected属性设置 */ /显示文字button1.setTitle("普通状态", for: .normal)button1.setTitle("高粱状态", for: .highlighted)button1.setTitle("禁用状态", for: .disabled)//显示文字颜色button1.setTitleColor(UIColor.red, for: .normal)button1.setTitleColor(UIColor.blue, for: .highlighted)button1.setTitleColor(UIColor.cyan, for: .selected)button1.setTitleColor(UIColor.cyan, for: .disabled)//阴影文字颜色设置button1.setTitleShadowColor(UIColor.cyan, for: .normal)button1.setTitleShadowColor(UIColor.green, for: .highlighted)button1.setTitleShadowColor(UIColor.brown, for: .disabled)button1.setTitleShadowColor(UIColor.darkGray, for: .selected) UIButton设置背景颜色和背景图片 //背景颜色button2.backgroundColor = UIColor.orange//背景图片 button4.setBackgroundImage(UIImage(named:"XXX"), for: .normal) UIButton设置字体大小button.titleLabel?.font = UIFont.systemFont(ofSize: 12) 禁用UIButton button.isEnabled = falsebutton.isEnabled = true 设置圆角 button.layer.cornerRadius = 5button.layer.masksToBounds = true 设置边框宽度/颜色 button.layer.borderWidth = 2button.layer.borderColor = UIColor.red.cgColor 设置背景图片为圆角 buttonImage.setImage(UIImage(named:"1") , forState: UIControlState.Normal)//设置背景图片为圆角buttonImage.imageView?.layer.cornerRadius = 50默认情况下按钮会被渲染成单一颜色；系统蓝button.setImage(UIImage(named:"icon1"),forState:.Normal) //设置图标button.adjustsImageWhenHighlighted=false //使触摸模式下按钮也不会变暗（半透明）button.adjustsImageWhenDisabled=false //使禁用模式下按钮也不会变暗（半透明）也可以设置成保留图标原来的颜色let iconImage = UIImage(named:"icon2")?.withRenderingMode(.alwaysOriginal)button.setImage(iconImage, for:.normal) //设置图标button.adjustsImageWhenHighlighted = false //使触摸模式下按钮也不会变暗（半透明）button.adjustsImageWhenDisabled = false //使禁用模式下按钮也不会变暗（半透明） UIButton上图片和文字调整 UIButton上添加图片和文字，有时需要我们调整,方向为逆时针方向，上、左、下、右依次去设置的 btn.imageEdgeInsets =UIEdgeInsetsMake(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat)btn.titleEdgeInsets =UIEdgeInsetsMake(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) //创建一个图片一个文字的按钮 let btn2: UIButton = UIButton(type: .Custom) btn2.frame = CGRectMake(50, 100, 120, 35) btn2.setImage(UIImage(named: "1"), forState: .Normal) btn2.backgroundColor = UIColor.blackColor() btn2.titleLabel?.font = UIFont.systemFontOfSize(20) btn2.imageView?.contentMode = UIViewContentMode.ScaleAspectFit btn2.setTitle("图片按钮", forState: .Normal) //偏移量，分别为上下左右 btn2.imageEdgeInsets = UIEdgeInsetsMake(0, -50, 0, 0) btn2.titleEdgeInsets = UIEdgeInsetsMake(0, -80, 0, 5) btn2.setTitleColor(UIColor.whiteColor(), forState: .Normal) btn2.adjustsImageWhenHighlighted = false self.view.addSubview(btn2) 添加按钮的点击事件 按钮的触摸时间有以下类型 touchDown：单点触摸按下事件，点触屏幕touchDownRepeat：多点触摸按下事件，点触计数大于1，按下第2、3或第4根手指的时候touchDragInside：触摸在控件内拖动时touchDragOutside：触摸在控件外拖动时touchDragEnter：触摸从控件之外拖动到内部时touchDragExit：触摸从控件内部拖动到外部时touchUpInside：在控件之内触摸并抬起事件touchUpOutside：在控件之外触摸抬起事件touchCancel：触摸取消事件，即一次触摸因为放上太多手指而被取消，或者电话打断 button1.addTarget(self,action:#selector(methodName), for: .touchUpInside)button1.addTarget(self, action:#selector(someMethod(button:)), for:.touchUpInside)//上 func methodName() &#123; print("tapped") &#125;//下 func someMethod(button:UIButton) &#123; print("你是谁啊，其实就是一个按钮") &#125; 按钮文字过长时候的显示处理 修改 button 按钮中 titleLabel 的 lineBreakMode 属性，便可以调整按钮在文字超长的情况下如何显示，以及是否换行 let button = UIButton(frame:CGRect(x:20, y:50, width:130, height:50))button.setTitle("这个是一长长长长长长长长长长的文字", for:.normal) //普通状态下的文字button.setTitleColor(UIColor.white, for: .normal) //普通状态下文字的颜色button.titleLabel?.lineBreakMode = .byTruncatingTailbutton.backgroundColor = UIColor.orangeself.view.addSubview(button) NSLineBreakMode样式可供选择，API的介绍也是简单明 public enum NSLineBreakMode : Int &#123; case byWordWrapping // Wrap at word boundaries, default case byCharWrapping // Wrap at character boundaries case byClipping // Simply clip case byTruncatingHead // Truncate at head of line: "...wxyz" case byTruncatingTail // Truncate at tail of line: "abcd..." case byTruncatingMiddle // Truncate middle of line: "ab...yz"&#125;]]></content>
+      <categories>
+        <category>Swift</category>
+        <category>UIKit</category>
+        <category>UIButton</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>UIButton</tag>
       </tags>
   </entry>
   <entry>
@@ -1795,8 +1795,8 @@
         <category>NSSet</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>iOS</tag>
+        <tag>UIKit</tag>
         <tag>NSSet</tag>
       </tags>
   </entry>
@@ -1810,8 +1810,8 @@
         <category>NSDictionary</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>iOS</tag>
+        <tag>UIKit</tag>
         <tag>NSDictionary</tag>
       </tags>
   </entry>
@@ -1824,8 +1824,8 @@
         <category>UIKit</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>iOS</tag>
+        <tag>UIKit</tag>
       </tags>
   </entry>
   <entry>
@@ -1838,8 +1838,8 @@
         <category>AccessControl</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>AccessControl</tag>
       </tags>
   </entry>
@@ -2080,6 +2080,14 @@
       </categories>
   </entry>
   <entry>
+    <title><![CDATA[Blog-配置]]></title>
+    <url>%2F2017%2F11%2F23%2FBlog%2FBlog-%E9%85%8D%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[博客配置01博客配置02 RxSwift]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[iOS-Tool-FastLane自动化发布工具+上传Bugly]]></title>
     <url>%2F2017%2F11%2F23%2FOC%2FGrammar%2FiOS-Tool-FastLane%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8F%91%E5%B8%83%E5%B7%A5%E5%85%B7%2B%E4%B8%8A%E4%BC%A0Bugly%2F</url>
     <content type="text"><![CDATA[打包的流程 修改测试版本号 修改Build版本号 执行Archive 选择Adhoc导出IPA安装包文件 上传Bugly测试平台 分享测试链接二维码FastlaneFastlane本身包含两大模块，内核部分+ActionActionAction是Fastlane自动化流程中的最小执行单元，直观上来讲就是Fastfile脚本中的一个个命令，比如：git_pull，deliver，pod_install等等，而这些命令背后都对应其实是一个用Ruby编写的脚本 Fastlane 是一套用 Ruby 编写的 iOS 命令行工具集（后来也支持了 Android），主要组件包括： match / cert / sigh 协助管理代码签名 pem 自动生成 APNs 证书 scan 自动化测试 gym 自动化编译并打包生成签名的 .ipa 文件 snapshot / frameit 协助处理 iOS 屏幕快照 pilot 上传和管理 TestFlight deliver 将应用及其它信息上传到 App Store 而正是这些颗粒度极小的Action，根据自己需求组合成一个自动化的链条 安装 首先确保Xcode命令行工具是最新版本的 $ xcode-select --install 安装Fastlane: $ sudo gem install fastlane -NV 找到工程文件目录下执行 $ fastlane init 在执行“Your Apple ID” 这一步输入苹果开发者账号，fastlane 会自动获取工程文件名，目录等其他数据。这一步“Please confirm the above values”，确认信息，没问题则输入 y。然后，fastlane 会进行一系列的初始化操作，包括下载 App Store 上的元数据和截屏文件。等待初始化完成之后，工程目录下就多了一个 fastlane目录： $ cd fastlane &amp;&amp; lsAppfile Fastfile metadata report.xmlDeliverfile README.md screenshots 文件目录 metadata目录下存放整个元数据文件，包括关键词、版本更新日志、图标等. screenshots目录下存放应用截图 Appfile文件记录App的 bundle ID、Apple ID、Team ID三种信息. Fastfile脚本的核心执行文件.有几个默认的选项，可直接使用. report文件时每次执行fastlane时生成报告 安装fastlane成功后，首先拆解我们需要自动化的两个流程: 自动打包成Adhoc的安装包ipa文件 通过fastlane自动上传到bugly 自动化打包 自动化打包使用最多就是Fastlane中gym这个Action, 转为打包而生, 安装gym这个组件: $ sudo gem install gym cd项目根目录, 创建自动打包脚本: $ vim gym.sh 输入脚本内容: #!/bin/bash#计时SECONDS=0#假设脚本放置在与项目相同的路径下project_path=$(pwd)#取当前时间字符串添加到文件结尾now=$(date +"%Y_%m_%d_%H_%M_%S")#指定项目的scheme名称scheme="Xitu"#指定要打包的配置名configuration="Adhoc"#指定打包所使用的输出方式，目前支持app-store, package, ad-hoc, enterprise, development, 和developer-id，即xcodebuild的method参数export_method='ad-hoc'#指定项目地址workspace_path="$project_path/Xitu.xcworkspace"#指定输出路径output_path="project_path/APP"#指定输出归档文件地址archive_path="$output_path/Xitu$&#123;now&#125;.xcarchive"#指定输出ipa地址ipa_path="$output_path/Xitu$&#123;now&#125;.ipa"#指定输出ipa名称ipa_name="Xitu$&#123;now&#125;.ipa"#获取执行命令时的commit messagecommit_msg="$1"#输出设定的变量值echo "===workspace path: $&#123;workspace_path&#125;==="echo "===archive path: $&#123;archive_path&#125;==="echo "===ipa path: $&#123;ipa_path&#125;==="echo "===export method: $&#123;export_method&#125;==="echo "===commit msg: $1==="#先清空前一次buildgym --workspace $&#123;workspace_path&#125; --scheme $&#123;scheme&#125; --clean --configuration $&#123;configuration&#125; --archive_path $&#123;archive_path&#125; --export_method $&#123;export_method&#125; --output_directory $&#123;output_path&#125; --output_name $&#123;ipa_name&#125;#输出总用时echo "===Finished. Total time: $&#123;SECONDS&#125;s===" 把如上脚本中Xitu改成你的项目名称即可. 为脚本执行提升权限 $ chmod +x gym.sh 执行一下脚本看一下打包效果: $ ./gym.sh 经过572s，Adhoc版本的ipa文件打包成功，我们在项目根目录下找到App目录： =========================================== #上传Bugly fastlane中定义action$ fastlane new_action 这时命令行会要求你输入自定义action名字，直接以bugly上传文件命名 $ upload_app_to_bugly wei wan]]></content>
@@ -2087,14 +2095,6 @@
         <category>iOS</category>
         <category>Tool</category>
         <category>FastLane</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[Blog-配置]]></title>
-    <url>%2F2017%2F11%2F23%2FBlog%2FBlog-%E9%85%8D%E7%BD%AE%2F</url>
-    <content type="text"><![CDATA[博客配置01博客配置02 RxSwift]]></content>
-      <categories>
-        <category>Blog</category>
       </categories>
   </entry>
   <entry>
@@ -2152,8 +2152,8 @@
         <category>Layer</category>
       </categories>
       <tags>
-        <tag>OC</tag>
         <tag>UIKit</tag>
+        <tag>OC</tag>
         <tag>Layer</tag>
         <tag>Shadow</tag>
       </tags>
@@ -2180,9 +2180,9 @@
         <category>UIScrollView</category>
       </categories>
       <tags>
-        <tag>OC</tag>
         <tag>UIKit</tag>
         <tag>UIScrollView</tag>
+        <tag>OC</tag>
       </tags>
   </entry>
   <entry>
@@ -2255,6 +2255,11 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[OC-Func-配置启动图/图标]]></title>
+    <url>%2F2017%2F11%2F20%2FOC%2FFunc%2FOC-Func-%E9%85%8D%E7%BD%AE%E5%90%AF%E5%8A%A8%E5%9B%BE-%E5%9B%BE%E6%A0%87%2F</url>
+    <content type="text"><![CDATA[https://www.cnblogs.com/xiu619544553/p/5348678.html]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[OC-Func-检查项目是否使用IDFA]]></title>
     <url>%2F2017%2F11%2F20%2FOC%2FFunc%2F%E6%A3%80%E6%9F%A5%E9%A1%B9%E7%9B%AE%E6%98%AF%E5%90%A6%E4%BD%BF%E7%94%A8IDFA%2F</url>
     <content type="text"><![CDATA[http://blog.csdn.net/chelongfei/article/details/51495862]]></content>
@@ -2268,11 +2273,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[OC-Func-配置启动图/图标]]></title>
-    <url>%2F2017%2F11%2F20%2FOC%2FFunc%2FOC-Func-%E9%85%8D%E7%BD%AE%E5%90%AF%E5%8A%A8%E5%9B%BE-%E5%9B%BE%E6%A0%87%2F</url>
-    <content type="text"><![CDATA[https://www.cnblogs.com/xiu619544553/p/5348678.html]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[OC -Lib-JSBadgeView数字角标]]></title>
     <url>%2F2017%2F11%2F14%2FOC%2FLib%2FJSBadgeView%2FOC-Lib-JSBadgeView%E6%95%B0%E5%AD%97%E8%A7%92%E6%A0%87%2F</url>
     <content type="text"><![CDATA[使用方法//在父控件上显示，//显示的位置TopRight self.badgeView = [[JSBadgeView alloc]initWithParentView:parentView alignment:JSBadgeViewAlignmentTopRight]; //位置 self.badgeView.badgePositionAdjustment = CGPointMake(-15, 10);//设置tag要辨别 self.badgeView.tag = 10086;//背景色self.badgeView.badgeBackgroundColor = [UIColor redColor]; //没有反光面self.badgeView.badgeOverlayColor = [UIColor clearColor]; //外圈的颜色，默认是白色 self.badgeView.badgeStrokeColor = [UIColor redColor]; 设置数字//1、用字符self.badgeView.badgeText = @&quot;1&quot;; //2、如果不显示就设置为空self.badgeView.badgeText = nil; //当更新数字时，最好刷新，不然由于frame固定的，数字为2位时，红圈变形 [self.badgeView setNeedsLayout];]]></content>
@@ -2282,8 +2282,8 @@
         <category>JSBadgeView</category>
       </categories>
       <tags>
-        <tag>OC</tag>
         <tag>Lib</tag>
+        <tag>OC</tag>
         <tag>UI</tag>
       </tags>
   </entry>
@@ -2315,8 +2315,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Func</tag>
         <tag>iOS</tag>
+        <tag>Func</tag>
         <tag>Analyze</tag>
       </tags>
   </entry>
@@ -2387,8 +2387,8 @@
         <category>UIKit</category>
       </categories>
       <tags>
-        <tag>OC</tag>
         <tag>UIKit</tag>
+        <tag>OC</tag>
         <tag>Autoreleasepool</tag>
       </tags>
   </entry>
