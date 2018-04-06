@@ -105,18 +105,18 @@
 
 
 
-<meta name="description" content="错误处理操作catchErrorJustReturn 遇到error事件的时候，就return一个值，然后结束     let disposeBag = DisposeBag()    let sequenceThatFails = PublishSubject&amp;lt;String&amp;gt;()    sequenceThatFails    .catchErrorJustReturn(&quot;😊&quot;)">
+<meta name="description" content="错误处理操作 ①catchErrorJustReturn ②catchError ③retry ④debug  ①catchErrorJustReturn ①catchErrorJustReturn 遇到error事件的时候，就return一个值，然后结束     let disposeBag = DisposeBag()    let sequenceThatFails = PublishSub">
 <meta name="keywords" content="Swift,RxSwift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift-RxSwift-错误处理操作">
 <meta property="og:url" content="http://yoursite.com/2017/12/19/RxSwift/Grammar/Operators-错误处理操作/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="错误处理操作catchErrorJustReturn 遇到error事件的时候，就return一个值，然后结束     let disposeBag = DisposeBag()    let sequenceThatFails = PublishSubject&amp;lt;String&amp;gt;()    sequenceThatFails    .catchErrorJustReturn(&quot;😊&quot;)">
+<meta property="og:description" content="错误处理操作 ①catchErrorJustReturn ②catchError ③retry ④debug  ①catchErrorJustReturn ①catchErrorJustReturn 遇到error事件的时候，就return一个值，然后结束     let disposeBag = DisposeBag()    let sequenceThatFails = PublishSub">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-11T08:37:07.764Z">
+<meta property="og:updated_time" content="2018-04-06T01:49:25.423Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift-RxSwift-错误处理操作">
-<meta name="twitter:description" content="错误处理操作catchErrorJustReturn 遇到error事件的时候，就return一个值，然后结束     let disposeBag = DisposeBag()    let sequenceThatFails = PublishSubject&amp;lt;String&amp;gt;()    sequenceThatFails    .catchErrorJustReturn(&quot;😊&quot;)">
+<meta name="twitter:description" content="错误处理操作 ①catchErrorJustReturn ②catchError ③retry ④debug  ①catchErrorJustReturn ①catchErrorJustReturn 遇到error事件的时候，就return一个值，然后结束     let disposeBag = DisposeBag()    let sequenceThatFails = PublishSub">
 
 
 
@@ -443,19 +443,29 @@
       
 
       
-        <h1 id="错误处理操作"><a href="#错误处理操作" class="headerlink" title="错误处理操作"></a>错误处理操作</h1><h2 id="catchErrorJustReturn"><a href="#catchErrorJustReturn" class="headerlink" title="catchErrorJustReturn"></a>catchErrorJustReturn</h2><blockquote>
+        <h1 id="错误处理操作"><a href="#错误处理操作" class="headerlink" title="错误处理操作"></a>错误处理操作</h1><ul>
+<li><a href="#1.1">①catchErrorJustReturn</a></li>
+<li><a href="#1.2">②catchError</a></li>
+<li><a href="#1.3">③retry</a></li>
+<li><a href="#1.4">④debug</a></li>
+</ul>
+<p><span id="1.1">①catchErrorJustReturn</span></p>
+<h2 id="①catchErrorJustReturn"><a href="#①catchErrorJustReturn" class="headerlink" title="①catchErrorJustReturn"></a>①catchErrorJustReturn</h2><blockquote>
 <p>遇到error事件的时候，就return一个值，然后结束</p>
 </blockquote>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">    </div><div class="line"><span class="keyword">let</span> sequenceThatFails = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line">    </div><div class="line">sequenceThatFails</div><div class="line">    .catchErrorJustReturn(<span class="string">"😊"</span>)</div><div class="line">    .subscribe &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line">    </div><div class="line">sequenceThatFails.onNext(<span class="string">"😬"</span>)</div><div class="line">sequenceThatFails.onNext(<span class="string">"😨"</span>)</div><div class="line">sequenceThatFails.onNext(<span class="string">"😡"</span>)</div><div class="line">sequenceThatFails.onNext(<span class="string">"🔴"</span>)</div><div class="line">sequenceThatFails.onError(<span class="type">TestError</span>.test)</div><div class="line"></div><div class="line"><span class="comment">///</span></div><div class="line">next(😬)</div><div class="line">next(😨)</div><div class="line">next(😡)</div><div class="line">next(🔴)</div><div class="line">next(😊)</div><div class="line">completed</div></pre></td></tr></table></figure>
-<h2 id="catchError"><a href="#catchError" class="headerlink" title="catchError"></a>catchError</h2><blockquote>
+<p><span id="1.2">②catchError</span></p>
+<h2 id="②catchError"><a href="#②catchError" class="headerlink" title="②catchError"></a>②catchError</h2><blockquote>
 <p>捕获error进行处理，可以返回另一个sequence进行订阅</p>
 </blockquote>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">    </div><div class="line"><span class="keyword">let</span> sequenceThatFails = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"><span class="keyword">let</span> recoverySequence = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line">    </div><div class="line">sequenceThatFails</div><div class="line">    .catchError &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"Error:"</span>, $<span class="number">0</span>)</div><div class="line">        <span class="keyword">return</span> recoverySequence</div><div class="line">    &#125;</div><div class="line">    .subscribe &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line">    </div><div class="line">sequenceThatFails.onNext(<span class="string">"😬"</span>)</div><div class="line">sequenceThatFails.onNext(<span class="string">"😨"</span>)</div><div class="line">sequenceThatFails.onNext(<span class="string">"😡"</span>)</div><div class="line">sequenceThatFails.onNext(<span class="string">"🔴"</span>)</div><div class="line">sequenceThatFails.onError(<span class="type">TestError</span>.test)</div><div class="line">    </div><div class="line">recoverySequence.onNext(<span class="string">"😊"</span>)</div><div class="line"></div><div class="line"><span class="comment">//</span></div><div class="line">next(😬)</div><div class="line">next(😨)</div><div class="line">next(😡)</div><div class="line">next(🔴)</div><div class="line"><span class="type">Error</span>: test</div><div class="line">next(😊)</div></pre></td></tr></table></figure>
-<h2 id="retry"><a href="#retry" class="headerlink" title="retry"></a>retry</h2><blockquote>
+<p><span id="1.3">③retry</span></p>
+<h2 id="③retry"><a href="#③retry" class="headerlink" title="③retry"></a>③retry</h2><blockquote>
 <p>遇见error事件可以进行重试，比如网络请求失败，可以进行重新连接</p>
 </blockquote>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="keyword">var</span> <span class="built_in">count</span> = <span class="number">1</span></div><div class="line">    </div><div class="line"><span class="keyword">let</span> sequenceThatErrors = <span class="type">Observable</span>&lt;<span class="type">String</span>&gt;.create &#123; observer <span class="keyword">in</span></div><div class="line">    observer.onNext(<span class="string">"🍎"</span>)</div><div class="line">    observer.onNext(<span class="string">"🍐"</span>)</div><div class="line">    observer.onNext(<span class="string">"🍊"</span>)</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> <span class="built_in">count</span> == <span class="number">1</span> &#123;</div><div class="line">        observer.onError(<span class="type">TestError</span>.test)</div><div class="line">        <span class="built_in">print</span>(<span class="string">"Error encountered"</span>)</div><div class="line">        <span class="built_in">count</span> += <span class="number">1</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    observer.onNext(<span class="string">"🐶"</span>)</div><div class="line">    observer.onNext(<span class="string">"🐱"</span>)</div><div class="line">    observer.onNext(<span class="string">"🐭"</span>)</div><div class="line">    observer.onCompleted()</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="type">Disposables</span>.create()</div><div class="line">&#125;</div><div class="line">    </div><div class="line">sequenceThatErrors</div><div class="line">    .retry(<span class="number">3</span>)       <span class="comment">//不传入数字的话，只会重试一次</span></div><div class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
-<h1 id="debug"><a href="#debug" class="headerlink" title="debug"></a>debug</h1><blockquote>
+<p><span id="1.4">④debug</span></p>
+<h1 id="④debug"><a href="#④debug" class="headerlink" title="④debug"></a>④debug</h1><blockquote>
 <p>打印所有的订阅, 事件和disposals</p>
 </blockquote>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   </div><div class="line"></div><div class="line">sequenceThatErrors</div><div class="line">    .retry(<span class="number">3</span>)</div><div class="line">    .debug()</div><div class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
@@ -495,8 +505,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/19/RxSwift/Grammar/Operators-过滤和条件操作符/" rel="next" title="Swift-RxSwift-过滤和条件操作符">
-                <i class="fa fa-chevron-left"></i> Swift-RxSwift-过滤和条件操作符
+              <a href="/2017/12/19/RxSwift/Grammar/Operators-数学和集合操作符/" rel="next" title="Swift-RxSwift-Mathematical & Aggregate Operators-数学和集合操作符">
+                <i class="fa fa-chevron-left"></i> Swift-RxSwift-Mathematical & Aggregate Operators-数学和集合操作符
               </a>
             
           </div>
@@ -641,7 +651,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#错误处理操作"><span class="nav-number">1.</span> <span class="nav-text">错误处理操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#catchErrorJustReturn"><span class="nav-number">1.1.</span> <span class="nav-text">catchErrorJustReturn</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#catchError"><span class="nav-number">1.2.</span> <span class="nav-text">catchError</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#retry"><span class="nav-number">1.3.</span> <span class="nav-text">retry</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#debug"><span class="nav-number">2.</span> <span class="nav-text">debug</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RxSwift-Resources-total"><span class="nav-number">3.</span> <span class="nav-text">RxSwift.Resources.total</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#错误处理操作"><span class="nav-number">1.</span> <span class="nav-text">错误处理操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#①catchErrorJustReturn"><span class="nav-number">1.1.</span> <span class="nav-text">①catchErrorJustReturn</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#②catchError"><span class="nav-number">1.2.</span> <span class="nav-text">②catchError</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#③retry"><span class="nav-number">1.3.</span> <span class="nav-text">③retry</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#④debug"><span class="nav-number">2.</span> <span class="nav-text">④debug</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RxSwift-Resources-total"><span class="nav-number">3.</span> <span class="nav-text">RxSwift.Resources.total</span></a></li></ol></div>
             
 
           </div>
