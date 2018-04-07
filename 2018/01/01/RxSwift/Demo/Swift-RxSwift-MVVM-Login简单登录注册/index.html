@@ -105,18 +105,18 @@
 
 
 
-<meta name="description" content="需求注册界面需求 输入用户名必须大于等于6个字符，不然密码不能输入； 密码必须大于等于6个字符，不然重复密码不能输入； 重复密码和密码必须一样， 不能注册按钮不能点击； 点击注册按钮，提示注册成功或者注册失败； 注册成功会写进本地的plist文件，然后输入用户名会检测该用户名是否已注册  登录界面需求 点击输入用户名，检测是否已存在，如果存在，户名可用，否则提示用户名不存在； 输入密码，点击登录，">
+<meta name="description" content="需求 需求  需求注册界面需求 输入用户名必须大于等于6个字符，不然密码不能输入； 密码必须大于等于6个字符，不然重复密码不能输入； 重复密码和密码必须一样， 不能注册按钮不能点击； 点击注册按钮，提示注册成功或者注册失败； 注册成功会写进本地的plist文件，然后输入用户名会检测该用户名是否已注册  登录界面需求 点击输入用户名，检测是否已存在，如果存在，户名可用，否则提示用户名不存在； 输入">
 <meta name="keywords" content="Swift,RxSwift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift-RxSwift-MVVM-Login 登录注册">
 <meta property="og:url" content="http://yoursite.com/2018/01/01/RxSwift/Demo/Swift-RxSwift-MVVM-Login简单登录注册/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="需求注册界面需求 输入用户名必须大于等于6个字符，不然密码不能输入； 密码必须大于等于6个字符，不然重复密码不能输入； 重复密码和密码必须一样， 不能注册按钮不能点击； 点击注册按钮，提示注册成功或者注册失败； 注册成功会写进本地的plist文件，然后输入用户名会检测该用户名是否已注册  登录界面需求 点击输入用户名，检测是否已存在，如果存在，户名可用，否则提示用户名不存在； 输入密码，点击登录，">
+<meta property="og:description" content="需求 需求  需求注册界面需求 输入用户名必须大于等于6个字符，不然密码不能输入； 密码必须大于等于6个字符，不然重复密码不能输入； 重复密码和密码必须一样， 不能注册按钮不能点击； 点击注册按钮，提示注册成功或者注册失败； 注册成功会写进本地的plist文件，然后输入用户名会检测该用户名是否已注册  登录界面需求 点击输入用户名，检测是否已存在，如果存在，户名可用，否则提示用户名不存在； 输入">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-02T04:57:39.736Z">
+<meta property="og:updated_time" content="2018-04-07T05:22:26.796Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift-RxSwift-MVVM-Login 登录注册">
-<meta name="twitter:description" content="需求注册界面需求 输入用户名必须大于等于6个字符，不然密码不能输入； 密码必须大于等于6个字符，不然重复密码不能输入； 重复密码和密码必须一样， 不能注册按钮不能点击； 点击注册按钮，提示注册成功或者注册失败； 注册成功会写进本地的plist文件，然后输入用户名会检测该用户名是否已注册  登录界面需求 点击输入用户名，检测是否已存在，如果存在，户名可用，否则提示用户名不存在； 输入密码，点击登录，">
+<meta name="twitter:description" content="需求 需求  需求注册界面需求 输入用户名必须大于等于6个字符，不然密码不能输入； 密码必须大于等于6个字符，不然重复密码不能输入； 重复密码和密码必须一样， 不能注册按钮不能点击； 点击注册按钮，提示注册成功或者注册失败； 注册成功会写进本地的plist文件，然后输入用户名会检测该用户名是否已注册  登录界面需求 点击输入用户名，检测是否已存在，如果存在，户名可用，否则提示用户名不存在； 输入">
 
 
 
@@ -443,7 +443,11 @@
       
 
       
-        <h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><h2 id="注册界面需求"><a href="#注册界面需求" class="headerlink" title="注册界面需求"></a>注册界面需求</h2><ul>
+        <ul>
+<li><a href="#1">需求</a></li>
+<li><a href="#2">需求</a></li>
+</ul>
+<h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><h2 id="注册界面需求"><a href="#注册界面需求" class="headerlink" title="注册界面需求"></a>注册界面需求</h2><ul>
 <li>输入用户名必须大于等于6个字符，不然密码不能输入；</li>
 <li>密码必须大于等于6个字符，不然重复密码不能输入；</li>
 <li>重复密码和密码必须一样， 不能注册按钮不能点击；</li>
@@ -454,10 +458,124 @@
 <li>点击输入用户名，检测是否已存在，如果存在，户名可用，否则提示用户名不存在；</li>
 <li>输入密码，点击登录，如果密码错则提示密码错误，否则进入列表界面，提示登录成功</li>
 </ul>
-<h1 id="注册界面UI-ViewController-swift"><a href="#注册界面UI-ViewController-swift" class="headerlink" title="注册界面UI(ViewController.swift)"></a>注册界面UI(ViewController.swift)</h1><blockquote>
-<p>封装初始化UI</p>
+<h1 id="UI"><a href="#UI" class="headerlink" title="UI"></a>UI</h1><h2 id="①UI-ViewController-swift"><a href="#①UI-ViewController-swift" class="headerlink" title="①UI-ViewController.swift"></a>①UI-ViewController.swift</h2><ul>
+<li>懒加载+封装初始化UI</li>
+</ul>
+<blockquote>
+<p>❶用户名 - 标题-Title - lab</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">initUI()  <span class="comment">//设置UI</span></div><div class="line"></div><div class="line"><span class="comment">//MARK: UI设置</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">initUI</span><span class="params">()</span></span>&#123;</div><div class="line">    view.backgroundColor = <span class="type">UIColor</span>.white</div><div class="line">    view.addSubview(userNameLab)</div><div class="line">    view.addSubview(userNameTextField)</div><div class="line">    view.addSubview(userNameInputLab)</div><div class="line">    </div><div class="line">    view.addSubview(passWordLab)</div><div class="line">    view.addSubview(passWordTextField)</div><div class="line">    view.addSubview(passWordInputLab)</div><div class="line">    </div><div class="line">    view.addSubview(checkPassWordLab)</div><div class="line">    view.addSubview(checkPassWordTextField)</div><div class="line">    view.addSubview(checkPassWordLab)</div><div class="line">    </div><div class="line">    view.addSubview(registerBtn)</div><div class="line">    view.addSubview(loginBtn)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> userNameLab: <span class="type">UILabel</span> = &#123;</div><div class="line">      <span class="keyword">let</span> userNameLab = <span class="type">UILabel</span>()</div><div class="line">      userNameLab.frame = <span class="type">CGRect</span>(x:<span class="number">40</span>,y:<span class="number">100</span>,width:<span class="number">80</span>,height:<span class="number">30</span>)</div><div class="line">      userNameLab.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">14</span>)</div><div class="line">      userNameLab.text = <span class="string">"用户名"</span></div><div class="line">      <span class="keyword">return</span> userNameLab</div><div class="line">  &#125;()</div></pre></td></tr></table></figure>
+<blockquote>
+<p>❷用户名 -输入框-TF</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> userNameTextField: <span class="type">UITextField</span> = &#123;</div><div class="line">      <span class="keyword">let</span> userNameTextField = <span class="type">UITextField</span>()</div><div class="line">      userNameTextField.frame = <span class="type">CGRect</span>(x:<span class="number">40</span>+<span class="number">80</span>+<span class="number">10</span>,y:<span class="number">100</span>,width:<span class="number">160</span>,height:<span class="number">30</span>)</div><div class="line">      userNameTextField.placeholder = <span class="string">"输入不少于6位用户名"</span></div><div class="line">      userNameTextField.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">14</span>)</div><div class="line">      <span class="keyword">return</span> userNameTextField</div><div class="line">  &#125;()</div></pre></td></tr></table></figure>
+<blockquote>
+<p>❸用户名 - 输入提示-lab</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> userNameInputLab: <span class="type">UILabel</span> = &#123;</div><div class="line">     <span class="keyword">let</span> userNameInputLab = <span class="type">UILabel</span>()</div><div class="line">     userNameInputLab.frame = <span class="type">CGRect</span>(x:<span class="number">40</span>+<span class="number">80</span>+<span class="number">10</span>,y:<span class="number">100</span>+<span class="number">30</span>+<span class="number">10</span>,width:<span class="number">100</span>,height:<span class="number">20</span>)</div><div class="line">     userNameInputLab.text = <span class="string">"用户名至少6位"</span></div><div class="line">     userNameInputLab.textColor = <span class="type">UIColor</span>.red</div><div class="line">     userNameInputLab.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">12</span>)</div><div class="line">     <span class="keyword">return</span> userNameInputLab</div><div class="line"> &#125;()</div></pre></td></tr></table></figure>
+<blockquote>
+<p> 密码-标题-Lab</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> passWordLab: <span class="type">UILabel</span> = &#123;</div><div class="line">      <span class="keyword">let</span> passWordLab = <span class="type">UILabel</span>()</div><div class="line">      passWordLab.frame = <span class="type">CGRect</span>(x:<span class="number">40</span>,y:<span class="number">200</span>,width:<span class="number">80</span>,height:<span class="number">30</span>)</div><div class="line">      passWordLab.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">14</span>)</div><div class="line">      passWordLab.text = <span class="string">"密码"</span></div><div class="line">      <span class="keyword">return</span> passWordLab</div><div class="line">  &#125;()</div></pre></td></tr></table></figure>
+<blockquote>
+<p>密码- 输入- TF</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> passWordTextField:<span class="type">UITextField</span> = &#123;</div><div class="line">    <span class="keyword">let</span> passWordTextField = <span class="type">UITextField</span>()</div><div class="line">    passWordTextField.frame = <span class="type">CGRect</span>(x:<span class="number">40</span>+<span class="number">80</span>+<span class="number">10</span>,y:<span class="number">200</span>,width:<span class="number">100</span>,height:<span class="number">30</span>)</div><div class="line">    passWordTextField.placeholder = <span class="string">"请填输入密码"</span></div><div class="line">    passWordTextField.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">14</span>)</div><div class="line">    <span class="keyword">return</span> passWordTextField</div><div class="line">&#125;()</div></pre></td></tr></table></figure>
+<blockquote>
+<p>密码 - 输入提示-lab</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> passWordInputLab: <span class="type">UILabel</span> = &#123;</div><div class="line">      <span class="keyword">let</span> passWordInputLab = <span class="type">UILabel</span>()</div><div class="line">      passWordInputLab.frame = <span class="type">CGRect</span>(x:<span class="number">40</span>+<span class="number">80</span>+<span class="number">10</span>,y:<span class="number">200</span>+<span class="number">30</span>+<span class="number">10</span>,width:<span class="number">100</span>,height:<span class="number">20</span>)</div><div class="line">      passWordInputLab.text = <span class="string">"用户名至少6位"</span></div><div class="line">      passWordInputLab.textColor = <span class="type">UIColor</span>.red</div><div class="line">      passWordInputLab.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">12</span>)</div><div class="line">      <span class="keyword">return</span> passWordInputLab</div><div class="line">  &#125;()</div></pre></td></tr></table></figure>
+<blockquote>
+<p>密码检验 - 标题 - Lab</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> checkPassWordLab: <span class="type">UILabel</span> = &#123;</div><div class="line">     <span class="keyword">let</span> checkPassWordLab = <span class="type">UILabel</span>()</div><div class="line">     checkPassWordLab.frame = <span class="type">CGRect</span>(x:<span class="number">40</span>,y:<span class="number">300</span>,width:<span class="number">80</span>,height:<span class="number">30</span>)</div><div class="line">     checkPassWordLab.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">14</span>)</div><div class="line">     checkPassWordLab.text = <span class="string">"密码检查"</span></div><div class="line">     <span class="keyword">return</span> checkPassWordLab</div><div class="line"> &#125;()</div></pre></td></tr></table></figure>
+<blockquote>
+<p>密码检验 - 输入- TF</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> checkPassWordTextField:<span class="type">UITextField</span> = &#123;</div><div class="line">    <span class="keyword">let</span> checkPassWordTextField = <span class="type">UITextField</span>()</div><div class="line">    checkPassWordTextField.frame = <span class="type">CGRect</span>(x:<span class="number">40</span>+<span class="number">80</span>+<span class="number">10</span>,y:<span class="number">300</span>,width:<span class="number">100</span>,height:<span class="number">30</span>)</div><div class="line">    checkPassWordTextField.placeholder = <span class="string">"请再一次输入密码"</span></div><div class="line">    checkPassWordTextField.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">14</span>)</div><div class="line">    <span class="keyword">return</span> checkPassWordTextField</div><div class="line">&#125;()</div></pre></td></tr></table></figure>
+<blockquote>
+<p>密码检验 - 输入警告提示-lab</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> checkPassWordInputLab: <span class="type">UILabel</span> = &#123;</div><div class="line">    <span class="keyword">let</span> checkPassWordInputLab = <span class="type">UILabel</span>()</div><div class="line">    checkPassWordInputLab.frame = <span class="type">CGRect</span>(x:<span class="number">40</span>+<span class="number">80</span>+<span class="number">10</span>,y:<span class="number">300</span>+<span class="number">30</span>+<span class="number">10</span>,width:<span class="number">100</span>,height:<span class="number">20</span>)</div><div class="line">    checkPassWordInputLab.text = <span class="string">"用户名至少6位"</span></div><div class="line">    checkPassWordInputLab.textColor = <span class="type">UIColor</span>.red</div><div class="line">    checkPassWordInputLab.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">12</span>)</div><div class="line">    <span class="keyword">self</span>.view.addSubview(checkPassWordInputLab)</div><div class="line">    <span class="keyword">return</span> checkPassWordInputLab</div><div class="line">&#125;()</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注册 按钮 -Btn</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> registerBtn:<span class="type">UIButton</span> = &#123;</div><div class="line">    <span class="keyword">let</span> registerBtn = <span class="type">UIButton</span>()</div><div class="line">    registerBtn.frame = <span class="type">CGRect</span>(x:<span class="number">40</span>+<span class="number">80</span>+<span class="number">10</span>,y:<span class="number">400</span>,width:<span class="number">100</span>,height:<span class="number">30</span>)</div><div class="line">    registerBtn.setTitle(<span class="string">"注册"</span>, <span class="keyword">for</span>: .normal)</div><div class="line">    registerBtn.setTitleColor(<span class="type">UIColor</span>.green, <span class="keyword">for</span>: .normal)</div><div class="line">    registerBtn.backgroundColor = <span class="type">UIColor</span>.red</div><div class="line">    <span class="keyword">return</span> registerBtn</div><div class="line">&#125;()</div></pre></td></tr></table></figure>
+<blockquote>
+<p>登录 - 按钮 -Btn</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> loginBtn:<span class="type">UIButton</span> = &#123;</div><div class="line">    <span class="keyword">let</span> loginBtn = <span class="type">UIButton</span>()</div><div class="line">    loginBtn.frame = <span class="type">CGRect</span>(x:<span class="number">40</span>+<span class="number">80</span>+<span class="number">10</span>,y:<span class="number">500</span>,width:<span class="number">100</span>,height:<span class="number">30</span>)</div><div class="line">    loginBtn.setTitle(<span class="string">"登录"</span>, <span class="keyword">for</span>: .normal)</div><div class="line">    loginBtn.setTitleColor(<span class="type">UIColor</span>.green, <span class="keyword">for</span>: .normal)</div><div class="line">    loginBtn.backgroundColor = <span class="type">UIColor</span>.red</div><div class="line">    loginBtn.addTarget(<span class="keyword">self</span>, action: #selector(showNextCtl), <span class="keyword">for</span>: <span class="type">UIControlEvents</span>.touchUpInside)</div><div class="line">    <span class="keyword">return</span> loginBtn</div><div class="line">&#125;()</div></pre></td></tr></table></figure>
+<h2 id="私有方法"><a href="#私有方法" class="headerlink" title="私有方法"></a>私有方法</h2><blockquote>
+<p>注册完毕–&gt;去登录界面</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">showNextCtl</span><span class="params">()</span></span>&#123;</div><div class="line">     <span class="keyword">let</span> viewCtl = <span class="type">LoginViewCtl</span>()</div><div class="line">     <span class="built_in">print</span>(<span class="string">"21312312312"</span>)</div><div class="line">     navigationController?.pushViewController(viewCtl, animated: <span class="literal">true</span>)</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<h2 id="DisposeBag"><a href="#DisposeBag" class="headerlink" title="DisposeBag"></a>DisposeBag</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div></pre></td></tr></table></figure>
+<h2 id="ViewModel"><a href="#ViewModel" class="headerlink" title="ViewModel"></a>ViewModel</h2><blockquote>
+<p> 声明 RegisterViewModel </p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> viewModel = <span class="type">RegisterViewModel</span>()</div></pre></td></tr></table></figure>
+<h2 id="viewDidLoad"><a href="#viewDidLoad" class="headerlink" title="viewDidLoad"></a>viewDidLoad</h2><h3 id="UI加载"><a href="#UI加载" class="headerlink" title="UI加载"></a>UI加载</h3><blockquote>
+<p>UI加载</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">initUI</span><span class="params">()</span></span>&#123;</div><div class="line">    view.backgroundColor = <span class="type">UIColor</span>.white</div><div class="line">    view.addSubview(userNameLab)</div><div class="line">    view.addSubview(userNameTextField)</div><div class="line">    view.addSubview(userNameInputLab)</div><div class="line">    </div><div class="line">    view.addSubview(passWordLab)</div><div class="line">    view.addSubview(passWordTextField)</div><div class="line">    view.addSubview(passWordInputLab)</div><div class="line">    </div><div class="line">    view.addSubview(checkPassWordLab)</div><div class="line">    view.addSubview(checkPassWordTextField)</div><div class="line">    view.addSubview(checkPassWordLab)</div><div class="line">    </div><div class="line">    view.addSubview(registerBtn)</div><div class="line">    view.addSubview(loginBtn)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="UI控件-绑定"><a href="#UI控件-绑定" class="headerlink" title="UI控件 绑定"></a>UI控件 绑定</h3><ul>
+<li>①usernameTextField.rx.text.orEmpty,usernameTextField.rx.text.orEmpty是Rx中的东西，他把TextFiled的text变成了一个Observable， 后面的orEmpty我们可以Command点进去看下，他会把String?过滤nil帮我们变为String类型</li>
+<li>②bind:bind里面里面的就是监听者也就是Observer,username既是一个observable也是一个observer,此时把他当成一个Observer绑定到usernameTextFiled上，监听我们的usernameTextField流</li>
+<li>③因为有监听，就要有监听资源的回收，so,创建一个disposeBag来盛放这些监听资源</li>
+</ul>
+<blockquote>
+<p>绑定 用户名</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">userNameTextField.rx</div><div class="line">                 .text</div><div class="line">                 .orEmpty     <span class="comment">// ①</span></div><div class="line">                 .bind(to: viewModel.userNameVariable)  <span class="comment">// ②</span></div><div class="line">                 .disposed(by: disposeBag)         <span class="comment">// ③</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>绑定  密码</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">passWordTextField.rx</div><div class="line">                 .text</div><div class="line">                 .orEmpty</div><div class="line">                 .bind(to: viewModel.passWordVariable)</div><div class="line">                 .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>绑定 检测 密码</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">checkPassWordTextField.rx</div><div class="line">                      .text</div><div class="line">                      .orEmpty</div><div class="line">                      .bind(to: viewModel.checkPassWordVariable)</div><div class="line">                      .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>绑定 注册 按钮</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">registerBtn.rx</div><div class="line">           .tap</div><div class="line">           .bind(to: viewModel.registerTaps)<span class="comment">//registerTaps来判断 如果满足注册条件</span></div><div class="line">           .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<h2 id="mdoel相关Variable"><a href="#mdoel相关Variable" class="headerlink" title="mdoel相关Variable"></a>mdoel相关Variable</h2><ul>
+<li>① 被观察者</li>
+<li>② userNameInputLab.rx.validationResult作为一个observer(观察者)观察userNameUsable上的内容变化<pre><code>将ViewModel中username处理结果usernameUseable绑定到nameLabel显示文案上，根据不同的结果显示不同的文案
+</code></pre></li>
+</ul>
+<h3 id="用户名"><a href="#用户名" class="headerlink" title="用户名"></a>用户名</h3><blockquote>
+<p>监听 用户名输入</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">viewModel.userNameUsable <span class="comment">// ① 被观察者</span></div><div class="line">         .bind(to: userNameInputLab.rx.validationResult)   <span class="comment">// ②</span></div><div class="line">         .disposed(by: disposeBag)  <span class="comment">// ③</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>监听 用户名是否可输入</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">viewModel.userNameUsable</div><div class="line">         .bind(to: passWordTextField.rx.inputEnabled)</div><div class="line">         .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<h3 id="密码"><a href="#密码" class="headerlink" title="密码"></a>密码</h3><blockquote>
+<p>监听  密码 输入提示</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">viewModel.passWordUsable</div><div class="line">         .bind(to: passWordInputLab.rx.validationResult)</div><div class="line">         .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>监听 密码 是否可输入</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">viewModel.passWordUsable</div><div class="line">         .bind(to: checkPassWordTextField.rx.inputEnabled)</div><div class="line">         .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<h3 id="检测密码"><a href="#检测密码" class="headerlink" title="检测密码"></a>检测密码</h3><blockquote>
+<p>监听 检测密码 输入</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">viewModel.checkPassWordUsable</div><div class="line">         .bind(to: checkPassWordInputLab.rx.validationResult)</div><div class="line">         .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<h3 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h3><blockquote>
+<p>监听 注册 enable<br>队列信号 –&gt;执行具体变化</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">viewModel.registerBtnEnabled</div><div class="line">         .subscribe(onNext:&#123;[<span class="keyword">unowned</span> <span class="keyword">self</span>] valid <span class="keyword">in</span></div><div class="line">                <span class="keyword">self</span>.registerBtn.isEnabled = valid</div><div class="line">                <span class="keyword">self</span>.registerBtn.alpha = valid ? <span class="number">1.0</span> : <span class="number">0.5</span></div><div class="line">                   &#125;)</div><div class="line">         .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注册结果处理</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">viewModel.registerResult</div><div class="line">         .subscribe(onNext:&#123; [<span class="keyword">weak</span> <span class="keyword">self</span>](result) <span class="keyword">in</span></div><div class="line">                <span class="keyword">switch</span> result &#123;</div><div class="line">                <span class="keyword">case</span> <span class="keyword">let</span> .ok(msgStr):</div><div class="line">                    <span class="keyword">self</span>?.showAlert(msgStr: msgStr)</div><div class="line">                <span class="keyword">case</span> .empty:</div><div class="line">                    <span class="keyword">self</span>?.showAlert(msgStr: <span class="string">""</span>)</div><div class="line">                <span class="keyword">case</span> <span class="keyword">let</span> .failed(msgStr):</div><div class="line">                    <span class="keyword">self</span>?.showAlert(msgStr: msgStr)</div><div class="line">                &#125;</div><div class="line">            &#125;)</div><div class="line">         .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>alet提示 注册结果</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">showAlert</span><span class="params">(msgStr:String)</span></span>&#123;</div><div class="line">     <span class="keyword">let</span> acton = <span class="type">UIAlertAction</span>(title:<span class="string">"确定"</span>,</div><div class="line">                               style: .<span class="keyword">default</span>,</div><div class="line">                               handler:<span class="literal">nil</span>)</div><div class="line">     <span class="keyword">let</span> alertViewCtl = <span class="type">UIAlertController</span>(title:<span class="literal">nil</span>,</div><div class="line">                                          message:msgStr,</div><div class="line">                                          preferredStyle: .alert)</div><div class="line">     alertViewCtl.addAction(acton)</div><div class="line">     present(alertViewCtl,</div><div class="line">             animated: <span class="literal">true</span>,</div><div class="line">             completion: <span class="literal">nil</span>)</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
 <h1 id="Service网络请求"><a href="#Service网络请求" class="headerlink" title="Service网络请求"></a>Service网络请求</h1><blockquote>
 <p>Service文件主要负责一些网络请求，和一些数据访问的操作<br>然后供ViewModel使用，模拟从本地plist文件中读取用户数据</p>
 </blockquote>
@@ -582,7 +700,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">198</span>
+                <span class="site-state-item-count">197</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -639,7 +757,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#需求"><span class="nav-number">1.</span> <span class="nav-text">需求</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#注册界面需求"><span class="nav-number">1.1.</span> <span class="nav-text">注册界面需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#登录界面需求"><span class="nav-number">1.2.</span> <span class="nav-text">登录界面需求</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注册界面UI-ViewController-swift"><span class="nav-number">2.</span> <span class="nav-text">注册界面UI(ViewController.swift)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Service网络请求"><span class="nav-number">3.</span> <span class="nav-text">Service网络请求</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#需求"><span class="nav-number">1.</span> <span class="nav-text">需求</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#注册界面需求"><span class="nav-number">1.1.</span> <span class="nav-text">注册界面需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#登录界面需求"><span class="nav-number">1.2.</span> <span class="nav-text">登录界面需求</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UI"><span class="nav-number">2.</span> <span class="nav-text">UI</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#①UI-ViewController-swift"><span class="nav-number">2.1.</span> <span class="nav-text">①UI-ViewController.swift</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#私有方法"><span class="nav-number">2.2.</span> <span class="nav-text">私有方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DisposeBag"><span class="nav-number">2.3.</span> <span class="nav-text">DisposeBag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ViewModel"><span class="nav-number">2.4.</span> <span class="nav-text">ViewModel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#viewDidLoad"><span class="nav-number">2.5.</span> <span class="nav-text">viewDidLoad</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UI加载"><span class="nav-number">2.5.1.</span> <span class="nav-text">UI加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UI控件-绑定"><span class="nav-number">2.5.2.</span> <span class="nav-text">UI控件 绑定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mdoel相关Variable"><span class="nav-number">2.6.</span> <span class="nav-text">mdoel相关Variable</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用户名"><span class="nav-number">2.6.1.</span> <span class="nav-text">用户名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#密码"><span class="nav-number">2.6.2.</span> <span class="nav-text">密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检测密码"><span class="nav-number">2.6.3.</span> <span class="nav-text">检测密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注册"><span class="nav-number">2.6.4.</span> <span class="nav-text">注册</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Service网络请求"><span class="nav-number">3.</span> <span class="nav-text">Service网络请求</span></a></li></ol></div>
             
 
           </div>
