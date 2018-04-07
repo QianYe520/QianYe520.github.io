@@ -105,18 +105,18 @@
 
 
 
-<meta name="description" content="错误处理操作 ①catchErrorJustReturn ②catchError ③retry ④debug  ①catchErrorJustReturn ①catchErrorJustReturn 遇到error事件的时候，就return一个值，然后结束     let disposeBag = DisposeBag()    let sequenceThatFails = PublishSub">
+<meta name="description" content="错误处理操作 ①catchErrorJustReturn ②catchError ③retry ④debug  ①catchErrorJustReturn ①catchErrorJustReturn 遇到error事件的时候，就return一个值，然后结束  let disposeBag = DisposeBag()    let sequenceThatFails = PublishSubjec">
 <meta name="keywords" content="Swift,RxSwift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift-RxSwift-错误处理操作">
 <meta property="og:url" content="http://yoursite.com/2017/12/19/RxSwift/Grammar/Operators-错误处理操作/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="错误处理操作 ①catchErrorJustReturn ②catchError ③retry ④debug  ①catchErrorJustReturn ①catchErrorJustReturn 遇到error事件的时候，就return一个值，然后结束     let disposeBag = DisposeBag()    let sequenceThatFails = PublishSub">
+<meta property="og:description" content="错误处理操作 ①catchErrorJustReturn ②catchError ③retry ④debug  ①catchErrorJustReturn ①catchErrorJustReturn 遇到error事件的时候，就return一个值，然后结束  let disposeBag = DisposeBag()    let sequenceThatFails = PublishSubjec">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-06T01:49:25.423Z">
+<meta property="og:updated_time" content="2018-04-07T04:00:30.137Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift-RxSwift-错误处理操作">
-<meta name="twitter:description" content="错误处理操作 ①catchErrorJustReturn ②catchError ③retry ④debug  ①catchErrorJustReturn ①catchErrorJustReturn 遇到error事件的时候，就return一个值，然后结束     let disposeBag = DisposeBag()    let sequenceThatFails = PublishSub">
+<meta name="twitter:description" content="错误处理操作 ①catchErrorJustReturn ②catchError ③retry ④debug  ①catchErrorJustReturn ①catchErrorJustReturn 遇到error事件的时候，就return一个值，然后结束  let disposeBag = DisposeBag()    let sequenceThatFails = PublishSubjec">
 
 
 
@@ -453,7 +453,7 @@
 <h2 id="①catchErrorJustReturn"><a href="#①catchErrorJustReturn" class="headerlink" title="①catchErrorJustReturn"></a>①catchErrorJustReturn</h2><blockquote>
 <p>遇到error事件的时候，就return一个值，然后结束</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">    </div><div class="line"><span class="keyword">let</span> sequenceThatFails = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line">    </div><div class="line">sequenceThatFails</div><div class="line">    .catchErrorJustReturn(<span class="string">"😊"</span>)</div><div class="line">    .subscribe &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line">    </div><div class="line">sequenceThatFails.onNext(<span class="string">"😬"</span>)</div><div class="line">sequenceThatFails.onNext(<span class="string">"😨"</span>)</div><div class="line">sequenceThatFails.onNext(<span class="string">"😡"</span>)</div><div class="line">sequenceThatFails.onNext(<span class="string">"🔴"</span>)</div><div class="line">sequenceThatFails.onError(<span class="type">TestError</span>.test)</div><div class="line"></div><div class="line"><span class="comment">///</span></div><div class="line">next(😬)</div><div class="line">next(😨)</div><div class="line">next(😡)</div><div class="line">next(🔴)</div><div class="line">next(😊)</div><div class="line">completed</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">    </div><div class="line"><span class="keyword">let</span> sequenceThatFails = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line">    </div><div class="line">sequenceThatFails</div><div class="line">    .catchErrorJustReturn(<span class="string">"😊"</span>)</div><div class="line">    .subscribe &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line">    </div><div class="line">sequenceThatFails.onNext(<span class="string">"😬"</span>)</div><div class="line">sequenceThatFails.onNext(<span class="string">"😨"</span>)</div><div class="line">sequenceThatFails.onNext(<span class="string">"😡"</span>)</div><div class="line">sequenceThatFails.onNext(<span class="string">"🔴"</span>)</div><div class="line">sequenceThatFails.onError(<span class="type">TestError</span>.test)</div><div class="line"></div><div class="line"><span class="comment">///</span></div><div class="line">next(😬)</div><div class="line">next(😨)</div><div class="line">next(😡)</div><div class="line">next(🔴)</div><div class="line">next(😊)</div><div class="line">completed</div></pre></td></tr></table></figure>
 <p><span id="1.2">②catchError</span></p>
 <h2 id="②catchError"><a href="#②catchError" class="headerlink" title="②catchError"></a>②catchError</h2><blockquote>
 <p>捕获error进行处理，可以返回另一个sequence进行订阅</p>
