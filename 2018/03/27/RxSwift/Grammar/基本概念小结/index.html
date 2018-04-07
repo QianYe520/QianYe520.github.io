@@ -105,18 +105,18 @@
 
 
 
-<meta name="description" content="概念理解①Observable 和 Observer②subscribe 和 subscribe(onNext:)③Dispose 和 DisposeBag④observeOn() 和 subscribeOn()⑤shareReplay⑥自定义operator⑦Driver⑧map 和 flatMap 何时使用⑨UIBindingObserver ①Observable 和 Observer ①O">
+<meta name="description" content="概念理解 ①Observable 和 Observer ②subscribe 和 subscribe(onNext:) ③Dispose 和 DisposeBag ④observeOn() 和 subscribeOn() ⑤shareReplay ⑥自定义operator ⑦Driver ⑧map 和 flatMap 何时使用 ⑨UIBindingObserver  ①Observable 和 O">
 <meta name="keywords" content="RxSwift,Grammar">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RxSwift-Grammar-基本概念小结">
 <meta property="og:url" content="http://yoursite.com/2018/03/27/RxSwift/Grammar/基本概念小结/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="概念理解①Observable 和 Observer②subscribe 和 subscribe(onNext:)③Dispose 和 DisposeBag④observeOn() 和 subscribeOn()⑤shareReplay⑥自定义operator⑦Driver⑧map 和 flatMap 何时使用⑨UIBindingObserver ①Observable 和 Observer ①O">
+<meta property="og:description" content="概念理解 ①Observable 和 Observer ②subscribe 和 subscribe(onNext:) ③Dispose 和 DisposeBag ④observeOn() 和 subscribeOn() ⑤shareReplay ⑥自定义operator ⑦Driver ⑧map 和 flatMap 何时使用 ⑨UIBindingObserver  ①Observable 和 O">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-07T04:16:31.896Z">
+<meta property="og:updated_time" content="2018-04-07T04:23:17.213Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RxSwift-Grammar-基本概念小结">
-<meta name="twitter:description" content="概念理解①Observable 和 Observer②subscribe 和 subscribe(onNext:)③Dispose 和 DisposeBag④observeOn() 和 subscribeOn()⑤shareReplay⑥自定义operator⑦Driver⑧map 和 flatMap 何时使用⑨UIBindingObserver ①Observable 和 Observer ①O">
+<meta name="twitter:description" content="概念理解 ①Observable 和 Observer ②subscribe 和 subscribe(onNext:) ③Dispose 和 DisposeBag ④observeOn() 和 subscribeOn() ⑤shareReplay ⑥自定义operator ⑦Driver ⑧map 和 flatMap 何时使用 ⑨UIBindingObserver  ①Observable 和 O">
 
 
 
@@ -443,7 +443,17 @@
       
 
       
-        <h1 id="概念理解"><a href="#概念理解" class="headerlink" title="概念理解"></a>概念理解</h1><p><a href="#1.1">①Observable 和 Observer</a><br><a href="#1.2">②subscribe 和 subscribe(onNext:)</a><br><a href="#1.3">③Dispose 和 DisposeBag</a><br><a href="#1.4">④observeOn() 和 subscribeOn()</a><br><a href="#1.5">⑤shareReplay</a><br><a href="#1.6">⑥自定义operator</a><br><a href="#1.7">⑦Driver</a><br><a href="#1.8">⑧map 和 flatMap 何时使用</a><br><a href="#1.9">⑨UIBindingObserver</a></p>
+        <h1 id="概念理解"><a href="#概念理解" class="headerlink" title="概念理解"></a>概念理解</h1><ul>
+<li><a href="#1.1">①Observable 和 Observer</a></li>
+<li><a href="#1.2">②subscribe 和 subscribe(onNext:)</a></li>
+<li><a href="#1.3">③Dispose 和 DisposeBag</a></li>
+<li><a href="#1.4">④observeOn() 和 subscribeOn()</a></li>
+<li><a href="#1.5">⑤shareReplay</a></li>
+<li><a href="#1.6">⑥自定义operator</a></li>
+<li><a href="#1.7">⑦Driver</a></li>
+<li><a href="#1.8">⑧map 和 flatMap 何时使用</a></li>
+<li><a href="#1.9">⑨UIBindingObserver</a></li>
+</ul>
 <p><span id="1.1">①Observable 和 Observer</span></p>
 <h1 id="①Observable-和-Observer"><a href="#①Observable-和-Observer" class="headerlink" title="①Observable 和 Observer"></a>①Observable 和 Observer</h1><h2 id="实质"><a href="#实质" class="headerlink" title="实质"></a>实质</h2><blockquote>
 <p>Observer (观察者)订阅一个可观察序列 Observable(事件源)<br>每一个Observable的实例都是一个序列<br>观察者 对 Observable 发射的数据或数据序列作出响应</p>
