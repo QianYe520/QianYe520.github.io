@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Swift,UIKit,UITableView," />
+  <meta name="keywords" content="UIKit,Swift,UITableView," />
 
 
 
@@ -106,7 +106,7 @@
 
 
 <meta name="description" content="UITableView声明tableView:UITableView变量var kSize=UIScreen.main.bounds;var _tableView:UITableView!          //tableViewvar  data :[(String,String)] = [(&quot;寥寥&quot;,&quot;有点绿&quot;),(&quot;卢Gaygay&quot;,&quot;有点Gay&quot;),(&quot;222&quot;,&quot;2---2&quot;),(&quot;33">
-<meta name="keywords" content="Swift,UIKit,UITableView">
+<meta name="keywords" content="UIKit,Swift,UITableView">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift-UIKit-UITableView">
 <meta property="og:url" content="http://yoursite.com/2017/12/07/Swift/UIKit/UITableView/index.html">
@@ -462,11 +462,11 @@
 <h3 id="MARK-cell-高度"><a href="#MARK-cell-高度" class="headerlink" title="MARK: cell- 高度"></a>MARK: cell- 高度</h3><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, heightForRowAt indexPath: IndexPath)</span></span> -&gt; <span class="type">CGFloat</span> &#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">66</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="头部高度"><a href="#头部高度" class="headerlink" title="头部高度"></a>头部高度</h3><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, heightForHeaderInSection section: Int)</span></span> -&gt; <span class="type">CGFloat</span> &#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">0.01</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="底部高度"><a href="#底部高度" class="headerlink" title="底部高度"></a>底部高度</h3><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, heightForFooterInSection section: Int)</span></span> -&gt; <span class="type">CGFloat</span> &#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">0.01</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="选中cell时触发"><a href="#选中cell时触发" class="headerlink" title="选中cell时触发"></a>选中cell时触发</h3><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, didSelectRowAt indexPath: IndexPath)</span></span>&#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"indexPath.row = SelectRow 第<span class="subst">\(indexPath.row)</span>行"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="取消选中cell时"><a href="#取消选中cell时" class="headerlink" title="取消选中cell时"></a>取消选中cell时</h3><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, didDeselectRowAt indexPath: IndexPath)</span></span>&#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"indexPath.row = DeselectRow 第<span class="subst">\(indexPath.row)</span>行"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="选中cell时触发"><a href="#选中cell时触发" class="headerlink" title="选中cell时触发"></a>选中cell时触发</h3><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, didSelectRowAt indexPath: IndexPath)</span></span>&#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"indexPath.row = SelectRow 第\(indexPath.row)行"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="取消选中cell时"><a href="#取消选中cell时" class="headerlink" title="取消选中cell时"></a>取消选中cell时</h3><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, didDeselectRowAt indexPath: IndexPath)</span></span>&#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"indexPath.row = DeselectRow 第\(indexPath.row)行"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="允许编辑cell"><a href="#允许编辑cell" class="headerlink" title="允许编辑cell"></a>允许编辑cell</h3><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, canEditRowAt indexPath: IndexPath)</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="右滑触发删除按钮"><a href="#右滑触发删除按钮" class="headerlink" title="右滑触发删除按钮"></a>右滑触发删除按钮</h3><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, editingStyleForRowAt indexPath: IndexPath)</span></span> -&gt; <span class="type">UITableViewCellEditingStyle</span> &#123;</div><div class="line">    <span class="keyword">return</span> <span class="type">UITableViewCellEditingStyle</span>.<span class="keyword">init</span>(rawValue: <span class="number">1</span>)!</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="点击删除cell时触发"><a href="#点击删除cell时触发" class="headerlink" title="点击删除cell时触发"></a>点击删除cell时触发</h3><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)</span></span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"indexPath.row = editingStyle第<span class="subst">\(indexPath.row)</span>行"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="点击删除cell时触发"><a href="#点击删除cell时触发" class="headerlink" title="点击删除cell时触发"></a>点击删除cell时触发</h3><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)</span></span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"indexPath.row = editingStyle第\(indexPath.row)行"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="点击btn的方法"><a href="#点击btn的方法" class="headerlink" title="点击btn的方法"></a>点击btn的方法</h3><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">clickBtnAction</span> <span class="params">(sender:UIButton)</span></span>&#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"点击了 btn"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
@@ -485,9 +485,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Swift/" rel="tag"># Swift</a>
-          
             <a href="/tags/UIKit/" rel="tag"># UIKit</a>
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
           
             <a href="/tags/UITableView/" rel="tag"># UITableView</a>
           
@@ -613,7 +613,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-count">77</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

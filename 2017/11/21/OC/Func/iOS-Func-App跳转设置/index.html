@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
 <meta property="og:description" content="跳到更多设置界面除了跳到WiFi设置界面，能不能跳到其他的设置界面呢？比如：定位服务、FaceTime、音乐等等。都是可以的，一起来看看如何实现的 跳到这些界面的参数配置： ##定位服务  用户关闭了定位,APP里面提示打开定位服务点击到设置界面设置，直接跳到定位服务设置界面=  //定位服务设置界面NSURL *url = [NSURL URLWithString:@&amp;quot;prefs:ro">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-21T06:21:48.000Z">
+<meta property="og:updated_time" content="2018-04-08T07:38:36.835Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS_App跳转设置">
 <meta name="twitter:description" content="跳到更多设置界面除了跳到WiFi设置界面，能不能跳到其他的设置界面呢？比如：定位服务、FaceTime、音乐等等。都是可以的，一起来看看如何实现的 跳到这些界面的参数配置： ##定位服务  用户关闭了定位,APP里面提示打开定位服务点击到设置界面设置，直接跳到定位服务设置界面=  //定位服务设置界面NSURL *url = [NSURL URLWithString:@&amp;quot;prefs:ro">
@@ -383,8 +383,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
+                  <a href="/categories/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
                   </a>
                 </span>
 
@@ -394,7 +394,7 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/Func/" itemprop="url" rel="index">
+                  <a href="/categories/OC/Func/" itemprop="url" rel="index">
                     <span itemprop="name">Func</span>
                   </a>
                 </span>
@@ -455,6 +455,7 @@
 <h2 id="iCloud设置界面"><a href="#iCloud设置界面" class="headerlink" title="iCloud设置界面"></a>iCloud设置界面</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">//iCloud设置界面</div><div class="line">NSURL *url = [NSURL URLWithString:@&quot;prefs:root=CASTLE&quot;];</div><div class="line">if ([[UIApplication sharedApplication] canOpenURL:url]</div><div class="line">&#123;</div><div class="line">   [[UIApplication sharedApplication] openURL:url];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="other"><a href="#other" class="headerlink" title="other"></a>other</h2><p>设置界面只需要prefs:root=后面的值即可<br>可以跳到这些界面的参数配置：r</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">About — prefs:root=General&amp;path=About</div><div class="line"></div><div class="line">Accessibility — prefs:root=General&amp;path=ACCESSIBILITY</div><div class="line"></div><div class="line">Airplane Mode On — prefs:root=AIRPLANE_MODE</div><div class="line"></div><div class="line">Auto-Lock — prefs:root=General&amp;path=AUTOLOCK</div><div class="line"></div><div class="line">Brightness — prefs:root=Brightness</div><div class="line"></div><div class="line">Bluetooth — prefs:root=General&amp;path=Bluetooth</div><div class="line"></div><div class="line">Date &amp; Time — prefs:root=General&amp;path=DATE_AND_TIME</div><div class="line"></div><div class="line">FaceTime — prefs:root=FACETIME</div><div class="line"></div><div class="line">General — prefs:root=General</div><div class="line"></div><div class="line">Keyboard — prefs:root=General&amp;path=Keyboard</div><div class="line"></div><div class="line">iCloud — prefs:root=CASTLE</div><div class="line"></div><div class="line">iCloud Storage &amp; Backup — prefs:root=CASTLE&amp;path=STORAGE_AND_BACKUP</div><div class="line"></div><div class="line">International — prefs:root=General&amp;path=INTERNATIONAL</div><div class="line"></div><div class="line">Location Services — prefs:root=LOCATION_SERVICES</div><div class="line"></div><div class="line">Music — prefs:root=MUSIC</div><div class="line"></div><div class="line">Music Equalizer — prefs:root=MUSIC&amp;path=EQ</div><div class="line"></div><div class="line">Music Volume Limit — prefs:root=MUSIC&amp;path=VolumeLimit</div><div class="line"></div><div class="line">Network — prefs:root=General&amp;path=Network</div><div class="line"></div><div class="line">Nike + iPod — prefs:root=NIKE_PLUS_IPOD</div><div class="line"></div><div class="line">Notes — prefs:root=NOTES</div><div class="line"></div><div class="line">Notification — prefs:root=NOTIFICATIONS_ID</div><div class="line"></div><div class="line">Phone — prefs:root=Phone</div><div class="line"></div><div class="line">Photos — prefs:root=Photos</div><div class="line"></div><div class="line">Profile — prefs:root=General&amp;path=ManagedConfigurationList</div><div class="line"></div><div class="line">Reset — prefs:root=General&amp;path=Reset</div><div class="line"></div><div class="line">Safari — prefs:root=Safari</div><div class="line"></div><div class="line">Siri — prefs:root=General&amp;path=Assistant</div><div class="line"></div><div class="line">Sounds — prefs:root=Sounds</div><div class="line"></div><div class="line">Software Update — prefs:root=General&amp;path=SOFTWARE_UPDATE_LINK</div><div class="line"></div><div class="line">Store — prefs:root=STORE</div><div class="line"></div><div class="line">Twitter — prefs:root=TWITTER</div><div class="line"></div><div class="line">Usage — prefs:root=General&amp;path=USAGE</div><div class="line"></div><div class="line">VPN — prefs:root=General&amp;path=Network/VPN</div><div class="line"></div><div class="line">Wallpaper — prefs:root=Wallpaper</div><div class="line"></div><div class="line">Wi-Fi — prefs:root=WIFI</div></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -589,7 +590,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-count">77</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

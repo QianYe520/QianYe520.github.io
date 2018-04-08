@@ -22,8 +22,8 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -48,8 +48,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>Protocol</tag>
       </tags>
   </entry>
@@ -94,9 +94,9 @@
         <category>RxSwift</category>
       </categories>
       <tags>
+        <tag>Error</tag>
         <tag>Swift</tag>
         <tag>RxSwift</tag>
-        <tag>Error</tag>
       </tags>
   </entry>
   <entry>
@@ -133,9 +133,9 @@
         <category>RxSwift</category>
       </categories>
       <tags>
+        <tag>Func</tag>
         <tag>Swift</tag>
         <tag>RxSwift</tag>
-        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
@@ -147,9 +147,9 @@
         <category>RxSwift</category>
       </categories>
       <tags>
+        <tag>Func</tag>
         <tag>Swift</tag>
         <tag>RxSwift</tag>
-        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
@@ -224,9 +224,9 @@
         <category>NSSet</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
-        <tag>UIKit</tag>
         <tag>OC</tag>
+        <tag>UIKit</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -389,8 +389,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>SceneKit</tag>
       </tags>
   </entry>
@@ -505,8 +505,8 @@
         <category>WCDB</category>
       </categories>
       <tags>
-        <tag>Lib</tag>
         <tag>OC</tag>
+        <tag>Lib</tag>
         <tag>WCDB</tag>
         <tag>数据库</tag>
       </tags>
@@ -584,8 +584,8 @@
         <category>SceneKit</category>
       </categories>
       <tags>
-        <tag>SceneKit</tag>
         <tag>iOS</tag>
+        <tag>SceneKit</tag>
       </tags>
   </entry>
   <entry>
@@ -607,8 +607,8 @@
         <category>SceneKit</category>
       </categories>
       <tags>
-        <tag>SceneKit</tag>
         <tag>iOS</tag>
+        <tag>SceneKit</tag>
         <tag>3D引擎</tag>
       </tags>
   </entry>
@@ -622,8 +622,8 @@
         <category>ArcGIS</category>
       </categories>
       <tags>
-        <tag>Lib</tag>
         <tag>OC</tag>
+        <tag>Lib</tag>
         <tag>ArcGIS</tag>
         <tag>大图加载</tag>
       </tags>
@@ -646,22 +646,9 @@
         <category>WKWebView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
-        <tag>WKWebView</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Swift-RxSwift-错误处理操作]]></title>
-    <url>%2F2017%2F12%2F19%2FRxSwift%2FGrammar%2FOperators-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E6%93%8D%E4%BD%9C%2F</url>
-    <content type="text"><![CDATA[错误处理操作 ①catchErrorJustReturn ②catchError ③retry ④debug ①catchErrorJustReturn ①catchErrorJustReturn 遇到error事件的时候，就return一个值，然后结束 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;() sequenceThatFails .catchErrorJustReturn("😊") .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test)///next(😬)next(😨)next(😡)next(🔴)next(😊)completed ②catchError ②catchError 捕获error进行处理，可以返回另一个sequence进行订阅 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;()let recoverySequence = PublishSubject&lt;String&gt;() sequenceThatFails .catchError &#123; print("Error:", $0) return recoverySequence &#125; .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test) recoverySequence.onNext("😊")//next(😬)next(😨)next(😡)next(🔴)Error: testnext(😊) ③retry ③retry 遇见error事件可以进行重试，比如网络请求失败，可以进行重新连接 let disposeBag = DisposeBag()var count = 1 let sequenceThatErrors = Observable&lt;String&gt;.create &#123; observer in observer.onNext("🍎") observer.onNext("🍐") observer.onNext("🍊") if count == 1 &#123; observer.onError(TestError.test) print("Error encountered") count += 1 &#125; observer.onNext("🐶") observer.onNext("🐱") observer.onNext("🐭") observer.onCompleted() return Disposables.create()&#125; sequenceThatErrors .retry(3) //不传入数字的话，只会重试一次 .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) ④debug ④debug 打印所有的订阅, 事件和disposals sequenceThatErrors .retry(3) .debug() .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) RxSwift.Resources.total 查看RxSwift所有资源的占用 print(RxSwift.Resources.total)]]></content>
-      <categories>
-        <category>Swift</category>
-        <category>RxSwift</category>
-      </categories>
-      <tags>
         <tag>Swift</tag>
-        <tag>RxSwift</tag>
+        <tag>WKWebView</tag>
       </tags>
   </entry>
   <entry>
@@ -678,9 +665,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Swift-RxSwift-过滤和条件操作符]]></title>
-    <url>%2F2017%2F12%2F19%2FRxSwift%2FGrammar%2FOperators-%E8%BF%87%E6%BB%A4%E5%92%8C%E6%9D%A1%E4%BB%B6%E6%93%8D%E4%BD%9C%E7%AC%A6%2F</url>
-    <content type="text"><![CDATA[过滤和条件操作符①filter②distinctUntilChanged③elementAt④single⑤take⑥takeLast⑦takeWhile⑧takeUntil⑨skip⑩ skipWhile⑪skipWhileWithIndex⑫skipUntil ①filter ①filter 过滤掉某些不符合要求的事件在Observable序列中只发出满足过滤条件的事件 let disposeBag = DisposeBag() Observable.of( "🐱", "🐰", "🐶", "🐸", "🐱", "🐰", "🐹", "🐸", "🐱") .filter &#123; $0 == "🐱" &#125; .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag)///🐱🐱🐱 let disposeBag = DisposeBag() Observable.of(1,2,3,4,5) .filter( &#123;$0 &gt; 2&#125; ) .subscribe( onNext: &#123;print($0)&#125; ) .disposed(by: disposeBag)//打印结果345 ②distinctUntilChanged ②distinctUntilChanged 过滤连续发出的相同事件distinctUntilChanged就是当下一个事件与前一个事件是不同事件的事件才进行处理操作 let disposeBag = DisposeBag() Observable.of("🐱", "🐷", "🐱", "🐱", "🐱", "🐵", "🐱") .distinctUntilChanged() .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag)///🐱🐷🐱🐵🐱 ③elementAt ③elementAt 只处理在指定位置的事件 let disposeBag = DisposeBag() Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .elementAt(3) .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag)//🐸 ④single ④single 用法一：检测Observable序列是否发射一个元素。如果发射多个，会报错 let disposeBag = DisposeBag()// error:Sequence contains more than one element// Observable.of(1,2,3).single().subscribe(onNext: &#123;print($0)&#125;).disposed(by: disposeBag)Observable.of(1) .single() .subscribe( onNext: &#123;print($0)&#125; ) .disposed(by: disposeBag) 用法二:检测Observable序列发射的元素里面是否包含多个指定的元素，如果有多个或者没有，会报错。 let disposeBag = DisposeBag()Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .single &#123; $0 == "🐸" &#125; .subscribe &#123; print($0) &#125; .disposed(by: disposeBag) Observable.of("🐱", "🐰", "🐶", "🐱", "🐰", "🐶") .single &#123; $0 == "🐒" &#125; .subscribe &#123; print($0) &#125; .disposed(by: disposeBag) Observable.of("🐱", "🐰", "🐶", "🐶","🐸") .single &#123; $0 == "🐶" &#125; .subscribe &#123; print($0) &#125; .disposed(by: disposeBag //打印结果 next(🐸) completed error(Sequence doesn't contain any elements.) next(🐶) error(Sequence contains more than one element.) 出在sequence只发出一次的事件，如果超过一个就会发出error错误 Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .single() .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) 🐱 //单一信号超过了一个Received unhandled error: /var/folders/hz/v15ld5mj0nqf83d21j13y0tw0000gn/T/./lldb/7229/playground107.swift:69:__lldb_expr_107 -&gt; Sequence contains more than one element. Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .single &#123; $0 == "🐸" &#125; //青蛙只有一个，completed .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) Observable.of("🐱", "🐰", "🐶", "🐱", "🐰", "🐶") .single &#123; $0 == "🐰" &#125; //兔子有两个，会发出error .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .single &#123; $0 == "🔵" &#125; //没有蓝色球，会发出error .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) ⑤take ⑤take 只处理前几个事件信号 let disposeBag = DisposeBag() Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .take(3) .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag)//🐱🐰🐶 从Observable序列开始点起只处理前几个事件 let disposeBag = DisposeBag() Observable.of(1,2,3) .take(2) .subscribe( onNext: &#123;print($0)&#125; ) .disposed(by: disposeBag)//打印结果: 1 2 ⑥takeLast ⑥takeLast 只处理后几个事件信号与take相反，从Observable序列的结束位置起，只处理前几个事件 let disposeBag = DisposeBag() Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .takeLast(3) .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag)//打印结果🐸🐷🐵let disposeBag = DisposeBag() Observable.of(1,2,3) .takeLast(2) .subscribe(onNext: &#123;print($0)&#125;) .disposed(by: disposeBag)//打印结果23 ⑦takeWhile ⑦takeWhile 只处理满足条件的事件。感觉和filter没什么区别 let disposeBag = DisposeBag() Observable.of(1, 2, 3, 4, 5, 6) .takeWhile &#123; $0 &lt; 4 &#125; .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) //打印结果：123let disposeBag = DisposeBag()Observable.of(1,2,3,4,5) .takeWhile&#123;$0 &lt; 3&#125; .subscribe(onNext: &#123;print($0)&#125;) .disposed(by: disposeBag)//打印结果：12 ⑧takeUntil ⑧takeUntil 接收事件消息，直到另一个sequence发出事件消息的时候 let disposeBag = DisposeBag() let sourceSequence = PublishSubject&lt;String&gt;()let referenceSequence = PublishSubject&lt;String&gt;() sourceSequence .takeUntil(referenceSequence) .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sourceSequence.onNext("🐱")sourceSequence.onNext("🐰")sourceSequence.onNext("🐶") referenceSequence.onNext("🔴") //停止接收消息 sourceSequence.onNext("🐸")sourceSequence.onNext("🐷")sourceSequence.onNext("🐵")///next(🐱)next(🐰)next(🐶)completed 直到另一个Observable序列发出一个信号，则原序列终 let disposeBag = DisposeBag() let orinSubject = PublishSubject&lt;Int&gt;()let refreSubject = PublishSubject&lt;Int&gt;() orinSubject.takeUntil(refreSubject) .subscribe(onNext: &#123;print($0)&#125;) .disposed(by: disposeBag) orinSubject.onNext(1)orinSubject.onNext(2)refreSubject.onNext(10)orinSubject.onNext(3)//打印结果12 ⑨skip ⑨skip 取消前几个事件 let disposeBag = DisposeBag() Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .skip(2) .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) // 🐶 🐸 🐷 🐵 从Observable序列的元素跳过指定个数 let disposeBag = DisposeBag()Observable.of(1,2,3,4,5,6) .skip(2) .subscribe(onNext: &#123;print($0)&#125;) .disposed(by: disposeBag)//打印结果：3456 ⑩skipWhile ⑩ skipWhile 满足条件的事件消息都取消 let disposeBag = DisposeBag() Observable.of(1, 2, 3, 4, 5, 6) .skipWhile &#123; $0 &lt; 4 &#125; .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) /// 4 5 6 跳过满足条件的事件，只要遇见不满足条件的事件，则该事件以及之后的事件（不管是否满足条件）都会发出 let disposeBag = DisposeBag() Observable.of(1,2,3,4,5,6) .skipWhile&#123;$0 &lt; 3&#125; .subscribe(onNext: &#123;print($0)&#125;) .disposed(by: disposeBag)//打印结果3456 ⑪skipWhileWithIndex ⑪skipWhileWithIndex 满足条件的都被取消，传入的闭包同skipWhile有点区别而已 let disposeBag = DisposeBag() Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .skipWhileWithIndex &#123; element, index in index &lt; 3 &#125; .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) 跳过索引满足条件的事件 let disposeBag = DisposeBag()Observable.of(1,2,3,4,5,6).skipWhileWithIndex(&#123; (element, index) -&gt; Bool in index &lt; 3 &#125;).subscribe(onNext: &#123;print($0)&#125;).disposed(by: disposeBag) //打印结果: 456 ⑫skipUntil ⑫skipUntil 直到某个sequence发出了事件消息，才开始接收当前sequence发出的事件消息 let disposeBag = DisposeBag() let sourceSequence = PublishSubject&lt;String&gt;()let referenceSequence = PublishSubject&lt;String&gt;() sourceSequence .skipUntil(referenceSequence) .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) sourceSequence.onNext("🐱")sourceSequence.onNext("🐰")sourceSequence.onNext("🐶") referenceSequence.onNext("🔴") sourceSequence.onNext("🐸")sourceSequence.onNext("🐷")sourceSequence.onNext("🐵")&#125; 跳过另一个Observable序列发出事件之前的所有事件与takeUntil相反。 let disposeBag = DisposeBag() let oriSubject = PublishSubject&lt;Int&gt;() let refreSubject = PublishSubject&lt;Int&gt;() oriSubject.skipUntil(refreSubject) .subscribe(onNext: &#123;print($0)&#125;) .disposed(by: disposeBag) oriSubject.onNext(1)oriSubject.onNext(2) refreSubject.onNext(10)oriSubject.onNext(3)oriSubject.onNext(4)//打印结果:34]]></content>
+    <title><![CDATA[Swift-RxSwift-错误处理操作]]></title>
+    <url>%2F2017%2F12%2F19%2FRxSwift%2FGrammar%2FOperators-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[错误处理操作 ①catchErrorJustReturn ②catchError ③retry ④debug ①catchErrorJustReturn ①catchErrorJustReturn 遇到error事件的时候，就return一个值，然后结束 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;() sequenceThatFails .catchErrorJustReturn("😊") .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test)///next(😬)next(😨)next(😡)next(🔴)next(😊)completed ②catchError ②catchError 捕获error进行处理，可以返回另一个sequence进行订阅 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;()let recoverySequence = PublishSubject&lt;String&gt;() sequenceThatFails .catchError &#123; print("Error:", $0) return recoverySequence &#125; .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test) recoverySequence.onNext("😊")//next(😬)next(😨)next(😡)next(🔴)Error: testnext(😊) ③retry ③retry 遇见error事件可以进行重试，比如网络请求失败，可以进行重新连接 let disposeBag = DisposeBag()var count = 1 let sequenceThatErrors = Observable&lt;String&gt;.create &#123; observer in observer.onNext("🍎") observer.onNext("🍐") observer.onNext("🍊") if count == 1 &#123; observer.onError(TestError.test) print("Error encountered") count += 1 &#125; observer.onNext("🐶") observer.onNext("🐱") observer.onNext("🐭") observer.onCompleted() return Disposables.create()&#125; sequenceThatErrors .retry(3) //不传入数字的话，只会重试一次 .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) ④debug ④debug 打印所有的订阅, 事件和disposals sequenceThatErrors .retry(3) .debug() .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) RxSwift.Resources.total 查看RxSwift所有资源的占用 print(RxSwift.Resources.total)]]></content>
       <categories>
         <category>Swift</category>
         <category>RxSwift</category>
@@ -694,6 +681,19 @@
     <title><![CDATA[Swift-RxSwift-Mathematical & Aggregate Operators-数学和集合操作符]]></title>
     <url>%2F2017%2F12%2F19%2FRxSwift%2FGrammar%2FOperators-%E6%95%B0%E5%AD%A6%E5%92%8C%E9%9B%86%E5%90%88%E6%93%8D%E4%BD%9C%E7%AC%A6%2F</url>
     <content type="text"><![CDATA[数学和集合操作符 ①toArray ①②reduce ③concat ①toArray ①toArray 将sequence转换成一个array，并转换成单一事件信号，然后结束 let disposeBag = DisposeBag()Observable.range(start: 1, count: 10) .toArray() .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag)//打印next([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])completed ②reduce ②reduce 用一个初始值，对事件数据进行累计操作reduce接受一个初始值，和一个操作符号使用一个初始值和一个操作符，对Observable序列中的所有元素进行累计操作，并转换成单一事件信号。(PS:和map有的区别就是：map针对单个元素进行操作，reduce针对所有元素累计操作) let disposeBag = DisposeBag() Observable.of(10, 100, 1000) .reduce(1, accumulator: +) .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag)/// 1111 ③concat ③concat oncat会把多个sequence和并为一个sequence，并且当前面一个sequence发出了completed事件，才会开始下一个sequence的事件在第一sequence完成之前，第二个sequence发出的事件都会被忽略，但会接收一完成之前的二发出的最后一个事件。不好解释，看例子说明 let disposeBag = DisposeBag() let subject1 = BehaviorSubject(value: "🍎")let subject2 = BehaviorSubject(value: "🐶") let variable = Variable(subject1) variable.asObservable() .concat() .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) subject1.onNext("🍐")subject1.onNext("🍊") variable.value = subject2 subject2.onNext("🐱") //1完成前，会被忽略subject2.onNext("teng") //1完成前，会被忽略subject2.onNext("fei") //1完成前的最后一个，会被接收 subject1.onCompleted() subject2.onNext("🐭")next(🍎)next(🍐)next(🍊)next(fei)next(🐭) 连接性操作 Connectable Observable有订阅时不开始发射事件消息，而是仅当调用它们的connect（）方法时。这样就可以等待所有我们想要的订阅者都已经订阅了以后，再开始发出事件消息，这样能保证我们想要的所有订阅者都能接收到事件消息。其实也就是等大家都就位以后，开始发出消息 publish 将一个正常的sequence转换成一个connectable sequence let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .publish() _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; //相当于把事件消息推迟了两秒 delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(6) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125;//Subscription 1:, Event: 0Subscription 1:, Event: 1Subscription 2:, Event: 1Subscription 1:, Event: 2Subscription 2:, Event: 2Subscription 1:, Event: 3Subscription 3:, Event: 3Subscription 2:, Event: 3Subscription 1:, Event: 4Subscription 3:, Event: 4 replay 将一个正常的sequence转换成一个connectable sequence，然后和replaySubject相似，能接收到订阅之前的事件消息 let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .replay(5) //接收到订阅之前的5条事件消息 _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(8) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125; multicast 将一个正常的sequence转换成一个connectable sequence，并且通过特性的subject发送出去，比如PublishSubject，或者replaySubject，behaviorSubject等。不同的Subject会有不同的结果 let subject = PublishSubject&lt;Int&gt;() _ = subject .subscribe(onNext: &#123; print("Subject: \($0)") &#125;) let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .multicast(subject) _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 2:, Event: \($0)") &#125;)&#125; 错误处理catchErrorJustReturn 遇到error事件的时候，就return一个值，然后结束 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;() sequenceThatFails .catchErrorJustReturn("😊") .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test)///next(😬)next(😨)next(😡)next(🔴)next(😊)completed catchError 捕获error进行处理，可以返回另一个sequence进行订阅 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;()let recoverySequence = PublishSubject&lt;String&gt;() sequenceThatFails .catchError &#123; print("Error:", $0) return recoverySequence &#125; .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test) recoverySequence.onNext("😊")//next(😬)next(😨)next(😡)next(🔴)Error: testnext(😊) retry 遇见error事件可以进行重试，比如网络请求失败，可以进行重新连接 let disposeBag = DisposeBag()var count = 1 let sequenceThatErrors = Observable&lt;String&gt;.create &#123; observer in observer.onNext("🍎") observer.onNext("🍐") observer.onNext("🍊") if count == 1 &#123; observer.onError(TestError.test) print("Error encountered") count += 1 &#125; observer.onNext("🐶") observer.onNext("🐱") observer.onNext("🐭") observer.onCompleted() return Disposables.create()&#125; sequenceThatErrors .retry(3) //不传入数字的话，只会重试一次 .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) debug 打印所有的订阅, 事件和disposals sequenceThatErrors .retry(3) .debug() .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) RxSwift.Resources.total 查看RxSwift所有资源的占用 print(RxSwift.Resources.total)]]></content>
+      <categories>
+        <category>Swift</category>
+        <category>RxSwift</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>RxSwift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Swift-RxSwift-过滤和条件操作符]]></title>
+    <url>%2F2017%2F12%2F19%2FRxSwift%2FGrammar%2FOperators-%E8%BF%87%E6%BB%A4%E5%92%8C%E6%9D%A1%E4%BB%B6%E6%93%8D%E4%BD%9C%E7%AC%A6%2F</url>
+    <content type="text"><![CDATA[过滤和条件操作符①filter②distinctUntilChanged③elementAt④single⑤take⑥takeLast⑦takeWhile⑧takeUntil⑨skip⑩ skipWhile⑪skipWhileWithIndex⑫skipUntil ①filter ①filter 过滤掉某些不符合要求的事件在Observable序列中只发出满足过滤条件的事件 let disposeBag = DisposeBag() Observable.of( "🐱", "🐰", "🐶", "🐸", "🐱", "🐰", "🐹", "🐸", "🐱") .filter &#123; $0 == "🐱" &#125; .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag)///🐱🐱🐱 let disposeBag = DisposeBag() Observable.of(1,2,3,4,5) .filter( &#123;$0 &gt; 2&#125; ) .subscribe( onNext: &#123;print($0)&#125; ) .disposed(by: disposeBag)//打印结果345 ②distinctUntilChanged ②distinctUntilChanged 过滤连续发出的相同事件distinctUntilChanged就是当下一个事件与前一个事件是不同事件的事件才进行处理操作 let disposeBag = DisposeBag() Observable.of("🐱", "🐷", "🐱", "🐱", "🐱", "🐵", "🐱") .distinctUntilChanged() .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag)///🐱🐷🐱🐵🐱 ③elementAt ③elementAt 只处理在指定位置的事件 let disposeBag = DisposeBag() Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .elementAt(3) .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag)//🐸 ④single ④single 用法一：检测Observable序列是否发射一个元素。如果发射多个，会报错 let disposeBag = DisposeBag()// error:Sequence contains more than one element// Observable.of(1,2,3).single().subscribe(onNext: &#123;print($0)&#125;).disposed(by: disposeBag)Observable.of(1) .single() .subscribe( onNext: &#123;print($0)&#125; ) .disposed(by: disposeBag) 用法二:检测Observable序列发射的元素里面是否包含多个指定的元素，如果有多个或者没有，会报错。 let disposeBag = DisposeBag()Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .single &#123; $0 == "🐸" &#125; .subscribe &#123; print($0) &#125; .disposed(by: disposeBag) Observable.of("🐱", "🐰", "🐶", "🐱", "🐰", "🐶") .single &#123; $0 == "🐒" &#125; .subscribe &#123; print($0) &#125; .disposed(by: disposeBag) Observable.of("🐱", "🐰", "🐶", "🐶","🐸") .single &#123; $0 == "🐶" &#125; .subscribe &#123; print($0) &#125; .disposed(by: disposeBag //打印结果 next(🐸) completed error(Sequence doesn't contain any elements.) next(🐶) error(Sequence contains more than one element.) 出在sequence只发出一次的事件，如果超过一个就会发出error错误 Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .single() .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) 🐱 //单一信号超过了一个Received unhandled error: /var/folders/hz/v15ld5mj0nqf83d21j13y0tw0000gn/T/./lldb/7229/playground107.swift:69:__lldb_expr_107 -&gt; Sequence contains more than one element. Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .single &#123; $0 == "🐸" &#125; //青蛙只有一个，completed .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) Observable.of("🐱", "🐰", "🐶", "🐱", "🐰", "🐶") .single &#123; $0 == "🐰" &#125; //兔子有两个，会发出error .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .single &#123; $0 == "🔵" &#125; //没有蓝色球，会发出error .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) ⑤take ⑤take 只处理前几个事件信号 let disposeBag = DisposeBag() Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .take(3) .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag)//🐱🐰🐶 从Observable序列开始点起只处理前几个事件 let disposeBag = DisposeBag() Observable.of(1,2,3) .take(2) .subscribe( onNext: &#123;print($0)&#125; ) .disposed(by: disposeBag)//打印结果: 1 2 ⑥takeLast ⑥takeLast 只处理后几个事件信号与take相反，从Observable序列的结束位置起，只处理前几个事件 let disposeBag = DisposeBag() Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .takeLast(3) .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag)//打印结果🐸🐷🐵let disposeBag = DisposeBag() Observable.of(1,2,3) .takeLast(2) .subscribe(onNext: &#123;print($0)&#125;) .disposed(by: disposeBag)//打印结果23 ⑦takeWhile ⑦takeWhile 只处理满足条件的事件。感觉和filter没什么区别 let disposeBag = DisposeBag() Observable.of(1, 2, 3, 4, 5, 6) .takeWhile &#123; $0 &lt; 4 &#125; .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) //打印结果：123let disposeBag = DisposeBag()Observable.of(1,2,3,4,5) .takeWhile&#123;$0 &lt; 3&#125; .subscribe(onNext: &#123;print($0)&#125;) .disposed(by: disposeBag)//打印结果：12 ⑧takeUntil ⑧takeUntil 接收事件消息，直到另一个sequence发出事件消息的时候 let disposeBag = DisposeBag() let sourceSequence = PublishSubject&lt;String&gt;()let referenceSequence = PublishSubject&lt;String&gt;() sourceSequence .takeUntil(referenceSequence) .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sourceSequence.onNext("🐱")sourceSequence.onNext("🐰")sourceSequence.onNext("🐶") referenceSequence.onNext("🔴") //停止接收消息 sourceSequence.onNext("🐸")sourceSequence.onNext("🐷")sourceSequence.onNext("🐵")///next(🐱)next(🐰)next(🐶)completed 直到另一个Observable序列发出一个信号，则原序列终 let disposeBag = DisposeBag() let orinSubject = PublishSubject&lt;Int&gt;()let refreSubject = PublishSubject&lt;Int&gt;() orinSubject.takeUntil(refreSubject) .subscribe(onNext: &#123;print($0)&#125;) .disposed(by: disposeBag) orinSubject.onNext(1)orinSubject.onNext(2)refreSubject.onNext(10)orinSubject.onNext(3)//打印结果12 ⑨skip ⑨skip 取消前几个事件 let disposeBag = DisposeBag() Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .skip(2) .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) // 🐶 🐸 🐷 🐵 从Observable序列的元素跳过指定个数 let disposeBag = DisposeBag()Observable.of(1,2,3,4,5,6) .skip(2) .subscribe(onNext: &#123;print($0)&#125;) .disposed(by: disposeBag)//打印结果：3456 ⑩skipWhile ⑩ skipWhile 满足条件的事件消息都取消 let disposeBag = DisposeBag() Observable.of(1, 2, 3, 4, 5, 6) .skipWhile &#123; $0 &lt; 4 &#125; .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) /// 4 5 6 跳过满足条件的事件，只要遇见不满足条件的事件，则该事件以及之后的事件（不管是否满足条件）都会发出 let disposeBag = DisposeBag() Observable.of(1,2,3,4,5,6) .skipWhile&#123;$0 &lt; 3&#125; .subscribe(onNext: &#123;print($0)&#125;) .disposed(by: disposeBag)//打印结果3456 ⑪skipWhileWithIndex ⑪skipWhileWithIndex 满足条件的都被取消，传入的闭包同skipWhile有点区别而已 let disposeBag = DisposeBag() Observable.of("🐱", "🐰", "🐶", "🐸", "🐷", "🐵") .skipWhileWithIndex &#123; element, index in index &lt; 3 &#125; .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) 跳过索引满足条件的事件 let disposeBag = DisposeBag()Observable.of(1,2,3,4,5,6).skipWhileWithIndex(&#123; (element, index) -&gt; Bool in index &lt; 3 &#125;).subscribe(onNext: &#123;print($0)&#125;).disposed(by: disposeBag) //打印结果: 456 ⑫skipUntil ⑫skipUntil 直到某个sequence发出了事件消息，才开始接收当前sequence发出的事件消息 let disposeBag = DisposeBag() let sourceSequence = PublishSubject&lt;String&gt;()let referenceSequence = PublishSubject&lt;String&gt;() sourceSequence .skipUntil(referenceSequence) .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) sourceSequence.onNext("🐱")sourceSequence.onNext("🐰")sourceSequence.onNext("🐶") referenceSequence.onNext("🔴") sourceSequence.onNext("🐸")sourceSequence.onNext("🐷")sourceSequence.onNext("🐵")&#125; 跳过另一个Observable序列发出事件之前的所有事件与takeUntil相反。 let disposeBag = DisposeBag() let oriSubject = PublishSubject&lt;Int&gt;() let refreSubject = PublishSubject&lt;Int&gt;() oriSubject.skipUntil(refreSubject) .subscribe(onNext: &#123;print($0)&#125;) .disposed(by: disposeBag) oriSubject.onNext(1)oriSubject.onNext(2) refreSubject.onNext(10)oriSubject.onNext(3)oriSubject.onNext(4)//打印结果:34]]></content>
       <categories>
         <category>Swift</category>
         <category>RxSwift</category>
@@ -783,9 +783,9 @@
         <category>RxSwift</category>
       </categories>
       <tags>
+        <tag>Grammar</tag>
         <tag>Swift</tag>
         <tag>RxSwift</tag>
-        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -850,8 +850,8 @@
         <category>UIImagePickerController</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UIImagePickerController</tag>
       </tags>
   </entry>
@@ -865,8 +865,8 @@
         <category>NSAttributedString</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>NSAttributedString</tag>
       </tags>
   </entry>
@@ -879,8 +879,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Func</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -892,8 +892,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Func</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -905,8 +905,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Func</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -919,8 +919,8 @@
         <category>NSNotificationCenter</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>NSNotificationCenter</tag>
       </tags>
   </entry>
@@ -933,8 +933,8 @@
         <category>Func</category>
       </categories>
       <tags>
+        <tag>OC</tag>
         <tag>Func</tag>
-        <tag>iOS</tag>
       </tags>
   </entry>
   <entry>
@@ -957,8 +957,8 @@
         <category>UITableView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITableView</tag>
       </tags>
   </entry>
@@ -971,8 +971,8 @@
         <category>Error</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Error</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -984,23 +984,8 @@
         <category>Error</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Error</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Swift-UIKit-UIWebView-简介]]></title>
-    <url>%2F2017%2F12%2F14%2FSwift%2FUIKit%2FSwift-UIKit-UIWebView-%E7%AE%80%E4%BB%8B%2F</url>
-    <content type="text"><![CDATA[UIWebView的常用属性 1.设置 UIWebView 的代理对象 var delegate: UIWebViewDelegate? 2.获取 UIWebView 的 UIScrollView 属性 var scrollView: UIScrollView &#123; get &#125; 3.获取 UIWebView 的网络请求 var request: NSURLRequest? &#123; get &#125; 4.获取 UIWebView 是否在接收数据的时候可以退后一步 var canGoBack: Bool &#123; get &#125; 5.获取 UIWebView 是否在接收数据的时候可以前进一步 var canGoForward: Bool &#123; get &#125;``` &gt; 6.获取 UIWebView 是否接受完数据```swift var loading: Bool &#123; get &#125; 7.设置 UIWebView 接收的数据是否可以通过手势来调整页面内容大小 var scalesPageToFit: Bool 8.设置 UIWebView 接收的数据是什么类型 var dataDetectorTypes: UIDataDetectorTypes 9.设置 UIWebView 内是否可以回放媒体 var allowsInlineMediaPlayback: Bool 10.设置 UIWebView 中的 HTML5 视频是否自动播放(默认是True) var mediaPlaybackRequiresUserAction: Bool 11.设置 UIWebView 是否可以使用 Air 播放(默认是True) var mediaPlaybackAllowsAirPlay: Bool 12.设置 UIWebView 是否使用同步加载(默认是False) var suppressesIncrementalRendering: Bool 13.设置 UIWebView 在点击视图或者元素时是否显示键盘(默认是True) var keyboardDisplayRequiresUserAction: Bool 14.设置 UIWebView 的分页模式 var paginationMode: UIWebPaginationMode 15.设置 UIWebView 的分页打破模式 var paginationBreakingMode: UIWebPaginationBreakingMode 16.设置 UIWebView 的分页长度 var pageLength: CGFloat 17.设置 UIWebView 之间的页面宽度 var gapBetweenPages: CGFloat 18.获取 UIWebView 的页面数量 var pageCount: Int &#123; get &#125; 常用类型 1.获取 UIWebView 的数据类型 struct UIDataDetectorTypes : RawOptionSetType &#123; init(_ rawValue: UInt) init(rawValue: UInt) static var PhoneNumber: UIDataDetectorTypes &#123; get &#125; static var Link: UIDataDetectorTypes &#123; get &#125; static var Address: UIDataDetectorTypes &#123; get &#125; static var CalendarEvent: UIDataDetectorTypes &#123; get &#125; static var None: UIDataDetectorTypes &#123; get &#125; static var All: UIDataDetectorTypes &#123; get &#125;&#125; 2.设置 UIWebView 的 Navigation 类型 enum UIWebViewNavigationType : Int &#123; case LinkClicked case FormSubmitted case BackForward case Reload case FormResubmitted case Other&#125; 3.设置 UIWebView 的分页样式 enum UIWebPaginationMode : Int &#123; case Unpaginated case LeftToRight case TopToBottom case BottomToTop case RightToLeft&#125; 4.设置 UIWebView 打破分页样式的样式 enum UIWebPaginationBreakingMode : Int &#123; case Page case Column&#125; UIWebView的代理方法 1.该方法是用来设置是否在 UIWebView 加载之前发送一个请求 optional func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -&gt; Bool 2.该方法是在 UIWebView 在开发加载时调用 optional func webViewDidStartLoad(webView: UIWebView) 3.该方法是在 UIWebView 加载完之后才调用 optional func webViewDidFinishLoad(webView: UIWebView) 4.该方法是在 UIWebView 请求失败的时候调用 optional func webView(webView: UIWebView, didFailLoadWithError error: NSError)]]></content>
-      <categories>
-        <category>Swift</category>
-        <category>UIKit</category>
-        <category>UIWebView</category>
-      </categories>
-      <tags>
         <tag>Swift</tag>
-        <tag>UIKit</tag>
-        <tag>UIWebView</tag>
       </tags>
   </entry>
   <entry>
@@ -1013,8 +998,23 @@
         <category>UIWebView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
+        <tag>UIWebView</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Swift-UIKit-UIWebView-简介]]></title>
+    <url>%2F2017%2F12%2F14%2FSwift%2FUIKit%2FSwift-UIKit-UIWebView-%E7%AE%80%E4%BB%8B%2F</url>
+    <content type="text"><![CDATA[UIWebView的常用属性 1.设置 UIWebView 的代理对象 var delegate: UIWebViewDelegate? 2.获取 UIWebView 的 UIScrollView 属性 var scrollView: UIScrollView &#123; get &#125; 3.获取 UIWebView 的网络请求 var request: NSURLRequest? &#123; get &#125; 4.获取 UIWebView 是否在接收数据的时候可以退后一步 var canGoBack: Bool &#123; get &#125; 5.获取 UIWebView 是否在接收数据的时候可以前进一步 var canGoForward: Bool &#123; get &#125;``` &gt; 6.获取 UIWebView 是否接受完数据```swift var loading: Bool &#123; get &#125; 7.设置 UIWebView 接收的数据是否可以通过手势来调整页面内容大小 var scalesPageToFit: Bool 8.设置 UIWebView 接收的数据是什么类型 var dataDetectorTypes: UIDataDetectorTypes 9.设置 UIWebView 内是否可以回放媒体 var allowsInlineMediaPlayback: Bool 10.设置 UIWebView 中的 HTML5 视频是否自动播放(默认是True) var mediaPlaybackRequiresUserAction: Bool 11.设置 UIWebView 是否可以使用 Air 播放(默认是True) var mediaPlaybackAllowsAirPlay: Bool 12.设置 UIWebView 是否使用同步加载(默认是False) var suppressesIncrementalRendering: Bool 13.设置 UIWebView 在点击视图或者元素时是否显示键盘(默认是True) var keyboardDisplayRequiresUserAction: Bool 14.设置 UIWebView 的分页模式 var paginationMode: UIWebPaginationMode 15.设置 UIWebView 的分页打破模式 var paginationBreakingMode: UIWebPaginationBreakingMode 16.设置 UIWebView 的分页长度 var pageLength: CGFloat 17.设置 UIWebView 之间的页面宽度 var gapBetweenPages: CGFloat 18.获取 UIWebView 的页面数量 var pageCount: Int &#123; get &#125; 常用类型 1.获取 UIWebView 的数据类型 struct UIDataDetectorTypes : RawOptionSetType &#123; init(_ rawValue: UInt) init(rawValue: UInt) static var PhoneNumber: UIDataDetectorTypes &#123; get &#125; static var Link: UIDataDetectorTypes &#123; get &#125; static var Address: UIDataDetectorTypes &#123; get &#125; static var CalendarEvent: UIDataDetectorTypes &#123; get &#125; static var None: UIDataDetectorTypes &#123; get &#125; static var All: UIDataDetectorTypes &#123; get &#125;&#125; 2.设置 UIWebView 的 Navigation 类型 enum UIWebViewNavigationType : Int &#123; case LinkClicked case FormSubmitted case BackForward case Reload case FormResubmitted case Other&#125; 3.设置 UIWebView 的分页样式 enum UIWebPaginationMode : Int &#123; case Unpaginated case LeftToRight case TopToBottom case BottomToTop case RightToLeft&#125; 4.设置 UIWebView 打破分页样式的样式 enum UIWebPaginationBreakingMode : Int &#123; case Page case Column&#125; UIWebView的代理方法 1.该方法是用来设置是否在 UIWebView 加载之前发送一个请求 optional func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -&gt; Bool 2.该方法是在 UIWebView 在开发加载时调用 optional func webViewDidStartLoad(webView: UIWebView) 3.该方法是在 UIWebView 加载完之后才调用 optional func webViewDidFinishLoad(webView: UIWebView) 4.该方法是在 UIWebView 请求失败的时候调用 optional func webView(webView: UIWebView, didFailLoadWithError error: NSError)]]></content>
+      <categories>
+        <category>Swift</category>
+        <category>UIKit</category>
+        <category>UIWebView</category>
+      </categories>
+      <tags>
+        <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UIWebView</tag>
       </tags>
   </entry>
@@ -1028,8 +1028,8 @@
         <category>UINavigationController</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UINavigationController</tag>
       </tags>
   </entry>
@@ -1043,8 +1043,8 @@
         <category>UINavigationController</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UINavigationController</tag>
       </tags>
   </entry>
@@ -1058,8 +1058,8 @@
         <category>UISegmentedControl</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UISegmentedControl</tag>
       </tags>
   </entry>
@@ -1073,8 +1073,8 @@
         <category>UISegmentedControl</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UISegmentedControl</tag>
       </tags>
   </entry>
@@ -1088,8 +1088,8 @@
         <category>UISwitch</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UISwitch</tag>
       </tags>
   </entry>
@@ -1103,8 +1103,8 @@
         <category>UISwitch</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UISwitch</tag>
       </tags>
   </entry>
@@ -1118,8 +1118,8 @@
         <category>UITextField</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITextField</tag>
       </tags>
   </entry>
@@ -1133,8 +1133,8 @@
         <category>UITxtxField</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITxtxField</tag>
       </tags>
   </entry>
@@ -1148,8 +1148,8 @@
         <category>UIImage</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UIImage</tag>
       </tags>
   </entry>
@@ -1163,8 +1163,8 @@
         <category>UIImage</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UIImage</tag>
       </tags>
   </entry>
@@ -1178,8 +1178,8 @@
         <category>UITableViewCell</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITableViewCell</tag>
       </tags>
   </entry>
@@ -1193,8 +1193,8 @@
         <category>UITableViewCell</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITableViewCell</tag>
       </tags>
   </entry>
@@ -1208,8 +1208,8 @@
         <category>UITableView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITableView</tag>
       </tags>
   </entry>
@@ -1223,8 +1223,8 @@
         <category>UITableView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITableView</tag>
       </tags>
   </entry>
@@ -1238,9 +1238,9 @@
         <category>UIScrollView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
         <tag>UIScrollView</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1253,9 +1253,9 @@
         <category>UIScrollView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
         <tag>UIScrollView</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1268,8 +1268,8 @@
         <category>UITextView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITextView</tag>
       </tags>
   </entry>
@@ -1283,8 +1283,8 @@
         <category>UITextView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITextView</tag>
       </tags>
   </entry>
@@ -1298,8 +1298,8 @@
         <category>UIActionSheet</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UIActionSheet</tag>
       </tags>
   </entry>
@@ -1313,8 +1313,8 @@
         <category>UIActionSheet</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UIActionSheet</tag>
       </tags>
   </entry>
@@ -1327,8 +1327,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Func</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1341,8 +1341,8 @@
         <category>NSTimer</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>NSTimer</tag>
       </tags>
   </entry>
@@ -1356,8 +1356,8 @@
         <category>UICollectionView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UICollectionView</tag>
       </tags>
   </entry>
@@ -1371,8 +1371,8 @@
         <category>UICollectionView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UICollectionView</tag>
       </tags>
   </entry>
@@ -1387,16 +1387,6 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[Swift-Lib-Kingfisher-图片加载库]]></title>
-    <url>%2F2017%2F12%2F13%2FSwift%2FLib%2FKingfisher-%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%BA%93%2F</url>
-    <content type="text"><![CDATA[http://blog.csdn.net/djh996064549/article/details/71085679]]></content>
-      <categories>
-        <category>Swift</category>
-        <category>Lib</category>
-        <category>Kingfisher</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[Swift-Lib-SnapKit-自动布局]]></title>
     <url>%2F2017%2F12%2F13%2FSwift%2FLib%2FSnapKit-%E8%87%AA%E5%8A%A8%E5%B8%83%E5%B1%80%2F</url>
     <content type="text"><![CDATA[https://www.jianshu.com/p/2bad53a2a180]]></content>
@@ -1404,6 +1394,16 @@
         <category>Swift</category>
         <category>Lib</category>
         <category>SnapKit</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Swift-Lib-Kingfisher-图片加载库]]></title>
+    <url>%2F2017%2F12%2F13%2FSwift%2FLib%2FKingfisher-%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%BA%93%2F</url>
+    <content type="text"><![CDATA[http://blog.csdn.net/djh996064549/article/details/71085679]]></content>
+      <categories>
+        <category>Swift</category>
+        <category>Lib</category>
+        <category>Kingfisher</category>
       </categories>
   </entry>
   <entry>
@@ -1425,8 +1425,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Symbolicatecrash</tag>
-        <tag>Crash</tag>
+        <tag>OC</tag>
+        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
@@ -1438,8 +1438,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>AccessControl</tag>
         <tag>open</tag>
       </tags>
@@ -1454,8 +1454,8 @@
         <category>AccessControl</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>AccessControl</tag>
         <tag>fileprivate</tag>
       </tags>
@@ -1470,8 +1470,8 @@
         <category>RequiredInit</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>RequiredInit</tag>
       </tags>
   </entry>
@@ -1485,8 +1485,8 @@
         <category>Swift4.0</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>Swift4.0</tag>
       </tags>
   </entry>
@@ -1500,8 +1500,8 @@
         <category>Guard</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>Guard</tag>
       </tags>
   </entry>
@@ -1515,8 +1515,8 @@
         <category>Inheritance</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>Inheritance</tag>
       </tags>
   </entry>
@@ -1530,8 +1530,8 @@
         <category>String</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1544,8 +1544,8 @@
         <category>Lazy</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>Lazy</tag>
       </tags>
   </entry>
@@ -1558,8 +1558,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1572,8 +1572,8 @@
         <category>UITableView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITableView</tag>
       </tags>
   </entry>
@@ -1587,8 +1587,8 @@
         <category>AFN</category>
       </categories>
       <tags>
-        <tag>Error</tag>
         <tag>OC</tag>
+        <tag>Error</tag>
         <tag>AFN</tag>
       </tags>
   </entry>
@@ -1597,7 +1597,7 @@
     <url>%2F2017%2F12%2F07%2FOC%2FFunc%2FiOS-Func-%E7%BD%91%E7%BB%9C%E7%8A%B6%E5%86%B5%E4%BE%A6%E6%B5%8B%2F</url>
     <content type="text"><![CDATA[官方示例程序 将Reachability.h 和 Reachability.m 加到自己的项目中并引用 SystemConfiguration.framework 网络的几种状态// the network state of the device for Reachability 2.0.typedef enum &#123; NotReachable = 0, //无连接 ReachableViaWiFi, //使用3G/GPRS网络 ReachableViaWWAN //使用WiFi网络&#125; NetworkStatus; 运用 #import "ViewController.h"#import "Reachability.h"@interface ViewController ()@property (nonatomic, strong) UIAlertController *alertVC;@end@implementation ViewController- (void)viewDidLoad &#123; [super viewDidLoad]; // Do any additional setup after loading the view, typically from a nib. // 创建网络探测对象 Reachability *reach = [Reachability reachabilityWithHostName:@"www.baidu.com"]; // 想通知中心注册通知 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkChange:) name:kReachabilityChangedNotification object:nil]; // 开启通知监控 [reach startNotifier]; &#125;// 网络状况发生改变后，执行该方法- (void)networkChange:(NSNotification *)noti &#123; self.alertVC = [UIAlertController alertControllerWithTitle:@"网络提示" message:@"当前网络状况有变更" preferredStyle:UIAlertControllerStyleAlert]; UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) &#123; [_alertVC dismissViewControllerAnimated:YES completion:nil]; &#125;]; [_alertVC addAction:action1]; Reachability * reach = [noti object]; // 判断当前网络是否可达，可达则继续后边的判断：通过哪种途径到达，不可达，直接返回，不再执行后边的代码 if ([reach isReachable]) &#123; NSLog(@"网络可达"); &#125; else &#123; NSLog(@"网络有故障"); _alertVC.message = @"当前网络有故障"; [self presentViewController:_alertVC animated:YES completion:nil]; return; &#125; if ([reach isReachableViaWiFi]) &#123; NSLog(@"通过WIFI到达"); _alertVC.message = @"当前网络是无线网,为您加载高清资源"; [self presentViewController:_alertVC animated:YES completion:nil]; &#125; else if ([reach isReachableViaWWAN]) &#123; NSLog(@"通过基站到达"); _alertVC.message = @"当前网络是流量，正在为您节省流量"; [self presentViewController:_alertVC animated:YES completion:nil]; &#125; else &#123; NSLog(@"通过其他到达"); _alertVC.message = @"当前使用未知网络"; [self presentViewController:_alertVC animated:YES completion:nil]; &#125;&#125;- (void)didReceiveMemoryWarning &#123; [super didReceiveMemoryWarning]; // Dispose of any resources that can be recreated.&#125;@end]]></content>
       <categories>
-        <category>iOS</category>
+        <category>OC</category>
         <category>Func</category>
       </categories>
   </entry>
@@ -1621,8 +1621,8 @@
         <category>UIImageView</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UIImageView</tag>
       </tags>
   </entry>
@@ -1636,8 +1636,8 @@
         <category>UISegmentedControl</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UISegmentedControl</tag>
       </tags>
   </entry>
@@ -1651,8 +1651,8 @@
         <category>UISwitch</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UISwitch</tag>
       </tags>
   </entry>
@@ -1666,8 +1666,8 @@
         <category>UIStepper</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UIStepper</tag>
       </tags>
   </entry>
@@ -1681,8 +1681,8 @@
         <category>UISlider</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UISlider</tag>
       </tags>
   </entry>
@@ -1696,9 +1696,24 @@
         <category>UITextField</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>UITextField</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Swift-UIKit-UILabel]]></title>
+    <url>%2F2017%2F12%2F06%2FSwift%2FUIKit%2FUILabel%2F</url>
+    <content type="text"><![CDATA[lab 创建&amp;&amp; 设置frame let lab = UILabel(frame:CGRect(x:10,y:100,width:self.view.frame.size.width - 40,height:200)) 或 let lab = UILabel()lab.frame = CGRect(x:10,y:100,width:self.view.frame.size.width - 40,height:200) 添加父层 self.view.addSubview(lab); 显示文本内容 lab.text = "chen jian !" 设置bg颜色 lab.backgroundColor = UIColor.green 文字颜色 lab.textColor = UIColor.white 文字对齐方式 lab.textAlignment = NSTextAlignment.left 高亮文字颜色 lab.highlightedTextColor = UIColor.cyan 阴影颜色 lab.shadowColor = UIColor.black 阴影偏移位置 lab.shadowOffset = CGSize(width:-5,height:5) 设置圆角 lab.layer.cornerRadius = 20lab.layer.masksToBounds = true 边框的宽度和颜色 lab.layer.borderColor = UIColor.green.cgColorlab.layer.borderWidth = 2 文字类型/大小 lab.font = UIFont.boldSystemFont(ofSize: 20) //加粗类型lab.font = UIFont.systemFont(ofSize: 20) //文字大小lab.font = UIFont.italicSystemFont(ofSize: 20)//斜体类型lab.font = UIFont(name:"您好",size:50) //大小和文字一起设置 显示de样式 lab.lineBreakMode = NSLineBreakMode.byCharWrapping // NSParagraphStyle@available(iOS 6.0, *)public enum NSLineBreakMode : Int &#123;case byWordWrapping // Wrap at word boundaries, defaultcase byCharWrapping // Wrap at character boundariescase byClipping // Simply clipcase byTruncatingHead // Truncate at head of line: "...wxyz"case byTruncatingTail // Truncate at tail of line: "abcd..."case byTruncatingMiddle // Truncate middle of line: "ab...yz"&#125; 多行de显示 lab.numberOfLines = 2 //最多显示2行lab.numberOfLines = 0 // 默认没有行数显示lab.numberOfLines = 1 //只能显示一行 自动调整文字de大小 lab.adjustsFontSizeToFitWidth = true 富文本设置 //创建对象let attributeString = NSMutableAttributedString(string:"Welcome to Swift! Welcome to Swift! Welcome to Swift! Welcome to Swift!")//设置字体大小/字体类型attributeString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Bold", size: 16)!, range: NSMakeRange(0, 6))//设置背景颜色 attributeString.addAttribute(NSForegroundColorAttributeName, value: UIColor.red, range: NSMakeRange(0, 3)) //设置文档背景色 attributeString.addAttribute(NSBackgroundColorDocumentAttribute, value: UIColor.lightGray, range: NSMakeRange(10, 10))//设置下划线attributeString.addAttribute(NSUnderlineStyleAttributeName, value:NSUnderlineStyle.StyleSingle.rawValue, range: NSMakeRange(5,12)) testLable.attributedText = attributeString; 文本高度计算 extension NSString &#123; func textSizeWithFont(font: UIFont, constrainedToSize size:CGSize) -&gt; CGSize &#123; var textSize:CGSize! if CGSizeEqualToSize(size, CGSizeZero) &#123; let attributes = NSDictionary(object: font, forKey: NSFontAttributeName) textSize = self.sizeWithAttributes(attributes) &#125; else &#123; let option = NSStringDrawingOptions.UsesLineFragmentOrigin let attributes = NSDictionary(object: font, forKey: NSFontAttributeName) let stringRect = self.boundingRectWithSize(size, options: option, attributes: attributes, context: nil) textSize = stringRect.size &#125; return textSize &#125;&#125;]]></content>
+      <categories>
+        <category>Swift</category>
+        <category>UIKit</category>
+        <category>UILabel</category>
+      </categories>
+      <tags>
+        <tag>UIKit</tag>
+        <tag>Swift</tag>
+        <tag>UILabel</tag>
       </tags>
   </entry>
   <entry>
@@ -1716,21 +1731,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Swift-UIKit-UILabel]]></title>
-    <url>%2F2017%2F12%2F06%2FSwift%2FUIKit%2FUILabel%2F</url>
-    <content type="text"><![CDATA[lab 创建&amp;&amp; 设置frame let lab = UILabel(frame:CGRect(x:10,y:100,width:self.view.frame.size.width - 40,height:200)) 或 let lab = UILabel()lab.frame = CGRect(x:10,y:100,width:self.view.frame.size.width - 40,height:200) 添加父层 self.view.addSubview(lab); 显示文本内容 lab.text = "chen jian !" 设置bg颜色 lab.backgroundColor = UIColor.green 文字颜色 lab.textColor = UIColor.white 文字对齐方式 lab.textAlignment = NSTextAlignment.left 高亮文字颜色 lab.highlightedTextColor = UIColor.cyan 阴影颜色 lab.shadowColor = UIColor.black 阴影偏移位置 lab.shadowOffset = CGSize(width:-5,height:5) 设置圆角 lab.layer.cornerRadius = 20lab.layer.masksToBounds = true 边框的宽度和颜色 lab.layer.borderColor = UIColor.green.cgColorlab.layer.borderWidth = 2 文字类型/大小 lab.font = UIFont.boldSystemFont(ofSize: 20) //加粗类型lab.font = UIFont.systemFont(ofSize: 20) //文字大小lab.font = UIFont.italicSystemFont(ofSize: 20)//斜体类型lab.font = UIFont(name:"您好",size:50) //大小和文字一起设置 显示de样式 lab.lineBreakMode = NSLineBreakMode.byCharWrapping // NSParagraphStyle@available(iOS 6.0, *)public enum NSLineBreakMode : Int &#123;case byWordWrapping // Wrap at word boundaries, defaultcase byCharWrapping // Wrap at character boundariescase byClipping // Simply clipcase byTruncatingHead // Truncate at head of line: "...wxyz"case byTruncatingTail // Truncate at tail of line: "abcd..."case byTruncatingMiddle // Truncate middle of line: "ab...yz"&#125; 多行de显示 lab.numberOfLines = 2 //最多显示2行lab.numberOfLines = 0 // 默认没有行数显示lab.numberOfLines = 1 //只能显示一行 自动调整文字de大小 lab.adjustsFontSizeToFitWidth = true 富文本设置 //创建对象let attributeString = NSMutableAttributedString(string:"Welcome to Swift! Welcome to Swift! Welcome to Swift! Welcome to Swift!")//设置字体大小/字体类型attributeString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Bold", size: 16)!, range: NSMakeRange(0, 6))//设置背景颜色 attributeString.addAttribute(NSForegroundColorAttributeName, value: UIColor.red, range: NSMakeRange(0, 3)) //设置文档背景色 attributeString.addAttribute(NSBackgroundColorDocumentAttribute, value: UIColor.lightGray, range: NSMakeRange(10, 10))//设置下划线attributeString.addAttribute(NSUnderlineStyleAttributeName, value:NSUnderlineStyle.StyleSingle.rawValue, range: NSMakeRange(5,12)) testLable.attributedText = attributeString; 文本高度计算 extension NSString &#123; func textSizeWithFont(font: UIFont, constrainedToSize size:CGSize) -&gt; CGSize &#123; var textSize:CGSize! if CGSizeEqualToSize(size, CGSizeZero) &#123; let attributes = NSDictionary(object: font, forKey: NSFontAttributeName) textSize = self.sizeWithAttributes(attributes) &#125; else &#123; let option = NSStringDrawingOptions.UsesLineFragmentOrigin let attributes = NSDictionary(object: font, forKey: NSFontAttributeName) let stringRect = self.boundingRectWithSize(size, options: option, attributes: attributes, context: nil) textSize = stringRect.size &#125; return textSize &#125;&#125;]]></content>
-      <categories>
-        <category>Swift</category>
-        <category>UIKit</category>
-        <category>UILabel</category>
-      </categories>
-      <tags>
-        <tag>Swift</tag>
-        <tag>UIKit</tag>
-        <tag>UILabel</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Swift-UIKit-AppDelegate项目入口]]></title>
     <url>%2F2017%2F12%2F06%2FSwift%2FUIKit%2FAppDelegate%E9%A1%B9%E7%9B%AE%E5%85%A5%E5%8F%A3%2F</url>
     <content type="text"><![CDATA[AppDelegate.swift //import是导入文件的/库的关键字//UIKit是iOS中所有的控件的所在库文件import UIKit@UIApplicationMain //调用了OC中的UIApplicationMain函数;//UIApplicationMain是IOS应用程序的入口//UIApplacationMain:1.创建了一个UIApplication对象,代表当前应用程序.作用是用来检测当前应用程序状态的改变// 2.创建一个遵守UIApplicationDelegate的协议的子类对象作为UIApplication的代理,作用是处理应用程序状态的改变(创建AppDelegate对象并且设置为UIApplication对象的代理)class AppDelegate: UIResponder, UIApplicationDelegate &#123; //属性: var window: UIWindow? //方法: //一.当应用程序已经启动成功后,会自动调用这个方法 func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -&gt; Bool &#123; // Override point for customization after application launch. //1.在这个方法中来搭建应用程序中的所有的界面 //2.获取应用程序需要展示的数据 //3.使用界面展示数据 //注意:如果不再做这个方法中去创建window,那么程序会通过Main.stroyboard去创建应用程序的界面 print("程序启动成功") return true &#125; //二.当应用程序将要成为非活跃状态的时候会自动调用这个方法. //活跃状态:程序在屏幕上可见 //非活跃状态:程序没有显示在屏幕上(按home键进入后台,来电打断,在当前应用程序中打开其他的应用程序) func applicationWillResignActive(application: UIApplication) &#123; //按下home键:command + shift + h //在这个方法中一般去暂停视频/音频播放;游戏需要暂停;保存数据 print("将要成为非活跃状态") &#125; //三.应用程序已经进入后台的时候会自动调用 //进入后台:按home键 func applicationDidEnterBackground(application: UIApplication) &#123; print("进入后台") &#125; //四.应用程序将要进入前台的时候会自动调用 //进入前台: func applicationWillEnterForeground(application: UIApplication) &#123; print("将要进入前台") &#125; //五.应用程序已经变成活跃状态的时候会自动调用 //1.程序启动成功后 //2.程序从后台重新进入前台 //3.来电打断结束... func applicationDidBecomeActive(application: UIApplication) &#123; print("已经变成活跃状态") &#125; //六.应用程序将要终止的时候会调用这个方法 func applicationWillTerminate(application: UIApplication) &#123; print("应用程序将要终止") &#125;&#125; ViewController.swift class ViewController: UIViewController &#123; override func viewDidLoad() &#123; super.viewDidLoad() //UIView:是IOS中所有视图(控件)直接/间接的父类;所以UIView的属性和方法,对于其他类型的视图都有效 //视图:在屏幕上能看到的所有的东西都属于视图 //一.创建UIView的对象 let redView = UIView.init() //想要将视图展示在屏幕上的两个必要条件 //1.必须设置坐标的大小(默认坐标是(0,0),大小(0,0,)) //2.将视图添加到已经展示在屏幕上的视图上 //二.设置frame属性(由坐标(x,y)和大小(width,height)两个部分组成) redView.frame = CGRect(x: 10, y: 10, width: 100, height: 100) //IOS中所有的结构体都有一个对应的Make方法用来快速的创建一个结构体变量 redView.frame = CGRectMake(10, 10, 100, 100) //三.将视图添加到界面上 self.view.addSubview(redView) //四.设置背景颜色 //视图的背景颜色默认是透明色 //颜色的创建方式: //1.通过类型方法创建指定颜色 // redView.backgroundColor = UIColor.redColor() //通过三原色来创建颜色 //CGFloat就是UI中的浮点型 //参数1,2,3:红,绿,蓝的值(0~1)-(0/255~255/255) //参数4:透明度 //redView.backgroundColor = UIColor(red: 149/255.0, green: 106/255.0, blue: 55/255.0, alpha: 1) //设置不同程度的灰色 //redView.backgroundColor = UIColor(white: 0.2, alpha: 1) //练习:创建一个黄色的矩形,显示在红色视图的中心位置,大小(50,50) //方式1: //创建视图对象并且设置frame属性 /* let yellowView = UIView.init() yellowView.frame = CGRectMake(35, 35, 50, 50) //添加到界面上 self.view.addSubview(yellowView) //设置背景颜色 yellowView.backgroundColor = UIColor.yellowColor() */ //方式2: let yellowView = UIView(frame: CGRectMake(25,25,50,50)) redView.addSubview(yellowView) yellowView.backgroundColor = UIColor.yellowColor() //GET:计算视图的坐标的时候,注意相对性.当前视图被添加到那个视图上,那么当前视图的坐标就是相对于谁来算的 &#125;&#125; 视图对象的基本属性 mport UIKitclass ViewController: UIViewController &#123; override func viewDidLoad() &#123; super.viewDidLoad() //创建一个视图对象 let redView = UIView.init() //添加到界面上 self.view.addSubview(redView) //设置背景颜色 redView.backgroundColor = UIColor.redColor() //1.frame(坐标和大小) redView.frame = CGRectMake(100, 100, 100, 100) //2.center(中心点坐标) //通过frame和确定视图的中心点坐标 print(redView.center) print(redView.frame) redView.center = CGPointMake(200, 200) print(redView.frame) //3.bounds(坐标和大小) //默认情况下bounds的坐标(0,0),大小和视图的frame大小一样 print(redView.bounds) //了解: //如果改变bounds的大小,不改变center的坐标,改变frame的坐标和大小 /* redView.bounds = CGRectMake(0, 0, 200, 200) print(redView.frame) print("center\(redView.center)") */ //如果改变bounds的坐标,不影响当前视图的位置.但是影响添加到当前视图上的子视图的坐标,不建议修改bounds redView.bounds = CGRectMake(0, 0, 100, 100) let yellowView = UIView.init(frame:CGRectMake(10, 10, 40, 40)) yellowView.backgroundColor = UIColor.yellowColor() redView.addSubview(yellowView) //4.transform(形变) // 当前视图发生形变,那么添加到当前视图上的所有的视图会跟着一起形变 //1). 缩放 //参数1:x方向上的缩放比例 //参数2:y方向上的缩放比例 redView.transform = CGAffineTransformMakeScale(0.5, 0.5) //2).旋转 //参数:旋转角度(圆周率对应的角度) redView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_4)) //3).平移 //参数1:在x方向上平移的距离 //参数2:在y方向上平移的距离 redView.transform = CGAffineTransformMakeTranslation(0, 300) //4).多个形变同时进行 //在另外一个形变的前提下旋转 //参数1:另外一个形变 //在拥有缩放这个形变的前提下旋转(既可以缩放又可以旋转) redView.transform = CGAffineTransformRotate(CGAffineTransformMakeScale(0.5, 0.5), CGFloat(M_PI_4 / 2)) //在另外一个形变的前提下平移(既可以缩放和旋转又可以平移) redView.transform = CGAffineTransformTranslate(redView.transform, 0, 100) //既可以平移又可以缩放 redView.transform = CGAffineTransformScale(CGAffineTransformMakeTranslation(100, 0), 0.5, 2) //组合两个形变 //旋转形变 let rotate = CGAffineTransformMakeRotation(0.2) //平移形变 let transLation = CGAffineTransformMakeTranslation(100, 100) //将旋转形变和平移形变组合 redView.transform = CGAffineTransformConcat(rotate, transLation) &#125;&#125;]]></content>
@@ -1740,8 +1740,8 @@
         <category>AppDelegate</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>UIKit</tag>
+        <tag>Swift</tag>
         <tag>AppDelegate</tag>
       </tags>
   </entry>
@@ -1759,7 +1759,7 @@
     <url>%2F2017%2F12%2F06%2FOC%2FFunc%2FiOS-Func-%E7%BD%91%E9%80%9F%E5%AE%9E%E6%97%B6%E6%98%BE%E7%A4%BA%2F</url>
     <content type="text"><![CDATA[原理：通过函数getifaddrs来得到系统网络接口的信息，网络接口的信息, 包含在if_data字段中, 有很多信息, 但我现在只关心ifi_ibytes, ifi_obytes, 应该就是接收到的字节数和发送的字节数, 加起来就是流量了. 还发现, 接口的名字, 有en, pdp_ip, lo等几种形式, en应该是wifi, pdp_ip大概是3g或者gprs, lo是环回接口, 通过名字区分可以分别统计 #include &lt;ifaddrs.h&gt;#include &lt;sys/socket.h&gt;#include &lt;net/if.h&gt;+ (long long) getInterfaceBytes&#123; struct ifaddrs *ifa_list = 0, *ifa; if (getifaddrs(&amp;ifa_list) == -1) &#123; return 0; &#125; uint32_t iBytes = 0; uint32_t oBytes = 0; for (ifa = ifa_list; ifa; ifa = ifa-&gt;ifa_next) &#123; if (AF_LINK != ifa-&gt;ifa_addr-&gt;sa_family) continue; if (!(ifa-&gt;ifa_flags &amp; IFF_UP) &amp;&amp; !(ifa-&gt;ifa_flags &amp; IFF_RUNNING)) continue; if (ifa-&gt;ifa_data == 0) continue; /* Not a loopback device. */ if (strncmp(ifa-&gt;ifa_name, "lo", 2)) &#123; struct if_data *if_data = (struct if_data *)ifa-&gt;ifa_data; iBytes += if_data-&gt;ifi_ibytes; oBytes += if_data-&gt;ifi_obytes; &#125; &#125; freeifaddrs(ifa_list); NSLog(@"\n[getInterfaceBytes-Total]%d,%d",iBytes,oBytes); return iBytes + oBytes;&#125; 资料01]]></content>
       <categories>
-        <category>iOS</category>
+        <category>OC</category>
         <category>Func</category>
       </categories>
   </entry>
@@ -1768,7 +1768,7 @@
     <url>%2F2017%2F12%2F06%2FOC%2FFunc%2FiOS-Func-%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E9%97%AE%E9%A2%98%2F</url>
     <content type="text"><![CDATA[AFHTTP 内存泄漏问题 AFHTTP 框架的通病。这个问题很常见，也最好解决，网上也有不少的解决方案主流的解决方案就是使用单例。定义一个单例对象 SessionManager： @interface SessionManager : NSObject@property(nonatomic,strong)AFHTTPSessionManager *manager;+(SessionManager *)share;@end@implementation SessionManager+(SessionManager *)share&#123; static SessionManager *shareObj = nil; static dispatch_once_t onceToken; dispatch_once(&amp;onceToken, ^&#123; shareObj = [[SessionManager alloc] init]; AFHTTPSessionManager *manager = [AFHTTPSessionManager manager]; /** 设置超时*/ [manager.requestSerializer willChangeValueForKey:@"timeoutInterval"]; manager.requestSerializer.timeoutInterval = 10; [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"]; shareObj.manager = manager; &#125;); return shareObj;&#125;@end 使用SessionManager AFHTTPSessionManager* manager = [SessionManager share].manager;manager.requestSerializer = [AFHTTPRequestSerializer new];…… 环信 UI 框架中的内存泄漏问题 环信框架中，有一个对 UIViewController 的扩展（Category） :UIViewController+HUD，它对 MBHUD 进行了二次封装，通过它可以使你的 MBHUD 的调用变得更简单，比如显示一个 HUD 你可以这样： [self showHudInView:self.view hint:@""]; 但是这个方法中有一个严重的内存泄漏问题。当你在一个 View Controller 中多次显示 HUD 之后（比如反复下拉刷新表格），用视图调试器查看 UIView，你会发现视图树中显示了多个 HUD 对象。也就是说每次 showHudInView 之后都会重新生成一个新的 HUD，而原来的 HUD 虽然被隐藏了，但它们在内存中仍然是持续存在的。每次 showHudInView 调用大概会导致 400-500 k 的内存泄漏。如果你反复刷新表格（比如 5 分钟或更长）直到内存撑爆，app 崩溃解决的方法很简单，在 showHudInView 方法中加入一句： HUD.removeFromSuperViewOnHide = YES; O-C 块中对 self 强引用导致的内存泄漏问题 在 View Controller 类的 O-C 块中，如果你直接引用了 self，则会导致 View Controller 被强引用（因为块的参数都是以 copy 引用的，会导致 retained count 加 1）。这样，当 View Controller 被 pop 出导航控制器栈后不会被释放，导致内存泄漏。这个泄漏就比较严重了，少则几百 K,多则几兆 一个比较明显的例子就是 MJRefresh。在 View Controller 中，如果我们想支持下拉刷新，通常会这样使用 MJRefresh： self.tableView.mj_header=[MJRefreshNormalHeader headerWithRefreshingBlock:^&#123; [self.tableView.mj_header endRefreshing]; currentPage = 1; [self loadNoticeList:1 success:^(NSArray&lt;CampusNoticeModel *&gt; *data) &#123; [self.models removeAllObjects]; [self.models addObjectsFromArray:data]; [self.tableView reloadData]; &#125; failure:^(NSString *msg) &#123; &#125;]; &#125;]; 注意，O-C 块中对 View Controller 进行了强引用，比如：self.tableView 和 self.models。原则上，当我们在 O-C 块中引用 self 时，应当使用弱引用，比如上面的代码应当改为： __weak __typeof(self) weakSelf=self; self.tableView.mj_header=[MJRefreshNormalHeader headerWithRefreshingBlock:^&#123; [weakSelf.tableView.mj_header endRefreshing]; currentPage = 1; [weakSelf loadNoticeList:1 success:^(NSArray&lt;CampusNoticeModel *&gt; *data) &#123; [weakSelf.models removeAllObjects]; [weakSelf.models addObjectsFromArray:data]; [weakSelf.tableView reloadData]; &#125; failure:^(NSString *msg) &#123; &#125;]; &#125;]; 也就是将 OC 块中所有的 self 改成 weakSelf。这里有一个例外，如果引用的是实例变量而不是属性，原则上是不需要 weakSelf 的。比如 currentPage 在 View Controller 中是以实例变量形式定义的（也就是说没有用 @property 进行声明），那么我们不需要通过 weakSelf 来进行引用但是，如果你在项目中使用 MLeaksFinder 来检测内存泄漏时，MLeaksFinder 仍然会认为 O-C 块中对 currentPage 的引用存在问题。因此，为了让 MLeaksFinder 彻底“闭上嘴”，我们最好也将 currentPage 修改为属性（使用 @property 声明），然后将 O-C 块中的引用方式修改为：weakSelf.currentPage CADisplayLink 导致的内存泄漏 在使用 CADisplayLink 时，如果不释放 CADisplayLink，很容易出现内存泄漏。以自定义 UIView 为例，我们会使用定时器进行某些自定义的绘图和动画操作。这时我们会用到 CADisplayLink displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(animateDashboard:)]; 当我们需要开启定时器时，可以将它添加到 runloop： [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes]; 但是 displayLink 会持有 UIView 对象，导致 UIView 永远不会被释放。因此我们需要在一个适当的时机释放 displayLink，比如在 CADisplayLink 的 action 方法中根据一定的条件来 invalidate 它： -(void)animateDashboard:(CADisplayLink *)sender&#123; if( endValue &lt;= self.value)&#123;// 到达终点值，停止动画 ...... [displayLink invalidate]; ...... &#125;else&#123; ...... &#125;&#125; 另外，CADisplayLink 最好不要复用。也就是说，每次启动 CADisplayLink 时都重新初始化并将它添加到 runloop，而每次停止动画时都 invalidate： -(void)animating&#123; if(_stopped == YES)&#123; displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(blink:)]; [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes]; _stopped = NO; [self setNeedsDisplay]; &#125;&#125;-(void)stopAnimating&#123; if(_stopped == NO)&#123; [displayLink invalidate]; _stopped = YES; &#125;&#125; reloadRowsAtIndexPaths 导致的内存泄漏 UITableView 的 reloadRowsAtIndexPaths 的行为非常奇怪，在刷新 cell 时，它并不会重用原有的 cell，而是重新创建新的 cell 覆盖在原来的 cell 上，这会导致额外的内存开销。当重复多次调用 reloadRowsAtIndexPaths 之后，你可以在视图调试器中看下效果：无论你用不用 beginUpdates/endUpdates，结果都是一样。解决的办法目前只有一个，不要用 reloadRowsAtIndexPaths，而是使用 reloadData，当然会有一点性能上的代价，但也是没有办法的事情 定时器导致的内存泄漏问题 有时候 NSTimer （尤其是 repeated 为 YES 时）会导致内存泄漏问题。因为定时器是在另外一个线程中运行的，当界面消失后，定时器仍然还在运行，如果在定时器任务中引用了 UI 元素，则这些视图都会被强引用，从而导致界面消失后 view 无法释放，导致内存泄漏。因此，如果在你的 UIViewController 中使用了定时器，一定要记得在 viewWillDisappear 方法中 invalidate 它 addScriptMessageHandler 导致的内存泄漏 WKUserContentController 的 addScriptMessageHandler 方法会导致一个对 handler 对象的强引用，从而导致 handler （通常是 webView 所在的 ViewController）不会被释放，于是内存泄漏。解决的办法是 removeScriptMessageHandlerForName。根据官方文档，当你 addScriptMessageHandler 之后，需要在不再需要 handler 时，需要调用 removeScriptMessageHandlerForName 解除 handler 的强引用。问题在于，“当你不在需要它的时候”到底是什么时候？我们一般会在 viewDidLoad 中 addScriptMessageHandler，按道理应该在 dealloc 中 removeScriptMessageHandlerForName。但由于内存都已经泄漏了，ViewContoller 的 dealloc 根本不会调用，这个方法是无效的。解决的办法有两个，一个是将 addScriptMessageHandler 放到 viewDidAppear 中执行，那么我们就可以在 viewDidDisappler 中 removeScriptMessageHandlerForName 了。另一个方法是将 handler 弱引用。这需要新建一个类，创建一个弱引用的属性，用这个属性来包装 handler 对象： @interface WeakScriptMessageDelegate : NSObject&lt;WKScriptMessageHandler&gt;// 1@property (nonatomic, weak) id&lt;WKScriptMessageHandler&gt; scriptDelegate;- (instancetype)initWithDelegate:(id&lt;WKScriptMessageHandler&gt;)scriptDelegate;@end@implementation WeakScriptMessageDelegate- (instancetype)initWithDelegate:(id&lt;WKScriptMessageHandler&gt;)scriptDelegate&#123; self = [super init]; if (self) &#123; _scriptDelegate = scriptDelegate; &#125; return self;&#125;// 2- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message&#123; [self.scriptDelegate userContentController:userContentController didReceiveScriptMessage:message];&#125;@end 这个属性就是用来弱引用 handler 的属性，它保存了一个对 handler 的弱引用。类型是 id，因为 addScriptMessageHandler 方法需要一个 WKScriptMessageHandler 对象作为参数 这个对象对 WKScriptMessageHandler 进行了封装，它同样实现了 WKScriptMessageHandler 协议，这个协议中有一个唯一的方法需要实现，即 userContentController 方法。在方法内部，我们可以直接调用 handler 的同名方法实现（因为二者的行为是一致的） 使用 / 将 handler 转换成一个若引用的 handler,从而避免内存泄漏WeakScriptMessageDelegate* weakHandler = [[WeakScriptMessageDelegate alloc] initWithDelegate:handler];[webView.configuration.userContentController addScriptMessageHandler:weakHandler name:methodName]; MLeaksFinder 内存泄漏问题多种多样，它们经常以出乎人意料的形式存在，我们无法以一种固定的模式来判断 app 中存在的内存泄漏问题。我们常常需要使用多个工具和手段来检查 app 中的内存问题，比如可以用 Xcode 的 Analyze 工具对代码进行静态语法分析，用 Instrument 的 Leaks/Allocations 工具进行动态内存检查分析，用视图调试器查看 UI 问题等等。 但我们还可以用许多第三方内存泄漏检测框架，比如：MLeaksFinder 和 HeapInspector-for-iOS，尤其是前者（后者目前会导致 App “冻死”的问题，作者还在解决这个问题）。 MLeaksFinder 是一个专门用于检测 UI 类内存泄漏的工具，我们可以利用它来检测 UIViewController 和 UIView 中未 dealloc 的 subview。 它的使用非常简单，直接 pod MLeaksFinder，然后找到 MLeaksFinder.h 头文件，将其中的 MEMORY_LEAKS_FINDER_ENABLED 宏和 MEMORY_LEAKS_FINDER_RETAIN_CYCLE_ENABLED 宏打开（设置为 1）就可以了。 编译运行 app，测试各种操作，切换到不同的 view controller，当 MLeaksFinder 发现内存泄漏会弹出一个 alert（同时控制台会有输出），告诉你哪个类和 UIView 中存在内存泄漏（以及循环持有）]]></content>
       <categories>
-        <category>iOS</category>
+        <category>OC</category>
         <category>Func</category>
       </categories>
   </entry>
@@ -1782,8 +1782,8 @@
         <category>NSSet</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>iOS</tag>
+        <tag>UIKit</tag>
         <tag>NSSet</tag>
       </tags>
   </entry>
@@ -1797,8 +1797,8 @@
         <category>NSDictionary</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>iOS</tag>
+        <tag>UIKit</tag>
         <tag>NSDictionary</tag>
       </tags>
   </entry>
@@ -1811,8 +1811,8 @@
         <category>UIKit</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>iOS</tag>
+        <tag>UIKit</tag>
       </tags>
   </entry>
   <entry>
@@ -1825,8 +1825,8 @@
         <category>AccessControl</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>Swift</tag>
         <tag>AccessControl</tag>
       </tags>
   </entry>
@@ -1880,6 +1880,15 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Swift-Grammar-Initialization初始化&Deinitialization析构]]></title>
+    <url>%2F2017%2F12%2F01%2FSwift%2FGrammar%2F%5D%E5%88%9D%E5%A7%8B%E5%8C%96-%E6%9E%90%E6%9E%84%2F</url>
+    <content type="text"><![CDATA[Initialization 初始化初始化 初始化，是当创建一个类、结构体、枚举类的时，完成存储属性的值的初始化，和其他一些初始化工作。准备好这个实例以供使用反过来，当一个实例不再使用的时候，由析构过程释放这个实例所占用资源完成初始化工作的一个方法一般称为初始化方法、构造器(Initializer)、构造方法等等Swift中的构造器不需返回值，只是完成初始化工作。 类或结构体在创建的时候必须保证存储属性有初始化值 目的的实现可以通过在定义属性的时候给存储属性添加上默认值，也可以在构造器中赋值。并且在这两种情况中都不会触发属性的观察器。官方文档建议我们在一个存储属性通常具有同一个初始值的时候，使用属性定义的方式添加初始值。 下面是这两种方法的代码class Animal &#123; var life: Int = 0 var height: Double init()&#123; height = 0 &#125; &#125; 这里的init()方法就是构造器。注意它是不带func关键字的。而且也没有返回值。以前创建一个实例的时候，都是使用“类名()”的形式，这其实就是调用了这个构造器。但是当时我们并没有写这个构造器，这是因为当一个类没有其他构造器的时候，编译器会自动生成这个默认的构造器。但是一旦有了其他的构造器，那么系统就不会再默认生成这个构造器。你也就再不能用“类名()”这种创建方法了。当然，当有其他构造器的时候，你也可以手动添加这个默认的构造器。 自定义构造器 可以定义构造器，可以传入自定义的参数列表来初始化类。自定义的构造器的外部参数名规则和方法不太一样，构造器的每一个参数都会生成和局部参数名一样的外部参数名。如果不想要外部参数名，还是可以用下划线取消 class Animal &#123; var life: Int = 0 var height: Double init()&#123; //注意，当有其他构造器的时候，系统不会再生成这个构造器，必须手动写出来 height = 0 &#125; init(life: Int, height: Double) &#123; self.life = life self.height = height &#125; &#125; //可以这样使用自定义的构造器 var a = Animal(life: 29, height: 1.2) 再次提醒，当有类定义里面有自定义构造器的时候，不会再自动生成默认构造器。并且对于结构体也再不会自动生成遍历属性的构造器。但是你可以将你自己的构造器写在扩展里面，这样就不会影响默认构造器的自动生成 构造器委托（Initializer Delegation） 构造器委托，就是在一个构造器里面调用另外一个构造器，这样可以减少多余的代码。在构造器里面使用self.init语法来调用另外一个构造器，且这个语法只能在构造器里面使用。构造器委托在值类型（结构体和枚举类）和类直接是不太一样的。因为类需要考虑到继承问题。先来看值类型的构造器委托。这个很简单，调用另外一个构造器就行了。下面的例子虽然有点脱裤子放屁的感觉，但。。就是举个例子而已 struct Apple &#123; var totalPrice: Double init(totalPrice: Double) &#123; self.totalPrice = totalPrice &#125; init(kg: Double, pricePerKg: Double) &#123; let totalPrice = kg * pricePerKg self.init(totalPrice: totalPrice) //调用另外一个构造器 &#125; &#125; 类的继承和初始化 因为类可以继承，所以它的初始化规则就变得比结构体要复杂多了。首先，类的构造器分为指定构造器（Designated Initializer） 和 便利构造器 （Convenience Initializer）一个类通常具有很少数量（一般只有1个）的指定构造器。但是必须最少具有一个。便利构造器是用来调用指定构造器完成初始化工作的。一个类可以不具有遍历构造器。两种构造器的语法 //指定构造器 init(parameters) &#123; statements &#125; //便利构造器 convenience init(parameters) &#123; statements &#125; 类的构造器委托规则： 1、一个指定构造器必须调用它的直接父类的指定构造器 2、一个便利构造器必须调用同一个类的另外的构造器 3、一个便利构造器必须最终以调用指定构造器结束。 规则2和3连起来就是说，一个便利构造器可能会调用了另外一个便利构造器，然后这个构造器又调用了另外一个便利构造器….但是这个链的最后的一个便利构造器必须是调用指定构造器。下面附上官方的图片。在图片上可以看到，三条规则总结起来就是：指定构造器往上调用，便利构造器平行调用且终结在指定构造器。 类的初始化分为两阶段第一阶段 1、一个指定构造器或便利构造器被调用 2、分配类实例所需的内存，但是内存没有初始化 3、这个类的指定构造器确保该类引入的新的存储属性都初始化。（因为便利构造器最终会到指定构造器）。 4、然后这个构造器调用父类的指定构造器完成和第三步同样的工作。 5、直到继承链的最顶部分。 6、这时候有的存储属性都有初始值了。 第二阶段 1、从继承链的最顶部分出发。每个指定构造器具有了修改实例的权利。并且可以调用实例方法。 2、最后，这个初始化链条里面的便利构造器都具有了修改实例的权利。 遵循上面两个阶段的步骤，避免了当在初始化链后面的构造器修改了属性之后，又被前面的构造器修改属性的可能性。避免了使用没有经过初始化的属性的可能性。 为了确保两个阶段步骤的实施。编译器有4条检测规则，这四条规则决定了你在构造器里面某些代码的顺序。 1、在调用父类构造器之前，必须确保子类引入的新属性已经得到初始化。 2、子类必须在调用了父类的构造器之后，才能访问继承的属性。 3、便利构造器必须在调用了其他构造器之后，才能访问属性或调用实例方法。 4、在完成第一阶段之前（其实就是完成初始化本类定义的新属性，调用父类构造器），构造器不能调用实例方法，不能访问属性的值，不能把self当做值访问。但是可以用self.属性名的方式给属性赋值。 下面可以看看分别违反每个规则的例子 class Animal &#123; var life: Int var height: Double init(getLife: Int, getHeight: Double) &#123; self.life = getLife self.height = getHeight &#125; &#125; class Dog: Animal &#123; var name: String init()&#123; super.init(getLife: 2, getHeight: 2.0) //这句报错，违反第一条，必须先将本类引入的属性初始化才能调用父类构造器 self.name = "Larry" //所以这一句必须写在前面才没错 &#125; init(name: String, getLife: Int, getHeight: Double)&#123; self.name = name self.life = 1 //这句报错，违反第二条，必须调用了父类构造器之后才能访问继承的属性。 super.init(getLife: getLife, getHeight: getHeight) //这句必须放在第二句之前才没错 &#125; convenience init(getLife: Int) &#123; self.name = "Larry" //这句报错，违反第三条，便利构造器里面必须调用了其他构造器之后才能访问属性 self.init() //这句应该放在前面 &#125; init(getName: String) &#123; self.name = getName Dog.sayHello() self.printName() //这句报错，违反第四条，必须完成了阶段1才能调用实例方法或访问属性 super.init(getLife: 21, getHeight: 2.3) //这句应该放在前面 &#125; func printName()&#123; print(self.name) &#125; static func sayHello()&#123; print("hello") &#125; &#125; 属性观察器 以前说过，属性观察器在构造器里面给属性赋值的时候是不会被调用的。但是这个只针对于本类定义的属性。对于继承而来的属性，当已经经过父类的构造器完成初始化后，如果在子类里面修改了继承属性的值，那么就会触发父类观察器，如果你在子类里面也覆盖了这个观察器，那么子类和父类的观察器都会被调用 另外再看 class Animal &#123; var life: Int = 0 &#123; willSet&#123; print("animial life newValue \(newValue)") &#125; &#125; init(getlife: Int)&#123; print("animal life init \(self.life)") self.life = 1 print("animal life after assign \(self.life)") &#125; &#125; 如果我们调用下面的语句 var a = Animal(getlife: 3) //打印 //animal life init 0 //animal life after assign 1 注意一点，我们在init里面第一句已经用到了self。根据编译器规则第四条，不允许在属性没有初始化的前进行访问。从上面代码通过编译来看，这里编译器已经将属性初始化为定义时候的值了。如果你将定义时候的默认值删去，那么第一句就会报错Swift默认是不继承父类的构造器的。如果你想要和父类一样的构造器，那么必须自己写。如果你写的构造器（不管是指定还是便利）和父类的指定构造器一样，那么这个构造器前必须加上override关键字。如果你写的构造器和父类的便利构造器一样，那么不用加override，因为子类永远不能直接调用父类的便利构造器。但是在某些情况下，子类可以自动继承父类构造器。前提条件：子类新引入的属性都必须具有默认值 规则1：如果子类没有定义任何的指定构造器。那么子类自动继承父类所有的指定构造器。 规则2：如果子类实现了父类所有的指定构造器（可以通过规则1继承而来，也可以通过重写而来），那么子类自动继承父类所有的便利构造器。 例子 class Animal &#123; var life: Int var height: Double convenience init(getLife: Int)&#123; self.init(getLife: getLife, getHeight: 0.0) &#125; init(getLife: Int, getHeight: Double) &#123; self.life = getLife self.height = getHeight &#125; &#125; class Dog: Animal &#123; var name: String = "Larry" // override init(getLife: Int, getHeight: Double)&#123; // super.init(getLife: getLife, getHeight:getHeight) // &#125; &#125; 无论上面Dog类里面注释的代码是否打开，Dog都继承了Animal的所有构造器 Failable Initializers可失败的构造器 Swift中有个概念，就是创建实例的时候如果条件不符合，可以返回一个nil对象。这类可以返回nil的构造器叫做可失败的构造器。语法是在init的前面加上一个？。当条件不满足的时候，你可以用 return nil结束构造方法。那么这时候得到的实例其实是一个nil，这里也说明了，可失败构造器返回的是可选类型。其实之前也说过，Swift的构造器是不需要返回值的。所以你成功的时候不需要写return什么东东。 值类型的可失败构造器下面是structure的 struct Apple &#123; var pricePerKg: Double init?(pricePerKg: Double)&#123; if pricePerKg &lt; 0 &#123; return nil &#125; self.pricePerKg = pricePerKg &#125; &#125; print(Apple(pricePerKg: 2)) print(Apple(pricePerKg: -2)) //打印 //Optional(SwiftTest.Apple(pricePerKg: 2.0)) //nil 接下来是枚举类的 enum FruitSet &#123; case apple, orange, banana init?(symbol: Character)&#123; switch symbol &#123; case &quot;a&quot;,&quot;A&quot; : self = .apple case &quot;o&quot;,&quot;O&quot; : self = .orange case &quot;b&quot;,&quot;B&quot; : self = .banana default : return nil &#125; &#125; &#125; print(FruitSet(symbol: &quot;a&quot;)) print(FruitSet(symbol: &quot;e&quot;)) //打印 //Optional(SwiftTest.FruitSet.apple) //nil 对应有默认值的枚举类，会自动生成一个init?(rawValue:)的构造器。如下 enum FruitSet : Character&#123; case apple = "a", orange = "o", banana = "b" &#125; print(FruitSet(rawValue: "a")) print(FruitSet(rawValue: "e")) 类的可失败构造器 有一个规则，就是必须在本类所有的属性（包括继承的）都赋值之后才可以返回nil class Apple &#123; var pricePerKg: Double init?(pricePerKg: Double)&#123; if pricePerKg &lt; 0 &#123; return nil //这句报错，所以你必须先初始化其他属性值 &#125; self.pricePerKg = pricePerKg &#125; &#125; 可失败初始化的传递过程 一个可失败的构造器可以调用其他的构造器，无论是可失败的还是不会失败的。 但是一个不可失败的构造器不能去调用一个可失败的构造器。如果去调用父类的可失败构造器，虽然用解包可以解决，但是一旦父类的可失败构造器返回了nil，那么程序直接崩溃 class Fruit &#123; var name: String init?(name: String)&#123; self.name = name if name.isEmpty &#123; return nil &#125; &#125; &#125; class Apple: Fruit &#123; var pricePerKg: Double init(pricePerKg: Double)&#123; self.pricePerKg = pricePerKg super.init(name: "")! //利用解包调用了父类的可失败构造器，但是因为这样父类会返回一个nil，所以程序在这行会崩溃 &#125; convenience init?()&#123; self.init(pricePerKg: 3) &#125; &#125; var i = Apple(pricePerKg: 3) 同样的，可失败的构造器也可以被重写，你可以重写为不可失败的构造器。但是不可失败的构造器不能覆盖为可失败的构造器。你可以用!代替?来实现可失败构造器，那么这样得到的实例会自动解包。当然，存在nil报错的问题。记得处理。 必须构造器（Required Initializers） 在构造器前面加上required关键字就行了。这样的构造器要求子类必须重写。子类重写这个构造器的时候，也必须加上required关键字。要求子类的子类也要重写这个构造器。写了required后不用写override关键字。写了会有警告。 给属性默认值时使用闭包或函数 func getprice()-&gt;Double &#123; return 1 &#125; class Apple &#123; var pricePerKg: Double = getprice() var name = &#123; return "apple" &#125;() //留意这对小括号，没有的话那就是给属性赋值一个闭包了。 &#125; var a = Apple() print(a.pricePerKg,a.name) 析构器 析构器，就是在一个实例再也不用到时候调用的方法。析构器里面完成一些清理工作或保存数据等等。析构器是系统自动调用的，不允许自行调用。 语法 deinit &#123; // perform the deinitialization &#125;]]></content>
+      <categories>
+        <category>Swift</category>
+        <category>Grammar</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[iOS-UIKit-UIButton-Img和Title位置]]></title>
     <url>%2F2017%2F12%2F01%2FOC%2FKit%2FUIButton-Img%E5%92%8CTitle%E4%BD%8D%E7%BD%AE%2F</url>
     <content type="text"><![CDATA[iOS-UI-UIButton-Img和Title位置 UIButton 的image title 的位置都是可以调整的，具体如何调整可以按照下面的步骤 设置内容的水平垂直位置self.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft; self指的是UIButton对象，这是继承自UIButon的方法里面或者给UIButton添加扩展方法里面。通过这样的设置可以使得imageView显示在UIButton对象的左上角，titleLabel显示在imageView的右边 调整imageView居中CGFloat btn_width = self.frame.size.width;self.imageEdgeInsets = UIEdgeInsetsMake(10, (btn_width - self.imageView.frame.size.width)/2, 0, 0); 调整 titleLabel居中CGFloat btn_width = self.frame.size.width;self.titleEdgeInsets = UIEdgeInsetsMake(self.imageView.frame.size.height + vSpace+10, - self.imageView.frame.size.width+(btn_width/2-self.titleLabel.frame.size.width/2), 0, 0); 通过减去 imageView的宽度使titleLabel处在左上角，让后将label移植中心。经过以上三步就可以使imageView 、titleLabelLabel 居中，其它的显示形式一样可以参照以上的设置。 整理成了方法， 不需要每次都写 - (void) setImageAndTitleCenterWithVerticalGapSpace:(CGFloat) vSpace imageTopSpace:(CGFloat) iSpace &#123; self.contentVerticalAlignment = UIControlContentVerticalAlignmentTop; self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft; CGFloat btn_width = self.frame.size.width; CGFloat iTop = iSpace; self.imageEdgeInsets = UIEdgeInsetsMake(iTop, (btn_width - self.imageView.frame.size.width)/2, 0, 0);// self.titleEdgeInsets = UIEdgeInsetsMake(self.imageView.frame.size.height + vSpace+iTop, - self.imageView.frame.size.width+(btn_width/2-self.titleLabel.frame.size.width/2), 0, 0);// 使用中发现对于label的width取值不准确，遂通过计算一次获取，准确 CGSize size = [self.titleLabel sizeThatFits:CGSizeMake(CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))]; self.titleEdgeInsets = UIEdgeInsetsMake(CGRectGetHeight(self.imageView.frame)+ vSpace + iTop, - CGRectGetWidth(self.imageView.frame) + (CGRectGetWidth(self.frame) - size.width)/2, 0, 0);&#125; vSpace imageView与titleLabel垂直间隔 iSpace imageView 距离 top的间隔]]></content>
@@ -1887,15 +1896,6 @@
         <category>OC</category>
         <category>UIKit</category>
         <category>UIButton</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[Swift-Grammar-Initialization初始化&Deinitialization析构]]></title>
-    <url>%2F2017%2F12%2F01%2FSwift%2FGrammar%2F%5D%E5%88%9D%E5%A7%8B%E5%8C%96-%E6%9E%90%E6%9E%84%2F</url>
-    <content type="text"><![CDATA[Initialization 初始化初始化 初始化，是当创建一个类、结构体、枚举类的时，完成存储属性的值的初始化，和其他一些初始化工作。准备好这个实例以供使用反过来，当一个实例不再使用的时候，由析构过程释放这个实例所占用资源完成初始化工作的一个方法一般称为初始化方法、构造器(Initializer)、构造方法等等Swift中的构造器不需返回值，只是完成初始化工作。 类或结构体在创建的时候必须保证存储属性有初始化值 目的的实现可以通过在定义属性的时候给存储属性添加上默认值，也可以在构造器中赋值。并且在这两种情况中都不会触发属性的观察器。官方文档建议我们在一个存储属性通常具有同一个初始值的时候，使用属性定义的方式添加初始值。 下面是这两种方法的代码class Animal &#123; var life: Int = 0 var height: Double init()&#123; height = 0 &#125; &#125; 这里的init()方法就是构造器。注意它是不带func关键字的。而且也没有返回值。以前创建一个实例的时候，都是使用“类名()”的形式，这其实就是调用了这个构造器。但是当时我们并没有写这个构造器，这是因为当一个类没有其他构造器的时候，编译器会自动生成这个默认的构造器。但是一旦有了其他的构造器，那么系统就不会再默认生成这个构造器。你也就再不能用“类名()”这种创建方法了。当然，当有其他构造器的时候，你也可以手动添加这个默认的构造器。 自定义构造器 可以定义构造器，可以传入自定义的参数列表来初始化类。自定义的构造器的外部参数名规则和方法不太一样，构造器的每一个参数都会生成和局部参数名一样的外部参数名。如果不想要外部参数名，还是可以用下划线取消 class Animal &#123; var life: Int = 0 var height: Double init()&#123; //注意，当有其他构造器的时候，系统不会再生成这个构造器，必须手动写出来 height = 0 &#125; init(life: Int, height: Double) &#123; self.life = life self.height = height &#125; &#125; //可以这样使用自定义的构造器 var a = Animal(life: 29, height: 1.2) 再次提醒，当有类定义里面有自定义构造器的时候，不会再自动生成默认构造器。并且对于结构体也再不会自动生成遍历属性的构造器。但是你可以将你自己的构造器写在扩展里面，这样就不会影响默认构造器的自动生成 构造器委托（Initializer Delegation） 构造器委托，就是在一个构造器里面调用另外一个构造器，这样可以减少多余的代码。在构造器里面使用self.init语法来调用另外一个构造器，且这个语法只能在构造器里面使用。构造器委托在值类型（结构体和枚举类）和类直接是不太一样的。因为类需要考虑到继承问题。先来看值类型的构造器委托。这个很简单，调用另外一个构造器就行了。下面的例子虽然有点脱裤子放屁的感觉，但。。就是举个例子而已 struct Apple &#123; var totalPrice: Double init(totalPrice: Double) &#123; self.totalPrice = totalPrice &#125; init(kg: Double, pricePerKg: Double) &#123; let totalPrice = kg * pricePerKg self.init(totalPrice: totalPrice) //调用另外一个构造器 &#125; &#125; 类的继承和初始化 因为类可以继承，所以它的初始化规则就变得比结构体要复杂多了。首先，类的构造器分为指定构造器（Designated Initializer） 和 便利构造器 （Convenience Initializer）一个类通常具有很少数量（一般只有1个）的指定构造器。但是必须最少具有一个。便利构造器是用来调用指定构造器完成初始化工作的。一个类可以不具有遍历构造器。两种构造器的语法 //指定构造器 init(parameters) &#123; statements &#125; //便利构造器 convenience init(parameters) &#123; statements &#125; 类的构造器委托规则： 1、一个指定构造器必须调用它的直接父类的指定构造器 2、一个便利构造器必须调用同一个类的另外的构造器 3、一个便利构造器必须最终以调用指定构造器结束。 规则2和3连起来就是说，一个便利构造器可能会调用了另外一个便利构造器，然后这个构造器又调用了另外一个便利构造器….但是这个链的最后的一个便利构造器必须是调用指定构造器。下面附上官方的图片。在图片上可以看到，三条规则总结起来就是：指定构造器往上调用，便利构造器平行调用且终结在指定构造器。 类的初始化分为两阶段第一阶段 1、一个指定构造器或便利构造器被调用 2、分配类实例所需的内存，但是内存没有初始化 3、这个类的指定构造器确保该类引入的新的存储属性都初始化。（因为便利构造器最终会到指定构造器）。 4、然后这个构造器调用父类的指定构造器完成和第三步同样的工作。 5、直到继承链的最顶部分。 6、这时候有的存储属性都有初始值了。 第二阶段 1、从继承链的最顶部分出发。每个指定构造器具有了修改实例的权利。并且可以调用实例方法。 2、最后，这个初始化链条里面的便利构造器都具有了修改实例的权利。 遵循上面两个阶段的步骤，避免了当在初始化链后面的构造器修改了属性之后，又被前面的构造器修改属性的可能性。避免了使用没有经过初始化的属性的可能性。 为了确保两个阶段步骤的实施。编译器有4条检测规则，这四条规则决定了你在构造器里面某些代码的顺序。 1、在调用父类构造器之前，必须确保子类引入的新属性已经得到初始化。 2、子类必须在调用了父类的构造器之后，才能访问继承的属性。 3、便利构造器必须在调用了其他构造器之后，才能访问属性或调用实例方法。 4、在完成第一阶段之前（其实就是完成初始化本类定义的新属性，调用父类构造器），构造器不能调用实例方法，不能访问属性的值，不能把self当做值访问。但是可以用self.属性名的方式给属性赋值。 下面可以看看分别违反每个规则的例子 class Animal &#123; var life: Int var height: Double init(getLife: Int, getHeight: Double) &#123; self.life = getLife self.height = getHeight &#125; &#125; class Dog: Animal &#123; var name: String init()&#123; super.init(getLife: 2, getHeight: 2.0) //这句报错，违反第一条，必须先将本类引入的属性初始化才能调用父类构造器 self.name = "Larry" //所以这一句必须写在前面才没错 &#125; init(name: String, getLife: Int, getHeight: Double)&#123; self.name = name self.life = 1 //这句报错，违反第二条，必须调用了父类构造器之后才能访问继承的属性。 super.init(getLife: getLife, getHeight: getHeight) //这句必须放在第二句之前才没错 &#125; convenience init(getLife: Int) &#123; self.name = "Larry" //这句报错，违反第三条，便利构造器里面必须调用了其他构造器之后才能访问属性 self.init() //这句应该放在前面 &#125; init(getName: String) &#123; self.name = getName Dog.sayHello() self.printName() //这句报错，违反第四条，必须完成了阶段1才能调用实例方法或访问属性 super.init(getLife: 21, getHeight: 2.3) //这句应该放在前面 &#125; func printName()&#123; print(self.name) &#125; static func sayHello()&#123; print("hello") &#125; &#125; 属性观察器 以前说过，属性观察器在构造器里面给属性赋值的时候是不会被调用的。但是这个只针对于本类定义的属性。对于继承而来的属性，当已经经过父类的构造器完成初始化后，如果在子类里面修改了继承属性的值，那么就会触发父类观察器，如果你在子类里面也覆盖了这个观察器，那么子类和父类的观察器都会被调用 另外再看 class Animal &#123; var life: Int = 0 &#123; willSet&#123; print("animial life newValue \(newValue)") &#125; &#125; init(getlife: Int)&#123; print("animal life init \(self.life)") self.life = 1 print("animal life after assign \(self.life)") &#125; &#125; 如果我们调用下面的语句 var a = Animal(getlife: 3) //打印 //animal life init 0 //animal life after assign 1 注意一点，我们在init里面第一句已经用到了self。根据编译器规则第四条，不允许在属性没有初始化的前进行访问。从上面代码通过编译来看，这里编译器已经将属性初始化为定义时候的值了。如果你将定义时候的默认值删去，那么第一句就会报错Swift默认是不继承父类的构造器的。如果你想要和父类一样的构造器，那么必须自己写。如果你写的构造器（不管是指定还是便利）和父类的指定构造器一样，那么这个构造器前必须加上override关键字。如果你写的构造器和父类的便利构造器一样，那么不用加override，因为子类永远不能直接调用父类的便利构造器。但是在某些情况下，子类可以自动继承父类构造器。前提条件：子类新引入的属性都必须具有默认值 规则1：如果子类没有定义任何的指定构造器。那么子类自动继承父类所有的指定构造器。 规则2：如果子类实现了父类所有的指定构造器（可以通过规则1继承而来，也可以通过重写而来），那么子类自动继承父类所有的便利构造器。 例子 class Animal &#123; var life: Int var height: Double convenience init(getLife: Int)&#123; self.init(getLife: getLife, getHeight: 0.0) &#125; init(getLife: Int, getHeight: Double) &#123; self.life = getLife self.height = getHeight &#125; &#125; class Dog: Animal &#123; var name: String = "Larry" // override init(getLife: Int, getHeight: Double)&#123; // super.init(getLife: getLife, getHeight:getHeight) // &#125; &#125; 无论上面Dog类里面注释的代码是否打开，Dog都继承了Animal的所有构造器 Failable Initializers可失败的构造器 Swift中有个概念，就是创建实例的时候如果条件不符合，可以返回一个nil对象。这类可以返回nil的构造器叫做可失败的构造器。语法是在init的前面加上一个？。当条件不满足的时候，你可以用 return nil结束构造方法。那么这时候得到的实例其实是一个nil，这里也说明了，可失败构造器返回的是可选类型。其实之前也说过，Swift的构造器是不需要返回值的。所以你成功的时候不需要写return什么东东。 值类型的可失败构造器下面是structure的 struct Apple &#123; var pricePerKg: Double init?(pricePerKg: Double)&#123; if pricePerKg &lt; 0 &#123; return nil &#125; self.pricePerKg = pricePerKg &#125; &#125; print(Apple(pricePerKg: 2)) print(Apple(pricePerKg: -2)) //打印 //Optional(SwiftTest.Apple(pricePerKg: 2.0)) //nil 接下来是枚举类的 enum FruitSet &#123; case apple, orange, banana init?(symbol: Character)&#123; switch symbol &#123; case &quot;a&quot;,&quot;A&quot; : self = .apple case &quot;o&quot;,&quot;O&quot; : self = .orange case &quot;b&quot;,&quot;B&quot; : self = .banana default : return nil &#125; &#125; &#125; print(FruitSet(symbol: &quot;a&quot;)) print(FruitSet(symbol: &quot;e&quot;)) //打印 //Optional(SwiftTest.FruitSet.apple) //nil 对应有默认值的枚举类，会自动生成一个init?(rawValue:)的构造器。如下 enum FruitSet : Character&#123; case apple = "a", orange = "o", banana = "b" &#125; print(FruitSet(rawValue: "a")) print(FruitSet(rawValue: "e")) 类的可失败构造器 有一个规则，就是必须在本类所有的属性（包括继承的）都赋值之后才可以返回nil class Apple &#123; var pricePerKg: Double init?(pricePerKg: Double)&#123; if pricePerKg &lt; 0 &#123; return nil //这句报错，所以你必须先初始化其他属性值 &#125; self.pricePerKg = pricePerKg &#125; &#125; 可失败初始化的传递过程 一个可失败的构造器可以调用其他的构造器，无论是可失败的还是不会失败的。 但是一个不可失败的构造器不能去调用一个可失败的构造器。如果去调用父类的可失败构造器，虽然用解包可以解决，但是一旦父类的可失败构造器返回了nil，那么程序直接崩溃 class Fruit &#123; var name: String init?(name: String)&#123; self.name = name if name.isEmpty &#123; return nil &#125; &#125; &#125; class Apple: Fruit &#123; var pricePerKg: Double init(pricePerKg: Double)&#123; self.pricePerKg = pricePerKg super.init(name: "")! //利用解包调用了父类的可失败构造器，但是因为这样父类会返回一个nil，所以程序在这行会崩溃 &#125; convenience init?()&#123; self.init(pricePerKg: 3) &#125; &#125; var i = Apple(pricePerKg: 3) 同样的，可失败的构造器也可以被重写，你可以重写为不可失败的构造器。但是不可失败的构造器不能覆盖为可失败的构造器。你可以用!代替?来实现可失败构造器，那么这样得到的实例会自动解包。当然，存在nil报错的问题。记得处理。 必须构造器（Required Initializers） 在构造器前面加上required关键字就行了。这样的构造器要求子类必须重写。子类重写这个构造器的时候，也必须加上required关键字。要求子类的子类也要重写这个构造器。写了required后不用写override关键字。写了会有警告。 给属性默认值时使用闭包或函数 func getprice()-&gt;Double &#123; return 1 &#125; class Apple &#123; var pricePerKg: Double = getprice() var name = &#123; return "apple" &#125;() //留意这对小括号，没有的话那就是给属性赋值一个闭包了。 &#125; var a = Apple() print(a.pricePerKg,a.name) 析构器 析构器，就是在一个实例再也不用到时候调用的方法。析构器里面完成一些清理工作或保存数据等等。析构器是系统自动调用的，不允许自行调用。 语法 deinit &#123; // perform the deinitialization &#125;]]></content>
-      <categories>
-        <category>Swift</category>
-        <category>Grammar</category>
       </categories>
   </entry>
   <entry>
@@ -1940,7 +1940,7 @@
     <url>%2F2017%2F11%2F30%2FOC%2FFunc%2FiOS-Func-%E5%9B%BE%E7%89%87%E7%9A%84%E8%A7%A3%E5%8E%8B%E7%BC%A9%2F</url>
     <content type="text"><![CDATA[http://blog.leichunfeng.com/atom.xml]]></content>
       <categories>
-        <category>iOS</category>
+        <category>OC</category>
         <category>Func</category>
       </categories>
   </entry>
@@ -2102,7 +2102,7 @@
     <url>%2F2017%2F11%2F22%2FOC%2FFunc%2FiOS-Func-Bug%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%2F</url>
     <content type="text"><![CDATA[#功能 非Crash Bug 在App内可截图添加描述并发送 Crash Bug 在App第二次启动时提取Crash log添加描述并发送 实现解释分析 bug 非Crash的Bug：字体不对、颜色不对、数据不对、布局不对 Crash Bug：系统Crash、处理signal场景交互 场景交互：发现非Crash Bug时候摇一摇手机，弹出邮件，图片带入邮件，点击发送即可。有Crash Bug的时候第二次启动App，弹出邮件，Crash log带入邮件，点击发送即可 使用 需要用到NSSetUncaughtExceptionHandler，MFMailComposeViewController，沙盒，NSFileManager实现截图的功能，考虑到并不是所有的页面都需要使用所以写在了分类里。需要用的时候直接引入头文件即可这三个方法分别在摇一摇的时候回调用，开始，需要，结束。他们的父类是UIResponsder在UIKit中 -(void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event&#123;&#125;-(void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event&#123;&#125;-(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event&#123; [self screenShot];&#125;-(void)screenShot&#123; UIWindow *screen = [[UIApplication sharedApplication] keyWindow]; UIGraphicsBeginImageContext(screen.frame.size); [screen.layer renderInContext:UIGraphicsGetCurrentContext()]; UIImage *image = UIGraphicsGetImageFromCurrentImageContext(); UIGraphicsGetCurrentContext(); NSData *screenData = UIImagePNGRepresentation(image); [screenData writeToFile:[NSHomeDirectory() stringByAppendingPathComponent:@"Library/Caches"] atomically:YES]; &#125; 发送邮件的功能 发送邮件的功能，也写在了分类里面，需要用的时候引入即可 @interface UIViewController (send)&lt;MFMailComposeViewControllerDelegate&gt;//发送邮件的方法，传入标题，描述信息，data, 接收人-(void)sendMail:(MFMailComposeViewController*)mf andSubject:(NSString*)subject andMessageBody:(NSString*)message andData:(NSData*)data andRecipients:(NSArray*)recipients&#123; if([MFMailComposeViewController canSendMail])&#123; mf.mailComposeDelegate = self; [mf setSubject:subject]; [mf setToRecipients:recipients]; [mf addAttachmentData:data mimeType:@"image/jpeg" fileName:@"error"]; [mf setMessageBody:message isHTML:YES]; [self presentViewController:mf animated:YES completion:nil]; &#125;else&#123; [self alertView:@"不能调用邮箱" andDesc:@"请尝试下载App原生邮箱，并配置"]; &#125;&#125; MFMailComposeViewControllerDelegate的代理方法，可以在这个方法里面写一些回调-(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error&#123; switch (result) &#123; case MFMailComposeResultSent: [self alertView:@"发送成功" andDesc:nil]; self.success(); break; case MFMailComposeResultSaved: [self alertView:@"保存成功" andDesc:nil]; break; case MFMailComposeResultFailed: self.faild(); [self alertView:error.domain andDesc:[NSString stringWithFormat:@"%@",error.userInfo]]; break; case MFMailComposeResultCancelled: [self alertView:@"取消发送" andDesc:nil]; break; default: [self alertView:@"为什么不发送" andDesc:nil]; break; &#125; [self dismissViewControllerAnimated:YES completion:nil];&#125; 异常捕获这两个为函数方法，导入类名，直接可调用不用初始化void CrashExceptionHandler(void)&#123; NSSetUncaughtExceptionHandler(&amp;ExceptionLog);&#125;void ExceptionLog(NSException *exception)&#123; NSDate *date_current = [NSDate date]; NSDictionary *dictInfo = [[NSBundle mainBundle]infoDictionary]; NSString *name_App = [dictInfo objectForKey:@"CFBundleDisplayName"]; NSString *verson_App = [dictInfo objectForKey:@"CFBundleShortVersionString"]; NSString *build_App = [dictInfo objectForKey:@"CFBundleVersion"]; NSArray *ecp = exception.callStackSymbols; NSString *reason = [exception reason]; NSString *name = [exception name]; NSString *exceptionInfo = [NSString stringWithFormat: @"\n\n ******************************异常日志****************************** \n时间:%@\nApp名称:%@\nApp版本:%@\nBuild版本:%@\n异常名称:%@\n异常原因:%@\n堆栈信息:%@",date_current,name_App,verson_App,build_App,name,reason,ecp]; [CrashHandler saveLog:exceptionInfo andDate:date_current];#ifdef DEBUG NSLog(@"%@",exceptionInfo);#else#endif&#125;@implementation CrashHandler+(void)saveLog:(NSString *)crashLog andDate:(NSDate *)date&#123; NSString *path = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)objectAtIndex:0] stringByAppendingString:@"/Crash"]; if(![[NSFileManager defaultManager]fileExistsAtPath:path]) &#123; [[NSFileManager defaultManager]createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil]; &#125; NSString *logPath = [path stringByAppendingFormat:@"/%@.log",date]; [crashLog writeToFile:logPath atomically:YES encoding:NSUTF8StringEncoding error:nil];&#125;@end 检测Crash log 功能在App打开的第一个页面去调用就好-(void)crashLog { NSString *path = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)objectAtIndex:0] stringByAppendingString:@"/Crash"]; NSFileManager *mf = [NSFileManager defaultManager]; if(![mf fileExistsAtPath:path]) { return; } NSArray *array = [mf contentsOfDirectoryAtPath:path error:nil]; } Bug管理工具]]></content>
       <categories>
-        <category>iOS</category>
+        <category>OC</category>
         <category>Func</category>
       </categories>
   </entry>
@@ -2125,7 +2125,7 @@
     <url>%2F2017%2F11%2F22%2FOC%2FFunc%2FiOS-Func-%E6%A3%80%E6%B5%8B%E4%B8%BB%E7%BA%BF%E7%A8%8B%E5%8D%A1%E9%A1%BF%E7%9A%84%E9%97%AE%E9%A2%98%2F</url>
     <content type="text"><![CDATA[runloop - 检测方案 原文文档 CFRunLoopRunCFRunLoopRun源代码 核心方法CFRunLoopRun简化后的主要逻辑大概是这样的:NSRunLoop调用方法主要就是在kCFRunLoopBeforeSources和kCFRunLoopBeforeWaiting之间,还有kCFRunLoopAfterWaiting之后,也就是如果我们发现这两个时间内耗时太长,那么就可以判定出此时主线程卡顿 int32_t __CFRunLoopRun()&#123; //通知即将进入runloop __CFRunLoopDoObservers(KCFRunLoopEntry); do &#123; // 通知将要处理timer和source __CFRunLoopDoObservers(kCFRunLoopBeforeTimers); __CFRunLoopDoObservers(kCFRunLoopBeforeSources); __CFRunLoopDoBlocks(); //处理非延迟的主线程调用 __CFRunLoopDoSource0(); //处理UIEvent事件 //GCD dispatch main queue CheckIfExistMessagesInMainDispatchQueue(); // 即将进入休眠 __CFRunLoopDoObservers(kCFRunLoopBeforeWaiting); // 等待内核mach_msg事件 mach_port_t wakeUpPort = SleepAndWaitForWakingUpPorts(); // Zzz... // 从等待中醒来 __CFRunLoopDoObservers(kCFRunLoopAfterWaiting); // 处理因timer的唤醒 if (wakeUpPort == timerPort) __CFRunLoopDoTimers(); // 处理异步方法唤醒,如dispatch_async else if (wakeUpPort == mainDispatchQueuePort) __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__() // UI刷新,动画显示 else __CFRunLoopDoSource1(); // 再次确保是否有同步的方法需要调用 __CFRunLoopDoBlocks(); &#125; while (!stop &amp;&amp; !timeout); //通知即将退出runloop __CFRunLoopDoObservers(CFRunLoopExit);&#125; runloop 的状态typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) &#123; kCFRunLoopEntry = (1UL &lt;&lt; 0), // 即将进入Loop kCFRunLoopBeforeTimers = (1UL &lt;&lt; 1), // 即将处理 Timer kCFRunLoopBeforeSources = (1UL &lt;&lt; 2), // 即将处理 Source kCFRunLoopBeforeWaiting = (1UL &lt;&lt; 5), // 即将进入休眠 kCFRunLoopAfterWaiting = (1UL &lt;&lt; 6), // 刚从休眠中唤醒 kCFRunLoopExit = (1UL &lt;&lt; 7), // 即将退出Loop&#125;; 耗时进行判断 利用 kCFRunLoopBeforeSources 和 *kCFRunLoopAfterWaiting 这两个状态之间的耗时 进行判断:是否有太多事件处理导致出现了卡顿 AppDelegate+AppService 监听runloop的状态而写的回调函数 static void runLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActivity activity, void *info)&#123; PingConfig *object = (__bridge PingConfig*)info; // 记录状态值 object-&gt;activity = activity; // 发送信号 dispatch_semaphore_t semaphore = object-&gt;semaphore; dispatch_semaphore_signal(semaphore);&#125; AppDelegate 注册监听 PingConfig: 一个用来存储runloop的状态和信号量的自定义类，其中的结构如下 APP启动时我可以进入 registerObserver 方法，其中首先我创建一个记录信息的类PingConfig实例，然后创建一个信号，并且保存在这个PingConfig实例中(其实只是为了方便拿到 创建了一个观察者监测主线程的runloop,它会在主线程runloop状态切换时进行回调 开启一个子线程，并且在里面进行一个 while 循环，在 循环的开始处 wait 一个信号量，并且设置超时为 50毫秒，失败后会返回一个非0数，成功将会返回0，这时候线程会阻塞住等待一个信号的发出 如果runloop状态正常切换，那么就会进入回调函数，在回调函数中我们发出一个信号，并且记录当前状态到PingConfig实例中，下面的判断语句中发现为0，timeoutCount自动置为0，一切正常 当主线程出现卡顿，while循环中的信号量再次等待，但是回调函数没有触发，从而导致等待超时，返回一个非0数，进入判断句后，我们再次判断状态是否处于 kCFRunLoopBeforeSources 或 kCFRunLoopAfterWaiting，如果成立，timeoutCount+1 持续五次runloop不切换状态，说明runloop正在处理某个棘手的事件无法休息且不更新状态，这样while循环中的信号量超时会一直发生，超过5次后我们将断定主线程的卡顿并上传堆栈信息 - (void)registerObserver&#123; PingConfig *config = [PingConfig new]; // 创建信号 dispatch_semaphore_t semaphore = dispatch_semaphore_create(0); config-&gt;semaphore = semaphore; CFRunLoopObserverContext context = &#123;0,(__bridge void*)config,NULL,NULL&#125;; CFRunLoopObserverRef observer = CFRunLoopObserverCreate(kCFAllocatorDefault, kCFRunLoopAllActivities, YES, 0, &amp;runLoopObserverCallBack, &amp;context); CFRunLoopAddObserver(CFRunLoopGetMain(), observer, kCFRunLoopCommonModes); __block uint8_t timeoutCount = 0; // 在子线程监控时长 dispatch_async(dispatch_get_global_queue(0, 0), ^&#123; while (YES) &#123; // 假定连续5次超时50ms认为卡顿(当然也包含了单次超时250ms) long st = dispatch_semaphore_wait(semaphore, dispatch_time(DISPATCH_TIME_NOW, 50*NSEC_PER_MSEC)); if (st != 0) &#123;// NSLog(@"循环中--%ld",config-&gt;activity); if (config-&gt;activity==kCFRunLoopBeforeSources || config-&gt;activity==kCFRunLoopAfterWaiting) &#123; if (++timeoutCount &lt; 5)&#123; continue; &#125;else&#123; NSLog(@"卡顿了"); &#125; &#125; &#125; timeoutCount = 0; &#125; &#125;);&#125; PingConfig@interface PingConfig : NSObject&#123; @public CFRunLoopActivity activity; dispatch_semaphore_t semaphore;&#125;@end Other情况主线程卡顿主线程卡在界面尚未完全显示前 当主线程卡在界面尚未完全显示前，这个方案就检测不出来卡顿了，比如我将下面的代码放在B控制器中 dispatch_semaphore_t t = dispatch_semaphore_create(0); dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^&#123; NSLog(@"----"); dispatch_semaphore_signal(t); &#125;); dispatch_semaphore_wait(t, DISPATCH_TIME_FOREVER); 上面是一段有问题的代码，将导致主线程的持续堵塞，如果我们在这段代码放在B控制器的ViewDidLoad方法中(ViewWillAppear同样) 运行后，当你希望push到B控制器时，项目将在上一个界面完全卡住，并且无法用上面的方案检测到，而且CPU及内存都显示正常 原因分析 由于runloop在处理完source0或者source1后，比如界面的跳转也是执行了方法，具体有没有用到source0这不重要，但是后面会紧接着进入准备睡眠(kCFRunLoopBeforeWaiting)的状态，然而此时线程的阻塞导致runloop的状态也被卡住无法切换，这样也就导致在那段检测代码中无法进入条件，从而检测不出来。 但是话说回来，APP在静止状态(保持休眠)和刚刚那种卡死状态都会使runloop维持在 kCFRunLoopBeforeWaiting状态，这样我们就无法在那段代码中增加判断来修复，因为无法知道到底是真的静止没有操作还是被阻塞住，我也没找到线程的阻塞状态属性，如果你发现这个属性，那么就可以使用那个属性来判断 检测方案dispatch_queue_t serialQueue = dispatch_queue_create("serial", DISPATCH_QUEUE_SERIAL); self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, serialQueue); dispatch_source_set_timer(self.timer, DISPATCH_TIME_NOW, 0.25 * NSEC_PER_SEC, 0); __block int8_t chokeCount = 0; dispatch_semaphore_t t2 = dispatch_semaphore_create(0); dispatch_source_set_event_handler(self.timer, ^&#123; if (config-&gt;activity == kCFRunLoopBeforeWaiting) &#123; static BOOL ex = YES; if (ex == NO) &#123; chokeCount ++; if (chokeCount &gt; 40) &#123; NSLog(@"差不多卡死了"); dispatch_suspend(self.timer); return ; &#125; NSLog(@"卡顿了"); return ; &#125; dispatch_async(dispatch_get_main_queue(), ^&#123; ex = YES; dispatch_semaphore_signal(t2); &#125;); BOOL su = dispatch_semaphore_wait(t2, dispatch_time(DISPATCH_TIME_NOW, 50*NSEC_PER_MSEC)); if (su != 0) &#123; ex = NO; &#125;; &#125; &#125;); dispatch_resume(self.timer); 方案解释 开启一个异步队列，并且创建一个定时器，时间我设置的是0.25秒，具体时间随你自己，这个时间是用来检测卡死的持续时间 在定时器外面我也同样创建了一个用来同步的信号量，这个不解释了，不会的就去看一下信号量的使用方式。进入定时器的回调后，我设置了一个静态变量来记录主队列是否执行完成。 我们判断当前runloop的状态是否为kCFRunLoopBeforeWaiting，所以这个方案是用来弥补前面那个方案，如果主线程此时没有阻塞住，我们在这里向main Queue抛一个block，看它是否能够成功执行，如果成功执行，说明主线程没有阻塞住，如果已经被阻塞住，那我抛过去的block是肯定不会被执行的。 下面的代码就是一些辅助操作，当信号量超过50毫秒，抛给主线程的block没有执行，那么说明此时就有一些阻塞了，返回一个非0数，并设置 ex为NO，从而在下一次定时器回调到来时进行上报]]></content>
       <categories>
-        <category>iOS</category>
+        <category>OC</category>
         <category>Func</category>
       </categories>
   </entry>
@@ -2139,8 +2139,8 @@
         <category>Layer</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>OC</tag>
+        <tag>UIKit</tag>
         <tag>Layer</tag>
         <tag>Shadow</tag>
       </tags>
@@ -2167,9 +2167,9 @@
         <category>UIScrollView</category>
       </categories>
       <tags>
+        <tag>OC</tag>
         <tag>UIKit</tag>
         <tag>UIScrollView</tag>
-        <tag>OC</tag>
       </tags>
   </entry>
   <entry>
@@ -2177,7 +2177,7 @@
     <url>%2F2017%2F11%2F21%2FOC%2FFunc%2FiOS-Func-App%E8%B7%B3%E8%BD%AC%E8%AE%BE%E7%BD%AE%2F</url>
     <content type="text"><![CDATA[跳到更多设置界面除了跳到WiFi设置界面，能不能跳到其他的设置界面呢？比如：定位服务、FaceTime、音乐等等。都是可以的，一起来看看如何实现的 跳到这些界面的参数配置： ##定位服务 用户关闭了定位,APP里面提示打开定位服务点击到设置界面设置，直接跳到定位服务设置界面= //定位服务设置界面NSURL *url = [NSURL URLWithString:@&quot;prefs:root=LOCATION_SERVICES&quot;];if ([[UIApplication sharedApplication] canOpenURL:url])&#123; [[UIApplication sharedApplication] openURL:url];&#125; FaceTim//FaceTime设置界面NSURL *url = [NSURL URLWithString:@&quot;prefs:root=FACETIME&quot;];if ([[UIApplication sharedApplication] canOpenURL:url])&#123; [[UIApplication sharedApplication] openURL:url];&#125; 音乐//音乐设置界面NSURL *url = [NSURL URLWithString:@&quot;prefs:root=MUSIC&quot;];if ([[UIApplication sharedApplication] canOpenURL:url])&#123; [[UIApplication sharedApplication] openURL:url];&#125; 蓝牙设置界面//蓝牙设置界面NSURL *url = [NSURL URLWithString:@&quot;prefs:root=Bluetooth&quot;];if ([[UIApplication sharedApplication] canOpenURL:url])&#123; [[UIApplication sharedApplication] openURL:url];&#125; iCloud设置界面//iCloud设置界面NSURL *url = [NSURL URLWithString:@&quot;prefs:root=CASTLE&quot;];if ([[UIApplication sharedApplication] canOpenURL:url]&#123; [[UIApplication sharedApplication] openURL:url];&#125; other设置界面只需要prefs:root=后面的值即可可以跳到这些界面的参数配置：r About — prefs:root=General&amp;path=AboutAccessibility — prefs:root=General&amp;path=ACCESSIBILITYAirplane Mode On — prefs:root=AIRPLANE_MODEAuto-Lock — prefs:root=General&amp;path=AUTOLOCKBrightness — prefs:root=BrightnessBluetooth — prefs:root=General&amp;path=BluetoothDate &amp; Time — prefs:root=General&amp;path=DATE_AND_TIMEFaceTime — prefs:root=FACETIMEGeneral — prefs:root=GeneralKeyboard — prefs:root=General&amp;path=KeyboardiCloud — prefs:root=CASTLEiCloud Storage &amp; Backup — prefs:root=CASTLE&amp;path=STORAGE_AND_BACKUPInternational — prefs:root=General&amp;path=INTERNATIONALLocation Services — prefs:root=LOCATION_SERVICESMusic — prefs:root=MUSICMusic Equalizer — prefs:root=MUSIC&amp;path=EQMusic Volume Limit — prefs:root=MUSIC&amp;path=VolumeLimitNetwork — prefs:root=General&amp;path=NetworkNike + iPod — prefs:root=NIKE_PLUS_IPODNotes — prefs:root=NOTESNotification — prefs:root=NOTIFICATIONS_IDPhone — prefs:root=PhonePhotos — prefs:root=PhotosProfile — prefs:root=General&amp;path=ManagedConfigurationListReset — prefs:root=General&amp;path=ResetSafari — prefs:root=SafariSiri — prefs:root=General&amp;path=AssistantSounds — prefs:root=SoundsSoftware Update — prefs:root=General&amp;path=SOFTWARE_UPDATE_LINKStore — prefs:root=STORETwitter — prefs:root=TWITTERUsage — prefs:root=General&amp;path=USAGEVPN — prefs:root=General&amp;path=Network/VPNWallpaper — prefs:root=WallpaperWi-Fi — prefs:root=WIFI]]></content>
       <categories>
-        <category>iOS</category>
+        <category>OC</category>
         <category>Func</category>
       </categories>
   </entry>
@@ -2199,7 +2199,7 @@
     <url>%2F2017%2F11%2F21%2FOC%2FFunc%2FiOS-Func-%20Universal%20Links%E9%80%9A%E7%94%A8%E9%93%BE%E6%8E%A5%2F</url>
     <content type="text"><![CDATA[Universal Links简介 iOS9之前 iOS9之前,对于从各种从浏览器,Safari、UIWebView或者 WKWebView中唤醒APP的需求,我们通常只能使用scheme.首先是app中注册某个scheme 在iOS 9以后 通过Universal Link，将App 与网页端建立连接桥，可以从Safari 或者其他前端浏览器来识别并唤醒App，甚至是微信环境下也可以冲破障碍 官方的说明文档–&gt; Universal Link的优点 唯一性: 不像自定义的scheme,因为它使用标准的http/https链接到你的web站点,所以它不会被其它的app所声明.另外,Custom URL scheme 因为是自定义的协议，所以在没有安装 app 的情况下是无法直接打开的，而 universal links 本身是一个 HTTP/HTTPS 链接，所以有更好的兼容性 安全: 当用户的手机上安装了你的app,那么iOS将去你的网站上去下载你上传上去的说明文件(这个说明文件声明了你的app可以打开哪些类型的http链接).因为只有你自己才能上传文件到你网站的根目录,所以你的网站和你的app之间的关联是安全的. 可变: 当用户手机上没有安装你的app的时候,Universal Links也能够工作.如果你愿意,在没有安装你的app的时候,用户点击链接,会在safari中展示你网站的内容. 简单: 一个URL链接,可以同时作用于网站和ap 私有 其它app可以在不需要知道你的app是否安装了的情况下和你的app相互通信 需求 分享页面中，我们经常会看到在页面的顶端或者底部遇到有【打开App】或者【下载App】这样的按钮。 比较友好的产品，会做设备识别，以及检测APP是否安装，来做打开或者下载App 的需求但是在微信中，这方面做的比较恶心，微信下面几乎是全面屏蔽了唤起原生App 的功能 Universal Link 实现条件 域名 有一个域名,且这个域名的网站需要支持https,然后拥有网站的上传到根目录的权限(这个权限是为了上传一个apple指定的文件) 支持Universal Links(通用链接) 创建一个json格式的命名为apple-app-site-association文件 注意这个文件必须没有后缀名,文件名必须为: apple-app-site-association &#123; "applinks": &#123; "apps": [], "details": [ &#123; "appID": "Prefix +点 +BundleID", "paths": [ "/html/1/*", "/*"], &#125;, ] &#125;&#125; Prefix 和 BundleID paths:根据 paths 键设定一个你的app支持的路径列表,只有这些指定的路径的链接,才能被app所处理,举个例子:如果你的网站是www.XXXX.com,你的path写的是”/support/“,那么当用户点击www.yohunl.com/support/myDoucument,就可以进入你的app了,相反www.yohunl.com/other 就不会.path是大小写敏感的! 号表示任意路径. 服务器服务器配置 准备独立域名一级域名，二级域名均可。SSL 证书 为服务器配置HTTPS 用的SSL 证书上传签名好的JSON 配置文件 新建JSON文件新建一个JSON文件，不需要后缀名，内容输入以下代码： appID:相关内容可以在Developer 中心找到相关的内容。如图，前半部分为Prefix 后半部分为ID，即你的App 的bundle id，两者通过.相连paths:用来唤醒App 所需要指定的JSON文件在服务器中的路径。用”/* “ 是根目录，而/html 则是指html目录下的注意：这里的AppID中前半部分，在App 转让主体后会改变，需重新更新填好后保存为apple-app-site-association 名，上传到域名指向的服务器根目录。 &#123; "applinks": &#123; "apps": [], "details": [ &#123; "appID": "5B5Q4xxxx.com.xxxx.xxxx", "paths": [ "/html/1/*", "/*"] &#125;, ] &#125;&#125; 上传传该文件apple-app-site-association 上传传该文件apple-app-site-association到你的域名所对应的网站的根目录下(其实也不一定是根目录,例如ghost博客站点,就没有根目录一说,它就需要放在相应的主题目录下) 这一步是为了苹果能从https://你的域名/apple-app-site-associationxh获取到你上传的apple-app-site-association文件.上传完后,自己先访问一下,看看是否能够获取到,用我的做例子,https://yohunl.com/apple-app-site-association ,当你点击这个链接,应该是下载apple-app-site-association文件.验证该文件是否合法,苹果为了方便开发者,提供了一个网页来验证我们编写的这个apple-app-site-association是否合法有效,验证网址,进入网站进行验证 App配置工程文件配置 在工程文件中，找到Targets - Capabilities - Associated Domains 将开关选为On，并添加你的域名， 格式为 applinks: + 后台给的域名.com applinks: + www.后台给的域名.com iOS移动端的代码- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray * _Nullable))restorationHandler&#123; if ([userActivity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) &#123; NSString *url = userActivity.webpageURL.description; // 这里可以通过拆分url 来传入参数，达到跳转原生页面的功能，如跳转某商品页 [UIApplication sharedApplication] openURL:webpageURL]; &#125; return YES;&#125; h5网页配置 h5网页中对需要唤起App 的按钮或者控件添加点击事件，事件的函数代码如下: function wakeUpApp()&#123; if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) &#123; var loadDateTime = new Date(); window.setTimeout(function() &#123; var timeOutDateTime = new Date(); if (timeOutDateTime - loadDateTime &lt; 5000) &#123; window.location.href = "http://a.app.qq.com/o/simple.jsp?pkgname=你的应用宝BundleID"; &#125; else &#123; window.close(); &#125; &#125;, 25); window.location.href = "https://yourdomainname.com/"; &#125; else if (navigator.userAgent.match(/android/i)) &#123; var state = null; try &#123; state = window.open("apps custom url schemes ", '_blank'); &#125; catch(e) &#123;&#125; if (state) &#123; window.close(); &#125; else &#123; window.location.href = "要跳转的页面URL"; &#125; &#125;&#125;]]></content>
       <categories>
-        <category>iOS</category>
+        <category>OC</category>
         <category>Func</category>
       </categories>
   </entry>
@@ -2250,14 +2250,18 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Func</tag>
         <tag>OC</tag>
+        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[OC-Func-配置启动图/图标]]></title>
     <url>%2F2017%2F11%2F20%2FOC%2FFunc%2FOC-Func-%E9%85%8D%E7%BD%AE%E5%90%AF%E5%8A%A8%E5%9B%BE-%E5%9B%BE%E6%A0%87%2F</url>
     <content type="text"><![CDATA[https://www.cnblogs.com/xiu619544553/p/5348678.html]]></content>
+      <categories>
+        <category>OC</category>
+        <category>Func</category>
+      </categories>
   </entry>
   <entry>
     <title><![CDATA[OC -Lib-JSBadgeView数字角标]]></title>
@@ -2269,8 +2273,8 @@
         <category>JSBadgeView</category>
       </categories>
       <tags>
-        <tag>Lib</tag>
         <tag>OC</tag>
+        <tag>Lib</tag>
         <tag>UI</tag>
       </tags>
   </entry>
@@ -2302,9 +2306,8 @@
         <category>Func</category>
       </categories>
       <tags>
+        <tag>OC</tag>
         <tag>Func</tag>
-        <tag>iOS</tag>
-        <tag>Analyze</tag>
       </tags>
   </entry>
   <entry>
@@ -2312,7 +2315,7 @@
     <url>%2F2017%2F11%2F11%2FOC%2FFunc%2FiOS-Func-%E5%BC%82%E5%B8%B8%E6%8D%95%E8%8E%B7-%E5%A0%86%E6%A0%88%E4%BF%A1%E6%81%AF%E7%9A%84%E8%A7%A3%E6%9E%90%2F</url>
     <content type="text"><![CDATA[堆栈信息的解析 最使用NSSetUncaughtExceptionHandler和signal方法捕获异常，并传到服务器，用来追踪线上app的异常信息捕获到的都是堆栈信息： 如何利用这些堆栈信息查看报错方法名和行数？ 异常信息 异常信息有三种类型 ①已标记错误位置的:信息已经很明确了，不用解析test 0x000000010bfddd8c -[ViewController viewDidLoad] + 8588 ②有模块地址的情况二进制库名（test）调用方法的地址（0x00000001018157dc）模块地址（0x100064000）+偏移地址（24844252） test 0x00000001018157dc 0x100064000 + 24844252 ③无模块地址的情况： test 0x00000001018157dc test + 24844252 dSYM符号表获取 xcode-&gt;window-&gt;organizer-&gt;右键你的应用 show finder-&gt;右键.xcarchive 显示包内容-&gt;dSYMs-&gt;test.app.dYSM atos命令 atos命令来符号化某个特定模块加载地址 $ atos [-arch 架构名] [-o 符号表] [-l 模块地址] [方法地址] 解析 使用终端，进到test.app.dYSM所在目录 ①如果是有模块地址的情况，运行： $ atos -arch arm64 -o test.app.dSYM/Contents/Resources/DWARF/test -l 0x100064000 0x00000001018157dc ②.如果是无模块地址的情况 ❶先将偏移地址转为16进制： 24844252 = 0x17B17DC ❷然后用方法的地址-偏移地址，得到的就是模块地址 0x00000001018157dc - 0x17B17DC = 0x100064000 ❸最后运行 $ atos -arch arm64 -o test.app.dSYM/Contents/Resources/DWARF/test -l 0x100064000 0x00000001018157dc iOS崩溃堆栈符号化http://blog.csdn.net/tencent_bugly/article/details/46275773 http://blog.csdn.net/reylen/article/details/50568440 https://www.cnblogs.com/1oo1/p/4462649.html]]></content>
       <categories>
-        <category>iOS</category>
+        <category>OC</category>
         <category>Func</category>
       </categories>
   </entry>
@@ -2374,8 +2377,8 @@
         <category>UIKit</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>OC</tag>
+        <tag>UIKit</tag>
         <tag>Autoreleasepool</tag>
       </tags>
   </entry>
