@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[RxSwift+Moya+HandyJSON]]></title>
+    <url>%2F2018%2F04%2F22%2FRxSwift%2FFunc%2FRxSwift%2BMoya%2BHandyJSON%20%2F</url>
+    <content type="text"><![CDATA[资料alibaba/HandyJSON原文参考 集成Podfilepod 'Moya', '~&gt; 10.0'# or pod 'Moya/RxSwift', '~&gt; 10.0' 导入import Moya 简单使用定义枚举，存储网络请求 定义一个枚举，存放我们的网络请求 enum ApiManager &#123; case login(username:String, password:String, token:String)&#125; moya的TargetType协议extension ApiManager:TargetType&#123; var baseURL: URL &#123; return URL.init(string: BaseURL)! &#125; //请求路径 var path:String&#123; switch self &#123; case .login(username: _, password:_ , token:_): return "login/accountLogin" &#125; &#125; var headers: [String: String]? &#123; return nil; &#125; //请求的参数 var parameters: [String: Any]? &#123; switch self &#123; case .login(username: let userName, password: let pwd, token: let token): return ["account":userName,"pwd":pwd,"deviceToken":token]; &#125; &#125; ///请求方式 var method: Moya.Method &#123; switch self &#123; case .login(username: _, password: _, token: _): return .post; &#125; &#125; /// The method used for parameter encoding. var parameterEncoding: ParameterEncoding &#123; return URLEncoding.default &#125; /// Provides stub data for use in testing. var sampleData: Data &#123; return "".data(using: String.Encoding.utf8)! &#125; //MARK:task type var task: Task &#123; return .requestPlain &#125; var validate: Bool &#123; return false &#125;&#125; 发起网络请求let provider = MoyaProvider&lt;ApiManager&gt;(); provider.request(.login(username: "haha", password: "123456", token: "qwe")) &#123; (result) in if result.error == nil&#123; LLog(result.value); &#125; &#125; 处理网络请求 使用HanyJSON处理接口返回数据，因为我们使用RxSwift,在处理网络请求，所有我们是对ObservableType 数据类型 扩展mapModel extension ObservableType where E == Response &#123; public func mapModel&lt;T: HandyJSON&gt;(_ type: T.Type) -&gt; Observable&lt;T&gt; &#123; return flatMap &#123; response -&gt; Observable&lt;T&gt; in return Observable.just(response.mapModel(T.self)) &#125; &#125;&#125;extension Response &#123; func mapModel&lt;T: HandyJSON&gt;(_ type: T.Type) -&gt; T &#123; let jsonString = String.init(data: data, encoding: .utf8) return JSONDeserializer&lt;T&gt;.deserializeFrom(json: jsonString)! &#125;&#125; 调用示例使用provider异步请求，并处理返回数据 接口请求完成后， subscribe 会收到next和complete两个事件 当event.element不为空时即为next事件 provider.rx.request(.login(username: "151xxxxxxxxxx", password: "123456", token: "")).asObservable().mapModel(LoginResponseModel .self).subscribe &#123; (event) in //当event.element 不为空时，返回的就是我们之前mapModel的类 if let model = event.element&#123; LLog(model.data.accessToken); LLog(model.data.crowdToken); &#125;else&#123; LLog("当前事件:\(event)") &#125; &#125;.disposed(by: disposeBag); 直接处理next事件，error和completed分开处理 provider.rx.request(.login(username: "15136176473", password: "123456", token: "")).asObservable().mapModel(LoginResponseModel .self).subscribe(onNext: &#123; (model) in LLog(model.data.crowdToken) &#125;, onError: &#123; (error) in LLog("请求出错") &#125;, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag); 扩展public init(endpointClosure: @escaping EndpointClosure = MoyaProvider.defaultEndpointMapping, requestClosure: @escaping RequestClosure = MoyaProvider.defaultRequestMapping, stubClosure: @escaping StubClosure = MoyaProvider.neverStub, callbackQueue: DispatchQueue? = nil, manager: Manager = MoyaProvider&lt;Target&gt;.defaultAlamofireManager(), plugins: [PluginType] = [], trackInflights: Bool = false) &#123;&#125; Moya Moya是一个比较全面的好用的网络管理工具,在上面我们只是使用了部分功能。通过provider的初始化，我们可以发现在开发中我们还可以处理很多。比如： 插件机制 Moya 的插件机制也很好用，提供了以下接口: /// Called to modify a request before sending func prepare(_ request: URLRequest, target: TargetType) -&gt; URLRequest /// Called immediately before a request is sent over the network (or stubbed). func willSend(_ request: RequestType, target: TargetType) /// Called after a response has been received, but before the MoyaProvider has invoked its completion handler. func didReceive(_ result: Result&lt;Moya.Response, MoyaError&gt;, target: TargetType) /// Called to modify a result before completion func process(_ result: Result&lt;Moya.Response, MoyaError&gt;, target: TargetType) -&gt; Result&lt;Moya.Response, MoyaError&gt; 与主功能接口脱离，降低了耦合度我们可以再这里处理请求的权限、token、loading等。 例如： public final class RequestLoadingPlugin:PluginType&#123; public func willSend(_ request: RequestType, target: TargetType) &#123; LLog("接口开始请求") self.showHUD() &#125; public func didReceive(_ result: Result&lt;Response, MoyaError&gt;, target: TargetType) &#123; LLog("接口请求完成") self.dismissHUD(); &#125; //MARK:-是否显示请求加载框 fileprivate func showHUD(_ isShow:Bool = true)&#123; if(isShow)&#123; SVProgressHUD.show(); &#125; &#125; //MARK:-隐藏请求加载框 fileprivate func dismissHUD()&#123; SVProgressHUD.dismiss(); &#125;&#125; 在provider的初始化注册我们初始化的插件即可 let provider = MoyaProvider&lt;ApiManager&gt;(plugins:[RequestLoadingPlugin()]); 请求处理机制public typealias EndpointClosure = (Target) -&gt; Endpoint&lt;Target&gt;public typealias RequestClosure = (Endpoint&lt;Target&gt;, @escaping RequestResultClosure) -&gt; Voidpublic typealias StubClosure = (Target) -&gt; Moya.StubBehavior public typealias RequestResultClosure = (Result&lt;URLRequest, MoyaError&gt;) -&gt; Void 从上面的三个闭包中，我们可以看出 EndpointClosure 是输入一个Target 返回一个Endpoint 也就是完成Target-&gt;Endpoint Endpoint的数据结构 open class Endpoint&lt;Target&gt; &#123; public typealias SampleResponseClosure = () -&gt; EndpointSampleResponse open let url: String open let sampleResponseClosure: SampleResponseClosure open let method: Moya.Method open let task: Task open let httpHeaderFields: [String: String]? &#125; 初始化的默认值是 public final class func defaultEndpointMapping(for target: Target) -&gt; Endpoint&lt;Target&gt; &#123; return Endpoint( url: URL(target: target).absoluteString, sampleResponseClosure: &#123; .networkResponse(200, target.sampleData) &#125;, method: target.method, task: target.task, httpHeaderFields: target.headers ) &#125; 上面的代码只是创建并返回Endpoint实例。很多时候，我们可以自定义这个闭包来做更多额外的事情。比如我们处理一些网络状态码、或者结合stub 模拟网络数据等 RequestClosure 是输入一个Endpoint和RequestResultClosure闭包 返回VoidRequestClosure主要是实现Endpoint-&gt;NSURLRequest 用于发起真正的网络请求 public typealias RequestResultClosure = (Result&lt;URLRequest, MoyaError&gt;) -&gt; Void 在输入中RequestResultClosure就是对接口请求完成后的返回初始化的默认值是： public final class func defaultRequestMapping(for endpoint: Endpoint&lt;Target&gt;, closure: RequestResultClosure) &#123; do &#123; let urlRequest = try endpoint.urlRequest() closure(.success(urlRequest)) &#125; catch MoyaError.requestMapping(let url) &#123; closure(.failure(MoyaError.requestMapping(url))) &#125; catch MoyaError.parameterEncoding(let error) &#123; closure(.failure(MoyaError.parameterEncoding(error))) &#125; catch &#123; closure(.failure(MoyaError.underlying(error, nil))) &#125; &#125; 这里就是处理最后的urlRequest。如果你想设置全局的urlRequest，这里也是最后的机会了。我们可以再这里修改请求的超时时间、缓存策略、cookie等。示例： let requestClosure = &#123; (endpoint: Endpoint&lt;ApiManager&gt;, closure: (Result&lt;URLRequest, MoyaError&gt;) -&gt; Void) -&gt; Void in do &#123; var urlRequest = try endpoint.urlRequest() urlRequest.timeoutInterval = 30.0 urlRequest.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData urlRequest.httpShouldHandleCookies = false closure(.success(urlRequest)) &#125; catch MoyaError.requestMapping(let url) &#123; closure(.failure(MoyaError.requestMapping(url))) &#125; catch MoyaError.parameterEncoding(let error) &#123; closure(.failure(MoyaError.parameterEncoding(error))) &#125; catch &#123; closure(.failure(MoyaError.underlying(error, nil))) &#125; &#125; 示例let provider = MoyaProvider&lt;ApiManager&gt;(requestClosure:requestClosure,plugins:[RequestLoadingPlugin()]); StubClosure 是输入一个Target 返回一个StubBehavior的闭包。 默认是：neverStub public typealias StubClosure = (Target) -&gt; Moya.StubBehavior public enum StubBehavior &#123; /// 不使用Stub来返回模拟的网络数据 case never /// 立刻返回Stub的数据 case immediate /// 在几秒后返回stub的数据 case delayed(seconds: TimeInterval)&#125; 示例： 编写测试数据 extension ApiManager:TargetType&#123; ... /// Provides stub data for use in testing. var sampleData: Data &#123; switch self &#123; case .login(username: _, password: _, token: _): return "&#123;'code': 200,'Token':'123455'&#125;".data(using: String.Encoding.utf8)! default: return "".data(using: String.Encoding.utf8)! &#125; &#125;&#125; 初始化EndpointClosure let endPointAction = &#123; (target: ApiManager) -&gt; Endpoint&lt;ApiManager&gt; in let url = target.baseURL.appendingPathComponent(target.path).absoluteString switch target &#123; case .login(username: _, password:_ , token:_): return Endpoint( url: url, sampleResponseClosure: &#123; .networkResponse(200, target.sampleData) &#125;, method: target.method, task: target.task, httpHeaderFields: target.headers )&#125;&#125; 初始化StubClosure let stubAction: (_ type:ApiManager) -&gt; Moya.StubBehavior = &#123; type in switch type &#123; case .login(username: _, password:_ , token:_): return Moya.StubBehavior.delayed(seconds: 3.0) &#125;&#125; 初始化provider let provider = MoyaProvider&lt;ApiManager&gt;(endpointClosure:endPointAction,requestClosure:_requestClosure,stubClosure:stubAction,plugins:[RequestLoadingPlugin()]); Manager Moya本身并不是直接处理网络请求的第三方库。它只是一个抽象的网络层，对真正发起网络请求的Manager进行管理：例如Alamofire默认参数: public final class func defaultAlamofireManager() -&gt; Manager &#123; let configuration = URLSessionConfiguration.default configuration.httpAdditionalHeaders = Manager.defaultHTTPHeaders let manager = Manager(configuration: configuration) manager.startRequestsImmediately = false return manager &#125; 封装Alamofire,使Moya.Manager == Alamofire.SessionManager public typealias Manager = Alamofire.SessionManagerinternal typealias Request = Alamofire.Requestinternal typealias DownloadRequest = Alamofire.DownloadRequestinternal typealias UploadRequest = Alamofire.UploadRequestinternal typealias DataRequest = Alamofire.DataRequest 所以，当我们想要定义自己的Manager，我们也可以传入自己的Manager到Moya的provider中。示例 let policies: [String: ServerTrustPolicy] = [ "example.com": .PinPublicKeys( publicKeys: ServerTrustPolicy.publicKeysInBundle(), validateCertificateChain: true, validateHost: true )] let policies: [String: ServerTrustPolicy] = [ "example.com": .pinPublicKeys( publicKeys: ServerTrustPolicy.publicKeys(), validateCertificateChain: true, validateHost: true )]let manager:Manager = Manager(configuration: URLSessionConfiguration.default, delegate: SessionDelegate(), serverTrustPolicyManager: ServerTrustPolicyManager(policies: policies)) let provider = MoyaProvider&lt;ApiManager&gt;(manager: manager)]]></content>
+      <categories>
+        <category>Swift</category>
+        <category>RxSwift</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>RxSwift</tag>
+        <tag>Func</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Swift-Grammar-ControlFlow控制流]]></title>
     <url>%2F2018%2F04%2F14%2FSwift%2FGrammar%2FControlFlow%E6%8E%A7%E5%88%B6%E6%B5%81%2F</url>
     <content type="text"><![CDATA[For-In 循环 For-In 循环 ❶for-in -&gt;数组中的元素 let names = ["A","B","C"]for name in names &#123; print ("-------- \(name)")&#125; ❷or-in -&gt;字典遍历字典时，字典的每项元素会以 (key, value) 元组的形式返回for-in 循环中使用显式的常量名称来解读 (key, value) 元组 let numberOfLegs = ["spider": 8, "ant": 6, "cat": 4] for (animalName, legCount) in numberOfLegs &#123; print("\(animalName)s have \(legCount) legs") &#125;//字典的内容理论上是无序的 ❸ for-in 循环还可以使用数字范围 for index in 1...5 &#123; print("\(index) times 5 is \(index * 5)")&#125;// 1 times 5 is 5// 2 times 5 is 10// 3 times 5 is 15// 4 times 5 is 20// 5 times 5 is 25 用来进行遍历的元素是使用闭区间操作符（…）表示的从 1 到 5 的数字区间 index 是一个每次循环遍历开始时被自动赋值的常量 ❹]]></content>
@@ -9,8 +23,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>Swift</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -23,8 +37,8 @@
         <category>Swift4.0</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>Swift</tag>
+        <tag>Grammar</tag>
         <tag>Swift4.0</tag>
       </tags>
   </entry>
@@ -50,8 +64,8 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -76,8 +90,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>Swift</tag>
+        <tag>Grammar</tag>
         <tag>Protocol</tag>
       </tags>
   </entry>
@@ -122,9 +136,9 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>Error</tag>
         <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Error</tag>
       </tags>
   </entry>
   <entry>
@@ -136,9 +150,9 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>Error</tag>
         <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Error</tag>
       </tags>
   </entry>
   <entry>
@@ -175,9 +189,9 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>Func</tag>
         <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
@@ -252,9 +266,9 @@
         <category>NSSet</category>
       </categories>
       <tags>
+        <tag>Grammar</tag>
         <tag>OC</tag>
         <tag>UIKit</tag>
-        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -417,9 +431,9 @@
         <category>Grammar</category>
       </categories>
       <tags>
+        <tag>Swift</tag>
         <tag>Grammar</tag>
         <tag>SceneKit</tag>
-        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -674,15 +688,15 @@
         <category>WKWebView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>WKWebView</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Swift-RxSwift-连接性操作]]></title>
-    <url>%2F2017%2F12%2F19%2FRxSwift%2FGrammar%2FOperators-%E8%BF%9E%E6%8E%A5%E6%80%A7%E6%93%8D%E4%BD%9C%2F</url>
-    <content type="text"><![CDATA[连接性操作 ①publish ②replay ③multicast Connectable Observable有订阅时不开始发射事件消息，而是仅当调用它们的connect（）方法时。这样就可以等待所有我们想要的订阅者都已经订阅了以后，再开始发出事件消息，这样能保证我们想要的所有订阅者都能接收到事件消息。其实也就是等大家都就位以后，开始发出消息 ①publish ①publish 将一个正常的sequence转换成一个connectable sequence let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .publish() _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; //相当于把事件消息推迟了两秒 delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(6) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125;//Subscription 1:, Event: 0Subscription 1:, Event: 1Subscription 2:, Event: 1Subscription 1:, Event: 2Subscription 2:, Event: 2Subscription 1:, Event: 3Subscription 3:, Event: 3Subscription 2:, Event: 3Subscription 1:, Event: 4Subscription 3:, Event: 4 ②replay ②replay 将一个正常的sequence转换成一个connectable sequence，然后和replaySubject相似，能接收到订阅之前的事件消息 let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .replay(5) //接收到订阅之前的5条事件消息 _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(8) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125; ③multicast ③multicast 将一个正常的sequence转换成一个connectable sequence，并且通过特性的subject发送出去，比如PublishSubject，或者replaySubject，behaviorSubject等。不同的Subject会有不同的结果 let subject = PublishSubject&lt;Int&gt;() _ = subject .subscribe(onNext: &#123; print("Subject: \($0)") &#125;) let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .multicast(subject) _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 2:, Event: \($0)") &#125;)&#125;]]></content>
+    <title><![CDATA[Swift-RxSwift-错误处理操作]]></title>
+    <url>%2F2017%2F12%2F19%2FRxSwift%2FGrammar%2FOperators-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[错误处理操作 ①catchErrorJustReturn ②catchError ③retry ④debug ①catchErrorJustReturn ①catchErrorJustReturn 遇到error事件的时候，就return一个值，然后结束 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;() sequenceThatFails .catchErrorJustReturn("😊") .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test)///next(😬)next(😨)next(😡)next(🔴)next(😊)completed ②catchError ②catchError 捕获error进行处理，可以返回另一个sequence进行订阅 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;()let recoverySequence = PublishSubject&lt;String&gt;() sequenceThatFails .catchError &#123; print("Error:", $0) return recoverySequence &#125; .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test) recoverySequence.onNext("😊")//next(😬)next(😨)next(😡)next(🔴)Error: testnext(😊) ③retry ③retry 遇见error事件可以进行重试，比如网络请求失败，可以进行重新连接 let disposeBag = DisposeBag()var count = 1 let sequenceThatErrors = Observable&lt;String&gt;.create &#123; observer in observer.onNext("🍎") observer.onNext("🍐") observer.onNext("🍊") if count == 1 &#123; observer.onError(TestError.test) print("Error encountered") count += 1 &#125; observer.onNext("🐶") observer.onNext("🐱") observer.onNext("🐭") observer.onCompleted() return Disposables.create()&#125; sequenceThatErrors .retry(3) //不传入数字的话，只会重试一次 .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) ④debug ④debug 打印所有的订阅, 事件和disposals sequenceThatErrors .retry(3) .debug() .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) RxSwift.Resources.total 查看RxSwift所有资源的占用 print(RxSwift.Resources.total)]]></content>
       <categories>
         <category>Swift</category>
         <category>RxSwift</category>
@@ -693,9 +707,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Swift-RxSwift-错误处理操作]]></title>
-    <url>%2F2017%2F12%2F19%2FRxSwift%2FGrammar%2FOperators-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E6%93%8D%E4%BD%9C%2F</url>
-    <content type="text"><![CDATA[错误处理操作 ①catchErrorJustReturn ②catchError ③retry ④debug ①catchErrorJustReturn ①catchErrorJustReturn 遇到error事件的时候，就return一个值，然后结束 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;() sequenceThatFails .catchErrorJustReturn("😊") .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test)///next(😬)next(😨)next(😡)next(🔴)next(😊)completed ②catchError ②catchError 捕获error进行处理，可以返回另一个sequence进行订阅 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;()let recoverySequence = PublishSubject&lt;String&gt;() sequenceThatFails .catchError &#123; print("Error:", $0) return recoverySequence &#125; .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test) recoverySequence.onNext("😊")//next(😬)next(😨)next(😡)next(🔴)Error: testnext(😊) ③retry ③retry 遇见error事件可以进行重试，比如网络请求失败，可以进行重新连接 let disposeBag = DisposeBag()var count = 1 let sequenceThatErrors = Observable&lt;String&gt;.create &#123; observer in observer.onNext("🍎") observer.onNext("🍐") observer.onNext("🍊") if count == 1 &#123; observer.onError(TestError.test) print("Error encountered") count += 1 &#125; observer.onNext("🐶") observer.onNext("🐱") observer.onNext("🐭") observer.onCompleted() return Disposables.create()&#125; sequenceThatErrors .retry(3) //不传入数字的话，只会重试一次 .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) ④debug ④debug 打印所有的订阅, 事件和disposals sequenceThatErrors .retry(3) .debug() .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) RxSwift.Resources.total 查看RxSwift所有资源的占用 print(RxSwift.Resources.total)]]></content>
+    <title><![CDATA[Swift-RxSwift-连接性操作]]></title>
+    <url>%2F2017%2F12%2F19%2FRxSwift%2FGrammar%2FOperators-%E8%BF%9E%E6%8E%A5%E6%80%A7%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[连接性操作 ①publish ②replay ③multicast Connectable Observable有订阅时不开始发射事件消息，而是仅当调用它们的connect（）方法时。这样就可以等待所有我们想要的订阅者都已经订阅了以后，再开始发出事件消息，这样能保证我们想要的所有订阅者都能接收到事件消息。其实也就是等大家都就位以后，开始发出消息 ①publish ①publish 将一个正常的sequence转换成一个connectable sequence let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .publish() _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; //相当于把事件消息推迟了两秒 delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(6) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125;//Subscription 1:, Event: 0Subscription 1:, Event: 1Subscription 2:, Event: 1Subscription 1:, Event: 2Subscription 2:, Event: 2Subscription 1:, Event: 3Subscription 3:, Event: 3Subscription 2:, Event: 3Subscription 1:, Event: 4Subscription 3:, Event: 4 ②replay ②replay 将一个正常的sequence转换成一个connectable sequence，然后和replaySubject相似，能接收到订阅之前的事件消息 let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .replay(5) //接收到订阅之前的5条事件消息 _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(8) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125; ③multicast ③multicast 将一个正常的sequence转换成一个connectable sequence，并且通过特性的subject发送出去，比如PublishSubject，或者replaySubject，behaviorSubject等。不同的Subject会有不同的结果 let subject = PublishSubject&lt;Int&gt;() _ = subject .subscribe(onNext: &#123; print("Subject: \($0)") &#125;) let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .multicast(subject) _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 2:, Event: \($0)") &#125;)&#125;]]></content>
       <categories>
         <category>Swift</category>
         <category>RxSwift</category>
@@ -811,9 +825,9 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -878,8 +892,8 @@
         <category>UIImagePickerController</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIImagePickerController</tag>
       </tags>
   </entry>
@@ -893,8 +907,8 @@
         <category>NSAttributedString</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>NSAttributedString</tag>
       </tags>
   </entry>
@@ -907,8 +921,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Func</tag>
         <tag>Swift</tag>
+        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
@@ -920,8 +934,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Func</tag>
         <tag>Swift</tag>
+        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
@@ -933,8 +947,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Func</tag>
         <tag>Swift</tag>
+        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
@@ -947,8 +961,8 @@
         <category>NSNotificationCenter</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>NSNotificationCenter</tag>
       </tags>
   </entry>
@@ -961,8 +975,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>OC</tag>
         <tag>Func</tag>
+        <tag>OC</tag>
       </tags>
   </entry>
   <entry>
@@ -985,8 +999,8 @@
         <category>UITableView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITableView</tag>
       </tags>
   </entry>
@@ -999,8 +1013,8 @@
         <category>Error</category>
       </categories>
       <tags>
-        <tag>Error</tag>
         <tag>Swift</tag>
+        <tag>Error</tag>
       </tags>
   </entry>
   <entry>
@@ -1012,8 +1026,8 @@
         <category>Error</category>
       </categories>
       <tags>
-        <tag>Error</tag>
         <tag>Swift</tag>
+        <tag>Error</tag>
       </tags>
   </entry>
   <entry>
@@ -1026,8 +1040,8 @@
         <category>UIWebView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIWebView</tag>
       </tags>
   </entry>
@@ -1041,8 +1055,8 @@
         <category>UIWebView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIWebView</tag>
       </tags>
   </entry>
@@ -1056,8 +1070,8 @@
         <category>UINavigationController</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UINavigationController</tag>
       </tags>
   </entry>
@@ -1071,8 +1085,8 @@
         <category>UINavigationController</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UINavigationController</tag>
       </tags>
   </entry>
@@ -1086,8 +1100,8 @@
         <category>UISegmentedControl</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UISegmentedControl</tag>
       </tags>
   </entry>
@@ -1101,8 +1115,8 @@
         <category>UISegmentedControl</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UISegmentedControl</tag>
       </tags>
   </entry>
@@ -1116,8 +1130,8 @@
         <category>UISwitch</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UISwitch</tag>
       </tags>
   </entry>
@@ -1131,8 +1145,8 @@
         <category>UISwitch</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UISwitch</tag>
       </tags>
   </entry>
@@ -1146,8 +1160,8 @@
         <category>UITextField</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITextField</tag>
       </tags>
   </entry>
@@ -1161,8 +1175,8 @@
         <category>UITxtxField</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITxtxField</tag>
       </tags>
   </entry>
@@ -1176,8 +1190,8 @@
         <category>UIImage</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIImage</tag>
       </tags>
   </entry>
@@ -1191,8 +1205,8 @@
         <category>UIImage</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIImage</tag>
       </tags>
   </entry>
@@ -1206,8 +1220,8 @@
         <category>UITableViewCell</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITableViewCell</tag>
       </tags>
   </entry>
@@ -1221,8 +1235,8 @@
         <category>UITableViewCell</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITableViewCell</tag>
       </tags>
   </entry>
@@ -1236,8 +1250,8 @@
         <category>UITableView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITableView</tag>
       </tags>
   </entry>
@@ -1251,8 +1265,8 @@
         <category>UITableView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITableView</tag>
       </tags>
   </entry>
@@ -1266,9 +1280,9 @@
         <category>UIScrollView</category>
       </categories>
       <tags>
+        <tag>Swift</tag>
         <tag>UIKit</tag>
         <tag>UIScrollView</tag>
-        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1281,9 +1295,9 @@
         <category>UIScrollView</category>
       </categories>
       <tags>
+        <tag>Swift</tag>
         <tag>UIKit</tag>
         <tag>UIScrollView</tag>
-        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1296,8 +1310,8 @@
         <category>UITextView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITextView</tag>
       </tags>
   </entry>
@@ -1311,8 +1325,8 @@
         <category>UITextView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITextView</tag>
       </tags>
   </entry>
@@ -1326,8 +1340,8 @@
         <category>UIActionSheet</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIActionSheet</tag>
       </tags>
   </entry>
@@ -1341,8 +1355,8 @@
         <category>UIActionSheet</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIActionSheet</tag>
       </tags>
   </entry>
@@ -1355,8 +1369,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Func</tag>
         <tag>Swift</tag>
+        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
@@ -1369,8 +1383,8 @@
         <category>NSTimer</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>NSTimer</tag>
       </tags>
   </entry>
@@ -1384,8 +1398,8 @@
         <category>UICollectionView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UICollectionView</tag>
       </tags>
   </entry>
@@ -1399,8 +1413,8 @@
         <category>UICollectionView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UICollectionView</tag>
       </tags>
   </entry>
@@ -1453,8 +1467,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>OC</tag>
         <tag>Func</tag>
+        <tag>OC</tag>
       </tags>
   </entry>
   <entry>
@@ -1466,8 +1480,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>Swift</tag>
+        <tag>Grammar</tag>
         <tag>AccessControl</tag>
         <tag>open</tag>
       </tags>
@@ -1482,8 +1496,8 @@
         <category>AccessControl</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>Swift</tag>
+        <tag>Grammar</tag>
         <tag>AccessControl</tag>
         <tag>fileprivate</tag>
       </tags>
@@ -1498,8 +1512,8 @@
         <category>RequiredInit</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>Swift</tag>
+        <tag>Grammar</tag>
         <tag>RequiredInit</tag>
       </tags>
   </entry>
@@ -1513,8 +1527,8 @@
         <category>Swift4.0</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>Swift</tag>
+        <tag>Grammar</tag>
         <tag>Swift4.0</tag>
       </tags>
   </entry>
@@ -1528,8 +1542,8 @@
         <category>Guard</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>Swift</tag>
+        <tag>Grammar</tag>
         <tag>Guard</tag>
       </tags>
   </entry>
@@ -1543,8 +1557,8 @@
         <category>Inheritance</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>Swift</tag>
+        <tag>Grammar</tag>
         <tag>Inheritance</tag>
       </tags>
   </entry>
@@ -1558,8 +1572,8 @@
         <category>String</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>Swift</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -1572,8 +1586,8 @@
         <category>Lazy</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>Swift</tag>
+        <tag>Grammar</tag>
         <tag>Lazy</tag>
       </tags>
   </entry>
@@ -1586,8 +1600,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>Swift</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -1600,8 +1614,8 @@
         <category>UITableView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITableView</tag>
       </tags>
   </entry>
@@ -1615,8 +1629,8 @@
         <category>AFN</category>
       </categories>
       <tags>
-        <tag>OC</tag>
         <tag>Error</tag>
+        <tag>OC</tag>
         <tag>AFN</tag>
       </tags>
   </entry>
@@ -1649,8 +1663,8 @@
         <category>UIImageView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIImageView</tag>
       </tags>
   </entry>
@@ -1664,8 +1678,8 @@
         <category>UISegmentedControl</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UISegmentedControl</tag>
       </tags>
   </entry>
@@ -1679,8 +1693,8 @@
         <category>UISwitch</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UISwitch</tag>
       </tags>
   </entry>
@@ -1694,8 +1708,8 @@
         <category>UIStepper</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIStepper</tag>
       </tags>
   </entry>
@@ -1709,8 +1723,8 @@
         <category>UISlider</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UISlider</tag>
       </tags>
   </entry>
@@ -1724,8 +1738,8 @@
         <category>UITextField</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITextField</tag>
       </tags>
   </entry>
@@ -1753,8 +1767,8 @@
         <category>UILabel</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UILabel</tag>
       </tags>
   </entry>
@@ -1768,8 +1782,8 @@
         <category>AppDelegate</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>AppDelegate</tag>
       </tags>
   </entry>
@@ -1853,8 +1867,8 @@
         <category>AccessControl</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>Swift</tag>
+        <tag>Grammar</tag>
         <tag>AccessControl</tag>
       </tags>
   </entry>
@@ -1908,15 +1922,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Swift-Grammar-Initialization初始化&Deinitialization析构]]></title>
-    <url>%2F2017%2F12%2F01%2FSwift%2FGrammar%2FInitialization%E5%88%9D%E5%A7%8B%E5%8C%96-%E6%9E%90%E6%9E%84%2F</url>
-    <content type="text"><![CDATA[Initialization 初始化初始化 初始化，是当创建一个类、结构体、枚举类的时，完成存储属性的值的初始化，和其他一些初始化工作。准备好这个实例以供使用反过来，当一个实例不再使用的时候，由析构过程释放这个实例所占用资源完成初始化工作的一个方法一般称为初始化方法、构造器(Initializer)、构造方法等等Swift中的构造器不需返回值，只是完成初始化工作。 类或结构体在创建的时候必须保证存储属性有初始化值 目的的实现可以通过在定义属性的时候给存储属性添加上默认值，也可以在构造器中赋值。并且在这两种情况中都不会触发属性的观察器。官方文档建议我们在一个存储属性通常具有同一个初始值的时候，使用属性定义的方式添加初始值。 下面是这两种方法的代码class Animal &#123; var life: Int = 0 var height: Double init()&#123; height = 0 &#125; &#125; 这里的init()方法就是构造器。注意它是不带func关键字的。而且也没有返回值。以前创建一个实例的时候，都是使用“类名()”的形式，这其实就是调用了这个构造器。但是当时我们并没有写这个构造器，这是因为当一个类没有其他构造器的时候，编译器会自动生成这个默认的构造器。但是一旦有了其他的构造器，那么系统就不会再默认生成这个构造器。你也就再不能用“类名()”这种创建方法了。当然，当有其他构造器的时候，你也可以手动添加这个默认的构造器。 自定义构造器 可以定义构造器，可以传入自定义的参数列表来初始化类。自定义的构造器的外部参数名规则和方法不太一样，构造器的每一个参数都会生成和局部参数名一样的外部参数名。如果不想要外部参数名，还是可以用下划线取消 class Animal &#123; var life: Int = 0 var height: Double init()&#123; //注意，当有其他构造器的时候，系统不会再生成这个构造器，必须手动写出来 height = 0 &#125; init(life: Int, height: Double) &#123; self.life = life self.height = height &#125; &#125; //可以这样使用自定义的构造器 var a = Animal(life: 29, height: 1.2) 再次提醒，当有类定义里面有自定义构造器的时候，不会再自动生成默认构造器。并且对于结构体也再不会自动生成遍历属性的构造器。但是你可以将你自己的构造器写在扩展里面，这样就不会影响默认构造器的自动生成 构造器委托（Initializer Delegation） 构造器委托，就是在一个构造器里面调用另外一个构造器，这样可以减少多余的代码。在构造器里面使用self.init语法来调用另外一个构造器，且这个语法只能在构造器里面使用。构造器委托在值类型（结构体和枚举类）和类直接是不太一样的。因为类需要考虑到继承问题。先来看值类型的构造器委托。这个很简单，调用另外一个构造器就行了。下面的例子虽然有点脱裤子放屁的感觉，但。。就是举个例子而已 struct Apple &#123; var totalPrice: Double init(totalPrice: Double) &#123; self.totalPrice = totalPrice &#125; init(kg: Double, pricePerKg: Double) &#123; let totalPrice = kg * pricePerKg self.init(totalPrice: totalPrice) //调用另外一个构造器 &#125; &#125; 类的继承和初始化 因为类可以继承，所以它的初始化规则就变得比结构体要复杂多了。首先，类的构造器分为指定构造器（Designated Initializer） 和 便利构造器 （Convenience Initializer）一个类通常具有很少数量（一般只有1个）的指定构造器。但是必须最少具有一个。便利构造器是用来调用指定构造器完成初始化工作的。一个类可以不具有遍历构造器。两种构造器的语法 //指定构造器 init(parameters) &#123; statements &#125; //便利构造器 convenience init(parameters) &#123; statements &#125; 类的构造器委托规则： 1、一个指定构造器必须调用它的直接父类的指定构造器 2、一个便利构造器必须调用同一个类的另外的构造器 3、一个便利构造器必须最终以调用指定构造器结束。 规则2和3连起来就是说，一个便利构造器可能会调用了另外一个便利构造器，然后这个构造器又调用了另外一个便利构造器….但是这个链的最后的一个便利构造器必须是调用指定构造器。下面附上官方的图片。在图片上可以看到，三条规则总结起来就是：指定构造器往上调用，便利构造器平行调用且终结在指定构造器。 类的初始化分为两阶段第一阶段 1、一个指定构造器或便利构造器被调用 2、分配类实例所需的内存，但是内存没有初始化 3、这个类的指定构造器确保该类引入的新的存储属性都初始化。（因为便利构造器最终会到指定构造器）。 4、然后这个构造器调用父类的指定构造器完成和第三步同样的工作。 5、直到继承链的最顶部分。 6、这时候有的存储属性都有初始值了。 第二阶段 1、从继承链的最顶部分出发。每个指定构造器具有了修改实例的权利。并且可以调用实例方法。 2、最后，这个初始化链条里面的便利构造器都具有了修改实例的权利。 遵循上面两个阶段的步骤，避免了当在初始化链后面的构造器修改了属性之后，又被前面的构造器修改属性的可能性。避免了使用没有经过初始化的属性的可能性。 为了确保两个阶段步骤的实施。编译器有4条检测规则，这四条规则决定了你在构造器里面某些代码的顺序。 1、在调用父类构造器之前，必须确保子类引入的新属性已经得到初始化。 2、子类必须在调用了父类的构造器之后，才能访问继承的属性。 3、便利构造器必须在调用了其他构造器之后，才能访问属性或调用实例方法。 4、在完成第一阶段之前（其实就是完成初始化本类定义的新属性，调用父类构造器），构造器不能调用实例方法，不能访问属性的值，不能把self当做值访问。但是可以用self.属性名的方式给属性赋值。 下面可以看看分别违反每个规则的例子 class Animal &#123; var life: Int var height: Double init(getLife: Int, getHeight: Double) &#123; self.life = getLife self.height = getHeight &#125; &#125; class Dog: Animal &#123; var name: String init()&#123; super.init(getLife: 2, getHeight: 2.0) //这句报错，违反第一条，必须先将本类引入的属性初始化才能调用父类构造器 self.name = "Larry" //所以这一句必须写在前面才没错 &#125; init(name: String, getLife: Int, getHeight: Double)&#123; self.name = name self.life = 1 //这句报错，违反第二条，必须调用了父类构造器之后才能访问继承的属性。 super.init(getLife: getLife, getHeight: getHeight) //这句必须放在第二句之前才没错 &#125; convenience init(getLife: Int) &#123; self.name = "Larry" //这句报错，违反第三条，便利构造器里面必须调用了其他构造器之后才能访问属性 self.init() //这句应该放在前面 &#125; init(getName: String) &#123; self.name = getName Dog.sayHello() self.printName() //这句报错，违反第四条，必须完成了阶段1才能调用实例方法或访问属性 super.init(getLife: 21, getHeight: 2.3) //这句应该放在前面 &#125; func printName()&#123; print(self.name) &#125; static func sayHello()&#123; print("hello") &#125; &#125; 属性观察器 以前说过，属性观察器在构造器里面给属性赋值的时候是不会被调用的。但是这个只针对于本类定义的属性。对于继承而来的属性，当已经经过父类的构造器完成初始化后，如果在子类里面修改了继承属性的值，那么就会触发父类观察器，如果你在子类里面也覆盖了这个观察器，那么子类和父类的观察器都会被调用 另外再看 class Animal &#123; var life: Int = 0 &#123; willSet&#123; print("animial life newValue \(newValue)") &#125; &#125; init(getlife: Int)&#123; print("animal life init \(self.life)") self.life = 1 print("animal life after assign \(self.life)") &#125; &#125; 如果我们调用下面的语句 var a = Animal(getlife: 3) //打印 //animal life init 0 //animal life after assign 1 注意一点，我们在init里面第一句已经用到了self。根据编译器规则第四条，不允许在属性没有初始化的前进行访问。从上面代码通过编译来看，这里编译器已经将属性初始化为定义时候的值了。如果你将定义时候的默认值删去，那么第一句就会报错Swift默认是不继承父类的构造器的。如果你想要和父类一样的构造器，那么必须自己写。如果你写的构造器（不管是指定还是便利）和父类的指定构造器一样，那么这个构造器前必须加上override关键字。如果你写的构造器和父类的便利构造器一样，那么不用加override，因为子类永远不能直接调用父类的便利构造器。但是在某些情况下，子类可以自动继承父类构造器。前提条件：子类新引入的属性都必须具有默认值 规则1：如果子类没有定义任何的指定构造器。那么子类自动继承父类所有的指定构造器。 规则2：如果子类实现了父类所有的指定构造器（可以通过规则1继承而来，也可以通过重写而来），那么子类自动继承父类所有的便利构造器。 例子 class Animal &#123; var life: Int var height: Double convenience init(getLife: Int)&#123; self.init(getLife: getLife, getHeight: 0.0) &#125; init(getLife: Int, getHeight: Double) &#123; self.life = getLife self.height = getHeight &#125; &#125; class Dog: Animal &#123; var name: String = "Larry" // override init(getLife: Int, getHeight: Double)&#123; // super.init(getLife: getLife, getHeight:getHeight) // &#125; &#125; 无论上面Dog类里面注释的代码是否打开，Dog都继承了Animal的所有构造器 Failable Initializers可失败的构造器 Swift中有个概念，就是创建实例的时候如果条件不符合，可以返回一个nil对象。这类可以返回nil的构造器叫做可失败的构造器。语法是在init的前面加上一个？。当条件不满足的时候，你可以用 return nil结束构造方法。那么这时候得到的实例其实是一个nil，这里也说明了，可失败构造器返回的是可选类型。其实之前也说过，Swift的构造器是不需要返回值的。所以你成功的时候不需要写return什么东东。 值类型的可失败构造器下面是structure的 struct Apple &#123; var pricePerKg: Double init?(pricePerKg: Double)&#123; if pricePerKg &lt; 0 &#123; return nil &#125; self.pricePerKg = pricePerKg &#125; &#125; print(Apple(pricePerKg: 2)) print(Apple(pricePerKg: -2)) //打印 //Optional(SwiftTest.Apple(pricePerKg: 2.0)) //nil 接下来是枚举类的 enum FruitSet &#123; case apple, orange, banana init?(symbol: Character)&#123; switch symbol &#123; case &quot;a&quot;,&quot;A&quot; : self = .apple case &quot;o&quot;,&quot;O&quot; : self = .orange case &quot;b&quot;,&quot;B&quot; : self = .banana default : return nil &#125; &#125; &#125; print(FruitSet(symbol: &quot;a&quot;)) print(FruitSet(symbol: &quot;e&quot;)) //打印 //Optional(SwiftTest.FruitSet.apple) //nil 对应有默认值的枚举类，会自动生成一个init?(rawValue:)的构造器。如下 enum FruitSet : Character&#123; case apple = "a", orange = "o", banana = "b" &#125; print(FruitSet(rawValue: "a")) print(FruitSet(rawValue: "e")) 类的可失败构造器 有一个规则，就是必须在本类所有的属性（包括继承的）都赋值之后才可以返回nil class Apple &#123; var pricePerKg: Double init?(pricePerKg: Double)&#123; if pricePerKg &lt; 0 &#123; return nil //这句报错，所以你必须先初始化其他属性值 &#125; self.pricePerKg = pricePerKg &#125; &#125; 可失败初始化的传递过程 一个可失败的构造器可以调用其他的构造器，无论是可失败的还是不会失败的。 但是一个不可失败的构造器不能去调用一个可失败的构造器。如果去调用父类的可失败构造器，虽然用解包可以解决，但是一旦父类的可失败构造器返回了nil，那么程序直接崩溃 class Fruit &#123; var name: String init?(name: String)&#123; self.name = name if name.isEmpty &#123; return nil &#125; &#125; &#125; class Apple: Fruit &#123; var pricePerKg: Double init(pricePerKg: Double)&#123; self.pricePerKg = pricePerKg super.init(name: "")! //利用解包调用了父类的可失败构造器，但是因为这样父类会返回一个nil，所以程序在这行会崩溃 &#125; convenience init?()&#123; self.init(pricePerKg: 3) &#125; &#125; var i = Apple(pricePerKg: 3) 同样的，可失败的构造器也可以被重写，你可以重写为不可失败的构造器。但是不可失败的构造器不能覆盖为可失败的构造器。你可以用!代替?来实现可失败构造器，那么这样得到的实例会自动解包。当然，存在nil报错的问题。记得处理。 必须构造器（Required Initializers） 在构造器前面加上required关键字就行了。这样的构造器要求子类必须重写。子类重写这个构造器的时候，也必须加上required关键字。要求子类的子类也要重写这个构造器。写了required后不用写override关键字。写了会有警告。 给属性默认值时使用闭包或函数 func getprice()-&gt;Double &#123; return 1 &#125; class Apple &#123; var pricePerKg: Double = getprice() var name = &#123; return "apple" &#125;() //留意这对小括号，没有的话那就是给属性赋值一个闭包了。 &#125; var a = Apple() print(a.pricePerKg,a.name) 析构器 析构器，就是在一个实例再也不用到时候调用的方法。析构器里面完成一些清理工作或保存数据等等。析构器是系统自动调用的，不允许自行调用。 语法 deinit &#123; // perform the deinitialization &#125;]]></content>
-      <categories>
-        <category>Swift</category>
-        <category>Grammar</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[iOS-UIKit-UIButton-Img和Title位置]]></title>
     <url>%2F2017%2F12%2F01%2FOC%2FKit%2FUIButton-Img%E5%92%8CTitle%E4%BD%8D%E7%BD%AE%2F</url>
     <content type="text"><![CDATA[iOS-UI-UIButton-Img和Title位置 UIButton 的image title 的位置都是可以调整的，具体如何调整可以按照下面的步骤 设置内容的水平垂直位置self.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft; self指的是UIButton对象，这是继承自UIButon的方法里面或者给UIButton添加扩展方法里面。通过这样的设置可以使得imageView显示在UIButton对象的左上角，titleLabel显示在imageView的右边 调整imageView居中CGFloat btn_width = self.frame.size.width;self.imageEdgeInsets = UIEdgeInsetsMake(10, (btn_width - self.imageView.frame.size.width)/2, 0, 0); 调整 titleLabel居中CGFloat btn_width = self.frame.size.width;self.titleEdgeInsets = UIEdgeInsetsMake(self.imageView.frame.size.height + vSpace+10, - self.imageView.frame.size.width+(btn_width/2-self.titleLabel.frame.size.width/2), 0, 0); 通过减去 imageView的宽度使titleLabel处在左上角，让后将label移植中心。经过以上三步就可以使imageView 、titleLabelLabel 居中，其它的显示形式一样可以参照以上的设置。 整理成了方法， 不需要每次都写 - (void) setImageAndTitleCenterWithVerticalGapSpace:(CGFloat) vSpace imageTopSpace:(CGFloat) iSpace &#123; self.contentVerticalAlignment = UIControlContentVerticalAlignmentTop; self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft; CGFloat btn_width = self.frame.size.width; CGFloat iTop = iSpace; self.imageEdgeInsets = UIEdgeInsetsMake(iTop, (btn_width - self.imageView.frame.size.width)/2, 0, 0);// self.titleEdgeInsets = UIEdgeInsetsMake(self.imageView.frame.size.height + vSpace+iTop, - self.imageView.frame.size.width+(btn_width/2-self.titleLabel.frame.size.width/2), 0, 0);// 使用中发现对于label的width取值不准确，遂通过计算一次获取，准确 CGSize size = [self.titleLabel sizeThatFits:CGSizeMake(CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))]; self.titleEdgeInsets = UIEdgeInsetsMake(CGRectGetHeight(self.imageView.frame)+ vSpace + iTop, - CGRectGetWidth(self.imageView.frame) + (CGRectGetWidth(self.frame) - size.width)/2, 0, 0);&#125; vSpace imageView与titleLabel垂直间隔 iSpace imageView 距离 top的间隔]]></content>
@@ -1924,6 +1929,15 @@
         <category>OC</category>
         <category>UIKit</category>
         <category>UIButton</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Swift-Grammar-Initialization初始化&Deinitialization析构]]></title>
+    <url>%2F2017%2F12%2F01%2FSwift%2FGrammar%2FInitialization%E5%88%9D%E5%A7%8B%E5%8C%96-%E6%9E%90%E6%9E%84%2F</url>
+    <content type="text"><![CDATA[Initialization 初始化初始化 初始化，是当创建一个类、结构体、枚举类的时，完成存储属性的值的初始化，和其他一些初始化工作。准备好这个实例以供使用反过来，当一个实例不再使用的时候，由析构过程释放这个实例所占用资源完成初始化工作的一个方法一般称为初始化方法、构造器(Initializer)、构造方法等等Swift中的构造器不需返回值，只是完成初始化工作。 类或结构体在创建的时候必须保证存储属性有初始化值 目的的实现可以通过在定义属性的时候给存储属性添加上默认值，也可以在构造器中赋值。并且在这两种情况中都不会触发属性的观察器。官方文档建议我们在一个存储属性通常具有同一个初始值的时候，使用属性定义的方式添加初始值。 下面是这两种方法的代码class Animal &#123; var life: Int = 0 var height: Double init()&#123; height = 0 &#125; &#125; 这里的init()方法就是构造器。注意它是不带func关键字的。而且也没有返回值。以前创建一个实例的时候，都是使用“类名()”的形式，这其实就是调用了这个构造器。但是当时我们并没有写这个构造器，这是因为当一个类没有其他构造器的时候，编译器会自动生成这个默认的构造器。但是一旦有了其他的构造器，那么系统就不会再默认生成这个构造器。你也就再不能用“类名()”这种创建方法了。当然，当有其他构造器的时候，你也可以手动添加这个默认的构造器。 自定义构造器 可以定义构造器，可以传入自定义的参数列表来初始化类。自定义的构造器的外部参数名规则和方法不太一样，构造器的每一个参数都会生成和局部参数名一样的外部参数名。如果不想要外部参数名，还是可以用下划线取消 class Animal &#123; var life: Int = 0 var height: Double init()&#123; //注意，当有其他构造器的时候，系统不会再生成这个构造器，必须手动写出来 height = 0 &#125; init(life: Int, height: Double) &#123; self.life = life self.height = height &#125; &#125; //可以这样使用自定义的构造器 var a = Animal(life: 29, height: 1.2) 再次提醒，当有类定义里面有自定义构造器的时候，不会再自动生成默认构造器。并且对于结构体也再不会自动生成遍历属性的构造器。但是你可以将你自己的构造器写在扩展里面，这样就不会影响默认构造器的自动生成 构造器委托（Initializer Delegation） 构造器委托，就是在一个构造器里面调用另外一个构造器，这样可以减少多余的代码。在构造器里面使用self.init语法来调用另外一个构造器，且这个语法只能在构造器里面使用。构造器委托在值类型（结构体和枚举类）和类直接是不太一样的。因为类需要考虑到继承问题。先来看值类型的构造器委托。这个很简单，调用另外一个构造器就行了。下面的例子虽然有点脱裤子放屁的感觉，但。。就是举个例子而已 struct Apple &#123; var totalPrice: Double init(totalPrice: Double) &#123; self.totalPrice = totalPrice &#125; init(kg: Double, pricePerKg: Double) &#123; let totalPrice = kg * pricePerKg self.init(totalPrice: totalPrice) //调用另外一个构造器 &#125; &#125; 类的继承和初始化 因为类可以继承，所以它的初始化规则就变得比结构体要复杂多了。首先，类的构造器分为指定构造器（Designated Initializer） 和 便利构造器 （Convenience Initializer）一个类通常具有很少数量（一般只有1个）的指定构造器。但是必须最少具有一个。便利构造器是用来调用指定构造器完成初始化工作的。一个类可以不具有遍历构造器。两种构造器的语法 //指定构造器 init(parameters) &#123; statements &#125; //便利构造器 convenience init(parameters) &#123; statements &#125; 类的构造器委托规则： 1、一个指定构造器必须调用它的直接父类的指定构造器 2、一个便利构造器必须调用同一个类的另外的构造器 3、一个便利构造器必须最终以调用指定构造器结束。 规则2和3连起来就是说，一个便利构造器可能会调用了另外一个便利构造器，然后这个构造器又调用了另外一个便利构造器….但是这个链的最后的一个便利构造器必须是调用指定构造器。下面附上官方的图片。在图片上可以看到，三条规则总结起来就是：指定构造器往上调用，便利构造器平行调用且终结在指定构造器。 类的初始化分为两阶段第一阶段 1、一个指定构造器或便利构造器被调用 2、分配类实例所需的内存，但是内存没有初始化 3、这个类的指定构造器确保该类引入的新的存储属性都初始化。（因为便利构造器最终会到指定构造器）。 4、然后这个构造器调用父类的指定构造器完成和第三步同样的工作。 5、直到继承链的最顶部分。 6、这时候有的存储属性都有初始值了。 第二阶段 1、从继承链的最顶部分出发。每个指定构造器具有了修改实例的权利。并且可以调用实例方法。 2、最后，这个初始化链条里面的便利构造器都具有了修改实例的权利。 遵循上面两个阶段的步骤，避免了当在初始化链后面的构造器修改了属性之后，又被前面的构造器修改属性的可能性。避免了使用没有经过初始化的属性的可能性。 为了确保两个阶段步骤的实施。编译器有4条检测规则，这四条规则决定了你在构造器里面某些代码的顺序。 1、在调用父类构造器之前，必须确保子类引入的新属性已经得到初始化。 2、子类必须在调用了父类的构造器之后，才能访问继承的属性。 3、便利构造器必须在调用了其他构造器之后，才能访问属性或调用实例方法。 4、在完成第一阶段之前（其实就是完成初始化本类定义的新属性，调用父类构造器），构造器不能调用实例方法，不能访问属性的值，不能把self当做值访问。但是可以用self.属性名的方式给属性赋值。 下面可以看看分别违反每个规则的例子 class Animal &#123; var life: Int var height: Double init(getLife: Int, getHeight: Double) &#123; self.life = getLife self.height = getHeight &#125; &#125; class Dog: Animal &#123; var name: String init()&#123; super.init(getLife: 2, getHeight: 2.0) //这句报错，违反第一条，必须先将本类引入的属性初始化才能调用父类构造器 self.name = "Larry" //所以这一句必须写在前面才没错 &#125; init(name: String, getLife: Int, getHeight: Double)&#123; self.name = name self.life = 1 //这句报错，违反第二条，必须调用了父类构造器之后才能访问继承的属性。 super.init(getLife: getLife, getHeight: getHeight) //这句必须放在第二句之前才没错 &#125; convenience init(getLife: Int) &#123; self.name = "Larry" //这句报错，违反第三条，便利构造器里面必须调用了其他构造器之后才能访问属性 self.init() //这句应该放在前面 &#125; init(getName: String) &#123; self.name = getName Dog.sayHello() self.printName() //这句报错，违反第四条，必须完成了阶段1才能调用实例方法或访问属性 super.init(getLife: 21, getHeight: 2.3) //这句应该放在前面 &#125; func printName()&#123; print(self.name) &#125; static func sayHello()&#123; print("hello") &#125; &#125; 属性观察器 以前说过，属性观察器在构造器里面给属性赋值的时候是不会被调用的。但是这个只针对于本类定义的属性。对于继承而来的属性，当已经经过父类的构造器完成初始化后，如果在子类里面修改了继承属性的值，那么就会触发父类观察器，如果你在子类里面也覆盖了这个观察器，那么子类和父类的观察器都会被调用 另外再看 class Animal &#123; var life: Int = 0 &#123; willSet&#123; print("animial life newValue \(newValue)") &#125; &#125; init(getlife: Int)&#123; print("animal life init \(self.life)") self.life = 1 print("animal life after assign \(self.life)") &#125; &#125; 如果我们调用下面的语句 var a = Animal(getlife: 3) //打印 //animal life init 0 //animal life after assign 1 注意一点，我们在init里面第一句已经用到了self。根据编译器规则第四条，不允许在属性没有初始化的前进行访问。从上面代码通过编译来看，这里编译器已经将属性初始化为定义时候的值了。如果你将定义时候的默认值删去，那么第一句就会报错Swift默认是不继承父类的构造器的。如果你想要和父类一样的构造器，那么必须自己写。如果你写的构造器（不管是指定还是便利）和父类的指定构造器一样，那么这个构造器前必须加上override关键字。如果你写的构造器和父类的便利构造器一样，那么不用加override，因为子类永远不能直接调用父类的便利构造器。但是在某些情况下，子类可以自动继承父类构造器。前提条件：子类新引入的属性都必须具有默认值 规则1：如果子类没有定义任何的指定构造器。那么子类自动继承父类所有的指定构造器。 规则2：如果子类实现了父类所有的指定构造器（可以通过规则1继承而来，也可以通过重写而来），那么子类自动继承父类所有的便利构造器。 例子 class Animal &#123; var life: Int var height: Double convenience init(getLife: Int)&#123; self.init(getLife: getLife, getHeight: 0.0) &#125; init(getLife: Int, getHeight: Double) &#123; self.life = getLife self.height = getHeight &#125; &#125; class Dog: Animal &#123; var name: String = "Larry" // override init(getLife: Int, getHeight: Double)&#123; // super.init(getLife: getLife, getHeight:getHeight) // &#125; &#125; 无论上面Dog类里面注释的代码是否打开，Dog都继承了Animal的所有构造器 Failable Initializers可失败的构造器 Swift中有个概念，就是创建实例的时候如果条件不符合，可以返回一个nil对象。这类可以返回nil的构造器叫做可失败的构造器。语法是在init的前面加上一个？。当条件不满足的时候，你可以用 return nil结束构造方法。那么这时候得到的实例其实是一个nil，这里也说明了，可失败构造器返回的是可选类型。其实之前也说过，Swift的构造器是不需要返回值的。所以你成功的时候不需要写return什么东东。 值类型的可失败构造器下面是structure的 struct Apple &#123; var pricePerKg: Double init?(pricePerKg: Double)&#123; if pricePerKg &lt; 0 &#123; return nil &#125; self.pricePerKg = pricePerKg &#125; &#125; print(Apple(pricePerKg: 2)) print(Apple(pricePerKg: -2)) //打印 //Optional(SwiftTest.Apple(pricePerKg: 2.0)) //nil 接下来是枚举类的 enum FruitSet &#123; case apple, orange, banana init?(symbol: Character)&#123; switch symbol &#123; case &quot;a&quot;,&quot;A&quot; : self = .apple case &quot;o&quot;,&quot;O&quot; : self = .orange case &quot;b&quot;,&quot;B&quot; : self = .banana default : return nil &#125; &#125; &#125; print(FruitSet(symbol: &quot;a&quot;)) print(FruitSet(symbol: &quot;e&quot;)) //打印 //Optional(SwiftTest.FruitSet.apple) //nil 对应有默认值的枚举类，会自动生成一个init?(rawValue:)的构造器。如下 enum FruitSet : Character&#123; case apple = "a", orange = "o", banana = "b" &#125; print(FruitSet(rawValue: "a")) print(FruitSet(rawValue: "e")) 类的可失败构造器 有一个规则，就是必须在本类所有的属性（包括继承的）都赋值之后才可以返回nil class Apple &#123; var pricePerKg: Double init?(pricePerKg: Double)&#123; if pricePerKg &lt; 0 &#123; return nil //这句报错，所以你必须先初始化其他属性值 &#125; self.pricePerKg = pricePerKg &#125; &#125; 可失败初始化的传递过程 一个可失败的构造器可以调用其他的构造器，无论是可失败的还是不会失败的。 但是一个不可失败的构造器不能去调用一个可失败的构造器。如果去调用父类的可失败构造器，虽然用解包可以解决，但是一旦父类的可失败构造器返回了nil，那么程序直接崩溃 class Fruit &#123; var name: String init?(name: String)&#123; self.name = name if name.isEmpty &#123; return nil &#125; &#125; &#125; class Apple: Fruit &#123; var pricePerKg: Double init(pricePerKg: Double)&#123; self.pricePerKg = pricePerKg super.init(name: "")! //利用解包调用了父类的可失败构造器，但是因为这样父类会返回一个nil，所以程序在这行会崩溃 &#125; convenience init?()&#123; self.init(pricePerKg: 3) &#125; &#125; var i = Apple(pricePerKg: 3) 同样的，可失败的构造器也可以被重写，你可以重写为不可失败的构造器。但是不可失败的构造器不能覆盖为可失败的构造器。你可以用!代替?来实现可失败构造器，那么这样得到的实例会自动解包。当然，存在nil报错的问题。记得处理。 必须构造器（Required Initializers） 在构造器前面加上required关键字就行了。这样的构造器要求子类必须重写。子类重写这个构造器的时候，也必须加上required关键字。要求子类的子类也要重写这个构造器。写了required后不用写override关键字。写了会有警告。 给属性默认值时使用闭包或函数 func getprice()-&gt;Double &#123; return 1 &#125; class Apple &#123; var pricePerKg: Double = getprice() var name = &#123; return "apple" &#125;() //留意这对小括号，没有的话那就是给属性赋值一个闭包了。 &#125; var a = Apple() print(a.pricePerKg,a.name) 析构器 析构器，就是在一个实例再也不用到时候调用的方法。析构器里面完成一些清理工作或保存数据等等。析构器是系统自动调用的，不允许自行调用。 语法 deinit &#123; // perform the deinitialization &#125;]]></content>
+      <categories>
+        <category>Swift</category>
+        <category>Grammar</category>
       </categories>
   </entry>
   <entry>
@@ -2287,8 +2301,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>OC</tag>
         <tag>Func</tag>
+        <tag>OC</tag>
       </tags>
   </entry>
   <entry>
@@ -2334,8 +2348,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>OC</tag>
         <tag>Func</tag>
+        <tag>OC</tag>
       </tags>
   </entry>
   <entry>
@@ -2423,7 +2437,7 @@
   <entry>
     <title><![CDATA[OC-CocoaPods配置]]></title>
     <url>%2F2015%2F11%2F20%2FOC%2FFunc%2FOC-CocoaPods%E9%85%8D%E7%BD%AE%2F</url>
-    <content type="text"><![CDATA[本地安装好Ruby环境,下载和安装CocoaPods $ sudo gem install cocoapods search 第三方 $ pod search AFNetworking Podfile $ vim Podfile Podfile文件 platform :ios, &apos;9.0&apos; pod &quot;AFNetworking&quot;, &quot;~&gt; 3.0&quot; 保存退出命令 $ :wq 下载第三方 $ pod update 会更新所有的类库$ pod install]]></content>
+    <content type="text"><![CDATA[CocoaPods配置 本地安装好Ruby环境,下载和安装CocoaPods $ sudo gem install cocoapods search 第三方 $ pod search AFNetworking Podfile $ vim Podfile Podfile文件 platform :ios, &apos;9.0&apos; pod &quot;AFNetworking&quot;, &quot;~&gt; 3.0&quot; 保存退出命令 $ :wq 下载第三方 $ pod update 会更新所有的类库$ pod install 错误lib required by Podfile CocoaPods的版本库是有缓存的, 但在使用pod指令更新版本库时会出现冲突, 导致更新并不能如期完成, 需要手动删除本地缓存, 再进行更新. 命令更新CocoaPods版本库–&gt;没有效果 $ pod update --verbose 如下 $ sudo rm -fr ~/.cocoapods/repos/master$ pod setup]]></content>
       <categories>
         <category>OC</category>
         <category>Func</category>
