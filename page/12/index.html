@@ -392,10 +392,15 @@
       
         
           
-            <h1 id="创建数据请求类"><a href="#创建数据请求类" class="headerlink" title="创建数据请求类"></a>创建数据请求类</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">import</span> UIKit  </div><div class="line"><span class="keyword">import</span> AFNetworking  </div><div class="line"><span class="comment">//请求方法  </span></div><div class="line"><span class="comment">/// - GET:  get  </span></div><div class="line"><span class="comment">/// - POST: post  </span></div><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">RequsetMethod</span>:<span class="title">String</span> </span>&#123;  </div><div class="line">    <span class="keyword">case</span> <span class="type">GET</span> = <span class="string">"GET"</span>  </div><div class="line">    <span class="keyword">case</span> <span class="type">POST</span> =  <span class="string">"POST"</span>  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SPFNetWorkManager</span>: <span class="title">AFHTTPSessionManager</span> </span>&#123;  </div><div class="line">      </div><div class="line">    <span class="comment">//单例  </span></div><div class="line">    <span class="keyword">static</span> <span class="keyword">let</span> sharedTools:<span class="type">SPFNetWorkManager</span> = &#123;  </div><div class="line">        <span class="keyword">let</span> instance = <span class="type">SPFNetWorkManager</span>()  </div><div class="line">        instance.responseSerializer.acceptableContentTypes?.insert(<span class="string">"text/html"</span>)  </div><div class="line">        instance.responseSerializer.acceptableContentTypes?.insert(<span class="string">"text/plain"</span>)  </div><div class="line">        <span class="keyword">return</span> instance  </div><div class="line">    &#125;()  </div><div class="line">    <span class="comment">// 定义请求完成的回调的别名  </span></div><div class="line">    <span class="keyword">typealias</span> httptoolBack = (response:<span class="type">AnyObject</span>?,error:<span class="type">NSError</span>?)-&gt;()  </div><div class="line">      </div><div class="line">    <span class="comment">/// 请求数据  </span></div><div class="line">    <span class="comment">///  </span></div><div class="line">    <span class="comment">/// - parameter urlString:  请求地址  </span></div><div class="line">    <span class="comment">/// - parameter parameters: 请求参数  </span></div><div class="line">    <span class="comment">/// - parameter finished:   请求成功或者失败的回调  </span></div><div class="line">      </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">request</span><span class="params">(method: RequsetMethod = .GET, urlString: String, parameters: AnyObject?, finished:httptoolBack)</span></span>&#123;  </div><div class="line">          </div><div class="line">          </div><div class="line">        <span class="comment">// 定义请求成功的闭包  </span></div><div class="line">        <span class="keyword">let</span> success = &#123; (dataTask: <span class="type">NSURLSessionDataTask</span>, responseObject: <span class="type">AnyObject</span>?) -&gt; <span class="type">Void</span> <span class="keyword">in</span>  </div><div class="line">            finished(response: responseObject, error: <span class="literal">nil</span>)  </div><div class="line">        &#125;  </div><div class="line">          </div><div class="line">        <span class="comment">// 定义请求失败的闭包  </span></div><div class="line">        <span class="keyword">let</span> failure = &#123; (dataTask: <span class="type">NSURLSessionDataTask</span>?, error: <span class="type">NSError</span>) -&gt; <span class="type">Void</span> <span class="keyword">in</span>  </div><div class="line">            finished(response: <span class="literal">nil</span>, error: error)  </div><div class="line">        &#125;  </div><div class="line">          </div><div class="line">        <span class="keyword">if</span> method == .<span class="type">GET</span> &#123;  </div><div class="line">              </div><div class="line">            <span class="type">GET</span>(urlString, parameters: parameters, progress: <span class="literal">nil</span>, success: success, failure: failure)  </div><div class="line">        &#125;<span class="keyword">else</span>&#123;  </div><div class="line">            <span class="type">POST</span>(urlString, parameters: parameters, progress: <span class="literal">nil</span>, success: success, failure: failure)  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">      </div><div class="line">      </div><div class="line">      </div><div class="line">    <span class="comment">/// 发送请求(上传文件)  </span></div><div class="line">      </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">requestWithData</span><span class="params">(data: NSData, name: String, urlString: String, parameters: AnyObject?, finished:httptoolBack)</span></span> &#123;  </div><div class="line">        <span class="comment">// 定义请求成功的闭包  </span></div><div class="line">        <span class="keyword">let</span> success = &#123; (dataTask: <span class="type">NSURLSessionDataTask</span>, responseObject: <span class="type">AnyObject</span>?) -&gt; <span class="type">Void</span> <span class="keyword">in</span>  </div><div class="line">            finished(response: responseObject, error: <span class="literal">nil</span>)  </div><div class="line">        &#125;  </div><div class="line">          </div><div class="line">        <span class="comment">// 定义请求失败的闭包  </span></div><div class="line">        <span class="keyword">let</span> failure = &#123; (dataTask: <span class="type">NSURLSessionDataTask</span>?, error: <span class="type">NSError</span>) -&gt; <span class="type">Void</span> <span class="keyword">in</span>  </div><div class="line">            finished(response: <span class="literal">nil</span>, error: error)  </div><div class="line">        &#125;  </div><div class="line">          </div><div class="line">        <span class="type">POST</span>(urlString, parameters: parameters, constructingBodyWithBlock: &#123; (formData) -&gt; <span class="type">Void</span> <span class="keyword">in</span>  </div><div class="line">            formData.appendPartWithFileData(data, name: name, fileName: <span class="string">"aa"</span>, mimeType: <span class="string">"application/octet-stream"</span>)  </div><div class="line">            &#125;, progress: <span class="literal">nil</span>, success: success, failure: failure)  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="调用方法"><a href="#调用方法" class="headerlink" title="调用方法"></a>调用方法</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> urlString = <span class="string">"http://192.168.3.7:8080/FreshFun/homepage.do"</span>  </div><div class="line">       <span class="comment">//创建httpTool 实例  </span></div><div class="line">       <span class="keyword">let</span> <span class="type">HttpRequest</span> = <span class="type">SPFNetWorkManager</span>.sharedTools  </div><div class="line">       </div><div class="line">       <span class="comment">//发送GET请求  </span></div><div class="line">       <span class="type">HttpRequest</span>.request(<span class="type">RequsetMethod</span>.<span class="type">GET</span>, urlString: urlString, parameters:<span class="literal">nil</span> ) &#123; (response, error) <span class="keyword">in</span>  </div><div class="line">           <span class="built_in">print</span>(response)  </div><div class="line">       &#125;</div></pre></td></tr></table></figure>
-<h1 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">Optional</span>(&#123;  </div><div class="line">           goodsMoney = <span class="string">"22.00"</span>;  </div><div class="line">           <span class="string">"goods_des"</span> = <span class="string">"\U9999\U8549\U8089333"</span>;  </div><div class="line">           <span class="string">"goods_img"</span> = <span class="string">"/image/2016/9/8/1473340021432.png"</span>;  </div><div class="line">           <span class="string">"goods_name"</span> = <span class="type">BananaMeat</span>;  </div><div class="line">           id = <span class="number">4</span>;  </div><div class="line">           marketMoney = <span class="string">"31.43"</span>;  </div><div class="line">       &#125;）</div></pre></td></tr></table></figure>
-          
+          创建数据请求类  import UIKit  import AFNetworking  //请求方法  /// - GET:  get  /// - POST: post  enum RequsetMethod:String &#123;      case GET = "GET"      cas
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/13/Swift/Network/Swift-Network-AFNetworking-网络请求/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -559,9 +564,16 @@
       
         
           
-            <p><a href="https://www.jianshu.com/p/2bad53a2a180" target="_blank" rel="external">https://www.jianshu.com/p/2bad53a2a180</a></p>
+          https://www.jianshu.com/p/2bad53a2a180
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/13/Swift/Lib/SnapKit-自动布局/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -725,9 +737,16 @@
       
         
           
-            <p><a href="http://blog.csdn.net/djh996064549/article/details/71085679" target="_blank" rel="external">http://blog.csdn.net/djh996064549/article/details/71085679</a></p>
+          http://blog.csdn.net/djh996064549/article/details/71085679
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/13/Swift/Lib/Kingfisher-图片加载库/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -891,31 +910,21 @@
       
         
           
-            <h1 id="keychain与userdefaults"><a href="#keychain与userdefaults" class="headerlink" title="keychain与userdefaults"></a>keychain与userdefaults</h1><blockquote>
-<p>keychain</p>
-</blockquote>
-<ul>
-<li>将数据加密后存储在本地,更安全.路径:Library/Application Support/iPhone Simulator/模拟器版本/Library/Keychains/</li>
-<li>当你删除APP后,keychain存储的数据不会删除 </li>
-</ul>
-<blockquote>
-<p>userdefaults</p>
-</blockquote>
-<ul>
-<li>数据以明文的形式保存在.plist文件中.路径:Library/Application Support/iPhone Simulator/模拟器版本/Applications/应用对应的数字/Library/Preference/.plist文件<ul>
-<li>当你删除APP后,user defaults存储的数据会随着APP而删掉</li>
-</ul>
-</li>
-</ul>
-<h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><blockquote>
-<p>导入</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">pod &apos;SSKeychain&apos;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>实现</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">#import &quot;ViewController.h&quot;</div><div class="line">#import &lt;SSKeychain.h&gt;</div><div class="line">#import &lt;SSKeychainQuery.h&gt;</div><div class="line"></div><div class="line"></div><div class="line">//应用名称(保证唯一性)</div><div class="line">#define ServiceName @&quot;com.zx.tec.SSKeychainTest&quot;</div><div class="line">//账号</div><div class="line">#define Account @&quot;test2&quot;</div><div class="line"></div><div class="line">@interface ViewController ()</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line">@implementation ViewController</div><div class="line"></div><div class="line"></div><div class="line">- (void)viewDidLoad &#123;</div><div class="line"></div><div class="line">    [superviewDidLoad];</div><div class="line"></div><div class="line">    /**</div><div class="line"></div><div class="line">     *  SSKeychain 是一种本地存储方式不会因为程序卸载而清除 用于存储私密 及唯一 的标示</div><div class="line">     *</div><div class="line">     *  五个方法:(用到两个)</div><div class="line">     *  + (NSArray *)allAccounts;</div><div class="line">     *  + (NSArray *)accountsForService:(NSString *)serviceName;</div><div class="line">     *  + (NSString *)passwordForService:(NSString *)serviceName account:(NSString *)account;</div><div class="line">     *  + (BOOL)deletePasswordForService:(NSString *)serviceName account:(NSString *)account;</div><div class="line">     *  + (BOOL)setPassword:(NSString *)password forService:(NSString *)serviceName account:(NSString *)account;</div><div class="line">     */</div><div class="line"></div><div class="line">    </div><div class="line"></div><div class="line">#pragma mark - 开始使用 SSKeychain</div><div class="line">    //获取uuid(如果想获取唯一标示,存储以 uuid为密码存储 下次登陆直接读取检测是否安装)</div><div class="line">    //CFUUIDRef uuid = CFUUIDCreate(NULL);</div><div class="line">    //assert(uuid != NULL);</div><div class="line">    //CFStringRef uuidStr = CFUUIDCreateString(NULL, uuid);</div><div class="line">    // NSLog(@&quot;%@~~%@&quot;, uuidStr, [NSString stringWithFormat:@&quot;%@&quot;, uuidStr]);</div><div class="line">    /**</div><div class="line">     *  + (NSString *)passwordForService:(NSString *)serviceName account:(NSString *)account;//获取指定 serviceName和 account 的密码</div><div class="line">     *</div><div class="line">     *  + (BOOL)setPassword:(NSString *)password forService:(NSString *)serviceName account:(NSString *)account;//存储指定 serviceName和 account 的密码</div><div class="line">     *</div><div class="line">     */</div><div class="line"></div><div class="line">    NSString *passWord = @&quot;123456&quot;;</div><div class="line">    if (![SSKeychainpasswordForService:ServiceNameaccount:Account]) &#123;//查看本地是否存储指定 serviceName和 account 的密码</div><div class="line">        //如果没设置密码则设定密码 并存储</div><div class="line">        [SSKeychainsetPassword:passWord forService:ServiceNameaccount:Account];</div><div class="line">        //打印密码信息</div><div class="line">        NSString *retrieveuuid = [SSKeychainpasswordForService:ServiceNameaccount:Account];</div><div class="line">        NSLog(@&quot;SSKeychain存储显示:未安装过:%@&quot;, retrieveuuid);</div><div class="line">    &#125;else&#123;</div><div class="line">        //曾经安装过则直接能打印出密码信息(即使删除了程序再次安装也会打印密码信息) 区别于 NSUSerDefault</div><div class="line">        NSString *retrieveuuid = [SSKeychainpasswordForService:ServiceNameaccount:Account];</div><div class="line">        NSLog(@&quot;SSKeychain存储显示 :已安装过:%@&quot;, retrieveuuid);</div><div class="line">    &#125;</div><div class="line">#warning 区别于 NSUSerDefault (删除应用程序后存储的数据就会消失)</div><div class="line">    if (![[NSUserDefaultsstandardUserDefaults]boolForKey:@&quot;TestOne&quot;]) &#123;</div><div class="line">        [[NSUserDefaultsstandardUserDefaults]setBool:YESforKey:@&quot;TestOne&quot;];</div><div class="line">        NSLog(@&quot;NSUSerDefault存储显示:未安装&quot;);</div><div class="line">    &#125;else&#123;</div><div class="line">        NSLog(@&quot;NSUSerDefault存储显示:安装过&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
+          keychain与userdefaults
+keychain
+
+
+将数据加密后存储在本地,更安全.路径:Library/Application Support/iPhone Simulator/模拟器版本/Library/Keychains/
+当你删除APP后,keychain存储的数据不会删除 
+
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/13/OC/Lib/OC-Lib-SSKeychain-数据本地化方式之一/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1068,47 +1077,18 @@
       
         
           
-            <h1 id="没有集成发送崩溃报告功能"><a href="#没有集成发送崩溃报告功能" class="headerlink" title="没有集成发送崩溃报告功能"></a>没有集成发送崩溃报告功能</h1><h2 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h2><blockquote>
-<p>所有崩溃记录都会记录在设备上，没有集成让用户发送崩溃报告功能的i，要获得crash文件就必须先连上崩溃过的机器</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">打开Xcode---&gt;选择Window -&gt; Devices，选择你自己的机器，然后点击View Device Logs，打开小窗口，这是机器上至目前为止存的所有app的崩溃信息了</div><div class="line">如果是好久没看过这个信息，打开后还要读取好久才能完全读完，总之，找到你的app最后一次崩溃记录，右键导出</div></pre></td></tr></table></figure>
-<p><img src="http://ozr735s7e.bkt.clouddn.com/iOS-Func-Symbolicatecrash%E5%88%86%E6%9E%90crash%E6%96%87%E4%BB%B6-001.png" alt="001"></p>
-<blockquote>
-<p>导出来的.crash文件，上半部分都是一些基本信息（基本没用），重点看下崩溃部分的记录</p>
-</blockquote>
-<p><img src="http://ozr735s7e.bkt.clouddn.com/iOS-Func-Symbolicatecrash%E5%88%86%E6%9E%90crash%E6%96%87%E4%BB%B6-002.png" alt="002"></p>
-<blockquote>
-<p>找到你上次发布的ipa（如果实在没有了就再从Archives里导出来一个，但一定要保证是你上次发布用的那个），右键 -&gt; 打开方式 -&gt; 归档实用工具(就是解压缩)，然后把Payload文件夹下的.app文件也扔到刚刚的crash文件夹里<br>接下来还需要dSYM文件，还是在Archives里，找到发布用的那个，右键Show in Finder</p>
-</blockquote>
-<p><img src="http://ozr735s7e.bkt.clouddn.com/iOS-Func-Symbolicatecrash%E5%88%86%E6%9E%90crash%E6%96%87%E4%BB%B6-003.png" alt="003"></p>
-<blockquote>
-<p>然后对文件夹中的这个.xcarchive文件右键，显示包内容，就可以看到一个名为dSYMs的文件夹，把里面的.dSYM文件拷出来，还是放到桌面的crash文件夹里</p>
-</blockquote>
-<h2 id="symbolicatecrash是一个隐藏工具"><a href="#symbolicatecrash是一个隐藏工具" class="headerlink" title="symbolicatecrash是一个隐藏工具"></a>symbolicatecrash是一个隐藏工具</h2><blockquote>
-<p>/Applications/Xcode8.1.app/Contents/SharedFrameworks/DTDeviceKitBase.framework/Versions/A/Resources/symbolicatecrash</p>
-<p>终端中输入命令搜索：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ find /Applications/Xcode8.1.app -name symbolicatecrash -type f</div></pre></td></tr></table></figure>
-<ul>
-<li>这个路径拷贝一下，然后粘到Finder的“前往文件夹”下，前往，就可以看到symbolicatecrash工具了，现在把它也拷到桌面的crash文件夹里。至此，crash文件夹里现在有4个文件了，分别是.app, .crash, .dSYM, symbolicatecrash。接下来就是用终端敲命令，生成更易分析的crash</li>
-</ul>
-<blockquote>
-<p>首先用cd命令进入到crash文件夹下，然后输入以下命令</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ ./symbolicatecrash /Users/xxxx/Desktop/crash/InOrder.crash /Users/xxxx/Desktop/crash/InOrder.app.dSYM &gt; Control_symbol.crash</div></pre></td></tr></table></figure>
-<blockquote>
-<p>上述命令中，”xxxx”和”InOrder”请自行替换成对应的名称。运行，这时候终端可能会报错Error: “DEVELOPER_DIR” is not defined at /usr/local/bin/symbolicatecrash line 53. 这时候在终端中再输入如下（Xcode6.1.app依然是要替换成实际名称）</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ export DEVELOPER_DIR=&quot;/Applications/Xcode8.1.app/Contents/Developer&quot;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>然后再跑一下刚刚的那个命令，这时候看一下桌面的crash文件夹下就会多出一个名为“Control_symbol.crash”的文件，这就是可定位问题的crash文件了，我们打开看一下</p>
-</blockquote>
-<p><img src="http://ozr735s7e.bkt.clouddn.com/iOS-Func-Symbolicatecrash%E5%88%86%E6%9E%90crash%E6%96%87%E4%BB%B6-004.png" alt="004"></p>
-<blockquote>
-<p>现在红框里原来的那些乱七八糟的东西已经“翻译”成了崩溃在具体的哪一个.m文件的哪一行。下面就是进行合理的猜想和调试了，比如我的崩溃就是因为这个第三方时间选择控件使用截取字符串的形式来获得时间，像09:23 PM就被固定的拆成了时、分、上下午标识3段，结果用户使用24小时制的时候，时间就成了21:23，没了上下午标识，array[2]超出下标妥妥的闪退。想想我脑洞也是蛮大的，这种问题原因都被猜到了</p>
-</blockquote>
+          没有集成发送崩溃报告功能导出
+所有崩溃记录都会记录在设备上，没有集成让用户发送崩溃报告功能的i，要获得crash文件就必须先连上崩溃过的机器
 
-          
+打开Xcode---&gt;选择Window -&gt; Devices，选择你自己的机器，然后点击View Device Logs，打开小窗口，这是机器上
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/12/OC/Func/iOS-Func-Symbolicatecrash分析crash文件/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1261,30 +1241,26 @@
       
         
           
-            <h1 id="open"><a href="#open" class="headerlink" title="open"></a>open</h1><blockquote>
-<p>open弥补public语义上的不足</p>
-</blockquote>
-<h1 id="pubic"><a href="#pubic" class="headerlink" title="pubic"></a>pubic</h1><blockquote>
-<p>现在的pubic有两层含义：</p>
-</blockquote>
-<ul>
-<li>①这个元素可以在其他作用域被访问</li>
-<li>②这个元素可以在其他作用域被继承或者override</li>
-</ul>
-<h1 id="继承问题"><a href="#继承问题" class="headerlink" title="继承问题"></a>继承问题</h1><h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><blockquote>
-<p>继承是一件危险的事情<br>尤其对于一个framework或者module的设计者而言<br>在自身的module内，类或者属性对于作者而言是清晰的，能否被继承或者override都是可控的,但是对于使用它的人，有时会希望传达出这个类或者属性不应该被继承或者修改,这个对应的就是 final </p>
-</blockquote>
-<h2 id="final"><a href="#final" class="headerlink" title="final"></a>final</h2><blockquote>
-<p>问题在于在标记之后，在任何地方都不能override<br>而对于lib的设计者而言，希望得到的是在module内可以被override<br>在被import到其他地方后其他用户使用的时候不能被override</p>
-<p>这就是open产生的初衷<br>通过open和public标记区别一个元素在其他module中是只能被访问还是可以被override</p>
-</blockquote>
-<p>##举例分析 ModuleA</p>
-<blockquote>
-<p>这个类在ModuleA的范围外是不能被继承的，只能被访问</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NonSubclassableParentClass</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">foo</span><span class="params">()</span></span> &#123;&#125;</div><div class="line">    <span class="comment">// 这是错误的写法，因为class已经不能被继承</span></div><div class="line">    <span class="comment">// 所以他的方法的访问权限不能大于类的访问权限</span></div><div class="line">    <span class="keyword">open</span> <span class="function"><span class="keyword">func</span> <span class="title">bar</span><span class="params">()</span></span> &#123;&#125;</div><div class="line"></div><div class="line">    <span class="comment">// final的含义保持不变</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="function"><span class="keyword">func</span> <span class="title">baz</span><span class="params">()</span></span> &#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 在ModuleA的范围外可以被继承</span></div><div class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">SubclassableParentClass</span> </span>&#123;</div><div class="line">    <span class="comment">// 这个属性在ModuleA的范围外不能被override</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">var</span> size : <span class="type">Int</span></div><div class="line"></div><div class="line">    <span class="comment">// 这个方法在ModuleA的范围外不能被override</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">foo</span><span class="params">()</span></span> &#123;&#125;</div><div class="line"></div><div class="line">    <span class="comment">// 这个方法在任何地方都可以被override</span></div><div class="line">    <span class="keyword">open</span> <span class="function"><span class="keyword">func</span> <span class="title">bar</span><span class="params">()</span></span> &#123;&#125;</div><div class="line"></div><div class="line">    <span class="comment">///final的含义保持不变</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="function"><span class="keyword">func</span> <span class="title">baz</span><span class="params">()</span></span> &#123;&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/// final的含义保持不变</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">FinalClass</span> </span>&#123; &#125;</div><div class="line"></div><div class="line"><span class="comment">/// ModuleB:</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> ModuleA</div><div class="line"></div><div class="line"><span class="comment">// 这个写法是错误的，编译会失败</span></div><div class="line"><span class="comment">// 因为NonSubclassableParentClass类访问权限标记的是public，只能被访问不能被继承</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubclassA</span> : <span class="title">NonSubclassableParentClass</span> </span>&#123; &#125;</div><div class="line"></div><div class="line"><span class="comment">// 这样写法可以通过，因为SubclassableParentClass访问权限为 `open`.</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubclassB</span> : <span class="title">SubclassableParentClass</span> </span>&#123;</div><div class="line">   </div><div class="line">    <span class="comment">// 这样写也会编译失败</span></div><div class="line">    <span class="comment">// 因为这个方法在SubclassableParentClass 中的权限为public，不是`open'.</span></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">foo</span><span class="params">()</span></span> &#123; &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 这个方法因为在SubclassableParentClass中标记为open，所以可以这样写</span></div><div class="line">    <span class="comment">// 这里不需要再声明为open，因为这个类是internal的</span></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">bar</span><span class="params">()</span></span> &#123; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">SubclassC</span> : <span class="title">SubclassableParentClass</span> </span>&#123;</div><div class="line">    <span class="comment">// 这种写法会编译失败，因为这个类已经标记为open</span></div><div class="line">    <span class="comment">// 这个方法override是一个open的方法，则也需要表明访问权限</span></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">bar</span><span class="params">()</span></span> &#123; &#125; </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">SubclassD</span> : <span class="title">SubclassableParentClass</span> </span>&#123;</div><div class="line">    <span class="comment">// 正确的写法，方法也需要标记为open</span></div><div class="line">    <span class="keyword">open</span> <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">bar</span><span class="params">()</span></span> &#123; &#125;    </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">SubclassE</span> : <span class="title">SubclassableParentClass</span> </span>&#123;</div><div class="line">    <span class="comment">// 也可以显式的指出这个方法不能在被override</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">bar</span><span class="params">()</span></span> &#123; &#125;    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
+          open
+open弥补public语义上的不足
+
+pubic
+现在的pubic有两层含义：
+
+
+①这个元素可以在其他作用域被访问
+②这个元素可以在其他作用域被继承或者override
+
+继承问题继承
+继承是一件危险的事情尤其对于一个framework或者module的设计者而言在自身的module内
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/11/Swift/Grammar/AccessControl-open/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1448,26 +1424,18 @@
       
         
           
-            <h1 id="private"><a href="#private" class="headerlink" title="private"></a>private</h1><blockquote>
-<p>在原有的swift中的private 并非真正的私有<br>一个变量定义为private，在同一个文件中的其他类依然是可以访问到的<br>在使用extension的时候很明显</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">var</span> name = <span class="string">"private"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">User</span></span>&#123;</div><div class="line">    <span class="keyword">var</span> accessPrivate: <span class="type">String</span> &#123;</div><div class="line">        <span class="keyword">return</span> name</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>带来了两个问题：</p>
-</blockquote>
-<ul>
-<li>标记为private时，意为真的私有还是文件内可共享</li>
-<li>如果意图为真正的私有时，必须保证这个类或者结构体在一个单独的文件里。否则可能同文件里其他的代码访问到</li>
-</ul>
-<h1 id="fileprivate"><a href="#fileprivate" class="headerlink" title="fileprivate"></a>fileprivate</h1><blockquote>
-<p>在swift 3中，新增加 fileprivate 来显式的表明，这个元素的访问权限为 <strong>文件内私有</strong></p>
-</blockquote>
-<ul>
-<li>过去的private对应现在的fileprivate</li>
-<li>现在的private则是真正的私有，离开了这个<strong>类</strong>或者<strong>结构体</strong>的作用域外面就无法访问</li>
-</ul>
+          private
+在原有的swift中的private 并非真正的私有一个变量定义为private，在同一个文件中的其他类依然是可以访问到的在使用extension的时候很明显
 
-          
+ class User &#123;    private var name = "private"&#125;exten
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/11/Swift/Grammar/AccessControl-private:filePrivate/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1631,58 +1599,20 @@
       
         
           
-            <h1 id="必要初始化器"><a href="#必要初始化器" class="headerlink" title="必要初始化器"></a>必要初始化器</h1><blockquote>
-<p>重写类的时候经常提示要添加代码</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">required</span> <span class="keyword">init</span>?(coder aDecoder: <span class="type">NSCoder</span>) &#123;</div><div class="line">       <span class="built_in">fatalError</span>(<span class="string">"init(coder:) has not been implemented"</span>)</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>必要初始化器，这种情况一般会出现在继承了遵守NSCoding protocol的类，比如UIView系列的类、UIViewController系列的类</p>
-</blockquote>
-<h2 id="为什么一定要添加"><a href="#为什么一定要添加" class="headerlink" title="为什么一定要添加"></a>为什么一定要添加</h2><blockquote>
-<p>这是NSCoding protocol定义的，遵守了NSCoding protoaol的所有类必须继承<br>只是有的情况会隐式继承，而有的情况下需要显示实现</p>
-</blockquote>
-<h2 id="什么情况下要显示添加："><a href="#什么情况下要显示添加：" class="headerlink" title="什么情况下要显示添加："></a>什么情况下要显示添加：</h2><blockquote>
-<p>当我们在子类定义了指定初始化器(包括自定义和重写父类指定初始化器)，那么必须显示实现required init?(coder aDecoder: NSCoder)，而其他情况下则会隐式继承，可不用理会。</p>
-</blockquote>
-<h2 id="什么情况下会调用："><a href="#什么情况下会调用：" class="headerlink" title="什么情况下会调用："></a>什么情况下会调用：</h2><blockquote>
-<p>当使用storyboard实现界面的时候，程序会调用这个初始化器。<br>注意要去掉fatalError，fatalError的意思是无条件停止执行并打印。<br>在obj-c中可以通过下面代码实现</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">NSException</span> *exception = [<span class="built_in">NSException</span> exceptionWithName:<span class="string">@"HotTeaException"</span> </div><div class="line">                                                 reason:<span class="string">@"The tea is too hot"</span> </div><div class="line">                                               userInfo:<span class="literal">nil</span>];</div><div class="line"> <span class="keyword">@throw</span> exception;</div></pre></td></tr></table></figure>
-<h1 id="举例分析"><a href="#举例分析" class="headerlink" title="举例分析"></a>举例分析</h1><h2 id="普通子类"><a href="#普通子类" class="headerlink" title="普通子类"></a>普通子类</h2><blockquote>
-<p>通常情况下，一说到required修饰符，最先想到的应该就是普通类（class）的init()方法</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> </div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> str:<span class="type">String</span></div><div class="line">    <span class="keyword">init</span>(str:<span class="type">String</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.str = str</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="定义一个MyClass的子类（subclass）并实例化这个子类"><a href="#定义一个MyClass的子类（subclass）并实例化这个子类" class="headerlink" title="定义一个MyClass的子类（subclass）并实例化这个子类"></a>定义一个MyClass的子类（subclass）并实例化这个子类</h2><blockquote>
-<p>在实例化MySubClass时，其实是继承了它父类MyClass的init()方法<br><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MySubClass</span>:<span class="title">MyClass</span> </span>&#123;</div><div class="line"> &#125;</div><div class="line"><span class="keyword">var</span> <span class="type">MySubClass</span>(str:<span class="string">"Hello Swift"</span>)</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="子类的初始化方法"><a href="#子类的初始化方法" class="headerlink" title="子类的初始化方法"></a>子类的初始化方法</h2><blockquote>
-<p>子类中添加一个init()方法<br>在init()方法前加上override修饰符，表示MySubClass重写了其父类的init()方法，然后还要调用父类的init()方法，并将参数一并传给父类的方法</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MySubClass</span>:<span class="title">MyClass</span> </span>&#123;</div><div class="line">    <span class="keyword">override</span> <span class="keyword">init</span>(str:<span class="type">String</span>) &#123;</div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(str:str)</div><div class="line">    &#125;   </div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> <span class="type">MySubClass</span>(str:<span class="string">"Hello Swift"</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>当子类的初始化方法参数类型与父类的初始化方法参数类型不同时，我们就不必在子类的初始化方法前加override修饰符了，但是要把子类初始化方法的参数类型转换为符合父类初始化方法的参数类型，然后传给父类的初始化方法</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> lass <span class="type">MyClass</span> &#123;</div><div class="line">    <span class="keyword">var</span> str:<span class="type">String</span></div><div class="line">    <span class="keyword">init</span>(str:<span class="type">String</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.str = str</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MySubClass</span>:<span class="title">MyClass</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">    <span class="keyword">init</span>(i:<span class="type">Int</span>) &#123;</div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(str:<span class="type">String</span>(i))</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="type">MySubClass</span>(i: <span class="number">10</span>)</div></pre></td></tr></table></figure>
-<h2 id="给父类的init-方法加上required修饰符"><a href="#给父类的init-方法加上required修饰符" class="headerlink" title="给父类的init()方法加上required修饰符"></a>给父类的init()方法加上required修饰符</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> str:<span class="type">String</span></div><div class="line">    <span class="keyword">required</span> <span class="keyword">init</span>(str:<span class="type">String</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.str = str</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MySubClass</span>:<span class="title">MyClass</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">    <span class="keyword">init</span>(i:<span class="type">Int</span>) &#123;</div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(str:<span class="type">String</span>(i))</div><div class="line">    &#125;</div><div class="line">     <span class="comment">// 编译错误</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="type">MySubClass</span>(i: <span class="number">10</span>)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>因为我们没有实现父类中要去必须要实现的方法</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  </div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> str:<span class="type">String</span></div><div class="line">    <span class="keyword">required</span> <span class="keyword">init</span>(str:<span class="type">String</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.str = str</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MySubClass</span>:<span class="title">MyClass</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">    <span class="keyword">required</span> <span class="keyword">init</span>(str:<span class="type">String</span>) &#123;</div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(str: str)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">init</span>(i:<span class="type">Int</span>) &#123;</div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(str:<span class="type">String</span>(i))</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="type">MySubClass</span>(i: <span class="number">10</span>)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>子类需要添加异于父类的初始化方法时，必须先要实现父类中使用required修饰符修饰过的初始化方法，并且也要使用required修饰符而不是override<br>如果子类中不需要添加任何初始化方法，我们则可以忽略父类的required初始化方法：</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> str:<span class="type">String</span></div><div class="line">    <span class="keyword">required</span> <span class="keyword">init</span>(str:<span class="type">String</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.str = str</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MySubClass</span>:<span class="title">MyClass</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">//编译器不会报错，因为如果子类没有任何初始化方法时，Swift会默认使用父类的初始化方法You do not have to provide an explicit implementation of a required initializer if you can satisfy the requirement with an inherited initialiser.</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="type">MySubClass</span>(str: <span class="string">"hello swift"</span>)</div></pre></td></tr></table></figure>
-<h1 id="required修饰符的使用规则"><a href="#required修饰符的使用规则" class="headerlink" title="required修饰符的使用规则"></a>required修饰符的使用规则</h1><ul>
-<li>required修饰符只能用于修饰类初始化方法</li>
-<li>当子类含有异于父类的初始化方法时（初始化方法参数类型和数量异于父类），子类必须要实现父类的required初始化方法，并且也要使用required修饰符而不是override</li>
-<li>当子类没有初始化方法时，可以不用实现父类的required初始化方法</li>
-</ul>
-<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><blockquote>
-<p>如果代码实现界面，那么我们只要根据编译器提示添加必要初始化器后，就不用理会，我们创建界面的工作可以在自定义的初始化器里实现。</p>
-<p>补充：let vc = UIViewController()方式初始化类<br>UIViewController类视乎只有两个初始化器，一个是必要初始化器init?(coder aDecoder: NSCoder)，一个是指定初始化器init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?)，那么为什么我们可以用let vc = UIViewController()这种方式初始化类呢？原因可能是这个初始化方式是来自uikit,也就是调用了Object-c下的UIViewController初始化方法，是object-c bridge过来的</p>
-</blockquote>
+          必要初始化器
+重写类的时候经常提示要添加代码
 
-          
+required init?(coder aDecoder: NSCoder) &#123;       fatalError("init(coder:) has not been implemented")   &#125;
+
+必要初始化器，这种情况
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/11/Swift/Grammar/RequiredInit必要初始化器/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1846,23 +1776,18 @@
       
         
           
-            <h1 id="用系统方法setValuesForKeys-赋值问题-swift4"><a href="#用系统方法setValuesForKeys-赋值问题-swift4" class="headerlink" title="用系统方法setValuesForKeys()赋值问题 (swift4)"></a>用系统方法setValuesForKeys()赋值问题 (swift4)</h1><blockquote>
-<p>在swift3中，编译器自动推断@objc，换句话说，它自动添加@objc<br>在swift4中，编译器不再自动推断，你必须显式添加@objc</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="meta">@objc</span> <span class="keyword">var</span> content = <span class="string">""</span></div><div class="line">swift <span class="number">4.0</span> 版本要在前面加<span class="meta">@objc</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>还有一种更简单的方法，不必一个一个属性的添加,下面这种写法</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="meta">@objc</span>Members</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="setValuesForKeys-奔溃-swift4"><a href="#setValuesForKeys-奔溃-swift4" class="headerlink" title="setValuesForKeys()奔溃(swift4)"></a>setValuesForKeys()奔溃(swift4)</h1><blockquote>
-<p>@objc解决了单个属性的问题，一个属性的值是数组字典，用setValuesForKeys()  程序奔溃，xcode9.0.1提示如下 </p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">[__NSCFConstantString <span class="built_in">count</span>]: unrecognized selector sent to instance <span class="number">0x102cb3290</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>造成崩溃是因为该字段如果为空 用了空串来占位，造成数据类型不一致而崩溃。这个在swift3中没有问题 </p>
-</blockquote>
+          用系统方法setValuesForKeys()赋值问题 (swift4)
+在swift3中，编译器自动推断@objc，换句话说，它自动添加@objc在swift4中，编译器不再自动推断，你必须显式添加@objc
 
-          
+ @objc var content = ""swift 4.0 版本要在前面加@ob
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/11/Swift/Grammar/4-0更新/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2026,18 +1951,18 @@
       
         
           
-            <h1 id="guard语句"><a href="#guard语句" class="headerlink" title="guard语句"></a>guard语句</h1><blockquote>
-<p>guard语句判断其后的表达式布尔值为false时，才会执行之后代码块里的代码，如果为true，则跳过整个guard语句<br>guard语句只会有一个代码块，if语句可以if else多个代码块<br>类似  OC里的Continue</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">func</span> <span class="title">checkup</span><span class="params">(person: [String: String!])</span></span> &#123;</div><div class="line">   </div><div class="line">    <span class="comment">// 检查身份证，如果身份证没带，则不能进入考场</span></div><div class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> id = person[<span class="string">"id"</span>] <span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"没有身份证，不能进入考场!"</span>)</div><div class="line">        <span class="keyword">return</span></div><div class="line">    &#125;</div><div class="line">     </div><div class="line">    <span class="comment">// 检查准考证，如果准考证没带，则不能进入考场</span></div><div class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> examNumber = person[<span class="string">"examNumber"</span>] <span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"没有准考证，不能进入考场!"</span>)</div><div class="line">        <span class="keyword">return</span></div><div class="line">    &#125;</div><div class="line">     </div><div class="line">    <span class="comment">// 身份证和准考证齐全，方可进入考场</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"您的身份证号为:\(id)，准考证号为:\(examNumber)。请进入考场!"</span>)</div><div class="line">     </div><div class="line">&#125;</div><div class="line"> </div><div class="line">checkup([<span class="string">"id"</span>: <span class="string">"123456"</span>]) <span class="comment">// 没有准考证，不能进入考场!</span></div><div class="line">checkup([<span class="string">"examNumber"</span>: <span class="string">"654321"</span>]) <span class="comment">// 没有身份证，不能进入考场!</span></div><div class="line">checkup([<span class="string">"id"</span>: <span class="string">"123456"</span>, <span class="string">"examNumber"</span>: <span class="string">"654321"</span>]) <span class="comment">// 您的身份证号为:123456，准考证号为:654321。请进入考场!</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>上述代码中的第一个guard语句用于检查身份证，如果检查到身份证没带，也就是表达式为false时，执行大括号里的代码，并返回。第二个guard语句则检查准考证。<br>如果两证齐全，则执行最后一个打印语句，上面的两个guard语句大括号内的代码都不会执行，因为他们表达式的布尔值都是true。<br>这里值得注意的是，id和examNumber可以在guard语句之外使用，也就是说当guard对其表达式进行验证后，id和examNumber可在整个方法的作用域中使用，并且是解包后的</p>
-</blockquote>
-<h1 id="if-else语句"><a href="#if-else语句" class="headerlink" title="if else语句"></a>if else语句</h1><blockquote>
-<p>用if else实现的方法显然不如guard实现的那么精准。而且id和examNumber的作用域只限在if的第一个大括号内，超出这个作用域编译就会报错</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"> func checkupUseIf(person: [String: String!]) &#123;</div><div class="line">     </div><div class="line">    <span class="keyword">if</span> let <span class="keyword">id</span> = person[<span class="string">"id"</span>], let examNumber = person[<span class="string">"examNumber"</span>] &#123;</div><div class="line">        print(<span class="string">"您的身份证号为:\(id)，准考证号为:\(examNumber)。请进入考场！"</span>)</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        print(<span class="string">"证件不齐全，不能进入考场!"</span>)</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">    print(<span class="string">"您的身份证号为:\(id)，准考证号为:\(examNumber)"</span>)  <span class="comment">// 报异常</span></div><div class="line">     </div><div class="line">&#125;</div><div class="line"> </div><div class="line">checkupUseIf([<span class="string">"id"</span>: <span class="string">"123456"</span>]) <span class="comment">// 证件不齐全，不能进入考场!</span></div><div class="line">checkupUseIf([<span class="string">"examNumber"</span>: <span class="string">"654321"</span>]) <span class="comment">// 证件不齐全，不能进入考场!</span></div><div class="line">checkupUseIf([<span class="string">"id"</span>: <span class="string">"123456"</span>, <span class="string">"examNumber"</span>: <span class="string">"654321"</span>]) <span class="comment">// 您的身份证号为:123456，准考证号为:654321。请进入考场!</span></div></pre></td></tr></table></figure>
-          
+          guard语句
+guard语句判断其后的表达式布尔值为false时，才会执行之后代码块里的代码，如果为true，则跳过整个guard语句guard语句只会有一个代码块，if语句可以if else多个代码块类似  OC里的Continue
+
+ func checkup(person: [String:
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/11/Swift/Grammar/关键字-Guard-守护/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

@@ -392,43 +392,18 @@
       
         
           
-            <h1 id="NSSet初始化"><a href="#NSSet初始化" class="headerlink" title="NSSet初始化"></a>NSSet初始化</h1><blockquote>
-<p>NSSet是无序的<br>注意:这个是最为重要的功能 NSSet中不能够存储重复的数据,可以用它来去除重复的值</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"> <span class="built_in">NSString</span> * str1 = <span class="string">@"one"</span>;</div><div class="line">   <span class="built_in">NSString</span> * str2 = <span class="string">@"two"</span>;</div><div class="line">   <span class="built_in">NSString</span> * str3 = <span class="string">@"three"</span>;</div><div class="line">   <span class="built_in">NSSet</span> * set = [[<span class="built_in">NSSet</span> alloc] initWithObjects:str1,str2,str3,str1, <span class="literal">nil</span>];</div><div class="line"> 这样其实在set中指存储了 @“one”,@“two”,@“three” set.count 值为<span class="number">3</span></div><div class="line">[set containsObject:str1];  是否包含str1</div></pre></td></tr></table></figure>
-<h1 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h1><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">NSEnumerator</span> * enumerator = [set objectEnumerator];</div><div class="line">    <span class="built_in">NSString</span> * value;</div><div class="line">    <span class="keyword">while</span> (value = [enumerator nextObject]) &#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"value %@"</span>,value);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<h1 id="可变集合NSMutableSet"><a href="#可变集合NSMutableSet" class="headerlink" title="可变集合NSMutableSet"></a>可变集合NSMutableSet</h1><blockquote>
-<p>创建一个可变集合</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">NSMutableSet</span> * muSet = [[<span class="built_in">NSMutableSet</span> alloc] init];</div></pre></td></tr></table></figure>
-<blockquote>
-<p>增加值</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">[muSet addObject:str1];</div></pre></td></tr></table></figure>
-<blockquote>
-<p>删除</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">[muSet removeObject:str1];</div></pre></td></tr></table></figure>
-<blockquote>
-<p>删除所有</p>
-</blockquote>
- <figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">[muSet removeAllObjects];</div></pre></td></tr></table></figure>
-<h1 id="集合之间相互转换"><a href="#集合之间相互转换" class="headerlink" title="集合之间相互转换"></a>集合之间相互转换</h1><blockquote>
-<p>NSArray 转换成 NSMutableArray</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">NSArray</span> * array = @[<span class="string">@"one"</span>,<span class="string">@"two"</span>,<span class="string">@"three"</span>];</div><div class="line"><span class="built_in">NSMutableArray</span> * muArray = [<span class="built_in">NSMutableArray</span> arrayWithArray:array];</div></pre></td></tr></table></figure>
-<blockquote>
-<p>NSDictionary 转换成 NSMutableDictionary</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">NSDictionary</span> * dic = @&#123;<span class="string">@"one"</span>:<span class="string">@"1"</span>,<span class="string">@"two"</span>:<span class="string">@"2"</span>&#125;;</div><div class="line"><span class="built_in">NSMutableDictionary</span> * muDic = [<span class="built_in">NSMutableDictionary</span>     dictionaryWithDictionary:dic];</div></pre></td></tr></table></figure>
-<blockquote>
-<p>NSSet 转换成 NSMutableSet</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">NSSet</span> * set = [[<span class="built_in">NSSet</span> alloc] initWithObjects:<span class="string">@"one"</span>,<span class="string">@"two"</span>, <span class="literal">nil</span>];</div><div class="line"><span class="built_in">NSMutableSet</span> *muSet = [<span class="built_in">NSMutableSet</span> setWithSet:set];</div></pre></td></tr></table></figure>
-<h1 id="NSArray-转换成NSSet"><a href="#NSArray-转换成NSSet" class="headerlink" title="NSArray 转换成NSSet"></a>NSArray 转换成NSSet</h1><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">NSMutableSet</span> * muSet2 = [<span class="built_in">NSMutableSet</span> setWithArray:array];</div></pre></td></tr></table></figure>
-<h1 id="NSDictionary-转化成NSArray"><a href="#NSDictionary-转化成NSArray" class="headerlink" title="NSDictionary 转化成NSArray"></a>NSDictionary 转化成NSArray</h1><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">NSArray</span> * keys = [dic allKeys];</div><div class="line"><span class="built_in">NSArray</span> * values = [dic allValues];</div></pre></td></tr></table></figure>
-<h1 id="字符串转换成数组"><a href="#字符串转换成数组" class="headerlink" title="字符串转换成数组"></a>字符串转换成数组</h1><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">NSString</span> * str = <span class="string">@"aa.bb.cc"</span>;</div><div class="line"><span class="built_in">NSArray</span> * strArray =[str componentsSeparatedByString:@“.<span class="string">"];</span></div></pre></td></tr></table></figure>
-          
+          NSSet初始化
+NSSet是无序的注意:这个是最为重要的功能 NSSet中不能够存储重复的数据,可以用它来去除重复的值
+
+ NSString * str1 = @"one";   NSString * str2 = @"two";   NSString * str3 = @"three";   N
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/06/OC/Grammar/iOS-NSSet/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -592,38 +567,23 @@
       
         
           
-            <p>#初始化</p>
-<blockquote>
-<p>创建字段,不可变的</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">NSDictionary</span> * dic = [<span class="built_in">NSDictionary</span> dictionaryWithObjectsAndKeys:<span class="string">@"s"</span>,<span class="string">@"name"</span>, <span class="literal">nil</span>];</div></pre></td></tr></table></figure>
-<blockquote>
-<p>快捷创建方式</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">NSDictionary</span> * dic2 = @&#123; <span class="string">@"one"</span>:<span class="string">@"1"</span>,<span class="string">@"two"</span>:<span class="string">@"2"</span>&#125;;</div><div class="line">dic2.count  获得字典长度</div></pre></td></tr></table></figure>
-<h1 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h1><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">NSArray</span> * keys = [dic3 allKeys];</div><div class="line"> <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; keys.count; i++)</div><div class="line"> &#123;</div><div class="line">     <span class="built_in">NSString</span> * key = [keys objectAtIndex:i];</div><div class="line">     </div><div class="line">     <span class="comment">//如果你的字典中存储的多种不同的类型,那么最好用id类型去接受它</span></div><div class="line">     <span class="keyword">id</span> obj  = [dic3 objectForKey:key];</div><div class="line">     <span class="built_in">NSLog</span>(<span class="string">@"obj %@"</span>,obj);</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>枚举器</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">NSEnumerator</span> * enumerator =  [dic3 objectEnumerator];</div><div class="line"><span class="keyword">id</span> value;</div><div class="line"><span class="keyword">while</span> (value = [enumerator nextObject]) &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"value %@"</span>,value);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="可变字典NSMutableDictionary"><a href="#可变字典NSMutableDictionary" class="headerlink" title="可变字典NSMutableDictionary"></a>可变字典NSMutableDictionary</h1><blockquote>
-<p>创建一个可变长度字典</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">NSMutableDictionary</span> * muDic = [[<span class="built_in">NSMutableDictionary</span> alloc] initWithCapacity:<span class="number">0</span>];</div></pre></td></tr></table></figure>
-<blockquote>
-<p>向字典中村如数据</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">[muDic setObject:<span class="string">@"1"</span> forKey:<span class="string">@"one"</span>];</div></pre></td></tr></table></figure>
-<blockquote>
-<p>删除</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">[muDic removeObjectForKey:@“one<span class="string">"];</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>全部删除</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">[muDic removeAllObjects];</div></pre></td></tr></table></figure>
+          #初始化
 
-          
+创建字段,不可变的
+
+NSDictionary * dic = [NSDictionary dictionaryWithObjectsAndKeys:@"s",@"name", nil];
+
+快捷创建方式
+
+NSDictionary * dic2 = @&#123; @"one":@"1
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/06/OC/Grammar/iOS-NSDictionary-字典/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -776,60 +736,18 @@
       
         
           
-            <h1 id="初始化、取值等基础操作"><a href="#初始化、取值等基础操作" class="headerlink" title="初始化、取值等基础操作"></a>初始化、取值等基础操作</h1><blockquote>
-<p>NSArray 是不可变数组,一旦创建完成就不能够对数组进行,添加,删除等操作</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">     <span class="built_in">NSArray</span> * array = [[<span class="built_in">NSArray</span> alloc] init];</div><div class="line">     <span class="built_in">NSArray</span> * array1 = [<span class="built_in">NSArray</span>                        arrayWithObjects:<span class="string">@"one"</span>,<span class="string">@"two"</span>,<span class="string">@"three"</span>, <span class="literal">nil</span>]; </div><div class="line">``` </div><div class="line"> </div><div class="line">&gt;在创建一个<span class="built_in">NSArray</span>的时候最后一个元素一定是<span class="literal">nil</span> 不要把<span class="literal">nil</span>存到数组中，会导致数据丢失</div><div class="line">&gt;数组实际上存储的时对象的地址,同样也可以存储数组的地址</div><div class="line"></div><div class="line">```objectivec</div><div class="line">     <span class="built_in">NSArray</span> * a1 = [[<span class="built_in">NSArray</span> alloc]     initWithObjects:<span class="string">@"one"</span>,<span class="string">@"two"</span>,<span class="string">@"three"</span>, <span class="literal">nil</span>];</div><div class="line">     <span class="built_in">NSArray</span> * a2 = [[<span class="built_in">NSArray</span> alloc] initWithObjects:<span class="string">@"1"</span>,<span class="string">@"2"</span>,<span class="string">@"3"</span>, <span class="literal">nil</span>];</div><div class="line">     <span class="built_in">NSArray</span> * a3 = [[<span class="built_in">NSArray</span> alloc] initWithObjects:a1,a2, <span class="literal">nil</span>];</div><div class="line">``` </div><div class="line"></div><div class="line">&gt;创建数组的快捷方式</div><div class="line"></div><div class="line">```objectivec</div><div class="line">     <span class="built_in">NSArray</span> * array = @[<span class="string">@"a"</span>,<span class="string">@"b"</span>,<span class="string">@"c"</span>];</div></pre></td></tr></table></figure>
-<blockquote>
-<p>快速获得一个数组中的元素</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">NSString</span> * str = array[<span class="number">0</span>];</div><div class="line"> [array objectAtIndex:<span class="number">0</span>];  数组的index从<span class="number">0</span>开始</div><div class="line"> [array count] 获得元素个数</div><div class="line">[array containsObject:p1] 判断数组中是否包含某个对象</div></pre></td></tr></table></figure>
-<h1 id="遍历数组"><a href="#遍历数组" class="headerlink" title="遍历数组"></a>遍历数组</h1><blockquote>
-<p>普通的for循环</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.count; i++)</div><div class="line">&#123;</div><div class="line">    <span class="built_in">NSString</span> * str = array[i];</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"array[%d] = %@"</span>,i,str);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>使用增强for循环的方式遍历数组</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="built_in">NSString</span> * str <span class="keyword">in</span> array)</div><div class="line">&#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"str = %@"</span>,str);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>枚举器</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">NSArray</span> * array = @[<span class="string">@"one"</span>,<span class="string">@"two"</span>,<span class="string">@"three"</span>];</div><div class="line"><span class="built_in">NSEnumerator</span> * enumerator =  [array objectEnumerator];</div><div class="line"><span class="built_in">NSString</span> * value;</div><div class="line"><span class="keyword">while</span> (value = [enumerator nextObject]) &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"enum str %@"</span>,value);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="数组排序"><a href="#数组排序" class="headerlink" title="数组排序"></a>数组排序</h1><blockquote>
-<p>使用sortedArrayUsingSelector</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">[array sortedArrayUsingSelector:<span class="keyword">@selector</span>(compare:)]</div></pre></td></tr></table></figure>
-<blockquote>
-<p>使用block方式排序</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">array2 = [array2 sortedArrayUsingComparator:^<span class="built_in">NSComparisonResult</span>(<span class="keyword">id</span>             obj1, <span class="keyword">id</span> obj2) &#123;</div><div class="line">       </div><div class="line">       <span class="comment">/*</span></div><div class="line"><span class="comment">       NSComparisonResult result = [obj1 compare:obj2];</span></div><div class="line"><span class="comment">       </span></div><div class="line"><span class="comment">       return result;</span></div><div class="line"><span class="comment">        */</span></div><div class="line">       <span class="comment">//obj1 compare obj2 就是正序排序</span></div><div class="line">    <span class="comment">//return [obj1 compare:obj2];</span></div><div class="line">       <span class="comment">//obj2 compare obj1 就是倒序排序</span></div><div class="line">       <span class="keyword">return</span> [obj2 compare:obj1];</div><div class="line">       </div><div class="line">   &#125;];</div></pre></td></tr></table></figure>
-<blockquote>
-<p>如果你向给你自己定义的对象排序,必须根据某一个属性来排序,<br>如果你向给你自己定义的对象排序,必须根据某一个属性来排序,<br>sortDescriptorWithKey 参数要的就是你对象中,要依据哪个属性来排序,你就把哪个    属性的名字当成key传入<br>ascending YES表示正序 NO表示倒叙</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">        <span class="built_in">NSSortDescriptor</span> * d1 = [<span class="built_in">NSSortDescriptor</span> sortDescriptorWithKey:<span class="string">@"age"</span> ascending:<span class="literal">NO</span>];</div><div class="line">        <span class="built_in">NSSortDescriptor</span> * d2 = [<span class="built_in">NSSortDescriptor</span> sortDescriptorWithKey:<span class="string">@"year"</span> ascending:<span class="literal">NO</span>];</div><div class="line"> ```  </div><div class="line">      </div><div class="line">&gt;如果你要使用多个属性进行排序,默认在前面的<span class="built_in">NSSortDescriptor</span>优先级比较高</div><div class="line"></div><div class="line">```objectivec</div><div class="line">        <span class="built_in">NSArray</span> * description = @[d2,d1];</div><div class="line">        </div><div class="line">        array3 = [array3 sortedArrayUsingDescriptors:description];</div></pre></td></tr></table></figure>
-<h1 id="可变数组NSMutableArray"><a href="#可变数组NSMutableArray" class="headerlink" title="可变数组NSMutableArray"></a>可变数组NSMutableArray</h1><blockquote>
-<p>创建可变数组</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">NSMutableArray</span> * array = [[<span class="built_in">NSMutableArray</span> alloc] initWithCapacity:<span class="number">0</span>];</div></pre></td></tr></table></figure>
-<blockquote>
-<p>使用addObject 动态给数组中增加元素</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">[array addObject:@“one<span class="string">"];</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>数组中可以存储,同一个对象多次<br>指定对象插入的位置</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">[array insertObject:str1 atIndex:<span class="number">2</span>];</div></pre></td></tr></table></figure>
-<blockquote>
-<p>删除 会通过对象,删除数组中所有的同一个地址的对象</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">[array removeObject:str1];</div></pre></td></tr></table></figure>
-<blockquote>
-<p>通过索引的方式删除对象,超出了数组的count值,那么就会导致异常 index beyond bounds</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">[array removeObjectAtIndex:<span class="number">0</span>];</div><div class="line">[array removeAllObjects];</div></pre></td></tr></table></figure>
+          初始化、取值等基础操作
+NSArray 是不可变数组,一旦创建完成就不能够对数组进行,添加,删除等操作
 
-          
+     NSArray * array = [[NSArray alloc] init];     NSArray * array1 = [NSArray                   
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/06/OC/Grammar/iOS-UIKit-NSArray-数组/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -993,117 +911,19 @@
       
         
           
-            <h1 id="AccessControl访问控制"><a href="#AccessControl访问控制" class="headerlink" title="AccessControl访问控制"></a>AccessControl访问控制</h1><blockquote>
-<p>Swift和C++，Java一样，也有访问控制的概念。通过访问权限的控制，我们可以对外隐藏内部的代码细节，防止修改。<br>Swift的访问控制是基于模块（modules）和源文件（source file）</p>
-<p>Swift的模块概念是这样的：</p>
-<ul>
-<li>1、一个App bundle，或者一个framework都可以看成一个独立的module。 你可以使用import来引入别的module到你的module中来。<br>当你将你的代码打包成一个framework，这个framework就是一个module。里面的所有的东西都是属于这个framework，无论你将这个framework引入到别的framework或app中。</li>
-</ul>
-</blockquote>
-<ul>
-<li>2、一个源文件里面虽然可以定义多个类，但是建议一般一个源文件建立一个类。</li>
-</ul>
-<blockquote>
-<p>Swift的访问权限有：<br>open，public，internal，fileprivate，private</p>
-</blockquote>
-<ul>
-<li><p>1、public    这个权限允许同一个module内部的所有源代码访问，同时允许其他引入了该module的module使用。总的来说就是全开放</p>
-</li>
-<li><p>2、internal  这个权限允许同一个module内部的所有源代码访问，不允许其他module使用。</p>
-</li>
-<li><p>3、private   这个权限仅允许同一个source file的代码访问。</p>
-</li>
-</ul>
-<blockquote>
-<p>Swift的默认访问权限是internal。</p>
-<p>public是最高访问权限，而private是最低访问权限。</p>
-<p>Swift的权限编程原则：</p>
-</blockquote>
-<ul>
-<li>一、高权限的东西不能包含在低权限的东西里面。</li>
-</ul>
-<blockquote>
-<p>举例：</p>
-</blockquote>
-<ul>
-<li><p>1、说就是一个public的类型不能定义在一个声明为internal的类型里面。</p>
-</li>
-<li><p>2、方法的权限不能高于参数和范围值的权限。否则会导致这个方法没法使用。</p>
-</li>
-</ul>
-<blockquote>
-<p>二、单一app中</p>
-</blockquote>
-<ul>
-<li>一般就用默认的internal就行了。如果你想对其他源文件隐藏，可以使用private。</li>
-</ul>
-<blockquote>
-<p>三、framework中</p>
-</blockquote>
-<ul>
-<li><blockquote>
-<p>对于要提供给外边使用的属性，方法。必须使用public权限。其他的可以默认使用internal。如果相对framework里面的其他源文件隐藏，可以使用private。</p>
-</blockquote>
-</li>
-</ul>
-<p>四、单元测试中</p>
-<ul>
-<li>单元测试和我们编写的代码属于不同的module，所以测试模块一般只能访问到public的东西。但是在引入要测试的模块的时候可以加上@testable，这样测试模块就可以访问了。然后要允许被测试的单元可以测试</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> </div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SomePublicClass</span> </span>&#123;&#125;  </div><div class="line"><span class="keyword">internal</span> <span class="class"><span class="keyword">class</span> <span class="title">SomeInternalClass</span> </span>&#123;&#125;  </div><div class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">SomePrivateClass</span> </span>&#123;&#125;  </div><div class="line">   </div><div class="line"><span class="keyword">public</span> <span class="keyword">var</span> somePublicVariable = <span class="number">0</span>  </div><div class="line"><span class="keyword">internal</span> <span class="keyword">let</span> someInternalConstant = <span class="number">0</span>  </div><div class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">somePrivateFunction</span><span class="params">()</span></span> &#123;&#125;</div></pre></td></tr></table></figure>
-<h1 id="给类型定义访问权限的时候，会影响到类型里面的成员（属性，方法，下标，构造器）"><a href="#给类型定义访问权限的时候，会影响到类型里面的成员（属性，方法，下标，构造器）" class="headerlink" title="给类型定义访问权限的时候，会影响到类型里面的成员（属性，方法，下标，构造器）"></a>给类型定义访问权限的时候，会影响到类型里面的成员（属性，方法，下标，构造器）</h1><ul>
-<li><p>1、将一个类型定义为private后，它里面的成员都是private的。</p>
-</li>
-<li><p>2、将一个类型定义为public或internal后，它里面的成员还是internal的。如果要某个成员变为public，必须在该成员里面加上public。</p>
-</li>
-</ul>
-<h2 id="Tuple"><a href="#Tuple" class="headerlink" title="Tuple"></a>Tuple</h2><blockquote>
-<p>Tuple的访问权限由tuple成员里面访问权限最小那个决定。</p>
-</blockquote>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><blockquote>
-<p>方法的访问权限由方法的参数和返回值中最小权限的那个决定。当方法的权限是private的时候，方法的前面要加上private关键字。</p>
-</blockquote>
-<h2 id="枚举类"><a href="#枚举类" class="headerlink" title="枚举类"></a>枚举类</h2><blockquote>
-<p>枚举类型的成员变量的访问权限决定于枚举类型。例如你定义了一个public的枚举类型，那么它里面的case成员都是public的，不允许单独给每个case成员定义访问权限。<br>case成员的raw vlaue的值的权限必须大于等于枚举类的访问权限。</p>
-</blockquote>
-<h2 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h2><blockquote>
-<p>定义在private类型里面的内部类是private权限；定义在public或internal类型里面的内部类默认是internal类型。如果想要定义在public类型里面的内部类变为public的话，需要自己显式给内部类加上public。</p>
-</blockquote>
-<h2 id="子类"><a href="#子类" class="headerlink" title="子类"></a>子类</h2><blockquote>
-<p>子类不能比父类具有更高的访问权限。但是可以重写父类当前能访问到的父类成员，而且可以重写成更高权限的成员</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  </div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;  </div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">someMethod</span><span class="params">()</span></span> &#123;&#125;  </div><div class="line">&#125;  </div><div class="line">   </div><div class="line"><span class="keyword">internal</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span>: <span class="title">A</span> </span>&#123;  </div><div class="line">    <span class="keyword">override</span> <span class="keyword">internal</span> <span class="function"><span class="keyword">func</span> <span class="title">someMethod</span><span class="params">()</span></span> &#123;  </div><div class="line">        <span class="keyword">super</span>.someMethod()  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>里再补充一点，如果父类是public类的，继承之后不加权限修饰符的话，那么这个子类是internal的<br>属性，常量，变量和下标的访问权限不能超过它所属的类型的权限</p>
-</blockquote>
-<h2 id="getter和setter方法"><a href="#getter和setter方法" class="headerlink" title="getter和setter方法"></a>getter和setter方法</h2><blockquote>
-<p>这两个方法的访问权限默认和属性的是一样的。但是可以修改setter的权限，可以将setter的权限修改得比属性的权限低，但是不能比属性的权限高</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">public</span> <span class="keyword">internal</span>(<span class="keyword">set</span>) <span class="keyword">var</span> age: <span class="type">Int</span> = <span class="number">0</span>  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h2><blockquote>
-<p>构造器的权限不能大于它所属类型的权限。除了标志有require的构造器之外，这种构造器的权限必须和它所属的类的权限相同。<br>构造器参数的权限不能低于构造器。</p>
-</blockquote>
-<h2 id="默认构造器"><a href="#默认构造器" class="headerlink" title="默认构造器"></a>默认构造器</h2><blockquote>
-<p>默认构造器的默认权限和类型权限一样。但是如果类型是public，那么默认构造器还是internal的，想要public的无参构造器必须自己实现。<br>对于结构体的memberwise构造器，想要public的，也要自己实现。</p>
-</blockquote>
-<h2 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h2><blockquote>
-<p>协议的需求的权限和协议权限是一样的，协议是public的，那么需求也是public的。<br>继承的协议的权限最多只能有父类的权限。例如：不能继承一个internal的协议为一个public协议。</p>
-</blockquote>
-<h2 id="协议的一致性"><a href="#协议的一致性" class="headerlink" title="协议的一致性"></a>协议的一致性</h2><blockquote>
-<p>类型可以实现比自己访问权限低的协议。比如，可以定义一个public的类，它可以实现一个internal的类，并且只能在定义了该协议的模块中使用。<br>实现了协议的类访问权限是它本身和采用协议中的最低访问权限。也就是说如果一个类是public的级别，实现的是internal的协议，那么采用这个协议之后，该类的访问权限也是internal的。<br>如果你采用了协议，那么实现协议方法之后，该方法的访问权限遵循协议的访问级别。例如：一个public的类，采用了internal的协议之后，那么该类的实现协议的方法至少也是internal的。</p>
-</blockquote>
-<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><blockquote>
-<p>扩展的默认访问权限由所扩展类型的访问权限决定。</p>
-<p>如果你扩展了一个public的类型，那么扩展的成员的默认访问权限就是internal。如果扩展一个private类型，那么扩展的默认访问权限就是private。<br>当然可以自己给扩展自定义访问权限。但是权限不能超过所扩展的类型。另外可以自己给扩展成员再自定义权限。<br>如果你是用扩展来实现协议，那么这个扩展不允许自定义权限，它的权限由协议的权限决定。</p>
-</blockquote>
-<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><blockquote>
-<p>泛型分为泛型类型和泛型方法<br>泛型类型的权限是 泛型类型和泛型参数 之间最小的那个权限。<br>泛型方法的权限是 泛型方法和泛型参数 之间最小的那个权限。</p>
-</blockquote>
-<h2 id="类型别名"><a href="#类型别名" class="headerlink" title="类型别名"></a>类型别名</h2><blockquote>
-<p>每个类型别名都可以看做是对类型的访问权限的定义。<br>但是类型别名的权限必须小于或等于要别名的类型。比如一个private的类型别名可以为private，public，internal的类型进行别名；但是一个public的类型别名不能为internal和private的类型进行别名。</p>
-</blockquote>
+          AccessControl访问控制
+Swift和C++，Java一样，也有访问控制的概念。通过访问权限的控制，我们可以对外隐藏内部的代码细节，防止修改。Swift的访问控制是基于模块（modules）和源文件（source file）
+Swift的模块概念是这样的：
 
-          
+1、一个App bundle，
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/01/Swift/Grammar/AccessControl-访问控制/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1256,65 +1076,21 @@
       
         
           
-            <h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><ul>
-<li>接受其它函数作为参数的函数有时被称为高阶函数<h1 id="泛型函数"><a href="#泛型函数" class="headerlink" title="泛型函数"></a>泛型函数</h1><blockquote>
-<p>写一个函数的时，一般都会指明参数的类型<br>一般默认在函数中定义的参数都是常量参数，也就是这个参数你只可以查询使用，不能改变它的值<br>如果想要声明一个变量参数，可以在前面加上var，这样就可以改变这个参数的值</p>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">//此时这个id值可以在函数中改变</span></div><div class="line"> <span class="function"><span class="keyword">func</span>  <span class="title">getName</span><span class="params">(<span class="keyword">var</span> id:String)</span></span>.........</div></pre></td></tr></table></figure>
-<blockquote>
-<p>一般默认的参数传递都是传值调用的，而不是传引用。<strong>所以传入的参数在函数内改变，并不影响原来的那个参数</strong>。传入的只是这个参数的副本<br>下面两个实现交换变量的函数</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">swapTwoInts</span><span class="params">( a:<span class="keyword">inout</span> Int, b:<span class="keyword">inout</span> Int)</span></span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">let</span> t = a   <span class="comment">//  0</span></div><div class="line">    a = b       <span class="comment">// 100</span></div><div class="line">    b = t       <span class="comment">//  0</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> x = <span class="number">0</span>,y = <span class="number">100</span></div><div class="line"><span class="built_in">print</span>(<span class="string">"x = \(x) ;y = \(y)"</span>)</div><div class="line"></div><div class="line"><span class="comment">//打印</span></div><div class="line">x = <span class="number">0</span> ;y = <span class="number">100</span></div><div class="line"><span class="comment">//交换变量的函数</span></div><div class="line">swapTwoInts(a: &amp;x, b: &amp;y)</div><div class="line"><span class="built_in">print</span>(<span class="string">"x = \(x) ;y = \(y)"</span>)</div><div class="line">x = <span class="number">100</span> ;y = <span class="number">0</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>上面的只是限于交换整形。但是如果我们相对Double或Float类型，甚至是任何类型的数据实现交换的功能，我们都要分别写一个函数。这是无比麻烦的</p>
-<p>所以有了泛型这个概念，泛型就是<strong>模糊的类型</strong><br>函数的功能实现和具体类型没关系的时候，就可以使用泛型(感觉类似OC的 id 类型)<br>将上面实现两个变量交换的功能用一个方法完成，这个方法可以用于不同的数据类型<br>swapTwoInts <t> 理解为一个函数族,类型参数 T 的每个选择都会确定一个新函数,该函数接受一个T型数组和一个 T -&gt; T类型的函数作为参数,并返回一个[T]类型的数组</t></p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">swapTwoInts</span>&lt;T&gt;<span class="params">( a: <span class="keyword">inout</span> T, <span class="number">_</span> b: <span class="keyword">inout</span> T)</span></span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">let</span> t = a</div><div class="line">    a = b</div><div class="line">    b = t</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> x = <span class="number">8.12</span>,y = <span class="number">100.1</span></div><div class="line"><span class="built_in">print</span>(<span class="string">"x = \(x) ;y = \(y)"</span>)   <span class="comment">//x = 8.12 ;y = 100.1</span></div><div class="line">swapTwoInts( a: &amp;x,  &amp;y)</div><div class="line"><span class="built_in">print</span>(<span class="string">"x = \(x) ;y = \(y)"</span>)   <span class="comment">//x = 100.1 ;y = 8.12</span></div><div class="line"></div><div class="line"></div><div class="line">问题：x = <span class="number">8</span>  y = <span class="number">100.1</span> 发生错误，整数和浮点型数如何写交换方法？？？</div></pre></td></tr></table></figure>
-<blockquote>
-<p>主要的语法就是上面的<t>，这个T就是代表某个类型，但是没有指明具体是哪种类型。而且这个T，可以换成你希望的标示符，只要不是关键字。并且一般要求单词的首字母要大写，比如Element、Value等。而且能指定多个类型，见下面的类型约束</t></p>
-<p>泛型的函数调用方法和普通函数是一样的<br>下面创建了两个Animal实例，然后使用刚刚定义的函数交换数据。</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;</div><div class="line">    <span class="keyword">var</span> life = <span class="number">0</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> cat = <span class="type">Animal</span>()</div><div class="line">cat.life = <span class="number">1</span></div><div class="line"><span class="keyword">var</span> dog = <span class="type">Animal</span>()</div><div class="line">dog.life = <span class="number">2</span></div><div class="line"></div><div class="line">swapTwoInts(cat.life, dog.life)  <span class="comment">//报错！！ 方面交换方法不能交换。。醉了</span></div><div class="line"><span class="built_in">print</span>(cat.life)  </div><div class="line"><span class="built_in">print</span>(dog.life)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>泛型举例分析</p>
-</blockquote>
-<p><a href="http://lib.csdn.net/article/swift/48384?knId=10" target="_blank" rel="external">参考</a></p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="comment">//  map</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">map</span>&lt;Element,T&gt;<span class="params">(xs:[Element],transfom:<span class="params">(Element)</span></span></span> -&gt;<span class="type">T</span>)-&gt;[<span class="type">T</span>]&#123;</div><div class="line">    <span class="keyword">var</span> result :[<span class="type">T</span>] = []</div><div class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> xs&#123;</div><div class="line">        result.append(transfom(x))</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> result</div><div class="line">    </div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">genericComputeArray</span>&lt;T&gt;<span class="params">(xs: [Int], transfom: <span class="params">(Int)</span></span></span> -&gt; <span class="type">T</span>) -&gt; [<span class="type">T</span>] &#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">map</span>(xs: xs, transfom: transfom)</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">这块 不是很理解</div></pre></td></tr></table></figure>
-<blockquote>
-<p>顶层函数和扩展<br>写一个函数,它接受一个给定的整型数组,通过计算得到并返回一个新数组。要求：新数组各项为原数组中对应的整型数据加一。for 循环能实现</p>
-</blockquote>
-<h1 id="泛型类型"><a href="#泛型类型" class="headerlink" title="泛型类型"></a>泛型类型</h1><blockquote>
-<p>定义一个类型，但是它可以对不同类型的数据进行操作<br>比如Array和Dictionary这两个集合结构体，他们可以装不同类型的数据，这就是泛型类型</p>
-<h2 id="官方文档展示一个泛型类型的栈，使用Array来实现"><a href="#官方文档展示一个泛型类型的栈，使用Array来实现" class="headerlink" title="官方文档展示一个泛型类型的栈，使用Array来实现"></a>官方文档展示一个泛型类型的栈，使用Array来实现</h2></blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">struct Stack&lt;Element&gt; &#123;  </div><div class="line">    var items = [Element]()  </div><div class="line">    mutating func push(item: Element) &#123;  </div><div class="line">        items.append(item)  </div><div class="line">    &#125;  </div><div class="line">    mutating func pop() -&gt; Element &#123;  </div><div class="line">        return items.removeLast()  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>然后在创建这种泛型类型实例的时候，我们必须指定所属的类型</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> </div><div class="line"></div><div class="line"><span class="keyword">var</span> stackOfStrings = <span class="type">Stack</span>&lt;<span class="type">String</span>&gt;()  </div><div class="line">stackOfStrings.push(<span class="string">"uno"</span>)</div></pre></td></tr></table></figure>
-<h1 id="泛型约束"><a href="#泛型约束" class="headerlink" title="泛型约束"></a>泛型约束</h1><blockquote>
-<p>我们可以对泛型进行约束，让他们必须遵守某些协议，官方文档语法如下</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">someFunction</span>&lt;T: SomeClass, U: SomeProtocol&gt;<span class="params">(someT: T, someU: U)</span></span> &#123;  </div><div class="line">    <span class="comment">// function body goes here  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>同时还可以添加where约束符再对泛型进行限制</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">someFunction</span>&lt;T: SomeClass, U: SomeProtocol where T.someItem == U, U.someItem: SomeClass2&gt;<span class="params">(someT: T, someU: U)</span></span> &#123;  </div><div class="line">    <span class="comment">// function body goes here  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="关联类型"><a href="#关联类型" class="headerlink" title="关联类型"></a>关联类型</h1><blockquote>
-<p>在定义协议的时候，我们可能需要定义一个或多个类型作为我们协议的一部分。而这些类型是不确定的，只有到具体的类实现协议的时候才能确定，这个时候我们可以使用关联类型来实现。所谓的关联类型就是一个占位符，等到具体实现协议的时候才知道它具体是什么类型。官方例子如下</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">protocol</span> <span class="title">Container</span> </span>&#123;  </div><div class="line">    <span class="keyword">typealias</span> <span class="type">ItemType</span>  </div><div class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">append</span><span class="params">(item: ItemType)</span></span>  </div><div class="line">    <span class="keyword">var</span> <span class="built_in">count</span>: <span class="type">Int</span> &#123; <span class="keyword">get</span> &#125;  </div><div class="line">    <span class="keyword">subscript</span>(i: <span class="type">Int</span>) -&gt; <span class="type">ItemType</span> &#123; <span class="keyword">get</span> &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>然后在实现协议的时候，我们可以指定ItemType具体是什么类型</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">IntStack</span>: <span class="title">Container</span> </span>&#123;  </div><div class="line">    <span class="comment">// original IntStack implementation  </span></div><div class="line">    <span class="keyword">var</span> items = [<span class="type">Int</span>]()  </div><div class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">push</span><span class="params">(item: Int)</span></span> &#123;  </div><div class="line">        items.append(item)  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">pop</span><span class="params">()</span></span> -&gt; <span class="type">Int</span> &#123;  </div><div class="line">        <span class="keyword">return</span> items.removeLast()  </div><div class="line">    &#125;  </div><div class="line">    <span class="comment">// conformance to the Container protocol  </span></div><div class="line">    <span class="keyword">typealias</span> <span class="type">ItemType</span> = <span class="type">Int</span>  </div><div class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">append</span><span class="params">(item: Int)</span></span> &#123;  </div><div class="line">        <span class="keyword">self</span>.push(item)  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">var</span> <span class="built_in">count</span>: <span class="type">Int</span> &#123;  </div><div class="line">        <span class="keyword">return</span> items.<span class="built_in">count</span>  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">subscript</span>(i: <span class="type">Int</span>) -&gt; <span class="type">Int</span> &#123;  </div><div class="line">        <span class="keyword">return</span> items[i]  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>&gt;<br>同时又因为有Swift的类型判断机制，所以我们在实现了协议的其他方法之后，编译器会自动判断关联类型是什么，不需要我们显式地指定。所以上面代码指定关联类型为Int的那行可以删去。</p>
-<blockquote>
-<p>泛型OC是不支持的，但是java支持。使用泛型能给编程带来很大的便利</p>
-</blockquote>
+          泛型
+接受其它函数作为参数的函数有时被称为高阶函数泛型函数
+写一个函数的时，一般都会指明参数的类型一般默认在函数中定义的参数都是常量参数，也就是这个参数你只可以查询使用，不能改变它的值如果想要声明一个变量参数，可以在前面加上var，这样就可以改变这个参数的值
 
-          
+
+
+//此时这个id值可以在函数中改变
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/01/Swift/Grammar/Generics-泛型/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1467,36 +1243,21 @@
       
         
           
-            <h1 id="Extension扩展"><a href="#Extension扩展" class="headerlink" title="Extension扩展"></a>Extension扩展</h1><blockquote>
-<p>Swift中的扩展就是OC中的分类。但是这里的扩展可以对类、结构体、枚举类进行添加。使用扩展，我们可以在不接触源代码的前提下，对已有的代码进行功能上的添加。</p>
-<p>Swift中的扩展提供的一些功能：</p>
-</blockquote>
-<ul>
-<li>1、添加计算属性或类计算属性，但是不能添加存储属性。</li>
-<li>2、添加实例方法或类别方法。但是不能覆盖已经存在的方法。</li>
-<li>3、定义新的构造器。</li>
-<li>4、定义和使用新的嵌套类。</li>
-<li>5、令已经存在的类型遵守协议。</li>
-</ul>
-<blockquote>
-<p>假设我们已经有了一个Animal类，但是不能得到它的源代码</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> life: <span class="type">Int</span> = <span class="number">0</span>  </div><div class="line">    <span class="keyword">var</span> height: <span class="type">Double</span> = <span class="number">0</span>  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>我们利用扩展，对Animal添加一个计算属性和方法、构造器还有嵌套类。 当然也可以添加下标，但这里不演示了</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">extension</span> <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="comment">//扩展计算属性  </span></div><div class="line">    <span class="keyword">var</span> lifeYear : <span class="type">Double</span> &#123; <span class="keyword">return</span> <span class="type">Double</span>(<span class="keyword">self</span>.life) / <span class="number">365</span> &#125;  </div><div class="line">    <span class="comment">//扩展构造器  </span></div><div class="line">    <span class="keyword">convenience</span> <span class="keyword">init</span>(life: <span class="type">Int</span>, height: <span class="type">Double</span>) &#123;  </div><div class="line">        <span class="keyword">self</span>.<span class="keyword">init</span>()  </div><div class="line">        <span class="keyword">self</span>.life = life  </div><div class="line">        <span class="keyword">self</span>.height = height  </div><div class="line">    &#125;  </div><div class="line">    <span class="comment">//扩展方法  </span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">makeSound</span><span class="params">()</span></span> -&gt; <span class="type">String</span> &#123;  </div><div class="line">        <span class="keyword">return</span> <span class="string">"I can live \(lifeYear) years"</span>  </div><div class="line">    &#125;  </div><div class="line">    <span class="comment">// 扩展嵌套类  </span></div><div class="line">    <span class="class"><span class="keyword">enum</span> <span class="title">Size</span> </span>&#123;  </div><div class="line">        <span class="keyword">case</span> <span class="type">Big</span>, <span class="type">Small</span>, <span class="type">SuperSmall</span>  </div><div class="line">    &#125;  </div><div class="line">    <span class="comment">// 扩展一个使用嵌套类的计算属性  </span></div><div class="line">    <span class="keyword">var</span> size: <span class="type">Size</span> &#123;  </div><div class="line">        <span class="keyword">switch</span> height &#123;  </div><div class="line">        <span class="keyword">case</span> <span class="keyword">let</span> h <span class="keyword">where</span> h &gt; <span class="number">10</span>:  </div><div class="line">            <span class="keyword">return</span> .<span class="type">Big</span>  </div><div class="line">        <span class="keyword">case</span> <span class="keyword">let</span> h <span class="keyword">where</span> h &gt; <span class="number">0.1</span>:  </div><div class="line">            <span class="keyword">return</span> .<span class="type">Small</span>  </div><div class="line">        <span class="keyword">default</span>:  </div><div class="line">            <span class="keyword">return</span> .<span class="type">SuperSmall</span>  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">var</span> a = <span class="type">Animal</span>(life: <span class="number">3365</span> * <span class="number">7</span>, height: <span class="number">0.001</span>)  </div><div class="line"><span class="built_in">print</span>(a.size)   <span class="comment">// SuperSmall  </span></div><div class="line"><span class="built_in">print</span>(a.lifeYear)   <span class="comment">// 7.0  </span></div><div class="line"><span class="built_in">print</span>(a.makeSound())   <span class="comment">// I can live 7.0 years</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>面代码需要注意的是扩展构造器的时候，在构造器的时候讲过，在扩展中添加构造器是不会影响默认构造器的产生。不能添加原来已有的构造器。<br>另外在类扩展里面，是不给添加指定构造器或析构器，只能添加便利构造器。在便利构造器中，要先调用原来的构造器来初始化类后，才能对类进行访问。</p>
-<p>扩展还有一个作用就是让类遵守协议。这部分留到协议里面讲<br>下面将以前将过的麻烦的String类型做一个扩展，使得方便截串和获取长度</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">extension</span> <span class="title">String</span> </span>&#123;  </div><div class="line">    <span class="comment">//获取字符串长度  </span></div><div class="line">    <span class="keyword">var</span> length: <span class="type">Int</span> &#123; <span class="keyword">return</span> <span class="keyword">self</span>.characters.<span class="built_in">count</span> &#125;  </div><div class="line">      </div><div class="line">    <span class="comment">//获取部分字符串，如果不在范围内，返回nil。如果end大于字符串长度，那么截取到最后  </span></div><div class="line">    <span class="keyword">subscript</span> (start: <span class="type">Int</span>, end: <span class="type">Int</span>) -&gt; <span class="type">String</span>? &#123;  </div><div class="line">        <span class="keyword">if</span> start &gt; <span class="keyword">self</span>.length || start &lt; <span class="number">0</span> || start &gt; end &#123;  </div><div class="line">            <span class="keyword">return</span> <span class="literal">nil</span>  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">let</span> begin = <span class="keyword">self</span>.startIndex.advancedBy(start)  </div><div class="line">        <span class="keyword">var</span> terminal: <span class="type">Index</span>  </div><div class="line">        <span class="keyword">if</span> end &gt;= length &#123;  </div><div class="line">            terminal = <span class="keyword">self</span>.startIndex.advancedBy(length)  </div><div class="line">        &#125; <span class="keyword">else</span> &#123;  </div><div class="line">            terminal = <span class="keyword">self</span>.startIndex.advancedBy(end + <span class="number">1</span>)  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">let</span> range = <span class="type">Range</span>(start: begin, end: terminal)  </div><div class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.substringWithRange(range)  </div><div class="line">    &#125;  </div><div class="line">    <span class="comment">//获取某个字符，如果不在范围内，返回nil  </span></div><div class="line">    <span class="keyword">subscript</span> (index: <span class="type">Int</span>) -&gt; <span class="type">Character</span>? &#123;  </div><div class="line">        <span class="keyword">if</span> index &gt; <span class="keyword">self</span>.length - <span class="number">1</span> || index &lt; <span class="number">0</span> &#123;  </div><div class="line">            <span class="keyword">return</span> <span class="literal">nil</span>  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> <span class="keyword">self</span>[<span class="keyword">self</span>.startIndex.advancedBy(index)]  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>然后就可以这样截串</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">var</span> s = <span class="string">"哈0123456789"</span>  </div><div class="line"><span class="built_in">print</span>(s.length) <span class="comment">// 11  </span></div><div class="line"><span class="built_in">print</span>(s[<span class="number">0</span>,<span class="number">2</span>])    <span class="comment">// Optional("哈01")  </span></div><div class="line"><span class="built_in">print</span>(s[<span class="number">9</span>])     <span class="comment">// Optional("8")</span></div></pre></td></tr></table></figure>
+          Extension扩展
+Swift中的扩展就是OC中的分类。但是这里的扩展可以对类、结构体、枚举类进行添加。使用扩展，我们可以在不接触源代码的前提下，对已有的代码进行功能上的添加。
+Swift中的扩展提供的一些功能：
 
-          
+
+1、添加计算属性或类计算属性，但是不能添加存储属性。
+2、添加实例方法或类别方
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/01/Swift/Grammar/Extension扩展/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1660,202 +1421,21 @@
       
         
           
-            <h1 id="Swift-错误"><a href="#Swift-错误" class="headerlink" title="Swift-错误"></a>Swift-错误</h1><blockquote>
-<p>Swift提供了一套完整的错误抛出-捕获-处理机制<br>Swift采用Error协议来表示错误类型，通过do-try-catch的方式来处理可能会抛出异常的代码</p>
-</blockquote>
-<h1 id="Optional"><a href="#Optional" class="headerlink" title="Optional"></a>Optional</h1><blockquote>
-<p>可选值表示一个值要么有值，要么是nil。在Swift中，Optional是用enum写的，</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Optional</span>&lt;<span class="title">Wrapped</span>&gt; : <span class="title">ExpressibleByNilLiteral</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="keyword">none</span></div><div class="line">    <span class="keyword">case</span> some(<span class="type">Wrapped</span>)</div><div class="line">     <span class="comment">//...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>当发生错误的时候，返回一个可选值是常见的处理方式。但是，这种方式的有一个很明显的缺点</p>
-</blockquote>
-<ul>
-<li>调用者不清楚为什么失败</li>
-<li>不好进行相关的处理</li>
-</ul>
-<h1 id="Error协议与throws"><a href="#Error协议与throws" class="headerlink" title="Error协议与throws"></a>Error协议与throws</h1><ul>
-<li>Error是一个空的协议，用来表示错误类型</li>
-<li>NSError和CFError都遵循了这个协议</li>
-</ul>
-<blockquote>
-<p>在Swfit中，枚举是一个特别适合用来处理Error的数据类型。<br>首先定义一个类Person表示人</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Sex</span></span>&#123;</div><div class="line">	<span class="keyword">case</span> male</div><div class="line">	<span class="keyword">case</span> female</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</div><div class="line">	<span class="keyword">let</span> sex:<span class="type">Sex</span></div><div class="line">	<span class="keyword">var</span> money:<span class="type">CGFloat</span></div><div class="line">	<span class="keyword">init</span>(sex:<span class="type">Sex</span> ,money:<span class="type">CGFloat</span>) &#123;</div><div class="line">	    <span class="keyword">self</span>.sex = sex</div><div class="line">	    <span class="keyword">self</span>.money = money</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>Person可以结婚，结婚的时候会发生一些错误，比如钱不够，比如性别不对，用枚举来表示</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">enum</span> <span class="title">MarryError</span> : <span class="title">Error</span></span>&#123;</div><div class="line">    <span class="keyword">case</span> lackMoney</div><div class="line">    <span class="keyword">case</span> wrongSex</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>方法的实现如下</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">extension</span> <span class="title">Person</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">marry</span><span class="params">(with another: Person)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">Bool</span>&#123;</div><div class="line">        <span class="keyword">guard</span> <span class="keyword">self</span>.sex != another.sex <span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">throw</span> <span class="type">MarryError</span>.wrongSex</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">guard</span> <span class="keyword">self</span>.money + another.money &gt; <span class="number">100000</span> <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="type">MarryError</span>.lackMoney</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>一个带有throws关键字的函数，调用的时候有两种方式选择</p>
-<p>①❶使用 do-try-catch 代码块</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">let</span> tom = <span class="type">Person</span>(sex: .male, money: <span class="number">100000</span>)</div><div class="line"><span class="keyword">let</span> jack = <span class="type">Person</span>(sex: .male, money: <span class="number">100000</span>)</div><div class="line"><span class="keyword">do</span>&#123;</div><div class="line">    <span class="keyword">try</span> tom.marry(with: jack)</div><div class="line">&#125;<span class="keyword">catch</span> <span class="type">MarryError</span>.wrongSex &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Two Person have same sex"</span>)</div><div class="line">&#125;<span class="keyword">catch</span> <span class="type">MarryError</span>.lackMoney&#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Oh, they do not have enough moeny"</span>)</div><div class="line">&#125;<span class="keyword">catch</span> <span class="keyword">let</span> error&#123;</div><div class="line">    <span class="built_in">print</span>(error)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>❷不需要区分每一个Error，也可以这么调用</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">do</span>&#123;</div><div class="line">    <span class="keyword">try</span> tom.marry(with: jack)</div><div class="line">&#125;<span class="keyword">catch</span> <span class="keyword">let</span> error&#123;</div><div class="line">    <span class="built_in">print</span>(error)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>②使用 try?，对于有返回值的throws函数，使用try?会把结果转换为可选值</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">let</span> tom = <span class="type">Person</span>(sex: .male, money: <span class="number">100000</span>)</div><div class="line"><span class="keyword">let</span> jack = <span class="type">Person</span>(sex: .male, money: <span class="number">100000</span>)</div><div class="line"></div><div class="line"><span class="keyword">if</span> <span class="keyword">let</span> result = <span class="keyword">try</span>? tom.marry(with: jack)&#123;<span class="comment">//成功</span></div><div class="line"></div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Error happen"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="defer关键字"><a href="#defer关键字" class="headerlink" title="defer关键字"></a>defer关键字</h1><blockquote>
-<p>defer关键字用来处理类似Ojective C中@try-@catch-@finally中，@finally的作用<br>比如，打开文件，如果抛出错误的话，我们总希望关闭这个文件句柄</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">func</span> <span class="title">contents</span><span class="params">(of filePath:String)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">String</span>&#123;</div><div class="line">    <span class="keyword">let</span> file = <span class="keyword">open</span>(filePath,<span class="type">O_RDWR</span>)</div><div class="line">    <span class="keyword">defer</span> &#123;</div><div class="line">        close(file)</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//...</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">defer</span>代码块的内容在退出作用域之前会被执行</div></pre></td></tr></table></figure>
-<blockquote>
-<p>关于defer的注意</p>
-</blockquote>
-<ul>
-<li>多个defer会按照逆序的方式执行。</li>
-<li>当你的程序遇到严重错误，比如fatalError,或者强制解析nil，或者segfaults的时候，defer的代码块并不会执行。</li>
-</ul>
-<h1 id="rethrow"><a href="#rethrow" class="headerlink" title="rethrow"></a>rethrow</h1><blockquote>
-<p>rethrow关键字在高阶函数中比较常见，所谓高阶函数，就是一个函数的参数或者返回值是函数类型<br>最常见的比如，Sequence协议map方法<br>比如：</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> array = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"><span class="keyword">let</span> result = array.<span class="built_in">map</span>&#123;$<span class="number">0</span> * <span class="number">2</span>&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>由于map函数传入的是一个闭包，这个闭包可能会抛出错误<br>由参数抛出的错误最后会向上传递给map函数</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">enum</span> <span class="title">MapError</span> : <span class="title">Error</span></span>&#123;</div><div class="line">    <span class="keyword">case</span> invalid</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">customMapper</span><span class="params">(input:Int)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">Int</span>&#123;</div><div class="line">    <span class="keyword">if</span> input &lt; <span class="number">10</span>&#123;</div><div class="line">        <span class="keyword">throw</span> <span class="type">MapError</span>.invalid</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> input + <span class="number">1</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> array = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"><span class="keyword">let</span> result = array.<span class="built_in">map</span>(customMapper)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>这样是编译不通过的<br>调用的时候需要：按照上文提到的throws关键字的路子来</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">do</span> &#123;</div><div class="line">   <span class="keyword">let</span> result = <span class="keyword">try</span> array.<span class="built_in">map</span>(customMapper)</div><div class="line">&#125; <span class="keyword">catch</span> <span class="keyword">let</span> error&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>这就是rethrows关键字的精髓所在<br>rethrows 关键字表示当参数闭包标记为throws的时候，函数本身为throws。如果参数闭包不会抛出错误，则函数也不会<br>通过这个关键字，你不必每次都进行try-catch</p>
-</blockquote>
-<h1 id="Result类型"><a href="#Result类型" class="headerlink" title="Result类型"></a>Result类型</h1><blockquote>
-<p>一个函数执行要么成功，要么失败。成功的时候我们希望返回数据，失败的时候我们希望得到错误信息，这就是Result类型，一个典型的Result类型如下：</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">enum</span> <span class="title">Result</span>&lt;<span class="title">T</span>&gt;</span>&#123;</div><div class="line">    <span class="keyword">case</span> success(<span class="type">T</span>)</div><div class="line">    <span class="keyword">case</span> failure(error:<span class="type">Error</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>通过Result类型，不再需要可选值或者do-try-catch来包裹你的代码<br>用Result类型对上述marry函数进行重写</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">extension</span> <span class="title">Person</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">marry</span><span class="params">(with another: Person)</span></span>  -&gt; <span class="type">Result</span>&lt;<span class="type">Bool</span>&gt;&#123;</div><div class="line">        <span class="keyword">guard</span> <span class="keyword">self</span>.sex != another.sex <span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">return</span> .failure(error: <span class="type">MarryError</span>.wrongSex)</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">guard</span> <span class="keyword">self</span>.money + another.money &gt; <span class="number">100000</span> <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> .failure(error: <span class="type">MarryError</span>.lackMoney)</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> .success(<span class="literal">true</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>然后，这么调用</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">let</span> tom = <span class="type">Person</span>(sex: .male, money: <span class="number">100000</span>)</div><div class="line"> <span class="keyword">let</span> jack = <span class="type">Person</span>(sex: .male, money: <span class="number">100000</span>)</div><div class="line"> <span class="keyword">let</span> result = tom.marry(with: jack)</div><div class="line">  <span class="keyword">switch</span> result &#123;</div><div class="line">    <span class="keyword">case</span> <span class="keyword">let</span> .success(value):</div><div class="line">        <span class="built_in">print</span>(value)</div><div class="line">    <span class="keyword">case</span> <span class="keyword">let</span> .failure(error):</div><div class="line">        <span class="built_in">print</span>(error)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="Result链"><a href="#Result链" class="headerlink" title="Result链"></a>Result链</h1><blockquote>
-<p>Swift中有可选链，来处理多个可选值的连续调用。同样的，我们也可以为Result类型来添加链式调用：</p>
-</blockquote>
-<ul>
-<li>如果上一个调用结果是.success, 则继续调用下一个</li>
-<li>如果上一个调用结果是.failure, 则传递failure给下一个<blockquote>
-<p>用extension来实现</p>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">extension</span> <span class="title">Result</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">flatMap</span>&lt;V&gt;<span class="params">(transform:<span class="params">(T)</span></span></span> <span class="keyword">throws</span> -&gt; (<span class="type">V</span>)) <span class="keyword">rethrows</span> -&gt; <span class="type">Result</span>&lt;<span class="type">V</span>&gt;&#123;</div><div class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</div><div class="line">        <span class="keyword">case</span> <span class="keyword">let</span> .failure(error):</div><div class="line">            <span class="keyword">return</span> .failure(error: error)</div><div class="line"></div><div class="line">        <span class="keyword">case</span> <span class="keyword">let</span> .success(data):</div><div class="line">            <span class="keyword">return</span> .success(<span class="keyword">try</span> transform(data))</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>于是，可以这么调用</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">resut.flatMap(&#123;<span class="comment">//转换1&#125;).flatMap(//转换2)...</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>一旦失败，中间有一次flatMap转换失败，则之后的转换逻辑都不会执行<br>进阶：Result类型在Swift版本的Promise中大行其道，可以参见PromiseKit的源码，promise让异步处理变得优雅</p>
-</blockquote>
-<h1 id="assert-precondition"><a href="#assert-precondition" class="headerlink" title="assert/precondition"></a>assert/precondition</h1><blockquote>
-<p>Swift也有断言支持<br>在Swfit中，断言是一个函数<br>断言仅在Debug模式下进行检查，帮助开发者发现代码中的问题</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">assert</span><span class="params">(<span class="number">_</span> condition: @autoclosure <span class="params">()</span></span></span> -&gt; <span class="type">Bool</span>, </div><div class="line">             <span class="number">_</span> message: <span class="meta">@autoclosure</span> () -&gt; <span class="type">String</span> = <span class="keyword">default</span>, </div><div class="line">                  file: <span class="type">StaticString</span> = #file, </div><div class="line">                  line: <span class="type">UInt</span> = #line)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>如果需要在Relase模式下也进行检查，则使用precondition</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">precondition</span><span class="params">(<span class="number">_</span> condition: @autoclosure <span class="params">()</span></span></span> -&gt; <span class="type">Bool</span>, </div><div class="line">             <span class="number">_</span> message: <span class="meta">@autoclosure</span> () -&gt; <span class="type">String</span> = <span class="keyword">default</span>, </div><div class="line">                  file: <span class="type">StaticString</span> = #file, </div><div class="line">                  line: <span class="type">UInt</span> = #line)</div></pre></td></tr></table></figure>
-<h1 id="桥接到Objective-C"><a href="#桥接到Objective-C" class="headerlink" title="桥接到Objective C"></a>桥接到Objective C</h1><blockquote>
-<p>使用NSError来处理错误的的Objective 方法</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"> <span class="comment">//NSFileManager</span></div><div class="line">- (<span class="built_in">BOOL</span>)removeItemAtURL:(<span class="built_in">NSURL</span> *)URL error:(<span class="built_in">NSError</span> * _Nullable *)error;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>在Swift中会被自动的转换成</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">removeItem</span><span class="params">(at URL: URL)</span></span> <span class="keyword">throws</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>但是，纯Swfit的Error桥接的Objective C的时候，会有一些问题<br>因为NSError需要 domain和code等详细信息<br>可以让Swift的Error实现CustomNSError协议，来提供这些需要的信息</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">enum</span> <span class="title">MarryError</span> : <span class="title">Error</span></span>&#123;</div><div class="line">    <span class="keyword">case</span> lackMoney</div><div class="line">    <span class="keyword">case</span> wrongSex</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">MarryError</span> : <span class="title">CustomNSError</span></span>&#123;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">let</span> errorDomain = <span class="string">"com.person.marryError"</span></div><div class="line">    <span class="keyword">var</span> erroCode:<span class="type">Int</span>&#123;</div><div class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</div><div class="line">        <span class="keyword">case</span> .lackMoney:</div><div class="line">            <span class="keyword">return</span> -<span class="number">100001</span></div><div class="line">        <span class="keyword">case</span> .wrongSex:</div><div class="line">            <span class="keyword">return</span> -<span class="number">100002</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">var</span> errorUserInfo:[<span class="type">String</span>:<span class="type">Any</span>]&#123;</div><div class="line">        <span class="keyword">return</span> [:]</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>相关的，还有两个协议LocalizedError和RecoverableError</p>
-</blockquote>
-<h1 id="Swift的错误处理是用来处理运行时错误的"><a href="#Swift的错误处理是用来处理运行时错误的" class="headerlink" title="Swift的错误处理是用来处理运行时错误的"></a>Swift的错误处理是用来处理运行时错误的</h1><blockquote>
-<p>当错误发生时，你可以选择抓错误，或者继续往上抛出错误。当一个运行时错误最终没办法处理的时候，程序就会崩溃。</p>
-<p>Swift中有一个空的协议用来给用户自定义错误。一般使用枚举类实现这个协议来自定义错误。如下</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">enum</span> <span class="title">ComputerError</span>: <span class="title">ErrorType</span> </span>&#123;  </div><div class="line">    <span class="keyword">case</span> <span class="type">NoGameError</span>  </div><div class="line">    <span class="keyword">case</span> <span class="type">MemoryError</span>  </div><div class="line">    <span class="keyword">case</span> <span class="type">HardDiskError</span>  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>这里定义了三种error。当你要抛出一个error的时候，使用throw关键字。如下</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">throw</span> <span class="type">ComputerError</span>.<span class="type">NoGameError</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>可以抛出错误的函数的定义</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">func</span> <span class="title">canThrowErrors</span><span class="params">()</span></span> <span class="keyword">throws</span> -&gt; <span class="type">String</span>  </div><div class="line">   </div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">cannotThrowErrors</span><span class="params">()</span></span> -&gt; <span class="type">String</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>利用上面的语法，我们定义一个Computer类，这个类有一个playGame方法，它会在某些情况下抛出错误</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Computer</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> memory = <span class="number">1024</span>  </div><div class="line">    <span class="keyword">var</span> hardDisk = <span class="number">4000</span>  </div><div class="line">      </div><div class="line">    <span class="keyword">var</span> games = [  </div><div class="line">        <span class="string">"War3"</span>: <span class="type">Requirement</span>(memory: <span class="number">512</span>, <span class="type">HardDisk</span>: <span class="number">1500</span>),  </div><div class="line">        <span class="string">"LOL"</span>: <span class="type">Requirement</span>(memory: <span class="number">1500</span>, <span class="type">HardDisk</span>: <span class="number">3000</span>),  </div><div class="line">        <span class="string">"My World"</span>: <span class="type">Requirement</span>(memory: <span class="number">256</span>, <span class="type">HardDisk</span>: <span class="number">500</span>)]  </div><div class="line">      </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">playGame</span><span class="params">(gameName: String)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">Bool</span>&#123;  </div><div class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> game = <span class="keyword">self</span>.games[gameName] <span class="keyword">else</span> &#123;  </div><div class="line">            <span class="keyword">throw</span> <span class="type">ComputerError</span>.<span class="type">NoGameError</span>  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">guard</span> game.<span class="type">HardDisk</span> &lt; <span class="keyword">self</span>.hardDisk <span class="keyword">else</span> &#123;  </div><div class="line">            <span class="keyword">throw</span> <span class="type">ComputerError</span>.<span class="type">HardDiskError</span>  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">guard</span> game.memory &lt; <span class="keyword">self</span>.memory <span class="keyword">else</span> &#123;  </div><div class="line">            <span class="keyword">throw</span> <span class="type">ComputerError</span>.<span class="type">MemoryError</span>  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>注意一点的是，如果你要调用能抛出错误的函数的时候，必须使用try、try?或者try!关键字在前面，如下</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">try</span> myPC.playGame(<span class="string">"War4"</span>)   <span class="comment">//这句会因为没有War4这个游戏而抛出NoGameError错误</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>下面是处理错误的部分。<br>当调用一个可以抛出错误的方法的时候，一般有三种处理方法。<br>第一种是调用者继续向上抛出这个错误。这种情况下，这个调用者也必须是一个可以抛出错误的函数。如果最后没处理这个错误，那么程序崩溃。<br>第二种是使用do…catch语句对错误进行处理。<br>第三种是使用try?或try!调用会抛出错误的函数</p>
-<p>第一种方法举例，再定义一个Person类，它的play方法里面调用了Computer的playGame方法，然后继续抛出这个错误</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> pc = <span class="type">Computer</span>()  </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">play</span><span class="params">()</span></span> <span class="keyword">throws</span> &#123;  </div><div class="line">        <span class="keyword">try</span> <span class="keyword">self</span>.pc.playGame(<span class="string">"SC2"</span>)  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>第二种方法举例，使用do…catch语句处理。在do范围里面，我们可以调用会产生错误的方法。接着的catch语句可以接上要处理的错误类型</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> pc = <span class="type">Computer</span>()  </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">play</span><span class="params">()</span></span> &#123;  </div><div class="line">        <span class="keyword">do</span> &#123;  </div><div class="line">            <span class="keyword">try</span> <span class="keyword">self</span>.pc.playGame(<span class="string">"LOL"</span>)  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"have fun"</span>)  </div><div class="line">        &#125; <span class="keyword">catch</span> <span class="type">ComputerError</span>.<span class="type">NoGameError</span> &#123;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"NoGameError"</span>)  </div><div class="line">        &#125; <span class="keyword">catch</span> <span class="type">ComputerError</span>.<span class="type">MemoryError</span> &#123;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"MemoryError"</span>)  </div><div class="line">        &#125; <span class="keyword">catch</span> <span class="type">ComputerError</span>.<span class="type">HardDiskError</span> &#123;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"HardDiskError"</span>)  </div><div class="line">        &#125; <span class="keyword">catch</span> &#123;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"other error"</span>,error)  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>值得注意的是最后一个catch。这里并没有加上要处理的错误。这的catch会捕捉所有类型的错误。<br>另外还有一个问题，如果不加上这个捕捉所有类型的catch语句。调用playGame的那句会报错说catch没有穷尽会抛出的错误。但是我只有三个错误，照理来讲应该是已经穷尽的了。不知道是Swift的问题，还是我代码哪里有问题。但如果把这个调用放到main.swift中去，也是只使用3个catch，就不会报错。搞不懂。<br>我现在的处理方式是把这个play方法继续写成一个可以抛出错误的方法。只处理自定义的三种错误。其他错误往上抛</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> pc = <span class="type">Computer</span>()  </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">play</span><span class="params">()</span></span> <span class="keyword">throws</span> &#123;  </div><div class="line">        <span class="keyword">do</span> &#123;  </div><div class="line">            <span class="keyword">try</span> <span class="keyword">self</span>.pc.playGame(<span class="string">"LOL"</span>)  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"have fun"</span>)  </div><div class="line">        &#125; <span class="keyword">catch</span> <span class="type">ComputerError</span>.<span class="type">NoGameError</span> &#123;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"NoGameError"</span>)  </div><div class="line">        &#125; <span class="keyword">catch</span> <span class="type">ComputerError</span>.<span class="type">MemoryError</span>&#123;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"MemoryError"</span>)  </div><div class="line">        &#125; <span class="keyword">catch</span> <span class="type">ComputerError</span>.<span class="type">HardDiskError</span> &#123;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"HardDiskError"</span>)  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>第三种是使用try?或try!调用会抛出错误的函数。<br>在官方文档里面，它原意是使用try?去处理一个会抛出错误的方法的返回值，如果这个方法抛出错误，那么会得到nil。如果没有错误，那么将函数返回值包装成可选类型后返回</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> </div><div class="line"></div><div class="line"><span class="keyword">var</span> myPC = <span class="type">Computer</span>()  </div><div class="line"><span class="keyword">var</span> result = <span class="keyword">try</span>? myPC.playGame(<span class="string">"War3"</span>)   <span class="comment">//这里playGame没有抛出错误，所以返回了Bool可选类型，值为true</span></div></pre></td></tr></table></figure>
-<p>ry!的区别是它默认调用方法是不会报错的，如果调用的方法报错，那么会得到运行时错误。即使你将这个try!写到了一个会抛出错误的方法里面，它也不会向上抛出这个错误。而是直接崩溃。</p>
-<p>try? 、try!   和try 三者的区别：</p>
-<p>try在一个会抛出错误的方法里面，它会把产生的错误交由catch处理或者向上抛出。</p>
-<p>try?是出错的时候返回一个nil，屏蔽错误。没错的话，将结果包装成一个可选类型返回。</p>
-<p>try!是在没错的情况下返回函数返回值。出错的情况下直接崩溃。错误不会再交给catch处理或者向上抛出。</p>
-<p>所以如果在do catch里面将try改为try?或者try!，那么会有一个警告说catch永远不会执行。</p>
-<h1 id="defer语句"><a href="#defer语句" class="headerlink" title="defer语句"></a>defer语句</h1><blockquote>
-<p>熟悉java的朋友应该知道finally语句。这个是在try..catch里面无论是否有错误，在退出try..catch范围的时候，最后都会执行finally范围内的代码。一般是用来做一些诸如关闭文件的工作。因为无论出不出错，最后都必须关闭打开的文件。<br>Swift也弄了一个defer语句，同样也是想在最后做这样的一些事情。但是这个defer远远没有finally那么好用。<br>先来开开defer的语法。学过java的朋友知道finally只能用在try..catch里面。但是defer可以不用在do..catch里面。并且defer里面不能用return、break或者抛出错误的语句。</p>
-<p>下面是一个没有用在do..catch中的例子</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">readFile</span><span class="params">()</span></span> &#123;  </div><div class="line">    <span class="keyword">defer</span> &#123;  </div><div class="line">        <span class="built_in">print</span>(<span class="string">"Close file"</span>)  </div><div class="line">    &#125;  </div><div class="line">    <span class="built_in">print</span>(<span class="string">"Open file"</span>)  </div><div class="line">    <span class="built_in">print</span>(<span class="string">"Deal with file"</span>)  </div><div class="line">&#125;  </div><div class="line">readFile()  </div><div class="line"><span class="comment">//打印  </span></div><div class="line"><span class="comment">//Open file  </span></div><div class="line"><span class="comment">//Deal with file  </span></div><div class="line"><span class="comment">//Close file</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>留意上面的打印顺序，可以看出defer中的语句是在最后才执行的。单从这里看，和设计初衷一致：在最后面才执行。<br>但是一旦将这个defer用到do..catch里面，你就会觉得很恶心。<br>我们先来看一个和我们想象中一致的代码，首先改写上面用到的Person类。我们的原意是这样的：Person的play方法调用了Computer的会产生错误的playGame方法。我们定义了一个result的可选变量，用于接收playGame方法的返回值。在退出do..catch的时候，会调用defer语句。我们在里面判断result是否为nil。然后输出心情。</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> pc = <span class="type">Computer</span>()  </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">play</span><span class="params">()</span></span> <span class="keyword">throws</span> &#123;  </div><div class="line">        <span class="keyword">do</span> &#123;  </div><div class="line">            <span class="keyword">var</span> result: <span class="type">Bool</span>?  </div><div class="line">            <span class="keyword">defer</span> &#123;  </div><div class="line">                <span class="keyword">if</span> result != <span class="literal">nil</span> &#123;  </div><div class="line">                    <span class="built_in">print</span>(<span class="string">"have fun"</span>)  </div><div class="line">                &#125; <span class="keyword">else</span> &#123;  </div><div class="line">                    <span class="built_in">print</span>(<span class="string">"sad"</span>)  </div><div class="line">                &#125;  </div><div class="line">            &#125;  </div><div class="line">            result = <span class="keyword">try</span> <span class="keyword">self</span>.pc.playGame(<span class="string">"LOL"</span>)  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"playGame"</span>)  </div><div class="line">        &#125; <span class="keyword">catch</span> <span class="type">ComputerError</span>.<span class="type">NoGameError</span> &#123;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"NoGameError"</span>)  </div><div class="line">        &#125; <span class="keyword">catch</span> <span class="type">ComputerError</span>.<span class="type">MemoryError</span>&#123;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"MemoryError"</span>)  </div><div class="line">        &#125; <span class="keyword">catch</span> <span class="type">ComputerError</span>.<span class="type">HardDiskError</span> &#123;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"HardDiskError"</span>)  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>然后我们执行下面代码，因为默认的Computer类的hardDisk不足。所以会报MemoryError错误</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> p = <span class="type">Person</span>()  </div><div class="line"><span class="keyword">try</span> p.play()  </div><div class="line"><span class="comment">//打印  </span></div><div class="line"><span class="comment">//sad  </span></div><div class="line"><span class="comment">//MemoryError</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>注意打印顺序，可以看出defer是先与catch执行的。这个和java的finally是不一样的。finally是在catch执行完后执行。其次是playGame没有打印，说明报错之后的语句不会执行。<br>如果playGame的参数是“War3”，那么程序不会报错。输出是</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> playGame  </div><div class="line">have fun</div></pre></td></tr></table></figure>
-<blockquote>
-<p>从以上来看，似乎还是符合我们的原意。<br>但是当你把defer的位置改改，变为下面这样</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> pc = <span class="type">Computer</span>()  </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">play</span><span class="params">()</span></span> <span class="keyword">throws</span> &#123;  </div><div class="line">        <span class="keyword">do</span> &#123;  </div><div class="line">            <span class="keyword">var</span> result: <span class="type">Bool</span>?  </div><div class="line">            result = <span class="keyword">try</span> <span class="keyword">self</span>.pc.playGame(<span class="string">"LOL"</span>)  </div><div class="line">            <span class="keyword">defer</span> &#123;  </div><div class="line">                <span class="keyword">if</span> result != <span class="literal">nil</span> &#123;  </div><div class="line">                    <span class="built_in">print</span>(<span class="string">"have fun"</span>)  </div><div class="line">                &#125; <span class="keyword">else</span> &#123;  </div><div class="line">                    <span class="built_in">print</span>(<span class="string">"sad"</span>)  </div><div class="line">                &#125;  </div><div class="line">            &#125;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"playGame"</span>)  </div><div class="line">        &#125; <span class="keyword">catch</span> <span class="type">ComputerError</span>.<span class="type">NoGameError</span> &#123;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"NoGameError"</span>)  </div><div class="line">        &#125; <span class="keyword">catch</span> <span class="type">ComputerError</span>.<span class="type">MemoryError</span>&#123;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"MemoryError"</span>)  </div><div class="line">        &#125; <span class="keyword">catch</span> <span class="type">ComputerError</span>.<span class="type">HardDiskError</span> &#123;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"HardDiskError"</span>)  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>你会发现输出只有一个MemoryError。也就是说当定义defer前面的语句报错之后，defer得不到执行。这样就要求这个defer必须写在一个合理的位置才行。</p>
-</blockquote>
-<h2 id="另外如果我们再改改上面的代码，使用try"><a href="#另外如果我们再改改上面的代码，使用try" class="headerlink" title="另外如果我们再改改上面的代码，使用try!"></a>另外如果我们再改改上面的代码，使用try!</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> </div><div class="line">你会发现输出只有一个<span class="type">MemoryError</span>。也就是说当定义<span class="keyword">defer</span>前面的语句报错之后，<span class="keyword">defer</span>得不到执行。这样就要求这个<span class="keyword">defer</span>必须写在一个合理的位置才行。</div><div class="line"></div><div class="line">另外如果我们再改改上面的代码，使用<span class="keyword">try</span>!</div></pre></td></tr></table></figure>
-<blockquote>
-<p>这时候什么都没有打印，程序直接崩溃掉了。这个defer的初衷完全不同。<br>Swift的错误处理也是近几个版本才出现的。估计以后会继续改进</p>
-</blockquote>
+          Swift-错误
+Swift提供了一套完整的错误抛出-捕获-处理机制Swift采用Error协议来表示错误类型，通过do-try-catch的方式来处理可能会抛出异常的代码
 
-          
+Optional
+可选值表示一个值要么有值，要么是nil。在Swift中，Optional是用enum写的，
+
+   pub
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/01/Swift/Grammar/Error-Handling-错误处理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2008,34 +1588,16 @@
       
         
           
-            <h1 id="可选链（Optional-Chaining"><a href="#可选链（Optional-Chaining" class="headerlink" title="可选链（Optional Chaining"></a>可选链（Optional Chaining</h1><blockquote>
-<p>回顾一下可选类型，当你要使用可选类型的时候，首先必须要对其进行解包。<br>但是存在一个问题就是，如果对一个为nil的可选类型进行强制解包的话，那么会产生运行时错误。第一种解决办法就是使用if语句先判断这个可选类型是否为nil，然后在访问其属性或方法。但是十分繁琐。考虑一下这个可选类型里面访问的属性还是可选类型的情况吧，多几层的时候，if的层数惨不忍睹。<br>一个很好的解决办法就是利用可选链（Optional Chaining）<br>语法很简单，把中间需要解包的可选类型的强制解包符号!替换成？</p>
-<p>伪代码例子  </p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">if</span> <span class="keyword">let</span> 可选链返回值的解包 = 可选类型<span class="number">1</span>?.可选类型<span class="number">2</span>?.返回可选类型的方法<span class="number">1</span>?.可选类型<span class="number">3</span> &#123;  </div><div class="line">   <span class="comment">//&lt;span style="font-family: Arial, Helvetica, sans-serif;"&gt;可选链返回值&lt;/span&gt;不为nil  </span></div><div class="line">&#125; <span class="keyword">else</span> &#123;  </div><div class="line">   <span class="comment">//&lt;span style="font-family: Arial, Helvetica, sans-serif;"&gt;可选链返回值&lt;/span&gt;为nil  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>解释：</p>
-<ul>
-<li>首先检测可选类型1是否为nil，如果不会nil，那么解包。</li>
-<li>然后检查可选类型1的属性——可选类型2是否为nil，不为nil，解包。</li>
-<li>然后调用可选类型2的一个方法。这个方法会返回一个可选类型.成这个可选类型为可选类型A吧。</li>
-<li>然后再对这个可选类型A进行判断，如果不为nil，解包。</li>
-<li>最后利用if语句对可选类型A的属性——可选类型3进行判断处理</li>
-</ul>
-<p>意点：</p>
-<ul>
-<li>1、如果前面的每一次判断有一个为nil了。那么这个可选链直接返回nil，不会再对后面的可选链进行处理。</li>
-<li>2、可选链返回的类型是可选链中最后一个类型对应的可选类型。假设上面伪代码中最后一个可选类型3改为一个非可选类型3（比如Int），那么这个链返回的是其对应的可选类型Int?</li>
-<li>3、可选链最后不能再用?进行解包，必须用!。但是用!就会产生当可选类型为nil时报错的情况。所以为了判断是否为nil，只能用if</li>
-</ul>
-<p>上面的伪代码是访问可选类型的例子。对于给可选链赋值的例子的伪代码如下</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  可选类型<span class="number">1</span>?.可选类型<span class="number">2</span>?.返回可选类型的方法<span class="number">1</span>?.类型<span class="number">3</span> = 赋值    <span class="comment">//这句中的类型3可以是可选类型也可以是非可选类型。赋值成功与否都不会报错。  </span></div><div class="line">  </div><div class="line"><span class="comment">//借助if语句判断是否赋值成功  </span></div><div class="line"><span class="keyword">if</span> (可选类型<span class="number">1</span>?.可选类型<span class="number">2</span>?.返回可选类型的方法<span class="number">1</span>?.可选类型<span class="number">3</span> = 赋值 ) != <span class="literal">nil</span> &#123;  <span class="comment">//&lt;span style="color:#ff0000;"&gt;注意if中赋值语句的返回值是Void?&lt;/span&gt;  </span></div><div class="line">    <span class="comment">//赋值成功  </span></div><div class="line">&#125; <span class="keyword">else</span> &#123;  </div><div class="line">    <span class="comment">//赋值失败  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>例子 </p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CPU</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> name: <span class="type">String</span>?  </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">getClockSpeed</span><span class="params">()</span></span> -&gt; <span class="type">Double</span>? &#123;  </div><div class="line">        <span class="keyword">if</span> <span class="keyword">self</span>.name != <span class="literal">nil</span> &#123;  </div><div class="line">            <span class="keyword">return</span> <span class="number">1.2</span>  </div><div class="line">        &#125; <span class="keyword">else</span> &#123;  </div><div class="line">            <span class="keyword">return</span> <span class="literal">nil</span>  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Computer</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> cpu: <span class="type">CPU</span>?  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">var</span> <span class="built_in">c</span> = <span class="type">Computer</span>()  </div><div class="line"><span class="built_in">print</span>(<span class="built_in">c</span>.cpu?.name = <span class="string">"fef"</span>)  <span class="comment">//这句可选链的类型是Void?，打印 nil  </span></div><div class="line"><span class="built_in">print</span>(<span class="built_in">c</span>.cpu?.name)   <span class="comment">//这句可选链的类型是String?，打印 nil  </span></div><div class="line"><span class="built_in">c</span>.cpu = <span class="type">CPU</span>()  </div><div class="line"><span class="built_in">print</span>(<span class="built_in">c</span>.cpu?.getClockSpeed()?.isZero)  <span class="comment">//这句可选链的类型是Bool? ,打印 nil  </span></div><div class="line"><span class="built_in">print</span>(<span class="built_in">c</span>.cpu?.name = <span class="string">"Intel"</span>)    <span class="comment">//这句可选链的类型是Void?，打印 Optional(())  </span></div><div class="line"><span class="built_in">print</span>(<span class="built_in">c</span>.cpu?.name)          <span class="comment">//这句可选链类型是String?，打印 Optional("Intel")  </span></div><div class="line"><span class="built_in">print</span>(<span class="built_in">c</span>.cpu?.getClockSpeed()?.isZero)    <span class="comment">//这句可选链的类型是Bool? ,打印 Optional(false)</span></div></pre></td></tr></table></figure>
-          
+          可选链（Optional Chaining
+回顾一下可选类型，当你要使用可选类型的时候，首先必须要对其进行解包。但是存在一个问题就是，如果对一个为nil的可选类型进行强制解包的话，那么会产生运行时错误。第一种解决办法就是使用if语句先判断这个可选类型是否为nil，然后在访问其属性或方法。但是十分繁琐
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/01/Swift/Grammar/可选链/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2188,97 +1750,16 @@
       
         
           
-            <h1 id="ARC-自动引用计数"><a href="#ARC-自动引用计数" class="headerlink" title="ARC 自动引用计数"></a>ARC 自动引用计数</h1><h2 id="Swift引入ARC"><a href="#Swift引入ARC" class="headerlink" title="Swift引入ARC"></a>Swift引入ARC</h2><blockquote>
-<p>对于类实例，它可能存在被多个变量引用的情况<br>如果在还有变量引用的情况下释放了改实例的话，那么其他变量再尝试访问这个实例的方法或属性的时候，程序就会崩溃。所以必须确保在以后都没有变量使用这个实例的情况下，才能去释放这个实例<br>对于值类型（结构体等），因为不存在多个变量对应一个实例的情况，所以不会有上述问题<br>为了解决这个问题，Swift使用自动引用计数(ARC)来管理内存。它只对引用类型起作用，对于值类型不起作用</p>
-</blockquote>
-<h2 id="引用计数的概念"><a href="#引用计数的概念" class="headerlink" title="引用计数的概念"></a>引用计数的概念</h2><blockquote>
-<p>当你给一个创建一个类实例，并且把这个类实例赋值给某个变量或常量的时候，那么这个变量或常量就“拥有”这个实例，我们称为有了一个“强引用”。<br>所谓的引用计数，就是这个实例被多少个常量或变量强引用了</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Apple</span> </span>&#123;  </div><div class="line">    <span class="keyword">deinit</span>&#123;  </div><div class="line">        <span class="built_in">print</span>(<span class="string">"deinit"</span>)  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line"><span class="keyword">var</span> a:<span class="type">Apple</span>! = <span class="type">Apple</span>()</div></pre></td></tr></table></figure>
-<blockquote>
-<p>上面这最后一句代码就是变量a对一个Apple类的实例有了一个强引用。这时候这个实例的引用计数为1。<br>因为类实例是引用类型，所以你可以把这个引用传递给其他的常量或变量</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> b = a  </div><div class="line"><span class="keyword">let</span> v = a</div></pre></td></tr></table></figure>
-<blockquote>
-<p>这时候这个实例就被三个变量或常量所引用，这个时候它的引用计数为3.<br>当你把其中的b设为nil的时候，引用计数就会变为2.<br>当该实例的引用计数变为0的时候，这个实例就会被销毁，销毁的时候就会调用它的deinit方法。注：因为上面用了常量，所以不能手动把常量设为nil，只能等这个常量离开作用域后被系统自动销毁。(如果你是在main.swift的全局中定义这些变量或常量的话，因为在main执行完之后才会释放这些变量或常量，所以不会打印deinit。但是你可以把他们放到一个函数里面，然后在main.swift里面调用这个函数。当这个函数执行完之后，这些变量或常量就会被释放。)</p>
-<p>自动引用计数的规：</p>
-</blockquote>
-<ul>
-<li><p>1、赋值给不加修饰符的常量和变量的时候，实例的引用计数加1。</p>
-</li>
-<li><p>2、当一个变量设为nil，或者变量(常量)离开作用域的时候，这个常量或变量所引用实例的引用计数减1。</p>
-</li>
-<li><p>3、当一个实例的引用计数为0的时候，它就会被销毁。</p>
-</li>
-</ul>
-<p>但是上面看似简单的规则也会有很多问题。比如下面的循环引用问题。</p>
-<p>先定义两个类，一个Telephone类和一个Person类。Telephone类有一个Person类的属性，Person类里面有一个Telephone类的属性</p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Telephone</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> person: <span class="type">Person</span>?  </div><div class="line">    <span class="keyword">deinit</span>&#123;  </div><div class="line">        <span class="built_in">print</span>(<span class="string">"Telephone deinit"</span>)  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> telephone: <span class="type">Telephone</span>?  </div><div class="line">    <span class="keyword">deinit</span>&#123;  </div><div class="line">        <span class="built_in">print</span>(<span class="string">"Person deinit"</span>)  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>定义一个Person类的实例和一个Telephone类的实例。并对他们赋值</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> </div><div class="line"></div><div class="line"><span class="keyword">var</span> person = <span class="type">Person</span>()  </div><div class="line"><span class="keyword">var</span> telephone = <span class="type">Telephone</span>()  </div><div class="line">person.telephone = telephone  </div><div class="line">telephone.person = person</div></pre></td></tr></table></figure>
-<blockquote>
-<p>下面分析一下Person实例和Telephone实例的引用计数。</p>
-<p>在定义Person实例的时候，赋值给了变量person，所以第一句代码后，Person实例的引用计数为1。同样第二句代码后，Telephone实例的引用计数也为1。</p>
-<p>然后第三句代码把telephone赋值给了person.telephone。也就是person.telephone也对这个Telephone实例有了强引用，这时候Telephone实例的引用计数为2。</p>
-<p>同样，第四局过后，Person实例的引用计数也为2。</p>
-<p>现在的状态是一个Person实例强引用了一个Telephone实例，这个Telephone实例又强引用了这个Person实例。你强引用我，我强引用你。这样就成了一个循环引用。</p>
-<p>接着执行下面代码，person变量和telephone变量释放对实例的强引用</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> person = <span class="literal">nil</span>  </div><div class="line">telephone = <span class="literal">nil</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>但是Person实例中的telephone属性仍然强引用着Telephone实例。同样的Telephone实例的person属性也引用着Person实例。所以Person实例和Telephone实例的引用计数都为1。但此时我们已经没办法再访问Person和Telephone的实例了。同时又因为他们的引用计数都为1，系统也不会释放他们。这样就造成了内存泄露。</p>
-<p>为了解决这种循环引用的问题，办法就是截断这个循环。<br>第一种笨笨的解决方法就是在你把person或telephone变量设为nil之前，把person.telephone或telephone.person设为nil。这样就手动切断了循环引用。<br>而通用的解决方法就是引用一个新概念——弱引用（Weak Reference）<br>弱引用和强引用最大区别就是：当你把一个实例赋值给一个弱引用变量的时候，这个变量的引用计数不会加1。<br>为了实现这一点，在定义变量的时候在最前面加上weak关键字。下面我们重新定义Person类和Telephone类</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">class</span> <span class="title">Telephone</span> </span>&#123;  </div><div class="line">    <span class="keyword">weak</span> <span class="keyword">var</span> person: <span class="type">Person</span>?   <span class="comment">//把这个变量定义为了一个弱引用变量  </span></div><div class="line">    <span class="keyword">deinit</span>&#123;  </div><div class="line">        <span class="built_in">print</span>(<span class="string">"Telephone deinit"</span>)  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> telephone: <span class="type">Telephone</span>?  </div><div class="line">    <span class="keyword">deinit</span>&#123;  </div><div class="line">        <span class="built_in">print</span>(<span class="string">"Person deinit"</span>)  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>然后我们再次调用下面的代码</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">var</span> person: <span class="type">Person</span>? = <span class="type">Person</span>()  </div><div class="line"><span class="keyword">var</span> telephone: <span class="type">Telephone</span>? = <span class="type">Telephone</span>()  </div><div class="line">person!.telephone = telephone  </div><div class="line">telephone!.person = person     <span class="comment">//第4句  </span></div><div class="line">person = <span class="literal">nil</span>                 <span class="comment">// 执行完这句后打印  Person deinit  </span></div><div class="line">telephone = <span class="literal">nil</span>              <span class="comment">// 执行完这句后打印  Telephone deinit</span></div></pre></td></tr></table></figure>
-<p>因为Telephone类里面的person属性是弱引用的，所以执行完了第4句之后，Telephone实例被telephone变量和person.telephone实例所引用，引用计数为2。而Person实例只被person变量所引用，引用计数为1.</p>
-<p>当执行完person = nil 之后，person的引用计数就变为了0， 这个时候系统就会释放Person实例，这个过程中，person.telephone也会被释放，所以会导致Telephone实例的引用计数减1，变为1。</p>
-<p>当执行完telephone = nil 之后，Telephone实例的引用计数变为0。系统释放Telephone实例。</p>
-<p>关于这个弱引用再补充几点</p>
-<p>第一、当一个弱引用变量所引用的实例被释放的时候，这个弱引用变量会被自动置为nil。</p>
-<p>第二、因为第一条的内容，所以弱引用只能对变量使用，并且必须是可选类型。</p>
-<p>第三、如果你在创建实例的时候就把它复制给一个弱引用变量，因为弱引用变量不会增加这个实例的引用计数，所以这个实例创建后立马就会被销毁。</p>
-<p>第四、如果你将一个已经赋值的弱引用变量赋值给一个强引用变量(常量)，那么这个实例的引用计数会加1。</p>
-<p>Unowned Reference</p>
-<p>Unowned Reference和弱引用一样，不会对实例产生强引用。区别在于Unowned Reference假设它所指向的实例总是有值的。所以Unowned Reference一般不会设置为可选类型。但缺点就是当Unowned Reference所指向的实例被释放的时候，Unowned Reference变量不会自动置为nil。</p>
-<p>语法就是将weak关键字替换为unowned。但一个变量永远不会为nil的时候，建议使用unowned修饰。</p>
-<p>循环引用第二种情况——闭包循环引用</p>
-<pre><code>在闭包的时候我们说过，闭包是引用类型，且会捕获值。设想，你把一个闭包声明为一个类的属性的时候，这个类的实例拥有了对这个闭包的强引用。此时如果你在这个闭包里面访问了这个类的其他属性(self.someProperty)或者方法(self.someMethod)的话。那么这个闭包就会捕获所访问的属性或方法，统称&quot;捕获了self&quot;。在访问实例的属性或方法的时候，必须使用self.的方式。Swift此意在提醒你可能会产生循环引用。
-</code></pre><p>那么这时候又是一个循环引用了，self引用闭包，闭包引用self。导致这个实例永远不会被释放。</p>
-<p>下面定义一个有闭包的Person类</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"> class Person &#123;  </div><div class="line">    var name: String?  </div><div class="line">    lazy var printName: Void-&gt;Void = &#123;  </div><div class="line">        print(self.name)  </div><div class="line">    &#125;  </div><div class="line">    init(name: String)&#123;  </div><div class="line">        self.name = name;  </div><div class="line">    &#125;  </div><div class="line">    deinit&#123;  </div><div class="line">        print(&quot;Person deinit&quot;)  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>这个闭包我们声明为了lazy类型，因为如果你想要在闭包里面访问到self的话，必须是在类初始化之后才行。而一般的属性是在类初始化的最开头阶段初始化的，所以不加lazy的闭包不能访问self关键字。上面的代码很明显闭包和类实例已经可能会产生循环引用了。为什么说可能呢？因为如果你一直没用到闭包的话，那么这个闭包就不会被初始化，所以也不会产生闭包对self的强引用，也就谈不上循环引用了。</p>
-</blockquote>
-<p>所以如果仅仅执行下面代码</p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> p: <span class="type">Person</span>? = <span class="type">Person</span>(name: <span class="string">"Kate"</span>)  </div><div class="line">p = <span class="literal">nil</span>  </div><div class="line"><span class="comment">//打印出 Person deinit</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>但是如果执行下面代码 </p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">var p: Person? = Person(name: &quot;Kate&quot;)  </div><div class="line">p?.printName()  </div><div class="line">p = nil  </div><div class="line">//打印出 Optional(&quot;Kate&quot;)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>这时候因为循环引用导致Person实例不会被释放。<br>解决这个循环引用同样有两种方式。</p>
-</blockquote>
-<ul>
-<li><p>第一种是在不需要这个实例的时候，将这个可能会引起循环引用的闭包设为nil。</p>
-</li>
-<li><p>第二种是利用闭包的捕获列表。下面是第二种方法的介绍</p>
-</li>
-</ul>
-<blockquote>
-<p>下面是语法定义例子，分别是有参数和没参数的闭包。在这种情况下，闭包对捕获的self不会产生强引用。（题外话，在OC中是通过定义另外一个对self的弱引用变量，然后将这个弱引用变量传递给block来实现的。）</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> </div><div class="line"></div><div class="line"><span class="comment">//有参数的情况  </span></div><div class="line"><span class="built_in">lazy</span> <span class="keyword">var</span> printName: ((<span class="type">String</span>)-&gt;<span class="type">Void</span>)? = &#123;  </div><div class="line">    [<span class="keyword">unowned</span> <span class="keyword">self</span>] (say: <span class="type">String</span>) -&gt; <span class="type">Void</span> <span class="keyword">in</span>  </div><div class="line">    <span class="built_in">print</span>(say,<span class="keyword">self</span>.name)  </div><div class="line">&#125;  </div><div class="line"><span class="comment">//没参数的情况  </span></div><div class="line"><span class="built_in">lazy</span> <span class="keyword">var</span> printName2: (<span class="type">Void</span>-&gt;<span class="type">Void</span>)? = &#123;  </div><div class="line">    [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">in</span>  </div><div class="line">    <span class="built_in">print</span>(<span class="keyword">self</span>!.name)  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>这里就是用两个关键字weak和unowned将self修饰。weak和unowned的区别和之前所讲的是一样的。</p>
-</blockquote>
-
-          
+          ARC 自动引用计数Swift引入ARC
+对于类实例，它可能存在被多个变量引用的情况如果在还有变量引用的情况下释放了改实例的话，那么其他变量再尝试访问这个实例的方法或属性的时候，程序就会崩溃。所以必须确保在以后都没有变量使用这个实例的情况下，才能去释放这个实例对于值类型（结构体等），因为不存在多个变
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/01/Swift/Grammar/ARC-自动引用计数/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2442,28 +1923,18 @@
       
         
           
-            <h1 id="iOS-UI-UIButton-Img和Title位置"><a href="#iOS-UI-UIButton-Img和Title位置" class="headerlink" title="iOS-UI-UIButton-Img和Title位置"></a>iOS-UI-UIButton-Img和Title位置</h1><blockquote>
-<p>UIButton 的image title 的位置都是可以调整的，具体如何调整可以按照下面的步骤</p>
-</blockquote>
-<h2 id="设置内容的水平垂直位置"><a href="#设置内容的水平垂直位置" class="headerlink" title="设置内容的水平垂直位置"></a>设置内容的水平垂直位置</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">self</span>.contentVerticalAlignment = <span class="built_in">UIControlContentVerticalAlignmentTop</span>;</div><div class="line"><span class="keyword">self</span>.contentHorizontalAlignment = <span class="built_in">UIControlContentHorizontalAlignmentLeft</span>;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>self指的是UIButton对象，这是继承自UIButon的方法里面或者给UIButton添加扩展方法里面。<br>通过这样的设置可以使得imageView显示在UIButton对象的左上角，titleLabel显示在imageView的右边</p>
-</blockquote>
-<h2 id="调整imageView居中"><a href="#调整imageView居中" class="headerlink" title="调整imageView居中"></a>调整imageView居中</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">CGFloat</span> btn_width = <span class="keyword">self</span>.frame.size.width;</div><div class="line"><span class="keyword">self</span>.imageEdgeInsets = <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">10</span>, (btn_width - <span class="keyword">self</span>.imageView.frame.size.width)/<span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span>);</div></pre></td></tr></table></figure>
-<h2 id="调整-titleLabel居中"><a href="#调整-titleLabel居中" class="headerlink" title="调整 titleLabel居中"></a>调整 titleLabel居中</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">CGFloat</span> btn_width = <span class="keyword">self</span>.frame.size.width;</div><div class="line"><span class="keyword">self</span>.titleEdgeInsets = <span class="built_in">UIEdgeInsetsMake</span>(<span class="keyword">self</span>.imageView.frame.size.height + vSpace+<span class="number">10</span>, - <span class="keyword">self</span>.imageView.frame.size.width+(btn_width/<span class="number">2</span>-<span class="keyword">self</span>.titleLabel.frame.size.width/<span class="number">2</span>), <span class="number">0</span>, <span class="number">0</span>);</div></pre></td></tr></table></figure>
-<blockquote>
-<p>通过减去 imageView的宽度使titleLabel处在左上角，让后将label移植中心。<br>经过以上三步就可以使imageView 、titleLabelLabel 居中，其它的显示形式一样可以参照以上的设置。</p>
-</blockquote>
-<h1 id="整理成了方法，"><a href="#整理成了方法，" class="headerlink" title="整理成了方法，"></a>整理成了方法，</h1><blockquote>
-<p>不需要每次都写</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="keyword">void</span>) setImageAndTitleCenterWithVerticalGapSpace:(<span class="built_in">CGFloat</span>) vSpace imageTopSpace:(<span class="built_in">CGFloat</span>) iSpace &#123;</div><div class="line"></div><div class="line">    <span class="keyword">self</span>.contentVerticalAlignment = <span class="built_in">UIControlContentVerticalAlignmentTop</span>;</div><div class="line">    <span class="keyword">self</span>.contentHorizontalAlignment = <span class="built_in">UIControlContentHorizontalAlignmentLeft</span>;</div><div class="line"></div><div class="line">    <span class="built_in">CGFloat</span> btn_width = <span class="keyword">self</span>.frame.size.width;</div><div class="line">    <span class="built_in">CGFloat</span> iTop = iSpace;</div><div class="line">    <span class="keyword">self</span>.imageEdgeInsets = <span class="built_in">UIEdgeInsetsMake</span>(iTop, (btn_width - <span class="keyword">self</span>.imageView.frame.size.width)/<span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line"><span class="comment">//    self.titleEdgeInsets = UIEdgeInsetsMake(self.imageView.frame.size.height + vSpace+iTop, - self.imageView.frame.size.width+(btn_width/2-self.titleLabel.frame.size.width/2), 0, 0);</span></div><div class="line"><span class="comment">// 使用中发现对于label的width取值不准确，遂通过计算一次获取，准确</span></div><div class="line">    <span class="built_in">CGSize</span> size = [<span class="keyword">self</span>.titleLabel sizeThatFits:<span class="built_in">CGSizeMake</span>(<span class="built_in">CGRectGetWidth</span>(<span class="keyword">self</span>.frame), <span class="built_in">CGRectGetHeight</span>(<span class="keyword">self</span>.frame))];</div><div class="line">    <span class="keyword">self</span>.titleEdgeInsets = <span class="built_in">UIEdgeInsetsMake</span>(<span class="built_in">CGRectGetHeight</span>(<span class="keyword">self</span>.imageView.frame)+ vSpace + iTop, - <span class="built_in">CGRectGetWidth</span>(<span class="keyword">self</span>.imageView.frame) + (<span class="built_in">CGRectGetWidth</span>(<span class="keyword">self</span>.frame) - size.width)/<span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>vSpace imageView与titleLabel垂直间隔</li>
-<li>iSpace imageView 距离 top的间隔</li>
-</ul>
+          iOS-UI-UIButton-Img和Title位置
+UIButton 的image title 的位置都是可以调整的，具体如何调整可以按照下面的步骤
 
-          
+设置内容的水平垂直位置self.contentVerticalAlignment = UIControlContentVerticalAlign
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/01/OC/Kit/UIButton-Img和Title位置/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

@@ -392,8 +392,15 @@
       
         
           
-            
           
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/14/Swift/UIKit/UISearchController-简介/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -557,87 +564,19 @@
       
         
           
-            <h1 id="FFTableViewCtl-swift"><a href="#FFTableViewCtl-swift" class="headerlink" title="FFTableViewCtl.swift"></a>FFTableViewCtl.swift</h1><h2 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">FFTableViewCtl</span>: <span class="title">UIViewController</span>, <span class="title">UITableViewDataSource</span>, <span class="title">UITableViewDelegate</span></span>&#123;&#125;</div></pre></td></tr></table></figure>
-<h2 id="声明变量"><a href="#声明变量" class="headerlink" title="声明变量"></a>声明变量</h2><blockquote>
-<p>左侧 菜单分类数据源</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> categoryData = [<span class="type">FFCategoryModel</span>]()</div></pre></td></tr></table></figure>
-<blockquote>
-<p>右侧，某类型具体菜单详情</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> foodData     = [[<span class="type">FFFoodModel</span>]]()</div></pre></td></tr></table></figure>
-<blockquote>
-<p>记录当前选择分类（菜类型）</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span>  <span class="keyword">var</span> selectIndex  = <span class="number">0</span>   <span class="comment">//默认选择 0</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>记录是否向下滚动</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span>  <span class="keyword">var</span> isScrollDown = <span class="literal">true</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>记录最后Y方向偏移量</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span>  <span class="keyword">var</span> lastOffsetY : <span class="type">CGFloat</span> = <span class="number">0.0</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>左侧TableView表</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> leftTableView : <span class="type">UITableView</span> = &#123;</div><div class="line">    <span class="keyword">let</span> leftTableView = <span class="type">UITableView</span>()</div><div class="line">    leftTableView.delegate = <span class="keyword">self</span></div><div class="line">    leftTableView.dataSource = <span class="keyword">self</span></div><div class="line">    </div><div class="line">    leftTableView.frame = <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: <span class="number">80</span>, height: <span class="type">UIScreen</span>.main.bounds.height)</div><div class="line">    leftTableView.rowHeight = <span class="number">55</span></div><div class="line">    leftTableView.showsVerticalScrollIndicator = <span class="literal">false</span></div><div class="line">    leftTableView.separatorColor = <span class="type">UIColor</span>.clear</div><div class="line">    leftTableView.register(<span class="type">FFLeftTableViewCell</span>.<span class="keyword">self</span>, forCellReuseIdentifier: <span class="string">"FFLeftTableViewCell"</span>)</div><div class="line">    <span class="keyword">return</span> leftTableView</div><div class="line">&#125;()</div></pre></td></tr></table></figure>
-<blockquote>
-<p>右侧TableView表</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> rightTableView : <span class="type">UITableView</span> = &#123;</div><div class="line">    <span class="keyword">let</span> rightTableView = <span class="type">UITableView</span>()</div><div class="line">    rightTableView.delegate = <span class="keyword">self</span></div><div class="line">    rightTableView.dataSource = <span class="keyword">self</span></div><div class="line">    rightTableView.frame = <span class="type">CGRect</span>(x: <span class="number">80</span>, y: <span class="number">64</span>, width: <span class="type">UIScreen</span>.main.bounds.width - <span class="number">80</span>, height: <span class="type">UIScreen</span>.main.bounds.height - <span class="number">64</span>)</div><div class="line">    rightTableView.rowHeight = <span class="number">80</span></div><div class="line">    rightTableView.showsVerticalScrollIndicator = <span class="literal">false</span></div><div class="line">    rightTableView.register(<span class="type">FFRightTableViewCell</span>.<span class="keyword">self</span>, forCellReuseIdentifier: <span class="string">"FFRightTableViewCell"</span>)</div><div class="line">    <span class="keyword">return</span> rightTableView</div><div class="line">&#125;()</div></pre></td></tr></table></figure>
-<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">extension</span> <span class="title">FFTableViewCtl</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">fileprivate</span> <span class="function"><span class="keyword">func</span> <span class="title">configureData</span> <span class="params">()</span></span> &#123;</div><div class="line">        </div><div class="line">        <span class="keyword">guard</span></div><div class="line">            <span class="keyword">let</span> path = <span class="type">Bundle</span>.main.path(forResource: <span class="string">"meituan"</span>, ofType: <span class="string">"json"</span>)</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">return</span></div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">guard</span></div><div class="line">            <span class="keyword">let</span> data = <span class="type">NSData</span>(contentsOfFile: path) <span class="keyword">as</span> <span class="type">Data</span>?</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">return</span></div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">guard</span></div><div class="line">            <span class="keyword">let</span> anyObject = <span class="keyword">try</span>? <span class="type">JSONSerialization</span>.jsonObject(with: data,</div><div class="line">                                                              options: .mutableContainers)</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">return</span></div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">guard</span></div><div class="line">            <span class="keyword">let</span> dict = anyObject <span class="keyword">as</span>? [<span class="type">String</span> : <span class="type">Any</span>]</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">return</span></div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">guard</span></div><div class="line">            <span class="keyword">let</span> datas = dict[<span class="string">"data"</span>] <span class="keyword">as</span>? [<span class="type">String</span> : <span class="type">Any</span>]</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">return</span></div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">guard</span></div><div class="line">            <span class="keyword">let</span> foods = datas[<span class="string">"food_spu_tags"</span>] <span class="keyword">as</span>? [[<span class="type">String</span> : <span class="type">Any</span>]]</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">return</span></div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="built_in">print</span>(<span class="string">"\(foods)"</span>)</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> food <span class="keyword">in</span> foods &#123;</div><div class="line">            </div><div class="line">            <span class="keyword">let</span> model = <span class="type">FFCategoryModel</span>(dict: food)</div><div class="line">            categoryData.append(model)</div><div class="line">            </div><div class="line">            <span class="keyword">guard</span></div><div class="line">                <span class="keyword">let</span> spus = model.spus</div><div class="line">                <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="keyword">continue</span></div><div class="line">            &#125;</div><div class="line">            <span class="keyword">var</span> datas = [<span class="type">FFFoodModel</span>]()</div><div class="line">            <span class="keyword">for</span> fModel <span class="keyword">in</span> spus &#123;</div><div class="line">                datas.append(fModel)</div><div class="line">            &#125;</div><div class="line">           foodData.append(datas)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="TableView-2个协议-实现"><a href="#TableView-2个协议-实现" class="headerlink" title="TableView 2个协议 实现"></a>TableView 2个协议 实现</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">FFTableViewCtl</span> </span>&#123;<span class="comment">//DataSource //Delegate &#125;</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>行</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, numberOfRowsInSection section: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</div><div class="line">    <span class="keyword">if</span> leftTableView == tableView&#123;</div><div class="line">        <span class="keyword">return</span> categoryData.<span class="built_in">count</span></div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">return</span> foodData[section].<span class="built_in">count</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>cell</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, cellForRowAt indexPath: IndexPath)</span></span> -&gt; <span class="type">UITableViewCell</span> &#123;</div><div class="line">    <span class="keyword">if</span> leftTableView == tableView &#123;</div><div class="line">        <span class="keyword">let</span> cell = tableView.dequeueReusableCell(withIdentifier: <span class="string">"FFLeftTableViewCell"</span>,</div><div class="line">                                                 <span class="keyword">for</span>: indexPath)<span class="keyword">as</span>! <span class="type">FFLeftTableViewCell</span></div><div class="line">        </div><div class="line">        <span class="keyword">let</span> model  = categoryData[indexPath.row]</div><div class="line">        cell.nameLab.text = model.name</div><div class="line">        <span class="keyword">return</span> cell</div><div class="line">        </div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">let</span> cell = tableView.dequeueReusableCell(withIdentifier: <span class="string">"FFRightTableViewCell"</span>, <span class="keyword">for</span>: indexPath) <span class="keyword">as</span>! <span class="type">FFRightTableViewCell</span></div><div class="line">        <span class="keyword">let</span> model = foodData[indexPath.section][indexPath.row]</div><div class="line">        cell.setDatas(model: model)</div><div class="line">        <span class="keyword">return</span> cell</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>区 数</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">numberOfSections</span><span class="params">(<span class="keyword">in</span> tableView: UITableView)</span></span> -&gt; <span class="type">Int</span> &#123;</div><div class="line">    <span class="keyword">if</span> leftTableView == tableView &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span></div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> categoryData.<span class="built_in">count</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p> 区 view- 设置</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, viewForHeaderInSection section: Int)</span></span> -&gt; <span class="type">UIView</span>? &#123;</div><div class="line">    <span class="keyword">if</span> leftTableView == tableView &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">nil</span></div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">let</span> headerView = <span class="type">FFTableViewHeaderView</span>(frame: <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: <span class="type">UIScreen</span>.main.bounds.width, height: <span class="number">20</span>))</div><div class="line">        <span class="keyword">let</span> model = categoryData[section]</div><div class="line">        headerView.nameLab.text = model.name</div><div class="line">        <span class="keyword">return</span> headerView</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p> 区头view - 区高</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, heightForHeaderInSection section: Int)</span></span> -&gt; <span class="type">CGFloat</span> &#123;</div><div class="line">    <span class="keyword">if</span> leftTableView == tableView &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">20</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>区头view - 即将展示</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int)</span></span> &#123;</div><div class="line">    <span class="comment">// 当前的 tableView 是 FFRightTableView，FFRightTableView 滚动的方向向上，FFRightTableView 是用户拖拽而产生滚动的（（主要判断 RightTableView 用户拖拽而滚动的，还是点击 FFLeftTableView 而滚动的）</span></div><div class="line">    <span class="keyword">if</span>(rightTableView == tableView)</div><div class="line">        &amp;&amp; !isScrollDown</div><div class="line">        &amp;&amp; (rightTableView.isDragging || rightTableView.isDecelerating)&#123;</div><div class="line">        selectRow(index: section)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>区头view - 展示结束</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int)</span></span> &#123;</div><div class="line">    <span class="comment">// 当前的 tableView 是 FFRightTableView，FFRightTableView 滚动的方向向下，FFRightTableView 是用户拖拽而产生滚动的（（主要判断 RightTableView 用户拖拽而滚动的，还是点击 FFLeftTableView 而滚动的）</span></div><div class="line">    <span class="keyword">if</span> (rightTableView == tableView)</div><div class="line">        &amp;&amp; isScrollDown</div><div class="line">        &amp;&amp; (rightTableView.isDragging || rightTableView.isDecelerating) &#123;</div><div class="line">        selectRow(index: section + <span class="number">1</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>didSelct - 选择cell</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, didSelectRowAt indexPath: IndexPath)</span></span> &#123;</div><div class="line">    <span class="keyword">if</span> leftTableView == tableView &#123;</div><div class="line">        selectIndex = indexPath.row</div><div class="line">        <span class="keyword">self</span>.scrollToTop(section: selectIndex, animated: <span class="literal">true</span>)</div><div class="line">        leftTableView.scrollToRow(at: <span class="type">IndexPath</span>(row: selectIndex, section: <span class="number">0</span>), at: .top, animated: <span class="literal">true</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>scrollViewDidScroll<br>标记一下 RightTableView 的滚动方向，是向上还是向下</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">scrollViewDidScroll</span><span class="params">(<span class="number">_</span> scrollView: UIScrollView)</span></span> &#123;</div><div class="line">    </div><div class="line">    <span class="keyword">let</span> tableView = scrollView <span class="keyword">as</span>! <span class="type">UITableView</span></div><div class="line">    <span class="keyword">if</span> rightTableView == tableView &#123;</div><div class="line">        isScrollDown = lastOffsetY &lt; scrollView.contentOffset.y</div><div class="line">        lastOffsetY = scrollView.contentOffset.y</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="private-私有方法"><a href="#private-私有方法" class="headerlink" title="private 私有方法"></a>private 私有方法</h2><blockquote>
-<p>selectRow 当拖动右边TableView，处理左边 TableView</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">selectRow</span><span class="params">(index:Int)</span></span>&#123;</div><div class="line">    leftTableView.selectRow(at: <span class="type">IndexPath</span>(row: index,</div><div class="line">                                          section: <span class="number">0</span>),</div><div class="line">                            animated: <span class="literal">true</span>,</div><div class="line">                            scrollPosition: .top)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>scrollToTop</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="function"><span class="keyword">func</span> <span class="title">scrollToTop</span><span class="params">(section:Int,animated: Bool)</span></span> &#123;</div><div class="line">    <span class="keyword">let</span> headerRect = rightTableView.rect(forSection: section)</div><div class="line">    <span class="keyword">let</span> topHeader = <span class="type">CGPoint</span>(x: <span class="number">0</span>, y: headerRect.origin.y - rightTableView.contentInset.top)</div><div class="line">    rightTableView.setContentOffset(topHeader, animated: animated)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="FFLeftTableViewCell-swift"><a href="#FFLeftTableViewCell-swift" class="headerlink" title="FFLeftTableViewCell.swift"></a>FFLeftTableViewCell.swift</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">import</span> UIKit</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">FFLeftTableViewCell</span>: <span class="title">UITableViewCell</span> </span>&#123;</div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">awakeFromNib</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.awakeFromNib()</div><div class="line">        <span class="comment">// Initialization code</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    </div><div class="line">    <span class="built_in">lazy</span> <span class="keyword">var</span> nameLab = <span class="type">UILabel</span>()</div><div class="line">    <span class="keyword">private</span> <span class="built_in">lazy</span> <span class="keyword">var</span> yellowView = <span class="type">UIView</span>()</div><div class="line">    <span class="keyword">override</span> <span class="keyword">init</span> (style:<span class="type">UITableViewCellStyle</span>,reuseIdentifier:<span class="type">String</span>?)&#123;</div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(style: style, reuseIdentifier: reuseIdentifier)</div><div class="line">        selectionStyle = .<span class="keyword">none</span></div><div class="line">        initUI()</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">required</span> <span class="keyword">init</span>?(coder aDecoder: <span class="type">NSCoder</span>) &#123;</div><div class="line">        <span class="built_in">fatalError</span>(<span class="string">"init(coder:) has not been implemented"</span>)</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">initUI</span><span class="params">()</span></span> &#123;</div><div class="line">        nameLab.frame = <span class="type">CGRect</span>(x: <span class="number">10</span>, y: <span class="number">10</span>, width: <span class="number">60</span>, height: <span class="number">40</span>)</div><div class="line">        nameLab.numberOfLines = <span class="number">0</span></div><div class="line">        nameLab.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">15</span>)</div><div class="line">        nameLab.textColor = <span class="type">UIColor</span>(<span class="number">130</span>, <span class="number">130</span>, <span class="number">130</span>)</div><div class="line">        nameLab.highlightedTextColor = <span class="type">UIColor</span>(<span class="number">253</span>, <span class="number">212</span>, <span class="number">49</span>)</div><div class="line">        contentView.addSubview(nameLab)</div><div class="line">        </div><div class="line">        yellowView.frame = <span class="type">CGRect</span>(x:<span class="number">0</span>,y:<span class="number">5</span>,width:<span class="number">5</span>,height:<span class="number">45</span>)</div><div class="line">        yellowView.backgroundColor = <span class="type">UIColor</span>(<span class="number">253</span>, <span class="number">212</span>, <span class="number">49</span>)</div><div class="line">        contentView.addSubview(yellowView)</div><div class="line">    &#125;</div><div class="line">    </div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">setSelected</span><span class="params">(<span class="number">_</span> selected: Bool, animated: Bool)</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.setSelected(selected, animated: animated)</div><div class="line">        <span class="comment">// Configure the view for the selected state</span></div><div class="line">        </div><div class="line">        contentView.backgroundColor = selected ? <span class="type">UIColor</span>.white : <span class="type">UIColor</span>(white: <span class="number">0</span>, alpha: <span class="number">0.1</span>)</div><div class="line">        isHighlighted = selected</div><div class="line">        nameLab.isHighlighted = selected</div><div class="line">        yellowView.isHidden = !selected</div><div class="line">        </div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="FFRightTableViewCell-swift"><a href="#FFRightTableViewCell-swift" class="headerlink" title="FFRightTableViewCell.swift"></a>FFRightTableViewCell.swift</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">FFRightTableViewCell</span>: <span class="title">UITableViewCell</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">awakeFromNib</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.awakeFromNib()</div><div class="line">        <span class="comment">// Initialization code</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">setSelected</span><span class="params">(<span class="number">_</span> selected: Bool, animated: Bool)</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.setSelected(selected, animated: animated)</div><div class="line"></div><div class="line">        <span class="comment">// Configure the view for the selected state</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    </div><div class="line">    </div><div class="line">    <span class="keyword">private</span> <span class="built_in">lazy</span> <span class="keyword">var</span> nameLab = <span class="type">UILabel</span>()       <span class="comment">//名称</span></div><div class="line">    <span class="keyword">private</span> <span class="built_in">lazy</span> <span class="keyword">var</span> imgView = <span class="type">UIImageView</span>()   <span class="comment">//</span></div><div class="line">    <span class="keyword">private</span> <span class="built_in">lazy</span> <span class="keyword">var</span> priceLab = <span class="type">UILabel</span>()      <span class="comment">// 价格</span></div><div class="line">    <span class="keyword">override</span> <span class="keyword">init</span>(style: <span class="type">UITableViewCellStyle</span>, reuseIdentifier: <span class="type">String</span>?)&#123;</div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(style: style, reuseIdentifier: reuseIdentifier)</div><div class="line">        initUI()</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">required</span> <span class="keyword">init</span>?(coder aDecoder: <span class="type">NSCoder</span>) &#123;</div><div class="line">        <span class="built_in">fatalError</span>(<span class="string">"init(coder:) has not been implemented"</span>)</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//#MARK:设置UI</span></div><div class="line">    <span class="function"><span class="keyword">func</span>  <span class="title">initUI</span><span class="params">()</span></span>&#123;</div><div class="line">        nameLab.frame = <span class="type">CGRect</span>(x: <span class="number">15</span>, y: <span class="number">15</span>, width: <span class="number">50</span>, height: <span class="number">50</span>)</div><div class="line">        contentView.addSubview(nameLab)</div><div class="line">        </div><div class="line">        imgView.frame = <span class="type">CGRect</span>(x: <span class="number">15</span>, y: <span class="number">15</span>, width: <span class="number">50</span>, height: <span class="number">50</span>)</div><div class="line">        contentView.addSubview(imgView)</div><div class="line">        </div><div class="line">        priceLab.frame = <span class="type">CGRect</span>(x: <span class="number">80</span>, y: <span class="number">45</span>, width: <span class="number">200</span>, height: <span class="number">30</span>)</div><div class="line">        priceLab.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">14</span>)</div><div class="line">        priceLab.textColor = <span class="type">UIColor</span>.red</div><div class="line">        contentView.addSubview(priceLab)</div><div class="line">    &#125;</div><div class="line">   <span class="comment">//#MARK: 加载数据</span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">setDatas</span><span class="params">( model:FFFoodModel)</span></span>&#123;</div><div class="line">        <span class="keyword">guard</span></div><div class="line">            <span class="keyword">let</span> minPrice = model.minPrice,</div><div class="line">            <span class="keyword">let</span> picture = model.picture,</div><div class="line">            <span class="keyword">let</span> name = model.name</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">return</span></div><div class="line">        &#125;</div><div class="line">            priceLab.text = <span class="string">"￥\(minPrice)"</span></div><div class="line">            nameLab.text = name</div><div class="line">        </div><div class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> url = <span class="type">URL</span>.<span class="keyword">init</span>(string: picture)</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">return</span></div><div class="line">        &#125;</div><div class="line">      imgView.kf.setImage(with: url)</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="FFCategoryModel-swift"><a href="#FFCategoryModel-swift" class="headerlink" title="FFCategoryModel.swift"></a>FFCategoryModel.swift</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">FFCategoryModel</span>: <span class="title">NSObject</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> name: <span class="type">String</span>?</div><div class="line">    <span class="keyword">var</span> icon: <span class="type">String</span>?</div><div class="line">    <span class="keyword">var</span> spus:    [<span class="type">FFFoodModel</span>]?</div><div class="line">    </div><div class="line">    <span class="keyword">init</span>(dict :[<span class="type">String</span>:<span class="type">Any</span>]) &#123;</div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</div><div class="line">        setValuesForKeys(dict)</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">setValue</span><span class="params">(<span class="number">_</span> value: Any?, forKey key: String)</span></span> &#123;</div><div class="line">        <span class="keyword">if</span> key == <span class="string">"spus"</span> &#123;</div><div class="line">           spus = <span class="type">Array</span>()</div><div class="line">            <span class="keyword">guard</span></div><div class="line">                <span class="keyword">let</span> datas = value <span class="keyword">as</span>? [[<span class="type">String</span>:<span class="type">Any</span>]]</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">return</span></div><div class="line">            &#125;</div><div class="line">            <span class="keyword">for</span> dict <span class="keyword">in</span> datas&#123;</div><div class="line">                <span class="keyword">let</span> foodModel = <span class="type">FFFoodModel</span>(dict:dict)</div><div class="line">                spus?.append(foodModel)</div><div class="line">            &#125;</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">super</span>.setValue(value, forKey: key)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">setValue</span><span class="params">(<span class="number">_</span> value: Any?, forUndefinedKey key: String)</span></span> &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="FFFoodModel-swift"><a href="#FFFoodModel-swift" class="headerlink" title="FFFoodModel.swift"></a>FFFoodModel.swift</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">class</span> <span class="title">FFFoodModel</span>: <span class="title">NSObject</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> name : <span class="type">String</span>?</div><div class="line">    <span class="keyword">var</span> picture : <span class="type">String</span>?</div><div class="line">    <span class="keyword">var</span> minPrice : <span class="type">Float</span>?</div><div class="line">    </div><div class="line">    <span class="keyword">init</span>(dict : [<span class="type">String</span> : <span class="type">Any</span>]) &#123;</div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</div><div class="line">        setValuesForKeys(dict)</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">setValue</span><span class="params">(<span class="number">_</span> value: Any?, forKey key: String)</span></span> &#123;</div><div class="line">        <span class="keyword">if</span> key == <span class="string">"min_price"</span> &#123;</div><div class="line">            <span class="keyword">guard</span> <span class="keyword">let</span> price = value <span class="keyword">as</span>? <span class="type">Float</span> <span class="keyword">else</span> &#123;<span class="keyword">return</span>&#125;</div><div class="line">            minPrice = price</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">super</span>.setValue(value, forKey: key)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">setValue</span><span class="params">(<span class="number">_</span> value: Any?, forUndefinedKey key: String)</span></span> &#123;</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="FFTableViewHeaderView-swift"><a href="#FFTableViewHeaderView-swift" class="headerlink" title="FFTableViewHeaderView.swift"></a>FFTableViewHeaderView.swift</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">FFTableViewHeaderView</span>: <span class="title">UIView</span> </span>&#123;</div><div class="line"></div><div class="line"> <span class="built_in">lazy</span> <span class="keyword">var</span> nameLab  = <span class="type">UILabel</span>()</div><div class="line">    <span class="keyword">override</span> <span class="keyword">init</span> (frame:<span class="type">CGRect</span>)&#123;</div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(frame: frame)</div><div class="line">        backgroundColor = <span class="type">UIColor</span>(<span class="number">240</span>, <span class="number">240</span>, <span class="number">240</span>, <span class="number">0.8</span>)</div><div class="line">        nameLab.frame = <span class="type">CGRect</span>(x: <span class="number">15</span>, y: <span class="number">0</span>, width: <span class="number">200</span>, height: <span class="number">20</span>)</div><div class="line">        nameLab.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">13</span>)</div><div class="line">        addSubview(nameLab)</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">required</span> <span class="keyword">init</span>?(coder aDecoder: <span class="type">NSCoder</span>) &#123;</div><div class="line">        <span class="built_in">fatalError</span>(<span class="string">"init(coder:) has not been implemented"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
+          FFTableViewCtl.swift协议class FFTableViewCtl: UIViewController, UITableViewDataSource, UITableViewDelegate&#123;&#125;
+声明变量
+左侧 菜单分类数据源
+
+fileprivate lazy
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/14/Swift/UIKit/UITableView-双表联动/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -790,16 +729,18 @@
       
         
           
-            <h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><blockquote>
-<p>错误信息</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure. Temporary exceptions can be configured via your app&apos;s Info.plist file</div></pre></td></tr></table></figure>
-<blockquote>
-<p>修改info.plist</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">App Transport Security Settings</div><div class="line">  Allow Arbitrary Loads           YES</div></pre></td></tr></table></figure>
+          HTTP
+错误信息
 
-          
+App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure. Temporary exceptions can be configured vi
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/14/Swift/Error/Swift-Error-网络错误锦集/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -952,33 +893,20 @@
       
         
           
-            <h1 id="Model赋值"><a href="#Model赋值" class="headerlink" title="Model赋值"></a>Model赋值</h1><blockquote>
-<p>某个key（比如has_next_page）没var，但数据里有(forUndefinedKey)</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">reason:this <span class="class"><span class="keyword">class</span> <span class="title">is</span> <span class="title">not</span> <span class="title">key</span> <span class="title">value</span> <span class="title">coding</span>-<span class="title">compliant</span> <span class="title">for</span> <span class="title">the</span> <span class="title">key</span> <span class="title">has_next_page</span>.'</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>forKey/forUndefinedKey</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">//forKey</span></div><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">setValue</span><span class="params">(<span class="number">_</span> value: Any?, forKey key: String)</span></span> &#123;&#125;</div><div class="line"></div><div class="line"><span class="comment">//forUndefinedKey</span></div><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">setValue</span><span class="params">(<span class="number">_</span> value: Any?, forUndefinedKey key: String)</span></span> &#123;&#125;</div></pre></td></tr></table></figure>
-<h1 id="添加环境变量-OS-ACTIVITY-MODE"><a href="#添加环境变量-OS-ACTIVITY-MODE" class="headerlink" title="添加环境变量 OS_ACTIVITY_MODE"></a>添加环境变量 OS_ACTIVITY_MODE</h1><blockquote>
-<p>Xcode 8多余日志输出</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">nw_socket_set_common_sockopts setsockopt SO_NOAPNFALLBK failed: [42] Protocol not available, dumping backtrace:</div></pre></td></tr></table></figure>
-<blockquote>
-<p>添加环境变量 </p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">【product】-【scheme】-【Edit Scheme】-【Run】-【Argument】-【Environment Variable】添加key Value【OS_ACTIVITY_MODE disable】</div></pre></td></tr></table></figure>
-<p>#检查字典或者数组的形式是否正确</p>
-<blockquote>
-<p>Swift编译时报错：Command failed due to signal: Segmentation fault: 11<br>在网络请求完，解析的时候遇到这个问题：</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">Alamofire</span>.request(.<span class="type">GET</span>, <span class="string">"http://api.budejie.com/api/api_open.php"</span>, parameters: [<span class="string">"a"</span>:<span class="string">"newlist"</span>, <span class="string">"c"</span>:<span class="string">"data"</span>, <span class="string">"type"</span>:<span class="number">1</span>]).responseJSON() &#123; response <span class="keyword">in</span></div><div class="line"></div><div class="line">        <span class="keyword">let</span> json = <span class="type">JSON</span>(response.result.value!)</div><div class="line">        arr = json[<span class="string">"list"</span>].arrayObject!</div><div class="line">        <span class="type">DRLog</span>(arr)</div><div class="line">        <span class="keyword">self</span>.tableView.reloadData()</div><div class="line">      &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>在控制台上看到的确实是arr是一个数组形式，里面有多个NSDictionary形式，但是如果我们直接这个用：arr[index][“text”]是错误的。必须先将arr中的每个类似NSDictionary形式转换成NSDictionary：</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">let</span> dic = arr[index] <span class="keyword">as</span>! <span class="type">NSDictionary</span></div><div class="line"><span class="keyword">let</span> text = dic[<span class="string">"text"</span>] <span class="keyword">as</span>? <span class="type">String</span></div></pre></td></tr></table></figure>
+          Model赋值
+某个key（比如has_next_page）没var，但数据里有(forUndefinedKey)
 
-          
+reason:this class is not key value coding-compliant for the key has_next_page.'
+
+forKey/for
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/14/Swift/Error/Swift-Error-开发错误锦集/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1142,14 +1070,18 @@
       
         
           
-            <h1 id="UIWebView"><a href="#UIWebView" class="headerlink" title="UIWebView"></a>UIWebView</h1><blockquote>
-<p>UIWebView 继承与 UIView, 并且遵守了 UIScrollViewDelegate 协议, 所以它可以使用里面的方法和属性</p>
-</blockquote>
-<h1 id="遵守代理协议"><a href="#遵守代理协议" class="headerlink" title="遵守代理协议"></a>遵守代理协议</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span>, <span class="title">UIWebViewDelegate</span> </span>&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="自定义UIWebVIew"><a href="#自定义UIWebVIew" class="headerlink" title="自定义UIWebVIew"></a>自定义UIWebVIew</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">myWebView</span><span class="params">()</span></span> &#123;</div><div class="line"></div><div class="line">       <span class="comment">// 1.获取 UIWebView 的 UIScrollView 属性</span></div><div class="line">       <span class="keyword">let</span> webScroll = webView.scrollView</div><div class="line">       <span class="built_in">println</span>(<span class="string">"webScroll = \(webScroll)"</span>)</div><div class="line"></div><div class="line">       <span class="comment">// 2.获取 UIWebView 的 request 属性</span></div><div class="line">       <span class="keyword">let</span> webRequest = webView.request</div><div class="line">       <span class="built_in">println</span>(<span class="string">"webRequest = \(webRequest)"</span>)</div><div class="line"></div><div class="line">       <span class="comment">// 3.获取 UIWebView 是否在接收数据的时候可以退后一步</span></div><div class="line">       <span class="keyword">let</span> webCanBack = webView.canGoBack</div><div class="line">       <span class="built_in">println</span>(<span class="string">"webCanBack = \(webCanBack)"</span>)</div><div class="line"></div><div class="line">       <span class="comment">// 4.获取 UIWebView 是否在接收数据的时候可以前进一步</span></div><div class="line">       <span class="keyword">let</span> webCanGo = webView.canGoForward</div><div class="line">       <span class="built_in">println</span>(<span class="string">"webCanGo = \(webCanGo)"</span>)</div><div class="line"></div><div class="line">       <span class="comment">// 5.获取 UIWebVIew 是否接受完数据</span></div><div class="line">       <span class="keyword">let</span> webLoading = webView.loading</div><div class="line">       <span class="built_in">println</span>(<span class="string">"webLoading = \(webLoading)"</span>)</div><div class="line"></div><div class="line">       <span class="comment">// 6.设置 UIWebView 接收的数据是否可以通过手势来调整页面内容大小</span></div><div class="line">       webView.scalesPageToFit = <span class="literal">true</span></div><div class="line"></div><div class="line">       <span class="comment">// 7.设置 UIWebView 接收到得数据是什么类型的</span></div><div class="line">       webView.dataDetectorTypes = <span class="type">UIDataDetectorTypes</span>.<span class="type">All</span></div><div class="line"></div><div class="line">       <span class="comment">// 8.设置 UIWebView 内是否可以回放媒体</span></div><div class="line">       webView.allowsInlineMediaPlayback = <span class="literal">true</span></div><div class="line"></div><div class="line">       <span class="comment">// 9.设置 UIWebView 中的 HTML5 视频是否自动播放</span></div><div class="line">       webView.mediaPlaybackRequiresUserAction = <span class="literal">true</span></div><div class="line"></div><div class="line">       <span class="comment">// 10.设置 UIWebView 是否可以使用 Air 播放</span></div><div class="line">       webView.mediaPlaybackAllowsAirPlay = <span class="literal">true</span></div><div class="line"></div><div class="line">       <span class="comment">// 11.设置 UIWebView 是否使用同步加载(默认是False)</span></div><div class="line">       webView.suppressesIncrementalRendering = <span class="literal">false</span></div><div class="line"></div><div class="line">       <span class="comment">// 12.设置 UIWebView 在点击视图或者元素时是否显示键盘(默认是True)</span></div><div class="line">       webView.keyboardDisplayRequiresUserAction = <span class="literal">true</span></div><div class="line"></div><div class="line">       <span class="comment">// 13.设置 UIWebView 的分页模式</span></div><div class="line">       webView.paginationMode = <span class="type">UIWebPaginationMode</span>.<span class="type">RightToLeft</span></div><div class="line"></div><div class="line">       <span class="comment">// 14.设置 UIWebView 的分页打破模式</span></div><div class="line">       webView.paginationBreakingMode = <span class="type">UIWebPaginationBreakingMode</span>.<span class="type">Column</span></div><div class="line"></div><div class="line">       <span class="comment">// 15.设置 UIWebView 的分页长度</span></div><div class="line">       webView.pageLength = <span class="number">400</span></div><div class="line"></div><div class="line">       <span class="comment">// 16.设置 UIWebView 每个分页之间的宽度</span></div><div class="line">       webView.gapBetweenPages = <span class="number">100</span></div><div class="line"></div><div class="line">       <span class="comment">// 17.获取 UIWebView 的分页数量</span></div><div class="line">       <span class="keyword">let</span> webViewPageCount = webView.pageCount</div><div class="line">       <span class="built_in">println</span>(webViewPageCount)</div><div class="line"></div><div class="line">       <span class="comment">// 18.设置 UIWebView 的代理对象</span></div><div class="line">       webView.delegate = <span class="keyword">self</span></div><div class="line"></div><div class="line">       <span class="comment">// 19.发送网络请求</span></div><div class="line">       <span class="keyword">var</span> url:<span class="type">NSURL</span> = <span class="type">NSURL</span>(string:<span class="string">"http://www.baidu.com"</span>)!</div><div class="line">       <span class="keyword">var</span> request:<span class="type">NSURLRequest</span> = <span class="type">NSURLRequest</span>(<span class="type">URL</span>:url)</div><div class="line">       webView.loadRequest(request)</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<h1 id="实现代理方法"><a href="#实现代理方法" class="headerlink" title="实现代理方法"></a>实现代理方法</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 1.该方法是用来设置是否在 UIWebView 加载之前发送一个请求</span></div><div class="line">   <span class="function"><span class="keyword">func</span> <span class="title">webView</span><span class="params">(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType)</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">       <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="comment">// 2.该方法是在 UIWebView 在开发加载时调用</span></div><div class="line">   <span class="function"><span class="keyword">func</span> <span class="title">webViewDidStartLoad</span><span class="params">(webView: UIWebView)</span></span> &#123;</div><div class="line">       <span class="built_in">println</span>(<span class="string">"开始加载"</span>)</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="comment">// 3.该方法是在 UIWebView 加载完之后才调用</span></div><div class="line">   <span class="function"><span class="keyword">func</span> <span class="title">webViewDidFinishLoad</span><span class="params">(webView: UIWebView)</span></span> &#123;</div><div class="line">       <span class="built_in">println</span>(<span class="string">"加载完成"</span>)</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="comment">// 4.该方法是在 UIWebView 请求失败的时候调用</span></div><div class="line">   <span class="function"><span class="keyword">func</span> <span class="title">webView</span><span class="params">(webView: UIWebView, didFailLoadWithError error: NSError)</span></span> &#123;</div><div class="line">       <span class="built_in">println</span>(<span class="string">"加载失败"</span>)</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<h1 id="在-ViewDidLoad-方法中实现"><a href="#在-ViewDidLoad-方法中实现" class="headerlink" title="在 ViewDidLoad 方法中实现"></a>在 ViewDidLoad 方法中实现</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">       <span class="keyword">super</span>.viewDidLoad()</div><div class="line">       <span class="keyword">self</span>.myWebView()</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-          
+          UIWebView
+UIWebView 继承与 UIView, 并且遵守了 UIScrollViewDelegate 协议, 所以它可以使用里面的方法和属性
+
+遵守代理协议 class ViewController: UIViewController, UIWebViewDelegate &#123
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/14/Swift/UIKit/Swift-UIKit-UIWebView-简单使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1313,108 +1245,22 @@
       
         
           
-            <h1 id="UIWebView的常用属性"><a href="#UIWebView的常用属性" class="headerlink" title="UIWebView的常用属性"></a>UIWebView的常用属性</h1><blockquote>
-<p>1.设置 UIWebView 的代理对象</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> delegate: <span class="type">UIWebViewDelegate</span>?</div></pre></td></tr></table></figure>
-<blockquote>
-<p>2.获取 UIWebView 的 UIScrollView 属性</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> scrollView: <span class="type">UIScrollView</span> &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>3.获取 UIWebView 的网络请求</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> request: <span class="type">NSURLRequest</span>? &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>4.获取 UIWebView 是否在接收数据的时候可以退后一步</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> canGoBack: <span class="type">Bool</span> &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>5.获取 UIWebView 是否在接收数据的时候可以前进一步</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">var</span> canGoForward: <span class="type">Bool</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">```  </div><div class="line"></div><div class="line">&gt; <span class="number">6</span>.获取 <span class="type">UIWebView</span> 是否接受完数据</div><div class="line"></div><div class="line">```swift</div><div class="line">   <span class="keyword">var</span> loading: <span class="type">Bool</span> &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>7.设置 UIWebView 接收的数据是否可以通过手势来调整页面内容大小</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> scalesPageToFit: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>8.设置 UIWebView 接收的数据是什么类型</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> dataDetectorTypes: <span class="type">UIDataDetectorTypes</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>9.设置 UIWebView 内是否可以回放媒体</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> allowsInlineMediaPlayback: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>10.设置 UIWebView 中的 HTML5 视频是否自动播放(默认是True)</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> mediaPlaybackRequiresUserAction: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>11.设置 UIWebView 是否可以使用 Air 播放(默认是True)</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> mediaPlaybackAllowsAirPlay: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>12.设置 UIWebView 是否使用同步加载(默认是False)</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> suppressesIncrementalRendering: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>13.设置 UIWebView 在点击视图或者元素时是否显示键盘(默认是True)</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> keyboardDisplayRequiresUserAction: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>14.设置 UIWebView 的分页模式</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> paginationMode: <span class="type">UIWebPaginationMode</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>15.设置 UIWebView 的分页打破模式</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> paginationBreakingMode: <span class="type">UIWebPaginationBreakingMode</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>16.设置 UIWebView 的分页长度</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> pageLength: <span class="type">CGFloat</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>17.设置 UIWebView 之间的页面宽度</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> gapBetweenPages: <span class="type">CGFloat</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>18.获取 UIWebView 的页面数量</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> pageCount: <span class="type">Int</span> &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<h1 id="常用类型"><a href="#常用类型" class="headerlink" title="常用类型"></a>常用类型</h1><blockquote>
-<p>1.获取 UIWebView 的数据类型</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">UIDataDetectorTypes</span> : <span class="title">RawOptionSetType</span> </span>&#123;</div><div class="line">    <span class="keyword">init</span>(<span class="number">_</span> rawValue: <span class="type">UInt</span>)</div><div class="line">    <span class="keyword">init</span>(rawValue: <span class="type">UInt</span>)</div><div class="line"></div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> <span class="type">PhoneNumber</span>: <span class="type">UIDataDetectorTypes</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> <span class="type">Link</span>: <span class="type">UIDataDetectorTypes</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> <span class="type">Address</span>: <span class="type">UIDataDetectorTypes</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> <span class="type">CalendarEvent</span>: <span class="type">UIDataDetectorTypes</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> <span class="type">None</span>: <span class="type">UIDataDetectorTypes</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> <span class="type">All</span>: <span class="type">UIDataDetectorTypes</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>2.设置 UIWebView 的 Navigation 类型</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">UIWebViewNavigationType</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">LinkClicked</span></div><div class="line">    <span class="keyword">case</span> <span class="type">FormSubmitted</span></div><div class="line">    <span class="keyword">case</span> <span class="type">BackForward</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Reload</span></div><div class="line">    <span class="keyword">case</span> <span class="type">FormResubmitted</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Other</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>3.设置 UIWebView 的分页样式</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">UIWebPaginationMode</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Unpaginated</span></div><div class="line">    <span class="keyword">case</span> <span class="type">LeftToRight</span></div><div class="line">    <span class="keyword">case</span> <span class="type">TopToBottom</span></div><div class="line">    <span class="keyword">case</span> <span class="type">BottomToTop</span></div><div class="line">    <span class="keyword">case</span> <span class="type">RightToLeft</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>4.设置 UIWebView 打破分页样式的样式</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">UIWebPaginationBreakingMode</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Page</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Column</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="UIWebView的代理方法"><a href="#UIWebView的代理方法" class="headerlink" title="UIWebView的代理方法"></a>UIWebView的代理方法</h1><blockquote>
-<p>1.该方法是用来设置是否在 UIWebView 加载之前发送一个请求</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">webView</span><span class="params">(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType)</span></span> -&gt; <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>2.该方法是在 UIWebView 在开发加载时调用</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">webViewDidStartLoad</span><span class="params">(webView: UIWebView)</span></span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>3.该方法是在 UIWebView 加载完之后才调用</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">webViewDidFinishLoad</span><span class="params">(webView: UIWebView)</span></span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>4.该方法是在 UIWebView 请求失败的时候调用</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">webView</span><span class="params">(webView: UIWebView, didFailLoadWithError error: NSError)</span></span></div></pre></td></tr></table></figure>
+          UIWebView的常用属性
+1.设置 UIWebView 的代理对象
 
-          
+var delegate: UIWebViewDelegate?
+
+2.获取 UIWebView 的 UIScrollView 属性
+
+var scrollView: UIScrollView &#123; get &#125
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/14/Swift/UIKit/Swift-UIKit-UIWebView-简介/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1578,14 +1424,18 @@
       
         
           
-            <h1 id="UINavigationController"><a href="#UINavigationController" class="headerlink" title="UINavigationController"></a>UINavigationController</h1><blockquote>
-<p>UINavigationController 是继承与 UIViewController 的, 所以里面的方法以及属性都是可以使用的.</p>
-</blockquote>
-<h1 id="首先我们要再AppDelegate-swift文件中实现"><a href="#首先我们要再AppDelegate-swift文件中实现" class="headerlink" title="首先我们要再AppDelegate.swift文件中实现"></a>首先我们要再AppDelegate.swift文件中实现</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">application</span><span class="params">(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?)</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">       <span class="comment">// Override point for customization after application launch.</span></div><div class="line"></div><div class="line">       <span class="keyword">self</span>.window = <span class="type">UIWindow</span>(frame: <span class="type">UIScreen</span>.mainScreen().bounds)</div><div class="line">       <span class="keyword">self</span>.window!.backgroundColor = <span class="type">UIColor</span>.grayColor()</div><div class="line">       <span class="keyword">self</span>.window!.makeKeyAndVisible()</div><div class="line"></div><div class="line">       <span class="keyword">let</span> viewController = <span class="type">ViewController</span>()</div><div class="line">       <span class="keyword">let</span> navigationController = <span class="type">UINavigationController</span>(rootViewController: viewController)</div><div class="line">       <span class="keyword">self</span>.window!.rootViewController = navigationController</div><div class="line"></div><div class="line">       <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<h1 id="遵守代理协议"><a href="#遵守代理协议" class="headerlink" title="遵守代理协议"></a>遵守代理协议</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span>, <span class="title">UINavigationControllerDelegate</span> </span>&#123; &#125;</div></pre></td></tr></table></figure>
-<h1 id="自定义UINavigationController"><a href="#自定义UINavigationController" class="headerlink" title="自定义UINavigationController"></a>自定义UINavigationController</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">myNavigationContronller</span><span class="params">()</span></span> &#123;</div><div class="line">       <span class="comment">// 1.设置 UINavigationController 的 Title</span></div><div class="line">       <span class="keyword">self</span>.title = <span class="string">"UINavigationContronller"</span></div><div class="line"></div><div class="line">       <span class="comment">// 2.设置 UIVavigationController 的按钮 Title, Style, Target, Action 等方法属性</span></div><div class="line">       <span class="keyword">let</span> backBarButtonItem = <span class="type">UIBarButtonItem</span>(title: <span class="string">"返回"</span>, style: <span class="type">UIBarButtonItemStyle</span>.<span class="type">Plain</span>, target: <span class="keyword">self</span>, action: <span class="string">"backAction"</span>)</div><div class="line">       <span class="keyword">let</span> nextBarButtonItem = <span class="type">UIBarButtonItem</span>(title: <span class="string">"下一页"</span>, style: <span class="type">UIBarButtonItemStyle</span>.<span class="type">Plain</span>, target: <span class="keyword">self</span>, action: <span class="string">"nextAction"</span>)</div><div class="line"></div><div class="line">       <span class="comment">// 3.设置 UINavigationItem</span></div><div class="line">       <span class="keyword">self</span>.navigationItem.leftBarButtonItem = backBarButtonItem</div><div class="line">       <span class="keyword">self</span>.navigationItem.rightBarButtonItem = nextBarButtonItem</div><div class="line"></div><div class="line">       <span class="comment">// 4.获取 UINavigationController 的顶部的视图控制器</span></div><div class="line">       <span class="keyword">let</span> topView = <span class="keyword">self</span>.navigationController?.topViewController</div><div class="line">       <span class="built_in">println</span>(topView)</div><div class="line"></div><div class="line">       <span class="comment">// 5.获取 UINavigationController 可见的视图控制器</span></div><div class="line">       <span class="keyword">let</span> visibleView = <span class="keyword">self</span>.navigationController?.visibleViewController</div><div class="line">       <span class="built_in">println</span>(visibleView)</div><div class="line"></div><div class="line">       <span class="comment">// 6.设置 UINavigationController 的导航栏控制器</span></div><div class="line">       <span class="keyword">self</span>.navigationController?.viewControllers</div><div class="line"></div><div class="line">       <span class="comment">// 7.设置 UINavigationController 的导航栏控制器是否隐藏(默认是 false)</span></div><div class="line">       <span class="keyword">self</span>.navigationController?.navigationBarHidden = <span class="literal">false</span></div><div class="line"></div><div class="line">       <span class="comment">// 8.获取 UINavigationController 的导航栏控制器</span></div><div class="line">       <span class="keyword">let</span> navigationBar = <span class="keyword">self</span>.navigationController?.navigationBar</div><div class="line">       <span class="built_in">println</span>(navigationBar)</div><div class="line"></div><div class="line">       <span class="comment">// 9.设置 UINavigationController 的内置工具栏是否可见(默认是 ture)</span></div><div class="line">       <span class="keyword">self</span>.navigationController?.toolbarHidden = <span class="literal">false</span></div><div class="line"></div><div class="line">       <span class="comment">// 10.获取 UINavigationController 的 toolbar</span></div><div class="line">       <span class="keyword">let</span> toolbar = <span class="keyword">self</span>.navigationController?.toolbar</div><div class="line">       <span class="built_in">println</span>(toolbar)</div><div class="line"></div><div class="line">       <span class="comment">// 11.设置 UINavigationController 的代理对象</span></div><div class="line">       <span class="keyword">self</span>.navigationController?.delegate = <span class="keyword">self</span></div><div class="line"></div><div class="line">       <span class="comment">// 12.获取 UINavigationController 的手势识别顶部视图控制器</span></div><div class="line">       <span class="keyword">let</span> pop = <span class="keyword">self</span>.navigationController?.interactivePopGestureRecognizer</div><div class="line">       <span class="built_in">println</span>(pop)</div><div class="line"></div><div class="line">       <span class="comment">// 13.设置 UINavigationController 当键盘出现时是否隐藏导航栏和工具栏</span></div><div class="line">       <span class="keyword">self</span>.navigationController!.hidesBarsWhenKeyboardAppears = <span class="literal">true</span></div><div class="line"></div><div class="line">       <span class="comment">// 14.设置 UINavigationController 是否使用向上滑动的手势隐藏导航栏和工具栏</span></div><div class="line">       <span class="keyword">self</span>.navigationController?.hidesBarsOnSwipe = <span class="literal">true</span></div><div class="line"></div><div class="line">       <span class="comment">// 15.获取 UINavigationController 用手势识别隐藏导航栏和工具栏</span></div><div class="line">       <span class="keyword">let</span> barHide = <span class="keyword">self</span>.navigationController!.barHideOnSwipeGestureRecognizer</div><div class="line">       <span class="built_in">println</span>(barHide)</div><div class="line"></div><div class="line">       <span class="comment">// 16.设置 UINavigationController 是否在垂直显示时隐藏</span></div><div class="line">       <span class="keyword">self</span>.navigationController!.hidesBarsWhenVerticallyCompact = <span class="literal">true</span></div><div class="line"></div><div class="line">       <span class="comment">// 17.设置 UINavigationController 是否使用点击手势来隐藏</span></div><div class="line">       <span class="keyword">self</span>.navigationController?.hidesBarsOnTap = <span class="literal">true</span></div><div class="line"></div><div class="line">       <span class="comment">// 18.获取 UINavigationController 隐藏时所使用的手势</span></div><div class="line">       <span class="keyword">let</span> barHideOnTap = <span class="keyword">self</span>.navigationController!.barHideOnTapGestureRecognizer</div><div class="line">       <span class="built_in">println</span>(barHideOnTap)</div><div class="line"></div><div class="line">       <span class="comment">// 19.设置 UINavigationController 的导航栏是否隐藏, 是否使用动画</span></div><div class="line">       <span class="keyword">self</span>.navigationController?.setNavigationBarHidden(<span class="literal">true</span>, animated: <span class="literal">true</span>)</div><div class="line"></div><div class="line">       <span class="comment">// 20.设置 UINavigationController 的工具栏是否隐藏, 是否使用动画</span></div><div class="line">       <span class="keyword">self</span>.navigationController?.setToolbarHidden(<span class="literal">true</span>, animated: <span class="literal">true</span>)</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<h1 id="自定义代理方法以及监听方法"><a href="#自定义代理方法以及监听方法" class="headerlink" title="自定义代理方法以及监听方法"></a>自定义代理方法以及监听方法</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 1.该方法使用来设置 UINavigationController 将要显示时所调用的方法</span></div><div class="line">   <span class="function"><span class="keyword">func</span> <span class="title">navigationController</span><span class="params">(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool)</span></span> &#123;</div><div class="line">       <span class="built_in">println</span>(<span class="string">"UINavigationController 将要显示"</span>)</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="comment">// 2.该方法使用来设置 UINavigationController 完全显示时所调用的方法</span></div><div class="line">   <span class="function"><span class="keyword">func</span> <span class="title">navigationController</span><span class="params">(navigationController: UINavigationController, didShowViewController viewController: UIViewController, animated: Bool)</span></span> &#123;</div><div class="line">       <span class="built_in">println</span>(<span class="string">"UINavigationController 完全显示"</span>)</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="comment">// 3.返回按钮的监听方法</span></div><div class="line">   <span class="function"><span class="keyword">func</span> <span class="title">backAction</span><span class="params">()</span></span> &#123;</div><div class="line">       <span class="built_in">println</span>(<span class="string">"点击了返回"</span>)</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="comment">// 4.下一页按钮的监听方法</span></div><div class="line">   <span class="function"><span class="keyword">func</span> <span class="title">nextAction</span><span class="params">()</span></span> &#123;</div><div class="line">       <span class="built_in">println</span>(<span class="string">"点击了下一页"</span>)</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-          
+          UINavigationController
+UINavigationController 是继承与 UIViewController 的, 所以里面的方法以及属性都是可以使用的.
+
+首先我们要再AppDelegate.swift文件中实现func application(application: 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/14/Swift/UIKit/UINavigationController-简单使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1749,107 +1599,20 @@
       
         
           
-            <h1 id="UINavigationController常用属性"><a href="#UINavigationController常用属性" class="headerlink" title="UINavigationController常用属性"></a>UINavigationController常用属性</h1><blockquote>
-<p>1.获取 UINavigationController 的顶部的视图控制器</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> topViewController: <span class="type">UIViewController</span>! &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>2.获取 UINavigationController 可见的视图控制器</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> visibleViewController: <span class="type">UIViewController</span>! &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>3.设置 UINavigationController 的 viewControllers 对象</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> viewControllers: [<span class="type">AnyObject</span>]!</div></pre></td></tr></table></figure>
-<blockquote>
-<p>4.设置 UINavigationController 的导航栏控制器是否隐藏, 默认是 false</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> navigationBarHidden: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>5.获取 UINavigationController 的导航栏控制器</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> navigationBar: <span class="type">UINavigationBar</span> &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>6.设置 UINavigationController 的内置工具栏是否可见(默认是 ture)</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> toolbarHidden: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>7.获取 UINavigationController 的 toolbar</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> toolbar: <span class="type">UIToolbar</span>! &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>8.设置 UINavigationController 的代理对象</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> delegate: <span class="type">UINavigationControllerDelegate</span>?</div></pre></td></tr></table></figure>
-<blockquote>
-<p>9.获取 UINavigationController 的手势识别顶部视图控制器</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> interactivePopGestureRecognizer: <span class="type">UIGestureRecognizer</span>! &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>10.设置 UINavigationController 当键盘出现时是否隐藏导航栏和工具栏</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> hidesBarsWhenKeyboardAppears: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>11.设置 UINavigationController 是否使用向上滑动的手势隐藏导航栏和工具栏</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> hidesBarsOnSwipe: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>12.获取 UINavigationController 用手势识别隐藏导航栏和工具栏</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> barHideOnSwipeGestureRecognizer: <span class="type">UIPanGestureRecognizer</span> &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>13.设置 UINavigationController 是否在垂直显示时隐藏</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> hidesBarsWhenVerticallyCompact: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>14.设置 UINavigationController 是否使用点击手势来隐藏</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> hidesBarsOnTap: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>15.获取 UINavigationController 隐藏时所使用的手势</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> barHideOnTapGestureRecognizer: <span class="type">UITapGestureRecognizer</span> &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<h1 id="UINavigationController常用的方法"><a href="#UINavigationController常用的方法" class="headerlink" title="UINavigationController常用的方法"></a>UINavigationController常用的方法</h1><blockquote>
-<p>1.该方法是用来设置 UINavigationController 跳转到指定的视图控制器, 是否使用动画</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">pushViewController</span><span class="params">(viewController: UIViewController, animated: Bool)</span></span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>2.该方法是用来设置 UINavigationController Pop到其他视图控制器时是否使用动画, 并且返回的类型必须是 UIViewController</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">popViewControllerAnimated</span><span class="params">(animated: Bool)</span></span> -&gt; <span class="type">UIViewController</span>?</div></pre></td></tr></table></figure>
-<blockquote>
-<p>3.该方法是用来设置 UINavigationController Pop到指定的视图控制器, 是否使用动画, 返回的类型是任意类型</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">popToViewController</span><span class="params">(viewController: UIViewController, animated: Bool)</span></span> -&gt; [<span class="type">AnyObject</span>]?</div></pre></td></tr></table></figure>
-<blockquote>
-<p>4.该方法是用来设置 UINavigationController Pop到根视图时是否使用动画, 并且返回的类型必须是任意类型</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">popToRootViewControllerAnimated</span><span class="params">(animated: Bool)</span></span> -&gt; [<span class="type">AnyObject</span>]?</div></pre></td></tr></table></figure>
-<blockquote>
-<p>5.该方法是用来替换之前于 UINavigationController 绑定的视图控制器, 并且是否使用动画</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">setViewControllers</span><span class="params">(viewControllers: [AnyObject]!, animated: Bool)</span></span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>6.该方法是用来设置 UINavigationController 的导航栏是否隐藏, 是否使用动画</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">setNavigationBarHidden</span><span class="params">(hidden: Bool, animated: Bool)</span></span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>7.该方法是用来设置 UINavigationController 的工具栏是否隐藏, 是否使用动画</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">setToolbarHidden</span><span class="params">(hidden: Bool, animated: Bool)</span></span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>8.该方法是用来设置 UINavigationController 显示指定的 ViewController</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">showViewController</span><span class="params">(vc: UIViewController, sender: AnyObject!)</span></span></div></pre></td></tr></table></figure>
-<h1 id="UINavigationController代理方法"><a href="#UINavigationController代理方法" class="headerlink" title="UINavigationController代理方法"></a>UINavigationController代理方法</h1><blockquote>
-<p>1.该方法使用来设置 UINavigationController 将要显示时所调用的方法</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">navigationController</span><span class="params">(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool)</span></span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>2.该方法使用来设置 UINavigationController 完全显示时所调用的方法</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">navigationController</span><span class="params">(navigationController: UINavigationController, didShowViewController viewController: UIViewController, animated: Bool)</span></span></div></pre></td></tr></table></figure>
-          
+          UINavigationController常用属性
+1.获取 UINavigationController 的顶部的视图控制器
+
+var topViewController: UIViewController! &#123; get &#125;
+
+2.获取 UINavigationControl
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/14/Swift/UIKit/UINavigationController-简介/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2013,10 +1776,15 @@
       
         
           
-            <h1 id="自定义UISegmentedContro"><a href="#自定义UISegmentedContro" class="headerlink" title="自定义UISegmentedContro"></a>自定义UISegmentedContro</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">mySegmentedControl</span><span class="params">()</span></span> &#123;</div><div class="line"></div><div class="line">        <span class="comment">// 1.自定义 UISegemtedControl 并且设置它的 Item 数组对象</span></div><div class="line">        <span class="keyword">var</span> segmented = <span class="type">UISegmentedControl</span>(items: [<span class="string">"分段一"</span>, <span class="string">"分段二"</span>])</div><div class="line"></div><div class="line">        <span class="comment">// 2.设置 UISegemtedControl 的中心点</span></div><div class="line">        segmented.center = <span class="type">CGPointMake</span>(<span class="keyword">self</span>.view.frame.width / <span class="number">2</span>, <span class="keyword">self</span>.view.frame.height / <span class="number">2</span>)</div><div class="line"></div><div class="line">        <span class="comment">// 3.设置 UISegemtedControl 的尺寸</span></div><div class="line">        segmented.bounds = <span class="type">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">300</span>, <span class="number">30</span>)</div><div class="line"></div><div class="line">        <span class="comment">// 4.设置 UISegemtedControl 点击之后是否瞬间弹起, (默认是 false)</span></div><div class="line">        segmented.momentary = <span class="literal">true</span></div><div class="line"></div><div class="line">        <span class="comment">// 5.获取 UISegemtedControl 的分段按钮个数</span></div><div class="line">        <span class="keyword">var</span> number: <span class="type">Int</span> = segmented.numberOfSegments</div><div class="line"></div><div class="line">        <span class="comment">// 6.设置 UISegemtedControl 是否基于内容自动调整尺寸, 默认是 false, 前提是要不设置 UISegemtedControl 的尺寸</span></div><div class="line">        segmented.apportionsSegmentWidthsByContent = <span class="literal">false</span></div><div class="line"></div><div class="line">        <span class="comment">// 7.插入一个 UISegemtedControl 的分段按钮, 并且设置标题和索引, 以及是否使用动画</span></div><div class="line">        segmented.insertSegmentWithTitle(<span class="string">"分段三"</span>, atIndex: <span class="number">2</span>, animated: <span class="literal">true</span>)</div><div class="line"></div><div class="line">        <span class="comment">// 8.插入一个 UISegemtedControl 作为分段按钮, 并且设置索引, 以及是否使用动画</span></div><div class="line">        segmented.insertSegmentWithImage(<span class="type">UIImage</span>(named: <span class="string">"image_black.jpg"</span>)!, atIndex: <span class="number">3</span>, animated: <span class="literal">true</span>)</div><div class="line"></div><div class="line">        <span class="comment">// 9.删除指定索引的 UISegemtedControl 分段按钮, 以及是否使用动画</span></div><div class="line">        segmented.removeSegmentAtIndex(<span class="number">1</span>, animated: <span class="literal">true</span>)</div><div class="line"></div><div class="line">        <span class="comment">// 10.删除所有 UISegemtedControl 的分段按钮</span></div><div class="line">        <span class="comment">//segmented.removeAllSegments()</span></div><div class="line"></div><div class="line">        <span class="comment">// 11.修改 UISegemtedControl 指定的 Item 分段按钮标题</span></div><div class="line">        segmented.setTitle(<span class="string">"分段四"</span>, forSegmentAtIndex: <span class="number">0</span>)</div><div class="line"></div><div class="line">        <span class="comment">// 12.获取指定的 UISegemtedControl 分段按钮的标题</span></div><div class="line">        <span class="keyword">var</span> title: <span class="type">String</span> = segmented.titleForSegmentAtIndex(<span class="number">0</span>)!</div><div class="line">        <span class="built_in">println</span>(title)</div><div class="line"></div><div class="line">        <span class="comment">// 13.修改 UISegemtedControl 指定的 Item 分段按钮图片</span></div><div class="line">        segmented.setImage(<span class="type">UIImage</span>(named: <span class="string">"image_black.jpg"</span>)!, forSegmentAtIndex: <span class="number">2</span>)</div><div class="line"></div><div class="line">        <span class="comment">// 14.获取指定的 UISegemtedControl 分段按钮的图片</span></div><div class="line">        <span class="keyword">var</span> image: <span class="type">UIImage</span> = segmented.imageForSegmentAtIndex(<span class="number">2</span>)!</div><div class="line">        <span class="built_in">println</span>(image)</div><div class="line"></div><div class="line">        <span class="comment">// 15.设置 UISegemtedControl 指定的 Item 宽度</span></div><div class="line">        segmented.setWidth(<span class="number">70</span>, forSegmentAtIndex: <span class="number">0</span>)</div><div class="line"></div><div class="line">        <span class="comment">// 16.获取指定 UISegemtedControl 分段按钮的宽度</span></div><div class="line">        <span class="keyword">var</span> width: <span class="type">CGFloat</span> = segmented.widthForSegmentAtIndex(<span class="number">0</span>)</div><div class="line">        <span class="built_in">println</span>(width)</div><div class="line"></div><div class="line">        <span class="comment">// 17.设置 UISegemtedControl 指定的 Item 内容偏移量</span></div><div class="line">        segmented.setContentOffset(<span class="type">CGSizeMake</span>(<span class="number">5</span>, <span class="number">5</span>), forSegmentAtIndex: <span class="number">0</span>)</div><div class="line"></div><div class="line">        <span class="comment">// 18.获取指定 UISegemtedControl 指定的 Item 内容偏移量</span></div><div class="line">        <span class="keyword">var</span> size: <span class="type">CGSize</span> = segmented.contentOffsetForSegmentAtIndex(<span class="number">0</span>)</div><div class="line">        <span class="built_in">println</span>(size)</div><div class="line"></div><div class="line">        <span class="comment">// 19.设置 UISegemtedControl 指定的 Item 是否可以点击</span></div><div class="line">        segmented.setEnabled(<span class="literal">true</span>, forSegmentAtIndex: <span class="number">0</span>)</div><div class="line"></div><div class="line">        <span class="comment">// 20.获取指定 UISegemtedControl 指定的 Item 是否可以点击</span></div><div class="line">        <span class="keyword">var</span> bool: <span class="type">Bool</span> = segmented.isEnabledForSegmentAtIndex(<span class="number">0</span>)</div><div class="line">        <span class="built_in">println</span>(bool)</div><div class="line"></div><div class="line">        <span class="comment">// 21.获取 UISegemtedControl 可点击的 Item 数量</span></div><div class="line">        <span class="keyword">var</span> selected: <span class="type">Int</span> = segmented.selectedSegmentIndex</div><div class="line">        <span class="built_in">println</span>(selected)</div><div class="line"></div><div class="line">        <span class="comment">// 22.设置 UISegemtedControl 的样式颜色</span></div><div class="line">        segmented.tintColor = <span class="type">UIColor</span>.redColor()</div><div class="line"></div><div class="line">        <span class="comment">// 23.设置 UISegemtedControl 的背景图片, 并且在 UISegemtedControl 指定的样式下才会显示, 以及图片显示的样式</span></div><div class="line">        segmented.setBackgroundImage(<span class="type">UIImage</span>(named: <span class="string">"image_black.jpg"</span>), forState: <span class="type">UIControlState</span>.<span class="type">Normal</span>, barMetrics: <span class="type">UIBarMetrics</span>.<span class="type">Default</span>)</div><div class="line"></div><div class="line">        <span class="comment">// 24.获取 UISegemtedControl 在指定的状态, 图片显示下的图片</span></div><div class="line">        <span class="keyword">var</span> backgroundImage: <span class="type">UIImage</span> = segmented.backgroundImageForState(<span class="type">UIControlState</span>.<span class="type">Normal</span>, barMetrics: <span class="type">UIBarMetrics</span>.<span class="type">Default</span>)!</div><div class="line">        <span class="built_in">println</span>(backgroundImage)</div><div class="line"></div><div class="line">        <span class="comment">// 25.设置 UISegemtedControl 的左右的分隔符图片, 并且在 UISegemtedControl 指定的样式下才会显示, 以及图片显示的样式</span></div><div class="line">        segmented.setDividerImage(<span class="type">UIImage</span>(named: <span class="string">"image_divider"</span>), forLeftSegmentState: <span class="type">UIControlState</span>.<span class="type">Normal</span>, rightSegmentState: <span class="type">UIControlState</span>.<span class="type">Normal</span>, barMetrics: <span class="type">UIBarMetrics</span>.<span class="type">Default</span>)</div><div class="line"></div><div class="line">        <span class="comment">// 26.获取 UISegemtedControl 的左右的分隔符图片, 并且在 UISegemtedControl 指定的样式下才会显示, 以及图片显示的样式</span></div><div class="line">        <span class="keyword">var</span> divider: <span class="type">UIImage</span> = segmented.dividerImageForLeftSegmentState(<span class="type">UIControlState</span>.<span class="type">Normal</span>, rightSegmentState: <span class="type">UIControlState</span>.<span class="type">Normal</span>, barMetrics: <span class="type">UIBarMetrics</span>.<span class="type">Default</span>)!</div><div class="line">        <span class="built_in">println</span>(divider)</div><div class="line"></div><div class="line">        <span class="comment">// 27.添加 UISegemtedControl 的监听方法</span></div><div class="line">        segmented.addTarget(<span class="keyword">self</span>, action: <span class="string">"didClicksegmentedControlAction:"</span>, forControlEvents: <span class="type">UIControlEvents</span>.<span class="type">ValueChanged</span>)</div><div class="line"></div><div class="line"></div><div class="line">        <span class="comment">// 添加到 self.view</span></div><div class="line">        <span class="keyword">self</span>.view.addSubview(segmented)</div><div class="line">        </div><div class="line">      &#125;</div></pre></td></tr></table></figure>
-<h1 id="UISegemtedControl的监听方法"><a href="#UISegemtedControl的监听方法" class="headerlink" title="UISegemtedControl的监听方法"></a>UISegemtedControl的监听方法</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">didClicksegmentedControlAction</span><span class="params">(segmented: UISegmentedControl!)</span></span> &#123;</div><div class="line">       <span class="keyword">var</span> index = segmented.selectedSegmentIndex</div><div class="line">       <span class="keyword">if</span> index == <span class="number">0</span> &#123;</div><div class="line">           <span class="built_in">println</span>(<span class="string">"分段按钮一"</span>)</div><div class="line">       &#125; <span class="keyword">else</span> <span class="keyword">if</span> index == <span class="number">1</span> &#123;</div><div class="line">           <span class="built_in">println</span>(<span class="string">"分段按钮二"</span>)</div><div class="line">       &#125; <span class="keyword">else</span> <span class="keyword">if</span> index == <span class="number">2</span> &#123;</div><div class="line">           <span class="built_in">println</span>(<span class="string">"分段按钮三"</span>)</div><div class="line">       &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<h1 id="在-viewDidLoad-中实现"><a href="#在-viewDidLoad-中实现" class="headerlink" title="在 viewDidLoad 中实现"></a>在 viewDidLoad 中实现</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">    <span class="keyword">super</span>.viewDidLoad()</div><div class="line">    <span class="keyword">self</span>.mySegmentedControl()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
+          自定义UISegmentedControfunc mySegmentedControl() &#123;        // 1.自定义 UISegemtedControl 并且设置它的 Item 数组对象        var segmented = UISegmentedControl(item
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/14/Swift/UIKit/UISegmentedControl-简单使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2180,103 +1948,22 @@
       
         
           
-            <h1 id="UISegemtedControl的常用属性"><a href="#UISegemtedControl的常用属性" class="headerlink" title="UISegemtedControl的常用属性"></a>UISegemtedControl的常用属性</h1><blockquote>
-<p>1.初始化时设置 UISegemtedControl 的 Item 数组</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">init</span>(items: [<span class="type">AnyObject</span>])</div></pre></td></tr></table></figure>
-<blockquote>
-<p>2.设置 UISegemtedControl 点击之后是否瞬间弹起, (默认是 false)</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> momentary: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>3.获取 UISegemtedControl 里有的分段按钮个数   </p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> numberOfSegments: <span class="type">Int</span> &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>4.设置 UISegemtedControl 是否基于内容自动调整尺寸, 默认是 false, 前提是要不设置 UISegemtedControl 的尺寸</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> apportionsSegmentWidthsByContent: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>5.获取 UISegemtedControl 可点击的 Item 数量</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> selectedSegmentIndex: <span class="type">Int</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>6.设置 UISegemtedControl 的样式颜色</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> tintColor: <span class="type">UIColor</span>!</div></pre></td></tr></table></figure>
-<h1 id="UISegemtedControl的常用方法"><a href="#UISegemtedControl的常用方法" class="headerlink" title="UISegemtedControl的常用方法"></a>UISegemtedControl的常用方法</h1><blockquote>
-<p>1.插入一个 UISegemtedControl 的分段按钮, 并且设置标题和索引, 以及是否使用动画</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">insertSegmentWithTitle</span><span class="params">(title: String!, atIndex segment: Int, animated: Bool)</span></span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>2.插入一个 UISegemtedControl 作为分段按钮, 并且设置索引, 以及是否使用动画</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">insertSegmentWithImage</span><span class="params">(image: UIImage, atIndex segment: Int, animated: Bool)</span></span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>3.删除指定索引的 UISegemtedControl 分段按钮, 以及是否使用动画</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">removeSegmentAtIndex</span><span class="params">(segment: Int, animated: Bool)</span></span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>4.删除所有 UISegemtedControl 的分段按钮</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">removeAllSegments</span><span class="params">()</span></span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>3.修改 UISegemtedControl 指定的 Item 分段按钮标题</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">setTitle</span><span class="params">(title: String?, forSegmentAtIndex segment: Int)</span></span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>4.获取指定的 UISegemtedControl 分段按钮的标题</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">titleForSegmentAtIndex</span><span class="params">(segment: Int)</span></span> -&gt; <span class="type">String</span>?</div></pre></td></tr></table></figure>
-<blockquote>
-<p>5.修改 UISegemtedControl 指定的 Item 分段按钮图片</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">setImage</span><span class="params">(image: UIImage?, forSegmentAtIndex segment: Int)</span></span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>6.获取指定的 UISegemtedControl 分段按钮的图片</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">imageForSegmentAtIndex</span><span class="params">(segment: Int)</span></span> -&gt; <span class="type">UIImage</span>?</div></pre></td></tr></table></figure>
-<blockquote>
-<p>7.设置 UISegemtedControl 指定的 Item 宽度</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">setWidth</span><span class="params">(width: CGFloat, forSegmentAtIndex segment: Int)</span></span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>8.获取指定 UISegemtedControl 分段按钮的宽度</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">widthForSegmentAtIndex</span><span class="params">(segment: Int)</span></span> -&gt; <span class="type">CGFloat</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>9.设置 UISegemtedControl 指定的 Item 内容偏移量</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">setContentOffset</span><span class="params">(offset: CGSize, forSegmentAtIndex segment: Int)</span></span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>10.获取指定 UISegemtedControl 指定的 Item 内容偏移量</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">contentOffsetForSegmentAtIndex</span><span class="params">(segment: Int)</span></span> -&gt; <span class="type">CGSize</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>11.设置 UISegemtedControl 指定的 Item 是否可以点击</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">setEnabled</span><span class="params">(enabled: Bool, forSegmentAtIndex segment: Int)</span></span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>12.获取指定 UISegemtedControl 指定的 Item 是否可以点击</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">isEnabledForSegmentAtIndex</span><span class="params">(segment: Int)</span></span> -&gt; <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>13.设置 UISegemtedControl 的背景图片, 并且在 UISegemtedControl 指定的样式下才会显示, 以及图片显示的样式</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">setBackgroundImage</span><span class="params">(backgroundImage: UIImage?, forState state: UIControlState, barMetrics: UIBarMetrics)</span></span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>14.获取 UISegemtedControl 在指定的状态, 图片显示下的图片</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">backgroundImageForState</span><span class="params">(state: UIControlState, barMetrics: UIBarMetrics)</span></span> -&gt; <span class="type">UIImage</span>?</div></pre></td></tr></table></figure>
-<blockquote>
-<p>15.设置 UISegemtedControl 的左右的分隔符图片, 并且在 UISegemtedControl 指定的样式下才会显示, 以及图片显示的样式</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">setDividerImage</span><span class="params">(dividerImage: UIImage?, forLeftSegmentState leftState: UIControlState, rightSegmentState rightState: UIControlState, barMetrics: UIBarMetrics)</span></span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>16.获取 UISegemtedControl 的左右的分隔符图片, 并且在 UISegemtedControl 指定的样式下才会显示, 以及图片显示的样式</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">dividerImageForLeftSegmentState</span><span class="params">(leftState: UIControlState, rightSegmentState rightState: UIControlState, barMetrics: UIBarMetrics)</span></span> -&gt; <span class="type">UIImage</span>?</div></pre></td></tr></table></figure>
-          
+          UISegemtedControl的常用属性
+1.初始化时设置 UISegemtedControl 的 Item 数组
+
+init(items: [AnyObject])
+
+2.设置 UISegemtedControl 点击之后是否瞬间弹起, (默认是 false)
+
+var momentary: 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/14/Swift/UIKit/UISegmentedControl-简介/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

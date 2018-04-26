@@ -392,12 +392,18 @@
       
         
           
-            <h1 id="自定义UISwitch"><a href="#自定义UISwitch" class="headerlink" title="自定义UISwitch"></a>自定义UISwitch</h1><blockquote>
-<p>UISwitch 是继承于 UIControl, 所以 UIControl 里面的属性和方法 UISwitch 都是可以用的</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">mySwitch</span><span class="params">()</span></span> &#123;</div><div class="line">       <span class="comment">// 1.自定义 UISwitch</span></div><div class="line">       <span class="keyword">var</span> switchButton = <span class="type">UISwitch</span>()</div><div class="line"></div><div class="line">       <span class="comment">// 2.设置 UISwitch 的位置</span></div><div class="line">       switchButton.center = <span class="type">CGPointMake</span>(<span class="keyword">self</span>.view.frame.width / <span class="number">2</span>, <span class="keyword">self</span>.view.frame.height / <span class="number">2</span>)</div><div class="line"></div><div class="line">       <span class="comment">// 3.设置 UISwitch 打开时底图渐变颜色, 默认是从白变绿</span></div><div class="line">       switchButton.onTintColor = <span class="type">UIColor</span>.redColor()</div><div class="line"></div><div class="line">       <span class="comment">// 4.设置 UISwitch 关闭时底图渐变颜色, 默认是从绿变白</span></div><div class="line">       switchButton.tintColor = <span class="type">UIColor</span>.blackColor()</div><div class="line"></div><div class="line">       <span class="comment">// 5.设置 UISwitch 的小圆点颜色, 默认是白色</span></div><div class="line">       switchButton.thumbTintColor = <span class="type">UIColor</span>.blueColor()</div><div class="line"></div><div class="line">       <span class="comment">// 6.设置 UISwitch 是否打开</span></div><div class="line">       switchButton.on = <span class="literal">true</span></div><div class="line"></div><div class="line">       <span class="comment">// 7.设置 UISwitch 是否打开, 并且是否打开动画效果</span></div><div class="line">       switchButton.setOn(<span class="literal">true</span>, animated: <span class="literal">true</span>)</div><div class="line"></div><div class="line">       <span class="comment">// 8.添加到 UISwitch 到 self.view</span></div><div class="line">       <span class="keyword">self</span>.view.addSubview(switchButton)</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<h1 id="在-viewDidLoad中实现"><a href="#在-viewDidLoad中实现" class="headerlink" title="在 viewDidLoad中实现"></a>在 viewDidLoad中实现</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">    <span class="keyword">super</span>.viewDidLoad()</div><div class="line">    <span class="keyword">self</span>.mySwitch()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
+          自定义UISwitch
+UISwitch 是继承于 UIControl, 所以 UIControl 里面的属性和方法 UISwitch 都是可以用的
+
+func mySwitch() &#123;       // 1.自定义 UISwitch       var switchButton = UI
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/14/Swift/UIKit/UISwitch-简单使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -561,31 +567,24 @@
       
         
           
-            <h1 id="UISwitch的常用属性"><a href="#UISwitch的常用属性" class="headerlink" title="UISwitch的常用属性"></a>UISwitch的常用属性</h1><blockquote>
-<p>1.设置 UISwitch 打开时底图渐变颜色, 默认是从白变绿</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> onTintColor: <span class="type">UIColor</span>!</div></pre></td></tr></table></figure>
-<blockquote>
-<p>2.设置 UISwitch 关闭时底图渐变颜色, 默认是从白变绿    </p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> tintColor: <span class="type">UIColor</span>?</div></pre></td></tr></table></figure>
-<blockquote>
-<p>3.设置 UISwitch 的小圆点颜色, 默认是白色</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> thumbTintColor: <span class="type">UIColor</span>?</div></pre></td></tr></table></figure>
-<blockquote>
-<p>4.设置 UISwitch 是否打开</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> on: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>5.设置 UISwitch 的位置</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">init</span>(frame: <span class="type">CGRect</span>)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>6.设置 UISwitch 是否打开, 并且是否打开动画效果</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">setOn</span><span class="params">(on: Bool, animated: Bool)</span></span></div></pre></td></tr></table></figure>
-          
+          UISwitch的常用属性
+1.设置 UISwitch 打开时底图渐变颜色, 默认是从白变绿
+
+var onTintColor: UIColor!
+
+2.设置 UISwitch 关闭时底图渐变颜色, 默认是从白变绿    
+
+var tintColor: UIColor?
+
+3.设置 UISwitc
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/14/Swift/UIKit/UISwitch-简介/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -749,14 +748,16 @@
       
         
           
-            <h1 id="遵守代理协议"><a href="#遵守代理协议" class="headerlink" title="遵守代理协议"></a>遵守代理协议</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span>, <span class="title">UITextFieldDelegate</span> </span>&#123;&#125;</div></pre></td></tr></table></figure>
-<h1 id="添加UITextField"><a href="#添加UITextField" class="headerlink" title="添加UITextField"></a>添加UITextField</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">myTextField</span><span class="params">()</span></span> &#123;</div><div class="line">      <span class="comment">// 1.创建UITextField, 并且设置它的Frame</span></div><div class="line">      textField.frame = <span class="type">CGRectMake</span>(<span class="number">100</span>, <span class="number">200</span>, <span class="number">200</span>, <span class="number">100</span>)</div><div class="line"></div><div class="line">      <span class="comment">// 2.设置UITextField的背景颜色</span></div><div class="line">      textField.backgroundColor = <span class="type">UIColor</span>.greenColor()</div><div class="line"></div><div class="line">      <span class="comment">// 3.设置UITextField的显示样式</span></div><div class="line">      textField.borderStyle = <span class="type">UITextBorderStyle</span>.<span class="type">RoundedRect</span></div><div class="line"></div><div class="line">      <span class="comment">// 4.设置UITextField的编辑状态, 默认是永远不打开, 这里设置的是在编辑时才打开</span></div><div class="line">      textField.clearButtonMode = <span class="type">UITextFieldViewMode</span>.<span class="type">WhileEditing</span></div><div class="line"></div><div class="line">      <span class="comment">// 5.设置UITextField的键盘样式</span></div><div class="line">      textField.keyboardType = <span class="type">UIKeyboardType</span>.<span class="type">ASCIICapable</span></div><div class="line"></div><div class="line">      <span class="comment">// 6.设置UITextField的首字母是否大写</span></div><div class="line">      textField.autocapitalizationType = <span class="type">UITextAutocapitalizationType</span>.<span class="type">Sentences</span></div><div class="line"></div><div class="line">      <span class="comment">// 7.设置UITextField的键盘外观颜色</span></div><div class="line">      textField.keyboardAppearance = <span class="type">UIKeyboardAppearance</span>.<span class="type">Dark</span></div><div class="line"></div><div class="line">      <span class="comment">// 8.设置UITextField的return样式</span></div><div class="line">      textField.returnKeyType = <span class="type">UIReturnKeyType</span>.<span class="type">Default</span></div><div class="line"></div><div class="line">      <span class="comment">// 9.设置UITextField预输入的文字</span></div><div class="line">      textField.attributedText = <span class="type">NSAttributedString</span>(string: <span class="string">"ABCDEFG"</span>)</div><div class="line"></div><div class="line">      <span class="comment">// 10.设置UITextField的提示文字</span></div><div class="line">      textField.placeholder = <span class="string">"请输入您的名字"</span></div><div class="line"></div><div class="line">      <span class="comment">// 11.设置UITextField的代理对象</span></div><div class="line">      textField.delegate = <span class="keyword">self</span></div><div class="line"></div><div class="line">      <span class="comment">// 12.设置UITextField内容的垂直对齐方式, 默认是center</span></div><div class="line">      textField.contentVerticalAlignment = <span class="type">UIControlContentVerticalAlignment</span>.<span class="type">Top</span></div><div class="line"></div><div class="line">      <span class="comment">// 13.再次编辑时对旧内容进行自动清除, 默认是false</span></div><div class="line">      textField.clearsOnBeginEditing = <span class="literal">true</span></div><div class="line"></div><div class="line">      <span class="comment">// 14.根据TextField的大小自动缩放字体大小, 默认是false</span></div><div class="line">      textField.adjustsFontSizeToFitWidth = <span class="literal">true</span></div><div class="line"></div><div class="line">      <span class="comment">// 15.添加到父视图</span></div><div class="line">      <span class="keyword">self</span>.view.addSubview(textField)</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<h1 id="实现代理方法"><a href="#实现代理方法" class="headerlink" title="实现代理方法"></a>实现代理方法</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">textFieldShouldReturn</span><span class="params">(textField: UITextField)</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">       <span class="comment">// 取消第一响应者</span></div><div class="line">       textField.resignFirstResponder()</div><div class="line">       <span class="comment">// 返回true</span></div><div class="line">       <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<h1 id="在ViewDidload实现"><a href="#在ViewDidload实现" class="headerlink" title="在ViewDidload实现"></a>在ViewDidload实现</h1><blockquote>
-<p>UITExtField不会自动换行的, 所以我们只可能限制用户所输入多少个字符, 如果需要自动换行, 那就需要去了解UITextVIew</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">       <span class="keyword">super</span>.viewDidLoad()</div><div class="line">       <span class="keyword">self</span>.myTextField()</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-          
+          遵守代理协议class ViewController: UIViewController, UITextFieldDelegate &#123;&#125;
+添加UITextFieldfunc myTextField() &#123;      // 1.创建UITextField, 并且设置它的F
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/14/Swift/UIKit/UITextField-简单使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -920,53 +921,15 @@
       
         
           
-            <h1 id="UITxtxField的常用状态"><a href="#UITxtxField的常用状态" class="headerlink" title="UITxtxField的常用状态"></a>UITxtxField的常用状态</h1><h2 id="TextField边框的样式"><a href="#TextField边框的样式" class="headerlink" title="TextField边框的样式"></a>TextField边框的样式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UITextBorderStyle</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">None</span> <span class="comment">// TextField边框什么都没有, 默认是方角</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Line</span> <span class="comment">// TextField边框有一条黑色的实现围着, 默认也是方角的</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Bezel</span> <span class="comment">// TextField边框有两条线围着, 形成一定的层次感, 默认也是方角的</span></div><div class="line">    <span class="keyword">case</span> <span class="type">RoundedRect</span> <span class="comment">// TextField边框什么都没有, 默认是圆角</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="TextField的快速删除状态"><a href="#TextField的快速删除状态" class="headerlink" title="TextField的快速删除状态"></a>TextField的快速删除状态</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UITextFieldViewMode</span> : <span class="title">Int</span> </span>&#123;    </div><div class="line">    <span class="keyword">case</span> <span class="type">Never</span> <span class="comment">// 永远都不打开</span></div><div class="line">    <span class="keyword">case</span> <span class="type">WhileEditing</span> <span class="comment">// 在编辑的状态才打开</span></div><div class="line">    <span class="keyword">case</span> <span class="type">UnlessEditing</span> <span class="comment">// 在非编辑的状态才打开</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Always</span> <span class="comment">// 一直打开</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="TextField的键盘样式"><a href="#TextField的键盘样式" class="headerlink" title="TextField的键盘样式"></a>TextField的键盘样式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UIKeyboardType</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Default</span> <span class="comment">// 显示默认的键盘</span></div><div class="line">    <span class="keyword">case</span> <span class="type">ASCIICapable</span> <span class="comment">// 显示所有ASCII表的所有字符</span></div><div class="line">    <span class="keyword">case</span> <span class="type">NumbersAndPunctuation</span> <span class="comment">// 数字和标点符号的键盘</span></div><div class="line">    <span class="keyword">case</span> <span class="type">URL</span> <span class="comment">// 输入网站所使用的键盘</span></div><div class="line">    <span class="keyword">case</span> <span class="type">NumberPad</span> <span class="comment">// 纯数字键盘</span></div><div class="line">    <span class="keyword">case</span> <span class="type">PhonePad</span> <span class="comment">// 为了方便输入手机号码所使用的键盘</span></div><div class="line">    <span class="keyword">case</span> <span class="type">NamePhonePad</span> <span class="comment">// 为了方便输入名字和电话号码所使用的键盘</span></div><div class="line">    <span class="keyword">case</span> <span class="type">EmailAddress</span> <span class="comment">// 面向邮箱所使用的键盘</span></div><div class="line">    <span class="keyword">case</span> <span class="type">DecimalPad</span> <span class="comment">// 面向带小数点的数字键盘</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Twitter</span> <span class="comment">// 面向Twitter等社交所使用的键盘, 为了方便@和#</span></div><div class="line">    <span class="keyword">case</span> <span class="type">WebSearch</span> <span class="comment">// 面向网站所使用的键盘</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="TextField的大写样式"><a href="#TextField的大写样式" class="headerlink" title="TextField的大写样式"></a>TextField的大写样式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UITextAutocapitalizationType</span> : <span class="title">Int</span> </span>&#123;   </div><div class="line">    <span class="keyword">case</span> <span class="type">None</span> <span class="comment">// 不自动大写</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Words</span> <span class="comment">// 单个单词首字母大写</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Sentences</span> <span class="comment">// 句子首字母大写</span></div><div class="line">    <span class="keyword">case</span> <span class="type">AllCharacters</span> <span class="comment">// 全部大写</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="TextField的键盘外观颜色"><a href="#TextField的键盘外观颜色" class="headerlink" title="TextField的键盘外观颜色"></a>TextField的键盘外观颜色</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UIKeyboardAppearance</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Default</span> <span class="comment">// 默认是光亮的</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Dark</span> <span class="comment">// 设置为黑暗颜色</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Light</span> <span class="comment">// 设置为光亮的颜色</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="TextField的Return样式"><a href="#TextField的Return样式" class="headerlink" title="TextField的Return样式"></a>TextField的Return样式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UIReturnKeyType</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Default</span> <span class="comment">// 模样的样式</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Go</span> <span class="comment">// 标着有Go的蓝色样式</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Google</span> <span class="comment">// 标着Google的蓝色样式, 用于语音搜索, 显示的样式是Search</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Join</span> <span class="comment">// 标有Join的蓝色按钮</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Next</span> <span class="comment">// 标着有Next的蓝色按钮</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Route</span> <span class="comment">// 标着有Route的蓝色按钮</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Search</span> <span class="comment">// 标着有Search的蓝色按钮</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Send</span> <span class="comment">// 标着有Send的蓝色按钮</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Yahoo</span> <span class="comment">// 标着有Yahoo的蓝色按钮, 显示的样式是Search</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Done</span> <span class="comment">// 标着有Done的蓝色按钮</span></div><div class="line">    <span class="keyword">case</span> <span class="type">EmergencyCall</span> <span class="comment">// 标着有EmergencyCall的蓝色按钮, 紧急呼救的按钮</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="TextField的右边显示图样式"><a href="#TextField的右边显示图样式" class="headerlink" title="TextField的右边显示图样式"></a>TextField的右边显示图样式</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UITextFieldViewMode</span> : <span class="title">Int</span> </span>&#123;   </div><div class="line">    <span class="keyword">case</span> <span class="type">Never</span> <span class="comment">// 永远不显示</span></div><div class="line">    <span class="keyword">case</span> <span class="type">WhileEditing</span> <span class="comment">// 在编辑的情况下显示</span></div><div class="line">    <span class="keyword">case</span> <span class="type">UnlessEditing</span> <span class="comment">// 在非编辑的情况下显示</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Always</span> <span class="comment">// 永远显示</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="UITextField的垂直排列方式"><a href="#UITextField的垂直排列方式" class="headerlink" title="UITextField的垂直排列方式"></a>UITextField的垂直排列方式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UIControlContentVerticalAlignment</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Center</span> <span class="comment">// 居中对齐, 默认</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Top</span> <span class="comment">// 顶部对齐</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Bottom</span> <span class="comment">// 底部对齐</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Fill</span> <span class="comment">// 平铺整个TextField的高度</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="UITextField的水平排列方式"><a href="#UITextField的水平排列方式" class="headerlink" title="UITextField的水平排列方式"></a>UITextField的水平排列方式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UIControlContentHorizontalAlignment</span> : <span class="title">Int</span> </span>&#123;   </div><div class="line">    <span class="keyword">case</span> <span class="type">Center</span> <span class="comment">// 居中对齐</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Left</span> <span class="comment">// 左对齐, 默认</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Right</span> <span class="comment">// 右对齐</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Fill</span> <span class="comment">// 平铺整个TextField的宽度</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="UITextField的常用属性"><a href="#UITextField的常用属性" class="headerlink" title="UITextField的常用属性"></a>UITextField的常用属性</h1><blockquote>
-<p>字体颜色, 默认的字体颜色是黑色</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> textColor: <span class="type">UIColor</span>!</div></pre></td></tr></table></figure>
-<blockquote>
-<p>字体大小, 默认的字体大小是12</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">var</span> font: <span class="type">UIFont</span>!</div><div class="line">``` </div><div class="line"></div><div class="line">&gt;字体对齐方式, 默认是向左对齐</div><div class="line"></div><div class="line">```swift</div><div class="line">   <span class="keyword">var</span> textAlignment: <span class="type">NSTextAlignment</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>边框的样式, 默认是None. </p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> borderStyle: <span class="type">UITextBorderStyle</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>快捷清楚的按钮, 默认是不打开的</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> clearButtonMode: <span class="type">UITextFieldViewMode</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>提示文本, 默认是nil, 字体颜色是70%的灰</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> placeholder: <span class="type">String</span>?</div></pre></td></tr></table></figure>
-<blockquote>
-<p>再次编辑时对旧内容进行自动清除, 默认是false</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> clearsOnBeginEditing: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>根据TextField的大小自动缩放字体大小, 默认是false</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> adjustsFontSizeToFitWidth: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<h1 id="常用代理方法"><a href="#常用代理方法" class="headerlink" title="常用代理方法"></a>常用代理方法</h1><blockquote>
-<p>点击return会结束编辑, 也可以在这里设置取消TextField的第一响应者, 使键盘隐藏</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">textFieldShouldReturn</span><span class="params">(textField: UITextField)</span></span> -&gt; <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>可限制文字输入的长度以及特定的字符, 如果返回true, 那么就是可以修改, 如果返回false就不可修改</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">textField</span><span class="params">(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String)</span></span> -&gt; <span class="type">Bool</span></div></pre></td></tr></table></figure>
-
-          
+          UITxtxField的常用状态TextField边框的样式 enum UITextBorderStyle : Int &#123;    case None // TextField边框什么都没有, 默认是方角    case Line // TextField边框有一条黑色的实现围着, 默认也是
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/14/Swift/UIKit/Swift-UIKit-UITxtxField-简介/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1130,16 +1093,15 @@
       
         
           
-            <h1 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">myImage</span><span class="params">()</span></span> &#123;</div><div class="line">   <span class="comment">// 1.创建一个UIImageView, 并且设置它的frame</span></div><div class="line">       <span class="keyword">var</span> myImageView = <span class="type">UIImageView</span>(frame: <span class="type">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="keyword">self</span>.view.frame.size.width, <span class="keyword">self</span>.view.frame.size.height))</div><div class="line"></div><div class="line">       <span class="comment">// 2.设置UIImage的图片名, 以及展示的样式</span></div><div class="line">       <span class="keyword">var</span> myImage = <span class="type">UIImage</span>(named: <span class="string">"image_bate.jpg"</span>)?.imageWithRenderingMode(<span class="type">UIImageRenderingMode</span>.<span class="type">Automatic</span>)</div><div class="line">       <span class="comment">// 3.把UIImage添加到ImageView里面去</span></div><div class="line">       myImageView.image = myImage</div><div class="line"></div><div class="line">       <span class="keyword">self</span>.view.addSubview(myImageView)</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>在viewDidload中实现:</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">       <span class="keyword">super</span>.viewDidLoad()</div><div class="line">       <span class="keyword">self</span>.myImage()</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><blockquote>
-<p>由于UIImage不能单独的拿出来展示, 它必须依赖于某个一个继承于UIView的一个View, 比如UIImageView或者UIButton, 这些都是可以的</p>
-</blockquote>
-
-          
+          创建func myImage() &#123;   // 1.创建一个UIImageView, 并且设置它的frame       var myImageView = UIImageView(frame: CGRectMake(0, 0, self.view.frame.size.width, se
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/14/Swift/UIKit/UIImage-简单使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1303,23 +1265,18 @@
       
         
           
-            <h1 id="UIImage的状态"><a href="#UIImage的状态" class="headerlink" title="UIImage的状态"></a>UIImage的状态</h1><blockquote>
-<p>UIImageOrientation</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UIImageOrientation</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Up</span> <span class="comment">//默认方向</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Down</span> <span class="comment">//180°旋转</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Left</span> <span class="comment">//逆时针旋转90°</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Right</span> <span class="comment">//顺时针旋转90°</span></div><div class="line">    <span class="keyword">case</span> <span class="type">UpMirrored</span> <span class="comment">//水平向上翻转</span></div><div class="line">    <span class="keyword">case</span> <span class="type">DownMirrored</span> <span class="comment">//水平向下翻转</span></div><div class="line">    <span class="keyword">case</span> <span class="type">LeftMirrored</span> <span class="comment">//逆时针旋转90°后再垂直翻转</span></div><div class="line">    <span class="keyword">case</span> <span class="type">RightMirrored</span> <span class="comment">//顺时针旋转90°后再垂直翻转</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>UIImageResizingMode</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UIImageResizingMode</span> : <span class="title">Int</span> </span>&#123;    </div><div class="line">    <span class="keyword">case</span> <span class="type">Tile</span> <span class="comment">//平铺到调整完位置的图像</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Stretch</span> <span class="comment">//拉伸到调整完位置的图像</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>UIImageRenderingMode</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UIImageRenderingMode</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Automatic</span> <span class="comment">//默认上下文显示的图像位置</span></div><div class="line">    <span class="keyword">case</span> <span class="type">AlwaysOriginal</span> <span class="comment">//总是以图片为模板</span></div><div class="line">    <span class="keyword">case</span> <span class="type">AlwaysTemplate</span> <span class="comment">//会把图像作为绘画的模板, 忽略其他颜色</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="常用的属性"><a href="#常用的属性" class="headerlink" title="常用的属性"></a>常用的属性</h1><blockquote>
-<p>UIImage里面虽然有很多属性, 但唯一常用的属性就只有设置获取image名字的属性.</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">init</span>?(named name: <span class="type">String</span>) -&gt; <span class="type">UIImage</span></div></pre></td></tr></table></figure>
-          
+          UIImage的状态
+UIImageOrientation
+
+ enum UIImageOrientation : Int &#123;    case Up //默认方向    case Down //180°旋转    case Left //逆时针旋转90°    case Right //顺
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/14/Swift/UIKit/UIImage-简介/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1483,15 +1440,18 @@
       
         
           
-            <h1 id="UITableViewCell-简单使用"><a href="#UITableViewCell-简单使用" class="headerlink" title="UITableViewCell-简单使用"></a>UITableViewCell-简单使用</h1><blockquote>
-<p>由于 TableViewCell 是不可以单独存在的, 所以必须得依赖于 UITableView</p>
-</blockquote>
-<h1 id="遵守-TableView-代理协议以及数据源协议"><a href="#遵守-TableView-代理协议以及数据源协议" class="headerlink" title="遵守 TableView 代理协议以及数据源协议"></a>遵守 TableView 代理协议以及数据源协议</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span>, <span class="title">UITableViewDataSource</span>, <span class="title">UITableViewDelegate</span> </span>&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="自定义-TableVIew"><a href="#自定义-TableVIew" class="headerlink" title="自定义 TableVIew"></a>自定义 TableVIew</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">myTableView</span><span class="params">()</span></span> &#123;</div><div class="line">       <span class="keyword">var</span> tableView = <span class="type">UITableView</span>(frame: <span class="keyword">self</span>.view.frame, style: <span class="type">UITableViewStyle</span>.<span class="type">Plain</span>)</div><div class="line">       tableView.dataSource = <span class="keyword">self</span></div><div class="line">       tableView.delegate = <span class="keyword">self</span></div><div class="line">       <span class="keyword">self</span>.view.addSubview(tableView)</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<h1 id="实现数据源方法"><a href="#实现数据源方法" class="headerlink" title="实现数据源方法"></a>实现数据源方法</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">numberOfSectionsInTableView</span><span class="params">(tableView: UITableView)</span></span> -&gt; <span class="type">Int</span> &#123;</div><div class="line">      <span class="keyword">return</span> <span class="number">1</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, numberOfRowsInSection section: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</div><div class="line">      <span class="keyword">return</span> <span class="number">5</span></div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<h1 id="自定义-UITableViewCell"><a href="#自定义-UITableViewCell" class="headerlink" title="自定义 UITableViewCell"></a>自定义 UITableViewCell</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)</span></span> -&gt; <span class="type">UITableViewCell</span> &#123;</div><div class="line">        <span class="comment">// 1.自定义 UITableViewCell 的样式以及标签, reuseIdentifier 是 Cell 得标签, 作用和 Tag 类似</span></div><div class="line">        <span class="keyword">var</span> cell = <span class="type">UITableViewCell</span>(style: <span class="type">UITableViewCellStyle</span>.<span class="type">Value1</span>, reuseIdentifier: <span class="string">"cell"</span>)</div><div class="line"></div><div class="line">        <span class="comment">// 2.设置 UITableViewCell 的标题Label</span></div><div class="line">        cell.textLabel!.text = <span class="string">"我是 Cell"</span></div><div class="line"></div><div class="line">        <span class="comment">// 3.设置 UITableViewCell 的简介Label</span></div><div class="line">        cell.detailTextLabel?.text = <span class="string">"Cell"</span></div><div class="line"></div><div class="line">        <span class="comment">// 4.设置 UITableViewCell 的 imageView 图片</span></div><div class="line">        cell.imageView?.image = <span class="type">UIImage</span>(named: <span class="string">"image_black.jpg"</span>)</div><div class="line"></div><div class="line">        <span class="comment">// 5.设置 UITableViewCell 的编辑模式是否开启, 以及是否执行动画效果</span></div><div class="line">        cell.setEditing(<span class="literal">true</span>, animated: <span class="literal">true</span>)</div><div class="line"></div><div class="line">        <span class="comment">// 6.设置 UITableViewCell 的背景色</span></div><div class="line">        cell.backgroundColor = <span class="type">UIColor</span>.greenColor()</div><div class="line"></div><div class="line">        <span class="comment">// 7.设置 UITableViewCell 的编辑模式辅助按钮</span></div><div class="line">        cell.editingAccessoryType = <span class="type">UITableViewCellAccessoryType</span>.<span class="type">DisclosureIndicator</span></div><div class="line"></div><div class="line">        <span class="comment">// 8.设置 UITableViewCell 被选中的样式</span></div><div class="line">        cell.selectionStyle = <span class="type">UITableViewCellSelectionStyle</span>.<span class="type">Default</span></div><div class="line"></div><div class="line">        <span class="comment">// 9.设置 UITableViewCell 分割线的位置</span></div><div class="line">        cell.separatorInset = <span class="type">UIEdgeInsetsMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">20</span>)</div><div class="line"></div><div class="line">        <span class="comment">// 10.设置 UITableViewCell 被选中时的背景View</span></div><div class="line">        cell.selectedBackgroundView = <span class="literal">nil</span></div><div class="line"></div><div class="line">        <span class="comment">// 11.设置 UITableViewCell 的辅助按钮样式</span></div><div class="line">        cell.accessoryType = <span class="type">UITableViewCellAccessoryType</span>.<span class="type">DisclosureIndicator</span></div><div class="line"></div><div class="line">        <span class="comment">// 返回自定的 Cell</span></div><div class="line">        <span class="keyword">return</span> cell</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<h1 id="开启-TableViewCell-的编辑模式"><a href="#开启-TableViewCell-的编辑模式" class="headerlink" title="开启 TableViewCell 的编辑模式"></a>开启 TableViewCell 的编辑模式</h1> <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)</span></span> &#123;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-          
+          UITableViewCell-简单使用
+由于 TableViewCell 是不可以单独存在的, 所以必须得依赖于 UITableView
+
+遵守 TableView 代理协议以及数据源协议 class ViewController: UIViewController, UITableViewDat
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/14/Swift/UIKit/UITableViewCell-简单使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1655,58 +1615,15 @@
       
         
           
-            <h1 id="常用属性"><a href="#常用属性" class="headerlink" title="常用属性"></a>常用属性</h1><h2 id="UITableViewCell-显示的样式"><a href="#UITableViewCell-显示的样式" class="headerlink" title="UITableViewCell 显示的样式"></a>UITableViewCell 显示的样式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UITableViewCellStyle</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Default</span> <span class="comment">// 默认显示样式</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Value1</span> <span class="comment">// 样式一</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Value2</span> <span class="comment">// 样式二</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Subtitle</span> <span class="comment">// 副标题样式</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="UITableViewCell-选中的样式"><a href="#UITableViewCell-选中的样式" class="headerlink" title="UITableViewCell 选中的样式"></a>UITableViewCell 选中的样式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UITableViewCellEditingStyle</span> : <span class="title">Int</span> </span>&#123;   </div><div class="line">    <span class="keyword">case</span> <span class="type">None</span> <span class="comment">// 没有</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Delete</span> <span class="comment">// 删除</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Insert</span> <span class="comment">// 添加</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="UITableViewCell-辅助按钮的样式"><a href="#UITableViewCell-辅助按钮的样式" class="headerlink" title="UITableViewCell 辅助按钮的样式"></a>UITableViewCell 辅助按钮的样式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UITableViewCellAccessoryType</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">None</span> <span class="comment">// 没有按钮</span></div><div class="line">    <span class="keyword">case</span> <span class="type">DisclosureIndicator</span> <span class="comment">// 蓝色向右的箭头</span></div><div class="line">    <span class="keyword">case</span> <span class="type">DetailDisclosureButton</span> <span class="comment">// 蓝色向右的箭头以及信息按钮</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Checkmark</span> <span class="comment">// 复选框</span></div><div class="line">    @availability(iOS, introduced=<span class="number">7.0</span>)</div><div class="line">    <span class="keyword">case</span> <span class="type">DetailButton</span> <span class="comment">// 信息按钮</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="UITableViewCell-常用属性"><a href="#UITableViewCell-常用属性" class="headerlink" title="UITableViewCell 常用属性"></a>UITableViewCell 常用属性</h2><blockquote>
-<p>1.初始化 Cell 的 Style 以及标签名</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">init</span>(style: <span class="type">UITableViewCellStyle</span>, reuseIdentifier: <span class="type">String</span>?)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>2.设置 Cell 的 ImageView 内容</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> imageView: <span class="type">UIImageView</span>? &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>3.设置 Cell 的 textLabel 的内容</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> textLabel: <span class="type">UILabel</span>? &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>4.设置 Cell 的 副标题内容</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> detailTextLabel: <span class="type">UILabel</span>? &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>5.设置 Cell 的内容 View</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> contentView: <span class="type">UIView</span> &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>6.设置 Cell 的背景 View</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> backgroundView: <span class="type">UIView</span>?</div></pre></td></tr></table></figure>
-<blockquote>
-<p>7.设置 Cell 被选中时的背景 View</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> selectedBackgroundView: <span class="type">UIView</span>!</div></pre></td></tr></table></figure>
-<blockquote>
-<p>8.设置 Cell 多选中得背景 View</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> multipleSelectionBackgroundView: <span class="type">UIView</span>?</div></pre></td></tr></table></figure>
-<blockquote>
-<p>9.设置 Cell 被选中时的 Style</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> selectionStyle: <span class="type">UITableViewCellSelectionStyle</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>10.设置 Cell 编辑的 Style</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> editingStyle: <span class="type">UITableViewCellEditingStyle</span> &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>11.设置 Cell 是否开启编辑状态</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> editing: <span class="type">Bool</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>12.设置 Cell 的辅助按钮样式</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> accessoryType: <span class="type">UITableViewCellAccessoryType</span></div></pre></td></tr></table></figure>
-          
+          常用属性UITableViewCell 显示的样式 enum UITableViewCellStyle : Int &#123;    case Default // 默认显示样式    case Value1 // 样式一    case Value2 // 样式二    case Subtitl
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/14/Swift/UIKit/UITableViewCell-简介/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1870,10 +1787,16 @@
       
         
           
-            <h1 id="遵守代理协议和数据源协议"><a href="#遵守代理协议和数据源协议" class="headerlink" title="遵守代理协议和数据源协议"></a>遵守代理协议和数据源协议</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span>, <span class="title">UITableViewDelegate</span>, <span class="title">UITableViewDataSource</span> </span>&#123;&#125;</div></pre></td></tr></table></figure>
-<h1 id="自定义-UITableView"><a href="#自定义-UITableView" class="headerlink" title="自定义 UITableView"></a>自定义 UITableView</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">myTableView</span><span class="params">()</span></span> &#123;</div><div class="line">       <span class="comment">// 1.设置 TableView 的 frame 和 style</span></div><div class="line">       <span class="keyword">var</span> tableView: <span class="type">UITableView</span> = <span class="type">UITableView</span>(frame: <span class="keyword">self</span>.view.frame, style: <span class="type">UITableViewStyle</span>.<span class="type">Plain</span>)</div><div class="line"></div><div class="line">       <span class="comment">// 2.设置 TableView 的背景色</span></div><div class="line">       tableView.backgroundColor = <span class="type">UIColor</span>(red: <span class="number">0.0</span>, green: <span class="number">127.0</span>, blue: <span class="number">127.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line"></div><div class="line">       <span class="comment">// 3.设置 TableView 的代理对象</span></div><div class="line">       tableView.delegate = <span class="keyword">self</span></div><div class="line"></div><div class="line">       <span class="comment">// 4.设置 TableView 的数据源对象</span></div><div class="line">       tableView.dataSource = <span class="keyword">self</span></div><div class="line"></div><div class="line">       <span class="comment">// 5.设置 TableView 每一行 Cell 的高度</span></div><div class="line">       tableView.rowHeight = <span class="number">44</span></div><div class="line"></div><div class="line">       <span class="comment">// 6.设置 TableView 每一行 Cell 页头的行高</span></div><div class="line">       tableView.sectionHeaderHeight = <span class="number">50</span></div><div class="line"></div><div class="line">       <span class="comment">// 7.设置 TableView 每一行 Cell 页尾的行高</span></div><div class="line">       tableView.sectionFooterHeight = <span class="number">50</span></div><div class="line"></div><div class="line">       <span class="comment">// 8.设置 TableView 每一行 Cell 的估计行高</span></div><div class="line">       tableView.estimatedRowHeight = <span class="number">100</span></div><div class="line"></div><div class="line">       <span class="comment">// 9.设置 TableView 每一行 Cell 的页头估计行高</span></div><div class="line">       tableView.estimatedSectionHeaderHeight = <span class="number">50</span></div><div class="line"></div><div class="line">       <span class="comment">// 10.设置 TableView 每一行 Cell 的页尾估计行高</span></div><div class="line">       tableView.estimatedSectionFooterHeight = <span class="number">50</span></div><div class="line"></div><div class="line">       <span class="comment">// 11.设置 TableView 每一行 Cell 之间分割线位置(分别是: 上, 左, 下, 右)</span></div><div class="line">       tableView.separatorInset = <span class="type">UIEdgeInsetsMake</span>(<span class="number">0</span>, <span class="number">50</span>, <span class="number">0</span>, <span class="number">50</span>)</div><div class="line"></div><div class="line">       <span class="comment">// 12.设置 TableView 每一行 Cell 之间分割线的颜色</span></div><div class="line">       tableView.separatorColor = <span class="type">UIColor</span>.redColor()</div><div class="line"></div><div class="line">       <span class="comment">// 13.设置 TableView 每一行 Cell 之间的分割效果(暂无方法, 目前只是用来实例化)</span></div><div class="line">       tableView.separatorEffect = <span class="type">UIVisualEffect</span>()</div><div class="line"></div><div class="line">       <span class="comment">// 14.设置 TableView 每一行 Cell 之间的分割线样式(默认是 SingleLine 样式)</span></div><div class="line">       tableView.separatorStyle = <span class="type">UITableViewCellSeparatorStyle</span>.<span class="type">SingleLine</span></div><div class="line"></div><div class="line">       <span class="comment">// 15.设置 TableView 的背景 View 对象</span></div><div class="line">       tableView.backgroundView = <span class="type">UIView</span>()</div><div class="line"></div><div class="line">       <span class="comment">// 16.设置 TableView 的编辑模式是否开启, 并且是否使用动画效果</span></div><div class="line">       tableView.setEditing(<span class="literal">true</span>, animated: <span class="literal">true</span>)</div><div class="line">       <span class="comment">// 17.添加到 self.view 上</span></div><div class="line">       <span class="keyword">self</span>.view.addSubview(tableView)</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<h1 id="实现代理方法和数据源方法"><a href="#实现代理方法和数据源方法" class="headerlink" title="实现代理方法和数据源方法"></a>实现代理方法和数据源方法</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 1.该方法是用来设置 TableView 有多少组 Cell</span></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">numberOfSectionsInTableView</span><span class="params">(tableView: UITableView)</span></span> -&gt; <span class="type">Int</span> &#123;</div><div class="line">      <span class="keyword">return</span> <span class="number">2</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 2.该方法是用来设置 TableView 有多少行 Cell</span></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, numberOfRowsInSection section: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</div><div class="line">      <span class="keyword">return</span> <span class="number">2</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 3.该方法是用来设置 TableView 每一行 Cell 的详细内容</span></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)</span></span> -&gt; <span class="type">UITableViewCell</span> &#123;</div><div class="line">      <span class="keyword">let</span> cell = <span class="type">UITableViewCell</span>()</div><div class="line">      cell.backgroundColor = <span class="type">UIColor</span>.blueColor()</div><div class="line">      <span class="keyword">return</span> cell</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 4.该方法是用来设置 TableView 每一行 Cell 的标题内容</span></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, titleForHeaderInSection section: Int)</span></span> -&gt; <span class="type">String</span>? &#123;</div><div class="line">      <span class="keyword">return</span> <span class="string">"我是页头"</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 5.该方法是用来设置 TableView 每一行 Cell 的页尾内容</span></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, titleForFooterInSection section: Int)</span></span> -&gt; <span class="type">String</span>? &#123;</div><div class="line">      <span class="keyword">return</span> <span class="string">"我是页尾"</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 6.该方法是用来设置 TableView 每一行 Cell 的高度, 一旦这里设置了, 那么在自定义里的 rowHeight 属性就会被覆盖</span></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath)</span></span> -&gt; <span class="type">CGFloat</span> &#123;</div><div class="line">      <span class="keyword">return</span> <span class="number">100</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 7.该方法是用来响应 TableVIewCell 被点击的事件</span></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)</span></span> &#123;</div><div class="line">      <span class="built_in">println</span>(<span class="string">"我被点击了"</span>)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 8.该方法是用来设置 TableView 每一行 Cell 的编辑模式, 如果不设置, 默认都是删除</span></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath)</span></span> -&gt; <span class="type">UITableViewCellEditingStyle</span> &#123;</div><div class="line">      <span class="keyword">return</span> <span class="type">UITableViewCellEditingStyle</span>.<span class="type">Insert</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 9.该方法是用来设置 Tabelview 的左滑快捷按钮, 只要写了该方法, 默认打开</span></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)</span></span> &#123;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 10.该方法是用来设置 TabelView 左滑快捷按钮的详细内容以及操作</span></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath)</span></span> -&gt; <span class="type">String</span>! &#123;</div><div class="line">      <span class="keyword">return</span> <span class="string">"删除"</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 11.该方法是用来设置 TableView 是否可以拖拽到其他行数, 只要写了该方法, 默认打开</span></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath)</span></span> &#123;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-          
+          遵守代理协议和数据源协议class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource &#123;&#125;
+自定义 UITableViewfunc myTableView() &#123;  
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/13/Swift/UIKit/UITableView-简单使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2037,102 +1960,16 @@
       
         
           
-            <h1 id="UITableview常用属性"><a href="#UITableview常用属性" class="headerlink" title="UITableview常用属性"></a>UITableview常用属性</h1><h2 id="UITableView-的样式"><a href="#UITableView-的样式" class="headerlink" title="UITableView 的样式"></a>UITableView 的样式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UITableViewStyle</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Plain</span> <span class="comment">// 平铺样式</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Grouped</span> <span class="comment">// 分组样式</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="UITableView-添加或者删除-Cell-时的动画"><a href="#UITableView-添加或者删除-Cell-时的动画" class="headerlink" title="UITableView 添加或者删除 Cell 时的动画"></a>UITableView 添加或者删除 Cell 时的动画</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UITableViewRowAnimation</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Fade</span> <span class="comment">// 淡入淡出</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Right</span> <span class="comment">// 从右添加</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Left</span> <span class="comment">// 从左添加</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Top</span> <span class="comment">// 从上添加</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Bottom</span> <span class="comment">// 从底部添加</span></div><div class="line">    <span class="keyword">case</span> <span class="type">None</span> <span class="comment">// 没有动画</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Middle</span> <span class="comment">// 从中间添加</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Automatic</span> <span class="comment">// 随机添加</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="UITableView-滚动时指定的位置"><a href="#UITableView-滚动时指定的位置" class="headerlink" title="UITableView 滚动时指定的位置"></a>UITableView 滚动时指定的位置</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UITableViewScrollPosition</span> : <span class="title">Int</span> </span>&#123;   </div><div class="line">    <span class="keyword">case</span> <span class="type">None</span> <span class="comment">// 不指定</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Top</span> <span class="comment">// 指定上面</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Middle</span> <span class="comment">// 指定中间</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Bottom</span> <span class="comment">// 指定底部</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="UITableView-分割线的样式"><a href="#UITableView-分割线的样式" class="headerlink" title="UITableView 分割线的样式"></a>UITableView 分割线的样式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UITableViewCellSeparatorStyle</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">None</span> <span class="comment">// 没有分割线</span></div><div class="line">    <span class="keyword">case</span> <span class="type">SingleLine</span> <span class="comment">// 单行分割线</span></div><div class="line">    <span class="keyword">case</span> <span class="type">SingleLineEtched</span> <span class="comment">// 多行分割线融合</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="UITableView-属性"><a href="#UITableView-属性" class="headerlink" title="UITableView 属性"></a>UITableView 属性</h2><blockquote>
-<p>1.设置 UITableView 的位置以及Style</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">init</span>(frame: <span class="type">CGRect</span>, style: <span class="type">UITableViewStyle</span>)    </div><div class="line"><span class="keyword">var</span> style: <span class="type">UITableViewStyle</span> &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>2.设置数据源对象</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">unowned</span>(unsafe) <span class="keyword">var</span> dataSource: <span class="type">UITableViewDataSource</span>?</div></pre></td></tr></table></figure>
-<blockquote>
-<p>3.设置代理对象</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">unowned</span>(unsafe) <span class="keyword">var</span> delegate: <span class="type">UITableViewDelegate</span>?</div></pre></td></tr></table></figure>
-<blockquote>
-<p>4.设置 Cell 的行高</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> rowHeight: <span class="type">CGFloat</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>5.设置 Cell 的标题高度</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> sectionHeaderHeight: <span class="type">CGFloat</span></div><div class="line">``` </div><div class="line"></div><div class="line">&gt; <span class="number">6</span>.设置 <span class="type">Cell</span> 的页尾高度</div><div class="line"></div><div class="line">```swift</div><div class="line"><span class="keyword">var</span> sectionFooterHeight: <span class="type">CGFloat</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>7.设置估计的 Cell 的行高</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> estimatedRowHeight: <span class="type">CGFloat</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>8.设置估计的 Cell 的标题行高</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> estimatedSectionHeaderHeight: <span class="type">CGFloat</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>9.设置估计的 Cell 的页尾行高</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> estimatedSectionFooterHeight: <span class="type">CGFloat</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>10.设置 Cell 与 Cell 之间的分割线位置</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> separatorInset: <span class="type">UIEdgeInsets</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>11.设置 UITableView 的背景 View 对象</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> backgroundView: <span class="type">UIView</span>?</div></pre></td></tr></table></figure>
-<h1 id="常用数据源方法"><a href="#常用数据源方法" class="headerlink" title="常用数据源方法"></a>常用数据源方法</h1><ul>
-<li>要使用数据源方法(DataSoucre方法), 首先我们需要遵守 UITableView 的数据源方法(UITableViewDataSoucre)协议</li>
-</ul>
-<blockquote>
-<p>1.该方法是用来设置 TableView 有多少行 Cell</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, numberOfRowsInSection section: Int)</span></span> -&gt; <span class="type">Int</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>2.该方法是用来设置 TableView 每一行 Cell 的详细内容</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)</span></span> -&gt; <span class="type">UITableViewCell</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>3.该方法是用来设置 TableView 有多少组 Cell</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">numberOfSectionsInTableView</span><span class="params">(tableView: UITableView)</span></span> -&gt; <span class="type">Int</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>4.该方法是用来设置每一组 Cell 的标题内容</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, titleForHeaderInSection section: Int)</span></span> -&gt; <span class="type">String</span>?</div></pre></td></tr></table></figure>
-<blockquote>
-<p>5.该方法是用来设置每一组 Cell 的页尾内容</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, titleForFooterInSection section: Int)</span></span> -&gt; <span class="type">String</span>?</div></pre></td></tr></table></figure>
-<blockquote>
-<p>6.该方法使用来设置 TableView 左滑快捷</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">optional func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>7.该方法是用来设置 TableView 是否可以拖拽到其他行数, 只要写了该方法, 默认打开</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath)</span></span></div></pre></td></tr></table></figure>
-<h1 id="常用代理方法"><a href="#常用代理方法" class="headerlink" title="常用代理方法"></a>常用代理方法</h1><blockquote>
-<p>1.该方法是用来设置每一行 Cell 的高度</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath)</span></span> -&gt; <span class="type">CGFloat</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>2.该方法是用来设置 Cell 标题内容的高度(如果该方法使用了, 那么在自定义 TableView 的sectionHeaderHeight属性就会被覆盖)</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, heightForHeaderInSection section: Int)</span></span> -&gt; <span class="type">CGFloat</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>3.该方法是用来设置 Cell 页尾内容的高度(如果该方法使用了, 那么在自定义 TableView 的sectionFooterHeight属性就会被覆盖)</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, heightForFooterInSection section: Int)</span></span> -&gt; <span class="type">CGFloat</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>4.该方法是用来设置 TableView 左滑快捷按钮的内容以及详细操作</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath)</span></span> -&gt; <span class="type">String</span>!</div></pre></td></tr></table></figure>
-<blockquote>
-<p>5.该方法是用来设置 TableView 每一行 Cell 的编辑模式, 如果不设置, 默认都是删除</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath)</span></span> -&gt; <span class="type">UITableViewCellEditingStyle</span></div></pre></td></tr></table></figure>
-          
+          UITableview常用属性UITableView 的样式 enum UITableViewStyle : Int &#123;    case Plain // 平铺样式    case Grouped // 分组样式&#125;
+UITableView 添加或者删除 Cell 时的动画 enu
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/13/Swift/UIKit/UITableView-简介/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

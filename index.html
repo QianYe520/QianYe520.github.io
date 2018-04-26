@@ -381,112 +381,21 @@
       
         
           
-            <h1 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h1><p><a href="https://github.com/alibaba/HandyJSON/blob/master/README_cn.md" target="_blank" rel="external">alibaba/HandyJSON</a><br><a href="https://blog.csdn.net/lvchenqiang_/article/details/79177444" target="_blank" rel="external">原文参考</a></p>
-<h1 id="集成"><a href="#集成" class="headerlink" title="集成"></a>集成</h1><h2 id="Podfile"><a href="#Podfile" class="headerlink" title="Podfile"></a>Podfile</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">pod '<span class="type">Moya'</span>, '~&gt; <span class="number">10.0</span>'</div><div class="line"># or </div><div class="line">pod '<span class="type">Moya</span>/<span class="type">RxSwift'</span>, '~&gt; <span class="number">10.0</span>'</div></pre></td></tr></table></figure>
-<h2 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">import Moya</div></pre></td></tr></table></figure>
-<h1 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h1><h2 id="定义枚举，存储网络请求"><a href="#定义枚举，存储网络请求" class="headerlink" title="定义枚举，存储网络请求"></a>定义枚举，存储网络请求</h2><blockquote>
-<p>定义一个枚举，存放我们的网络请求</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">ApiManager</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> login(username:<span class="type">String</span>,</div><div class="line">               password:<span class="type">String</span>,</div><div class="line">                  token:<span class="type">String</span>)</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="moya的TargetType协议"><a href="#moya的TargetType协议" class="headerlink" title="moya的TargetType协议"></a>moya的TargetType协议</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">ApiManager</span>:<span class="title">TargetType</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> baseURL: <span class="type">URL</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="type">URL</span>.<span class="keyword">init</span>(string: <span class="type">BaseURL</span>)!</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//请求路径</span></div><div class="line">    <span class="keyword">var</span> path:<span class="type">String</span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</div><div class="line">        <span class="keyword">case</span> .login(username: <span class="number">_</span>, password:<span class="number">_</span> , token:<span class="number">_</span>):</div><div class="line">            <span class="keyword">return</span> <span class="string">"login/accountLogin"</span></div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> headers: [<span class="type">String</span>: <span class="type">String</span>]? &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">nil</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//请求的参数</span></div><div class="line">    <span class="keyword">var</span> parameters: [<span class="type">String</span>: <span class="type">Any</span>]? &#123;</div><div class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</div><div class="line">        <span class="keyword">case</span> .login(username: <span class="keyword">let</span> userName, password: <span class="keyword">let</span> pwd, token: <span class="keyword">let</span> token):</div><div class="line">            <span class="keyword">return</span> [<span class="string">"account"</span>:userName,<span class="string">"pwd"</span>:pwd,<span class="string">"deviceToken"</span>:token];</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">///请求方式</span></div><div class="line">    <span class="keyword">var</span> method: <span class="type">Moya</span>.<span class="type">Method</span> &#123;</div><div class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</div><div class="line">        <span class="keyword">case</span> .login(username: <span class="number">_</span>, password: <span class="number">_</span>, token: <span class="number">_</span>):</div><div class="line">        <span class="keyword">return</span> .post;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/// The method used for parameter encoding.</span></div><div class="line">    <span class="keyword">var</span> parameterEncoding: <span class="type">ParameterEncoding</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="type">URLEncoding</span>.<span class="keyword">default</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/// Provides stub data for use in testing.</span></div><div class="line">    <span class="keyword">var</span> sampleData: <span class="type">Data</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">""</span>.data(using: <span class="type">String</span>.<span class="type">Encoding</span>.utf8)!</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//MARK:task type</span></div><div class="line">    <span class="keyword">var</span> task: <span class="type">Task</span> &#123;</div><div class="line">       <span class="keyword">return</span> .requestPlain</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> validate: <span class="type">Bool</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="发起网络请求"><a href="#发起网络请求" class="headerlink" title="发起网络请求"></a>发起网络请求</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> provider = <span class="type">MoyaProvider</span>&lt;<span class="type">ApiManager</span>&gt;();</div><div class="line"></div><div class="line">   provider.request(.login(username: <span class="string">"haha"</span>, password: <span class="string">"123456"</span>, token: <span class="string">"qwe"</span>)) &#123; (result) <span class="keyword">in</span></div><div class="line">          <span class="keyword">if</span> result.error == <span class="literal">nil</span>&#123;</div><div class="line">              <span class="type">LLog</span>(result.value);</div><div class="line">          &#125;</div><div class="line">      &#125;</div></pre></td></tr></table></figure>
-<h2 id="处理网络请求"><a href="#处理网络请求" class="headerlink" title="处理网络请求"></a>处理网络请求</h2><blockquote>
-<p>使用HanyJSON处理接口返回数据，因为我们使用RxSwift,在处理网络请求，所有我们是对ObservableType 数据类型 扩展mapModel</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">ObservableType</span> <span class="title">where</span> <span class="title">E</span> == <span class="title">Response</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">mapModel</span>&lt;T: HandyJSON&gt;<span class="params">(<span class="number">_</span> type: T.<span class="keyword">Type</span>)</span></span> -&gt; <span class="type">Observable</span>&lt;<span class="type">T</span>&gt; &#123;</div><div class="line">        <span class="keyword">return</span> flatMap &#123; response -&gt; <span class="type">Observable</span>&lt;<span class="type">T</span>&gt; <span class="keyword">in</span></div><div class="line">            <span class="keyword">return</span> <span class="type">Observable</span>.just(response.mapModel(<span class="type">T</span>.<span class="keyword">self</span>))</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Response</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">mapModel</span>&lt;T: HandyJSON&gt;<span class="params">(<span class="number">_</span> type: T.<span class="keyword">Type</span>)</span></span> -&gt; <span class="type">T</span> &#123;</div><div class="line">        <span class="keyword">let</span> jsonString = <span class="type">String</span>.<span class="keyword">init</span>(data: data, encoding: .utf8)</div><div class="line">        <span class="keyword">return</span> <span class="type">JSONDeserializer</span>&lt;<span class="type">T</span>&gt;.deserializeFrom(json: jsonString)!</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="调用示例"><a href="#调用示例" class="headerlink" title="调用示例"></a>调用示例</h1><h2 id="使用provider异步请求，并处理返回数据"><a href="#使用provider异步请求，并处理返回数据" class="headerlink" title="使用provider异步请求，并处理返回数据"></a>使用provider异步请求，并处理返回数据</h2><blockquote>
-<p>接口请求完成后， subscribe 会收到next和complete两个事件 当event.element不为空时即为next事件</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">provider.rx.request(.login(username: <span class="string">"151xxxxxxxxxx"</span>, password: <span class="string">"123456"</span>, token: <span class="string">""</span>)).asObservable().mapModel(<span class="type">LoginResponseModel</span> .<span class="keyword">self</span>).subscribe &#123; (event) <span class="keyword">in</span></div><div class="line">             <span class="comment">//当event.element 不为空时，返回的就是我们之前mapModel的类</span></div><div class="line">            <span class="keyword">if</span> <span class="keyword">let</span> model = event.element&#123;</div><div class="line">                 <span class="type">LLog</span>(model.data.accessToken);</div><div class="line">                 <span class="type">LLog</span>(model.data.crowdToken);</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                <span class="type">LLog</span>(<span class="string">"当前事件:\(event)"</span>)</div><div class="line">            &#125;</div><div class="line">            &#125;.disposed(by: disposeBag);</div></pre></td></tr></table></figure>
-<blockquote>
-<p>直接处理next事件，error和completed分开处理</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">provider.rx.request(.login(username: <span class="string">"15136176473"</span>, password: <span class="string">"123456"</span>, token: <span class="string">""</span>)).asObservable().mapModel(<span class="type">LoginResponseModel</span> .<span class="keyword">self</span>).subscribe(onNext: &#123; (model) <span class="keyword">in</span></div><div class="line">            <span class="type">LLog</span>(model.data.crowdToken)</div><div class="line">        &#125;, onError: &#123; (error) <span class="keyword">in</span></div><div class="line">            <span class="type">LLog</span>(<span class="string">"请求出错"</span>)</div><div class="line">        &#125;, onCompleted: <span class="literal">nil</span>, onDisposed: <span class="literal">nil</span>).disposed(by: disposeBag);</div></pre></td></tr></table></figure>
-<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">public init(endpointClosure: @escaping EndpointClosure = MoyaProvider.defaultEndpointMapping,</div><div class="line">               requestClosure: @escaping RequestClosure = MoyaProvider.defaultRequestMapping,</div><div class="line">               stubClosure: @escaping StubClosure = MoyaProvider.neverStub,</div><div class="line">               callbackQueue: DispatchQueue? = nil,</div><div class="line">               manager: Manager = MoyaProvider&lt;Target&gt;.defaultAlamofireManager(),</div><div class="line">               plugins: [PluginType] = [],</div><div class="line">               trackInflights: Bool = false) &#123;&#125;</div></pre></td></tr></table></figure>
-<h1 id="Moya"><a href="#Moya" class="headerlink" title="Moya"></a>Moya</h1><blockquote>
-<p>Moya是一个比较全面的好用的网络管理工具,在上面我们只是使用了部分功能。通过provider的初始化，我们可以发现在开发中我们还可以处理很多。比如：</p>
-</blockquote>
-<h2 id="插件机制"><a href="#插件机制" class="headerlink" title="插件机制"></a>插件机制</h2><blockquote>
-<p>Moya 的插件机制也很好用，提供了以下接口:</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">/// Called to modify a request before sending</span></div><div class="line">   <span class="function"><span class="keyword">func</span> <span class="title">prepare</span><span class="params">(<span class="number">_</span> request: URLRequest, target: TargetType)</span></span> -&gt; <span class="type">URLRequest</span></div><div class="line"></div><div class="line">   <span class="comment">/// Called immediately before a request is sent over the network (or stubbed).</span></div><div class="line">   <span class="function"><span class="keyword">func</span> <span class="title">willSend</span><span class="params">(<span class="number">_</span> request: RequestType, target: TargetType)</span></span></div><div class="line"></div><div class="line">   <span class="comment">/// Called after a response has been received, but before the MoyaProvider has invoked its completion handler.</span></div><div class="line">   <span class="function"><span class="keyword">func</span> <span class="title">didReceive</span><span class="params">(<span class="number">_</span> result: Result&lt;Moya.Response, MoyaError&gt;, target: TargetType)</span></span></div><div class="line"></div><div class="line">   <span class="comment">/// Called to modify a result before completion</span></div><div class="line">   <span class="function"><span class="keyword">func</span> <span class="title">process</span><span class="params">(<span class="number">_</span> result: Result&lt;Moya.Response, MoyaError&gt;, target: TargetType)</span></span> -&gt; <span class="type">Result</span>&lt;<span class="type">Moya</span>.<span class="type">Response</span>, <span class="type">MoyaError</span>&gt;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>与主功能接口脱离，降低了耦合度我们可以再这里处理请求的权限、token、loading等。 例如：</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">RequestLoadingPlugin</span>:<span class="title">PluginType</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">willSend</span><span class="params">(<span class="number">_</span> request: RequestType, target: TargetType)</span></span> &#123;</div><div class="line">        <span class="type">LLog</span>(<span class="string">"接口开始请求"</span>)</div><div class="line">    <span class="keyword">self</span>.showHUD()</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">didReceive</span><span class="params">(<span class="number">_</span> result: Result&lt;Response, MoyaError&gt;, target: TargetType)</span></span> &#123;</div><div class="line">        <span class="type">LLog</span>(<span class="string">"接口请求完成"</span>)</div><div class="line">        <span class="keyword">self</span>.dismissHUD();</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//MARK:-是否显示请求加载框</span></div><div class="line">    <span class="keyword">fileprivate</span>  <span class="function"><span class="keyword">func</span>  <span class="title">showHUD</span><span class="params">(<span class="number">_</span> isShow:Bool = <span class="literal">true</span>)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(isShow)&#123;</div><div class="line">            <span class="type">SVProgressHUD</span>.show();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//MARK:-隐藏请求加载框</span></div><div class="line">    <span class="keyword">fileprivate</span>  <span class="function"><span class="keyword">func</span> <span class="title">dismissHUD</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="type">SVProgressHUD</span>.dismiss();</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>在provider的初始化注册我们初始化的插件即可</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> provider = <span class="type">MoyaProvider</span>&lt;<span class="type">ApiManager</span>&gt;(plugins:[<span class="type">RequestLoadingPlugin</span>()]);</div></pre></td></tr></table></figure>
-<h2 id="请求处理机制"><a href="#请求处理机制" class="headerlink" title="请求处理机制"></a>请求处理机制</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="type">EndpointClosure</span> = (<span class="type">Target</span>) -&gt; <span class="type">Endpoint</span>&lt;<span class="type">Target</span>&gt;</div><div class="line"><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="type">RequestClosure</span> = (<span class="type">Endpoint</span>&lt;<span class="type">Target</span>&gt;, @escaping <span class="type">RequestResultClosure</span>) -&gt; <span class="type">Void</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="type">StubClosure</span> = (<span class="type">Target</span>) -&gt; <span class="type">Moya</span>.<span class="type">StubBehavior</span></div><div class="line"> <span class="keyword">public</span> <span class="keyword">typealias</span> <span class="type">RequestResultClosure</span> = (<span class="type">Result</span>&lt;<span class="type">URLRequest</span>, <span class="type">MoyaError</span>&gt;) -&gt; <span class="type">Void</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>从上面的三个闭包中，我们可以看出</p>
-</blockquote>
-<ul>
-<li>EndpointClosure 是输入一个Target 返回一个Endpoint 也就是完成Target-&gt;Endpoint</li>
-</ul>
-<blockquote>
-<p>Endpoint的数据结构</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Endpoint</span>&lt;<span class="title">Target</span>&gt; </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">typealias</span> <span class="type">SampleResponseClosure</span> = () -&gt; <span class="type">EndpointSampleResponse</span></div><div class="line"></div><div class="line">    <span class="keyword">open</span> <span class="keyword">let</span> url: <span class="type">String</span></div><div class="line">    <span class="keyword">open</span> <span class="keyword">let</span> sampleResponseClosure: <span class="type">SampleResponseClosure</span></div><div class="line">    <span class="keyword">open</span> <span class="keyword">let</span> method: <span class="type">Moya</span>.<span class="type">Method</span></div><div class="line">    <span class="keyword">open</span> <span class="keyword">let</span> task: <span class="type">Task</span></div><div class="line">    <span class="keyword">open</span> <span class="keyword">let</span> httpHeaderFields: [<span class="type">String</span>: <span class="type">String</span>]?</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>初始化的默认值是</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">defaultEndpointMapping</span>(<span class="title">for</span> <span class="title">target</span>: <span class="title">Target</span>) -&gt; <span class="title">Endpoint</span>&lt;<span class="title">Target</span>&gt; </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="type">Endpoint</span>(</div><div class="line">            url: <span class="type">URL</span>(target: target).absoluteString,</div><div class="line">            sampleResponseClosure: &#123; .networkResponse(<span class="number">200</span>, target.sampleData) &#125;,</div><div class="line">            method: target.method,</div><div class="line">            task: target.task,</div><div class="line">            httpHeaderFields: target.headers</div><div class="line">        )</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>上面的代码只是创建并返回Endpoint实例。很多时候，我们可以自定义这个闭包来做更多额外的事情。比如我们处理一些网络状态码、或者结合stub 模拟网络数据等</p>
-</blockquote>
-<ul>
-<li>RequestClosure 是输入一个Endpoint和RequestResultClosure闭包 返回Void<br>RequestClosure主要是实现Endpoint-&gt;NSURLRequest 用于发起真正的网络请求</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="type">RequestResultClosure</span> = (<span class="type">Result</span>&lt;<span class="type">URLRequest</span>, <span class="type">MoyaError</span>&gt;) -&gt; <span class="type">Void</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>在输入中RequestResultClosure就是对接口请求完成后的返回<br>初始化的默认值是：</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">defaultRequestMapping</span>(<span class="title">for</span> <span class="title">endpoint</span>: <span class="title">Endpoint</span>&lt;<span class="title">Target</span>&gt;, <span class="title">closure</span>: <span class="title">RequestResultClosure</span>) </span>&#123;</div><div class="line">       <span class="keyword">do</span> &#123;</div><div class="line">           <span class="keyword">let</span> urlRequest = <span class="keyword">try</span> endpoint.urlRequest()</div><div class="line">           closure(.success(urlRequest))</div><div class="line">       &#125; <span class="keyword">catch</span> <span class="type">MoyaError</span>.requestMapping(<span class="keyword">let</span> url) &#123;</div><div class="line">           closure(.failure(<span class="type">MoyaError</span>.requestMapping(url)))</div><div class="line">       &#125; <span class="keyword">catch</span> <span class="type">MoyaError</span>.parameterEncoding(<span class="keyword">let</span> error) &#123;</div><div class="line">           closure(.failure(<span class="type">MoyaError</span>.parameterEncoding(error)))</div><div class="line">       &#125; <span class="keyword">catch</span> &#123;</div><div class="line">           closure(.failure(<span class="type">MoyaError</span>.underlying(error, <span class="literal">nil</span>)))</div><div class="line">       &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>这里就是处理最后的urlRequest。如果你想设置全局的urlRequest，这里也是最后的机会了。我们可以再这里修改请求的超时时间、缓存策略、cookie等。<br>示例：</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> requestClosure = &#123; (endpoint: <span class="type">Endpoint</span>&lt;<span class="type">ApiManager</span>&gt;, closure: (<span class="type">Result</span>&lt;<span class="type">URLRequest</span>, <span class="type">MoyaError</span>&gt;) -&gt; <span class="type">Void</span>)  -&gt; <span class="type">Void</span> <span class="keyword">in</span></div><div class="line">        <span class="keyword">do</span> &#123;</div><div class="line">            <span class="keyword">var</span>  urlRequest = <span class="keyword">try</span> endpoint.urlRequest()</div><div class="line">            urlRequest.timeoutInterval = <span class="number">30.0</span></div><div class="line">            urlRequest.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData</div><div class="line">            urlRequest.httpShouldHandleCookies = <span class="literal">false</span></div><div class="line">            closure(.success(urlRequest))</div><div class="line">        &#125; <span class="keyword">catch</span> <span class="type">MoyaError</span>.requestMapping(<span class="keyword">let</span> url) &#123;</div><div class="line">            closure(.failure(<span class="type">MoyaError</span>.requestMapping(url)))</div><div class="line">        &#125; <span class="keyword">catch</span> <span class="type">MoyaError</span>.parameterEncoding(<span class="keyword">let</span> error) &#123;</div><div class="line">            closure(.failure(<span class="type">MoyaError</span>.parameterEncoding(error)))</div><div class="line">        &#125; <span class="keyword">catch</span> &#123;</div><div class="line">            closure(.failure(<span class="type">MoyaError</span>.underlying(error, <span class="literal">nil</span>)))</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> provider = <span class="type">MoyaProvider</span>&lt;<span class="type">ApiManager</span>&gt;(requestClosure:requestClosure,plugins:[<span class="type">RequestLoadingPlugin</span>()]);</div></pre></td></tr></table></figure>
-<ul>
-<li>StubClosure 是输入一个Target 返回一个StubBehavior的闭包。</li>
-<li>默认是：neverStub</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="type">StubClosure</span> = (<span class="type">Target</span>) -&gt; <span class="type">Moya</span>.<span class="type">StubBehavior</span></div></pre></td></tr></table></figure>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">StubBehavior</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">/// 不使用Stub来返回模拟的网络数据   </span></div><div class="line">     <span class="keyword">case</span> never</div><div class="line"></div><div class="line">    <span class="comment">/// 立刻返回Stub的数据</span></div><div class="line">    <span class="keyword">case</span> immediate</div><div class="line"></div><div class="line">    <span class="comment">/// 在几秒后返回stub的数据</span></div><div class="line">    <span class="keyword">case</span> delayed(seconds: <span class="type">TimeInterval</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h1><blockquote>
-<p>编写测试数据</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">ApiManager</span>:<span class="title">TargetType</span></span>&#123;</div><div class="line">  ...</div><div class="line"></div><div class="line">    <span class="comment">/// Provides stub data for use in testing.</span></div><div class="line">    <span class="keyword">var</span> sampleData: <span class="type">Data</span> &#123;</div><div class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</div><div class="line">        <span class="keyword">case</span> .login(username: <span class="number">_</span>, password: <span class="number">_</span>, token: <span class="number">_</span>):</div><div class="line">            <span class="keyword">return</span> <span class="string">"&#123;'code': 200,'Token':'123455'&#125;"</span>.data(using: <span class="type">String</span>.<span class="type">Encoding</span>.utf8)!</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            <span class="keyword">return</span> <span class="string">""</span>.data(using: <span class="type">String</span>.<span class="type">Encoding</span>.utf8)!</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>初始化EndpointClosure</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> endPointAction = &#123; (target: <span class="type">ApiManager</span>) -&gt; <span class="type">Endpoint</span>&lt;<span class="type">ApiManager</span>&gt; <span class="keyword">in</span></div><div class="line">    <span class="keyword">let</span> url = target.baseURL.appendingPathComponent(target.path).absoluteString</div><div class="line"></div><div class="line">    <span class="keyword">switch</span> target &#123;</div><div class="line">    <span class="keyword">case</span> .login(username: <span class="number">_</span>, password:<span class="number">_</span> , token:<span class="number">_</span>):</div><div class="line">        <span class="keyword">return</span>  <span class="type">Endpoint</span>(</div><div class="line">            url: url,</div><div class="line">            sampleResponseClosure: &#123; .networkResponse(<span class="number">200</span>, target.sampleData) &#125;,</div><div class="line">            method: target.method,</div><div class="line">            task: target.task,</div><div class="line">            httpHeaderFields: target.headers</div><div class="line">        )&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>初始化StubClosure</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> stubAction: (<span class="number">_</span> type:<span class="type">ApiManager</span>) -&gt; <span class="type">Moya</span>.<span class="type">StubBehavior</span> = &#123; type <span class="keyword">in</span></div><div class="line">    <span class="keyword">switch</span> type &#123;</div><div class="line">    <span class="keyword">case</span> .login(username: <span class="number">_</span>, password:<span class="number">_</span> , token:<span class="number">_</span>):</div><div class="line">        <span class="keyword">return</span> <span class="type">Moya</span>.<span class="type">StubBehavior</span>.delayed(seconds: <span class="number">3.0</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>初始化provider</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> provider = <span class="type">MoyaProvider</span>&lt;<span class="type">ApiManager</span>&gt;(endpointClosure:endPointAction,requestClosure:_requestClosure,stubClosure:stubAction,plugins:[<span class="type">RequestLoadingPlugin</span>()]);</div></pre></td></tr></table></figure>
-<h1 id="Manager"><a href="#Manager" class="headerlink" title="Manager"></a>Manager</h1><blockquote>
-<p>Moya本身并不是直接处理网络请求的第三方库。它只是一个抽象的网络层，对真正发起网络请求的Manager进行管理：例如Alamofire<br>默认参数:</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">defaultAlamofireManager</span>() -&gt; <span class="title">Manager</span> </span>&#123;</div><div class="line">        <span class="keyword">let</span> configuration = <span class="type">URLSessionConfiguration</span>.<span class="keyword">default</span></div><div class="line">        configuration.httpAdditionalHeaders = <span class="type">Manager</span>.defaultHTTPHeaders</div><div class="line"></div><div class="line">        <span class="keyword">let</span> manager = <span class="type">Manager</span>(configuration: configuration)</div><div class="line">        manager.startRequestsImmediately = <span class="literal">false</span></div><div class="line">        <span class="keyword">return</span> manager</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>封装Alamofire,使Moya.Manager == Alamofire.SessionManager</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="type">Manager</span> = <span class="type">Alamofire</span>.<span class="type">SessionManager</span></div><div class="line"><span class="keyword">internal</span> <span class="keyword">typealias</span> <span class="type">Request</span> = <span class="type">Alamofire</span>.<span class="type">Request</span></div><div class="line"><span class="keyword">internal</span> <span class="keyword">typealias</span> <span class="type">DownloadRequest</span> = <span class="type">Alamofire</span>.<span class="type">DownloadRequest</span></div><div class="line"><span class="keyword">internal</span> <span class="keyword">typealias</span> <span class="type">UploadRequest</span> = <span class="type">Alamofire</span>.<span class="type">UploadRequest</span></div><div class="line"><span class="keyword">internal</span> <span class="keyword">typealias</span> <span class="type">DataRequest</span> = <span class="type">Alamofire</span>.<span class="type">DataRequest</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>所以，当我们想要定义自己的Manager，我们也可以传入自己的Manager到Moya的provider中。<br>示例</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> policies: [<span class="type">String</span>: <span class="type">ServerTrustPolicy</span>] = [</div><div class="line">    <span class="string">"example.com"</span>: .<span class="type">PinPublicKeys</span>(</div><div class="line">        publicKeys: <span class="type">ServerTrustPolicy</span>.publicKeysInBundle(),</div><div class="line">        validateCertificateChain: <span class="literal">true</span>,</div><div class="line">        validateHost: <span class="literal">true</span></div><div class="line">    )</div><div class="line">]</div></pre></td></tr></table></figure>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> policies: [<span class="type">String</span>: <span class="type">ServerTrustPolicy</span>] = [</div><div class="line">    <span class="string">"example.com"</span>: .pinPublicKeys(</div><div class="line">        publicKeys: <span class="type">ServerTrustPolicy</span>.publicKeys(),</div><div class="line">        validateCertificateChain: <span class="literal">true</span>,</div><div class="line">        validateHost: <span class="literal">true</span></div><div class="line">    )</div><div class="line">]</div><div class="line"></div><div class="line"><span class="keyword">let</span> manager:<span class="type">Manager</span> = <span class="type">Manager</span>(configuration: <span class="type">URLSessionConfiguration</span>.<span class="keyword">default</span>, delegate: <span class="type">SessionDelegate</span>(), serverTrustPolicyManager: <span class="type">ServerTrustPolicyManager</span>(policies: policies))</div></pre></td></tr></table></figure>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> provider = <span class="type">MoyaProvider</span>&lt;<span class="type">ApiManager</span>&gt;(manager: manager)</div></pre></td></tr></table></figure>
+          资料alibaba/HandyJSON原文参考
+集成Podfilepod 'Moya', '~&gt; 10.0'# or pod 'Moya/RxSwift', '~&gt; 10.0'
+导入import Moya
+简单使用定义枚举，存储网络请求
+定义一个枚举，存放我们的网络请求
 
-          
+enum Ap
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/22/RxSwift/Func/RxSwift+Moya+HandyJSON /#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -639,31 +548,23 @@
       
         
           
-            <ul>
-<li>For-In 循环</li>
-</ul>
-<h1 id="For-In-循环"><a href="#For-In-循环" class="headerlink" title="For-In 循环"></a>For-In 循环</h1><blockquote>
-<p>❶for-in -&gt;数组中的元素</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> names = [<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>]</div><div class="line"><span class="keyword">for</span> name <span class="keyword">in</span>  names &#123;</div><div class="line">    <span class="built_in">print</span> (<span class="string">"-------- \(name)"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>❷or-in -&gt;字典<br>遍历字典时，字典的每项元素会以 (key, value) 元组的形式返回<br>for-in 循环中使用显式的常量名称来解读 (key, value) 元组</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">		<span class="keyword">let</span> numberOfLegs = [<span class="string">"spider"</span>: <span class="number">8</span>, </div><div class="line">		                    <span class="string">"ant"</span>: <span class="number">6</span>, </div><div class="line">		                    <span class="string">"cat"</span>: <span class="number">4</span>]</div><div class="line">		<span class="keyword">for</span> (animalName, legCount) <span class="keyword">in</span> numberOfLegs &#123;</div><div class="line">		    <span class="built_in">print</span>(<span class="string">"\(animalName)s have \(legCount) legs"</span>)</div><div class="line">		&#125;</div><div class="line"><span class="comment">//字典的内容理论上是无序的</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>❸ for-in 循环还可以使用数字范围</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">    <span class="keyword">for</span> index <span class="keyword">in</span> <span class="number">1</span>...<span class="number">5</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"\(index) times 5 is \(index * 5)"</span>)</div><div class="line">&#125;</div><div class="line"><span class="comment">// 1 times 5 is 5</span></div><div class="line"><span class="comment">// 2 times 5 is 10</span></div><div class="line"><span class="comment">// 3 times 5 is 15</span></div><div class="line"><span class="comment">// 4 times 5 is 20</span></div><div class="line"><span class="comment">// 5 times 5 is 25</span></div></pre></td></tr></table></figure>
-<ul>
-<li>用来进行遍历的元素是使用闭区间操作符（…）表示的从 1 到 5 的数字区间</li>
-<li>index 是一个每次循环遍历开始时被自动赋值的常量</li>
-<li></li>
-</ul>
-<blockquote>
-<p>❹</p>
-</blockquote>
-
           
+For-In 循环
+
+For-In 循环
+❶for-in -&gt;数组中的元素
+
+let names = ["A","B","C"]for name in  names &#123;    print ("-------- \(name)")&#125;
+
+❷or-in -&gt;字典遍历字典时
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/14/Swift/Grammar/ControlFlow控制流/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -827,8 +728,15 @@
       
         
           
-            
           
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/11/Swift/Grammar/目录/Swift-Grammar-目录/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -981,251 +889,24 @@
       
         
           
-            <ul>
-<li><a href="#1">需求</a></li>
-<li><a href="#2">需求</a></li>
-</ul>
-<h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><h2 id="注册界面需求"><a href="#注册界面需求" class="headerlink" title="注册界面需求"></a>注册界面需求</h2><ul>
-<li>输入用户名必须大于等于6个字符，不然密码不能输入；</li>
-<li>密码必须大于等于6个字符，不然重复密码不能输入；</li>
-<li>重复密码和密码必须一样， 不能注册按钮不能点击；</li>
-<li>点击注册按钮，提示注册成功或者注册失败；</li>
-<li>注册成功会写进本地的plist文件，然后输入用户名会检测该用户名是否已注册</li>
-</ul>
-<h2 id="登录界面需求"><a href="#登录界面需求" class="headerlink" title="登录界面需求"></a>登录界面需求</h2><ul>
-<li>点击输入用户名，检测是否已存在，如果存在，户名可用，否则提示用户名不存在；</li>
-<li>输入密码，点击登录，如果密码错则提示密码错误，否则进入列表界面，提示登录成功</li>
-</ul>
-<h1 id="UI"><a href="#UI" class="headerlink" title="UI"></a>UI</h1><h2 id="①UI-ViewController-swift"><a href="#①UI-ViewController-swift" class="headerlink" title="①UI-ViewController.swift"></a>①UI-ViewController.swift</h2><ul>
-<li>懒加载+封装初始化UI</li>
-</ul>
-<blockquote>
-<p>❶用户名 - 标题-Title - lab</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> userNameLab: <span class="type">UILabel</span> = &#123;</div><div class="line">      <span class="keyword">let</span> userNameLab = <span class="type">UILabel</span>()</div><div class="line">      userNameLab.frame = <span class="type">CGRect</span>(x:<span class="number">40</span>,y:<span class="number">100</span>,width:<span class="number">80</span>,height:<span class="number">30</span>)</div><div class="line">      userNameLab.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">14</span>)</div><div class="line">      userNameLab.text = <span class="string">"用户名"</span></div><div class="line">      <span class="keyword">return</span> userNameLab</div><div class="line">  &#125;()</div></pre></td></tr></table></figure>
-<blockquote>
-<p>❷用户名 -输入框-TF</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> userNameTextField: <span class="type">UITextField</span> = &#123;</div><div class="line">      <span class="keyword">let</span> userNameTextField = <span class="type">UITextField</span>()</div><div class="line">      userNameTextField.frame = <span class="type">CGRect</span>(x:<span class="number">40</span>+<span class="number">80</span>+<span class="number">10</span>,y:<span class="number">100</span>,width:<span class="number">160</span>,height:<span class="number">30</span>)</div><div class="line">      userNameTextField.placeholder = <span class="string">"输入不少于6位用户名"</span></div><div class="line">      userNameTextField.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">14</span>)</div><div class="line">      <span class="keyword">return</span> userNameTextField</div><div class="line">  &#125;()</div></pre></td></tr></table></figure>
-<blockquote>
-<p>❸用户名 - 输入提示-lab</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> userNameInputLab: <span class="type">UILabel</span> = &#123;</div><div class="line">     <span class="keyword">let</span> userNameInputLab = <span class="type">UILabel</span>()</div><div class="line">     userNameInputLab.frame = <span class="type">CGRect</span>(x:<span class="number">40</span>+<span class="number">80</span>+<span class="number">10</span>,y:<span class="number">100</span>+<span class="number">30</span>+<span class="number">10</span>,width:<span class="number">100</span>,height:<span class="number">20</span>)</div><div class="line">     userNameInputLab.text = <span class="string">"用户名至少6位"</span></div><div class="line">     userNameInputLab.textColor = <span class="type">UIColor</span>.red</div><div class="line">     userNameInputLab.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">12</span>)</div><div class="line">     <span class="keyword">return</span> userNameInputLab</div><div class="line"> &#125;()</div></pre></td></tr></table></figure>
-<blockquote>
-<p> 密码-标题-Lab</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> passWordLab: <span class="type">UILabel</span> = &#123;</div><div class="line">      <span class="keyword">let</span> passWordLab = <span class="type">UILabel</span>()</div><div class="line">      passWordLab.frame = <span class="type">CGRect</span>(x:<span class="number">40</span>,y:<span class="number">200</span>,width:<span class="number">80</span>,height:<span class="number">30</span>)</div><div class="line">      passWordLab.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">14</span>)</div><div class="line">      passWordLab.text = <span class="string">"密码"</span></div><div class="line">      <span class="keyword">return</span> passWordLab</div><div class="line">  &#125;()</div></pre></td></tr></table></figure>
-<blockquote>
-<p>密码- 输入- TF</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> passWordTextField:<span class="type">UITextField</span> = &#123;</div><div class="line">    <span class="keyword">let</span> passWordTextField = <span class="type">UITextField</span>()</div><div class="line">    passWordTextField.frame = <span class="type">CGRect</span>(x:<span class="number">40</span>+<span class="number">80</span>+<span class="number">10</span>,y:<span class="number">200</span>,width:<span class="number">100</span>,height:<span class="number">30</span>)</div><div class="line">    passWordTextField.placeholder = <span class="string">"请填输入密码"</span></div><div class="line">    passWordTextField.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">14</span>)</div><div class="line">    <span class="keyword">return</span> passWordTextField</div><div class="line">&#125;()</div></pre></td></tr></table></figure>
-<blockquote>
-<p>密码 - 输入提示-lab</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> passWordInputLab: <span class="type">UILabel</span> = &#123;</div><div class="line">      <span class="keyword">let</span> passWordInputLab = <span class="type">UILabel</span>()</div><div class="line">      passWordInputLab.frame = <span class="type">CGRect</span>(x:<span class="number">40</span>+<span class="number">80</span>+<span class="number">10</span>,y:<span class="number">200</span>+<span class="number">30</span>+<span class="number">10</span>,width:<span class="number">100</span>,height:<span class="number">20</span>)</div><div class="line">      passWordInputLab.text = <span class="string">"用户名至少6位"</span></div><div class="line">      passWordInputLab.textColor = <span class="type">UIColor</span>.red</div><div class="line">      passWordInputLab.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">12</span>)</div><div class="line">      <span class="keyword">return</span> passWordInputLab</div><div class="line">  &#125;()</div></pre></td></tr></table></figure>
-<blockquote>
-<p>密码检验 - 标题 - Lab</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> checkPassWordLab: <span class="type">UILabel</span> = &#123;</div><div class="line">     <span class="keyword">let</span> checkPassWordLab = <span class="type">UILabel</span>()</div><div class="line">     checkPassWordLab.frame = <span class="type">CGRect</span>(x:<span class="number">40</span>,y:<span class="number">300</span>,width:<span class="number">80</span>,height:<span class="number">30</span>)</div><div class="line">     checkPassWordLab.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">14</span>)</div><div class="line">     checkPassWordLab.text = <span class="string">"密码检查"</span></div><div class="line">     <span class="keyword">return</span> checkPassWordLab</div><div class="line"> &#125;()</div></pre></td></tr></table></figure>
-<blockquote>
-<p>密码检验 - 输入- TF</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> checkPassWordTextField:<span class="type">UITextField</span> = &#123;</div><div class="line">    <span class="keyword">let</span> checkPassWordTextField = <span class="type">UITextField</span>()</div><div class="line">    checkPassWordTextField.frame = <span class="type">CGRect</span>(x:<span class="number">40</span>+<span class="number">80</span>+<span class="number">10</span>,y:<span class="number">300</span>,width:<span class="number">100</span>,height:<span class="number">30</span>)</div><div class="line">    checkPassWordTextField.placeholder = <span class="string">"请再一次输入密码"</span></div><div class="line">    checkPassWordTextField.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">14</span>)</div><div class="line">    <span class="keyword">return</span> checkPassWordTextField</div><div class="line">&#125;()</div></pre></td></tr></table></figure>
-<blockquote>
-<p>密码检验 - 输入警告提示-lab</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> checkPassWordInputLab: <span class="type">UILabel</span> = &#123;</div><div class="line">    <span class="keyword">let</span> checkPassWordInputLab = <span class="type">UILabel</span>()</div><div class="line">    checkPassWordInputLab.frame = <span class="type">CGRect</span>(x:<span class="number">40</span>+<span class="number">80</span>+<span class="number">10</span>,y:<span class="number">300</span>+<span class="number">30</span>+<span class="number">10</span>,width:<span class="number">100</span>,height:<span class="number">20</span>)</div><div class="line">    checkPassWordInputLab.text = <span class="string">"用户名至少6位"</span></div><div class="line">    checkPassWordInputLab.textColor = <span class="type">UIColor</span>.red</div><div class="line">    checkPassWordInputLab.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">12</span>)</div><div class="line">    <span class="keyword">self</span>.view.addSubview(checkPassWordInputLab)</div><div class="line">    <span class="keyword">return</span> checkPassWordInputLab</div><div class="line">&#125;()</div></pre></td></tr></table></figure>
-<blockquote>
-<p>注册 按钮 -Btn</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> registerBtn:<span class="type">UIButton</span> = &#123;</div><div class="line">    <span class="keyword">let</span> registerBtn = <span class="type">UIButton</span>()</div><div class="line">    registerBtn.frame = <span class="type">CGRect</span>(x:<span class="number">40</span>+<span class="number">80</span>+<span class="number">10</span>,y:<span class="number">400</span>,width:<span class="number">100</span>,height:<span class="number">30</span>)</div><div class="line">    registerBtn.setTitle(<span class="string">"注册"</span>, <span class="keyword">for</span>: .normal)</div><div class="line">    registerBtn.setTitleColor(<span class="type">UIColor</span>.green, <span class="keyword">for</span>: .normal)</div><div class="line">    registerBtn.backgroundColor = <span class="type">UIColor</span>.red</div><div class="line">    <span class="keyword">return</span> registerBtn</div><div class="line">&#125;()</div></pre></td></tr></table></figure>
-<blockquote>
-<p>登录 - 按钮 -Btn</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> loginBtn:<span class="type">UIButton</span> = &#123;</div><div class="line">    <span class="keyword">let</span> loginBtn = <span class="type">UIButton</span>()</div><div class="line">    loginBtn.frame = <span class="type">CGRect</span>(x:<span class="number">40</span>+<span class="number">80</span>+<span class="number">10</span>,y:<span class="number">500</span>,width:<span class="number">100</span>,height:<span class="number">30</span>)</div><div class="line">    loginBtn.setTitle(<span class="string">"登录"</span>, <span class="keyword">for</span>: .normal)</div><div class="line">    loginBtn.setTitleColor(<span class="type">UIColor</span>.green, <span class="keyword">for</span>: .normal)</div><div class="line">    loginBtn.backgroundColor = <span class="type">UIColor</span>.red</div><div class="line">    loginBtn.addTarget(<span class="keyword">self</span>, action: #selector(showNextCtl), <span class="keyword">for</span>: <span class="type">UIControlEvents</span>.touchUpInside)</div><div class="line">    <span class="keyword">return</span> loginBtn</div><div class="line">&#125;()</div></pre></td></tr></table></figure>
-<h2 id="私有方法"><a href="#私有方法" class="headerlink" title="私有方法"></a>私有方法</h2><blockquote>
-<p>注册完毕–&gt;去登录界面</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">showNextCtl</span><span class="params">()</span></span>&#123;</div><div class="line">     <span class="keyword">let</span> viewCtl = <span class="type">LoginViewCtl</span>()</div><div class="line">     <span class="built_in">print</span>(<span class="string">"21312312312"</span>)</div><div class="line">     navigationController?.pushViewController(viewCtl, animated: <span class="literal">true</span>)</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
-<h2 id="DisposeBag"><a href="#DisposeBag" class="headerlink" title="DisposeBag"></a>DisposeBag</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div></pre></td></tr></table></figure>
-<h2 id="ViewModel"><a href="#ViewModel" class="headerlink" title="ViewModel"></a>ViewModel</h2><blockquote>
-<p> 声明 RegisterViewModel </p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> viewModel = <span class="type">RegisterViewModel</span>()</div></pre></td></tr></table></figure>
-<h2 id="viewDidLoad"><a href="#viewDidLoad" class="headerlink" title="viewDidLoad"></a>viewDidLoad</h2><h3 id="UI加载"><a href="#UI加载" class="headerlink" title="UI加载"></a>UI加载</h3><blockquote>
-<p>UI加载</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">initUI</span><span class="params">()</span></span>&#123;</div><div class="line">    view.backgroundColor = <span class="type">UIColor</span>.white</div><div class="line">    view.addSubview(userNameLab)</div><div class="line">    view.addSubview(userNameTextField)</div><div class="line">    view.addSubview(userNameInputLab)</div><div class="line">    </div><div class="line">    view.addSubview(passWordLab)</div><div class="line">    view.addSubview(passWordTextField)</div><div class="line">    view.addSubview(passWordInputLab)</div><div class="line">    </div><div class="line">    view.addSubview(checkPassWordLab)</div><div class="line">    view.addSubview(checkPassWordTextField)</div><div class="line">    view.addSubview(checkPassWordLab)</div><div class="line">    </div><div class="line">    view.addSubview(registerBtn)</div><div class="line">    view.addSubview(loginBtn)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="UI控件-绑定"><a href="#UI控件-绑定" class="headerlink" title="UI控件 绑定"></a>UI控件 绑定</h3><ul>
-<li>①usernameTextField.rx.text.orEmpty,usernameTextField.rx.text.orEmpty是Rx中的东西，他把TextFiled的text变成了一个Observable， 后面的orEmpty我们可以Command点进去看下，他会把String?过滤nil帮我们变为String类型</li>
-<li>②bind:bind里面里面的就是监听者也就是Observer,username既是一个observable也是一个observer,此时把他当成一个Observer绑定到usernameTextFiled上，监听我们的usernameTextField流</li>
-<li>③因为有监听，就要有监听资源的回收，so,创建一个disposeBag来盛放这些监听资源</li>
-</ul>
-<blockquote>
-<p>绑定 用户名</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">userNameTextField.rx</div><div class="line">                 .text</div><div class="line">                 .orEmpty     <span class="comment">// ①</span></div><div class="line">                 .bind(to: viewModel.userNameVariable)  <span class="comment">// ②</span></div><div class="line">                 .disposed(by: disposeBag)         <span class="comment">// ③</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>绑定  密码</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">passWordTextField.rx</div><div class="line">                 .text</div><div class="line">                 .orEmpty</div><div class="line">                 .bind(to: viewModel.passWordVariable)</div><div class="line">                 .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>绑定 检测 密码</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">checkPassWordTextField.rx</div><div class="line">                      .text</div><div class="line">                      .orEmpty</div><div class="line">                      .bind(to: viewModel.checkPassWordVariable)</div><div class="line">                      .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>绑定 注册 按钮</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">registerBtn.rx</div><div class="line">           .tap</div><div class="line">           .bind(to: viewModel.registerTaps)<span class="comment">//registerTaps来判断 如果满足注册条件</span></div><div class="line">           .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
-<h2 id="mdoel相关Variable"><a href="#mdoel相关Variable" class="headerlink" title="mdoel相关Variable"></a>mdoel相关Variable</h2><ul>
-<li>① 被观察者</li>
-<li>② userNameInputLab.rx.validationResult作为一个observer(观察者)观察userNameUsable上的内容变化<pre><code>将ViewModel中username处理结果usernameUseable绑定到nameLabel显示文案上，根据不同的结果显示不同的文案
-</code></pre></li>
-</ul>
-<h3 id="用户名"><a href="#用户名" class="headerlink" title="用户名"></a>用户名</h3><blockquote>
-<p>监听 用户名输入</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">viewModel.userNameUsable <span class="comment">// ① 被观察者</span></div><div class="line">         .bind(to: userNameInputLab.rx.validationResult)   <span class="comment">// ②</span></div><div class="line">         .disposed(by: disposeBag)  <span class="comment">// ③</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>监听 用户名是否可输入</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">viewModel.userNameUsable</div><div class="line">         .bind(to: passWordTextField.rx.inputEnabled)</div><div class="line">         .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
-<h3 id="密码"><a href="#密码" class="headerlink" title="密码"></a>密码</h3><blockquote>
-<p>监听  密码 输入提示</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">viewModel.passWordUsable</div><div class="line">         .bind(to: passWordInputLab.rx.validationResult)</div><div class="line">         .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>监听 密码 是否可输入</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">viewModel.passWordUsable</div><div class="line">         .bind(to: checkPassWordTextField.rx.inputEnabled)</div><div class="line">         .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
-<h3 id="检测密码"><a href="#检测密码" class="headerlink" title="检测密码"></a>检测密码</h3><blockquote>
-<p>监听 检测密码 输入</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">viewModel.checkPassWordUsable</div><div class="line">         .bind(to: checkPassWordInputLab.rx.validationResult)</div><div class="line">         .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
-<h3 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h3><blockquote>
-<p>监听 注册 enable<br>队列信号 –&gt;执行具体变化</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">viewModel.registerBtnEnabled</div><div class="line">         .subscribe(onNext:&#123;[<span class="keyword">unowned</span> <span class="keyword">self</span>] valid <span class="keyword">in</span></div><div class="line">                <span class="keyword">self</span>.registerBtn.isEnabled = valid</div><div class="line">                <span class="keyword">self</span>.registerBtn.alpha = valid ? <span class="number">1.0</span> : <span class="number">0.5</span></div><div class="line">                   &#125;)</div><div class="line">         .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>注册结果处理</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">viewModel.registerResult</div><div class="line">         .subscribe(onNext:&#123; [<span class="keyword">weak</span> <span class="keyword">self</span>](result) <span class="keyword">in</span></div><div class="line">                <span class="keyword">switch</span> result &#123;</div><div class="line">                <span class="keyword">case</span> <span class="keyword">let</span> .ok(msgStr):</div><div class="line">                    <span class="keyword">self</span>?.showAlert(msgStr: msgStr)</div><div class="line">                <span class="keyword">case</span> .empty:</div><div class="line">                    <span class="keyword">self</span>?.showAlert(msgStr: <span class="string">""</span>)</div><div class="line">                <span class="keyword">case</span> <span class="keyword">let</span> .failed(msgStr):</div><div class="line">                    <span class="keyword">self</span>?.showAlert(msgStr: msgStr)</div><div class="line">                &#125;</div><div class="line">            &#125;)</div><div class="line">         .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>alet提示 注册结果</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">showAlert</span><span class="params">(msgStr:String)</span></span>&#123;</div><div class="line">     <span class="keyword">let</span> acton = <span class="type">UIAlertAction</span>(title:<span class="string">"确定"</span>,</div><div class="line">                               style: .<span class="keyword">default</span>,</div><div class="line">                               handler:<span class="literal">nil</span>)</div><div class="line">     <span class="keyword">let</span> alertViewCtl = <span class="type">UIAlertController</span>(title:<span class="literal">nil</span>,</div><div class="line">                                          message:msgStr,</div><div class="line">                                          preferredStyle: .alert)</div><div class="line">     alertViewCtl.addAction(acton)</div><div class="line">     present(alertViewCtl,</div><div class="line">             animated: <span class="literal">true</span>,</div><div class="line">             completion: <span class="literal">nil</span>)</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
-<h1 id="Service网络请求"><a href="#Service网络请求" class="headerlink" title="Service网络请求"></a>Service网络请求</h1><blockquote>
-<p>Service文件主要负责一些网络请求，和一些数据访问的操作<br>然后供 <strong>ViewModel</strong>使用，模拟从本地plist文件中读取用户数据</p>
-</blockquote>
-<h2 id="ValidationService类中，检测username的方法"><a href="#ValidationService类中，检测username的方法" class="headerlink" title="ValidationService类中，检测username的方法"></a>ValidationService类中，检测username的方法</h2><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">init</span> ()&#123;&#125;  <span class="comment">//初始化？？</span></div><div class="line"><span class="keyword">static</span> <span class="keyword">let</span>  instance = <span class="type">ValidationService</span>()  <span class="comment">// 单例类</span></div><div class="line"><span class="keyword">let</span> minCharacterCount = <span class="number">6</span>  <span class="comment">// 设置输入最小位数</span></div></pre></td></tr></table></figure>
-<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><blockquote>
-<p>① Method:对输入用户名 判断<br>返回一个Observable对象，因为这个请求过程需要被监听</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">validateUsername</span><span class="params">(<span class="number">_</span> userNameStr: String)</span></span> -&gt; <span class="type">Observable</span>&lt;<span class="type">Result</span>&gt;  &#123;</div><div class="line">    <span class="comment">/*just是创建一个sequence只能发出一种特定的事件，能正常结束</span></div><div class="line"><span class="comment">     next(🔴)</span></div><div class="line"><span class="comment">     completed</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="comment">//❶判断-是否为空 当字符等于0的时候什么都不做</span></div><div class="line">    <span class="keyword">if</span> userNameStr.<span class="built_in">count</span> == <span class="number">0</span> &#123;</div><div class="line">        <span class="keyword">return</span> .just(.empty)</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//❷判断-长度</span></div><div class="line">    <span class="keyword">if</span> userNameStr.<span class="built_in">count</span> &lt; minCharacterCount &#123;</div><div class="line">        <span class="keyword">return</span> .just(.failed(message: <span class="string">"大哥至少6位啊"</span>))</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//❸判断- 检查plist文件中是否有该用户名</span></div><div class="line">    <span class="keyword">if</span> userNameValid(userNameStr) &#123;</div><div class="line">        <span class="keyword">return</span> .just(.failed(message: <span class="string">"账户已存在"</span>))</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//❹判断- 返回可用</span></div><div class="line">    <span class="keyword">return</span> .just(.ok(message: <span class="string">"用户名可用"</span>))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>②Method: 从本地数据库中检测 用户名 是否已经存在</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">userNameValid</span><span class="params">(<span class="number">_</span> userNameStr: String)</span></span> -&gt;<span class="type">Bool</span>&#123;</div><div class="line">      <span class="keyword">let</span> filePath = <span class="type">NSHomeDirectory</span>()+<span class="string">"/Documents/users.plist"</span></div><div class="line">      <span class="keyword">let</span> userDic = <span class="type">NSDictionary</span>(contentsOfFile:filePath)</div><div class="line">      <span class="keyword">let</span>  userNameArray = userDic?.allKeys</div><div class="line">      <span class="keyword">guard</span> userNameArray != <span class="literal">nil</span></div><div class="line">          <span class="keyword">else</span>&#123;</div><div class="line">              <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">      &#125;</div><div class="line">      <span class="keyword">if</span> (userNameArray! <span class="keyword">as</span> <span class="type">NSArray</span>).<span class="built_in">contains</span>(userNameStr) &#123;</div><div class="line">          <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">      &#125;<span class="keyword">else</span>&#123;</div><div class="line">          <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">      &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>③Method: 检测 密码长度 -&gt; Result</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">validatePassWord</span><span class="params">(<span class="number">_</span> passWordStr: String)</span></span>-&gt; <span class="type">Result</span> &#123;</div><div class="line">       <span class="keyword">if</span> passWordStr.<span class="built_in">count</span> == <span class="number">0</span> &#123;</div><div class="line">           <span class="keyword">return</span> .empty</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">if</span> passWordStr.<span class="built_in">count</span> &lt; minCharacterCount &#123;</div><div class="line">           <span class="keyword">return</span> .failed(message: <span class="string">"密码长度至少6个字符"</span>)</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">return</span> .ok(message: <span class="string">"密码可用"</span>)</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>④ 检测 2次密码是否一致  -&gt; Result</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">validateCheckPassWord</span><span class="params">(<span class="number">_</span> passWordStr: String,checkPassWordStr:String)</span></span> -&gt; <span class="type">Result</span> &#123;</div><div class="line">     <span class="keyword">if</span> checkPassWordStr.<span class="built_in">count</span> == <span class="number">0</span>&#123;</div><div class="line">         <span class="keyword">return</span> .empty</div><div class="line">     &#125;</div><div class="line">     <span class="keyword">if</span> checkPassWordStr == passWordStr &#123;</div><div class="line">         <span class="keyword">return</span> .ok(message:<span class="string">"密码可用"</span>)</div><div class="line">     &#125;</div><div class="line">     <span class="keyword">return</span> .failed(message: <span class="string">"两次密码不一样"</span>)</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>⑤注册函数 -  -&gt; Observable<result></result></p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">register</span><span class="params">(<span class="number">_</span> userNameStr:String,passWordStr:String)</span></span> -&gt; <span class="type">Observable</span>&lt;<span class="type">Result</span>&gt;  &#123;</div><div class="line">       <span class="keyword">let</span> userDic = [userNameStr:passWordStr]</div><div class="line">       <span class="keyword">let</span> filePath = <span class="type">NSHomeDirectory</span>() + <span class="string">"/Documents/users.plist"</span></div><div class="line">       <span class="keyword">if</span> (userDic <span class="keyword">as</span> <span class="type">NSDictionary</span>).write(toFile: filePath, atomically: <span class="literal">true</span>) &#123;</div><div class="line">           <span class="keyword">return</span> .just(.ok(message: <span class="string">"注册成功"</span>))</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">return</span> .just(.failed(message: <span class="string">"注册失败"</span>))</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>⑥登录用户名是否存在 -&gt; Observable<result></result></p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">loginUsernameValid</span><span class="params">(<span class="number">_</span> useNameStr: String)</span></span> -&gt; <span class="type">Observable</span>&lt;<span class="type">Result</span>&gt; &#123;</div><div class="line">    <span class="keyword">if</span> useNameStr.<span class="built_in">count</span> == <span class="number">0</span> &#123;</div><div class="line">        <span class="keyword">return</span> .just(.empty)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> userNameValid(useNameStr) &#123;</div><div class="line">        <span class="keyword">return</span> .just(.ok(message: <span class="string">"用户名 可用"</span>))</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> .just(.failed(message: <span class="string">"用户名 不存在"</span>))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>⑦登录 Observable<result></result></p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">login</span><span class="params">(<span class="number">_</span> userNameStr: String, passWordStr: String)</span></span>-&gt; <span class="type">Observable</span>&lt;<span class="type">Result</span>&gt; &#123;</div><div class="line">    <span class="keyword">let</span> filePath = <span class="type">NSHomeDirectory</span>()+<span class="string">"/Documents/users.plist"</span></div><div class="line">    <span class="keyword">let</span> userDic = <span class="type">NSDictionary</span>(contentsOfFile:filePath)</div><div class="line">    <span class="keyword">if</span> <span class="keyword">let</span> usePass = userDic?.object(forKey: userNameStr) <span class="keyword">as</span>? <span class="type">String</span> &#123;</div><div class="line">        <span class="keyword">if</span> usePass == passWordStr &#123;</div><div class="line">            <span class="keyword">return</span> .just(.ok(message: <span class="string">"登录成功"</span>))</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> .just(.failed(message: <span class="string">"密码错误"</span>))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="Protocol-swift"><a href="#Protocol-swift" class="headerlink" title="Protocol.swift"></a>Protocol.swift</h1><blockquote>
-<p>创建一个Protocol.swift文件，创建一个enum用于表示我们处理结果</p>
-</blockquote>
-<h2 id="枚举表示一些请求的结果"><a href="#枚举表示一些请求的结果" class="headerlink" title="枚举表示一些请求的结果"></a>枚举表示一些请求的结果</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Result</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> ok(message: <span class="type">String</span>)</div><div class="line">    <span class="keyword">case</span> empty</div><div class="line">    <span class="keyword">case</span> failed(message: <span class="type">String</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="先对Result进行了扩展"><a href="#先对Result进行了扩展" class="headerlink" title="先对Result进行了扩展"></a>先对Result进行了扩展</h2><blockquote>
-<p>添加了一个isValid属性<br>状态是ok，这个属性就返回true，否则就返回false</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Result</span></span>&#123;</div><div class="line">    <span class="keyword">var</span> isValid: <span class="type">Bool</span>&#123;</div><div class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</div><div class="line">	        <span class="keyword">case</span> .ok:</div><div class="line">	            <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">	        <span class="keyword">default</span>:</div><div class="line">	            <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>添加了一个textColor属性，如果Result属性为ok的时候颜色就是绿色，否则即使红色</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Result</span></span>&#123;</div><div class="line">    <span class="keyword">var</span> textColor:<span class="type">UIColor</span>&#123;</div><div class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</div><div class="line">        <span class="keyword">case</span> .ok:</div><div class="line">            <span class="keyword">return</span> <span class="type">UIColor</span>(red: <span class="number">138.0</span> / <span class="number">255.0</span>, green: <span class="number">221.0</span> / <span class="number">255.0</span>, blue: <span class="number">109.0</span> / <span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line">        <span class="keyword">case</span> .empty:</div><div class="line">            <span class="keyword">return</span> <span class="type">UIColor</span>.black</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">               <span class="keyword">return</span> <span class="type">UIColor</span>.red</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>自定义了一个Observer<br>对UIlabel进行了扩展，根据result结果，进行他的text和textColor的显示<br>UIBindingObserver这个东西很有用的，创建我们自己的监听者，有时候RxCocoa(RxSwift中对UIKit的一个扩展库)给的扩展不够我们使用，比如一个UITextField有个isEnabled属性，我想把这个isEnabled变为一个observer，我们可以这样做</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Result</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> description: <span class="type">String</span> &#123;</div><div class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</div><div class="line">        <span class="keyword">case</span> <span class="keyword">let</span> .ok(message):</div><div class="line">            <span class="keyword">return</span> message</div><div class="line">        <span class="keyword">case</span> .empty:</div><div class="line">            <span class="keyword">return</span> <span class="string">""</span></div><div class="line">        <span class="keyword">case</span> <span class="keyword">let</span> .failed(message):</div><div class="line">            <span class="keyword">return</span> message</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>UILabel进行了UIBingObserver，根据result结果，进行它的text和textColor显示</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Reactive</span> <span class="title">where</span> <span class="title">Base</span>: <span class="title">UILabel</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> validationResult: <span class="type">UIBindingObserver</span>&lt;<span class="type">Base</span>, <span class="type">Result</span>&gt; &#123;</div><div class="line">        <span class="keyword">return</span> <span class="type">UIBindingObserver</span>(<span class="type">UIElement</span>: base) &#123; label, result <span class="keyword">in</span></div><div class="line">            label.textColor = result.textColor</div><div class="line">            label.text = result.description</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>对UITextField进行扩展，根据result结果，进行他的isEnabled进行设置</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Reactive</span> <span class="title">where</span> <span class="title">Base</span>: <span class="title">UITextField</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> inputEnabled: <span class="type">UIBindingObserver</span>&lt;<span class="type">Base</span>, <span class="type">Result</span>&gt; &#123;</div><div class="line">        <span class="keyword">return</span> <span class="type">UIBindingObserver</span>(<span class="type">UIElement</span>: base) &#123; textFiled, result <span class="keyword">in</span></div><div class="line">            textFiled.isEnabled = result.isValid</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>对 button.isEnabled进行扩展</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Reactive</span> <span class="title">where</span> <span class="title">Base</span>: <span class="title">UIBarButtonItem</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> tapEnabled: <span class="type">UIBindingObserver</span>&lt;<span class="type">Base</span>, <span class="type">Result</span>&gt; &#123;</div><div class="line">        <span class="keyword">return</span> <span class="type">UIBindingObserver</span>(<span class="type">UIElement</span>: base) &#123; button, result <span class="keyword">in</span></div><div class="line">            button.isEnabled = result.isValid</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="RegisterViewModel-swift"><a href="#RegisterViewModel-swift" class="headerlink" title="RegisterViewModel.swift"></a>RegisterViewModel.swift</h1><blockquote>
-<p>input:</p>
-</blockquote>
-<ul>
-<li>username既是一个observable也是一个observer，所以声明为他为一个Variable(被观察者)对象</li>
-<li>对username进行处理的应该有一个结果，结果应该是需要界面去监听来改变界面，因为处理的结果不需要是一个observer，所以我们把它声明为一个Observable类型</li>
-<li>初始值为””</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> userNameVariable      = <span class="type">Variable</span>&lt;<span class="type">String</span>&gt;(<span class="string">""</span>)<span class="comment">//usernameUseable表示对username处理的一个结果，后面userNameVariable作为 被观察的对象</span></div><div class="line"><span class="keyword">let</span> passWordVariable      = <span class="type">Variable</span>&lt;<span class="type">String</span>&gt;(<span class="string">""</span>)</div><div class="line"><span class="keyword">let</span> checkPassWordVariable = <span class="type">Variable</span>&lt;<span class="type">String</span>&gt;(<span class="string">""</span>)</div><div class="line"><span class="keyword">let</span> registerTaps          = <span class="type">PublishSubject</span>&lt;<span class="type">Void</span>&gt;()<span class="comment">//使用了PublishSubject，因为不需要有初始元素，其实前面的Variable都可以换成PublishSubject</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p> output</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> userNameUsable:      <span class="type">Observable</span>&lt;<span class="type">Result</span>&gt;</div><div class="line"><span class="keyword">let</span> passWordUsable:      <span class="type">Observable</span>&lt;<span class="type">Result</span>&gt;</div><div class="line"><span class="keyword">let</span> checkPassWordUsable: <span class="type">Observable</span>&lt;<span class="type">Result</span>&gt;</div><div class="line"><span class="keyword">let</span> registerBtnEnabled:  <span class="type">Observable</span>&lt;<span class="type">Bool</span>&gt; <span class="comment">//注册按钮是否可用的输出，这个其实关系到username和password</span></div><div class="line"><span class="keyword">let</span> registerResult:      <span class="type">Observable</span>&lt;<span class="type">Result</span>&gt;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>初始化处理- 网络层</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> service = <span class="type">ValidationService</span>.instance</div></pre></td></tr></table></figure>
-<blockquote>
-<p>观察 –&gt; userNameVariable（input）（事件源）</p>
-</blockquote>
-<ul>
-<li>userNameUsable 被观察者（事件源）（就是要观察  userNameVariable）处理结果 ,然后对里面的元素进行处理之后发射对应的事件,要通过 高阶函数发出一个处理后的 队列,</li>
-<li>flatMapLatest 只会接收最新的value事件</li>
-<li>validateUsername 监听username 返回一个Observable对象</li>
-<li>service.validateUsername （），处理一个队列信号，再返回一个新队列信号</li>
-<li>shareReplay(1)是因为我们要保证无论多少个Observer来监听我们这个序列，username的处理代码我们只执行一次，这一次请求结果供多有的observer去使用</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">userNameUsable = userNameVariable.asObservable()</div><div class="line">                                       .flatMapLatest&#123; userNameVariable <span class="keyword">in</span></div><div class="line">                                                       <span class="keyword">return</span> service.validateUsername(userNameVariable)</div><div class="line">                                                                     .observeOn(<span class="type">MainScheduler</span>.instance)</div><div class="line">                                                                     .catchErrorJustReturn(.failed(message: <span class="string">"username检测出错"</span>))</div><div class="line">                                                      &#125;</div><div class="line">                                        .share(replay:<span class="number">1</span>)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>密码passWordStr作为观察者，密码文本变化，判断，返回不同的队列信号</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">passWordUsable = passWordVariable.asObservable()</div><div class="line">                                     .<span class="built_in">map</span>&#123; passWordVariable <span class="keyword">in</span></div><div class="line">                                        <span class="keyword">return</span> service.validatePassWord(passWordVariable)</div><div class="line">                                      &#125;</div><div class="line">                                     .share(replay:<span class="number">1</span>)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>密码+检测密码 2个队列信号<br>combineLatest邻近事件一起处理</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">checkPassWordUsable = <span class="type">Observable</span>.combineLatest(passWordVariable.asObservable(),checkPassWordVariable.asObservable())&#123;</div><div class="line">                                                   <span class="keyword">return</span> service.validateCheckPassWord($<span class="number">0</span>, checkPassWordStr: $<span class="number">1</span>)</div><div class="line">                                              &#125;</div><div class="line">                               .share(replay: <span class="number">1</span>)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>用户名+密码+检车密码  3次队列合并–&gt;发出 是否注册成功的队列</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">registerBtnEnabled = <span class="type">Observable</span>.combineLatest(userNameUsable,</div><div class="line">                                                   passWordUsable,</div><div class="line">                                                   checkPassWordUsable)&#123;  (username,passWord,checkPassWord) <span class="keyword">in</span></div><div class="line">                                                           username.isValid &amp;&amp; passWord.isValid &amp;&amp; checkPassWord.isValid  <span class="comment">// 要求3个信号量均不为nil</span></div><div class="line">                                                        &#125;</div><div class="line">                                     .distinctUntilChanged() <span class="comment">//如果队列中出现相同Element，将被过滤掉</span></div><div class="line">                                     .share(replay: <span class="number">1</span>)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>注册结果队列</p>
-</blockquote>
-<ul>
-<li>combineLatest 合并 userNameStr 和 passWordStr 的处理结果绑定到一起—&gt;形成总的结果流</li>
-<li>registerTaps来判断 如果满足注册条件，</li>
-<li>withLatestFrom 应该意思是 获取最新的队列信号</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">registerResult = registerTaps.asObserver()</div><div class="line">                                   .withLatestFrom( <span class="type">Observable</span>.combineLatest(userNameVariable.asObservable(), passWordVariable.asObservable()) &#123;</div><div class="line">                                      ($<span class="number">0</span>, $<span class="number">1</span>)</div><div class="line">                                    &#125;)</div><div class="line">                                   .flatMapLatest&#123;    <span class="comment">// flatMapLatest 只会接收最新的value事件</span></div><div class="line">                                      (username,password) <span class="keyword">in</span></div><div class="line">                                          <span class="keyword">return</span> service.register(username, passWordStr: password)</div><div class="line">                                              .observeOn(<span class="type">MainScheduler</span>.instance)</div><div class="line">                                              .catchErrorJustReturn(.failed(message: <span class="string">"注册出错"</span>))</div><div class="line">                                        &#125;</div><div class="line">                                   .share(replay: <span class="number">1</span>)</div></pre></td></tr></table></figure>
-<p><a href="http://www.cnblogs.com/scott-mr/p/7240991.html" target="_blank" rel="external">refer</a></p>
-
           
+需求
+需求
+
+需求注册界面需求
+输入用户名必须大于等于6个字符，不然密码不能输入；
+密码必须大于等于6个字符，不然重复密码不能输入；
+重复密码和密码必须一样， 不能注册按钮不能点击；
+点击注册按钮，提示注册成功或者注册失败；
+注册成功会写进本地的plist文件，然后输入用户名会检测该用户名是否已注
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/06/RxSwift/Demo/Swift-RxSwift-MVVM-Login简单登录注册/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1378,240 +1059,23 @@
       
         
           
-            <h1 id="概念理解"><a href="#概念理解" class="headerlink" title="概念理解"></a>概念理解</h1><ul>
-<li><a href="#1.1">①Observable 和 Observer</a></li>
-<li><a href="#1.2">②subscribe 和 subscribe(onNext:)</a></li>
-<li><a href="#1.3">③Dispose 和 DisposeBag</a></li>
-<li><a href="#1.4">④observeOn() 和 subscribeOn()</a></li>
-<li><a href="#1.5">⑤shareReplay</a></li>
-<li><a href="#1.6">⑥自定义operator</a></li>
-<li><a href="#1.7">⑦Driver</a></li>
-<li><a href="#1.8">⑧map 和 flatMap 何时使用</a></li>
-<li><a href="#1.9">⑨UIBindingObserver</a></li>
-</ul>
-<p><span id="1.1">①Observable 和 Observer</span></p>
-<h1 id="①Observable-和-Observer"><a href="#①Observable-和-Observer" class="headerlink" title="①Observable 和 Observer"></a>①Observable 和 Observer</h1><h2 id="实质"><a href="#实质" class="headerlink" title="实质"></a>实质</h2><blockquote>
-<p>Observer (观察者)订阅一个可观察序列 Observable(事件源)<br>每一个Observable的实例都是一个序列<br>观察者 对 Observable 发射的数据或数据序列作出响应</p>
-</blockquote>
-<h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><blockquote>
-<p>Button 的点击这个情景</p>
-</blockquote>
-<ul>
-<li>把用户一次又一次的点击 Button 看做是序列(sequence)</li>
-<li>通过调用 subscribe 来订阅这个点击事件</li>
-<li>每次点击都会发射一个数据</li>
-<li>作为订阅者的 subscribe 收到这个这个数据进行某些响应</li>
-</ul>
-<blockquote>
-<p>Rx 的基本概念，有Observer观察者观察一个序列sequence，每当序列发射值的时候，观察者根据序列做一些事情<br>Observable序列相比于Swift序列的关键优势点在于它能够异步地接收元素</p>
-</blockquote>
-<ul>
-<li>Observable(ObservableType)等效于Sequence</li>
-<li>observableType.subscribe(_:)方法等效于Sequence.makeIterator()</li>
-<li>ObservableType.subscribe(_:)接收一个观察者ObserverType参数,它将被订阅自动接收由可观察到的序列事件和元素，而不是在返回的生成器上手动调用next()</li>
-</ul>
-<blockquote>
-<p>如果一个Observable发出一个next事件(Event.next(Element)),它还能够继续发出更多的事件<br>但是，如果一个Observable发出一个error事件(Event.error(ErrorType))或者一个completed事件(Event.completed)，那么这个Observable序列就不能给订阅者发送其他的事件</p>
-</blockquote>
-<h2 id="可观察序列-Observables-aka-Sequences"><a href="#可观察序列-Observables-aka-Sequences" class="headerlink" title="可观察序列 (Observables aka Sequences)"></a>可观察序列 (Observables aka Sequences)</h2><blockquote>
-<p>可观察序列 存在三种情况:<br>①发射数据(Next)<br>②遇到问题(Error)<br>③发射完成(Completed)</p>
-<p>有限序列</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">比如，有这样一个序列 --1--2--3--4--5--6--| ，它发送了按顺序发送了 1 2 3 4 5 6 这些值后，就终止了，就是发射完成。这是一个有限序列</div><div class="line">也有可能因为某些特殊的情况，遇到某些错误（比如数据解析错误），--1--2--3--4--X ，因为解析错误意外终止</div></pre></td></tr></table></figure>
-<blockquote>
-<p>无限序列</p>
-</blockquote>
-<ul>
-<li>比如用户点击 Button ，这个就属于无限序列</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">---tap-tap-------tap---&gt; 当然这里的无限不是真的无限，是不确定用户什么时候会点击，不确定是否会继续点击。所以这是一个无限序列，每当用户点击，序列就发射一个值</div></pre></td></tr></table></figure>
-<blockquote>
-<p>将以上的三种情况统概括为事件</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">    <span class="class"><span class="keyword">enum</span> <span class="title">Event</span>&lt;<span class="title">Element</span>&gt;  </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Next</span>(<span class="type">Element</span>)      <span class="comment">// 序列的下一个元素</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Error</span>(<span class="type">ErrorType</span>)   <span class="comment">// 序列因为某些错误终止</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Completed</span>          <span class="comment">// 正常的序列技术</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="观察者-Observer"><a href="#观察者-Observer" class="headerlink" title="观察者 (Observer)"></a>观察者 (Observer)</h2><blockquote>
-<p>观察者需要一个订阅序列的功能</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Observable</span>&lt;<span class="title">Element</span>&gt; </span>&#123;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">subscribe</span><span class="params">(observer: Observer&lt;Element&gt;)</span></span> -&gt; <span class="type">Disposable</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">ObserverType</span> </span>&#123;</div><div class="line"> <span class="function"><span class="keyword">func</span> <span class="title">on</span><span class="params">(event: Event&lt;Element&gt;)</span></span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>通过序列的这个 subscribe 来订阅序列<br>这里就应该提到序列的“冷”“热”问题</p>
-</blockquote>
-<ul>
-<li>冷：只有当有观察者订阅这个序列时，序列才发射值</li>
-<li>热：序列创建时就开始发射值</li>
-</ul>
-<blockquote>
-<p>整体上就是这样的一个关系，序列发射值，观察者订阅序列，收到值，进行处理</p>
-</blockquote>
-<h2 id="Obserable"><a href="#Obserable" class="headerlink" title="Obserable"></a>Obserable</h2><blockquote>
-<p>创建被观察者其实就是<strong>创建一个Obserable的sequence</strong>，就是创建一个流，然后就可以被订阅subscribe，这样被观察者发出时间消失，就能做相应的处理</p>
-</blockquote>
-<p><span id="1.2"></span></p>
-<h1 id="②subscribe-和-subscribe-onNext"><a href="#②subscribe-和-subscribe-onNext" class="headerlink" title="②subscribe 和 subscribe(onNext:)"></a>②subscribe 和 subscribe(onNext:)</h1><blockquote>
-<p>Subscribe</p>
-</blockquote>
-<ul>
-<li><strong>subscribe是订阅sequence发出的事件</strong>，比如next事件，error事件等</li>
-<li>而subscribe(onNext:)是监听sequence发出的next事件中的element进行处理，他会忽略error和completed事件</li>
-<li>相对应的还有subscribe(onError:) 和 subscribe(onCompleted:)</li>
-</ul>
-<p><span id="1.3"></span></p>
-<h1 id="③Dispose-和-DisposeBag"><a href="#③Dispose-和-DisposeBag" class="headerlink" title="③Dispose 和 DisposeBag"></a>③Dispose 和 DisposeBag</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">当监听一个sequence的时候，有消息事件来了，做某些事情。但是这个sequence不再发送消息事件了，那么我们的监听也就没有什么存在的价值了，所以我们需要释放我们这些监听资源，其实也就是内存资源释放</div></pre></td></tr></table></figure>
-<p>##手动调用释放方式(一般不适用这种方式)</p>
-<blockquote>
-<p>创建一个subscription监听，在两秒以后我们不需要了，手动调用dispose()方法，就能释放监听资源，不再打印信息。上面的subscription不论是在哪个线程中监听，就算在主线程中调用的dispose()方法一样会销毁资源</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> subscription = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.interval(<span class="number">0.3</span>, scheduler:<span class="type">SerialDispatchQueueScheduler</span>.<span class="keyword">init</span>(internalSerialQueueName: <span class="string">"scott"</span>))</div><div class="line">                                  .observeOn(<span class="type">MainScheduler</span>.instance)</div><div class="line">										 .subscribe &#123; event <span class="keyword">in</span> </div><div class="line">										          <span class="built_in">print</span> (event)</div><div class="line">										       &#125;</div><div class="line"><span class="type">Thread</span>.sleep(forTimeInterval: <span class="number">2.0</span>)</div><div class="line">subscription.dispose()</div><div class="line">   </div><div class="line"><span class="comment">//打印结果：</span></div><div class="line">next(<span class="number">0</span>)</div><div class="line">next(<span class="number">1</span>)</div><div class="line">next(<span class="number">2</span>)</div><div class="line">next(<span class="number">3</span>)</div><div class="line">next(<span class="number">4</span>)</div><div class="line">next(<span class="number">5</span>)</div></pre></td></tr></table></figure>
-<h2 id="自动方式"><a href="#自动方式" class="headerlink" title="自动方式"></a>自动方式</h2><blockquote>
-<p>创建一个disposeBag来盛放我们需要管理的资源，然后把新建的监听都放进去，会在适当的时候销毁这些资源<br>如果需要立即释放资源只需要新建一个DisposeBag()，那么上一个DisposeBag就会被销毁</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.empty()</div><div class="line">               .subscribe&#123; event <span class="keyword">in</span> </div><div class="line">                   <span class="built_in">print</span> (event)</div><div class="line">                   &#125;</div><div class="line">                .addDisponseableTo(disposeBag)</div></pre></td></tr></table></figure>
-<h2 id="DisposeBag"><a href="#DisposeBag" class="headerlink" title="DisposeBag"></a>DisposeBag</h2><blockquote>
-<p>DisposeBag其实就相当于iOS中的ARC似得，会在适当的时候销毁观察者，相当于内存管理者吧</p>
-</blockquote>
-<p><span id="1.4"></span></p>
-<h1 id="④observeOn-和-subscribeOn"><a href="#④observeOn-和-subscribeOn" class="headerlink" title="④observeOn() 和 subscribeOn()"></a>④observeOn() 和 subscribeOn()</h1><table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>subscribeOn()</td>
-<td>设置起点在哪个线程</td>
-</tr>
-<tr>
-<td>observeOn()</td>
-<td>置了后续工作在哪个线程</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>1)所有动作都发生在当前的默认线程<br>2)observeOn()转换线程到主线程，下面所有的操作都在主线程<br>3)subscribeOn()规定动作一开始不是发生在默认线程，而是在OtherScheduler了<br>)-如果之前没有调用observeOn()，那么这边会在OtherScheduler发生，但是我们前面调用了observeOn()，所以这个动作会在主线程中调用<br>subscribeOn()只是影响事件链开始默认的线程，而observeOn()规定了下一步动作发生在哪个线程中。</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">someObservable</div><div class="line">     .doOneThing() <span class="comment">//1</span></div><div class="line">     .observeOn(<span class="type">MainRouteScheduler</span>.instance) <span class="comment">// 2</span></div><div class="line">      .subscribeOn(<span class="type">OtherScheduler</span>.instance) <span class="comment">// 3</span></div><div class="line">      .subscribeNext &#123; <span class="comment">// 4</span></div><div class="line">        ......</div><div class="line">         &#125;</div><div class="line">      .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
-<p><span id="1.5"></span></p>
-<h1 id="⑤shareReplay"><a href="#⑤shareReplay" class="headerlink" title="⑤shareReplay"></a>⑤shareReplay</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>.just(<span class="string">"🤣"</span>)</div><div class="line">                           .<span class="built_in">map</span>&#123; </div><div class="line">                                <span class="built_in">print</span>($<span class="number">0</span>)</div><div class="line">                                &#125;</div><div class="line">observable.subscribe&#123;</div><div class="line">                 <span class="built_in">print</span>(<span class="string">"Even:\($0)"</span>)</div><div class="line">             &#125;</div><div class="line">           .disposed(by: disposeBag)</div><div class="line">observable.subscribe&#123; </div><div class="line">                  <span class="built_in">print</span>(<span class="string">"Even:\($0)"</span>)</div><div class="line">              &#125;</div><div class="line">           .disposed(by: disposeBag)</div><div class="line"><span class="comment">//打印结果：</span></div><div class="line"></div><div class="line">🤣</div><div class="line"><span class="type">Even</span>:next(())</div><div class="line"><span class="type">Even</span>:completed</div><div class="line">🤣</div><div class="line"><span class="type">Even</span>:next(())</div><div class="line"><span class="type">Even</span>:completed</div></pre></td></tr></table></figure>
-<blockquote>
-<p>map()函数执行了两次，但是有些时候，我们并不想让map()函数里面的东西执行两次，比如map()函数里面执行的是网络请求，我只需要执行一次请求，然后把结果提供给大家使用就行了，多余的请求会增加负担。所以这时候就需要使用shareReplay(1)了。这里面的数字一般是1，只执行一次。(ps:我改成 2，3 也只打印一次)</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">   </div><div class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>.just(<span class="string">"🤣"</span>).<span class="built_in">map</span>&#123;<span class="built_in">print</span>($<span class="number">0</span>)&#125;.shareReplay(<span class="number">1</span>)</div><div class="line">    </div><div class="line">observable.subscribe&#123;<span class="built_in">print</span>(<span class="string">"Even:\($0)"</span>)&#125;.disposed(by: disposeBag)</div><div class="line">observable.subscribe&#123;<span class="built_in">print</span>(<span class="string">"Even:\($0)"</span>)&#125;.disposed(by: disposeBag)</div><div class="line"></div><div class="line"><span class="comment">//打印结果：</span></div><div class="line">🤣</div><div class="line"><span class="type">Even</span>:next(())</div><div class="line"><span class="type">Even</span>:completed</div><div class="line"><span class="type">Even</span>:next(())</div><div class="line"><span class="type">Even</span>:completed</div></pre></td></tr></table></figure>
-<p><span id="1.6"></span></p>
-<h1 id="⑥自定义operator"><a href="#⑥自定义operator" class="headerlink" title="⑥自定义operator"></a>⑥自定义operator</h1><blockquote>
-<p>自定义操作符很简单，官方推荐尽量使用标准的操作符，但是你也可以定义自己的操作符，文档上说有两种方法，这里介绍一下常用的一种方法吧<br>自定义一个map操作符</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">extension</span> <span class="title">ObserverType</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">myMap</span>&lt;R&gt;<span class="params">(transform: E -&gt; R)</span></span> -&gt; <span class="type">Observable</span>&lt;<span class="type">R</span>&gt; &#123;</div><div class="line">        <span class="keyword">return</span> <span class="type">Observable</span>.create&#123; observer <span class="keyword">in</span></div><div class="line">            <span class="keyword">let</span> subscription = <span class="keyword">self</span>.subscribe &#123;e <span class="keyword">in</span></div><div class="line">                <span class="keyword">switch</span> e&#123;</div><div class="line">                <span class="keyword">case</span> .next(<span class="keyword">let</span> value):</div><div class="line">                    <span class="keyword">let</span> result = transform(value)</div><div class="line">                    observer.on(.next(result))</div><div class="line">                <span class="keyword">case</span> .error(<span class="keyword">let</span> error):</div><div class="line">                    observer.on(.error(error))</div><div class="line">                <span class="keyword">case</span> .completed:</div><div class="line">                    observer.on(.completed)</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> subscription</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>参数是一个闭包，其中闭包参数是E类型返回值是R类型，map函数的返回值是一个Observable类型。</p>
-</blockquote>
-<p><span id="1.7"></span></p>
-<h1 id="⑦Driver"><a href="#⑦Driver" class="headerlink" title="⑦Driver"></a>⑦Driver</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">let</span> results =  query.rx</div><div class="line">                     .text</div><div class="line">					     .throttle(<span class="number">0.3</span>,scheduler: <span class="type">MainScheduler</span>.instance)<span class="comment">//在主线程中操作，如果0.3秒内值发生多次改变，取最后一次的值</span></div><div class="line">					     .flatMapLatest &#123; query <span class="keyword">in</span>     <span class="comment">//筛选出空值, 拍平序列，并取得最后一个有效的值</span></div><div class="line">					          fetchAutoCompleteItems(query)</div><div class="line">					         &#125;</div><div class="line">    </div><div class="line">results</div><div class="line">    .<span class="built_in">map</span> &#123; <span class="string">"\($0.count)"</span> &#125;  <span class="comment">//得出结果之后，取出结果的数量</span></div><div class="line">    .bindTo(resultCount.rx</div><div class="line">                       .text) <span class="comment">//取出结果的数量，绑定到resultCount上面显示出来</span></div><div class="line">    .addDisposableTo(disposeBag) <span class="comment">//释放资源</span></div><div class="line">    </div><div class="line">results</div><div class="line">    .bindTo(resultsTableView.rx</div><div class="line">                            .items(cellIdentifier: <span class="string">"Cell"</span>)) &#123;   (<span class="number">_</span>, result, cell) <span class="keyword">in</span></div><div class="line">                                        cell.textLabel?.text = <span class="string">"\(result)"</span> <span class="comment">////取出结果，TableView的Cell上面显示出来</span></div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
-<ul>
-<li>首先创建一个可监听序列results;</li>
-<li>然后将results绑定到resultCount.rx.text上;</li>
-<li>将results绑定到resultsTableView上.</li>
-</ul>
-<blockquote>
-<p>上面程序会出现下面几个异常：</p>
-</blockquote>
-<ul>
-<li>如果fetchAutoCompleteItems出错，那么它绑定的UI将不再收到任何事件消息；</li>
-<li>如果fetchAutoCompleteItems发生在后台线程，那么它绑定的事件也将在后台线程执行，这样更新UI会造成crash；<br>  有两次绑定，fetchAutoCompleteItems就会执行两次</li>
-</ul>
-<blockquote>
-<p>当然针对以上问题，我们也有解决方案，针对第三点，我们可以使用神器shareReplay(1)保证只执行一次，可以使用observeOn()保证后面所有操作在主线程完成</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">let</span> results = query.rx.text</div><div class="line">					    .throttle(<span class="number">0.3</span>, </div><div class="line">					              scheduler: <span class="type">MainScheduler</span>.instance)</div><div class="line">					    .flatMapLatest &#123; query <span class="keyword">in</span></div><div class="line">					        fetchAutoCompleteItems(query).observeOn(<span class="type">MainScheduler</span>.instance) <span class="comment">// 将返回结果切换到到主线程上</span></div><div class="line">					                                     .catchErrorJustReturn([])    <span class="comment">// 如果有问题，错误结果将会得到处理          </span></div><div class="line">					    &#125;</div><div class="line">					    .shareReplay(<span class="number">1</span>)       <span class="comment">// HTTP请求将会得到分享，即两次绑定UI使用同一网络请求</span></div><div class="line">                                 </div><div class="line">results</div><div class="line">    .<span class="built_in">map</span> &#123; <span class="string">"\($0.count)"</span> &#125;</div><div class="line">    .bindTo(resultCount.rx.text)</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line">    </div><div class="line">results</div><div class="line">    .bindTo(resultTableView.rx.items(cellIdentifier: <span class="string">"Cell"</span>)) &#123; (<span class="number">_</span>, result, cell) <span class="keyword">in</span></div><div class="line">        cell.textLabel?.text = <span class="string">"\(result)"</span></div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>用Driver来解决</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> results = query.rx</div><div class="line">                   .text</div><div class="line">                   .asDriver()</div><div class="line">                   .throttle(<span class="number">0.3</span>, </div><div class="line">                            scheduler: <span class="type">MainScheduler</span>.instance)</div><div class="line">					    .flatMapLatest &#123; query <span class="keyword">in</span></div><div class="line">					        fetchAutoCompleteItems(query).asDriver(onErrorJustReturn: [])  <span class="comment">//当遇见错误需要返回什么</span></div><div class="line">					    &#125;   <span class="comment">//不需要添加shareReplay(1)</span></div><div class="line">    </div><div class="line">results</div><div class="line">    .<span class="built_in">map</span> &#123; <span class="string">"\($0.count)"</span> &#125;</div><div class="line">    .drive(resultCount.rx.text)     <span class="comment">//和bingTo()功能一样</span></div><div class="line">    .addDisposableTo(disposeBag) </div><div class="line">                                             </div><div class="line">results</div><div class="line">    .drive(resultTableView.rx.items(cellIdentifier: <span class="string">"Cell"</span>)) &#123; (<span class="number">_</span>, result, cell) <span class="keyword">in</span></div><div class="line">        cell.textLabel?.text = <span class="string">"\(result)"</span></div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
-<ul>
-<li>.asDriver 将‘ControlProperty’ 转换成了 ‘Driver’</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">query.rx_text.asDriver()</div></pre></td></tr></table></figure>
-<ul>
-<li>‘Driver’拥有’ControlProperty’的所有属性，同时又增加了很多属性</li>
-</ul>
-<blockquote>
-<p>任何 ‘Observable’ 序列都可以被转换为’Driver’, 只要他满足一下三点：</p>
-</blockquote>
-<ul>
-<li>1.不能出错   2.观察主线程  3.共享资源</li>
-<li>如何确保这些属性都满足呢？只需要使用 ‘asDriver(onErrorJustReturn: [])’ ,相当于如下代码:</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> safeSequence = xs</div><div class="line"></div><div class="line">  .observeOn(<span class="type">MainScheduler</span>.instance) <span class="comment">// 切换到主线程</span></div><div class="line"></div><div class="line">  .catchErrorJustReturn(onErrorJustReturn) <span class="comment">// 不能出错</span></div><div class="line"></div><div class="line">  .shareReplayLatestWhileConnected         <span class="comment">// 共享资源</span></div><div class="line"></div><div class="line"> <span class="keyword">return</span> <span class="type">Driver</span>(raw: safeSequence)           <span class="comment">// 返回</span></div></pre></td></tr></table></figure>
-<ul>
-<li>最后一点要说明的是 ‘driver’ 可以代替’bindTo’,<code>drive</code> 只能在 <code>Driver</code> 中使用 </li>
-</ul>
-<blockquote>
-<p>drive方法只能在Driver序列中使用，Driver有以下特点：</p>
-</blockquote>
-<ul>
-<li>Driver序列不允许发出error，</li>
-<li>Driver序列的监听只会在主线程中。</li>
-</ul>
-<blockquote>
-<p>所以Driver是专为UI绑定量身打造的东西。<br>以下情况你可以使用Driver替换BindTo:</p>
-</blockquote>
-<ul>
-<li>不能发出error;</li>
-<li>在主线程中监听;</li>
-<li>共享事件流;</li>
-</ul>
-<p><span id="1.8"></span></p>
-<h1 id="⑧map-和-flatMap-何时使用"><a href="#⑧map-和-flatMap-何时使用" class="headerlink" title="⑧map 和 flatMap 何时使用"></a>⑧map 和 flatMap 何时使用</h1><blockquote>
-<p>map函数，接收一个R类型的序列，返回一个R类型的序列，还是原来的序列。</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">map</span>&lt;R&gt;<span class="params">(<span class="number">_</span> transform: @escaping <span class="params">(<span class="keyword">Self</span>.E)</span></span></span> <span class="keyword">throws</span> -&gt; <span class="type">R</span>) -&gt; <span class="type">RxSwift</span>.<span class="type">Observable</span>&lt;<span class="type">R</span>&gt;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>flatMap函数，接收一个O类型的序列，返回一个O.E类型的序列，也就是有原来序列里元素组成的新序列。</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">flatMap</span>&lt;O: ObservableConvertibleType&gt;<span class="params">(<span class="number">_</span> selector: @escaping <span class="params">(E)</span></span></span> <span class="keyword">throws</span> -&gt; <span class="type">O</span>)</div><div class="line">        -&gt; <span class="type">Observable</span>&lt;<span class="type">O</span>.<span class="type">E</span>&gt;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>实这里的map和flatMap在swift中的作用是一样的。map函数可以对原有序列里面的事件元素进行改造，返回的还是原来的序列。而flatMap对原有序列中的元素进行改造和处理，每一个元素返回一个新的sequence，然后把每一个元素对应的sequence合并为一个新的sequence序列</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">   </div><div class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>.of(<span class="string">"1"</span>,<span class="string">"2"</span>,<span class="string">"3"</span>,<span class="string">"4"</span>,<span class="string">"5"</span>).<span class="built_in">map</span>&#123;$<span class="number">0</span> + <span class="string">"scott"</span>&#125;</div><div class="line">    </div><div class="line">observable.subscribe(onNext: &#123;<span class="built_in">print</span>($<span class="number">0</span>)&#125;).disposed(by: disposeBag)</div><div class="line"></div><div class="line"><span class="comment">//打印结果：</span></div><div class="line">1scott</div><div class="line">2scott</div><div class="line">3scott</div><div class="line">4scott</div><div class="line">5scott</div></pre></td></tr></table></figure>
-<blockquote>
-<p>使用map对序列中每一个元素进行了处理，返回的是一个元素，而使用flatMap需要返回的序列。那么使用map也返回一个序列看看</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> test = <span class="type">Observable</span>.of(<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>)</div><div class="line">    .<span class="built_in">map</span> &#123; <span class="type">Observable</span>.just($<span class="number">0</span>) &#125;</div><div class="line">    </div><div class="line">test.subscribe(onNext: &#123;</div><div class="line">        <span class="built_in">print</span>($<span class="number">0</span>)</div><div class="line">    &#125;)</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line">    </div><div class="line"><span class="comment">// 运行结果:</span></div><div class="line"><span class="type">RxSwift</span>.(<span class="type">Just</span> <span class="keyword">in</span> _BD9B9D4356C4038796FB16D0D54A9F8E)&lt;<span class="type">Swift</span>.<span class="type">String</span>&gt;</div><div class="line"><span class="type">RxSwift</span>.(<span class="type">Just</span> <span class="keyword">in</span> _BD9B9D4356C4038796FB16D0D54A9F8E)&lt;<span class="type">Swift</span>.<span class="type">String</span>&gt;</div><div class="line"><span class="type">RxSwift</span>.(<span class="type">Just</span> <span class="keyword">in</span> _BD9B9D4356C4038796FB16D0D54A9F8E)&lt;<span class="type">Swift</span>.<span class="type">String</span>&gt;</div><div class="line"><span class="type">RxSwift</span>.(<span class="type">Just</span> <span class="keyword">in</span> _BD9B9D4356C4038796FB16D0D54A9F8E)&lt;<span class="type">Swift</span>.<span class="type">String</span>&gt;</div><div class="line"><span class="type">RxSwift</span>.(<span class="type">Just</span> <span class="keyword">in</span> _BD9B9D4356C4038796FB16D0D54A9F8E)&lt;<span class="type">Swift</span>.<span class="type">String</span>&gt;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>看到结果会打印出每一个序列，下面我们使用merge()方法将这几个序列进行合并:</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">let</span> test = <span class="type">Observable</span>.of(<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>)</div><div class="line">    .<span class="built_in">map</span> &#123; <span class="type">Observable</span>.just($<span class="number">0</span>) &#125;.merge()</div><div class="line">    </div><div class="line">test.subscribe(onNext: &#123;</div><div class="line">        <span class="built_in">print</span>($<span class="number">0</span>)</div><div class="line">    &#125;)</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line"><span class="comment">//运行结果:</span></div><div class="line"> <span class="number">1</span></div><div class="line"><span class="number">2</span></div><div class="line"><span class="number">3</span></div><div class="line"><span class="number">4</span></div><div class="line"><span class="number">5</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>并为一个新序列后我们就可以正常打印元素了。下面看看使用faltMap()函数干这件事</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> test = <span class="type">Observable</span>.of(<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>)</div><div class="line">    .flatMap &#123; <span class="type">Observable</span>.just($<span class="number">0</span>) &#125;</div><div class="line">    </div><div class="line">test.subscribe(onNext: &#123;</div><div class="line">        <span class="built_in">print</span>($<span class="number">0</span>)</div><div class="line">    &#125;)</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line"> <span class="comment">//运行结果:</span></div><div class="line"> <span class="number">1</span></div><div class="line"><span class="number">2</span></div><div class="line"><span class="number">3</span></div><div class="line"><span class="number">4</span></div><div class="line"><span class="number">5</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>看下对比是不是一样，这样子对比就清晰了吧。</p>
-</blockquote>
-<ul>
-<li>map函数只能返回原来的那一个序列，里面的参数的返回值被当做原来序列中所对应的元素。</li>
-<li>flatMap函数返回的是一个新的序列，将原来元素进行了处理，返回这些处理后的元素组成的新序列</li>
-<li>map函数 + 合并函数 = flatMap函数</li>
-</ul>
-<blockquote>
-<p>flatMap函数在实际应用中有很多地方需要用到，比如网络请求，网络请求可能会发生错误，我们需要对这个请求过程进行监听，然后处理错误。只要继续他返回的是一个新的序列</p>
-</blockquote>
-<p><span id="1.9"></span></p>
-<h1 id="⑨UIBindingObserver"><a href="#⑨UIBindingObserver" class="headerlink" title="⑨UIBindingObserver"></a>⑨UIBindingObserver</h1><blockquote>
-<p>UIBindingObserver这个东西很有用的，创建我们自己的监听者，有时候RxCocoa(RxSwift中对UIKit的一个扩展库)给的扩展不够我们使用，比如一个UITextField有个isEnabled属性，我想把这个isEnabled变为一个observer，我们可以这样做</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">extension Reactive where Base: UITextField &#123;</div><div class="line">    var inputEnabled: UIBindingObserver&lt;Base, Result&gt; &#123;</div><div class="line">        return UIBindingObserver(UIElement: base) &#123; textFiled, result in</div><div class="line">            textFiled.isEnabled = result.isValid</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>UIBindingObserver是一个类，他的初始化方法中，有两个参数，第一个参数是一个元素本身，第一个参数是一个闭包，闭包参数是元素本身，还有他的一个属性</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">init</span>(<span class="type">UIElement</span>: <span class="type">UIElementType</span>, binding: @escaping (<span class="type">UIElementType</span>, <span class="type">Value</span>) -&gt; <span class="type">Swift</span>.<span class="type">Void</span>)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>自定义了一个inputEnabled关联了UITextField的isEnabled属性</p>
-</blockquote>
-<p><a href="http://blog.csdn.net/sdefzhpk/article/details/73322040" target="_blank" rel="external">资料</a></p>
-
-          
+          概念理解
+①Observable 和 Observer
+②subscribe 和 subscribe(onNext:)
+③Dispose 和 DisposeBag
+④observeOn() 和 subscribeOn()
+⑤shareReplay
+⑥自定义operator
+⑦Driver
+⑧map 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/27/RxSwift/Grammar/基本概念小结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1764,142 +1228,26 @@
       
         
           
-            <h1 id="SceneKit-Editor"><a href="#SceneKit-Editor" class="headerlink" title="SceneKit-Editor"></a>SceneKit-Editor</h1><blockquote>
-<p>Xcode自带了一个简单好用的3D场景编辑器,当选中或创建一个xxx.scn文件时就会出现</p>
-</blockquote>
-<p><img src="http://ozr735s7e.bkt.clouddn.com/3D%E5%9C%BA%E6%99%AF%E7%BC%96%E8%BE%91%E5%99%A8.png" alt=""></p>
-<blockquote>
-<p>1.Scene graph(场景节点树)</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">场景中每一个元素都显示在这里,可以拖拽树状结构的元素来控制父子关系</div></pre></td></tr></table></figure>
-<blockquote>
-<p>2.Design area(设计区)</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">效果呈现区,可以拖拽,旋转和缩放,也可以从对象库中拖放原始节点到这里</div></pre></td></tr></table></figure>
-<blockquote>
-<p>3.Inspectors(检查器)</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">和场景类型有关的检查器,检查器中的内容将根据你选中的节点不同而改变,最上方横放的有五个新的检查器</div></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>检查器</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Node Inspector(节点检查器)</td>
-<td>SCNNode对象有关的属性</td>
-</tr>
-<tr>
-<td>Attributes Inspector(属性检查器):和选中节点类型有头的检查器,如果选中的是Box,可以设置长宽高,如果是Sphere,可以设置半径</td>
-</tr>
-<tr>
-<td>Material Inspector(材料检查器):设置节点的颜色和纹理</td>
-</tr>
-<tr>
-<td>Physics Inspector(物理检查器):设置物理行为的配置</td>
-</tr>
-<tr>
-<td>Scene Inspector(场景检查器):场景中所有节点都有的全局检查器,可以设置场景中的一些属性</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>4.Properties(属性)</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">检查器的内部属性</div></pre></td></tr></table></figure>
-<blockquote>
-<p>5.Object Library(对象库)</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">所有可用的SCNNode对象,从系统自带到用户自定义的节点都有.SCNAction对象也在这里</div></pre></td></tr></table></figure>
-<blockquote>
-<p>6.Toolbar(工具条):</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">包含一些重要元素,从左到右,按钮功能</div></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>按钮功能</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Add/delete node(添加/删除节点)</td>
-<td>选中节点树中的节点,添加一个子元素或者删除选中节点</td>
-</tr>
-<tr>
-<td>Search filter(搜索过滤器)</td>
-<td>复杂场景下用来快速搜索</td>
-</tr>
-<tr>
-<td>Expand/collapse scene graph area(可收缩场景图表区)</td>
-<td>打开/关闭左侧的场景图表区</td>
-</tr>
-<tr>
-<td>Coordinate system(坐标系)</td>
-<td>选择一个活跃坐标系来编辑你的节点,可选local,parent,world或者screen</td>
-</tr>
-<tr>
-<td>View/camera select(视点/相机选择)</td>
-<td>当有多个相机时,可以选择相机列表中任一个活跃视点</td>
-</tr>
-<tr>
-<td>Play/stop scene(播放/暂停场景)</td>
-<td>播放/暂停物理和动作模拟</td>
-</tr>
-<tr>
-<td>Expand/collapse actions(收缩动作区)</td>
-<td>打开/关闭下面的动作区</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>7.Actions area(动作区)</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">给节点添加动作时,可以从对象库中拖放一个action到这里,就会影响被选中的节点</div></pre></td></tr></table></figure>
-<h1 id="Basic-scene-navigation基础场景导航"><a href="#Basic-scene-navigation基础场景导航" class="headerlink" title="Basic scene navigation基础场景导航"></a>Basic scene navigation基础场景导航</h1><table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Pan(拖动)</td>
-<td>Magic鼠标直接在滚轮处上下左右移动,触摸板用双指移动,普通鼠标按住option键拖动</td>
-</tr>
-<tr>
-<td>Rotate(旋转)</td>
-<td>按下左键并移动鼠标</td>
-</tr>
-<tr>
-<td>Zoom(缩放)</td>
-<td>按住option键使用滚轮缩放,触摸板用捏合手势</td>
-</tr>
-<tr>
-<td>Multi-selection(多选)</td>
-<td>按住Command单击多选</td>
-</tr>
-</tbody>
-</table>
-<h1 id="Basic-node-manipulation基础节点操作"><a href="#Basic-node-manipulation基础节点操作" class="headerlink" title="Basic node manipulation基础节点操作"></a>Basic node manipulation基础节点操作</h1><blockquote>
-<p>以Box节点为例</p>
-</blockquote>
-<p><img src="http://ozr735s7e.bkt.clouddn.com/%E4%BB%A5Box%E8%8A%82%E7%82%B9%E4%B8%BA%E4%BE%8B01.png" alt=""></p>
-<p><img src="http://ozr735s7e.bkt.clouddn.com/%E4%BB%A5Box%E8%8A%82%E7%82%B9%E4%B8%BA%E4%BE%8B02.png" alt=""></p>
-<p>Positioning(定位):拖动高亮的坐标轴,可以在坐标轴方向上移动.拖动灰色扇形区,可以沿所有平面移动<br>Rotatation(旋转):拖动高亮的坐标轴曲线,可以旋转节点</p>
-<ul>
-<li>附加操作:移动节点时,按住Command键,可放大并仔细检查位置.</li>
-<li>旋转节点时,按住Command键,可放大并仔细检查角度.</li>
-<li>按住Option键并拖动,可复制一个共享属性的副本,就是说对原本做的属性更改操作将影响副本.如果想取消共享属性,取消按钮在属性检查器中几何体共享分类下面.</li>
-</ul>
-<h1 id="xxx-scn文件的加载"><a href="#xxx-scn文件的加载" class="headerlink" title="xxx.scn文件的加载"></a>xxx.scn文件的加载</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  scnScene = <span class="type">SCNScene</span>(named: <span class="string">"B.scnassets/Scenes/Game.scn"</span>)</div><div class="line">scnView.scene = scnScene</div></pre></td></tr></table></figure>
+          SceneKit-Editor
+Xcode自带了一个简单好用的3D场景编辑器,当选中或创建一个xxx.scn文件时就会出现
 
-          
+
+
+1.Scene graph(场景节点树)
+
+场景中每一个元素都显示在这里,可以拖拽树状结构的元素来控制父子关系
+
+2.Design area(设计区)
+
+效果呈现区,可以
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/22/SceneKit/Grammar/Editor-3D场景编辑器/SceneKit- Base/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2052,140 +1400,16 @@
       
         
           
-            <p><a href="http://blog.csdn.net/flyingkuikui/article/details/77717480" target="_blank" rel="external">相关资料1</a><br><a href="http://blog.csdn.net/u010586842/article/details/47971853" target="_blank" rel="external">相关资料2</a><br><a href="http://blog.csdn.net/u010586842/article/details/47971853" target="_blank" rel="external">相关资料3</a></p>
-<p>1.<a href="#Protocol">Protocol</a><br>   1.1<a href="#Protocol语法">Protocol语法</a><br>      1.2<a href="#格式">格式</a><br>      1.3<a href="#对属性的使用">对属性的使用</a><br>      1.4<a href="#方法要求">方法要求</a><br>      1.5<a href="#Mutating方法要求">Mutating方法要求</a><br>      1.6<a href="#使用协议规范构造函数">使用协议规范构造函数</a><br>      1.7<a href="#协议类型">协议类型</a><br>2.<a href="#委托/代理设计模式">委托/代理设计模式</a><br>3.<a href="#协议的使用">协议的使用</a><br>  3.1<a href="#在扩展中添加协议成员">在扩展中添加协议成员</a><br>  3.2<a href="#通过扩展补充协议声明">通过扩展补充协议声明</a><br>  3.3<a href="#集合中的协议类型">集合中的协议类型</a><br>  3.4<a href="#仅在类中使用协议">仅在类中使用协议</a><br>4.<a href="#协议的继承">协议的继承</a><br>  4.1<a href="#protocolComposition协议的合成">protocolComposition协议的合成</a><br>  4.2<a href="#检验协议的一致性">检验协议的一致性</a><br>   4.3<a href="#可选协议要求">可选协议要求</a></p>
-<h1 id="Protocol"><a href="#Protocol" class="headerlink" title="Protocol"></a>Protocol</h1><p><span id="Protocol"></span></p>
-<ul>
-<li>协议：代理设计模式</li>
-<li>协议能够被 类、枚举、结构体 实现，满足协议要求的类、枚举、结构体被称为协议的是实现者</li>
-<li>官方的定义：协议定义了一个蓝图 ， 规定了用来实现某一特定工作或者功能所必须的方法和属性，类、结构体、或者枚举类型都可以遵循协议， 并提供具体实现来完成协议定义的方法和功能 。 任意能够满足协议要求的类型都被成为遵循了这个协议</li>
-</ul>
-<h1 id="Protocol语法"><a href="#Protocol语法" class="headerlink" title="Protocol语法"></a>Protocol语法</h1><p><span id="Protocol语法"></span></p>
-<h2 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h2><p><span id="格式"></span></p>
-<ul>
-<li>在类、枚举、结构体的名称后加上协议名称，中间以冒号(:)分隔，即可实现协议，当实现多个协议时，多个协议间用逗号(,)隔开</li>
-<li>类含有父类,则应当将父类放在所有的协议之前</li>
-</ul>
-<blockquote>
-<p>协议实现书写格式</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> 类名 : 协议1 , 协议<span class="title">n</span></span>&#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> 类名:父类,协议1,协议<span class="title">n</span></span>&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="对属性的使用"><a href="#对属性的使用" class="headerlink" title="对属性的使用"></a>对属性的使用</h2><p><span id="对属性的使用"></span></p>
-<ul>
-<li>无论声明的属性为类属性还是对象属性，均需要在属性声明后加上{get}或{get set}，代表属性只读或读写</li>
-<li>属性被声明为{get}，为可读的属性实现{setter}方法，也不会报错。</li>
-<li>在声明类属性时，需要在声明的属性前添加关键字static。</li>
-<li>在实现者内，必须实现协议的类属性的getter方法，如果协议内定义的类属性是读写的，则还必须实现setter方法</li>
-<li>在协议中使用类型属性 总是使用static</li>
-</ul>
-<blockquote>
-<p>协议1</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">oneProtocol</span></span>&#123;</div><div class="line">    <span class="comment">// 定义变量，必须在属性声明后添加&#123;get&#125;或者&#123;get set&#125;</span></div><div class="line">    <span class="keyword">var</span> argumentOne:<span class="type">Int</span>&#123;<span class="keyword">get</span>&#125; <span class="comment">// 只读</span></div><div class="line">    <span class="keyword">var</span> argumentTwo:<span class="type">Int</span>&#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125; <span class="comment">// 读写</span></div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> argumentClass:<span class="type">Int</span>&#123;<span class="keyword">get</span>&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>类</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:<span class="title">oneProtocol</span></span>&#123;</div><div class="line">    <span class="keyword">var</span> argumentOne: <span class="type">Int</span></div><div class="line">    <span class="keyword">var</span> argumentTwo: <span class="type">Int</span></div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> argumentClass: <span class="type">Int</span>&#123;</div><div class="line">        <span class="keyword">get</span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">30</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">init</span>(argumentOne:<span class="type">Int</span>,argumentTwo:<span class="type">Int</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.argumentOne = argumentOne</div><div class="line">        <span class="keyword">self</span>.argumentTwo = argumentTwo</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> per = <span class="type">Person</span>(argumentOne: <span class="number">90</span>, argumentTwo: <span class="number">1</span>)</div><div class="line"><span class="built_in">print</span>(<span class="string">"\(per.argumentOne)"</span>) <span class="comment">// 90</span></div><div class="line"><span class="built_in">print</span>(<span class="string">"\(Person.argumentClass)"</span>) <span class="comment">// 30</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>协议2</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Pro1</span></span>&#123;</div><div class="line">    <span class="keyword">var</span> name:<span class="type">String</span>&#123;<span class="keyword">set</span> <span class="keyword">get</span>&#125;  <span class="comment">//可读可写</span></div><div class="line">    <span class="keyword">var</span> age:<span class="type">Int</span> &#123; <span class="keyword">get</span> &#125;  <span class="comment">//只读属性</span></div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> status:<span class="type">Int</span> &#123;<span class="keyword">set</span> <span class="keyword">get</span>&#125;   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>遵循协议</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Struct1</span> : <span class="title">Pro1</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">var</span> _name = <span class="string">""</span></div><div class="line">    <span class="keyword">var</span> name:<span class="type">String</span>   &#123;</div><div class="line">        <span class="keyword">set</span>&#123;</div><div class="line">           _name = newValue</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">get</span>&#123;</div><div class="line">            <span class="keyword">return</span> _name</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">var</span> age = <span class="number">18</span> <span class="comment">//可以声明为可读可写的</span></div><div class="line">    <span class="keyword">static</span>  <span class="keyword">var</span> status = <span class="number">1</span>  <span class="comment">//类型方法。</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Class1</span>: <span class="title">Pro1</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> name = <span class="string">"class"</span></div><div class="line">    <span class="keyword">var</span> age:<span class="type">Int</span>&#123; <span class="keyword">return</span>  <span class="number">19</span> &#125; <span class="comment">//也可以是只读</span></div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> status = <span class="number">0</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="方法要求"><a href="#方法要求" class="headerlink" title="方法要求"></a>方法要求</h2><p><span id="方法要求"></span></p>
-<ul>
-<li>协议内声明的方法不需要协议进行方法的实现(OC差不多)</li>
-<li>类方法，需要使用关键字 <strong>static</strong></li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">funcProtocol</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">sayHello</span><span class="params">()</span></span></div><div class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">sayBad</span><span class="params">()</span></span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:<span class="title">funcProtocol</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">sayHello</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"Hello"</span>)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">sayBad</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"Bad"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="Mutating方法要求"><a href="#Mutating方法要求" class="headerlink" title="Mutating方法要求"></a>Mutating方法要求</h2><p><span id="Mutating方法要求"></span></p>
-<ul>
-<li>能在方法或者函数内部改变字段的方法称为Mutating方法。</li>
-<li>mutating关键字表示该函数允许改变该示例和其属性的类型。</li>
-<li>一般mutating用在值拷贝的地方，例如：结构体、枚举。对于类或者类绑定协议中的方法无效</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Togglable</span></span>&#123;</div><div class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">toggle</span><span class="params">()</span></span></div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">OnOffSwitch</span>:<span class="title">Togglable</span></span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">On</span>,<span class="type">Off</span></div><div class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">toggle</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</div><div class="line">        <span class="keyword">case</span> .<span class="type">Off</span>:</div><div class="line">            <span class="keyword">self</span> = .<span class="type">On</span></div><div class="line">        <span class="keyword">case</span> .<span class="type">On</span>:</div><div class="line">            <span class="keyword">self</span> = .<span class="type">Off</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> light = <span class="type">OnOffSwitch</span>.<span class="type">Off</span> <span class="comment">//Off</span></div><div class="line">light.toggle()  <span class="comment">// On</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">OnOFF</span>:<span class="title">Togglable</span></span>&#123;</div><div class="line">    <span class="keyword">var</span> one:<span class="type">Int</span></div><div class="line">    <span class="keyword">var</span> two:<span class="type">Int</span></div><div class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">toggle</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">if</span> <span class="keyword">self</span>.one &gt; <span class="number">10</span> &#123;</div><div class="line">            <span class="keyword">self</span>.two = <span class="number">30</span></div><div class="line"></div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">self</span>.two = <span class="number">20</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> <span class="type">LIGHT</span> = <span class="type">OnOFF</span>(one: <span class="number">2</span>, two: <span class="number">3</span>)</div><div class="line"><span class="built_in">print</span>(<span class="string">"\(LIGHT.two)"</span>) <span class="comment">// 3</span></div><div class="line"><span class="type">LIGHT</span>.toggle()</div><div class="line"><span class="built_in">print</span>(<span class="string">"\(LIGHT.two)"</span>) <span class="comment">// 20</span></div></pre></td></tr></table></figure>
-<h2 id="使用协议规范构造函数"><a href="#使用协议规范构造函数" class="headerlink" title="使用协议规范构造函数"></a>使用协议规范构造函数</h2><p><span id="使用协议规范构造函数"></span></p>
-<ul>
-<li>协议可以规定必须实现指定的构造函数，比如一些类中必须要求实现init构造函数，这样就可以制造一个协议，让实现协议的类必须实现该构造函数。</li>
-<li>实现构造协议的类，必须使用关键字required</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">TwoProtocol</span></span>&#123;</div><div class="line">    <span class="keyword">init</span>(twoArgument:<span class="type">Int</span>)</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">two</span>:<span class="title">TwoProtocol</span></span>&#123;</div><div class="line">    <span class="keyword">required</span> <span class="keyword">init</span>(twoArgument: <span class="type">Int</span>) &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>父类中存在与协议内相同的构造方法，则子类在实现构造方法时，需要同时使用关键字required和override</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">TwoProtocol</span></span>&#123;</div><div class="line">    <span class="keyword">init</span>()</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TwoSuperClass</span></span>&#123;</div><div class="line">    <span class="keyword">init</span>() &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Two</span>:<span class="title">TwoSuperClass</span>,<span class="title">TwoProtocol</span></span>&#123;</div><div class="line">    <span class="keyword">required</span> <span class="keyword">override</span> <span class="keyword">init</span>() &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>不能在final类中实现构造函数协议，因为final类是不能被继承的，因此不能实现构造函数协议</li>
-<li>父类内被final修饰的方法与协议内相同，则该方法不能被遵循协议的子类实现</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">protocol</span> <span class="title">TwoProtocol</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">say</span><span class="params">()</span></span></div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TwoSuperClass</span></span>&#123;</div><div class="line">    <span class="keyword">final</span> <span class="function"><span class="keyword">func</span> <span class="title">say</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"Super Say Hello"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Two</span>:<span class="title">TwoSuperClass</span>,<span class="title">TwoProtocol</span></span>&#123;</div><div class="line">    <span class="comment">// 无法实现say方法</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="协议类型"><a href="#协议类型" class="headerlink" title="协议类型"></a>协议类型</h2><p><span id="协议类型"></span></p>
-<ul>
-<li>协议本身不实现任何功能，但是可以将它当作类型来使用。</li>
-<li>协议作为类型使用的场景：<br>  ⒈作为函数、方法或构造器中的参数类型，返回值类型。<br>  ⒉作为常量、变量、属性的类型。<br>  ⒊作为数组、字典或其它容器中的元素类型</li>
-</ul>
-<h1 id="委托-代理设计模式"><a href="#委托-代理设计模式" class="headerlink" title="委托/代理设计模式"></a>委托/代理设计模式</h1><p><span id="委托/代理设计模式"></span></p>
-<ul>
-<li>委托/代理是一种设计模式，它允许类或者结构体将一些需要它们负责的功能交由给其他类型。</li>
-<li>委托模式的实现：定义协议来封装那些需要被委托的函数和方法，使实现者拥有数据源的类型</li>
-</ul>
-<h1 id="协议的使用"><a href="#协议的使用" class="headerlink" title="协议的使用"></a>协议的使用</h1><p><span id="协议的使用"></span></p>
-<h2 id="在扩展中添加协议成员"><a href="#在扩展中添加协议成员" class="headerlink" title="在扩展中添加协议成员"></a>在扩展中添加协议成员</h2><p><span id="在扩展中添加协议成员"></span></p>
-<ul>
-<li>当无法修改原代码时，可以通过扩展来补充已经存在的类型。</li>
-<li>扩展可以为已经存在的类型添加属性、方法、下标、协议等成员。</li>
-<li>通过扩展为已存在的类型实现协议时，该类型的所有实例也会随之添加协议中的方法</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">TextProtocol</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">printSomeMessage</span><span class="params">(message:String)</span></span></div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dice</span></span>&#123;</div><div class="line">&#125;]</div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Dice</span>:<span class="title">TextProtocol</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">printSomeMessage</span><span class="params">(message: String)</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"\(message)"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> dic = <span class="type">Dice</span>()</div><div class="line">dic.printSomeMessage(message: <span class="string">"hello"</span>);</div></pre></td></tr></table></figure>
-<h2 id="通过扩展补充协议声明"><a href="#通过扩展补充协议声明" class="headerlink" title="通过扩展补充协议声明"></a>通过扩展补充协议声明</h2><p><span id="通过扩展补充协议声明"></span></p>
-<ul>
-<li>当一个类型已经实现了协议中的所有要求，却没有声明时，可以通过扩展补充协议的声明。</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">TextProtocol</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">printSomeMessage</span><span class="params">(message:String)</span></span></div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Hamster</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">printSomeMessage</span><span class="params">(message: String)</span></span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"\(message)"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Hamster</span>:<span class="title">TextProtocol</span></span>&#123;</div><div class="line">   <span class="comment">// 此时，Hamster的实例也可以作为TextProtocol类型使用</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> hamster = <span class="type">Hamster</span>()</div></pre></td></tr></table></figure>
-<h2 id="集合中的协议类型"><a href="#集合中的协议类型" class="headerlink" title="集合中的协议类型"></a>集合中的协议类型</h2><p><span id="集合中的协议类型"></span></p>
-<ul>
-<li>协议也可以作为类型在集合中被使用，表示集合中的元素均为协议类型</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> things:[<span class="type">TextProtocol</span>] = [dic,hamster]</div><div class="line"><span class="keyword">for</span> thing <span class="keyword">in</span> things &#123;</div><div class="line">    thing.printSomeMessage(message: <span class="string">"Hello Word"</span>)</div><div class="line">&#125;</div><div class="line"><span class="comment">// 由于thing被当作是TextProtocol类型，故都能调用printSomeMessage方法</span></div></pre></td></tr></table></figure>
-<h2 id="仅在类中使用协议"><a href="#仅在类中使用协议" class="headerlink" title="仅在类中使用协议"></a>仅在类中使用协议</h2><p><span id="仅在类中使用协议"></span></p>
-<ul>
-<li>通过在协议中增加class关键字，可以实现协议只让类来实现。</li>
-<li>如果该协议同时继承其它协议，则需要在class后添加，并且用逗号隔开</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">protocol</span> <span class="title">SomeOnlyClassProtocol</span>:<span class="title">class</span></span>&#123;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 协议SomeOnlyClassProtocol实现者只能是类</span></div></pre></td></tr></table></figure>
-<h1 id="协议的继承"><a href="#协议的继承" class="headerlink" title="协议的继承"></a>协议的继承</h1><p><span id="协议的继承"></span></p>
-<ul>
-<li>协议可以继承一个或者多个其他协议，多个协议间用逗号隔开。</li>
-<li>当类或者枚举等遵循协议时，不仅仅要实现当前协议的方法，也需要实现所遵循协议继承的其他协议</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">OneProtocol</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">sayOne</span><span class="params">()</span></span></div><div class="line">&#125;</div><div class="line"><span class="comment">// 协议的继承</span></div><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">TwoProtocol</span>:<span class="title">OneProtocol</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">sayTwo</span><span class="params">()</span></span></div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:<span class="title">TwoProtocol</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">sayOne</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="comment">// 协议OneProtocol的方法</span></div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">sayTwo</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="comment">// 协议TwoProtocol的方法</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="protocolComposition协议的合成"><a href="#protocolComposition协议的合成" class="headerlink" title="protocolComposition协议的合成"></a>protocolComposition协议的合成</h2><p><span id="protocolComposition协议的合成"></span></p>
-<ul>
-<li>一个协议可以由多个协议采用protocol<namedprotocol,genderprotocol>这样的格式进行组合，称之为协议的合成(protocol composition)。</namedprotocol,genderprotocol></li>
-<li>协议合成并不会产生一个新的协议，而是将多个协议合成一个临时的协议，超出范围后立即失效</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">NamedProtocol</span></span>&#123;</div><div class="line">    <span class="keyword">var</span> name:<span class="type">String</span>&#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">GenderProtocol</span></span>&#123;</div><div class="line">    <span class="keyword">var</span> gender:<span class="type">String</span>&#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">AgedProtocol</span></span>&#123;</div><div class="line">    <span class="keyword">var</span> age:<span class="type">Int</span>&#123;<span class="keyword">get</span>&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Person</span>:<span class="title">NamedProtocol</span>,<span class="title">GenderProtocol</span>,<span class="title">AgedProtocol</span></span>&#123;</div><div class="line">    <span class="keyword">var</span> name: <span class="type">String</span></div><div class="line">    <span class="keyword">var</span> gender: <span class="type">String</span></div><div class="line">    <span class="keyword">var</span> age: <span class="type">Int</span></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">wishBirthday</span><span class="params">(celebrator:NamedProtocol &amp; GenderProtocol)</span></span>&#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"姓名：\(celebrator.name)，性别：\(celebrator.gender)"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> per = <span class="type">Person</span>(name: <span class="string">"wang"</span>, gender: <span class="string">"man"</span>,age:<span class="number">20</span>)</div><div class="line">wishBirthday(celebrator: per)</div><div class="line"><span class="comment">// 形参celebrator的类型为protocol&lt;NamedProtocol,GenderProtocol&gt;，可以传入任何实现这两个协议的实例。即使此实例不仅仅遵循这两个协议。</span></div><div class="line"><span class="comment">// swift3.0之后，protocol&lt;NamedProtocol,GenderProtocol&gt;被NamedProtocol &amp; GenderProtocol替换。</span></div></pre></td></tr></table></figure>
-<h2 id="检验协议的一致性"><a href="#检验协议的一致性" class="headerlink" title="检验协议的一致性"></a>检验协议的一致性</h2><p><span id="检验协议的一致性"></span></p>
-<ul>
-<li>用is检验协议的一致性，使用as将协议类型向下转换为其他协议类型。</li>
-<li>is操作符用来检查实例是否实现了某个协议。返回值true/false。</li>
-<li>as?返回一个可选值，当实例实现协议时，返回该协议类型；否则返回nil。</li>
-<li>as用以强制向下转化类型。</li>
-<li>@objc用来表示协议时可选的，还可以表示暴露给Objective-C的代码，。</li>
-<li>@objc型协议只对类有效，因此只能在类中检查协议的一致性。</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="meta">@objc</span> <span class="class"><span class="keyword">protocol</span> <span class="title">HasArea</span></span>&#123;</div><div class="line">    <span class="keyword">var</span> area:<span class="type">Double</span>&#123;<span class="keyword">get</span>&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span>:<span class="title">HasArea</span></span>&#123;</div><div class="line">    <span class="keyword">let</span> pi = <span class="number">3.1415927</span></div><div class="line">    <span class="keyword">var</span> radius:<span class="type">Double</span></div><div class="line">    <span class="keyword">var</span> area: <span class="type">Double</span>&#123;</div><div class="line">        <span class="keyword">return</span> pi * radius * radius</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">init</span>(radius:<span class="type">Double</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.radius = radius</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Country</span>:<span class="title">HasArea</span></span>&#123;</div><div class="line">    <span class="keyword">var</span> area: <span class="type">Double</span></div><div class="line">    <span class="keyword">init</span>(area:<span class="type">Double</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.area = area</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;</div><div class="line">    <span class="keyword">var</span> legs:<span class="type">Int</span></div><div class="line">    <span class="keyword">init</span>(legs:<span class="type">Int</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.legs = legs</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> objects:[<span class="type">AnyObject</span>] = [</div><div class="line">    <span class="type">Circle</span>(radius: <span class="number">20</span>),</div><div class="line">    <span class="type">Country</span>(area: <span class="number">200</span>),</div><div class="line">    <span class="type">Animal</span>(legs: <span class="number">10</span>)</div><div class="line">]</div><div class="line"><span class="keyword">for</span> object <span class="keyword">in</span> objects &#123;</div><div class="line">    <span class="keyword">var</span> objectWithArea = object <span class="keyword">as</span>? <span class="type">HasArea</span></div><div class="line">    <span class="keyword">if</span> objectWithArea != <span class="literal">nil</span> &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"\(objectWithArea)"</span>)</div><div class="line">        <span class="built_in">print</span>(<span class="string">"遵循了HasArea协议，\(object.area)"</span>)</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"没有遵循HasArea协议"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="built_in">print</span>(<span class="string">"--------------------"</span>)</div><div class="line"><span class="keyword">for</span> object <span class="keyword">in</span> objects &#123;</div><div class="line">    <span class="comment">// 返回值 true/false</span></div><div class="line">    <span class="keyword">var</span> objectWithArea = object <span class="keyword">is</span> <span class="type">HasArea</span></div><div class="line">    <span class="keyword">if</span> objectWithArea &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"\(objectWithArea)"</span>)</div><div class="line">        <span class="built_in">print</span>(<span class="string">"遵循了HasArea协议，\(object.area)"</span>)</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"没有遵循HasArea协议"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment">打印结果：</span></div><div class="line"><span class="comment">Optional(__lldb_expr_386.Circle)</span></div><div class="line"><span class="comment">遵循了HasArea协议，Optional(1256.63708)</span></div><div class="line"><span class="comment">Optional(__lldb_expr_386.Country)</span></div><div class="line"><span class="comment">遵循了HasArea协议，Optional(200.0)</span></div><div class="line"><span class="comment">没有遵循HasArea协议</span></div><div class="line"><span class="comment">--------------------</span></div><div class="line"><span class="comment">true</span></div><div class="line"><span class="comment">遵循了HasArea协议，Optional(1256.63708)</span></div><div class="line"><span class="comment">true</span></div><div class="line"><span class="comment">遵循了HasArea协议，Optional(200.0)</span></div><div class="line"><span class="comment">没有遵循HasArea协议</span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
-<p>##可选协议要求<br>  <span id="可选协议要求"></span></p>
-<ul>
-<li>可选协议含有可选成员，其实现者可以选择是否实现这些成员。</li>
-<li>在协议中使用关键字optional关键字作为前缀来定义可选成员</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="meta">@objc</span> <span class="class"><span class="keyword">protocol</span> <span class="title">HasArea</span></span>&#123;</div><div class="line">    <span class="meta">@objc</span> <span class="keyword">optional</span> <span class="keyword">var</span> area:<span class="type">Double</span>&#123;<span class="keyword">get</span>&#125;</div><div class="line">    <span class="keyword">var</span> width:<span class="type">Double</span>&#123;<span class="keyword">get</span>&#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span>:<span class="title">HasArea</span></span>&#123;</div><div class="line">    <span class="keyword">let</span> pi = <span class="number">3.1415927</span></div><div class="line">    <span class="keyword">var</span> radius:<span class="type">Double</span> = <span class="number">10.0</span></div><div class="line">    <span class="keyword">var</span> width: <span class="type">Double</span> = <span class="number">20.0</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
+          相关资料1相关资料2相关资料3
+1.Protocol   1.1Protocol语法      1.2格式      1.3对属性的使用      1.4方法要求      1.5Mutating方法要求      1.6使用协议规范构造函数      1.7协议类型2.委托/代理设计模式3.协议的
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/21/Swift/Grammar/Protocol协议-Base/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2338,21 +1562,15 @@
       
         
           
-            <h1 id="GCD-方式"><a href="#GCD-方式" class="headerlink" title="GCD 方式"></a>GCD 方式</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// 创建信号量</div><div class="line"> dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);</div><div class="line"> // 创建全局并行</div><div class="line"> dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</div><div class="line"> dispatch_group_t group = dispatch_group_create();</div><div class="line"> dispatch_group_async(group, queue, ^&#123;</div><div class="line"></div><div class="line">     // 请求一</div><div class="line">     [loginCode getUserInfoWithNick:nil andUserId:kUserId onSuc:^(id data) &#123;</div><div class="line">         NSLog(@&quot;yue&quot;);</div><div class="line">         dispatch_semaphore_signal(semaphore);</div><div class="line"></div><div class="line">     &#125; andFail:^(NSError *error) &#123;       </div><div class="line">     &#125;];</div><div class="line"></div><div class="line"> &#125;);</div><div class="line"> dispatch_group_async(group, queue, ^&#123;</div><div class="line"></div><div class="line">     // 请求二</div><div class="line">     [CommodityViewModel getPriceTransformForIntegral:nil onSuccess:^(id data) &#123;</div><div class="line"></div><div class="line">         NSLog(@&quot;duihuan11&quot;);</div><div class="line">         dispatch_semaphore_signal(semaphore);</div><div class="line"></div><div class="line">     &#125; onFailure:^(NSError *error) &#123;</div><div class="line">     &#125;];</div><div class="line"> &#125;);</div><div class="line"> dispatch_group_async(group, queue, ^&#123;</div><div class="line"></div><div class="line">     // 请求三</div><div class="line">     [CommodityViewModel getPriceTransformForIntegral:nil onSuccess:^(id data) &#123;</div><div class="line">         NSLog(@&quot;duihuan22&quot;);</div><div class="line">         dispatch_semaphore_signal(semaphore);</div><div class="line"></div><div class="line">     &#125; onFailure:^(NSError *error) &#123;            </div><div class="line">     &#125;];</div><div class="line"> &#125;);</div><div class="line"></div><div class="line"> dispatch_group_notify(group, queue, ^&#123;</div><div class="line"></div><div class="line">     // 三个请求对应三次信号等待</div><div class="line">     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);</div><div class="line">     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);</div><div class="line">     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);</div><div class="line"></div><div class="line">     //在这里 进行请求后的方法，回到主线程</div><div class="line">     dispatch_async(dispatch_get_main_queue(), ^&#123;</div><div class="line"></div><div class="line">         //更新UI操作</div><div class="line"></div><div class="line">     &#125;);</div><div class="line"></div><div class="line"></div><div class="line"> &#125;);</div></pre></td></tr></table></figure>
-<h1 id="通过请求数量计数"><a href="#通过请求数量计数" class="headerlink" title="通过请求数量计数"></a>通过请求数量计数</h1><blockquote>
-<p>定义一个block</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">typedef void(^Complete)();</div></pre></td></tr></table></figure>
-<blockquote>
-<p>将block作为类的属性</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">@property (copy, nonatomic) Complete complete;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>实现方式：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">NSInteger requestCount = 0;</div><div class="line"></div><div class="line">    //第一个网络请求</div><div class="line">    [CommodityViewModel getPriceTransformForIntegral:nil onSuccess:^(id data) &#123;</div><div class="line">        NSLog(@&quot;duihuan11&quot;);</div><div class="line">        requestCount++;</div><div class="line">        if (self.complete) &#123;</div><div class="line">            self.complete();</div><div class="line">        &#125;</div><div class="line">    &#125; onFailure:^(NSError *error) &#123;</div><div class="line">    &#125;];</div><div class="line"></div><div class="line">    //第二个网络请求</div><div class="line">    [CommodityViewModel getPriceTransformForIntegral:nil onSuccess:^(id data) &#123;</div><div class="line">        NSLog(@&quot;duihuan22&quot;);</div><div class="line">        requestCount++;</div><div class="line">        if (self.complete) &#123;</div><div class="line">            self.complete();</div><div class="line">        &#125;</div><div class="line">    &#125; onFailure:^(NSError *error) &#123;</div><div class="line">    &#125;];</div><div class="line"></div><div class="line">    //第三个网络请求</div><div class="line">    [CommodityViewModel getPriceTransformForIntegral:nil onSuccess:^(id data) &#123;</div><div class="line">        NSLog(@&quot;duihuan33&quot;);</div><div class="line">        requestCount++;</div><div class="line">        if (self.complete) &#123;</div><div class="line">            self.complete();</div><div class="line">        &#125;</div><div class="line">    &#125; onFailure:^(NSError *error) &#123;</div><div class="line">    &#125;];</div><div class="line"></div><div class="line">    self.complete = ^&#123;</div><div class="line"></div><div class="line">            //请求网络的数量等于3表示三个网络请求已完成</div><div class="line">            if (requestCount == 3) &#123;</div><div class="line"></div><div class="line">                //在这里 进行请求后的方法，回到主线程</div><div class="line">                dispatch_async(dispatch_get_main_queue(), ^&#123;</div><div class="line"></div><div class="line">                    //更新UI操作</div><div class="line"></div><div class="line">                &#125;);</div><div class="line"></div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125;;</div></pre></td></tr></table></figure>
-
-          
+          GCD 方式// 创建信号量 dispatch_semaphore_t semaphore = dispatch_semaphore_create(0); // 创建全局并行 dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QU
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/20/OC/GCD/GCD-多请求并发/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2505,9 +1723,16 @@
       
         
           
-            <p><a href="http://blog.csdn.net/longshihua/article/details/74347889" target="_blank" rel="external">wenz</a></p>
+          wenz
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/07/Swift/Grammar/关键字-typealias:associatedtype/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2671,103 +1896,25 @@
       
         
           
-            <p><a href="https://zjqian.github.io/2017/03/13/moya/" target="_blank" rel="external">参考01</a><br><a href="https://www.jianshu.com/p/c1494681400b" target="_blank" rel="external">参考02</a></p>
-<h1 id="①Moya"><a href="#①Moya" class="headerlink" title="①Moya"></a>①Moya</h1><blockquote>
-<p>Swift我们用Alamofire来做网络库.而Moya在Alamofire的基础上又封装了一层<br>官方说moya有以下特性:</p>
-</blockquote>
-<ul>
-<li>编译时检查正确的API端点访问.</li>
-<li>使你定义不同端点枚举值对应相应的用途更加明晰.</li>
-<li>提高测试地位从而使单元测试更加容易.</li>
-</ul>
-<p><img src="http://ot0mms4k8.bkt.clouddn.com/%20Swift-Lib-Moya-%E7%BD%91%E7%BB%9C%E5%B0%81%E8%A3%85%28RxSwift%29-001.png" alt="001"></p>
-<h1 id="②开始"><a href="#②开始" class="headerlink" title="②开始"></a>②开始</h1><h2 id="❶创建枚举API"><a href="#❶创建枚举API" class="headerlink" title="❶创建枚举API"></a>❶创建枚举API</h2><blockquote>
-<p>首先创建一个 enum 来枚举你所有的 API targets<br>关于这个API的信息放在这个枚举类型中</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">APIManager</span> </span>&#123;</div><div class="line">   <span class="keyword">case</span> getNewsLatest      <span class="comment">//获取最新消息</span></div><div class="line">   <span class="keyword">case</span> getStartImage      <span class="comment">//启动界面图像获取</span></div><div class="line">   <span class="keyword">case</span> getVersion(<span class="type">String</span>) <span class="comment">//软件版本查询</span></div><div class="line">   <span class="keyword">case</span> getThemes          <span class="comment">//主题日报列表查看</span></div><div class="line">   <span class="keyword">case</span> getNewsDetail(<span class="type">Int</span>) <span class="comment">//获取新闻详情</span></div><div class="line">   <span class="keyword">case</span> create(title: <span class="type">String</span>, body: <span class="type">String</span>, userId: <span class="type">Int</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="❷实现TargetType协议"><a href="#❷实现TargetType协议" class="headerlink" title="❷实现TargetType协议"></a>❷实现TargetType协议</h2><blockquote>
-<p>在这里,可以设置请求的参数,例如url……method……para等.</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">APIManager</span>: <span class="title">TargetType</span> </span>&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">/// The target's base `URL`.</span></div><div class="line"><span class="keyword">var</span> baseURL: <span class="type">URL</span> &#123;</div><div class="line">     <span class="keyword">return</span> <span class="type">URL</span>.<span class="keyword">init</span>(string: <span class="string">"http://news-at.zhihu.com/api/"</span>)!</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/// The path to be appended to `baseURL` to form the full `URL`.</span></div><div class="line"><span class="keyword">var</span> path: <span class="type">String</span> &#123;</div><div class="line">    <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</div><div class="line">       <span class="keyword">case</span> .getNewsLatest:</div><div class="line">            <span class="keyword">return</span> <span class="string">"4/news/latest"</span></div><div class="line">       <span class="keyword">case</span> .getStartImage:</div><div class="line">            <span class="comment">//start-image 后为图像分辨率，接受任意的 number*number 格式， number 为任意非负整数，返回值均相同。</span></div><div class="line">            <span class="keyword">return</span> <span class="string">"4/start-image/1080*1776"</span></div><div class="line">       <span class="keyword">case</span> .getVersion(<span class="keyword">let</span> version):</div><div class="line">            <span class="comment">//URL 最后部分的数字代表所安装『知乎日报』的版本</span></div><div class="line">            <span class="keyword">return</span> <span class="string">"4/version/ios/"</span> + version</div><div class="line">       <span class="keyword">case</span> .getThemes:</div><div class="line">            <span class="keyword">return</span> <span class="string">"4/themes"</span></div><div class="line">       <span class="keyword">case</span> .getNewsDetail(<span class="keyword">let</span> id):</div><div class="line">            <span class="keyword">return</span> <span class="string">"4/news/\(id)"</span></div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/// The HTTP method used in the request.</span></div><div class="line"><span class="comment">// 设置Get、POST</span></div><div class="line"><span class="keyword">var</span> method: <span class="type">Moya</span>.<span class="type">Method</span> &#123;</div><div class="line">    <span class="keyword">return</span> .<span class="keyword">get</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/// The parameters to be incoded in the request.</span></div><div class="line"><span class="keyword">var</span> parameters: [<span class="type">String</span>: <span class="type">Any</span>]? &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">nil</span></div><div class="line">&#125;</div><div class="line"><span class="comment">/// The method used for parameter encoding.</span></div><div class="line"><span class="keyword">var</span> parameterEncoding: <span class="type">ParameterEncoding</span> &#123;</div><div class="line">    <span class="keyword">return</span> <span class="type">URLEncoding</span>.<span class="keyword">default</span></div><div class="line">&#125;</div><div class="line"><span class="comment">/// Provides stub data for use in testing.</span></div><div class="line"><span class="keyword">var</span> sampleData: <span class="type">Data</span> &#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">""</span>.data(using: <span class="type">String</span>.<span class="type">Encoding</span>.utf8)!</div><div class="line">&#125;</div><div class="line"><span class="comment">/// The type of HTTP task to be performed.</span></div><div class="line"><span class="keyword">var</span> task: <span class="type">Task</span> &#123;</div><div class="line">    <span class="keyword">return</span> .request</div><div class="line">&#125;</div><div class="line"><span class="comment">/// Whether or not to perform Alamofire validation. Defaults to `false`.</span></div><div class="line"><span class="keyword">var</span> validate: <span class="type">Bool</span> &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="❸使用"><a href="#❸使用" class="headerlink" title="❸使用"></a>❸使用</h1><blockquote>
-<p>Moya的使用非常简单，通过TargetType协议定义好每个target之后，就可以直接使用Moya开始发送网络请求了。就像这样</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> provider = <span class="type">MoyaProvider</span>&lt;<span class="type">APIManager</span>&gt;()</div><div class="line">provider.request(.getNewsLatest) &#123; result <span class="keyword">in</span></div><div class="line"><span class="comment">// do something with result</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>❹❺</p>
-<h2 id="③配合RxSwift"><a href="#③配合RxSwift" class="headerlink" title="③配合RxSwift"></a>③配合RxSwift</h2><blockquote>
-<p>Moya提供了非常方面的RxSwift扩展</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> provider = <span class="type">RxMoyaProvider</span>&lt;<span class="type">APIManager</span>&gt;()</div><div class="line">provider.request(.getNewsLatest)</div><div class="line">        .filterSuccessfulStatusCodes()</div><div class="line">        .mapJSON()</div><div class="line">        .subscribe(onNext: &#123; (json) <span class="keyword">in</span></div><div class="line">         <span class="comment">//do something with posts</span></div><div class="line">        <span class="built_in">print</span>(json)</div><div class="line">        &#125;)</div><div class="line">        .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>RxMoyaProvider</td>
-<td>是MoyaProvider的子类，是对RxSwift的扩展</td>
-</tr>
-<tr>
-<td>filterSuccessfulStatusCodes()</td>
-<td>是Moya为RxSwift提供的扩展方法，可以得到成功地网络请求，忽略其他的</td>
-</tr>
-<tr>
-<td>mapJSON()</td>
-<td>是Moya RxSwift的扩展方法，可以把返回的数据解析成 JSON 格式</td>
-</tr>
-<tr>
-<td>subscribe</td>
-<td>是一个RxSwift的方法,对经过一层一层处理的 Observable 订阅一个 onNext 的 observer，一旦得到 JSON 格式的数据，就会经行相应的处理</td>
-</tr>
-<tr>
-<td>addDisposableTo(disposeBag)</td>
-<td>是 RxSwift 的一个自动内存处理机制，跟ARC有点类似，会自动清理不需要的对象</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h1 id="④配合HandyJSON"><a href="#④配合HandyJSON" class="headerlink" title="④配合HandyJSON"></a>④配合HandyJSON</h1><blockquote>
-<p>❶网络请求紧密连接着数据层（Model），具体地说，一般需要建立一个类用来统一管理数据，然后把得到的 JSON 数据映射到数据层（Model）</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">MenuModel</span>: <span class="title">HandyJSON</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> others: [<span class="type">ThemeModel</span>]?</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ThemeModel</span>: <span class="title">HandyJSON</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> color: <span class="type">String</span>?</div><div class="line">    <span class="keyword">var</span> thumnail: <span class="type">String</span>?</div><div class="line">    <span class="keyword">var</span> id: <span class="type">Int</span>?</div><div class="line">    <span class="keyword">var</span> description: <span class="type">String</span>?</div><div class="line">    <span class="keyword">var</span> name: <span class="type">String</span>?</div></pre></td></tr></table></figure>
-<blockquote>
-<p>❷创建ViewModel类,创建具体请求方法</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MenuViewModel</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">let</span> provider = <span class="type">RxMoyaProvider</span>&lt;<span class="type">APIManager</span>&gt;()</div><div class="line">  <span class="keyword">var</span> dispose = <span class="type">DisposeBag</span>()</div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">getThemes</span><span class="params">(completed: @escaping <span class="params">(<span class="number">_</span> menuModel: MenuModel)</span></span></span> -&gt;())&#123;</div><div class="line">        provider.reuest(.getThemes)</div><div class="line">                .mapModel(<span class="type">MenuModel</span>.<span class="keyword">self</span>)</div><div class="line">                .subscribe( onNext: &#123; (model) <span class="keyword">in</span> </div><div class="line">                                      completed(model)&#125;,</div><div class="line">                            onError:&#123; (error) <span class="keyword">in</span> &#125;,</div><div class="line">                            onCompleted:<span class="literal">nil</span>,</div><div class="line">                            onDisposed:<span class="literal">nil</span>,</div><div class="line">                           )</div><div class="line">               .addDisposableTo(dispose)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>这里是将请求的数据通过闭包传了出去,当然也可以不那么做.个人喜好问题.<br>这里是为 RxSwift 中的 ObservableType和 Response写一个简单的扩展方法 mapModel，利用我们写好的Model 类，一步就把JSON数据映射成 model</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">ObservableType</span> <span class="title">where</span> <span class="title">E</span> == <span class="title">Response</span> </span>&#123;</div><div class="line">     <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">mapModel</span> &lt;T: HandyJSON&gt;<span class="params">(<span class="number">_</span> type: T.<span class="keyword">Type</span>)</span></span>-&gt; <span class="type">Observable</span>&lt;<span class="type">T</span>&gt; &#123;</div><div class="line">          <span class="keyword">return</span> flatMap &#123; response -&gt; <span class="type">Observable</span>&lt;<span class="type">T</span>&gt; <span class="keyword">in</span> </div><div class="line">          <span class="keyword">return</span> <span class="type">Observable</span>.just(response.mapModel(<span class="type">T</span>.<span class="keyword">self</span>))</div><div class="line">        &#125;</div><div class="line">     &#125;</div><div class="line"> &#125;</div><div class="line"> <span class="class"><span class="keyword">extension</span> <span class="title">Response</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">mapModel</span>&lt;T: HandyJSON&gt;<span class="params">(<span class="number">_</span> type: T.<span class="keyword">Type</span>)</span></span> -&gt; <span class="type">T</span> &#123;</div><div class="line">         <span class="keyword">let</span> jsonString = <span class="type">String</span>.<span class="keyword">init</span>(data: data,encoding: .utf8)</div><div class="line">         <span class="keyword">return</span> <span class="type">JSONDeserializer</span>&lt;<span class="type">T</span>&gt;.deserializeFrom(json: jsonString)!</div><div class="line">    &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<p>#⑤配合ObjectMapper</p>
-<p>##❷❶创建model类</p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">DetailModel</span>: <span class="title">Mappable</span> </span>&#123;</div><div class="line">        <span class="keyword">var</span> body = <span class="type">String</span>()</div><div class="line">        <span class="keyword">var</span> image_source: <span class="type">String</span>?</div><div class="line">	  <span class="keyword">var</span> title = <span class="type">String</span>()</div><div class="line">	  <span class="keyword">var</span> image: <span class="type">String</span>?</div><div class="line">	  <span class="keyword">var</span> share_url = <span class="type">String</span>()</div><div class="line">	  <span class="keyword">var</span> js = <span class="type">String</span>()</div><div class="line">	  <span class="keyword">var</span> recommenders = [[<span class="type">String</span>: <span class="type">String</span>]]()</div><div class="line">	  <span class="keyword">var</span> ga_prefix = <span class="type">String</span>()</div><div class="line">	  <span class="keyword">var</span> section: <span class="type">DetailSectionModel</span>?</div><div class="line">	  <span class="keyword">var</span> type = <span class="type">Int</span>()</div><div class="line">	  <span class="keyword">var</span> id = <span class="type">Int</span>()</div><div class="line">	  <span class="keyword">var</span> css = [<span class="type">String</span>]()</div><div class="line">   <span class="function"><span class="keyword">func</span> <span class="title">mapping</span><span class="params">(<span class="built_in">map</span>: Map)</span></span> &#123;</div><div class="line">         body &lt;- <span class="built_in">map</span>[<span class="string">"body"</span>]</div><div class="line">		  image_source &lt;- <span class="built_in">map</span>[<span class="string">"image_source"</span>]</div><div class="line">		  title &lt;- <span class="built_in">map</span>[<span class="string">"title"</span>]</div><div class="line">		  image &lt;- <span class="built_in">map</span>[<span class="string">"image"</span>]</div><div class="line">		  share_url &lt;- <span class="built_in">map</span>[<span class="string">"share_url"</span>]</div><div class="line">		  js &lt;- <span class="built_in">map</span>[<span class="string">"js"</span>]</div><div class="line">		  recommenders &lt;- <span class="built_in">map</span>[<span class="string">"recommenders"</span>]</div><div class="line">		  ga_prefix &lt;- <span class="built_in">map</span>[<span class="string">"ga_prefix"</span>]</div><div class="line">		  section &lt;- <span class="built_in">map</span>[<span class="string">"section"</span>]</div><div class="line">		  type &lt;- <span class="built_in">map</span>[<span class="string">"type"</span>]</div><div class="line">		  id &lt;- <span class="built_in">map</span>[<span class="string">"id"</span>]</div><div class="line">		  css &lt;- <span class="built_in">map</span>[<span class="string">"css"</span>]</div><div class="line">	     &#125;</div><div class="line">  reuired <span class="keyword">init</span>?(<span class="built_in">map</span>: <span class="type">Map</span>) &#123;</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>❷使用 ObjectMapper ，需要让自己的 Model 类使用 Mappable 协议，这个协议包括两个方法：</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">required</span> <span class="keyword">init</span>?(<span class="built_in">map</span>: <span class="type">Map</span>) &#123;&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">mapping</span><span class="params">(<span class="built_in">map</span>: Map)</span></span> &#123;&#125;<span class="comment">//在 mapping 方法中，用 &lt;- 操作符来处理和映射你的 JSON数据</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>❸数据类建立好之后，还需要为 RxSwift 中的 Observable 写一个简单的扩展方法 mapObject，利用写好的model 类，一步就把JSON 数据映射成一个个 model</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Observable</span> </span>&#123;</div><div class="line">       <span class="function"><span class="keyword">func</span> <span class="title">mapObject</span>&lt;T: Mappable&gt;<span class="params">(type: T.<span class="keyword">Type</span>)</span></span> -&gt; <span class="type">Observale</span>&lt;<span class="type">T</span>&gt; &#123;</div><div class="line">             <span class="keyword">return</span> <span class="keyword">self</span>.<span class="built_in">map</span> &#123; response <span class="keyword">in</span> </div><div class="line">               <span class="comment">//if response is a dictionary, then use ObjectMapper to map the dictionary</span></div><div class="line">               <span class="comment">//if not throw an error</span></div><div class="line">               <span class="keyword">guard</span> <span class="keyword">let</span> dict = response an? [<span class="type">String</span>: <span class="type">Any</span>] <span class="keyword">else</span> &#123;</div><div class="line">                     thow <span class="type">RxSwiftMoyaError</span>.<span class="type">ParseJSONError</span></div><div class="line">               &#125;</div><div class="line">                 <span class="keyword">return</span> <span class="type">Mapper</span>&lt;<span class="type">T</span>&gt;().<span class="built_in">map</span>(<span class="type">JSON</span>: dict)!</div><div class="line">               &#125;</div><div class="line">       &#125;</div><div class="line">       </div><div class="line">       <span class="function"><span class="keyword">func</span> <span class="title">mapArray</span>&lt;T: Mappable&gt;<span class="params">(type: T.<span class="keyword">Type</span>)</span></span> -&gt; <span class="type">Observale</span>&lt;[<span class="type">T</span>]&gt; &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">self</span>.<span class="built_in">map</span> &#123; response <span class="keyword">in</span> </div><div class="line">               <span class="comment">//if response is an array of dictionaries, then use ObjectMapper to map the dictionary</span></div><div class="line">               <span class="comment">//if not, throw an error</span></div><div class="line">               </div><div class="line">               <span class="keyword">guard</span> <span class="keyword">let</span> array = response <span class="keyword">as</span>? [<span class="type">Any</span>] <span class="keyword">else</span> &#123;</div><div class="line">                     thow <span class="type">RxSwiftMoyaError</span>.<span class="type">ParseJSONError</span></div><div class="line">               &#125;</div><div class="line">               </div><div class="line">               <span class="keyword">guard</span> <span class="keyword">let</span> dicts = array <span class="keyword">as</span>? [[<span class="type">String</span>: <span class="type">Any</span>]] <span class="keyword">else</span> &#123;</div><div class="line">                     thow <span class="type">RxSwiftMoyaError</span>.<span class="type">ParseJSONError</span></div><div class="line">               &#125;</div><div class="line">               </div><div class="line">               <span class="keyword">guard</span> <span class="keyword">let</span> dicts = array <span class="keyword">as</span>? [[<span class="type">String</span>: <span class="type">Any</span>]] <span class="keyword">else</span> &#123;</div><div class="line">                     thow <span class="type">RxSwiftMoyaError</span>.<span class="type">ParseJSONError</span></div><div class="line">               &#125;</div><div class="line">               </div><div class="line">               <span class="keyword">return</span> <span class="type">Mapper</span>&lt;<span class="type">T</span>&gt;().mapArray(<span class="type">JSONArray</span>: dicts)!</div><div class="line">               &#125;</div><div class="line">           &#125;</div><div class="line">      &#125;</div><div class="line">      </div><div class="line">      <span class="class"><span class="keyword">enum</span> <span class="title">RXSwiftMoyaError</span>: <span class="title">String</span> </span>&#123;</div><div class="line">           <span class="keyword">case</span> <span class="type">ParaseJSONError</span></div><div class="line">           <span class="keyword">case</span> <span class="type">OtherError</span></div><div class="line">      &#125;</div><div class="line">      </div><div class="line">      <span class="class"><span class="keyword">extension</span> <span class="title">RxSwiftMoyaError</span>: <span class="title">Swift</span>.<span class="title">Error</span> </span>&#123;</div><div class="line">      &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>mapObject 方法处理单个对象，mapArray 方法处理对象数组</li>
-<li>果传进来的数据 response 是一个 dictionary，那么就利用 ObjectMapper 的 map方法映射这些数据，这个方法会调用你之前在 mapping方法里面定义的逻辑</li>
-<li>如果 response 不是一个 dictionary， 那么就抛出一个错误</li>
-<li>在底部自定义了简单的Error，继承了Swift 的 Error类，在实际应用过程中可以根据需要提供自己想要的 Error</li>
-</ul>
-<blockquote>
-<p>❹运行请求方法</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">calss <span class="type">DetailViewModel</span> &#123;</div><div class="line">      <span class="keyword">private</span> <span class="keyword">let</span> provider = <span class="type">RxMoyaProvider</span>&lt;<span class="type">APIManager</span>&gt;()</div><div class="line">      <span class="function"><span class="keyword">func</span> <span class="title">getNewsDetail</span><span class="params">(id: Int)</span></span> -&gt; <span class="type">Observable</span>&lt;<span class="type">DetailModel</span>&gt; &#123;</div><div class="line">        <span class="keyword">return</span> provider.request(.getNewDetail(id))</div><div class="line">                       .filterSuccesssfulStatusCodes()</div><div class="line">                       .mapJSON()</div><div class="line">                       .mapObject(type: <span class="type">DetailModel</span>.<span class="keyword">self</span>)</div><div class="line">      &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          参考01参考02
+①Moya
+Swift我们用Alamofire来做网络库.而Moya在Alamofire的基础上又封装了一层官方说moya有以下特性:
 
-          
+
+编译时检查正确的API端点访问.
+使你定义不同端点枚举值对应相应的用途更加明晰.
+提高测试地位从而使单元测试更加容易.
+
+
+②开始❶创建枚举A
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/07/RxSwift/Lib/Moya -网络封装(RxSwift)/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

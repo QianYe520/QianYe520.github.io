@@ -381,93 +381,25 @@
       
         
           
-            <h1 id="Universal-Links"><a href="#Universal-Links" class="headerlink" title="Universal Links"></a>Universal Links</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
-<p>iOS9之前</p>
-</blockquote>
-<ul>
-<li>iOS9之前,对于从各种从浏览器,Safari、UIWebView或者 WKWebView中唤醒APP的需求,我们通常只能使用scheme.首先是app中注册某个scheme</li>
-</ul>
-<blockquote>
-<p>在iOS 9以后</p>
-</blockquote>
-<ul>
-<li>通过Universal Link，将App 与网页端建立连接桥，可以从Safari 或者其他前端浏览器来识别并唤醒App，甚至是微信环境下也可以冲破障碍</li>
-</ul>
-<p><a href="https://developer.apple.com/library/content/documentation/General/Conceptual/AppSearch/UniversalLinks.html#//apple_ref/doc/uid/TP40016308-CH12-SW2" target="_blank" rel="external">官方的说明文档–&gt;</a></p>
-<h2 id="Universal-Link的优点"><a href="#Universal-Link的优点" class="headerlink" title="Universal Link的优点"></a>Universal Link的优点</h2><ul>
-<li><strong>唯一性</strong>:</li>
-<li><p>不像自定义的scheme,因为它使用标准的http/https链接到你的web站点,所以它不会被其它的app所声明.另外,Custom URL scheme 因为是自定义的协议，所以在没有安装 app 的情况下是无法直接打开的，而 universal links 本身是一个 HTTP/HTTPS 链接，所以有更好的兼容性</p>
-</li>
-<li><p><strong>安全</strong>:</p>
-</li>
-<li><p>当用户的手机上安装了你的app,那么iOS将去你的网站上去下载你上传上去的说明文件(这个说明文件声明了你的app可以打开哪些类型的http链接).因为只有你自己才能上传文件到你网站的根目录,所以你的网站和你的app之间的关联是安全的.</p>
-</li>
-<li><p><strong>可变</strong>:</p>
-</li>
-<li><p>当用户手机上没有安装你的app的时候,Universal Links也能够工作.如果你愿意,在没有安装你的app的时候,用户点击链接,会在safari中展示你网站的内容.</p>
-</li>
-<li><p><strong>简单</strong>:</p>
-</li>
-<li><p>一个URL链接,可以同时作用于网站和ap</p>
-</li>
-<li><p><strong>私有</strong></p>
-</li>
-<li>其它app可以在不需要知道你的app是否安装了的情况下和你的app相互通信</li>
-</ul>
-<h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><blockquote>
-<p>分享页面中，我们经常会看到在页面的顶端或者底部遇到有【打开App】或者【下载App】这样的按钮。</p>
-<p>比较友好的产品，会做设备识别，以及检测APP是否安装，来做打开或者下载App 的需求<br>但是在微信中，这方面做的比较恶心，微信下面几乎是全面屏蔽了唤起原生App 的功能</p>
-</blockquote>
-<h1 id="Universal-Link-实现"><a href="#Universal-Link-实现" class="headerlink" title="Universal Link 实现"></a>Universal Link 实现</h1><h2 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h2><blockquote>
-<p>域名</p>
-</blockquote>
-<ul>
-<li>有一个域名,且这个域名的网站需要支持https,然后拥有网站的上传到根目录的权限(这个权限是为了上传一个apple指定的文件)</li>
-</ul>
-<blockquote>
-<p>支持Universal Links(通用链接)</p>
-</blockquote>
-<ul>
-<li>创建一个json格式的命名为apple-app-site-association文件</li>
-<li><p>注意这个文件必须没有后缀名,文件名必须为: <strong><em>apple-app-site-association</em></strong></p>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"> </div><div class="line"> &#123;</div><div class="line">  <span class="string">"applinks"</span>: &#123;</div><div class="line">      <span class="string">"apps"</span>: [],</div><div class="line">      <span class="string">"details"</span>: [</div><div class="line">          &#123;</div><div class="line">              <span class="string">"appID"</span>: <span class="string">"Prefix +点 +BundleID"</span>,</div><div class="line">              <span class="string">"paths"</span>: [ <span class="string">"/html/1/*"</span>, <span class="string">"/*"</span>],</div><div class="line">                        &#125;,</div><div class="line">      ]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<blockquote>
-<p>Prefix   和 BundleID</p>
-</blockquote>
-<p><img src="http://ozr735s7e.bkt.clouddn.com/Universal%20Links-%20001.png" alt="001"></p>
-<blockquote>
-<p>paths:<br>根据 paths 键设定一个你的app支持的路径列表,只有这些指定的路径的链接,才能被app所处理,举个例子:如果你的网站是www.XXXX.com,你的path写的是”/support/“,那么当用户点击www.yohunl.com/support/myDoucument,就可以进入你的app了,相反www.yohunl.com/other 就不会.<br><em>path是大小写敏感的!</em> 号表示任意路径.</p>
-</blockquote>
-<h2 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h2><h3 id="服务器配置"><a href="#服务器配置" class="headerlink" title="服务器配置"></a>服务器配置</h3><blockquote>
-<p>准备独立域名<br>一级域名，二级域名均可。<br>SSL 证书</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">为服务器配置HTTPS 用的SSL 证书</div><div class="line">上传签名好的JSON 配置文件</div></pre></td></tr></table></figure>
-<h3 id="新建JSON文件"><a href="#新建JSON文件" class="headerlink" title="新建JSON文件"></a>新建JSON文件</h3><p>新建一个JSON文件，不需要后缀名，内容输入以下代码：</p>
-<blockquote>
-<p>appID:相关内容可以在Developer 中心找到相关的内容。如图，前半部分为Prefix 后半部分为ID，即你的App 的bundle id，两者通过.相连<br>paths:用来唤醒App 所需要指定的JSON文件在服务器中的路径。用”/* “ 是根目录，而/html 则是指html目录下的<br>注意：这里的AppID中前半部分，在App 转让主体后会改变，需重新更新<br>填好后保存为apple-app-site-association 名，上传到域名指向的服务器根目录。</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="string">"applinks"</span>: &#123;</div><div class="line">        <span class="string">"apps"</span>: [],</div><div class="line">        <span class="string">"details"</span>: [</div><div class="line">            &#123;</div><div class="line">                <span class="string">"appID"</span>: <span class="string">"5B5Q4xxxx.com.xxxx.xxxx"</span>,</div><div class="line">                <span class="string">"paths"</span>: [ <span class="string">"/html/1/*"</span>, <span class="string">"/*"</span>]</div><div class="line">            &#125;,</div><div class="line">        ]</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="上传传该文件apple-app-site-association"><a href="#上传传该文件apple-app-site-association" class="headerlink" title="上传传该文件apple-app-site-association"></a>上传传该文件apple-app-site-association</h2><ul>
-<li>上传传该文件apple-app-site-association到你的域名所对应的网站的根目录下(其实也不一定是根目录,例如ghost博客站点,就没有根目录一说,它就需要放在相应的主题目录下)</li>
-<li>这一步是为了苹果能从<a href="https://你的域名/apple-app-site-associationxh获取到你上传的apple-app-site-association文件" target="_blank" rel="external">https://你的域名/apple-app-site-associationxh获取到你上传的apple-app-site-association文件</a>.<br>上传完后,自己先访问一下,看看是否能够获取到,用我的做例子,<a href="https://yohunl.com/apple-app-site-association" target="_blank" rel="external">https://yohunl.com/apple-app-site-association</a> ,当你点击这个链接,应该是下载apple-app-site-association文件.<br>验证该文件是否合法,苹果为了方便开发者,提供了一个网页来验证我们编写的这个apple-app-site-association是否合法有效,验证网址,进入网站进行验证</li>
-</ul>
-<p><img src="http://ozr735s7e.bkt.clouddn.com/Universal%20Links-002.png" alt="002"></p>
-<h2 id="App配置"><a href="#App配置" class="headerlink" title="App配置"></a>App配置</h2><h3 id="工程文件配置"><a href="#工程文件配置" class="headerlink" title="工程文件配置"></a>工程文件配置</h3><blockquote>
-<p>在工程文件中，找到Targets - Capabilities - Associated Domains 将开关选为On，并添加你的域名，</p>
-<p>格式为  </p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">applinks: + 后台给的域名.com </div><div class="line">applinks: + www.后台给的域名.com</div></pre></td></tr></table></figure>
-<p><img src="http://ozr735s7e.bkt.clouddn.com/Universal%20Links-%20003.png" alt="003"></p>
-<h3 id="iOS移动端的代码"><a href="#iOS移动端的代码" class="headerlink" title="iOS移动端的代码"></a>iOS移动端的代码</h3><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application continueUserActivity:(<span class="built_in">NSUserActivity</span> *)userActivity restorationHandler:(<span class="keyword">void</span> (^)(<span class="built_in">NSArray</span> * _Nullable))restorationHandler</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> ([userActivity.activityType isEqualToString:<span class="built_in">NSUserActivityTypeBrowsingWeb</span>]) &#123;</div><div class="line">        <span class="built_in">NSString</span> *url = userActivity.webpageURL.description;</div><div class="line">        <span class="comment">// 这里可以通过拆分url 来传入参数，达到跳转原生页面的功能，如跳转某商品页</span></div><div class="line">        [<span class="built_in">UIApplication</span> sharedApplication] openURL:webpageURL];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><img src="http://ozr735s7e.bkt.clouddn.com/iOS-Universal%20Links-%20004.jpg" alt="004"></p>
-<h2 id="h5网页配置"><a href="#h5网页配置" class="headerlink" title="h5网页配置"></a>h5网页配置</h2><blockquote>
-<p>h5网页中对需要唤起App 的按钮或者控件添加点击事件，事件的函数代码如下:</p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line">function wakeUpApp()&#123;</div><div class="line">    if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) &#123;</div><div class="line">        var loadDateTime = new Date();</div><div class="line">        window.setTimeout(function() &#123;</div><div class="line">            var timeOutDateTime = new Date();</div><div class="line">            if (timeOutDateTime - loadDateTime <span class="tag">&lt; <span class="attr">5000</span>) &#123;</span></div><div class="line"><span class="tag">                <span class="attr">window.location.href</span> = <span class="string">"http://a.app.qq.com/o/simple.jsp?pkgname=你的应用宝BundleID"</span>;</span></div><div class="line"><span class="tag">            &#125; <span class="attr">else</span> &#123;</span></div><div class="line"><span class="tag">                <span class="attr">window.close</span>();</span></div><div class="line"><span class="tag">            &#125;</span></div><div class="line"><span class="tag">        &#125;,</span></div><div class="line"><span class="tag">            <span class="attr">25</span>);</span></div><div class="line"><span class="tag">        <span class="attr">window.location.href</span> = <span class="string">"https://yourdomainname.com/"</span>;          </span></div><div class="line"><span class="tag">    &#125; <span class="attr">else</span> <span class="attr">if</span> (<span class="attr">navigator.userAgent.match</span>(/<span class="attr">android</span>/<span class="attr">i</span>)) &#123;</span></div><div class="line"><span class="tag">        <span class="attr">var</span> <span class="attr">state</span> = <span class="string">null;</span></span></div><div class="line"><span class="tag">        <span class="attr">try</span> &#123;</span></div><div class="line"><span class="tag">            <span class="attr">state</span> = <span class="string">window.open(</span>"<span class="attr">apps</span> <span class="attr">custom</span> <span class="attr">url</span> <span class="attr">schemes</span> ", '<span class="attr">_blank</span>');</span></div><div class="line"><span class="tag">        &#125; <span class="attr">catch</span>(<span class="attr">e</span>) &#123;&#125;</span></div><div class="line"><span class="tag">        <span class="attr">if</span> (<span class="attr">state</span>) &#123;</span></div><div class="line"><span class="tag">            <span class="attr">window.close</span>();</span></div><div class="line"><span class="tag">        &#125; <span class="attr">else</span> &#123;</span></div><div class="line"><span class="tag">            <span class="attr">window.location.href</span> = <span class="string">"要跳转的页面URL"</span>;</span></div><div class="line"><span class="tag">        &#125;</span></div><div class="line"><span class="tag">    &#125;</span></div><div class="line"><span class="tag">&#125;</span></div></pre></td></tr></table></figure>
+          Universal Links简介
+iOS9之前
 
-          
+
+iOS9之前,对于从各种从浏览器,Safari、UIWebView或者 WKWebView中唤醒APP的需求,我们通常只能使用scheme.首先是app中注册某个scheme
+
+
+在iOS 9以后
+
+
+通过Universal Link，将App 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/21/OC/Func/iOS-Func- Universal Links通用链接/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -620,20 +552,17 @@
       
         
           
-            <h1 id="目录效果"><a href="#目录效果" class="headerlink" title="目录效果"></a>目录效果</h1><h2 id="生成目录"><a href="#生成目录" class="headerlink" title="生成目录"></a>生成目录</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">* [1.语法示例](#1)</div><div class="line">* [1.1图片](#1.1) </div><div class="line">* [1.2换行](#1.2)</div><div class="line">* [1.3强调](#1.3) </div><div class="line">* </div><div class="line">字体h1&gt;h2&gt;h3....</div><div class="line"> &lt;h2 id=&quot;1&quot;&gt;目录标题&lt;/h2&gt;</div></pre></td></tr></table></figure>
-<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2> <h2 id="1">1.h2比h1字体小</h2> 
+          目录效果生成目录* [1.语法示例](#1)* [1.1图片](#1.1) * [1.2换行](#1.2)* [1.3强调](#1.3) * 字体h1&gt;h2&gt;h3.... &lt;h2 id=&quot;1&quot;&gt;目录标题&lt;/h2&gt;
+效果 1.h2比h1字体小 
 
-<ul>
-<li><a href="#1.1">1.1图片</a></li>
-<li><a href="#1.2">1.2换行</a> </li>
-<li><a href="#1.3">1.3强调</a></li>
-</ul>
-<h2 id="页面内跳转"><a href="#页面内跳转" class="headerlink" title="页面内跳转"></a>页面内跳转</h2><h3 id="锚"><a href="#锚" class="headerlink" title="锚"></a>锚</h3><blockquote>
-<p>放在 目的地<br>定义一个锚(id)： <span id="index"></span></p>
-<h1 id="跳转markdown语法"><a href="#跳转markdown语法" class="headerlink" title="跳转markdown语法"></a>跳转markdown语法</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">[点击跳转--&gt;](#index)</div></pre></td></tr></table></figure>
-</blockquote>
-
-          
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/21/MarkDown/MarkDown-语法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -786,79 +715,18 @@
       
         
           
-            <h1 id="iOS编码规范"><a href="#iOS编码规范" class="headerlink" title="iOS编码规范"></a>iOS编码规范</h1><p><a href="http://blog.csdn.net/qq350116542/article/details/51195386#import%E8%A7%84%E8%8C%83" target="_blank" rel="external">http://blog.csdn.net/qq350116542/article/details/51195386#import%E8%A7%84%E8%8C%83</a></p>
-<p>#命名</p>
-<h2 id="变量命名"><a href="#变量命名" class="headerlink" title="变量命名"></a>变量命名</h2><blockquote>
-<p>首字母小写，驼峰法则<br>UI控件（描述+控件类型）  <code>priceLabel或priceLab</code><br> 注释也要写  最好对齐</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">UIButton</span>    *collectsImgView;          <span class="comment">//合集 - 图标</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">UILabel</span>     *collectsThemeLab;         <span class="comment">//合集 - 主题</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">UILabel</span>     *collectsAuthorLab;        <span class="comment">//合集 - 作者</span></div></pre></td></tr></table></figure>
-<h2 id="方法命名"><a href="#方法命名" class="headerlink" title="方法命名"></a>方法命名</h2><blockquote>
-<p>首字母小写，驼峰法则</p>
-</blockquote>
-<h3 id="public-method"><a href="#public-method" class="headerlink" title="public method"></a>public method</h3><blockquote>
-<p>规则：     方法用途单词_方法</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">一般的方法  - (<span class="keyword">void</span>)show_editBtnOnOneViewC:(OneViewC *)oneViewC  editBtn:(<span class="built_in">UIButton</span> *)editBtn.....</div><div class="line">跳转       push_</div><div class="line">更新数据    update_collectList</div><div class="line">删除数据    delete_collectList</div></pre></td></tr></table></figure>
-<h3 id="private-method"><a href="#private-method" class="headerlink" title="private method"></a>private method</h3><blockquote>
-<p>规则：不加下划线  不需要and： nameStr:(NSstring)nameStr</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)pushOnewViewC:(OnewViewC *)onewViewC   </div><div class="line">-             nameStr:(<span class="built_in">NSstring</span>)nameStr &#123;&#125;</div></pre></td></tr></table></figure>
-<h3 id="扩展或封装方法"><a href="#扩展或封装方法" class="headerlink" title="扩展或封装方法"></a>扩展或封装方法</h3><blockquote>
-<p>规则：以FF或ff开头   FanFan简写</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)ff_editOnOneViewC:(oneViewC)oneViewC</div><div class="line">                   isOpen:(<span class="built_in">BOOL</span>) isOpen</div></pre></td></tr></table></figure>
-<h3 id="少用-define预处理指令，多用类型常量"><a href="#少用-define预处理指令，多用类型常量" class="headerlink" title="少用#define预处理指令，多用类型常量"></a>少用<code>#define</code>预处理指令，多用类型常量</h3><blockquote>
-<p>预处理指令命名 （字母全大写，以”_”分割）</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="meta">#define NSString * APP_ROOT_DIR @<span class="meta-string">"xxx"</span></span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>常量命名 （字母全大写，”k”开头）</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> * <span class="keyword">const</span> kAPPROOTDIR = <span class="string">@"xxx"</span>;</div></pre></td></tr></table></figure>
-<h2 id="资源文件中变量命名"><a href="#资源文件中变量命名" class="headerlink" title="资源文件中变量命名"></a>资源文件中变量命名</h2><blockquote>
-<p>全小写，”<em>“分割<br>模块： 开发功能模块外  nav tab  login refresh  share  hud common(公有)<br>格式：“模块</em>类别<em>状态</em>描述”  状态可不要<br>目前版本我们以模块作为文件夹 ，后面的按照这个4个</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">personal_btn_un_select.png</div><div class="line">personal_btn_name_png</div><div class="line">nav_btn_left.png</div><div class="line">nav_imgView_lright.png</div><div class="line">tab_item_un_select.png</div><div class="line">tab_item_select.png</div></pre></td></tr></table></figure>
-<h2 id="能用糖衣语法的尽量用糖衣语法，使用时注意nil报错。"><a href="#能用糖衣语法的尽量用糖衣语法，使用时注意nil报错。" class="headerlink" title="能用糖衣语法的尽量用糖衣语法，使用时注意nil报错。"></a>能用糖衣语法的尽量用糖衣语法，使用时注意<code>nil</code>报错。</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">NSMutableArray</span> = @[].mutableCopy;</div><div class="line"><span class="built_in">NSString</span> *name = dic[<span class="string">@"name"</span>];</div><div class="line"><span class="built_in">NSArray</span> *array= @[item1, item2];</div></pre></td></tr></table></figure>
-<h2 id="用前缀避免命名空间冲突。大多数的自定制，都需要用前缀"><a href="#用前缀避免命名空间冲突。大多数的自定制，都需要用前缀" class="headerlink" title="用前缀避免命名空间冲突。大多数的自定制，都需要用前缀"></a>用前缀避免命名空间冲突。大多数的自定制，都需要用前缀</h2><p>比如创建有读界面</p>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">Have (文件夹)</div><div class="line">   ViewC(文件夹)</div><div class="line">      HaveReadViewC.h</div><div class="line">   View</div><div class="line">      HaveReadView.h</div><div class="line">   Model</div><div class="line">      HaveReadModel.h</div><div class="line">   Cell</div><div class="line">      HaveReadCell.h</div></pre></td></tr></table></figure>
-<h2 id="委托Delegate的定义和使用"><a href="#委托Delegate的定义和使用" class="headerlink" title="委托Delegate的定义和使用"></a>委托Delegate的定义和使用</h2><p>放在对应类的<code>.h</code>文件中，<br>命名为该类名+Delegate，<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">//定义代理</div><div class="line">HaveReadViewCDelegate ==&gt;HaveReadViewC + Delegate</div><div class="line">HaveReadCellDelegate  ==&gt; HaveReadCell + Delegate</div><div class="line"></div><div class="line">//声明</div><div class="line">@property (nonatomic, weak) id &lt;ArticleHeadTableUrlDelegate&gt; delegate;</div><div class="line"></div><div class="line">//必须加判断！！！</div><div class="line">if (_delegate &amp;&amp; [_delegate respondsToSelector:@selector(push_safariWithUrl:)])  &#123;</div><div class="line">     [_delegate pushSafariWithUrl:XXXXX];</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
-<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><h3 id="使用清晰而协调的命名方式-适当注释"><a href="#使用清晰而协调的命名方式-适当注释" class="headerlink" title="使用清晰而协调的命名方式+适当注释"></a>使用清晰而协调的命名方式+适当注释</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">/**</div><div class="line"> * @beif: 执行push操作 （ 简单明了就可以）</div><div class="line"> *</div><div class="line"> * @prama:  namestr   名称</div><div class="line"> * @prama:  isOpen    是否打开  0 = 关闭  1= 打开</div><div class="line"> *</div><div class="line"> * @discussion:  注意这个方法子啊使用时候XXXXXXXX 等等</div><div class="line"> *</div><div class="line"> *</div><div class="line">*/</div></pre></td></tr></table></figure>
-<h3 id="viewC里区块划分"><a href="#viewC里区块划分" class="headerlink" title="viewC里区块划分"></a>viewC里区块划分</h3><blockquote>
-<p>h文件顶部:类的作用 类的注意一些内容</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">/**</div><div class="line">  订阅合集 分2种  </div><div class="line">         我的订阅  xxxx</div><div class="line">         他的订阅  xxx</div><div class="line"> */</div></pre></td></tr></table></figure>
-<blockquote>
-<p>代理</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">XXXXXDelegate</span> &lt;<span class="title">NSObject</span>&gt;</span></div><div class="line"><span class="keyword">@required</span></div><div class="line"><span class="keyword">@optional</span></div><div class="line">- (<span class="keyword">void</span>)delete_nameOnOne:(类 *)one  nameStr:(<span class="built_in">NSString</span> *) nameStr ....</div></pre></td></tr></table></figure>
-<blockquote>
-<p>代码结构</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//#pragma ------------------ LifeCycle生命周期 -----------------</span></div><div class="line"><span class="comment">//#pragma ------------------ Setter</span></div><div class="line">- (<span class="keyword">void</span>)setNameLab:(<span class="built_in">UILable</span> *)nameLab</div><div class="line"> &#123;</div><div class="line">   _nameLab = nameLab;</div><div class="line"> &#125;</div><div class="line"><span class="comment">//#pragma ------------------ Getter</span></div><div class="line">- (<span class="built_in">UIButton</span> *)nameBtn:(<span class="built_in">UIButton</span> *) nameBtn</div><div class="line">&#123;</div><div class="line">   <span class="keyword">if</span>(!_ nameBtn)&#123;</div><div class="line">   nameBtn = ...</div><div class="line">     [<span class="keyword">self</span> addSubView: nameBtn];</div><div class="line">   &#125;</div><div class="line">   <span class="keyword">return</span>  nameBtn;</div><div class="line">&#125;</div><div class="line"><span class="comment">//#pragma ------------------     Layout     ------------------</span></div><div class="line"><span class="comment">//#pragma - nameBtn</span></div><div class="line"><span class="comment">//#pragma - nameBtn - action </span></div><div class="line"><span class="comment">//布局</span></div><div class="line">- (<span class="keyword">void</span>)layoutSubviews;</div><div class="line"><span class="comment">//#pragma ------------------ Plubic Method   ------------------</span></div><div class="line">- (<span class="keyword">void</span>)update_newViewC....</div><div class="line">- (<span class="built_in">BOOL</span>)delete_editBtn.....</div><div class="line"><span class="comment">//#pragma ------------------ private Method  ------------------</span></div><div class="line">- (<span class="keyword">void</span>)updateNewViewC....</div><div class="line">- (<span class="built_in">BOOL</span>)deleteEditBtn.....</div><div class="line"><span class="comment">//#pragma mark ------------- API             ------------------</span></div><div class="line"><span class="comment">//#pragma mark ------------- 代理</span></div><div class="line"><span class="comment">//#pragma ------------------ Cell            ------------------</span></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * @brief: 设置cell</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * @prama: tableView</span></div><div class="line"><span class="comment"> * @prama: model</span></div><div class="line"><span class="comment"> * @prama: indexPath</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> */</span></div><div class="line">+( PersonalSubscribeCell *)show_cellOfTableView:(<span class="built_in">UITableView</span> *)tableView</div><div class="line">                                          model:(PersonalSubscribeModel *)model</div><div class="line">                                      indexPath:(<span class="built_in">NSIndexPath</span> *)indexPath</div></pre></td></tr></table></figure>
-<h1 id="编程习惯"><a href="#编程习惯" class="headerlink" title="编程习惯"></a>编程习惯</h1><blockquote>
-<p>一个原则：能不做的事情，尽量不做，尽量少唤醒CPU，绝不能在UI线程中做耗时操作（如网络请求，数据库读写，文件读写等）</p>
-</blockquote>
-<h2 id="Copy、mutableCopy要注意其关联的元素是否支持"><a href="#Copy、mutableCopy要注意其关联的元素是否支持" class="headerlink" title="Copy、mutableCopy要注意其关联的元素是否支持"></a><code>Copy</code>、<code>mutableCopy</code>要注意其关联的元素是否支持</h2><h2 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h2><blockquote>
-<p>不要在循环中创建引用类型变量<br>for循环中，用局部变量替代“array.count”</p>
-</blockquote>
-<h2 id="autoreleasepool"><a href="#autoreleasepool" class="headerlink" title="@autoreleasepool"></a>@autoreleasepool</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@autoreleasepool</span>&#123;</div><div class="line">  <span class="keyword">for</span>（）&#123;</div><div class="line">       <span class="keyword">@autoreleasepool</span>&#123;&#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="引用变量声明放在循环外面，可以避免在栈内存中创建过多引用变量"><a href="#引用变量声明放在循环外面，可以避免在栈内存中创建过多引用变量" class="headerlink" title="引用变量声明放在循环外面，可以避免在栈内存中创建过多引用变量"></a>引用变量声明放在循环外面，可以避免在栈内存中创建过多引用变量</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">UserInfo userInfo;</div><div class="line"><span class="comment">// 避免循环中每次都要调用userList.count取值</span></div><div class="line"><span class="keyword">int</span> size = userList.count;</div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</div><div class="line">    userInfo = userList[i];</div><div class="line">    <span class="comment">// do something...</span></div><div class="line">&#125;</div><div class="line"><span class="comment">// 推荐</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, max = userList.count; i &lt; max; i++) &#123;</div><div class="line">    userInfo = userList[i];</div><div class="line">    <span class="comment">// do something...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="NSString"><a href="#NSString" class="headerlink" title="NSString"></a>NSString</h2><blockquote>
-<p>在不需要外部任意修改的情况下，全部用<code>Copy</code></p>
-</blockquote>
-<h2 id="Block"><a href="#Block" class="headerlink" title="Block"></a>Block</h2><blockquote>
-<p><code>Block</code>内部需要使用外部类变量的时候,防止循环引用<br>切忌在block体中使用<code>_name</code>这样的变量，请使用<code>self.name</code></p>
-</blockquote>
-<h1 id="otehr"><a href="#otehr" class="headerlink" title="otehr"></a>otehr</h1><blockquote>
-<p>由于Objective-C是类型不安全的，注意加强<code>类型判断</code>、<code>数据越界判断</code>等等<br>原则上不建议拷贝代码，同一段代码拷贝3次，必须抽离出一个方法，统一调用<br>所有的系统的宏，都不得在任意地方乱定义，统一在<code>FFConfig</code>文件夹下的头文件中定义，并写好注释<br>ViewController中的代码要分结构，多用<code>#pragma mark - Life Circle</code>对代码进行分区，ViewController中的代码分区可分为<code>Life Circle</code>、<code>Request</code>、<code>Private</code>、<code>Delegate</code>、<code>Lazy</code>等等<br>ViewController中的代码尽量不要超过<code>500</code>行，注意优化</p>
-</blockquote>
-<h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><blockquote>
-<p>一级界面，API考虑离线缓存<br>如果你用一句话无法将一个方法的内容表述清楚的话，这往往就意味着<code>API</code>的名字需要改进了；例如：<code>removeAtPoint:</code>就会比<code>remove</code>要清晰很多</p>
-</blockquote>
-<h1 id="提交代码规范"><a href="#提交代码规范" class="headerlink" title="提交代码规范"></a>提交代码规范</h1><p>提交代码时的描述必须写，且简明扼要就可以</p>
-<h2 id="我们的目标是让每一位小伙伴都能欣赏我们的代码"><a href="#我们的目标是让每一位小伙伴都能欣赏我们的代码" class="headerlink" title="我们的目标是让每一位小伙伴都能欣赏我们的代码"></a>我们的目标是让每一位小伙伴都能欣赏我们的代码</h2>
-          
+          iOS编码规范http://blog.csdn.net/qq350116542/article/details/51195386#import%E8%A7%84%E8%8C%83
+#命名
+变量命名
+首字母小写，驼峰法则UI控件（描述+控件类型）  priceLabel或priceLab 注释也要写 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/20/OC/Code/OC-Code-代码规范/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1022,178 +890,19 @@
       
         
           
-            <h1 id="SDWebImage-图片分辨率过高内存过高问题"><a href="#SDWebImage-图片分辨率过高内存过高问题" class="headerlink" title="SDWebImage_图片分辨率过高内存过高问题"></a>SDWebImage_图片分辨率过高内存过高问题</h1><p>#高分辨率多图问题：</p>
-<blockquote>
-<p>高分辨率图，导致内存飙升，卡顿，设置闪退,提示：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Restore the connection to &quot;“XXX”的 iPod&quot; and run &quot;XXX&quot; again, or if &quot;XXX&quot; is still running, you can attach to it by selecting Debug &gt; Attach to Process &gt; XXX.</div></pre></td></tr></table></figure>
-<p>由于应用程序突然消耗了大量内存，然后再分配调度内存的时候，出现错误，致使系统将APP进程关闭。<br>能够去查看一下是不是载入了大量的图片等等，或者哪里有消耗内存的地方改动一下。</p>
-<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><h2 id="SDWebimage，"><a href="#SDWebimage，" class="headerlink" title="SDWebimage，"></a>SDWebimage，</h2><blockquote>
-<p>1.判断本地是否有这张图<br>2.二有的时候直接从本地取图片<br>3.没有的时候去网络下载</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">if(imgStr.length&gt;0)&#123;  </div><div class="line">[[SDImageCache sharedImageCache] queryDiskCacheForKey:imgStr </div><div class="line">                                                 done:^(UIImage *image, </div><div class="line">                                                       SDImageCacheType cacheType) &#123;  </div><div class="line">    if (image) </div><div class="line">    &#123;  </div><div class="line">        [_oneImage setImage:image];  </div><div class="line">    &#125;else&#123;  </div><div class="line">        [_oneImage sd_setImageWithURL:kNSUrl(imgStr)  </div><div class="line">                      placeholderImage:IMGNAMED(@&quot;defaultAvatar2&quot;)  </div><div class="line">                               options:SDWebImageRefreshCached  </div><div class="line">                             completed:^(UIImage *image, </div><div class="line">                                         NSError *error,</div><div class="line">                                         SDImageCacheType cacheType,</div><div class="line">                                          NSURL *imageURL) &#123;  </div><div class="line">                                 if (image) &#123;  </div><div class="line">                                     [[SDImageCache sharedImageCache] storeImage:image</div><div class="line">                                                                          forKey:imgStr </div><div class="line">                                                                          toDisk:YES];  </div><div class="line">                                 &#125;  </div><div class="line">                             &#125;];  </div><div class="line">    &#125;  </div><div class="line">    &#125;];&#125;</div></pre></td></tr></table></figure>
-<h2 id="内部会调用下面这个方法"><a href="#内部会调用下面这个方法" class="headerlink" title="内部会调用下面这个方法"></a>内部会调用下面这个方法</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">- (UIImage *)diskImageForKey:(NSString *)key &#123;  </div><div class="line">    NSData *data = [self diskImageDataBySearchingAllPathsForKey:key];  </div><div class="line">    if (data) &#123;  </div><div class="line">        UIImage *image = [UIImage sd_imageWithData:data];  </div><div class="line">        image = [self scaledImageForKey:key image:image];  </div><div class="line">        image = [UIImage decodedImageWithImage:image];  </div><div class="line">        return image;  </div><div class="line">    &#125;  </div><div class="line">    else &#123;  </div><div class="line">        return nil;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>  UIImage *image = [UIImage sd_imageWithData:data];<br>图片取出来的时候就已经巨大无比，占用了很大的内存，导致内存来不及释放就崩溃</p>
-<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><h2 id="UIImage-MultiFormat这个类里面添加如下压缩方法，"><a href="#UIImage-MultiFormat这个类里面添加如下压缩方法，" class="headerlink" title="UIImage+MultiFormat这个类里面添加如下压缩方法，"></a>UIImage+MultiFormat这个类里面添加如下压缩方法，</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">+(UIImage *)compressImageWith:(UIImage *)image  </div><div class="line">&#123;  </div><div class="line">    float imageWidth = image.size.width;  </div><div class="line">    float imageHeight = image.size.height;  </div><div class="line">    float width = 640;  </div><div class="line">    float height = image.size.height/(image.size.width/width);  </div><div class="line">      </div><div class="line">    float widthScale = imageWidth /width;  </div><div class="line">    float heightScale = imageHeight /height;  </div><div class="line">      </div><div class="line">    // 创建一个bitmap的context  </div><div class="line">    // 并把它设置成为当前正在使用的context  </div><div class="line">    UIGraphicsBeginImageContext(CGSizeMake(width, height));  </div><div class="line">      </div><div class="line">    if (widthScale &gt; heightScale) &#123;  </div><div class="line">        [image drawInRect:CGRectMake(0, 0, imageWidth /heightScale , height)];  </div><div class="line">    &#125;  </div><div class="line">    else &#123;  </div><div class="line">        [image drawInRect:CGRectMake(0, 0, width , imageHeight /widthScale)];  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    // 从当前context中创建一个改变大小后的图片  </div><div class="line">    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();  </div><div class="line">    // 使当前的context出堆栈  </div><div class="line">    UIGraphicsEndImageContext();  </div><div class="line">      </div><div class="line">    return newImage;  </div><div class="line">      </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="修改第三方方法"><a href="#修改第三方方法" class="headerlink" title="修改第三方方法"></a>修改第三方方法</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">#ifdef SD_WEBP  </div><div class="line">    else if ([imageContentType isEqualToString:@&quot;image/webp&quot;])  </div><div class="line">    &#123;  </div><div class="line">        image = [UIImage sd_imageWithWebPData:data];  </div><div class="line">    &#125;  </div><div class="line">#endif  </div><div class="line">    else &#123;  </div><div class="line">        image = [[UIImage alloc] initWithData:data];  </div><div class="line">        if (data.length/1024 &gt; 128) &#123;  </div><div class="line">            image = [self compressImageWith:image];  </div><div class="line">        &#125;  </div><div class="line">        UIImageOrientation orientation = [self sd_imageOrientationFromImageData:data];  </div><div class="line">        if (orientation != UIImageOrientationUp) &#123;  </div><div class="line">            image = [UIImage imageWithCGImage:image.CGImage  </div><div class="line">                                        scale:image.scale  </div><div class="line">                                  orientation:orientation];  </div><div class="line">        &#125;</div></pre></td></tr></table></figure>
-<h2 id="设置加载"><a href="#设置加载" class="headerlink" title="设置加载"></a>设置加载</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">在SDWebImageDownloaderOperation的connectionDidFinishLoading方法里面的</div><div class="line"></div><div class="line">    UIImage *image = [UIImage sd_imageWithData:self.imageData];</div><div class="line"></div><div class="line">    //将等比压缩过的image在赋在转成data赋给self.imageData</div><div class="line">    NSData *data = UIImageJPEGRepresentation(image, 1);</div><div class="line">    self.imageData = [NSMutableData dataWithData:data];</div><div class="line"></div><div class="line">   再配合    [[SDImageCache sharedImageCache] setValue:nil forKey:@&quot;memCache&quot;];（图片加载后使用）大功告成，亲测内存基本变化不大，自动释放也来得及</div></pre></td></tr></table></figure>
+          SDWebImage_图片分辨率过高内存过高问题#高分辨率多图问题：
 
-          
-        
-      
-    </div>
-    
-    
-    
+高分辨率图，导致内存飙升，卡顿，设置闪退,提示：
 
-    
-
-
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/20/OC/Func/OC-Func-配置启动图-图标/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="千夜 QQ:738816656">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/20/OC/Func/OC-Func-配置启动图-图标/" itemprop="url">OC-Func-配置启动图/图标</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-20T17:12:30+08:00">
-                2017-11-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OC/" itemprop="url" rel="index">
-                    <span itemprop="name">OC</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OC/Func/" itemprop="url" rel="index">
-                    <span itemprop="name">Func</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://www.cnblogs.com/xiu619544553/p/5348678.html" target="_blank" rel="external">https://www.cnblogs.com/xiu619544553/p/5348678.html</a></p>
-
-          
+Restore the connection to &quot;“XXX”的 iPod&quot; and run &quot;XXX&quot; again, or if &
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/20/OC/Lib/SDWebImag/OC-Lib-SDWebImag加载高分辨率图问题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1346,9 +1055,178 @@
       
         
           
-            <p><a href="http://blog.csdn.net/chelongfei/article/details/51495862" target="_blank" rel="external">http://blog.csdn.net/chelongfei/article/details/51495862</a></p>
+          http://blog.csdn.net/chelongfei/article/details/51495862
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/20/OC/Func/检查项目是否使用IDFA/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/20/OC/Func/OC-Func-配置启动图-图标/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/20/OC/Func/OC-Func-配置启动图-图标/" itemprop="url">OC-Func-配置启动图/图标</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-20T17:12:30+08:00">
+                2017-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OC/Func/" itemprop="url" rel="index">
+                    <span itemprop="name">Func</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          https://www.cnblogs.com/xiu619544553/p/5348678.html
+
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/20/OC/Func/OC-Func-配置启动图-图标/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1512,10 +1390,15 @@
       
         
           
-            <h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">//在父控件上显示，</div><div class="line">//显示的位置TopRight  </div><div class="line">self.badgeView = [[JSBadgeView alloc]initWithParentView:parentView alignment:JSBadgeViewAlignmentTopRight];  </div><div class="line">//位置  </div><div class="line">self.badgeView.badgePositionAdjustment = CGPointMake(-15, 10);</div><div class="line">//设置tag要辨别    </div><div class="line">self.badgeView.tag = 10086;</div><div class="line"></div><div class="line">//背景色</div><div class="line">self.badgeView.badgeBackgroundColor = [UIColor redColor];  </div><div class="line">//没有反光面</div><div class="line">self.badgeView.badgeOverlayColor = [UIColor clearColor];  </div><div class="line">//外圈的颜色，默认是白色    </div><div class="line">self.badgeView.badgeStrokeColor = [UIColor redColor];</div></pre></td></tr></table></figure>
-<h1 id="设置数字"><a href="#设置数字" class="headerlink" title="设置数字"></a>设置数字</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">//1、用字符</div><div class="line">self.badgeView.badgeText = @&quot;1&quot;;  </div><div class="line">//2、如果不显示就设置为空</div><div class="line">self.badgeView.badgeText = nil; </div><div class="line"></div><div class="line">//当更新数字时，最好刷新，不然由于frame固定的，数字为2位时，红圈变形  </div><div class="line">[self.badgeView setNeedsLayout];</div></pre></td></tr></table></figure>
-
-          
+          使用方法//在父控件上显示，//显示的位置TopRight  self.badgeView = [[JSBadgeView alloc]initWithParentView:parentView alignment:JSBadgeViewAlignmentTopRight];  //位置  self
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/14/OC/Lib/JSBadgeView/OC-Lib-JSBadgeView数字角标/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1679,13 +1562,19 @@
       
         
           
-            <p>#方法1</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">设置UILabel中的shadowColor和shadowOffset属性</div></pre></td></tr></table></figure>
-<p>问题:阴影没有模糊效果，并且无法设置阴影的宽度等等，比较具有局限性</p>
-<p>#方法2</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">NSShadow *shadow = [[NSShadow alloc]init];</div><div class="line">  shadow.shadowBlurRadius = 1;</div><div class="line">  shadow.shadowOffset = CGSizeMake(0,1);</div><div class="line">  shadow.shadowColor = [UIColor colorWithWhite:0 alpha:0.6];</div><div class="line">  NSAttributedString *attText =  [[NSAttributedString alloc]initWithString:[NSString stringWithFormat:@&quot;%@浏览过&quot;,!model.read_num?@&quot;0&quot;:model.read_num] attributes:@&#123;NSShadowAttributeName:shadow&#125;];</div><div class="line">  cell.skimLab.attributedText = attText;</div></pre></td></tr></table></figure>
-
-          
+          #方法1
+设置UILabel中的shadowColor和shadowOffset属性
+问题:阴影没有模糊效果，并且无法设置阴影的宽度等等，比较具有局限性
+#方法2
+NSShadow *shadow = [[NSShadow alloc]init];  shadow.shadowBlurRadius 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/14/OC/Kit/UILabel-Shadow文字阴影/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1838,9 +1727,16 @@
       
         
           
-            <p> 辈出有读 里代码</p>
+           辈出有读 里代码
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/13/OC/Grammar/iOS-RunTime-占位图/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1993,38 +1889,17 @@
       
         
           
-            <h1 id="内存检测工具Analyze"><a href="#内存检测工具Analyze" class="headerlink" title="内存检测工具Analyze"></a>内存检测工具Analyze</h1><h2 id="开启Analyze"><a href="#开启Analyze" class="headerlink" title="开启Analyze"></a>开启Analyze</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">xcode----product-----Analyze</div><div class="line">(快捷键:Shift + Cmd + B)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>iOS的分析工具可以发现编译中的warning，内存泄漏隐患，甚至还可以检查出logic上的问题<br>在自测阶段一定要解决Analyze发现的问题，可以避免出现严重的bug</p>
-</blockquote>
-<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><blockquote>
-<p>内存泄漏隐患提示</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Potential Leak of an object allocated on line ……</div></pre></td></tr></table></figure>
-<blockquote>
-<p>数据赋值隐患提示</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">The left operand of …… is a garbage value</div></pre></td></tr></table></figure>
-<blockquote>
-<p>对象引用隐患提示</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Reference-Counted object is used after it is released</div></pre></td></tr></table></figure>
-<h2 id="具体问题"><a href="#具体问题" class="headerlink" title="具体问题"></a>具体问题</h2><h3 id="重写UIViewController的生命周期方法没有调用父类的方法"><a href="#重写UIViewController的生命周期方法没有调用父类的方法" class="headerlink" title="重写UIViewController的生命周期方法没有调用父类的方法"></a>重写UIViewController的生命周期方法没有调用父类的方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">eg:</div><div class="line">  The ‘viewWillAppear:’ instance method in UIViewController subclass ‘YourViewController’ is missing a [super viewWillAppear:] call</div></pre></td></tr></table></figure>
-<p>&gt;</p>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"></div><div class="line"> -(<span class="keyword">void</span>)viewWillAppear:(<span class="built_in">BOOL</span>)animated&#123;</div><div class="line">	[superviewWillAppear:<span class="literal">YES</span>];</div><div class="line">	<span class="comment">//your code...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="初始化的变量并没有被使用"><a href="#初始化的变量并没有被使用" class="headerlink" title="初始化的变量并没有被使用"></a>初始化的变量并没有被使用</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">eg:</div><div class="line"> value stored to ‘YourVariable’ is never read</div></pre></td></tr></table></figure>
-<h3 id="变量多次初始化，其中的某些初始化的变量并没有使用过"><a href="#变量多次初始化，其中的某些初始化的变量并没有使用过" class="headerlink" title="变量多次初始化，其中的某些初始化的变量并没有使用过"></a>变量多次初始化，其中的某些初始化的变量并没有使用过</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">eg:</div><div class="line"> value stored to ‘YourVariable’during its initialization is never read</div></pre></td></tr></table></figure>
-<h2 id="重新父类的初始化方法时没有调用父类的初始化方法"><a href="#重新父类的初始化方法时没有调用父类的初始化方法" class="headerlink" title="重新父类的初始化方法时没有调用父类的初始化方法"></a>重新父类的初始化方法时没有调用父类的初始化方法</h2><blockquote>
-<p>错误代码示例：</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"> -(<span class="keyword">instancetype</span>)initWithFrame:(<span class="built_in">CGRect</span>)frame&#123;</div><div class="line">	<span class="keyword">if</span>(<span class="keyword">self</span>== [superinitWithFrame:frame])&#123;</div><div class="line">    &#125;</div><div class="line">   <span class="keyword">return</span> <span class="keyword">self</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>先调用父类的初始化方法，再自定义处理</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"> -(<span class="keyword">instancetype</span>)initWithFrame:(<span class="built_in">CGRect</span>)frame&#123;</div><div class="line">	<span class="keyword">self</span> = [superinitWithFrame:frame];</div><div class="line">	<span class="keyword">if</span> (<span class="keyword">self</span>) &#123;</div><div class="line">	&#125;</div><div class="line">	  <span class="keyword">return</span> <span class="keyword">self</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="属性标明错误-strong-retain-assign"><a href="#属性标明错误-strong-retain-assign" class="headerlink" title="属性标明错误(strong,retain,assign)"></a>属性标明错误(strong,retain,assign)</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">potential leak of an object</div></pre></td></tr></table></figure>
-<h2 id="变量未初始化就使用"><a href="#变量未初始化就使用" class="headerlink" title="变量未初始化就使用"></a>变量未初始化就使用</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">The left operand of ‘+’ is a garbage value</div></pre></td></tr></table></figure>
-          
+          内存检测工具Analyze开启Analyzexcode----product-----Analyze(快捷键:Shift + Cmd + B)
+
+iOS的分析工具可以发现编译中的warning，内存泄漏隐患，甚至还可以检查出logic上的问题在自测阶段一定要解决Analyze发现的问题，可以避免出现
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/13/OC/Func/iOS-Func-内存检测工具Analyze/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

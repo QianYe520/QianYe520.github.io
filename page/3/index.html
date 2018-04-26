@@ -392,22 +392,21 @@
       
         
           
-            <h1 id="坐标区域集合交互检测"><a href="#坐标区域集合交互检测" class="headerlink" title="坐标区域集合交互检测"></a>坐标区域集合交互检测</h1><h2 id="点与区域"><a href="#点与区域" class="headerlink" title="点与区域"></a>点与区域</h2><blockquote>
-<p>判断给定的点是否被一个CGRect包含 CGRectContainsPoint函数</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">BOOL</span> contains = <span class="built_in">CGRectContainsPoint</span>(<span class="built_in">CGRect</span> rect, <span class="built_in">CGPoint</span> point);</div></pre></td></tr></table></figure>
-<p>##区域包含</p>
-<blockquote>
-<p>判断一个CGRect是否包含再另一个CGRect里面,常用与测试给定的对象之间是否又重叠</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">BOOL</span> contains = <span class="built_in">CGRectContainsRect</span>(<span class="built_in">CGRect</span> rect1, <span class="built_in">CGRect</span> rect2);</div></pre></td></tr></table></figure>
-<h2 id="区域交集"><a href="#区域交集" class="headerlink" title="区域交集"></a>区域交集</h2><blockquote>
-<p>判断两个结构体是否有交错.可以用CGRectIntersectsRect</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">BOOL</span> contains = <span class="built_in">CGRectIntersectsRect</span>(<span class="built_in">CGRect</span> rect1, <span class="built_in">CGRect</span> rect2);</div></pre></td></tr></table></figure>
-<h2 id="边缘的坐标"><a href="#边缘的坐标" class="headerlink" title="边缘的坐标"></a>边缘的坐标</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">float</span> float_ = <span class="built_in">CGRectGetMaxX</span>(<span class="built_in">CGRect</span> rect);返回矩形右边缘的坐标</div><div class="line"><span class="built_in">CGRectGetMinY</span>返回矩形顶部的坐标</div><div class="line"><span class="built_in">CGRectGetMidX</span>返回矩形中心X的坐标</div><div class="line"><span class="built_in">CGRectGetMidY</span> 返回矩形中心Y的坐标</div><div class="line"><span class="built_in">CGRectGetMinX</span> 返回矩形左边缘的坐标</div><div class="line"><span class="built_in">CGRectGetMaxY</span> 返回矩形底部的坐标</div></pre></td></tr></table></figure>
+          坐标区域集合交互检测点与区域
+判断给定的点是否被一个CGRect包含 CGRectContainsPoint函数
 
-          
+BOOL contains = CGRectContainsPoint(CGRect rect, CGPoint point);
+##区域包含
+
+判断一个CGRect是否包含再另一个C
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/27/OC/Grammar/OC- 坐标区域集合交互检测/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -571,61 +570,19 @@
       
         
           
-            <h1 id="SCNMaterial"><a href="#SCNMaterial" class="headerlink" title="SCNMaterial"></a>SCNMaterial</h1><blockquote>
-<p>材质:几何体的外观,颜色，反光强度等等</p>
-</blockquote>
-<h2 id="①光照模型"><a href="#①光照模型" class="headerlink" title="①光照模型"></a>①光照模型</h2><blockquote>
-<p>提到材质就不得不提到光照模型。在现实生活中有太阳，日光灯等可以产生光的光源，光照射在物体上，不同的物体呈现出不同的质感，这都是很平常的<br>在计算机里，使用光源照射3D模型，产生出想要的质感就不是那么平常。在OpenGL中，我们需要使用Shader根据提供的材质参数和光照来计算每个像素的颜色，从而产生物体被光照射的感觉<br>想要了解Shader中是如何实现光照模型的基本光照和高级光照其中有涉及到lambert和blinn两种光照模型</p>
-</blockquote>
-<h3 id="❶Lambert"><a href="#❶Lambert" class="headerlink" title="❶Lambert"></a>❶Lambert</h3><ul>
-<li>使用SCNMaterial来表示材质</li>
-<li>SCNMaterial的一个属性lightingModel表示的就是使用何种光照模型。</li>
-<li>选择Lambert光照模型，并且设置如下属性，并且把material赋给球形几何体geometry</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">let</span> material = <span class="type">SCNMaterial</span>()</div><div class="line">material.lightingModel = .lambert</div><div class="line">material.diffuse.contents = <span class="type">UIColor</span>.red</div><div class="line">material.ambient.contents = <span class="type">UIColor</span>.<span class="keyword">init</span>(white: <span class="number">0.1</span>, alpha: <span class="number">1</span>)</div><div class="line">material.locksAmbientWithDiffuse = <span class="literal">false</span></div><div class="line">geometry.materials = [material]</div></pre></td></tr></table></figure>
-<p><img src="http://ot0mms4k8.bkt.clouddn.com/SCNMaterial-001.png" alt=""></p>
-<blockquote>
-<p>使用的灯光在(0,6,3)处，所以球体上面是照射到灯光的，下面是灰色的。这里涉及到了两个光照分量，diffuse和ambient<br>diffuse表示几何体的本色，所以灯光照射到的部分就是本色红色，注意用的灯光是白色的，如果灯光是其他颜色，则会和几何体的本色混合，也就是两个颜色进行3维向量乘法。那灯光照射不到的地方呢？就是ambient环境光<br>环境光的出现是为了让灯光照射不到的地方不会是全黑，你可以试试把环境光改成其他颜色，看看渲染结果如何<br>由于PBR光照模型中ambient和diffuse是锁定的，所以需要把locksAmbientWithDiffuse设置为false，否则ambient只能和diffuse取相同的值。关于PBR光照模型我会在后面的文章单独介绍。最后将material赋值给几何体，这里material是被放在一个数组里赋值的，如果你的几何体有多个element，系统会根据顺序为每个element提供不同的材质。第n个element会得到第n%材质个数个材质</p>
-<p>diffuse还和法线相关，法线和光线的夹脚越小，则越亮。法线就是上一篇代码里的normals<br>总的来说，Lambert模型就是最终颜色=光线和法线夹脚系数<em>光照颜色</em>本色diffuse + 环境色ambient</p>
-</blockquote>
-<h3 id="❷Blinn"><a href="#❷Blinn" class="headerlink" title="❷Blinn"></a>❷Blinn</h3><blockquote>
-<p>Blinn光照模型其实就是在lambert基础上加上高光，我们将光照模型修改为.blinn，再设置高光的属性</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> material.lightingModel = .blinn</div><div class="line">material.specular.contents = <span class="type">UIColor</span>.white</div><div class="line">material.shininess = <span class="number">1.0</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>当光线被反射后和我们视线的夹脚比较小的时候，在金属或者玻璃等反光材质下，会看到非常亮的区域，我们称之为高光。越是光滑的物体，高光区域会越小。我们用shininess来表示物体的表面有多闪（光滑），它的值从0到1。值越大，越光滑。下面是值为0.2和1的效果图。material.specular表示高光的颜色，不过最终呈现的高光颜色受material.specular和灯光的颜色共同影响，是它们颜色值的三维向量相乘</p>
-</blockquote>
-<p><img src="http://ot0mms4k8.bkt.clouddn.com/SCNMaterial-002.png" alt=""></p>
-<p><img src="http://ot0mms4k8.bkt.clouddn.com/SCNMaterial-002-2.png" alt=""></p>
-<h2 id="②材质参数的取值"><a href="#②材质参数的取值" class="headerlink" title="②材质参数的取值"></a>②材质参数的取值</h2><blockquote>
-<p>上面我只给材质的参数赋予了颜色值，除了颜色，还可以赋予贴图，或者说是图片<br>diffuse和specular都是可以接受图片对象的。比如给diffuse赋值一张地球的贴图。</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">material.diffuse.contents = <span class="type">UIImage</span>.<span class="keyword">init</span>(named: <span class="string">"earth.jpg"</span>)</div></pre></td></tr></table></figure>
-<p><img src="http://ot0mms4k8.bkt.clouddn.com/SCNMaterial-003.png" alt=""></p>
-<blockquote>
-<p>效果如下</p>
-</blockquote>
-<p><img src="http://ot0mms4k8.bkt.clouddn.com/SCNMaterial-003-2.png" alt=""></p>
-<blockquote>
-<p>specular接受的贴图就比较特殊，是一张黑白两色的图。图中黑色对应的地方将没有高光</p>
-</blockquote>
-<p><img src="" alt="004-1"></p>
-<blockquote>
-<p>使用了specular贴图<br>显大海部分高光</p>
-</blockquote>
-<p><img src="" alt="004-2"></p>
-<blockquote>
-<p>没有使用specular贴图</p>
-</blockquote>
-<p><img src="" alt="004-3"></p>
-<blockquote>
-<p>不管是什么贴图，都是需要几何体提供UV数据的，也就是所谓的贴图坐标，在上一篇的代码中有涉及到</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">let</span> uvs: [<span class="type">CGPoint</span>] = [</div><div class="line">        <span class="type">CGPoint</span>(x: <span class="number">0</span>, y: <span class="number">1</span>),</div><div class="line">        <span class="type">CGPoint</span>(x: <span class="number">0</span>, y: <span class="number">0</span>),</div><div class="line">        <span class="type">CGPoint</span>(x: <span class="number">1</span>, y: <span class="number">0</span>),</div><div class="line">        <span class="type">CGPoint</span>(x: <span class="number">1</span>, y: <span class="number">1</span>),</div><div class="line">        ]</div><div class="line">    <span class="keyword">let</span> uvSource = <span class="type">SCNGeometrySource</span>.<span class="keyword">init</span>(textureCoordinates:</div><div class="line">uvs)</div></pre></td></tr></table></figure>
-<p>系统提供的球形几何体已经有了UV数据，所以才可以轻松的进行贴图，关于贴图的更多信息，会在后面的文章中介绍，或者你也可以去看我写的基于OpenGL的贴图文章。</p>
-<h2 id="③"><a href="#③" class="headerlink" title="③"></a>③</h2><h2 id="④"><a href="#④" class="headerlink" title="④"></a>④</h2><h2 id="⑤"><a href="#⑤" class="headerlink" title="⑤"></a>⑤</h2><p><a href="https://www.jianshu.com/p/d71c1bfee6d3" target="_blank" rel="external">https://www.jianshu.com/p/d71c1bfee6d3</a></p>
+          SCNMaterial
+材质:几何体的外观,颜色，反光强度等等
 
-          
+①光照模型
+提到材质就不得不提到光照模型。在现实生活中有太阳，日光灯等可以产生光的光源，光照射在物体上，不同的物体呈现出不同的质感，这都是很平常的在计算机里，使用光源照射3D模型，产生出想要的质感就不是那么平常。在OpenGL中，我们
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/15/SceneKit/Grammar/SCNMaterial-材质/SCNMaterial-材质-Base/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -789,61 +746,24 @@
       
         
           
-            <h1 id="SCNCamera"><a href="#SCNCamera" class="headerlink" title="SCNCamera"></a>SCNCamera</h1><blockquote>
-<p>父类为NSObject</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">```</div><div class="line"></div><div class="line">&gt;初始化的方法</div><div class="line"></div><div class="line">```swift </div><div class="line"> + (instancetype)camera;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>照相机对象设置名字</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">@property(nonatomic, copy, nullable) <span class="type">NSString</span> *name;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>X轴方向的视角(默认为60度)</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">@property(nonatomic) double xFov;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>Y轴方向的视角(默认为60度)</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">@property(nonatomic) double yFov;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>照相机能照到的最近距离(默认值为1)</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">@property(nonatomic) double zNear;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>照相机能照到的最远距离(默认值为100)</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">@property(nonatomic) double zFar;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>让照相机自动调节最近和最远距离<br>(默认为关闭,开启后,没有最近和最远的限制)</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">@property(nonatomic) <span class="type">BOOL</span> automaticallyAdjustsZRange <span class="type">NS_AVAILABLE</span>(<span class="number">10_9</span>, <span class="number">8_0</span>);</div></pre></td></tr></table></figure>
-<blockquote>
-<p>是否开启正投影模式<br>正投影就是说物体在远离或者靠近照相机是,大小保持不变</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">@property(nonatomic) <span class="type">BOOL</span> usesOrthographicProjection;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>设置正投影的比例 (默认为1)<br>这里设置的比例越大,显示的图像越小,你可以这样理解scale = 屏幕的大小:图片的大小</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">@property(nonatomic) double orthographicScale <span class="type">NS_AVAILABLE</span>(<span class="number">10_9</span>, <span class="number">8_0</span>);</div></pre></td></tr></table></figure>
-<blockquote>
-<p>设置焦距(默认为10)</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">@property(nonatomic) <span class="type">CGFloat</span> focalDistance <span class="type">NS_AVAILABLE</span>(<span class="number">10_9</span>, <span class="number">8_0</span>);</div></pre></td></tr></table></figure>
-<blockquote>
-<p>设置聚焦时，模糊物体模糊度(默认为0)</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">@property(nonatomic) <span class="type">CGFloat</span> focalBlurRadius <span class="type">NS_AVAILABLE</span>(<span class="number">10_9</span>, <span class="number">8_0</span>);</div></pre></td></tr></table></figure>
-<blockquote>
-<p>决定进入焦点和离开焦点的过渡速度</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">@property(nonatomic) <span class="type">CGFloat</span> aperture <span class="type">NS_AVAILABLE</span>(<span class="number">10_9</span>, <span class="number">8_0</span>);</div></pre></td></tr></table></figure>
-<blockquote>
-<p>用于检测节点碰撞使用</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">@property(nonatomic) <span class="type">NSUInteger</span> categoryBitMask <span class="type">NS_AVAILABLE</span>(<span class="number">10_10</span>, <span class="number">8_0</span>);</div></pre></td></tr></table></figure>
-<p><a href="http://aes.jypc.org/?p=15368" target="_blank" rel="external">参考资料</a></p>
+          SCNCamera
+父类为NSObject
 
-          
+```&gt;初始化的方法```swift  + (instancetype)camera;
+
+照相机对象设置名字
+
+@property(nonatomic, copy, nullable) NSString *name;
+
+X轴方向的视角(默认为60度
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/05/SceneKit/Grammar/SCNCamera-相机/SCNCamera-相机-文档/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -985,12 +905,19 @@
       
         
           
-            <p><a href="https://code.i-harness.com/zh-CN/tagged/scenekit" target="_blank" rel="external"> 网速卡。里面文章展不开</a></p>
-<p> <a href="https://www.jianshu.com/p/079a05381f02" target="_blank" rel="external">也就看看而已</a><br> <a href="https://juejin.im/post/5a322530f265da43062ac948" target="_blank" rel="external">参考学习2</a></p>
-<p><a href="https://juejin.im/user/5a311af051882554bd510dd0" target="_blank" rel="external">只能学习而已，太难</a></p>
-<p><a href="https://gitee.com/Roc.Tian/Blog_DEMO" target="_blank" rel="external">没找到博客</a></p>
+           网速卡。里面文章展不开
+ 也就看看而已 参考学习2
+只能学习而已，太难
+没找到博客
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/05/SceneKit/Reference/Reference-资料/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1154,9 +1081,16 @@
       
         
           
-            <p><a href="https://code.i-harness.com/zh-CN/q/18775f4" target="_blank" rel="external">参考资料</a></p>
+          参考资料
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/05/SceneKit/Grammar/SCNCamera-相机/SCNCamera-相机-旋转SCNCamera节点/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1309,69 +1243,34 @@
       
         
           
-            <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><blockquote>
-<p>每一个Observable的实例都是一个序列<br>Observable序列相比于Swift序列的关键优势点在于它能够异步地接收元素</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Observable(ObservableType)</td>
-<td>等效于Sequence</td>
-<td></td>
-</tr>
-<tr>
-<td>observableType.subscribe(_:)</td>
-<td>方法等效于Sequence.makeIterator()</td>
-<td></td>
-</tr>
-<tr>
-<td>ObservableType.subscribe(_:)</td>
-<td>接收一个观察者ObserverType参数,它将被订阅自动接收由可观察到的序列事件和元素，而不是在返回的生成器上手动调用next()</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>如果一个Observable发出一个next事件(Event.next(Element)),它还能够继续发出更多的事件</li>
-<li>如果一个Observable发出一个error事件(Event.error(ErrorType))或者一个completed事件(Event.completed)，那么这个Observable序列就不能给订阅者发送其他的事件了</li>
-</ul>
-<h1 id="Observables-and-Observers-又名subscribers-–-订阅者"><a href="#Observables-and-Observers-又名subscribers-–-订阅者" class="headerlink" title="Observables and Observers(又名subscribers – 订阅者)"></a>Observables and Observers(又名subscribers – 订阅者)</h1><blockquote>
-<p>除非有订阅者，否则Observable不会执行它们的闭包<br>没有订阅者订阅,Observable的闭包将不会被执行</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">_ = Observable&lt;String&gt;.create(&#123; (observingString) -&gt; Disposable in</div><div class="line">      print(&quot;the code will not be executed&quot;)</div><div class="line">      observingString.onNext(&quot;😁&quot;)</div><div class="line">      observingString.onCompleted()</div><div class="line">      return Disposables.create()</div><div class="line">  &#125;)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>有订阅者订阅,Observable的闭包将会被执行</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="number">_</span> = <span class="type">Observable</span>&lt;<span class="type">String</span>&gt;.create(&#123; (observingString) -&gt; <span class="type">Disposable</span> <span class="keyword">in</span></div><div class="line">       <span class="built_in">print</span>(<span class="string">"the code will be executed"</span>)</div><div class="line">       observingString.onNext(<span class="string">"😁"</span>)</div><div class="line">       observingString.onCompleted()</div><div class="line">       <span class="keyword">return</span> <span class="type">Disposables</span>.create()</div><div class="line">   &#125;).subscribe(&#123; (event) <span class="keyword">in</span></div><div class="line">       <span class="built_in">print</span>(event)</div><div class="line">   &#125;)</div></pre></td></tr></table></figure>
-<ul>
-<li>subscribe(_:)返回一个一次性的实例，该实例表示一个可使用的资源，如订阅。在前面的简单示例中，它被忽略了，但是应该正常地处理它。这通常意味着将它添加到一个DisposeBag实例中</li>
-</ul>
-<h1 id="Creating-and-Subscribing-to-Observables"><a href="#Creating-and-Subscribing-to-Observables" class="headerlink" title="Creating and Subscribing to Observables"></a>Creating and Subscribing to Observables</h1><blockquote>
-<p>有几种方式创建和订阅Observables:</p>
-</blockquote>
-<h2 id="never"><a href="#never" class="headerlink" title="never"></a>never</h2><blockquote>
-<p>创建一个永不终止且不发出任何事件的序列。更多详情</p>
-</blockquote>
-<pre><code>
-</code></pre><p><a href="http://www.cnblogs.com/scott-mr/p/7211316.html" target="_blank" rel="external"></a></p>
+          概念
+每一个Observable的实例都是一个序列Observable序列相比于Swift序列的关键优势点在于它能够异步地接收元素
 
-          
+
+
+
+
+
+
+
+
+
+
+Observable(ObservableType)
+等效于Sequence
+
+
+
+observableType.subscribe(_:)
+方法
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/01/RxSwift/Grammar/Observables/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1513,80 +1412,19 @@
       
         
           
-            <p>RxSwift 支持的操作符</p>
-<p>在某些情况，由于不同平台/实现方式，相同的操作符有多个别名，有时相同的操作命名也不一样，有些是因为历史的原因，但是还有一些是因为语言的预留关键字。</p>
-<p>当缺少社区共识的时候，RxSwift 通常会包含多个别名。</p>
-<p>默认情况下，操作符是没有状态的。<br>创建 Observable</p>
-<pre><code>asObservable
-create
-deferred
-empty
-error
-toObservable (array)
-interval
-never
-just
-of
-range
-repeatElement
-timer
-</code></pre><p>变换 Observable</p>
-<pre><code>buffer
-flatMap
-flatMapFirst
-flatMapLatest
-map
-scan
-window
-</code></pre><p>过滤 Observable</p>
-<pre><code>debounce / throttle
-distinctUntilChanged`
-elementAt
-filter
-sample
-skip
-take
-takeLast
-single
-</code></pre><p>联合 Observable</p>
-<pre><code>merge
-startWith
-switchLatest
-combineLatest
-zip
-</code></pre><p>错误处理操作符</p>
-<pre><code>catch
-retry
-retryWhen
-</code></pre><p>Observable Utility Operators</p>
-<pre><code>delaySubscription
-do / doOnNext
-observeOn / observeSingleOn
-subscribe
-subscribeOn
-timeout
-using
-debug
-</code></pre><p>条件和 Bool 操作符</p>
-<pre><code>amb
-skipWhile
-skipUntil
-takeUntil
-takeWhile
-</code></pre><p>数学和聚合操作符</p>
-<pre><code>concat
-reduce / aggregate
-toArray
-</code></pre><p>连接 Observable 操作符</p>
-<pre><code>multicast
-publish
-refCount
-replay
-shareReplay
-创建新的操作符也是相当简单的。
-</code></pre><p><a href="http://blog.csdn.net/yangmeng13930719363/article/details/51905739" target="_blank" rel="external"></a></p>
-
-          
+          RxSwift 支持的操作符
+在某些情况，由于不同平台/实现方式，相同的操作符有多个别名，有时相同的操作命名也不一样，有些是因为历史的原因，但是还有一些是因为语言的预留关键字。
+当缺少社区共识的时候，RxSwift 通常会包含多个别名。
+默认情况下，操作符是没有状态的。创建 Observable
+a
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/31/RxSwift/Grammar/支持的操作符/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1739,77 +1577,19 @@ shareReplay
       
         
           
-            <h1 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h1><h2 id="①never"><a href="#①never" class="headerlink" title="①never"></a>①never</h2><blockquote>
-<p>never就是创建一个sequence，但是<strong>不发出任何事件信号</strong></p>
-</blockquote>
-<p><img src="http://ozr735s7e.bkt.clouddn.com/RxSwift-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5001.png" alt="001"></p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"></div><div class="line"><span class="keyword">let</span> neverSequence = <span class="type">Observable</span>&lt;<span class="type">String</span>&gt;.never()</div><div class="line"> </div><div class="line"><span class="keyword">let</span> neverSequenceSubscription = neverSequence</div><div class="line"> .subscribe &#123; <span class="number">_</span> <span class="keyword">in</span></div><div class="line">  <span class="built_in">print</span>(<span class="string">"This will never be printed"</span>)</div><div class="line"> &#125;.addDisposableTo(disposeBag)</div><div class="line"></div><div class="line"><span class="comment">// 结果是什么都不打印y</span></div></pre></td></tr></table></figure>
-<h2 id="②empty"><a href="#②empty" class="headerlink" title="②empty"></a>②empty</h2><blockquote>
-<p>empty就是创建一个空的sequence,只能发出一个completed事件</p>
-</blockquote>
-<p><img src="http://ozr735s7e.bkt.clouddn.com/RxSwift-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5002.png" alt="002"></p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"></div><div class="line"><span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.empty()</div><div class="line">    .subscribe &#123; event <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(event)</div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">completed</div></pre></td></tr></table></figure>
-<h2 id="③just"><a href="#③just" class="headerlink" title="③just"></a>③just</h2><blockquote>
-<p>just是创建一个sequence只能发出一种特定的事件，能正常结束</p>
-</blockquote>
-<p><img src="http://ozr735s7e.bkt.clouddn.com/RxSwift-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5003.png" alt="003"></p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">    </div><div class="line"><span class="type">Observable</span>.just(<span class="string">"🔴"</span>)</div><div class="line">    .subscribe &#123; event <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(event)</div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">next(🔴)</div><div class="line">completed</div></pre></td></tr></table></figure>
-<h2 id="④of"><a href="#④of" class="headerlink" title="④of"></a>④of</h2><blockquote>
-<p>of是创建一个sequence能发出很多种事件信号</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">    </div><div class="line"><span class="type">Observable</span>.of(<span class="string">"🐶"</span>, <span class="string">"🐱"</span>, <span class="string">"🐭"</span>, <span class="string">"🐹"</span>)</div><div class="line">    .subscribe(onNext: &#123; element <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(element)</div><div class="line">    &#125;)</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">🐶</div><div class="line">🐱</div><div class="line">🐭</div><div class="line">🐹</div></pre></td></tr></table></figure>
-<blockquote>
-<p>把上面的onNext:去掉的话，结果会是这样子，也正好对应了我们subscribe中，subscribe只监听事件</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  next(🐶)</div><div class="line">next(🐱)</div><div class="line">next(🐭)</div><div class="line">next(🐹)</div><div class="line">completed</div></pre></td></tr></table></figure>
-<h2 id="⑤from"><a href="#⑤from" class="headerlink" title="⑤from"></a>⑤from</h2><blockquote>
-<p>from就是从集合中创建sequence，例如数组，字典或者Set</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">    </div><div class="line"><span class="type">Observable</span>.from([<span class="string">"🐶"</span>, <span class="string">"🐱"</span>, <span class="string">"🐭"</span>, <span class="string">"🐹"</span>])</div><div class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
-<h2 id="⑥create"><a href="#⑥create" class="headerlink" title="⑥create"></a>⑥create</h2><blockquote>
-<p>自定义可观察的sequence<br>create操作符传入一个观察者observer，然后调用observer的onNext，onCompleted和onError方法。返回一个可观察的obserable序列</p>
-</blockquote>
-<p><img src="http://ozr735s7e.bkt.clouddn.com/RxSwift-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5006.png" alt="006"></p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">    </div><div class="line"><span class="keyword">let</span> myJust = &#123; (element: <span class="type">String</span>) -&gt; <span class="type">Observable</span>&lt;<span class="type">String</span>&gt; <span class="keyword">in</span></div><div class="line">    <span class="keyword">return</span> <span class="type">Observable</span>.create &#123; observer <span class="keyword">in</span></div><div class="line">        observer.on(.next(element))</div><div class="line">        observer.on(.completed)</div><div class="line">        <span class="keyword">return</span> <span class="type">Disposables</span>.create()</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">    </div><div class="line">myJust(<span class="string">"🔴"</span>)</div><div class="line">    .subscribe &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">next(🔴)</div><div class="line">completed</div></pre></td></tr></table></figure>
-<h2 id="⑦range"><a href="#⑦range" class="headerlink" title="⑦range"></a>⑦range</h2><blockquote>
-<p>range就是创建一个sequence，他会发出这个范围中的从开始到结束的所有事件</p>
-</blockquote>
-<p><img src="http://ozr735s7e.bkt.clouddn.com/RxSwift-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5007.png" alt="007"></p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="type">Observable</span>.range(start: <span class="number">1</span>, <span class="built_in">count</span>: <span class="number">10</span>)</div><div class="line"> .subscribe &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line"> .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  next(<span class="number">1</span>)</div><div class="line">  next(<span class="number">2</span>)</div><div class="line">next(<span class="number">3</span>)</div><div class="line">next(<span class="number">4</span>)</div><div class="line">next(<span class="number">5</span>)</div><div class="line">next(<span class="number">6</span>)</div><div class="line">next(<span class="number">7</span>)</div><div class="line">next(<span class="number">8</span>)</div><div class="line">next(<span class="number">9</span>)</div><div class="line">next(<span class="number">10</span>)</div><div class="line">completed</div></pre></td></tr></table></figure>
-<h2 id="⑧repeatElement"><a href="#⑧repeatElement" class="headerlink" title="⑧repeatElement"></a>⑧repeatElement</h2><blockquote>
-<p>创建一个sequence，发出特定的事件n次</p>
-</blockquote>
-<p><img src="http://ozr735s7e.bkt.clouddn.com/RxSwift-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5008.png" alt="008"></p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">    </div><div class="line"><span class="type">Observable</span>.repeatElement(<span class="string">"🔴"</span>)</div><div class="line">    .take(<span class="number">3</span>)</div><div class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">🔴</div><div class="line">🔴</div><div class="line">🔴</div></pre></td></tr></table></figure>
-<h2 id="⑨generate"><a href="#⑨generate" class="headerlink" title="⑨generate"></a>⑨generate</h2><blockquote>
-<p>generate是创建一个可观察sequence，当初始化的条件为true的时候，他就会发出所对应的事件</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">    </div><div class="line"><span class="type">Observable</span>.generate(</div><div class="line">        initialState: <span class="number">0</span>,</div><div class="line">        condition: &#123; $<span class="number">0</span> &lt; <span class="number">3</span> &#125;,</div><div class="line">        iterate: &#123; $<span class="number">0</span> + <span class="number">1</span> &#125;</div><div class="line">    )</div><div class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">0</div><div class="line">1</div><div class="line">2</div></pre></td></tr></table></figure>
-<h2 id="⑩-deferred"><a href="#⑩-deferred" class="headerlink" title="⑩ deferred"></a>⑩ deferred</h2><blockquote>
-<p>deferred会为每一为订阅者observer创建一个新的可观察序列<br>下面例子中每次进行subscribe的时候都会去创建一个新的deferredSequence，所以Emitting会打印两遍</p>
-</blockquote>
-<p><img src="http://ozr735s7e.bkt.clouddn.com/RxSwift-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5010.png" alt="010"></p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="keyword">var</span> <span class="built_in">count</span> = <span class="number">1</span></div><div class="line">    </div><div class="line"><span class="keyword">let</span> deferredSequence = <span class="type">Observable</span>&lt;<span class="type">String</span>&gt;.deferred &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Creating \(count)"</span>)</div><div class="line">    <span class="built_in">count</span> += <span class="number">1</span></div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="type">Observable</span>.create &#123; observer <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(<span class="string">"Emitting..."</span>)</div><div class="line">        observer.onNext(<span class="string">"🐶"</span>)</div><div class="line">        observer.onNext(<span class="string">"🐱"</span>)</div><div class="line">        observer.onNext(<span class="string">"🐵"</span>)</div><div class="line">        <span class="keyword">return</span> <span class="type">Disposables</span>.create()</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">    </div><div class="line">deferredSequence</div><div class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line">    </div><div class="line">deferredSequence</div><div class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">  Creating 1</div><div class="line">Emitting...</div><div class="line">🐶</div><div class="line">🐱</div><div class="line">🐵</div><div class="line">Creating 2</div><div class="line">Emitting...</div><div class="line">🐶</div><div class="line">🐱</div><div class="line">🐵</div></pre></td></tr></table></figure>
-<h2 id="⑪error"><a href="#⑪error" class="headerlink" title="⑪error"></a>⑪error</h2><blockquote>
-<p>创建一个可观察序列，但不发出任何正常的事件，只发出error事件并结束</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">    </div><div class="line"><span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.error(<span class="type">TestError</span>.test)</div><div class="line">    .subscribe &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">error(test)</div></pre></td></tr></table></figure>
-<h2 id="⑫doOn"><a href="#⑫doOn" class="headerlink" title="⑫doOn"></a>⑫doOn</h2><blockquote>
-<p>doOn我感觉就是在直接onNext处理时候，先执行某个方法，doOnNext(<em> :)方法就是在subscribe(onNext:)前调用，doOnCompleted(</em>:)就是在subscribe(onCompleted:)前面调用的</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">    </div><div class="line"><span class="type">Observable</span>.of(<span class="string">"🍎"</span>, <span class="string">"🍐"</span>, <span class="string">"🍊"</span>, <span class="string">"🍋"</span>)</div><div class="line">    .<span class="keyword">do</span>(onNext: &#123; <span class="built_in">print</span>(<span class="string">"Intercepted:"</span>, $<span class="number">0</span>) &#125;, onError: &#123; <span class="built_in">print</span>(<span class="string">"Intercepted error:"</span>, $<span class="number">0</span>) &#125;, onCompleted: &#123; <span class="built_in">print</span>(<span class="string">"Completed"</span>)  &#125;)</div><div class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;,onCompleted: &#123; <span class="built_in">print</span>(<span class="string">"结束"</span>) &#125;)</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
-<p><a href="http://blog.csdn.net/xwl198937/article/details/50823558" target="_blank" rel="external">资料</a></p>
+          基本使用①never
+never就是创建一个sequence，但是不发出任何事件信号
 
-          
+
+let disposeBag = DisposeBag()let neverSequence = Observable&lt;String&gt;.never() let neverSequenceSubscr
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/31/RxSwift/Grammar/创建Observable对象的方法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1973,11 +1753,15 @@ shareReplay
       
         
           
-            <h1 id="PPNetworkHelper扩展"><a href="#PPNetworkHelper扩展" class="headerlink" title="PPNetworkHelper扩展"></a>PPNetworkHelper扩展</h1><h2 id="Delete"><a href="#Delete" class="headerlink" title="Delete"></a>Delete</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="keyword">void</span>)httpDeleteWithURLStr:(<span class="built_in">NSString</span> *)urlStr</div><div class="line">                    paramDic:(<span class="built_in">NSDictionary</span> *)paramDic</div><div class="line">                     noLoginToken:(<span class="built_in">NSString</span> *)noLoginToken</div><div class="line">                      finishedBlock:(<span class="keyword">void</span>(^)(<span class="keyword">id</span> responseObject))finishedBlock</div><div class="line">                     errorBlock:(<span class="keyword">void</span>(^)(<span class="built_in">NSError</span> *error))errorBlock&#123;</div><div class="line">    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];</div><div class="line">    <span class="comment">//后台需要增加application/x-www-form-urlencoded</span></div><div class="line">    manager.responseSerializer.acceptableContentTypes = [<span class="built_in">NSSet</span> setWithObjects:<span class="string">@"text/html"</span>,</div><div class="line">                                                         <span class="string">@"application/json"</span>,</div><div class="line">                                                         <span class="string">@"text/javascript"</span>,</div><div class="line">                                                         <span class="string">@"text/json"</span>,</div><div class="line">                                                         <span class="string">@"text/plain"</span>,</div><div class="line">                                                         <span class="string">@"application/x-www-form-urlencoded"</span>,<span class="literal">nil</span>];</div><div class="line">    <span class="comment">// 设置请求头</span></div><div class="line">    [manager.requestSerializer setValue:<span class="string">@"application/json"</span></div><div class="line">                     forHTTPHeaderField:<span class="string">@"Accept"</span>];</div><div class="line"></div><div class="line"><span class="comment">//      [manager.requestSerializer setValue:authorization forHTTPHeaderField:@"Authorization"];</span></div><div class="line">    [manager.requestSerializer setValue:noLoginToken forHTTPHeaderField:<span class="string">@"noLoginToken"</span>];</div><div class="line">    [manager DELETE:urlStr</div><div class="line">      parameters:paramDic</div><div class="line">         success:^(<span class="built_in">NSURLSessionDataTask</span> * _Nonnull task, <span class="keyword">id</span> _Nullable responseObject) &#123;</div><div class="line">               finishedBlock(responseObject);</div><div class="line">         &#125;</div><div class="line">         failure:^(<span class="built_in">NSURLSessionDataTask</span> * _Nullable task, <span class="built_in">NSError</span> * _Nonnull error) &#123;</div><div class="line">             finishedBlock(error);</div><div class="line">         &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="Put"><a href="#Put" class="headerlink" title="Put"></a>Put</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">+ (void)httpPutWithURLStr:(NSString *)urlStr</div><div class="line">                    paramDic:(NSDictionary *)paramDic</div><div class="line">                noLoginToken:(NSString *)noLoginToken</div><div class="line">               finishedBlock:(void(^)(id responseObject))finishedBlock</div><div class="line">                  errorBlock:(void(^)(NSError *error))errorBlock&#123;</div><div class="line">    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];</div><div class="line">    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@&quot;text/html&quot;,</div><div class="line">                                                         @&quot;application/json&quot;,</div><div class="line">                                                         @&quot;text/javascript&quot;,</div><div class="line">                                                         @&quot;text/json&quot;,</div><div class="line">                                                         @&quot;text/plain&quot;,</div><div class="line">                                                         @&quot;application/x-www-form-urlencoded&quot;,nil];</div><div class="line">    // 设置请求头</div><div class="line">    [manager.requestSerializer setValue:@&quot;application/json&quot;</div><div class="line">                     forHTTPHeaderField:@&quot;Accept&quot;];</div><div class="line">    //[manager.requestSerializer setValue:authorization forHTTPHeaderField:@&quot;Authorization&quot;];</div><div class="line">    [manager.requestSerializer setValue:noLoginToken forHTTPHeaderField:@&quot;noLoginToken&quot;];</div><div class="line">    [manager PUT:urlStr</div><div class="line">      parameters:paramDic</div><div class="line">         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) &#123;</div><div class="line">                        finishedBlock(responseObject);</div><div class="line">    &#125;</div><div class="line">         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) &#123;</div><div class="line">                 finishedBlock(error);</div><div class="line">    &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="需要修改AFNetworking可接收的Content-Type"><a href="#需要修改AFNetworking可接收的Content-Type" class="headerlink" title="需要修改AFNetworking可接收的Content-Type"></a>需要修改AFNetworking可接收的Content-Type</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"> 修改AFNetworking可接收的Content-Type，前往AFNetworking源代码目录找到AFURLResponseSerialization.m文件将里面的代码：</div><div class="line">self.acceptableContentTypes =[NSSetsetWithObjects:@&quot;application/json&quot;,@&quot;text/json&quot;,@&quot;text/javascript&quot;,nil];</div><div class="line"></div><div class="line">修改为：</div><div class="line">self.acceptableContentTypes =[NSSetsetWithObjects:@&quot;application/json&quot;,@&quot;text/json&quot;,@&quot;text/javascript&quot;,@&quot;text/html&quot;,nil];</div><div class="line"></div><div class="line">PPNetworkHelper里也可以修改</div></pre></td></tr></table></figure>
-
-          
+          PPNetworkHelper扩展Delete+ (void)httpDeleteWithURLStr:(NSString *)urlStr                    paramDic:(NSDictionary *)paramDic                     noLogi
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/23/OC/Lib/PPNetworkHelper/PPNetworkHelper扩展/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2141,8 +1925,15 @@ shareReplay
       
         
           
-            
           
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/20/Swift/Demo/Swift-Demo-TableView双联表/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

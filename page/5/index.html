@@ -370,84 +370,27 @@
       
         
           
-            <h1 id="SCNScene-场景"><a href="#SCNScene-场景" class="headerlink" title="SCNScene-场景"></a>SCNScene-场景</h1><h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><blockquote>
-<p>SCNScene : NSObject</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="keyword">instancetype</span>)scene;</div></pre></td></tr></table></figure>
-<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><blockquote>
-<p>根节点</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>) <span class="built_in">SCNNode</span> *rootNode;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>物理世界</p>
-</blockquote>
-<ul>
-<li>每个场景自动创建一个物理世界对象来模拟场景中的节点物理</li>
-<li>使用此属性可访问场景的全局物理属性，例如重力</li>
-<li>要将物理添加到特定的节点，请参阅物理体</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>) <span class="built_in">SCNPhysicsWorld</span> *physicsWorld</div></pre></td></tr></table></figure>
-<blockquote>
-<p>背景（材料属性）</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>) <span class="built_in">SCNMaterialProperty</span> *background</div></pre></td></tr></table></figure>
-<blockquote>
-<p>照明环境</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>) <span class="built_in">SCNMaterialProperty</span> *lightingEnvironment</div></pre></td></tr></table></figure>
-<blockquote>
-<p>雾开始距离</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>) <span class="built_in">CGFloat</span> fogStartDistance ;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>雾结束距离</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>) <span class="built_in">CGFloat</span> fogEndDistance ;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>雾密度指数</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>) <span class="built_in">CGFloat</span> fogDensityExponent API_AVAILABLE(macos(<span class="number">10.10</span>));</div></pre></td></tr></table></figure>
-<blockquote>
-<p>雾的颜色</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">retain</span>) <span class="keyword">id</span> fogColor ;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>停顿</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">getter</span>=isPaused) <span class="built_in">BOOL</span> paused</div></pre></td></tr></table></figure>
-<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><blockquote>
-<p>关键属性</p>
-</blockquote>
-<ul>
-<li>abstract:检索场景属性</li>
-<li>指定要读取的属性的NSString对象</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="keyword">nullable</span> <span class="keyword">id</span>)attributeForKey:(<span class="built_in">NSString</span> *)key;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>attributeForKey</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)setAttribute:(<span class="keyword">nullable</span> <span class="keyword">id</span>)attribute forKey:(<span class="built_in">NSString</span> *)key;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>name</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="keyword">nullable</span> <span class="keyword">instancetype</span>)sceneNamed:(<span class="built_in">NSString</span> *)name</div></pre></td></tr></table></figure>
-<blockquote>
-<p>name </p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="keyword">nullable</span> <span class="keyword">instancetype</span>)sceneNamed:(<span class="built_in">NSString</span> *)name inDirectory:(<span class="keyword">nullable</span> <span class="built_in">NSString</span> *)directory options:(<span class="keyword">nullable</span> <span class="built_in">NSDictionary</span>&lt;<span class="built_in">SCNSceneSourceLoadingOption</span>, <span class="keyword">id</span>&gt; *)options ;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>url</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="keyword">nullable</span> <span class="keyword">instancetype</span>)sceneWithURL:(<span class="built_in">NSURL</span> *)url options:(<span class="keyword">nullable</span> <span class="built_in">NSDictionary</span>&lt;<span class="built_in">SCNSceneSourceLoadingOption</span>, <span class="keyword">id</span>&gt; *)options error:(<span class="built_in">NSError</span> **)error;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>writeToURL</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">BOOL</span>)writeToURL:(<span class="built_in">NSURL</span> *)url options:(<span class="keyword">nullable</span> <span class="built_in">NSDictionary</span>&lt;<span class="built_in">NSString</span> *, <span class="keyword">id</span>&gt; *)options delegate:(<span class="keyword">nullable</span> <span class="keyword">id</span> &lt;<span class="built_in">SCNSceneExportDelegate</span>&gt;)delegate progressHandler:(<span class="keyword">nullable</span> <span class="built_in">SCNSceneExportProgressHandler</span>)progressHandler;</div></pre></td></tr></table></figure>
-<h3 id="代理协议"><a href="#代理协议" class="headerlink" title="代理协议"></a>代理协议</h3><blockquote>
-<p>SCNSceneExportDelegate</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="keyword">nullable</span> <span class="built_in">NSURL</span> *)writeImage:(<span class="built_in">UIImage</span> *)image withSceneDocumentURL:(<span class="built_in">NSURL</span> *)documentURL originalImageURL:(<span class="keyword">nullable</span> <span class="built_in">NSURL</span> *)originalImageURL;</div></pre></td></tr></table></figure>
-          
+          SCNScene-场景初始化
+SCNScene : NSObject
+
++ (instancetype)scene;
+属性
+根节点
+
+@property(nonatomic, readonly) SCNNode *rootNode;
+
+物理世界
+
+
+每个场景自动创建一个物理世界对象来模拟场景中的节点
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/17/SceneKit/Grammar/SCNScene-场景/SCNScene/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -589,68 +532,35 @@
       
         
           
-            <h1 id="SCNLight-光源"><a href="#SCNLight-光源" class="headerlink" title="SCNLight 光源"></a>SCNLight 光源</h1><blockquote>
-<p>光源可以附加到节点上，在渲染场景中提供着色</p>
-</blockquote>
-<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><blockquote>
-<p>初始化</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">+ (instancetype)light;</div></pre></td></tr></table></figure>
-<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><blockquote>
-<p>type</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">SCNLightType</span> type;</div></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>SCNLightType</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>SCNLightTypeAmbient</td>
-<td>环境光</td>
-</tr>
-<tr>
-<td>SCNLightTypeOmni</td>
-<td>向各方向发出的光照强度一样</td>
-</tr>
-<tr>
-<td>SCNLightTypeDirectional</td>
-<td>平行光</td>
-</tr>
-<tr>
-<td>SCNLightTypeSpot</td>
-<td>聚焦光</td>
-</tr>
-<tr>
-<td>SCNLightTypeIES</td>
-<td></td>
-</tr>
-<tr>
-<td>SCNLightTypeProbe</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>clolor </p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">retain</span>) <span class="keyword">id</span> color;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>temperature  温度值</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>) <span class="built_in">CGFloat</span> temperature;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>intensity 亮度值</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>) <span class="built_in">CGFloat</span> intensity</div></pre></td></tr></table></figure>
-<blockquote>
-<p>确定接收方的名称</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>, <span class="keyword">nullable</span>) <span class="built_in">NSString</span> *name;</div></pre></td></tr></table></figure>
+          SCNLight 光源
+光源可以附加到节点上，在渲染场景中提供着色
 
-          
+初始化
+初始化
+
++ (instancetype)light;
+属性
+type
+
+@property(nonatomic, copy) SCNLightType type;
+
+
+
+SCNLightType
+
+
+
+
+
+SCNLigh
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/17/SceneKit/Grammar/SceneKit-SCNLight/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -792,69 +702,19 @@
       
         
           
-            <h1 id="SCNView"><a href="#SCNView" class="headerlink" title="SCNView"></a>SCNView</h1><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">SCNView</span> : <span class="built_in">UIView</span> &lt;<span class="built_in">SCNSceneRenderer</span>, <span class="built_in">SCNTechniqueSupport</span>&gt;</div></pre></td></tr></table></figure>
-<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><blockquote>
-<p>options 视图初始化选项</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="keyword">instancetype</span>)initWithFrame:(<span class="built_in">CGRect</span>)frame options:(<span class="keyword">nullable</span> <span class="built_in">NSDictionary</span>&lt;<span class="built_in">NSString</span> *, <span class="keyword">id</span>&gt; *)options;</div></pre></td></tr></table></figure>
-<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><blockquote>
-<p>节点</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">retain</span>, <span class="keyword">nullable</span>) <span class="built_in">SCNScene</span> *scene;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>是否开启连续绘制（类似定位是否持续定位）</p>
-</blockquote>
-<ul>
-<li>当设置为YES时，视图会连续地重绘显示链路帧速率。</li>
-<li>当设置为NO时，视图只会在接收方场景发生变化或动画时重新绘制。默认为没有。</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="built_in">BOOL</span> rendersContinuously;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>相机控制</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>) <span class="built_in">BOOL</span> allowsCameraControl;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>相机设置</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>) <span class="keyword">id</span> &lt;<span class="built_in">SCNCameraControlConfiguration</span>&gt; cameraControlConfiguration</div></pre></td></tr></table></figure>
-<blockquote>
-<p>默认相机控制器</p>
-<ul>
-<li>返回默认的SCNCameraController用于驱动当前的视角，当允许cameracontroller设置为YES</li>
-</ul>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonnull</span>, <span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>) <span class="built_in">SCNCameraController</span>* defaultCameraController</div></pre></td></tr></table></figure>
-<blockquote>
-<p>帧率</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>) <span class="built_in">NSInteger</span> preferredFramesPerSecond</div></pre></td></tr></table></figure>
-<blockquote>
-<p>指定与接收方关联的EAGL上下文</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">retain</span>, <span class="keyword">nullable</span>) EAGLContext *eaglContext;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>抗锯齿模式</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>) <span class="built_in">SCNAntialiasingMode</span> antialiasingMode</div></pre></td></tr></table></figure>
-<h2 id="主要API"><a href="#主要API" class="headerlink" title="主要API"></a>主要API</h2><blockquote>
-<p>快照</p>
-</blockquote>
-<ul>
-<li>绘制视图的内容并将其作为一个新的图像对象返回</li>
-<li>方法是线程安全的，可以随时调用</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">UIImage</span> *)snapshot</div></pre></td></tr></table></figure>
-<blockquote>
-<p>播放控制方法</p>
-</blockquote>
-<ul>
-<li>play</li>
-<li>pause</li>
-<li>stop</li>
-</ul>
-<p><a href="http://www.tk4479.net/niceboydo/article/details/54021364" target="_blank" rel="external">SCNView切换相机视角</a></p>
+          SCNViewSCNView : UIView &lt;SCNSceneRenderer, SCNTechniqueSupport&gt;
+初始化
+options 视图初始化选项
 
-          
+- (instancetype)initWithFrame:(CGRect)frame options:(nullab
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/17/SceneKit/Grammar/SceneKit-SCNView/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -996,152 +856,18 @@
       
         
           
-            <h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><blockquote>
-<p>节点（Node） 动画移动到(19,18,17)这个位置，时间=5s</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"> <span class="built_in">SCNAction</span> *action = [<span class="built_in">SCNAction</span> moveTo:<span class="built_in">SCNVector3Make</span>(<span class="number">19</span>,<span class="number">18</span>,<span class="number">17</span>) </div><div class="line">                                      duration:<span class="number">5</span>];</div><div class="line"></div><div class="line">[oneNode runAction: action];</div></pre></td></tr></table></figure>
-<h1 id="SCNAction-主要的API"><a href="#SCNAction-主要的API" class="headerlink" title="SCNAction 主要的API"></a>SCNAction 主要的API</h1><h2 id="SCNAction-属性"><a href="#SCNAction-属性" class="headerlink" title="SCNAction 属性"></a>SCNAction 属性</h2><blockquote>
-<p>时间间隔，真实时间间隔受speed影响</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>) <span class="built_in">NSTimeInterval</span> duration</div></pre></td></tr></table></figure>
-<blockquote>
-<p>速度系数。假设duration 为10，但speed 为2的话，<br>就是速度是以前的2倍，实际duration 就为5</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>) <span class="built_in">CGFloat</span> speed</div></pre></td></tr></table></figure>
-<blockquote>
-<p>定时模式,有四个常量值：<br>Constants<br>SCNActionTimingModeLinear 匀速<br>SCNActionTimingModeEaseIn 一开始慢，慢慢加快<br>SCNActionTimingModeEaseOut 一开始快，逐渐变慢<br>SCNActionTimingModeEaseInEaseOut 开始慢慢地,通过中间的时候加速,然后再次放缓</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>) <span class="built_in">SCNActionTimingMode</span> timingMode</div></pre></td></tr></table></figure>
-<h2 id="SCNAction主要的API"><a href="#SCNAction主要的API" class="headerlink" title="SCNAction主要的API"></a>SCNAction主要的API</h2><blockquote>
-<p>将node从x,y,z上各移动到指定位置</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNAction</span> *)moveByX:(<span class="built_in">CGFloat</span>)deltaX</div><div class="line">                   y:(<span class="built_in">CGFloat</span>)deltaY</div><div class="line">                   z:(<span class="built_in">CGFloat</span>)deltaZ</div><div class="line">            duration:(<span class="built_in">NSTimeInterval</span>)duration</div></pre></td></tr></table></figure>
-<blockquote>
-<p>向量方式输入参数，移动到指定位置</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNAction</span> *)moveBy:(<span class="built_in">SCNVector3</span>)delta</div><div class="line">           duration:(<span class="built_in">NSTimeInterval</span>)duration</div></pre></td></tr></table></figure>
-<blockquote>
-<p>将node移动到location这个位置</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNAction</span> *)moveTo:(<span class="built_in">SCNVector3</span>)location</div><div class="line">           duration:(<span class="built_in">NSTimeInterval</span>)duration</div></pre></td></tr></table></figure>
-<blockquote>
-<p>将node从x,y,z上各旋转多少度</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNAction</span> *)rotateByX:(<span class="built_in">CGFloat</span>)xAngle</div><div class="line">                     y:(<span class="built_in">CGFloat</span>)yAngle</div><div class="line">                     z:(<span class="built_in">CGFloat</span>)zAngle</div><div class="line">              duration:(<span class="built_in">NSTimeInterval</span>)duration</div></pre></td></tr></table></figure>
-<blockquote>
-<p>/将node从x,y,z上旋转到指定角度</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNAction</span> *)rotateToX:(<span class="built_in">CGFloat</span>)xAngle</div><div class="line">                     y:(<span class="built_in">CGFloat</span>)yAngle</div><div class="line">                     z:(<span class="built_in">CGFloat</span>)zAngle</div><div class="line">              duration:(<span class="built_in">NSTimeInterval</span>)duration</div></pre></td></tr></table></figure>
-<p>&gt;</p>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"> </div></pre></td></tr></table></figure>
-<blockquote>
-<p>// 同上，与上面的方法区别在于多了shortestUnitArc 这个参数，BOOL值。<br>//举个例子：我们需要将一个node从 0度旋转到270度，<br>//如果将shortestUnitArc设置为NO，node会顺时针旋转到270度；<br>//如果将shortestUnitArc设置为YES，node会逆时针旋转90度到270度，<br>//即选择最小的旋转角度旋转到特定的度数。默认为NO</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNAction</span> *)rotateToX:(<span class="built_in">CGFloat</span>)xAngle</div><div class="line">                     y:(<span class="built_in">CGFloat</span>)yAngle</div><div class="line">                     z:(<span class="built_in">CGFloat</span>)zAngle</div><div class="line">              duration:(<span class="built_in">NSTimeInterval</span>)duration</div><div class="line">       shortestUnitArc:(<span class="built_in">BOOL</span>)shortestUnitArc</div></pre></td></tr></table></figure>
-<blockquote>
-<p>// 沿着特定的轴旋转angle度。前面旋转都是沿x,y,z轴旋转，都是互相垂直的，<br>//大家有没有想过如何沿着与x轴成45度夹角的方向旋转node？<br>//这个API大家这里留意一下，<br>//上篇提到的不在X-Z 这个平面旋转，会用这个方法在后面的demo中解决。</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNAction</span> *)rotateByAngle:(<span class="built_in">CGFloat</span>)angle</div><div class="line">                aroundAxis:(<span class="built_in">SCNVector3</span>)axis</div><div class="line">                  duration:(<span class="built_in">NSTimeInterval</span>)duration</div></pre></td></tr></table></figure>
-<blockquote>
-<p>// SCNVector4(x,y,z,angle)  沿着特定的轴旋转到angle度。<br>//这里解释一下angle 类似π，如果angle=2,<br>//我们可不能理解为旋转到2度，而是旋转到2/π*180 度</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNAction</span> *)rotateToAxisAngle:(<span class="built_in">SCNVector4</span>)axisAngle</div><div class="line">                      duration:(<span class="built_in">NSTimeInterval</span>)duration</div></pre></td></tr></table></figure>
-<blockquote>
-<p>缩小（放大）By 多少</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNAction</span> *)scaleBy:(<span class="built_in">CGFloat</span>)scale</div><div class="line">            duration:(<span class="built_in">NSTimeInterval</span>)sec</div></pre></td></tr></table></figure>
-<blockquote>
-<p>缩小（放大）到 To多少</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNAction</span> *)scaleTo:(<span class="built_in">CGFloat</span>)scale</div><div class="line">            duration:(<span class="built_in">NSTimeInterval</span>)sec</div></pre></td></tr></table></figure>
-<blockquote>
-<p>淡入<br>将node 的opacity 渐渐变成1</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNAction</span> *)fadeInWithDuration:(<span class="built_in">NSTimeInterval</span>)sec</div></pre></td></tr></table></figure>
-<blockquote>
-<p>淡出</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNAction</span> *)fadeOutWithDuration:(<span class="built_in">NSTimeInterval</span>)sec</div></pre></td></tr></table></figure>
-<blockquote>
-<p>将node 的opacity 渐渐变化特定的数值</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNAction</span> *)fadeOpacityBy:(<span class="built_in">CGFloat</span>)factor</div><div class="line">                   duration:(<span class="built_in">NSTimeInterval</span>)sec</div></pre></td></tr></table></figure>
-<blockquote>
-<p>将node 的opacity 渐渐变化到特定的数值</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNAction</span> *)fadeOpacityTo:(<span class="built_in">CGFloat</span>)opacity</div><div class="line">                   duration:(<span class="built_in">NSTimeInterval</span>)sec</div></pre></td></tr></table></figure>
-<blockquote>
-<p>隐藏node</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNAction</span> *)hide</div></pre></td></tr></table></figure>
-<blockquote>
-<p>显示node</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNAction</span> *)unhide</div></pre></td></tr></table></figure>
-<blockquote>
-<p>移除node</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNAction</span> *)removeFromParentNode</div></pre></td></tr></table></figure>
-<blockquote>
-<p>播放音频 waitForCompletion，BOOL值</p>
-</blockquote>
-<ul>
-<li>如果为YES Action的duration就是音频的时长</li>
-<li>如果为NO，可以认为duration 为0</li>
-<li>可以去看SCNAudioPlayer 的API</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNAction</span> *)playAudioSource:(<span class="built_in">SCNAudioSource</span> *)source</div><div class="line">            waitForCompletion:(<span class="built_in">BOOL</span>)wait</div></pre></td></tr></table></figure>
-<blockquote>
-<p>roup 被用来并发执行多个SCNAction</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNAction</span> *)group:(<span class="built_in">NSArray</span>&lt;<span class="built_in">SCNAction</span> *&gt; *)actions</div></pre></td></tr></table></figure>
-<blockquote>
-<p>顺序执行多个SCNAction，上个SCNAction执行结束后，才执行下个SCNAction</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNAction</span> *)sequence:(<span class="built_in">NSArray</span>&lt;<span class="built_in">SCNAction</span> *&gt; *)actions</div></pre></td></tr></table></figure>
-<blockquote>
-<p>将一个SCNAction执行count 次</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNAction</span> *)repeatAction:(<span class="built_in">SCNAction</span> *)action</div><div class="line">                      count:(<span class="built_in">NSUInteger</span>)count</div></pre></td></tr></table></figure>
-<blockquote>
-<p>一直执行某个SCNAction</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNAction</span> *)repeatActionForever:(<span class="built_in">SCNAction</span> *)action</div></pre></td></tr></table></figure>
-<blockquote>
-<p>延迟SCNAction</p>
-</blockquote>
-<ul>
-<li>比如用sequence 顺序执行多个SCNAction时，</li>
-<li>可以给SCNAction a,c  中间添加一个SCNAction b,  </li>
-<li>等a执行结束后，延迟一会，再去执行c</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNAction</span> *)waitForDuration:(<span class="built_in">NSTimeInterval</span>)sec</div></pre></td></tr></table></figure>
-<blockquote>
-<p>自定义SCNAction ，你可以在block 做一些操作</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNAction</span> *)runBlock:(<span class="keyword">void</span> (^)(<span class="built_in">SCNNode</span> *node))block</div></pre></td></tr></table></figure>
-<blockquote>
-<p>在一个特定的队列中，执行block</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNAction</span> *)runBlock:(<span class="keyword">void</span> (^)(<span class="built_in">SCNNode</span> *node))block</div><div class="line">                 queue:(<span class="built_in">dispatch_queue_t</span>)queue</div></pre></td></tr></table></figure>
-<blockquote>
-<p>上篇数学旋转用到的方法，当这个SCNAction执行时，<br>SceneKit 在这个时间间隔内会重复调用actionBlock，<br>并将已逝去的时间传给actionBlock</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNAction</span> *)customActionWithDuration:(<span class="built_in">NSTimeInterval</span>)seconds</div><div class="line">                           actionBlock:(<span class="keyword">void</span> (^)(<span class="built_in">SCNNode</span> *node,</div><div class="line">                                                 <span class="built_in">CGFloat</span> elapsedTime))block</div></pre></td></tr></table></figure>
-<blockquote>
-<p>在时间间隔内，执行一段JavaScript代码</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNAction</span> *)javaScriptActionWithScript:(<span class="built_in">NSString</span> *)script</div><div class="line">                                duration:(<span class="built_in">NSTimeInterval</span>)seconds</div></pre></td></tr></table></figure>
-<blockquote>
-<p>逆转一个已经创建的SCNAction</p>
-</blockquote>
-<ul>
-<li>相当于CABasicAnimation的autoreverses属性</li>
-<li>哪里来的，回哪里去</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">SCNAction</span> *)reversedAction</div></pre></td></tr></table></figure>
+          使用
+节点（Node） 动画移动到(19,18,17)这个位置，时间=5s
 
-          
+ SCNAction *action = [SCNAction moveTo:SCNVector3Make(19,18,17)                                       duration:
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/17/SceneKit/Grammar/SceneKit-SCNAction/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1283,11 +1009,16 @@
       
         
           
-            <h1 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h1><blockquote>
-<p>每个SCNNode 都有自身的三维坐标系，用CABasicAnimation让SCNNode绕自身的三维坐标轴旋转，所以要特别注意是坐标轴，不是这个SCNNode的几何中心。<br>一般SceneKit 的自带的几个几何体的坐标系原点(0,0,0)就是这个它的几何中心，比如说SCNBox；SCNSphere等等</p>
-</blockquote>
-<h1 id="先实现地球，月球自转"><a href="#先实现地球，月球自转" class="headerlink" title="先实现地球，月球自转"></a>先实现地球，月球自转</h1>
-          
+          旋转
+每个SCNNode 都有自身的三维坐标系，用CABasicAnimation让SCNNode绕自身的三维坐标轴旋转，所以要特别注意是坐标轴，不是这个SCNNode的几何中心。一般SceneKit 的自带的几个几何体的坐标系原点(0,0,0)就是这个它的几何中心，比如说SCNBox；SCNSph
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/16/SceneKit/Grammar/Scenekit-Roation-旋转/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1451,41 +1182,18 @@
       
         
           
-            <h1 id="创建model"><a href="#创建model" class="headerlink" title="创建model"></a>创建model</h1><blockquote>
-<p>Message.h</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Message</span> : <span class="title">NSObject</span></span></div><div class="line"><span class="keyword">@property</span>         <span class="keyword">int</span>      localID;</div><div class="line"><span class="keyword">@property</span>(<span class="keyword">retain</span>) <span class="built_in">NSString</span> *content;</div><div class="line"><span class="keyword">@property</span>(<span class="keyword">retain</span>) <span class="built_in">NSDate</span>   *createTime;</div><div class="line"><span class="keyword">@property</span>(<span class="keyword">retain</span>) <span class="built_in">NSDate</span>   *modifiedTime;</div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>Message.mm</p>
-</blockquote>
-<ul>
-<li>绑定到表的类</li>
-<li>绑定到表中的字段</li>
-<li>主键</li>
-<li>索引属性</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Message</span></span></div><div class="line"> </div><div class="line"><span class="comment">// 利用这个宏定义绑定到表的类</span></div><div class="line">WCDB_IMPLEMENTATION(Message) </div><div class="line">	</div><div class="line"><span class="comment">// 下面四个宏定义绑定到表中的字段</span></div><div class="line">WCDB_SYNTHESIZE(Message, localID)</div><div class="line">WCDB_SYNTHESIZE(Message, content)</div><div class="line">WCDB_SYNTHESIZE(Message, createTime)</div><div class="line">WCDB_SYNTHESIZE(Message, modifiedTime)</div><div class="line">	</div><div class="line"><span class="comment">// 约束宏定义数据库的主键</span></div><div class="line">WCDB_PRIMARY(Message, localID)</div><div class="line">	</div><div class="line"><span class="comment">// 定义数据库的索引属性，它直接定义createTime字段为索引</span></div><div class="line"><span class="comment">// 同时 WCDB 会将表名 + "_index" 作为该索引的名称</span></div><div class="line">WCDB_INDEX(Message, <span class="string">"_index"</span>, createTime)</div></pre></td></tr></table></figure>
-<h1 id="类别扩展（model）"><a href="#类别扩展（model）" class="headerlink" title="类别扩展（model）"></a>类别扩展（model）</h1><blockquote>
-<p>Message+WCTTableCoding.h</p>
-</blockquote>
-<ul>
-<li>要导入WCDB  </li>
-<li>协议  WCTTableCoding</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"Message.h"</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;WCDB/WCDB.h&gt;</span> </span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Message</span> (<span class="title">WCTTableCoding</span>) &lt;<span class="title">WCTTableCoding</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">// 实现WCTTableCoding代理  </span></div><div class="line"><span class="comment">// 需要绑定到表中的字段在这里声明，在.mm中去绑定</span></div><div class="line">WCDB_PROPERTY(localID)</div><div class="line">WCDB_PROPERTY(content)</div><div class="line">WCDB_PROPERTY(createTime)</div><div class="line">WCDB_PROPERTY(modifiedTime)</div></pre></td></tr></table></figure>
-<h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="comment">//获取沙盒根目录</span></div><div class="line">  <span class="built_in">NSString</span> *documentsPath = [<span class="built_in">NSSearchPathForDirectoriesInDomains</span>(<span class="built_in">NSDocumentDirectory</span>, <span class="built_in">NSUserDomainMask</span>, <span class="literal">YES</span>) lastObject];</div><div class="line">  </div><div class="line">  <span class="comment">// 文件路径</span></div><div class="line">  <span class="built_in">NSString</span> *filePath = [documentsPath stringByAppendingPathComponent:<span class="string">@"model.sqlite"</span>];</div><div class="line">  <span class="built_in">NSLog</span>(<span class="string">@"path = %@"</span>,filePath);</div><div class="line">  </div><div class="line">  database = [[WCTDatabase alloc]initWithPath:filePath];</div><div class="line">  <span class="comment">// 数据库加密</span></div><div class="line">  <span class="built_in">NSData</span> *password = [<span class="string">@"MyPassword"</span> dataUsingEncoding:<span class="built_in">NSASCIIStringEncoding</span>];</div><div class="line">  [database setCipherKey:password];</div><div class="line">  <span class="comment">//测试数据库是否能够打开</span></div><div class="line">  <span class="keyword">if</span> ([database canOpen]) &#123;</div><div class="line">      </div><div class="line">      <span class="comment">// WCDB大量使用延迟初始化（Lazy initialization）的方式管理对象，因此SQLite连接会在第一次被访问时被打开。开发者不需要手动打开数据库。</span></div><div class="line">      <span class="comment">// 先判断表是不是已经存在</span></div><div class="line">      <span class="keyword">if</span> ([database isOpened]) &#123;</div><div class="line">          </div><div class="line">          <span class="keyword">if</span> ([database isTableExists:tableName]) &#123;</div><div class="line">              </div><div class="line">              <span class="built_in">NSLog</span>(<span class="string">@"表已经存在"</span>);</div><div class="line">              </div><div class="line">          &#125;<span class="keyword">else</span> &#123;</div><div class="line">            [database createTableAndIndexesOfName:tableName withClass:Message.class];</div><div class="line">      &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<h2 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">Message *message = [[Message alloc] init];</div><div class="line">message.localID = <span class="number">1</span>;</div><div class="line">message.content = <span class="string">@"Hello, WCDB!"</span>;</div><div class="line">message.createTime = [<span class="built_in">NSDate</span> date];</div><div class="line">message.modifiedTime = [<span class="built_in">NSDate</span> date];</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment"> INSERT INTO message(localID, content, createTime, modifiedTime)</span></div><div class="line"><span class="comment"> VALUES(1, "Hello, WCDB!", 1496396165, 1496396165);</span></div><div class="line"><span class="comment"> */</span></div><div class="line">  [database insertObject:message  into:<span class="string">@"message"</span>];</div></pre></td></tr></table></figure>
-<h2 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="comment">//UPDATE message SET content="Hello, Wechat!";</span></div><div class="line">Message *message = [[Message alloc] init];</div><div class="line">message.content = <span class="string">@"Hello, Wechat!"</span>;</div><div class="line">    </div><div class="line"><span class="comment">//下面这句在17号的时候和微信团队的人在学习群里面沟通过，这个方法确实是不存在的，使用教程应该会更新，要是没更新注意这个方法</span></div><div class="line"><span class="comment">//BOOL result = [database updateTable:@"message" onProperties:Message.content withObject:message];</span></div><div class="line">[database updateAllRowsInTable:<span class="string">@"message"</span> onProperty:Message.content withObject:message];</div></pre></td></tr></table></figure>
-<h2 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"> <span class="comment">//SELECT * FROM message ORDER BY localID</span></div><div class="line"><span class="built_in">NSArray</span>&lt;Message *&gt; * message = [database getObjectsOfClass:Message.class fromTable:<span class="string">@"message"</span> orderBy:Message.localID.order()];</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"&gt;&gt;&gt;&gt; %@"</span>,message);</div></pre></td></tr></table></figure>
-<h2 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">[database deleteObjectsFromTable:<span class="string">@"message"</span> where:Message.localID &gt; <span class="number">0</span>];</div></pre></td></tr></table></figure>
-<h2 id="WCTDatabase-事务操作，利用WCTTransaction"><a href="#WCTDatabase-事务操作，利用WCTTransaction" class="headerlink" title="WCTDatabase 事务操作，利用WCTTransaction"></a>WCTDatabase 事务操作，利用WCTTransaction</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">BOOL</span> ret = [database beginTransaction];</div><div class="line">   ret = [<span class="keyword">self</span> insertMessage];</div><div class="line">   <span class="keyword">if</span> (ret) &#123;</div><div class="line">       </div><div class="line">       [database commitTransaction];</div><div class="line">       </div><div class="line">   &#125;<span class="keyword">else</span></div><div class="line">       </div><div class="line">       [database rollbackTransaction];</div><div class="line">   </div><div class="line">   <span class="keyword">return</span> ret;</div></pre></td></tr></table></figure>
-<h2 id="使用Block处理事务"><a href="#使用Block处理事务" class="headerlink" title="使用Block处理事务"></a>使用Block处理事务</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">BOOL</span> commit  =  [database runTransaction:^<span class="built_in">BOOL</span>&#123;</div><div class="line">      </div><div class="line">         <span class="built_in">BOOL</span> ret = [<span class="keyword">self</span> insertMessage];</div><div class="line">         <span class="keyword">if</span> (ret) &#123;</div><div class="line">             </div><div class="line">             <span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">             </div><div class="line">         &#125;<span class="keyword">else</span></div><div class="line">             <span class="keyword">return</span> <span class="literal">NO</span>;</div><div class="line">         </div><div class="line">     &#125; event:^(WCTTransactionEvent event) &#123;</div><div class="line">         </div><div class="line">         <span class="built_in">NSLog</span>(<span class="string">@"Event %d"</span>, event);</div><div class="line">     &#125;];</div><div class="line">    <span class="keyword">return</span> commit;</div></pre></td></tr></table></figure>
-<h2 id="FMDB迁移到WCDB"><a href="#FMDB迁移到WCDB" class="headerlink" title="FMDB迁移到WCDB"></a>FMDB迁移到WCDB</h2><p><a href="https://github.com/Tencent/wcdb/wiki/%E4%BB%8EFMDB%E8%BF%81%E7%A7%BB%E5%88%B0WCDB" target="_blank" rel="external">FMDB迁移到WCDB</a></p>
-<p><a href="https://github.com/Tencent/wcdb/wiki/ORM%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B" target="_blank" rel="external">ORM</a></p>
-<p><a href="https://www.jianshu.com/p/7395f778c020" target="_blank" rel="external">资料1 </a></p>
-<p><a href="https://github.com/Tencent/wcdb/wiki/iOS-macOS%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B" target="_blank" rel="external">官方简单使用文档</a><br><a href="http://blog.csdn.net/wgl_happy/article/details/77584519" target="_blank" rel="external">资料2</a></p>
+          创建model
+Message.h
 
-          
+@interface Message : NSObject@property         int      localID;@property(retain) NSString *content;@property(retain) NSDate   *cre
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/12/OC/Lib/WCDB/OC-Lib-WCDB -简单使用参考/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1649,151 +1357,32 @@
       
         
           
-            <h1 id="WCDB"><a href="#WCDB" class="headerlink" title="WCDB"></a>WCDB</h1><blockquote>
-<p>文档</p>
-</blockquote>
-<p><a href="https://github.com/Tencent/wcdb" target="_blank" rel="external">WCDB 使用 官方iOS文档</a></p>
-<blockquote>
-<p>CocoaPods</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">pod &apos;WCDB&apos;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>引入</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">#import &lt;WCDB/WCDB.h&gt;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>⚠️引用注意</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">WCDB是基于Objective-C++，需要将引用WCDB的源文件后缀.m改为.mm。</div></pre></td></tr></table></figure>
-<blockquote>
-<p>iOS 11中Bug</p>
-</blockquote>
-<ul>
-<li>需要在pod中指定该库的地址，并且指定分支master</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">  target &apos;WCDBDemo&apos; do</div><div class="line"></div><div class="line">platform:ios,&quot;8.0&quot;</div><div class="line"></div><div class="line">pod &apos;WCDB&apos;,git: &apos;https://github.com/Tencent/wcdb.git&apos; , branch: &apos;master&apos;</div><div class="line">pod &apos;YYModel&apos;</div><div class="line"></div><div class="line">end</div></pre></td></tr></table></figure>
-<h1 id="基本简介"><a href="#基本简介" class="headerlink" title="基本简介"></a>基本简介</h1><h2 id="WCDB-1"><a href="#WCDB-1" class="headerlink" title="WCDB"></a>WCDB</h2><blockquote>
-<p>易用</p>
-</blockquote>
-<ul>
-<li>WCDB支持一句代码即可将数据取出并组合为object</li>
-</ul>
-<blockquote>
-<p>WINQ(WCDB语言集成查询)</p>
-</blockquote>
-<ul>
-<li>通过WINQ，开发者无须为了拼接SQL的字符串而写一大坨胶水代码</li>
-</ul>
-<blockquote>
-<p>ORM(Object Relational Mapping)</p>
-</blockquote>
-<ul>
-<li>将一个ObjC的类，映射到数据库的表和索引；</li>
-<li>将类的property，映射到数据库表的字段</li>
-<li>通过ORM，可以达到直接通过Object进行数据库操作，省去拼装过程的目的</li>
-<li>WCDB支持灵活、易用的ORM</li>
-<li>开发者可以很便捷地定义表、索引、约束，并进行增删改查操作</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">[database getObjectsOfClass:WCTSampleConvenient.class</div><div class="line">                 fromTable:tableName</div><div class="line">                     where:WCTSampleConvenient.intValue&gt;=<span class="number">10</span></div><div class="line">                     limit:<span class="number">20</span>];</div></pre></td></tr></table></figure>
-<blockquote>
-<p>高效</p>
-</blockquote>
-<ul>
-<li>WCDB通过框架层和sqlcipher源码优化，使其更高效的表现</li>
-</ul>
-<blockquote>
-<p>多线程高并发</p>
-</blockquote>
-<ul>
-<li>WCDB支持多线程读与读、读与写并发执行，写与写串行执行</li>
-</ul>
-<blockquote>
-<p>批量写操作性能测试</p>
-</blockquote>
-<ul>
-<li>性能数据，请参考benchmark</li>
-</ul>
-<blockquote>
-<p>完整(WCDB覆盖了数据库相关各种场景的所需功能)</p>
-</blockquote>
-<ul>
-<li>加密：WCDB提供基于SQLCipher的数据库加密</li>
-<li>损坏修复：WCDB内建了Repair Kit用于修复损坏的数据库</li>
-<li>反注入：WCDB内建了对SQL注入的保护</li>
-</ul>
-<h1 id="已有的OC类QRM绑定的过程"><a href="#已有的OC类QRM绑定的过程" class="headerlink" title="已有的OC类QRM绑定的过程"></a>已有的OC类QRM绑定的过程</h1><h2 id="①协议、定义"><a href="#①协议、定义" class="headerlink" title="①协议、定义"></a>①协议、定义</h2><blockquote>
-<p>定义该类遵守WCTTableCoding协议<br>可以在类声明上定义<br>也可以通过文件模版在category内定义</p>
-</blockquote>
-<ul>
-<li>推荐用第2种，通过文件模板在category内定义，为了隔离Objective-C++代码</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">不通过category定义，而是选择了在类声明中写，</div><div class="line">这样的话Message.h 中就需要有宏WCDB_PROPERTY，这样你就在Message.h使用了WCDB的代码，</div><div class="line">当你把Message.h在其他Controller/View中引用的时候，那相应的Controller/View的.m就需要修改成.mm 。</div><div class="line">造成不必要的工作，但你用第二种方法写的时候，你就发现在Message.h中是没有任何的关于WCDB的代码的，后面你引用也不需要再去修改</div></pre></td></tr></table></figure>
-<h2 id="②修改文件"><a href="#②修改文件" class="headerlink" title="②修改文件"></a>②修改文件</h2><blockquote>
-<p>WCDB基于WINQ，引入了Objective-C++代码，所以对于引入了WCDB的源文件，都需要把后缀.m改为.mm<br>为减少影响范围，可以通过Objective-C的category特性将其隔离，达到只在model层使用Objective-C++编译，而不影响Controller和View<br>这一点在Wiki中是有提到的</p>
-</blockquote>
-<h2 id="③使用WCDB-PROPERTY宏"><a href="#③使用WCDB-PROPERTY宏" class="headerlink" title="③使用WCDB_PROPERTY宏"></a>③使用WCDB_PROPERTY宏</h2><blockquote>
-<p>使用WCDB_PROPERTY宏在头文件声明需要绑定到数据库表的字段(也就是把你的表里面需要的字段在这里用这宏声明一次)<br>使用WCDB_IMPLEMENTATIO宏在类文件定义绑定到数据库表的类（把这个类绑定到数据库的表，你会在下面创建数据库的时候创建相应的表，表会和类绑定）<br>使用WCDB_SYNTHESIZE宏在类文件定义绑定到数据库表的类（第二步声明了表需要的字段，第三步绑定了表中的类，第四步就等于把表和字段绑定）</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>宏</th>
-<th>声明</th>
-<th>绑定到数据库表</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>WCDB_PROPERTY</td>
-<td>头文件声明</td>
-<td>字段</td>
-<td></td>
-</tr>
-<tr>
-<td>WCDB_IMPLEMENTATIO</td>
-<td>类类文件定义</td>
-<td>类</td>
-<td></td>
-</tr>
-<tr>
-<td>WCDB_SYNTHESIZE</td>
-<td>类文件定义</td>
-<td>字段</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>WCDB_PRIMARY</td>
-<td></td>
-<td>主键</td>
-<td>可选的宏</td>
-</tr>
-<tr>
-<td>WCDB_INDEX</td>
-<td></td>
-<td>索引</td>
-<td>可选的宏</td>
-</tr>
-<tr>
-<td>WCDB_UNIQUE</td>
-<td></td>
-<td>唯一约束</td>
-<td>可选的宏</td>
-</tr>
-<tr>
-<td>WCDB_NOT_NULL</td>
-<td></td>
-<td>非空约束</td>
-<td>可选的宏</td>
-</tr>
-</tbody>
-</table>
+          WCDB
+文档
 
-          
+WCDB 使用 官方iOS文档
+
+CocoaPods
+
+pod &apos;WCDB&apos;
+
+引入
+
+#import &lt;WCDB/WCDB.h&gt;
+
+⚠️引用注意
+
+WCDB是基于Objective-C++，需要将引用WCDB的源文件后缀.m改为.mm。
+
+iOS 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/12/OC/Lib/WCDB/OC-Lib-WCDB/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1957,28 +1546,19 @@
       
         
           
-            <h1 id="QMUIKit"><a href="#QMUIKit" class="headerlink" title="QMUIKit"></a>QMUIKit</h1><p><a href="http://qmuiteam.com/ios/page/start.html#qw_downloadForUse" target="_blank" rel="external">QMUIKit 使用 官方文档</a></p>
-<h2 id="CocoaPods"><a href="#CocoaPods" class="headerlink" title="CocoaPods"></a>CocoaPods</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">pod &apos;QMUIKit&apos;</div><div class="line"></div><div class="line">#import &lt;QMUIKit/QMUIKit.h&gt;</div></pre></td></tr></table></figure>
-<h2 id="QMUI-iOS-主要由-5-大部分组成："><a href="#QMUI-iOS-主要由-5-大部分组成：" class="headerlink" title="QMUI iOS 主要由 5 大部分组成："></a>QMUI iOS 主要由 5 大部分组成：</h2><h3 id="QMUICore"><a href="#QMUICore" class="headerlink" title="QMUICore"></a>QMUICore</h3><blockquote>
-<p>配置表、全局的宏、工具方法等，是所有 QMUI 类的基础代码</p>
-</blockquote>
-<h3 id="QMUIMainFrame"><a href="#QMUIMainFrame" class="headerlink" title="QMUIMainFrame"></a>QMUIMainFrame</h3><blockquote>
-<p>几个常用的 UIViewController 的基类，建议将这几个基类作为你项目里的对应 class 的父类，QMUI iOS 有大量功能也是基于这几个基类实现</p>
-</blockquote>
-<h3 id="UIKitExtensions"><a href="#UIKitExtensions" class="headerlink" title="UIKitExtensions"></a>UIKitExtensions</h3><blockquote>
-<p>对系统 UIKit 的拓展，所有 Category 的方法、属性均会带 qmui_ 前缀，以避免冲突</p>
-</blockquote>
-<h3 id="QMUIComponents"><a href="#QMUIComponents" class="headerlink" title="QMUIComponents"></a>QMUIComponents</h3><blockquote>
-<p>提供大量常用的控件，具体的控件列表、效果展示、使用代码示例请查看 QMUI Demo。</p>
-<h3 id="QMUIResources"><a href="#QMUIResources" class="headerlink" title="QMUIResources"></a>QMUIResources</h3><p>存储 QMUI 控件里可能用到的一些图，例如表情面板的删除按钮、选图控件的 checkbox、QMUITips 那些成功、失败的 icon 等。</p>
-</blockquote>
-<p><a href="http://qmuiteam.com/ios/page/document.html" target="_blank" rel="external">功能列表</a></p>
-<h1 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h1><p><a href="https://github.com/Tencent/MLeaksFinder" target="_blank" rel="external">腾讯开源iOS自动内存泄露检测工具MLeaksFinder</a></p>
-<p><a href="https://github.com/Tencent/wcdb" target="_blank" rel="external">腾讯开源的数据库框架</a></p>
-<p><a href="https://github.com/QMUI/QMUI_iOS" target="_blank" rel="external">QMUI iOS——致力于提高项目 UI 开发效率的解决方案</a></p>
-<p><a href="https://github.com/Tencent/VasSonic" target="_blank" rel="external">专注于提升H5首屏速度优化</a></p>
+          QMUIKitQMUIKit 使用 官方文档
+CocoaPodspod &apos;QMUIKit&apos;#import &lt;QMUIKit/QMUIKit.h&gt;
+QMUI iOS 主要由 5 大部分组成：QMUICore
+配置表、全局的宏、工具方法等，是所有 QMUI 类的基础代码
 
-          
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/12/OC/Lib/QMUIKit/OC-QMUIKit/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2142,9 +1722,16 @@
       
         
           
-            <p><a href="https://github.com/ChenYilong/CYLTabBarController#%E9%9B%86%E6%88%90%E5%90%8E%E7%9A%84%E6%95%88%E6%9E%9C" target="_blank" rel="external">Github Adress</a></p>
+          Github Adress
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/10/OC/Lib/CYLTabBarCtl/OC-Lib-CYLTabBarCtl/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2286,8 +1873,15 @@
       
         
           
-            
           
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/10/SceneKit/Grammar/SceneKit-Panorama-全景图/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
