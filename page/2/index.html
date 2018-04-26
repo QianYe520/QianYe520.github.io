@@ -10,8 +10,23 @@
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
 
+<meta name="theme-color" content="#222">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
 
 
 
@@ -23,16 +38,6 @@
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 
-<script>
-    (function(){
-        if(''){
-            if (prompt('请输入文章密码') !== ''){
-                alert('密码错误！');
-                history.back();
-            }
-        }
-    })();
-</script>
 
 
 
@@ -55,38 +60,27 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Hexo, NexT" />
@@ -94,11 +88,6 @@
 
 
 
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
 
 
 
@@ -123,10 +112,11 @@
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
-    motion: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -169,8 +159,7 @@
   
 
   <div class="container sidebar-position-left 
-   page-home 
- ">
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -226,16 +215,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -256,54 +235,20 @@
         </li>
       
         
-        <li class="menu-item menu-item-read">
-          <a href="/read/" rel="section">
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            阅读榜
+            关于
           </a>
         </li>
       
 
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
-        </li>
       
     </ul>
   
 
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
   
 </nav>
 
@@ -318,6 +263,538 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/07/RxSwift/Error/RxSwift-Error/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/07/RxSwift/Error/RxSwift-Error/" itemprop="url">RxSwift + ReactorKit 构建信息流框架</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-07T12:33:50+08:00">
+                2018-03-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/07/RxSwift/Lib/RxSwift-Lib-Moya/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/07/RxSwift/Lib/RxSwift-Lib-Moya/" itemprop="url">RxSwift-Lib-Moya</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-07T12:30:50+08:00">
+                2018-03-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="关于moya"><a href="#关于moya" class="headerlink" title="关于moya"></a>关于moya</h1><blockquote>
+<p>Moya在Alamofire的基础上又封装一层</p>
+</blockquote>
+<h2 id="moya有以下特性"><a href="#moya有以下特性" class="headerlink" title="moya有以下特性"></a>moya有以下特性</h2><ul>
+<li>编译时检查正确的API端点访问.</li>
+<li>使你定义不同端点枚举值对应相应的用途更加明晰.</li>
+<li>提高测试地位从而使单元测试更加容易</li>
+</ul>
+<h1 id="枚举API"><a href="#枚举API" class="headerlink" title="枚举API"></a>枚举API</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">enum  APIManaager &#123;</div><div class="line">    case getNewsLatest     //获取最新消息</div><div class="line">    case getStartImage     // 启动界面图像获取</div><div class="line">    case getVersion(String)//软件版本查询</div><div class="line">    case getThemes         //主题日报列表查看</div><div class="line">    case getNewsDetail(Int)//获取新闻详情</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="实现TargetType协议"><a href="#实现TargetType协议" class="headerlink" title="实现TargetType协议"></a>实现TargetType协议</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">APIManager</span>: <span class="title">TargetType</span> </span>&#123;</div><div class="line"> </div><div class="line">	<span class="comment">// base URL</span></div><div class="line">	<span class="keyword">var</span> baseURL: <span class="type">URL</span> &#123;</div><div class="line">	     <span class="keyword">return</span> <span class="type">URL</span>.<span class="keyword">init</span>(string: <span class="string">"http://news-at.zhihu.com/api/"</span>)!</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="comment">// 请求路径</span></div><div class="line">	<span class="keyword">var</span> path: <span class="type">String</span> &#123;</div><div class="line">	 </div><div class="line">		<span class="keyword">switch</span> <span class="keyword">self</span> &#123;</div><div class="line">		       <span class="keyword">case</span> .getNewsLatest:</div><div class="line">		            <span class="keyword">return</span> <span class="string">"4/news/latest"</span></div><div class="line">		 </div><div class="line">		       <span class="keyword">case</span> .getStartImage:</div><div class="line">		            <span class="comment">//start-image 后为图像分辨率，接受任意的 number*number 格式， number 为任意非负整数，返回值均相同。</span></div><div class="line">		            <span class="keyword">return</span> <span class="string">"4/start-image/1080*1776"</span></div><div class="line">		 </div><div class="line">		       <span class="keyword">case</span> .getVersion(<span class="keyword">let</span> version):</div><div class="line">		            <span class="comment">//URL 最后部分的数字代表所安装『知乎日报』的版本</span></div><div class="line">		            <span class="keyword">return</span> <span class="string">"4/version/ios/"</span> + version</div><div class="line">		 </div><div class="line">		       <span class="keyword">case</span> .getThemes:</div><div class="line">		            <span class="keyword">return</span> <span class="string">"4/themes"</span></div><div class="line">		 </div><div class="line">		       <span class="keyword">case</span> .getNewsDetail(<span class="keyword">let</span> id):</div><div class="line">		            <span class="keyword">return</span> <span class="string">"4/news/\(id)"</span></div><div class="line">		 &#125;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="comment">// The HTTP method used in the request</span></div><div class="line">	<span class="keyword">var</span> method: <span class="type">Moya</span>.<span class="type">Method</span> &#123;</div><div class="line">	    <span class="keyword">return</span> .<span class="keyword">get</span></div><div class="line">	&#125;</div><div class="line">	 </div><div class="line">	<span class="comment">// The parameters to be incoded in the request.</span></div><div class="line">	<span class="keyword">var</span> parameters: [<span class="type">String</span>: <span class="type">Any</span>]? &#123;</div><div class="line">	    <span class="keyword">return</span> <span class="literal">nil</span></div><div class="line">	&#125;</div><div class="line">	 </div><div class="line">	<span class="comment">// The method used for parameter encoding.</span></div><div class="line">	<span class="keyword">var</span> parameterEncoding: <span class="type">ParameterEncoding</span> &#123;</div><div class="line">	    <span class="keyword">return</span> <span class="type">URLEncoding</span>.<span class="keyword">default</span></div><div class="line">	&#125;</div><div class="line">	 </div><div class="line">	<span class="comment">// Provides stub data for use in testing.</span></div><div class="line">	<span class="keyword">var</span> sampleData: <span class="type">Data</span> &#123;</div><div class="line">	    <span class="keyword">return</span> <span class="string">""</span>.data(using: <span class="type">String</span>.<span class="type">Encoding</span>.utf8)!</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="comment">// The type of HTTP task to be performed.</span></div><div class="line">	<span class="keyword">var</span> task: <span class="type">Task</span> &#123;</div><div class="line">	    <span class="keyword">return</span> .request</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="comment">// Whether or not to perform Alamofire validation. Defaults to `false`.</span></div><div class="line">	<span class="keyword">var</span> validate: <span class="type">Bool</span> &#123;</div><div class="line">	    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">	&#125;</div><div class="line"> </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>#使用</p>
+<blockquote>
+<p>Moya的使用非常简单，通过TargetType协议定义好每个target之后，就可以直接使用Moya开始发送网络请求了</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> provider = <span class="type">MoyaProvider</span>&lt;<span class="type">APIManager</span>&gt;()</div><div class="line">    provider.request(.getNewsLatest) &#123;  result <span class="keyword">in</span></div><div class="line">            <span class="comment">// do something with result</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h1 id="配合RxSwift"><a href="#配合RxSwift" class="headerlink" title="配合RxSwift"></a>配合RxSwift</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> provider = <span class="type">RxMoyaProvider</span>&lt;<span class="type">APIManager</span>&gt;()</div><div class="line">	 provider.request(.getNewsLatest)</div><div class="line">	         .filterSuccessfulStatusCodes()</div><div class="line">	         .mapJSON()</div><div class="line">	         .subscribe(onNext: &#123; (json) <span class="keyword">in</span></div><div class="line">	             <span class="comment">//do something with posts</span></div><div class="line">	             <span class="built_in">print</span>(json)</div><div class="line">	          &#125;)</div><div class="line">	         .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<ul>
+<li><p>RxMoyaProvider是MoyaProvider的子类，是对RxSwift的扩展</p>
+</li>
+<li><p>filterSuccessfulStatusCodes()是Moya为RxSwift提供的扩展方法，顾名思义，可以得到成功地网络请求，忽略其他的</p>
+</li>
+<li><p>mapJSON()也是Moya RxSwift的扩展方法，可以把返回的数据解析成 JSON 格式</p>
+</li>
+<li><p>subscribe 是一个RxSwift的方法，对经过一层一层处理的 Observable 订阅一个 onNext 的 observer，一旦得到 JSON 格式的数据，就会经行相应的处理</p>
+</li>
+<li><p>addDisposableTo(disposeBag) 是 RxSwift 的一个自动内存处理机制，跟ARC有点类似，会自动清理不需要的对象</p>
+</li>
+</ul>
+<h1 id="配合HandyJSON"><a href="#配合HandyJSON" class="headerlink" title="配合HandyJSON"></a>配合HandyJSON</h1><blockquote>
+<p>在实际应用过程中网络请求往往紧密连接着数据层（Model），具体地说，在我们的这个例子中，一般我们需要建立一个类用来统一管理数据，然后把得到的 JSON 数据映射到数据层（Model）</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">MenuModel</span>: <span class="title">HandyJSON</span> </span>&#123;</div><div class="line"><span class="keyword">var</span> others: [<span class="type">ThemeModel</span>]?</div><div class="line"> </div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ThemeModel</span>: <span class="title">HandyJSON</span> </span>&#123;</div><div class="line"> </div><div class="line">	<span class="keyword">var</span> color: <span class="type">String</span>?</div><div class="line">	<span class="keyword">var</span> thumbnail: <span class="type">String</span>?</div><div class="line">	<span class="keyword">var</span> id: <span class="type">Int</span>?</div><div class="line">	<span class="keyword">var</span> description: <span class="type">String</span>?</div><div class="line">	<span class="keyword">var</span> name: <span class="type">String</span>?</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>创建ViewModel类,创建具体请求方法:</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MenuViewModel</span> </span>&#123;</div><div class="line"> </div><div class="line"><span class="keyword">private</span> <span class="keyword">let</span> provider = <span class="type">RxMoyaProvider</span>&lt;<span class="type">APIManager</span>&gt;()</div><div class="line"><span class="keyword">var</span> dispose = <span class="type">DisposeBag</span>()</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">getThemes</span><span class="params">(completed: @escaping <span class="params">(<span class="number">_</span> menuModel: MenuModel)</span></span></span> -&gt; ())&#123;</div><div class="line"> </div><div class="line">provider</div><div class="line">.request(.getThemes)</div><div class="line">.mapModel(<span class="type">MenuModel</span>.<span class="keyword">self</span>)</div><div class="line">.subscribe(onNext: &#123; (model) <span class="keyword">in</span></div><div class="line"> </div><div class="line">completed(model)</div><div class="line">&#125;, onError: &#123; (error) <span class="keyword">in</span></div><div class="line"> </div><div class="line">&#125;, onCompleted: <span class="literal">nil</span>, onDisposed: <span class="literal">nil</span>).addDisposableTo(dispose)</div><div class="line"> </div><div class="line">&#125;</div><div class="line"> </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>将请求的数据通过闭包传了出去,当然也可以不那么做.个人喜好问题..<br>这里是为 RxSwift 中的 ObservableType和 Response写一个简单的扩展方法 mapModel，利用我们写好的Model 类，一步就把JSON数据映射成 model</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">ObservableType</span> <span class="title">where</span> <span class="title">E</span> == <span class="title">Response</span> </span>&#123;</div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">mapModel</span>&lt;T: HandyJSON&gt;<span class="params">(<span class="number">_</span> type: T.<span class="keyword">Type</span>)</span></span> -&gt; <span class="type">Observable</span>&lt;<span class="type">T</span>&gt; &#123;</div><div class="line"><span class="keyword">return</span> flatMap &#123; response -&gt; <span class="type">Observable</span>&lt;<span class="type">T</span>&gt; <span class="keyword">in</span></div><div class="line"><span class="keyword">return</span> <span class="type">Observable</span>.just(response.mapModel(<span class="type">T</span>.<span class="keyword">self</span>))</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Response</span> </span>&#123;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">mapModel</span>&lt;T: HandyJSON&gt;<span class="params">(<span class="number">_</span> type: T.<span class="keyword">Type</span>)</span></span> -&gt; <span class="type">T</span> &#123;</div><div class="line"><span class="keyword">let</span> jsonString = <span class="type">String</span>.<span class="keyword">init</span>(data: data, encoding: .utf8)</div><div class="line"><span class="keyword">return</span> <span class="type">JSONDeserializer</span>&lt;<span class="type">T</span>&gt;.deserializeFrom(json: jsonString)!</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/05/Swift/Lib/ObjectMapper-数据转模型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/05/Swift/Lib/ObjectMapper-数据转模型/" itemprop="url">Swift-Lib-ObjectMapper-数据转模型</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-05T18:57:29+08:00">
+                2018-03-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/Lib/" itemprop="url" rel="index">
+                    <span itemprop="name">Lib</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/Lib/ObjectMapper/" itemprop="url" rel="index">
+                    <span itemprop="name">ObjectMapper</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="集成"><a href="#集成" class="headerlink" title="集成"></a>集成</h1><h2 id="CocoaPods库导入"><a href="#CocoaPods库导入" class="headerlink" title="CocoaPods库导入"></a>CocoaPods库导入</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">pod '<span class="type">ObjectMapper'</span></div></pre></td></tr></table></figure>
+<h2 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> ObjectMapper</div></pre></td></tr></table></figure>
+<h2 id="ObjectMapper-的协议-Mappable"><a href="#ObjectMapper-的协议-Mappable" class="headerlink" title="ObjectMapper 的协议 Mappable"></a>ObjectMapper 的协议 Mappable</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">YKModel</span>:<span class="title">Mappable</span></span></div></pre></td></tr></table></figure>
+<h2 id="进入头文件会看到-Mappable-必须要实现两个协议方法，和一个构造器"><a href="#进入头文件会看到-Mappable-必须要实现两个协议方法，和一个构造器" class="headerlink" title="进入头文件会看到 Mappable 必须要实现两个协议方法，和一个构造器"></a>进入头文件会看到 Mappable 必须要实现两个协议方法，和一个构造器</h2><blockquote>
+<p>采纳这个协议的类，必须实现 Mappable 这个 protocol 中所指定的非可选的所有东西</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">public protocol Mappable &#123;</div><div class="line"> </div><div class="line"> /// This function can be used to validate JSON prior to mapping. Return nil to cancel mapping at this point</div><div class="line">  </div><div class="line">    init?(_ map: Map)</div><div class="line">  </div><div class="line">    /// This function is where all variable mappings should occur. It is executed by Mapper during the mapping (serialization and deserialization) process</div><div class="line">mutating func mapping(map: Map)</div><div class="line">/// This is an optional function that can be used to:</div><div class="line"> ///     1) provide an existing cached object to be used for mapping</div><div class="line">  /// 2) return an object of another class (which conforms to Mappable) to be used for mapping. For instance, you may inspect the JSON to infer the type of object that should be used for any given mapping </div><div class="line">  </div><div class="line">  static func objectForMapping(map: Map) -&gt; Mappable?</div></pre></td></tr></table></figure>
+<h2 id="在模型类的下面实现协议方法"><a href="#在模型类的下面实现协议方法" class="headerlink" title="在模型类的下面实现协议方法"></a>在模型类的下面实现协议方法</h2><blockquote>
+<p>在类中是无需标注mutating关键字的，mutating 只针对值类型，如枚举，结构体 </p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">required</span> <span class="keyword">init</span>?(<span class="number">_</span> <span class="built_in">map</span>: <span class="type">Map</span>) &#123;     </div><div class="line">&#125;</div><div class="line">    </div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">mapping</span><span class="params">(<span class="built_in">map</span>: Map)</span></span> &#123;     </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>上面的代码中并没有实现 Mappable 中所指定的 static func objectForMapping(map: Map) -&gt; Mappable? 这个类方法，是这样的，再次进入头文件会发现 Mappable 协议下面存在一个 Mappable 的协议扩展，截取了其中的一部分</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">public</span> <span class="class"><span class="keyword">extension</span> <span class="title">Mappable</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">objectForMapping</span><span class="params">(<span class="built_in">map</span>: Map)</span></span> -&gt; <span class="type">Mappable</span>? &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">nil</span></div><div class="line">    &#125;</div><div class="line">        ......</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>这个扩展中已经帮我们默认实现了 objectForMapping方法，所有不需要使用者实现这个方法，当然这个方法也是联想不出来的</p>
+</blockquote>
+<p><a href="https://www.jianshu.com/p/3e999c40491a" target="_blank" rel="external">参考原文</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -425,17 +902,6 @@
 
           
           
-             <span id="/2018/03/02/Swift/Lib/Reusable优雅地使用ReusableIdentifier/" class="leancloud_visitors" data-flag-title="Swift-Lib-Reusable-优雅地使用ReusableIdentifier">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -458,16 +924,51 @@
       
         
           
-          cell的重用机制与标示符
-苹果为了保准UITableView视图的性能，使用了cell的重用机制，cell可以通过重用标示符（reusableIdentifier）进行复用，默认的注册cell和获取cell的方法中，需要传入一个字符串作重用标示符但这种方式很容易出错，而且使用起来也相当别扭，一种普
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/02/Swift/Lib/Reusable优雅地使用ReusableIdentifier/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h1 id="cell的重用机制与标示符"><a href="#cell的重用机制与标示符" class="headerlink" title="cell的重用机制与标示符"></a>cell的重用机制与标示符</h1><blockquote>
+<p>苹果为了保准UITableView视图的性能，使用了cell的重用机制，cell可以通过重用标示符（reusableIdentifier）进行复用，默认的注册cell和获取cell的方法中，需要传入一个字符串作重用标示符<br>但这种方式很容易出错，而且使用起来也相当别扭，一种普遍的解决方式，就是直接只用类名作为重用标示符:</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">tableView.registerClass(<span class="type">UITableView</span>.<span class="keyword">self</span>,forCellReuseIdentifier:<span class="type">String</span>(<span class="type">UITableViewCell</span>.<span class="keyword">self</span>))</div><div class="line">tableView.dequeueReusableCellWithIdentifier(<span class="type">String</span>(<span class="type">UITableViewCell</span>.<span class="keyword">self</span>))</div></pre></td></tr></table></figure>
+<blockquote>
+<p>这种写法依然繁琐，每次传入一个类并把它转化成字符串<br>so,可借助Swift的泛型特性，我们可以有更加优雅的实现方式</p>
+</blockquote>
+<h1 id="使用协议"><a href="#使用协议" class="headerlink" title="使用协议"></a>使用协议</h1><ul>
+<li><a href="http://swift.gg/2016/01/27/generic-tableviewcells/index.html" target="_blank" rel="external">使用泛型来优化 TableView Cells 的使用体验</a>详细介绍了如何通过协议+泛型的方式，优化TableView Cells 的使用体验</li>
+</ul>
+<h2 id="具体的做法很简单"><a href="#具体的做法很简单" class="headerlink" title="具体的做法很简单:"></a>具体的做法很简单:</h2><blockquote>
+<p>❶协议</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">//声明了一个协议</span></div><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Reusable</span>: <span class="title">class</span> </span>&#123;</div><div class="line">   <span class="keyword">static</span> <span class="keyword">var</span> reuseIdentifier: <span class="type">String</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//提供并默认实现了一个reuseIdentifier静态属性</span></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Reusable</span> </span>&#123;</div><div class="line">   <span class="keyword">static</span> <span class="keyword">var</span> reuseIdentifier: <span class="type">String</span> &#123;</div><div class="line">     <span class="keyword">return</span> <span class="type">String</span> (<span class="type">Self</span>) </div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>❷提供一个注册和获取重用cell的方法<br>这样只要cell遵守了Reusable协议，就可以通过上面两个方法注册复用cell了。具体的代码和使用<a href="http://swift.gg/2016/01/27/generic-tableviewcells/index.html" target="_blank" rel="external">使用泛型来优化 TableView Cells 的使用体验</a></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">registerReusableCell</span>&lt;T: UITableViewCell where T: Reusable&gt;<span class="params">(<span class="number">_</span>: T.<span class="keyword">Type</span>)</span></span> &#123; </div><div class="line">     <span class="keyword">self</span>.registerClass(<span class="type">T</span>.<span class="keyword">self</span>, forCellReuseIdentifier: <span class="type">T</span>.reuseIdentifier) </div><div class="line"> &#125;</div><div class="line"></div><div class="line"> <span class="function"><span class="keyword">func</span> <span class="title">dequeueReusableCell</span>&lt;T: UITableViewCell where T: Reusable&gt;<span class="params">(indexPath indexPath: NSIndexPath)</span></span> -&gt; <span class="type">T</span> &#123; </div><div class="line">      <span class="keyword">return</span> <span class="keyword">self</span>.dequeueReusableCellWithIdentifier(<span class="type">T</span>.reuseIdentifier, forIndexPath: indexPath) <span class="keyword">as</span>! <span class="type">T</span> </div><div class="line">      &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>cell必须遵守了Reusable协议，虽然通过让UITableViewCell遵守这个协议的方式，避免每个UITableViewCell子cell都写一遍，但这依然还不是最理想的解决方式。最理想的解决方式，应该是只需要调用方法，不需要UITableViewCell做任何修改，为此我们可以使用结构体，而非协议来实现</p>
+</blockquote>
+<h1 id="使用结构体"><a href="#使用结构体" class="headerlink" title="使用结构体"></a>使用结构体</h1><blockquote>
+<p>使用泛型定义一个ReusableIdentifier结构体，有一个identifier的不变量</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">struct</span> <span class="title">ReusableIdentifier</span> &lt;<span class="title">T</span>: <span class="title">UIView</span>&gt; </span>&#123;</div><div class="line">       <span class="keyword">let</span> identifier: string</div><div class="line">       </div><div class="line">       <span class="keyword">init</span> () &#123;</div><div class="line">          identifier = <span class="type">String</span>(<span class="type">T</span>.<span class="type">Self</span>)</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注册的时候就非常简单</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">tableview.register(<span class="type">UITableViewCell</span>.<span class="keyword">self</span>)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>同样的，可以为UITableView实现一个dequeue方法</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="meta">@warn_unused_result</span></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">dequeue</span>&lt;T: UICollectionViewCell&gt;<span class="params">(indexPath: NSIndexPath)</span></span> -&gt; <span class="type">T</span> &#123;</div><div class="line">    <span class="keyword">let</span> rid = <span class="type">ReusableIdentifier</span>&lt;<span class="type">T</span>&gt;()</div><div class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> cell = dequeueReusableCellWithReuseIdentifier(rid.identifier, forIndexPath: indexPath) <span class="keyword">as</span>? <span class="type">T</span> <span class="keyword">else</span> &#123; </div><div class="line">    <span class="built_in">assertionFailure</span>(<span class="string">"No identifier(\(rid.identifier)) found for \(T.self)"</span>)</div><div class="line">    <span class="keyword">return</span> <span class="type">T</span>.<span class="keyword">init</span>()</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> cell</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>使用的时候只需要指定cell的类型，传入indexPath即可</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> cell: <span class="type">UITableViewCell</span> = tableview.dequeue(indexPath)</div></pre></td></tr></table></figure>
+<ul>
+<li><p>通过引入一个结构体，利用泛型特性，不需要对已有的类型做任何修改，只需要替换注册和复用cell时调用的方法，我们就可以非常优雅的复用Tableview Cell。</p>
+</li>
+<li><p>参考上面的方法，我们可以借助ReusableIdentifier结构体，为UICollectionView实现相应的方法</p>
+</li>
+</ul>
+
+          
         
       
     </div>
@@ -477,176 +978,7 @@
 
     
 
-    
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/02/RxSwift/Demo/RxSwift 构建项目的框架/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="千夜 QQ:738816656">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/02/RxSwift/Demo/RxSwift 构建项目的框架/" itemprop="url">RxSwift + ReactorKit 构建信息流框架</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-02T12:33:50+08:00">
-                2018-03-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/03/02/RxSwift/Demo/RxSwift 构建项目的框架/" class="leancloud_visitors" data-flag-title="RxSwift + ReactorKit 构建信息流框架">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          https://www.jianshu.com/p/48545ae1e33f
-
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/02/RxSwift/Demo/RxSwift 构建项目的框架/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
 
     
 
@@ -767,17 +1099,6 @@
 
           
           
-             <span id="/2018/03/02/RxSwift/Func/RxSwift + ReactorKit 构建信息流框架/" class="leancloud_visitors" data-flag-title="RxSwift + ReactorKit 构建信息流框架">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -800,16 +1121,9 @@
       
         
           
-          https://www.jianshu.com/p/dff7b0368d2b
+            <p><a href="https://www.jianshu.com/p/dff7b0368d2b" target="_blank" rel="external">https://www.jianshu.com/p/dff7b0368d2b</a></p>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/02/RxSwift/Func/RxSwift + ReactorKit 构建信息流框架/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -818,6 +1132,8 @@
     
 
     
+
+
 
     
 
@@ -949,17 +1265,6 @@
 
           
           
-             <span id="/2018/03/02/Swift/Lib/Then协议库-初始化方式/" class="leancloud_visitors" data-flag-title="Swift-Lib-Then协议库-初始化方式">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -982,18 +1287,42 @@
       
         
           
-          写法对比
-普通的写法，先看通过Block创建对象的写法优点：代码整合在一个闭包里面，可读性强
+            <h1 id="写法对比"><a href="#写法对比" class="headerlink" title="写法对比"></a>写法对比</h1><blockquote>
+<p>普通的写法，先看通过Block创建对象的写法<br>优点：代码整合在一个闭包里面，可读性强</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> <span class="number">_</span> = &#123; () -&gt; <span class="type">UILabel</span> <span class="keyword">in</span> </div><div class="line"> <span class="keyword">let</span>  label = <span class="type">UILab</span>()</div><div class="line"> view.addSubview(label)</div><div class="line"> label.text = <span class="string">"myLabel"</span></div><div class="line"> label.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">18</span>)</div><div class="line"> label.center = <span class="keyword">self</span>.view.center</div><div class="line"> label.bounds = <span class="type">CGRect</span>.<span class="keyword">init</span>(x : <span class="number">0</span>, y : <span class="number">0</span>, width : <span class="number">100</span>, height : <span class="number">50</span>)</div><div class="line"> <span class="keyword">return</span> label</div><div class="line"> &#125;()</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在Block外初始化一个对象，再传进闭包进行设值，统一用$0取参数对象，不用再去烦如何命名了。当然也可以命名，参考后文的写法 不过有个缺点：里面的$0没法自动联想出属性，手敲几行代码你就会蓝瘦香菇</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> <span class="number">_</span> =:<span class="type">UILabel</span> &#123;</div><div class="line">  view.addSubview($<span class="number">0</span>)</div><div class="line">  $<span class="number">0</span>.text = <span class="string">"测试"</span></div><div class="line">  $<span class="number">0</span>.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">18</span>)</div><div class="line">  $<span class="number">0</span>.center = <span class="keyword">self</span>.view.center</div><div class="line">  $<span class="number">0</span>.bounds = <span class="type">CGRect</span>.<span class="keyword">init</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: <span class="number">100</span>,height: <span class="number">50</span>)</div><div class="line">  <span class="keyword">return</span> $<span class="number">0</span></div><div class="line">&#125;(<span class="type">UILabel</span>())</div></pre></td></tr></table></figure>
+<blockquote>
+<p>用Then协议库的初始化写法<br>比上面的代码更简洁，不用写return了，而且里面的$0还能自动联想。优点：暂时没有吐槽点</p>
+<p>带参数，可自行命名</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> <span class="number">_</span> = <span class="type">UILabel</span>().then_Any&#123; (label) <span class="keyword">in</span></div><div class="line">    label.backgroundColor = .blue</div><div class="line">    label.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">18</span>)</div><div class="line">    label.textAlinment = .center</div><div class="line">    label.text = <span class="string">"Then协议库写法"</span></div><div class="line">    label.frame = <span class="type">CGRect</span>.<span class="keyword">init</span>(x: <span class="number">20</span>, y:<span class="number">200</span>, width: <span class="number">150</span>, height:<span class="number">40</span>)</div><div class="line">      <span class="comment">// 不会循环引用(已测试)</span></div><div class="line">     <span class="keyword">self</span>.view.addSubview(label)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>(推荐)无参数，无需命名，用$0取参数，可自动联想属性(推荐)</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> <span class="number">_</span> = <span class="type">UILabel</span>().then_Any&#123;</div><div class="line">   $<span class="number">0</span>.backgroundColor = .blue</div><div class="line">   $<span class="number">0</span>.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">18</span>)</div><div class="line">   $<span class="number">0</span>.textAlignment = .center</div><div class="line">   $<span class="number">0</span>.text = <span class="string">"Then库写法1.1"</span></div><div class="line">   $<span class="number">0</span>.frame = <span class="type">CGRect</span>.<span class="keyword">init</span>(x: <span class="number">200</span>, y: <span class="number">200</span>, height: <span class="number">50</span>)</div><div class="line">   <span class="keyword">self</span>.view.adSubview($<span class="number">0</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>2.0 带参数，可自行命名</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> label_Any0 = <span class="type">UILabel</span>().then&#123; (label) <span class="keyword">in</span></div><div class="line">    label.backgroundColor = .blue</div><div class="line">    label.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">18</span>)</div><div class="line">    label.textAlignment = .center</div><div class="line">    label.text = <span class="string">"Then库写法_2.0"</span></div><div class="line">    label.frame = <span class="type">CGRect</span>.<span class="keyword">init</span>(x: <span class="number">200</span>, y:<span class="number">240</span>, width:<span class="number">150</span>, height: <span class="number">40</span>)</div><div class="line">&#125;</div><div class="line"><span class="keyword">self</span>.view.addSubview(label_Any0)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>2.1 (推荐)无参数，无需命名，用$0取参数，可自动联想属性</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> <span class="number">_</span> = <span class="type">UILabel</span>().then &#123;</div><div class="line">   $<span class="number">0</span>.backgroundColor = .blue</div><div class="line">   $<span class="number">0</span>.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">18</span>)</div><div class="line">   $<span class="number">0</span>.textAlignment = .center</div><div class="line">   $<span class="number">0</span>.text = <span class="string">"Then库写法_2.1"</span></div><div class="line">   $<span class="number">0</span>.frame = <span class="type">CGRect</span>.<span class="keyword">init</span>(x: <span class="number">200</span>, y: <span class="number">260</span>,width: <span class="number">150</span>,height: <span class="number">40</span>)</div><div class="line">   <span class="keyword">self</span>.view.addSubview($<span class="number">0</span>)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>栗子：某工厂方法 </p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">label</span> (<span class="title">withFrame</span> <span class="title">frame</span>: <span class="title">CGRect</span>, <span class="title">text</span>: <span class="title">String</span>?, <span class="title">font</span>: <span class="title">UIFont</span>)-&gt;<span class="title">UILabel</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="type">UILabel</span>.<span class="keyword">init</span>(frame: frame).then(block: &#123; (label) <span class="keyword">in</span> </div><div class="line">          label.text = text</div><div class="line">          label.textColor = <span class="type">UIColor</span>.black</div><div class="line">          label.backgroundColor = <span class="type">UIColor</span>.white</div><div class="line">          label.font = font</div><div class="line"> &#125;)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>其实Then协议库只有十几行代码，但是能带来非常好的体验感，简约实用，不会出现循环引用。下面的代码可以复制到一个swift file中，直接用</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> Foundation</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">Then</span> </span>&#123;&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Then</span> <span class="title">where</span> <span class="title">Self</span>: <span class="title">Any</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">then_Any</span><span class="params">( block: <span class="params">(<span class="keyword">inout</span> <span class="keyword">Self</span>)</span></span></span> -&gt; <span class="type">Void</span>) -&gt; <span class="type">Self</span> &#123;</div><div class="line">        <span class="keyword">var</span> copy = <span class="keyword">self</span></div><div class="line">        block(&amp;copy)</div><div class="line">        <span class="keyword">return</span> copy</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Then</span> <span class="title">where</span> <span class="title">Self</span>: <span class="title">AnyObject</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">then</span><span class="params">( block: <span class="params">(<span class="keyword">Self</span>)</span></span></span> -&gt; <span class="type">Void</span>) -&gt; <span class="type">Self</span> &#123;</div><div class="line">        block(<span class="keyword">self</span>)</div><div class="line">        <span class="keyword">return</span> <span class="keyword">self</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">NSObject</span>: <span class="title">Then</span> </span>&#123;&#125;</div></pre></td></tr></table></figure>
+<p><a href="https://www.jianshu.com/p/6cc1e21df6ac" target="_blank" rel="external">参考原文</a></p>
 
-let _ = &#123; () -&gt; UILabel in  let  label = UILab() view.addSubview(label) label.text = "myLabel"
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/02/Swift/Lib/Then协议库-初始化方式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1002,6 +1331,8 @@ let _ = &#123; () -&gt; UILabel in  let  label = UILab() view.addSubview(label) 
     
 
     
+
+
 
     
 
@@ -1133,17 +1464,6 @@ let _ = &#123; () -&gt; UILabel in  let  label = UILab() view.addSubview(label) 
 
           
           
-             <span id="/2018/03/01/RxSwift/Demo/RxSwift+Moya+列表展示/" class="leancloud_visitors" data-flag-title="RxSwift+Moya+列表展示">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1166,45 +1486,253 @@ let _ = &#123; () -&gt; UILabel in  let  label = UILab() view.addSubview(label) 
       
         
           
-          项目
-根据网上demo仿写原文
+            <h1 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h1><blockquote>
+<p>根据网上demo仿写<a href="https://mp.weixin.qq.com/s/B-AdatKDkjknKCYorqSfEw" target="_blank" rel="external">原文</a></p>
+</blockquote>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Controller</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>LXFViewController.swift</td>
+<td>主视图控制器</td>
+</tr>
+<tr>
+<td>Extension</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Response+ObjectMapper.swift</td>
+<td>Response分类，Moya请求完进行Json转模型或模型数组</td>
+</tr>
+<tr>
+<td>Model</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>LXFModel.swift</td>
+<td>模型</td>
+</tr>
+<tr>
+<td>Protocol</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>LXFViewModelType.swift</td>
+<td>定义了模型协议</td>
+</tr>
+<tr>
+<td>Tool</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>LXFNetworkTool.swift</td>
+<td>封装Moya请求</td>
+</tr>
+<tr>
+<td></td>
+<td>LXFProgressHUD.swift</td>
+<td>封装的HUD</td>
+</tr>
+<tr>
+<td>View</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>LXFViewCell.swift</td>
+<td>自定义cell</td>
+</tr>
+<tr>
+<td></td>
+<td>LXFViewCell.xib</td>
+<td>cell的xib文件</td>
+</tr>
+<tr>
+<td>ViewModel</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>LXFViewModel.swift</td>
+<td>视图模型</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="第三方库"><a href="#第三方库" class="headerlink" title="第三方库"></a>第三方库</h2><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RxSwift</td>
+<td>想玩RxSwift的必备库</td>
+</tr>
+<tr>
+<td>RxCocoa</td>
+<td>对 UIKit Foundation 进行 Rx 化</td>
+</tr>
+<tr>
+<td>NSObject+Rx</td>
+<td>为我们提供 rx_disposeBag</td>
+</tr>
+<tr>
+<td>Moya/RxSwift</td>
+<td>为RxSwift专用提供，对Alamofire进行封装的一个网络请求库</td>
+</tr>
+<tr>
+<td>ObjectMapper</td>
+<td>Json转模型之必备良品</td>
+</tr>
+<tr>
+<td>RxDataSources</td>
+<td>帮助我们优雅的使用tableView的数据源方法</td>
+</tr>
+<tr>
+<td>Then</td>
+<td>提供快速初始化的语法糖</td>
+</tr>
+<tr>
+<td>Kingfisher</td>
+<td>图片加载库</td>
+</tr>
+<tr>
+<td>SnapKit</td>
+<td>视图约束库</td>
+</tr>
+<tr>
+<td>Reusable</td>
+<td>帮助我们优雅的使用自定义cell和view,不再出现Optional</td>
+</tr>
+<tr>
+<td>MJRefresh</td>
+<td>上拉加载、下拉刷新的库</td>
+</tr>
+<tr>
+<td>SVProgressHUD</td>
+<td>简单易用的HUD</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Moya"><a href="#Moya" class="headerlink" title="Moya"></a>Moya</h3><ul>
+<li>Moya是基于Alamofire的网络请求库</li>
+<li>Moya的基础上添加了对RxSwift的接口支持</li>
+</ul>
+<blockquote>
+<p>❶ 创建网络类型枚举，用来存放请求类型</p>
+<ul>
+<li>顺便设置相应的路径，等下统一取出来直接赋值即可</li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">LXFNetworkCategory</span> : <span class="title">String</span> </span>&#123;</div><div class="line"> <span class="keyword">case</span> all = <span class="string">"all"</span></div><div class="line"> <span class="keyword">case</span> android = <span class="string">"Android"</span></div><div class="line"> <span class="keyword">case</span> ios = <span class="string">"iOS"</span></div><div class="line"> <span class="keyword">case</span> welfare = <span class="string">"福利"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>❷枚举写一个扩展，并遵循塄 TargetType，这个协议的Moya这个库规定的协议</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">LXFNetworkTool</span> : <span class="title">TargetType</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">//baseURL 统一基本的URL</span></div><div class="line">    <span class="keyword">var</span> baseURL : <span class="type">URL</span> &#123;</div><div class="line">       <span class="keyword">return</span> <span class="type">URL</span> (string : <span class="string">"http://xxxx/xx/"</span>)</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//path字段会追加至baseURL后面</span></div><div class="line">    <span class="keyword">var</span> path : <span class="type">String</span> &#123;</div><div class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</div><div class="line">        <span class="keyword">case</span>.data(<span class="keyword">let</span> type, <span class="keyword">let</span> size , <span class="keyword">let</span> index):</div><div class="line">             <span class="keyword">return</span> <span class="string">"(type.rawValue)/(size)/(index)"</span></div><div class="line">         &#125;</div><div class="line">     &#125;</div><div class="line">     </div><div class="line">     <span class="comment">// HTTP的请求方式</span></div><div class="line">     <span class="keyword">var</span> method : <span class="type">Moya</span>.<span class="type">Method</span> &#123;</div><div class="line">       <span class="keyword">return</span> .<span class="keyword">get</span></div><div class="line">     &#125;</div><div class="line">     </div><div class="line">      <span class="comment">//请求参数(会在请求时进行编码)</span></div><div class="line">      <span class="keyword">var</span> parameters : [<span class="type">String</span> : <span class="type">Any</span>]?&#123;</div><div class="line">          <span class="keyword">return</span> <span class="literal">nil</span></div><div class="line">      &#125;</div><div class="line">      </div><div class="line">       <span class="comment">//参数编码方式(这里使用URL的默认方式)</span></div><div class="line">       <span class="keyword">var</span> parameterEncoding : <span class="type">ParameterEncoding</span> &#123;</div><div class="line">           <span class="keyword">return</span> <span class="type">URLEncoding</span>.<span class="keyword">default</span></div><div class="line">       &#125;</div><div class="line">       </div><div class="line">       <span class="comment">//用于单元测试，不需要的就像我一样随便写写</span></div><div class="line">       <span class="keyword">var</span> sampleData : <span class="type">Data</span> &#123;</div><div class="line">           <span class="keyword">return</span> <span class="string">"AAAA"</span>.data(using : .utf8)</div><div class="line">       &#125;</div><div class="line">       </div><div class="line">      <span class="comment">//将要被执行的任务(请求：request 下载：upload 上传：download)</span></div><div class="line">      </div><div class="line">      <span class="keyword">var</span> task : <span class="type">Task</span> &#123;</div><div class="line">          <span class="keyword">return</span> .reuqest</div><div class="line">      &#125;</div><div class="line">      </div><div class="line">      <span class="comment">//是否执行Alamofire验证，默认值为false</span></div><div class="line">        <span class="keyword">var</span> validate : <span class="type">Bool</span> &#123;</div><div class="line">            <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">      &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>❸ 定义一个全局变量用于整个项目的网络请求<br>以使用这个全局变量来请求数据</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> lxfNetTool = <span class="type">RxMoyaProvider</span>&lt;<span class="type">LXFNetworkTool</span>&gt;</div></pre></td></tr></table></figure>
+<h3 id="RxDataSources"><a href="#RxDataSources" class="headerlink" title="RxDataSources"></a>RxDataSources</h3><ul>
+<li>RxDataSources是以section来做为数据结构来传输</li>
+</ul>
+<blockquote>
+<p>自定义Section<br>Model中创建一个Section的结构体，并且创建一个扩展，遵循SectionModelType协议，实现相应的协议方法</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">LXFModel</span>.swift</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">LXFSection</span> </span>&#123;</div><div class="line">  <span class="comment">// items就是rows</span></div><div class="line">  <span class="keyword">var</span> items : [<span class="type">Item</span>]</div><div class="line">  <span class="comment">//这里加你需要的东西，比如 headerView 的 title</span></div><div class="line">  </div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">LXFSection</span> : <span class="title">SectionModelType</span> </span>&#123;</div><div class="line">  <span class="comment">// 重定义 Item 的类型为 LXFModel</span></div><div class="line">  <span class="keyword">typealias</span> <span class="type">Item</span> = <span class="type">LXFModel</span></div><div class="line">  </div><div class="line">  <span class="comment">// 实现协议中的方式</span></div><div class="line">    <span class="keyword">init</span>(original: <span class="type">LXFSection</span>, items: [<span class="type">LXFSection</span>.<span class="type">Item</span>]) &#123;</div><div class="line">        <span class="keyword">self</span> = original</div><div class="line">        <span class="keyword">self</span>.items = items</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>❷ 控制器下创建数据源属性<br>LXFViewController.swift</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">//创建一个数据源属性，类型为自定义的Section类型</span></div><div class="line">   <span class="keyword">let</span> dataSource = <span class="type">RxTableViewSectionedReloadDataSource</span>&lt;<span class="type">LXFSection</span>&gt;()</div><div class="line">   </div><div class="line"> <span class="comment">//使用数据源属性绑定cell</span></div><div class="line"> dataSource.configureCell = &#123; ds,tv,ip,iteam <span class="keyword">in</span></div><div class="line">   <span class="comment">// 这个地方使用了Reusable这个库，在LXFViewCell中遵守了相应的协议</span></div><div class="line">   <span class="comment">// 使其方便转换cell为非可选型的相应的cell类型</span></div><div class="line">   <span class="keyword">let</span> cell = tv.dequeueReusableCell(<span class="keyword">for</span> : ip) <span class="keyword">as</span> <span class="type">LXFViewCell</span></div><div class="line">   cell.picView.kf.setImgage(with : <span class="type">URL</span>(string: item.url))</div><div class="line">   cell.descLabel.text = <span class="string">"描述 : (item.desc)"</span></div><div class="line">   cell.sourceLabel.text = <span class="string">"来源 : (item.source)"</span></div><div class="line">   <span class="keyword">return</span> cell;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>❸ sections序列绑定给我们的rows</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">output.sections</div><div class="line">      .asDriver()</div><div class="line">      .drive(tableView.rx</div><div class="line">                      .items(dataSource : dataSource))</div><div class="line">       .addDisposable(rx_disposeBag)</div></pre></td></tr></table></figure>
+<h3 id="ViewModel的规范"><a href="#ViewModel的规范" class="headerlink" title="ViewModel的规范"></a>ViewModel的规范</h3><ul>
+<li>MVVM思想是将原本在ViewController的视图显示逻辑、验证逻辑、网络请求等代码存放于ViewModel中，达到ViewController瘦身-</li>
+<li>逻辑由ViewModel负责，外界不需要关心，外界只需要结果，ViewModel也只需要将结果给到外界</li>
+<li>基于此，我们定义了一个协议LXFViewModelType</li>
+</ul>
+<blockquote>
+<p>❶创建LXFViewModelType.swift</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">LXFViewModelType</span>.swift</div><div class="line"></div><div class="line"><span class="comment">// associatedtype 关键字 用来声明一个类型的占位符作为协议定义的一部分</span></div><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">LXFViewModelType</span> </span>&#123;</div><div class="line"></div><div class="line">  associatedtype <span class="type">Input</span></div><div class="line">  associatedtype <span class="type">Output</span></div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">transform</span><span class="params">(input : Input )</span></span> - &gt; <span class="type">Output</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>❷viewModel遵守LXFViewModelType协议</p>
+</blockquote>
+<ul>
+<li>可以为XFViewModelType的Input和Output定义别名，以示区分,如：这个viewModel的用于请求首页模块相关联的，则可以命名为：HomeInput 和 HomeOutput</li>
+<li>可以丰富我们的 Input 和 Output 。可以看到为Output添加了一个序列，类型为自定义的LXFSection数组，在Input里面添加了一个请求类型(即要请求什么数据，比如首页的数据)</li>
+<li>通过 transform 方法将input携带的数据进行处理，生成了一个Output</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">LXFViewModel</span>.swift</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">LXFViewModel</span> :<span class="title">LXFViewModelType</span> </span>&#123;</div><div class="line">        <span class="comment">// 存放着解析完成的模型数组</span></div><div class="line">        <span class="keyword">let</span> models = <span class="type">Variable</span> &lt;[<span class="type">LXFModel</span>]&gt;([])</div><div class="line">        </div><div class="line">        <span class="comment">// 为LXFViewModelType的Input和Output定义别名</span></div><div class="line">        <span class="keyword">typealias</span> <span class="type">Input</span> = <span class="type">LXFInput</span></div><div class="line">        <span class="keyword">typealias</span> <span class="type">Output</span> = <span class="type">LXFOutput</span></div><div class="line">        </div><div class="line">        <span class="comment">// 丰富Input和Output</span></div><div class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">LXFInput</span> </span>&#123;</div><div class="line">           <span class="comment">//网络请求类型</span></div><div class="line">           <span class="keyword">let</span> category : <span class="type">LXFNetworkTool</span>.<span class="type">LXFNetworkCategory</span></div><div class="line">           int(category : <span class="type">LXFNetworkTool</span>.<span class="type">LXFNetworkCategory</span>)&#123;</div><div class="line">              <span class="keyword">self</span>.category = category</div><div class="line">        &#125;</div><div class="line">     &#125;</div><div class="line">     </div><div class="line">     <span class="class"><span class="keyword">struct</span> <span class="title">LXFOutput</span> </span>&#123;</div><div class="line">            <span class="comment">//tableView的sections数据</span></div><div class="line">            <span class="keyword">let</span> sections : <span class="type">Driver</span> &lt;<span class="type">LXFsection</span>&gt;</div><div class="line">            </div><div class="line">            <span class="keyword">init</span>(sections : <span class="type">Driver</span> &lt;[<span class="type">LXFSection</span>]&gt;)&#123;</div><div class="line">               <span class="keyword">self</span>.sections = sections</div><div class="line">             &#125;</div><div class="line">      &#125;</div><div class="line">      </div><div class="line">      <span class="function"><span class="keyword">func</span> <span class="title">transform</span><span class="params">(input : LXFViewModel.LXFInput)</span></span> -&gt; <span class="type">LXFViewModel</span>.<span class="type">LXFOutput</span>&#123;</div><div class="line">           <span class="keyword">let</span> sections = models.asObservable()</div><div class="line">                                .<span class="built_in">map</span>&#123; (models) -&gt; [<span class="type">LXFSection</span>] <span class="keyword">in</span> </div><div class="line">                                 <span class="comment">// 当models的值被改变时会调用，这是Variable的特性</span></div><div class="line">                                 <span class="comment">// 返回section数组</span></div><div class="line">                                 <span class="keyword">return</span> [<span class="type">LXFSection</span>(item : models)]</div><div class="line">                                 &#125;</div><div class="line">                                 .asDriver(onErrorJustReturn : [])</div><div class="line">           <span class="keyword">let</span> output = <span class="type">LXFOutput</span>(sections : sections)</div><div class="line">       <span class="comment">// 接下来的代码是网络请求</span></div><div class="line">      &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>❸在ViewController中初始化我们的input，通过transform得到output，<br>然后将output中的sections序列绑定tableView的items</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">LXFViewController</span>.swift</div><div class="line"></div><div class="line"><span class="comment">// 初始化input</span></div><div class="line"><span class="keyword">let</span> vmInput = <span class="type">LXFViewModel</span>.<span class="type">LXFInput</span>(category : welfare)</div><div class="line"><span class="comment">// 通过transform得到output</span></div><div class="line"><span class="keyword">let</span> vmOutput = viewModel.transform(input : vmInput)</div><div class="line">vmOutput.sections</div><div class="line">        .asDriver()</div><div class="line">        .drive(tableView.rx</div><div class="line">                        .items(dataSource : dataSource))</div><div class="line">        .addDisposableTo(rx_disposeBag)</div></pre></td></tr></table></figure>
+<h3 id="MJRefresh"><a href="#MJRefresh" class="headerlink" title="MJRefresh"></a>MJRefresh</h3><blockquote>
+<p>❶定义枚举LXFRefreshStatus，用于标志当前刷新状态</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">LXFRefreshStatus</span> </span>&#123;</div><div class="line">     <span class="keyword">case</span> <span class="keyword">none</span></div><div class="line">     <span class="keyword">case</span> beingHeaderRefresh</div><div class="line">     <span class="keyword">case</span> endHeaderRefresh</div><div class="line">     <span class="keyword">case</span> beingFooterRefresh</div><div class="line">     <span class="keyword">case</span> endFooterRefresh</div><div class="line">     <span class="keyword">case</span> noMoreData</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>❷LXFOutput添加一个refreshStatus序列，类型为LXFRefreshStatus<br>给外界订阅，告诉外界的tableView当前的刷新状态</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> refreshStatus = <span class="type">Variable</span>&lt;<span class="type">LXFRefreshStatus</span>&gt;(.<span class="keyword">none</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>进行网络请求并得到结果之后，修改refreshStatus的value为相应的LXFRefreshStatus项</li>
+</ul>
+<blockquote>
+<p>❸外界订阅output的refreshStatus,并且根据接收到的值进行相应的操作</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">vmOutput.refreshStatus</div><div class="line">        .asObservable()</div><div class="line">        .subscribe(onNext : &#123;[<span class="keyword">weak</span> <span class="keyword">self</span>] status <span class="keyword">in</span> </div><div class="line">          <span class="keyword">switch</span> status &#123;</div><div class="line">           <span class="keyword">case</span> .beingHeaderRefresh:</div><div class="line">                <span class="keyword">self</span>?.tableView.mj_header</div><div class="line">                     .beginRefreshing()</div><div class="line">           <span class="keyword">case</span> .endHeaderRefresh:</div><div class="line">                <span class="keyword">self</span>?.tableView</div><div class="line">                     .mj_header</div><div class="line">                     .endRefreshing()</div><div class="line">           <span class="keyword">case</span> .beingFooterRefresh:</div><div class="line">                <span class="keyword">self</span>?.tableView</div><div class="line">                     .mj_footer</div><div class="line">                     .beginRefreshing()</div><div class="line">           <span class="keyword">case</span> .endFooterRefresh:</div><div class="line">                <span class="keyword">self</span>?.tableView</div><div class="line">                     .mj_footer</div><div class="line">                     .endRefreshing</div><div class="line">           <span class="keyword">case</span> .noMoreData :</div><div class="line">                 <span class="keyword">self</span>?.tableView</div><div class="line">                       .endRefreshingWithNoMoreData()</div><div class="line">            <span class="keyword">default</span> :</div><div class="line">             <span class="keyword">break</span></div><div class="line">        &#125;</div><div class="line">  &#125;).addDisposable(rx_disposeBag)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>❹output提供一个requestCommond用于请求数据<br>PublishSubject 的特点：即可以作为Observable，也可以作为Observer，就是可以发送信号，也可以订阅信号<br>外界通过该属性告诉viewModel加载数据（传入的值是为了标志是否重新加载）</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> requestCommond = <span class="type">PublishSubject</span>&lt;<span class="type">Bool</span>&gt;()</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在transform中，对生成的output的requestCommond进行订阅</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">output.requestCommond</div><div class="line">      .subscribe(onNext : &#123; [<span class="keyword">unowned</span> <span class="keyword">self</span>] isReloadData <span class="keyword">in</span></div><div class="line">      <span class="keyword">self</span>.index = isReload ?<span class="number">1</span>:<span class="keyword">self</span>.index+<span class="number">1</span></div><div class="line">      lxfNetTool.request(.data(type:input.category,</div><div class="line">                               size:<span class="number">10</span>,</div><div class="line">                               index:<span class="keyword">self</span>.index</div><div class="line">                               )</div><div class="line">                         )</div><div class="line">                 .mapArray(<span class="type">LXFModel</span>.<span class="keyword">self</span>)</div><div class="line">                 .subscribe(&#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] (event) <span class="keyword">in</span></div><div class="line">                     <span class="keyword">switch</span> event &#123;</div><div class="line">                        <span class="keyword">case</span> <span class="keyword">let</span>.next(modelArr):</div><div class="line">                           <span class="keyword">self</span>?.models.value = isReloadData?modelArr:(<span class="keyword">self</span>?.models.value??[])+modelArr</div><div class="line">                           <span class="type">LXFProgressHUD</span>.showSuccess(<span class="string">"加载成功"</span>)</div><div class="line">                        <span class="keyword">case</span> <span class="keyword">let</span>.error(error):</div><div class="line">                           <span class="type">LXFProgressHUD</span>.showError(error.localizedDescription)</div><div class="line">                        <span class="keyword">case</span> .completed:</div><div class="line">                           output.refreshStatus.value = isReloadData?.endHeaderRefresh:.endFooterRefresh</div><div class="line">                     &#125;</div><div class="line">                  &#125;)</div><div class="line">                  .addDisposableTo(slf.rx_disposeBag)</div><div class="line">     &#125;)</div><div class="line">     .addDisposableTo(rx_disposeBag)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>❺在ViewController中初始化刷新控件<br>为tableView设置刷新控件，并且在创建刷新控件的回调中使用output的requestCommond发射信号</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">tableView.mj_header = <span class="type">MJRefreshNormalHeader</span>(refreshingBlock:&#123;</div><div class="line">  vmOutput.requestCommond</div><div class="line">          .onNext(<span class="literal">true</span>)</div><div class="line"> &#125;)</div><div class="line"></div><div class="line">tableView.mj_footer = <span class="type">MJRefreshAutoNormalFooter</span>(refreshingBlock:&#123;</div><div class="line">  vmOutput.requestCommond</div><div class="line">          .onNext(<span class="literal">false</span>)</div></pre></td></tr></table></figure>
+<h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><ul>
+<li>ViewController已经拿到output，当下拉加载数据的时候，使用output的requestCommond发射信息，告诉viewModel我们要加载数据</li>
+<li>viewModel请求数据，在处理完json转模型或模型数组后修改models，当models的值被修改的时候会发信号给sections，sections在ViewController已经绑定到tableView的items了，所以此时tableView的数据会被更新。接着我们根据请求结果，修改output的refreshStatus属性的值</li>
+<li>当output的refreshStatus属性的值改变后，会发射信号，由于外界之前已经订阅了output的refreshStatus，此时就会根据refreshStatus的新值来处理刷新控件的状态</li>
+</ul>
+<p><a href="https://github.com/LinXunFeng/RxSwiftDemo" target="_blank" rel="external">原文Demo</a></p>
 
-结构
-
-
-
-
-
-
-
-
-
-Controller
-
-
-
-
-
-LXFViewController.swift
-主视图控制器
-
-
-Extension
-
-
-
-
-
-Response+ObjectMapper.swift
-Response分类，Moya请求完进行Json转模型或模
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/01/RxSwift/Demo/RxSwift+Moya+列表展示/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1213,6 +1741,8 @@ Response分类，Moya请求完进行Json转模型或模
     
 
     
+
+
 
     
 
@@ -1344,17 +1874,6 @@ Response分类，Moya请求完进行Json转模型或模
 
           
           
-             <span id="/2018/03/01/RxSwift/Demo/RxSwift+Moya+登录+搜索/" class="leancloud_visitors" data-flag-title="RxSwift+Moya+登录+搜索">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1377,51 +1896,44 @@ Response分类，Moya请求完进行Json转模型或模
       
         
           
-          项目功能
-
-
-
-
-
-
-
-
-
-登录注册功能
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            <h1 id="项目功能"><a href="#项目功能" class="headerlink" title="项目功能"></a>项目功能</h1><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>登录注册功能</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/01/RxSwift/Demo/RxSwift+Moya+登录+搜索/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1430,6 +1942,8 @@ Response分类，Moya请求完进行Json转模型或模
     
 
     
+
+
 
     
 
@@ -1550,17 +2064,6 @@ Response分类，Moya请求完进行Json转模型或模
 
           
           
-             <span id="/2018/02/28/Swift/Grammar/Closures闭包-使用分析/" class="leancloud_visitors" data-flag-title="Swift-Grammar-Closures闭包-使用分析">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1583,18 +2086,48 @@ Response分类，Moya请求完进行Json转模型或模
       
         
           
-          OC-Block
-Block通常会用在网络请求中，请求到数据后然后回调
+            <h1 id="OC-Block"><a href="#OC-Block" class="headerlink" title="OC-Block"></a>OC-Block</h1><blockquote>
+<p>Block通常会用在网络请求中，请求到数据后然后回调</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">HttpTool</span></span></div><div class="line">-(<span class="keyword">void</span>)loadData:(<span class="keyword">void</span>(^)(<span class="built_in">NSString</span> * json))callBack&#123;</div><div class="line">        <span class="built_in">dispatch_async</span>(dispatch_get_global_queue(<span class="number">0</span>, <span class="number">0</span>), ^&#123;</div><div class="line">         <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,[<span class="built_in">NSThread</span> currentThread]);</div><div class="line">         <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^&#123;</div><div class="line">         <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,[<span class="built_in">NSThread</span> currentThread]);</div><div class="line">            callBack(<span class="string">@"222"</span>);</div><div class="line">          &#125;);</div><div class="line">        &#125;);</div><div class="line">&#125;</div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>调用</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">   <span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> ()</span></div><div class="line">   <span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) HttpTool * tool;</div><div class="line">   <span class="keyword">@end</span></div><div class="line">   <span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span></div><div class="line">   - (<span class="keyword">void</span>)viewDidLoad &#123;</div><div class="line">     [<span class="keyword">super</span> viewDidLoad];</div><div class="line">    <span class="keyword">self</span>.tool = [HttpTool new];</div><div class="line">  &#125;</div><div class="line">-(<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</div><div class="line">        [<span class="keyword">self</span>.tool loadData:^(<span class="built_in">NSString</span> *json) &#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,json);</div><div class="line">          &#125;];</div><div class="line">&#125;</div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<h1 id="用闭包来重写上面的逻辑"><a href="#用闭包来重写上面的逻辑" class="headerlink" title="用闭包来重写上面的逻辑"></a>用闭包来重写上面的逻辑</h1><blockquote>
+<p>1，闭包的类型：(参数列表) -&gt; (返回值列表)</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> UIKit</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HttpTool</span>:<span class="title">NSObject</span></span>&#123;</div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">loadData</span><span class="params">(callBack:<span class="params">(json:String)</span></span></span>-&gt;())&#123;</div><div class="line">  dispatch_async(dispatch_get_global_queue(<span class="number">0</span>, <span class="number">0</span>)) &#123;</div><div class="line">      <span class="built_in">print</span>(<span class="string">"\(NSthread.currentThread)"</span>)</div><div class="line">      dispatch_sync(dispatch_get_main_queue(), &#123;</div><div class="line">      <span class="built_in">print</span>(<span class="string">"\((NSThread.currentThread())"</span>)</div><div class="line">      callBack(json:<span class="string">"json"</span>)</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>2.调用</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> UIKit</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span> </span>&#123;</div><div class="line"><span class="keyword">var</span> tool : <span class="type">HttpTool</span> = <span class="type">HttpTool</span>()</div><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">    <span class="keyword">super</span>.viewDidLoad()</div><div class="line">&#125;</div><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">touchesBegan</span><span class="params">(touches: Set&lt;UITouch&gt;, withEvent event: UIEvent?)</span></span> &#123;</div><div class="line">  tool.loadData&#123;(json) <span class="keyword">in</span></div><div class="line">  <span class="built_in">print</span>(<span class="string">"\(json)"</span>)</div><div class="line"> &#125;</div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="循环引用"><a href="#循环引用" class="headerlink" title="循环引用"></a>循环引用</h1><h2 id="black循环引用"><a href="#black循环引用" class="headerlink" title="black循环引用"></a>black循环引用</h2><blockquote>
+<p>weak self<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">-(void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event</div><div class="line">&#123;</div><div class="line">  __weak ViewController * weakSelf = self;</div><div class="line">      [self.tool loadData:^(NSString *json) &#123;</div><div class="line">          NSLog(@&quot;%@&quot;,json);</div><div class="line">          weakSelf.view.backgroundColor = [UIColor redColor];</div><div class="line">             &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="闭包的循环引用"><a href="#闭包的循环引用" class="headerlink" title="闭包的循环引用"></a>闭包的循环引用</h2><blockquote>
+<p>闭包强引用</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> UIKit </div><div class="line"> <span class="class"><span class="keyword">class</span> <span class="title">Httptool</span>: <span class="title">NSObject</span></span>&#123;</div><div class="line">    <span class="comment">//声明成可选类型的闭包</span></div><div class="line">    <span class="keyword">var</span> callBack :((json : <span class="type">String</span>)-&gt;())?</div><div class="line">     <span class="function"><span class="keyword">func</span> <span class="title">loadData</span><span class="params">(callBack : <span class="params">(json : String)</span></span></span>-&gt;()) &#123;</div><div class="line">      <span class="comment">//强引用</span></div><div class="line">      <span class="keyword">self</span>.callBack = callBack</div><div class="line">       dispatch_async(dispatch_get_global_queue(<span class="number">0</span>, <span class="number">0</span>)) &#123;</div><div class="line">       <span class="built_in">print</span>(<span class="string">"\(NSThread.currentThread())"</span>)</div><div class="line">        dispatch_sync(dispatch_get_main_queue(), &#123;</div><div class="line">         <span class="built_in">print</span>(<span class="string">"\(NSThread.currentThread())"</span>)</div><div class="line">          callBack(json: <span class="string">"json"</span>)</div><div class="line">                &#125;)</div><div class="line">            &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>解决闭包循环引用的3种方式</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> UIKit</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span> </span>&#123;</div><div class="line">     <span class="keyword">var</span> tool : <span class="type">HttpTool</span> = <span class="type">HttpTool</span>()</div><div class="line">      <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.viewDidLoad()</div><div class="line">&#125;</div><div class="line"></div><div class="line"> <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">touchesBegan</span><span class="params">(touches: Set&lt;UITouch&gt;, withEvent event: UIEvent?)</span></span> &#123;</div><div class="line">          <span class="comment">/*</span></div><div class="line"><span class="comment">        weak var weakSelf = self</span></div><div class="line"><span class="comment">        tool.loadData &#123; (json) in</span></div><div class="line"><span class="comment">        print("\(json)")</span></div><div class="line"><span class="comment">        //weakSelf?.view ： 如果前面的可选类型，没有值，后面的所有代码不会执行</span></div><div class="line"><span class="comment">        //如果有值，系统会自动将weakSelf进行解包，并使用weakSelf</span></div><div class="line"><span class="comment">        weakSelf?.view.backgroundColor = UIColor.redColor()</span></div><div class="line"><span class="comment">          &#125;</span></div><div class="line"><span class="comment">        */</span></div><div class="line">        </div><div class="line">          tool.loadData &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] (json) <span class="keyword">in</span></div><div class="line">               <span class="built_in">print</span>(<span class="string">"\(json)"</span>)</div><div class="line">               <span class="comment">//weakSelf?.view ： 如果前面的可选类型，没有值，后面的所有代码不会执行</span></div><div class="line">               <span class="comment">//如果有值，系统会自动将weakSelf进行解包，并使用weakSelf</span></div><div class="line">                 <span class="keyword">self</span>?.view.backgroundColor = <span class="type">UIColor</span>.redColor()</div><div class="line">           &#125;</div><div class="line">           </div><div class="line">              <span class="comment">/*</span></div><div class="line"><span class="comment">              //这种写法一旦self为空，就会报错</span></div><div class="line"><span class="comment">              //unowned相当于oc中的__unsafe_unretained，__unsafe_unretained 修饰的弱引用，如果指向的对象销毁，那么指针指向之前的内存地址，很容易产生坏内存访问，野指针。僵尸对象</span></div><div class="line"><span class="comment">              tool.loadData &#123;[unowned self] (json) in</span></div><div class="line"><span class="comment">               print("\(json)")</span></div><div class="line"><span class="comment">               //weakSelf?.view ： 如果前面的可选类型，没有值，后面的所有代码不会执行</span></div><div class="line"><span class="comment">               //如果有值，系统会自动将weakSelf进行解包，并使用weakSelf</span></div><div class="line"><span class="comment">                self.view.backgroundColor = UIColor.redColor()</span></div><div class="line"><span class="comment">               &#125;</span></div><div class="line"><span class="comment">    */</span></div><div class="line"> &#125;</div><div class="line"> </div><div class="line"> <span class="comment">//相当于oc中的dealloc方法</span></div><div class="line">    <span class="keyword">deinit</span>&#123;</div><div class="line">     <span class="built_in">print</span>(<span class="string">"deinit"</span>)</div><div class="line">     &#125;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<h1 id="尾随闭包"><a href="#尾随闭包" class="headerlink" title="尾随闭包"></a>尾随闭包</h1><blockquote>
+<p>普通写法</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">tool.loadData(&#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] (json) <span class="keyword">in</span> </div><div class="line">    <span class="built_in">print</span>(<span class="string">"\(json)"</span>)</div><div class="line">     <span class="comment">//weakSelf?.view ： 如果前面的可选类型，没有值，后面的所有代码不会执行</span></div><div class="line">      <span class="comment">//如果有值，系统会自动将weakSelf进行解包，并使用weakSelf</span></div><div class="line">     <span class="keyword">self</span>?.view.backgroundColor = <span class="type">UIColor</span>.redColor()</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>尾随闭包一</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">tool.loadData () &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] (json) <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"\(json)"</span>)</div><div class="line">     <span class="comment">//weakSelf?.view ： 如果前面的可选类型，没有值，后面的所有代码不会执行</span></div><div class="line">     <span class="comment">//如果有值，系统会自动将weakSelf进行解包，并使用weakSelf</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>尾随闭包二，当闭包为函数的最后一个参数时，会自动省略()</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">tool.loadData &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] (json) <span class="keyword">in</span></div><div class="line">  <span class="built_in">print</span>(<span class="string">"\(json)"</span>)</div><div class="line">  <span class="comment">//weakSelf?.view ： 如果前面的可选类型，没有值，后面的所有代码不会执行</span></div><div class="line">  <span class="comment">//如果有值，系统会自动将weakSelf进行解包，并使用weakSelf</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><a href="https://www.jianshu.com/p/3a4e72b5eefd" target="_blank" rel="external"></a></p>
 
-@implementation HttpTool-(void)loadData:(void(^)(NSString * json))callBack&#123;        dispatch_async(dispatch_g
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/28/Swift/Grammar/Closures闭包-使用分析/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1603,6 +2136,8 @@ Block通常会用在网络请求中，请求到数据后然后回调
     
 
     
+
+
 
     
 
@@ -1723,17 +2258,6 @@ Block通常会用在网络请求中，请求到数据后然后回调
 
           
           
-             <span id="/2018/02/28/SceneKit/Func/SceneKit-Func-观察者与陀螺仪传感器的应用/" class="leancloud_visitors" data-flag-title="SceneKit-Func-观察者与陀螺仪传感器的应用（基于PanoramaImageView）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1756,16 +2280,9 @@ Block通常会用在网络请求中，请求到数据后然后回调
       
         
           
-          资料来源
+            <p><a href="http://blog.csdn.net/enjoy_azad/article/details/53981091" target="_blank" rel="external">资料来源</a></p>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/28/SceneKit/Func/SceneKit-Func-观察者与陀螺仪传感器的应用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1775,377 +2292,7 @@ Block通常会用在网络请求中，请求到数据后然后回调
 
     
 
-    
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/27/OC/Grammar/OC- 坐标区域集合交互检测/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="千夜 QQ:738816656">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/27/OC/Grammar/OC- 坐标区域集合交互检测/" itemprop="url">OC-Grammar-坐标区域集合交互检测.md</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-27T13:45:12+08:00">
-                2018-02-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/UIKit/" itemprop="url" rel="index">
-                    <span itemprop="name">UIKit</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/UIKit/NSSet/" itemprop="url" rel="index">
-                    <span itemprop="name">NSSet</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/02/27/OC/Grammar/OC- 坐标区域集合交互检测/" class="leancloud_visitors" data-flag-title="OC-Grammar-坐标区域集合交互检测.md">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          坐标区域集合交互检测点与区域
-判断给定的点是否被一个CGRect包含 CGRectContainsPoint函数
-
-BOOL contains = CGRectContainsPoint(CGRect rect, CGPoint point);
-##区域包含
-
-判断一个CGRect是否包含再另一个C
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/27/OC/Grammar/OC- 坐标区域集合交互检测/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/15/SceneKit/Grammar/SCNMaterial-材质/SCNMaterial-材质-Base/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="千夜 QQ:738816656">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/15/SceneKit/Grammar/SCNMaterial-材质/SCNMaterial-材质-Base/" itemprop="url">SceneKit-SCNMaterial-材质-Base</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-15T21:30:53+08:00">
-                2018-02-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SceneKit/" itemprop="url" rel="index">
-                    <span itemprop="name">SceneKit</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SceneKit/Grammar/" itemprop="url" rel="index">
-                    <span itemprop="name">Grammar</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SceneKit/Grammar/SCNMaterial/" itemprop="url" rel="index">
-                    <span itemprop="name">SCNMaterial</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/02/15/SceneKit/Grammar/SCNMaterial-材质/SCNMaterial-材质-Base/" class="leancloud_visitors" data-flag-title="SceneKit-SCNMaterial-材质-Base">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          SCNMaterial
-材质:几何体的外观,颜色，反光强度等等
-
-①光照模型
-提到材质就不得不提到光照模型。在现实生活中有太阳，日光灯等可以产生光的光源，光照射在物体上，不同的物体呈现出不同的质感，这都是很平常的在计算机里，使用光源照射3D模型，产生出想要的质感就不是那么平常。在OpenGL中，我们
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/15/SceneKit/Grammar/SCNMaterial-材质/SCNMaterial-材质-Base/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
 
     
 
@@ -2175,7 +2322,7 @@ BOOL contains = CGRectContainsPoint(CGRect rect, CGPoint point);
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2206,66 +2353,64 @@ BOOL contains = CGRectContainsPoint(CGRect rect, CGPoint point);
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="千夜 QQ:738816656" />
-          <p class="site-author-name" itemprop="name">千夜 QQ:738816656</p>
-           
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">千夜 QQ:738816656</p>
               <p class="site-description motion-element" itemprop="description">ReactNative</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">201</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">106</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">77</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
+
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">198</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">105</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">77</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -2282,42 +2427,17 @@ BOOL contains = CGRectContainsPoint(CGRect rect, CGPoint point);
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        
-# 访客数
-
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  访客数:<span id="busuanzi_value_site_uv"></span>
-</span>
-</div>
-
-
-
-
-
-<div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">千夜 QQ:738816656</span>
+
+  
 </div>
 
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
 
 
         
@@ -2337,6 +2457,8 @@ BOOL contains = CGRectContainsPoint(CGRect rect, CGPoint point);
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -2371,46 +2493,54 @@ BOOL contains = CGRectContainsPoint(CGRect rect, CGPoint point);
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
   
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -2441,324 +2571,13 @@ BOOL contains = CGRectContainsPoint(CGRect rect, CGPoint point);
 
 
 
+
+
+
+
+
+
   
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === '') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
 
 
 
@@ -2767,114 +2586,10 @@ BOOL contains = CGRectContainsPoint(CGRect rect, CGPoint point);
   
 
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("GGOhuU9q4e5a7HISgedllhyN-gzGzoHsz", "1Dlb2KyTymPIvsleHp8s02I8");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
 
   
 
+  
   
 
   
@@ -2885,3 +2600,6 @@ BOOL contains = CGRectContainsPoint(CGRect rect, CGPoint point);
 
 </body>
 </html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

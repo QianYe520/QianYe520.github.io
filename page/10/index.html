@@ -10,8 +10,23 @@
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
 
+<meta name="theme-color" content="#222">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
 
 
 
@@ -23,16 +38,6 @@
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 
-<script>
-    (function(){
-        if(''){
-            if (prompt('请输入文章密码') !== ''){
-                alert('密码错误！');
-                history.back();
-            }
-        }
-    })();
-</script>
 
 
 
@@ -55,38 +60,27 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Hexo, NexT" />
@@ -94,11 +88,6 @@
 
 
 
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
 
 
 
@@ -123,10 +112,11 @@
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
-    motion: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -169,8 +159,7 @@
   
 
   <div class="container sidebar-position-left 
-   page-home 
- ">
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -226,16 +215,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -256,54 +235,20 @@
         </li>
       
         
-        <li class="menu-item menu-item-read">
-          <a href="/read/" rel="section">
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            阅读榜
+            关于
           </a>
         </li>
       
 
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
-        </li>
       
     </ul>
   
 
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
   
 </nav>
 
@@ -318,6 +263,363 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/14/Swift/UIKit/UISwitch-简单使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/14/Swift/UIKit/UISwitch-简单使用/" itemprop="url">Swift-UIKit-UISwitch-简单使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-14T11:40:22+08:00">
+                2017-12-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/UIKit/" itemprop="url" rel="index">
+                    <span itemprop="name">UIKit</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/UIKit/UISwitch/" itemprop="url" rel="index">
+                    <span itemprop="name">UISwitch</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="自定义UISwitch"><a href="#自定义UISwitch" class="headerlink" title="自定义UISwitch"></a>自定义UISwitch</h1><blockquote>
+<p>UISwitch 是继承于 UIControl, 所以 UIControl 里面的属性和方法 UISwitch 都是可以用的</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">mySwitch</span><span class="params">()</span></span> &#123;</div><div class="line">       <span class="comment">// 1.自定义 UISwitch</span></div><div class="line">       <span class="keyword">var</span> switchButton = <span class="type">UISwitch</span>()</div><div class="line"></div><div class="line">       <span class="comment">// 2.设置 UISwitch 的位置</span></div><div class="line">       switchButton.center = <span class="type">CGPointMake</span>(<span class="keyword">self</span>.view.frame.width / <span class="number">2</span>, <span class="keyword">self</span>.view.frame.height / <span class="number">2</span>)</div><div class="line"></div><div class="line">       <span class="comment">// 3.设置 UISwitch 打开时底图渐变颜色, 默认是从白变绿</span></div><div class="line">       switchButton.onTintColor = <span class="type">UIColor</span>.redColor()</div><div class="line"></div><div class="line">       <span class="comment">// 4.设置 UISwitch 关闭时底图渐变颜色, 默认是从绿变白</span></div><div class="line">       switchButton.tintColor = <span class="type">UIColor</span>.blackColor()</div><div class="line"></div><div class="line">       <span class="comment">// 5.设置 UISwitch 的小圆点颜色, 默认是白色</span></div><div class="line">       switchButton.thumbTintColor = <span class="type">UIColor</span>.blueColor()</div><div class="line"></div><div class="line">       <span class="comment">// 6.设置 UISwitch 是否打开</span></div><div class="line">       switchButton.on = <span class="literal">true</span></div><div class="line"></div><div class="line">       <span class="comment">// 7.设置 UISwitch 是否打开, 并且是否打开动画效果</span></div><div class="line">       switchButton.setOn(<span class="literal">true</span>, animated: <span class="literal">true</span>)</div><div class="line"></div><div class="line">       <span class="comment">// 8.添加到 UISwitch 到 self.view</span></div><div class="line">       <span class="keyword">self</span>.view.addSubview(switchButton)</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<h1 id="在-viewDidLoad中实现"><a href="#在-viewDidLoad中实现" class="headerlink" title="在 viewDidLoad中实现"></a>在 viewDidLoad中实现</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">    <span class="keyword">super</span>.viewDidLoad()</div><div class="line">    <span class="keyword">self</span>.mySwitch()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/14/Swift/UIKit/UISwitch-简介/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/14/Swift/UIKit/UISwitch-简介/" itemprop="url">Swift-UIKit-UISwitch-简介</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-14T11:36:39+08:00">
+                2017-12-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/UIKit/" itemprop="url" rel="index">
+                    <span itemprop="name">UIKit</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/UIKit/UISwitch/" itemprop="url" rel="index">
+                    <span itemprop="name">UISwitch</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="UISwitch的常用属性"><a href="#UISwitch的常用属性" class="headerlink" title="UISwitch的常用属性"></a>UISwitch的常用属性</h1><blockquote>
+<p>1.设置 UISwitch 打开时底图渐变颜色, 默认是从白变绿</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> onTintColor: <span class="type">UIColor</span>!</div></pre></td></tr></table></figure>
+<blockquote>
+<p>2.设置 UISwitch 关闭时底图渐变颜色, 默认是从白变绿    </p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> tintColor: <span class="type">UIColor</span>?</div></pre></td></tr></table></figure>
+<blockquote>
+<p>3.设置 UISwitch 的小圆点颜色, 默认是白色</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> thumbTintColor: <span class="type">UIColor</span>?</div></pre></td></tr></table></figure>
+<blockquote>
+<p>4.设置 UISwitch 是否打开</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> on: <span class="type">Bool</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>5.设置 UISwitch 的位置</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">init</span>(frame: <span class="type">CGRect</span>)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>6.设置 UISwitch 是否打开, 并且是否打开动画效果</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">setOn</span><span class="params">(on: Bool, animated: Bool)</span></span></div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -425,17 +727,6 @@
 
           
           
-             <span id="/2017/12/14/Swift/UIKit/UITextField-简单使用/" class="leancloud_visitors" data-flag-title="Swift-UIKit-UITextField-简单使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -458,16 +749,14 @@
       
         
           
-          遵守代理协议class ViewController: UIViewController, UITextFieldDelegate &#123;&#125;
-添加UITextFieldfunc myTextField() &#123;      // 1.创建UITextField, 并且设置它的F
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/14/Swift/UIKit/UITextField-简单使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h1 id="遵守代理协议"><a href="#遵守代理协议" class="headerlink" title="遵守代理协议"></a>遵守代理协议</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span>, <span class="title">UITextFieldDelegate</span> </span>&#123;&#125;</div></pre></td></tr></table></figure>
+<h1 id="添加UITextField"><a href="#添加UITextField" class="headerlink" title="添加UITextField"></a>添加UITextField</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">myTextField</span><span class="params">()</span></span> &#123;</div><div class="line">      <span class="comment">// 1.创建UITextField, 并且设置它的Frame</span></div><div class="line">      textField.frame = <span class="type">CGRectMake</span>(<span class="number">100</span>, <span class="number">200</span>, <span class="number">200</span>, <span class="number">100</span>)</div><div class="line"></div><div class="line">      <span class="comment">// 2.设置UITextField的背景颜色</span></div><div class="line">      textField.backgroundColor = <span class="type">UIColor</span>.greenColor()</div><div class="line"></div><div class="line">      <span class="comment">// 3.设置UITextField的显示样式</span></div><div class="line">      textField.borderStyle = <span class="type">UITextBorderStyle</span>.<span class="type">RoundedRect</span></div><div class="line"></div><div class="line">      <span class="comment">// 4.设置UITextField的编辑状态, 默认是永远不打开, 这里设置的是在编辑时才打开</span></div><div class="line">      textField.clearButtonMode = <span class="type">UITextFieldViewMode</span>.<span class="type">WhileEditing</span></div><div class="line"></div><div class="line">      <span class="comment">// 5.设置UITextField的键盘样式</span></div><div class="line">      textField.keyboardType = <span class="type">UIKeyboardType</span>.<span class="type">ASCIICapable</span></div><div class="line"></div><div class="line">      <span class="comment">// 6.设置UITextField的首字母是否大写</span></div><div class="line">      textField.autocapitalizationType = <span class="type">UITextAutocapitalizationType</span>.<span class="type">Sentences</span></div><div class="line"></div><div class="line">      <span class="comment">// 7.设置UITextField的键盘外观颜色</span></div><div class="line">      textField.keyboardAppearance = <span class="type">UIKeyboardAppearance</span>.<span class="type">Dark</span></div><div class="line"></div><div class="line">      <span class="comment">// 8.设置UITextField的return样式</span></div><div class="line">      textField.returnKeyType = <span class="type">UIReturnKeyType</span>.<span class="type">Default</span></div><div class="line"></div><div class="line">      <span class="comment">// 9.设置UITextField预输入的文字</span></div><div class="line">      textField.attributedText = <span class="type">NSAttributedString</span>(string: <span class="string">"ABCDEFG"</span>)</div><div class="line"></div><div class="line">      <span class="comment">// 10.设置UITextField的提示文字</span></div><div class="line">      textField.placeholder = <span class="string">"请输入您的名字"</span></div><div class="line"></div><div class="line">      <span class="comment">// 11.设置UITextField的代理对象</span></div><div class="line">      textField.delegate = <span class="keyword">self</span></div><div class="line"></div><div class="line">      <span class="comment">// 12.设置UITextField内容的垂直对齐方式, 默认是center</span></div><div class="line">      textField.contentVerticalAlignment = <span class="type">UIControlContentVerticalAlignment</span>.<span class="type">Top</span></div><div class="line"></div><div class="line">      <span class="comment">// 13.再次编辑时对旧内容进行自动清除, 默认是false</span></div><div class="line">      textField.clearsOnBeginEditing = <span class="literal">true</span></div><div class="line"></div><div class="line">      <span class="comment">// 14.根据TextField的大小自动缩放字体大小, 默认是false</span></div><div class="line">      textField.adjustsFontSizeToFitWidth = <span class="literal">true</span></div><div class="line"></div><div class="line">      <span class="comment">// 15.添加到父视图</span></div><div class="line">      <span class="keyword">self</span>.view.addSubview(textField)</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<h1 id="实现代理方法"><a href="#实现代理方法" class="headerlink" title="实现代理方法"></a>实现代理方法</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">textFieldShouldReturn</span><span class="params">(textField: UITextField)</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">       <span class="comment">// 取消第一响应者</span></div><div class="line">       textField.resignFirstResponder()</div><div class="line">       <span class="comment">// 返回true</span></div><div class="line">       <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<h1 id="在ViewDidload实现"><a href="#在ViewDidload实现" class="headerlink" title="在ViewDidload实现"></a>在ViewDidload实现</h1><blockquote>
+<p>UITExtField不会自动换行的, 所以我们只可能限制用户所输入多少个字符, 如果需要自动换行, 那就需要去了解UITextVIew</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">       <span class="keyword">super</span>.viewDidLoad()</div><div class="line">       <span class="keyword">self</span>.myTextField()</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+          
         
       
     </div>
@@ -476,6 +765,8 @@
     
 
     
+
+
 
     
 
@@ -607,17 +898,6 @@
 
           
           
-             <span id="/2017/12/14/Swift/UIKit/Swift-UIKit-UITxtxField-简介/" class="leancloud_visitors" data-flag-title="Swift-UIKit-UITxtxField-简介">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -640,15 +920,53 @@
       
         
           
-          UITxtxField的常用状态TextField边框的样式 enum UITextBorderStyle : Int &#123;    case None // TextField边框什么都没有, 默认是方角    case Line // TextField边框有一条黑色的实现围着, 默认也是
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/14/Swift/UIKit/Swift-UIKit-UITxtxField-简介/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h1 id="UITxtxField的常用状态"><a href="#UITxtxField的常用状态" class="headerlink" title="UITxtxField的常用状态"></a>UITxtxField的常用状态</h1><h2 id="TextField边框的样式"><a href="#TextField边框的样式" class="headerlink" title="TextField边框的样式"></a>TextField边框的样式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UITextBorderStyle</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">None</span> <span class="comment">// TextField边框什么都没有, 默认是方角</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Line</span> <span class="comment">// TextField边框有一条黑色的实现围着, 默认也是方角的</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Bezel</span> <span class="comment">// TextField边框有两条线围着, 形成一定的层次感, 默认也是方角的</span></div><div class="line">    <span class="keyword">case</span> <span class="type">RoundedRect</span> <span class="comment">// TextField边框什么都没有, 默认是圆角</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="TextField的快速删除状态"><a href="#TextField的快速删除状态" class="headerlink" title="TextField的快速删除状态"></a>TextField的快速删除状态</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UITextFieldViewMode</span> : <span class="title">Int</span> </span>&#123;    </div><div class="line">    <span class="keyword">case</span> <span class="type">Never</span> <span class="comment">// 永远都不打开</span></div><div class="line">    <span class="keyword">case</span> <span class="type">WhileEditing</span> <span class="comment">// 在编辑的状态才打开</span></div><div class="line">    <span class="keyword">case</span> <span class="type">UnlessEditing</span> <span class="comment">// 在非编辑的状态才打开</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Always</span> <span class="comment">// 一直打开</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="TextField的键盘样式"><a href="#TextField的键盘样式" class="headerlink" title="TextField的键盘样式"></a>TextField的键盘样式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UIKeyboardType</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Default</span> <span class="comment">// 显示默认的键盘</span></div><div class="line">    <span class="keyword">case</span> <span class="type">ASCIICapable</span> <span class="comment">// 显示所有ASCII表的所有字符</span></div><div class="line">    <span class="keyword">case</span> <span class="type">NumbersAndPunctuation</span> <span class="comment">// 数字和标点符号的键盘</span></div><div class="line">    <span class="keyword">case</span> <span class="type">URL</span> <span class="comment">// 输入网站所使用的键盘</span></div><div class="line">    <span class="keyword">case</span> <span class="type">NumberPad</span> <span class="comment">// 纯数字键盘</span></div><div class="line">    <span class="keyword">case</span> <span class="type">PhonePad</span> <span class="comment">// 为了方便输入手机号码所使用的键盘</span></div><div class="line">    <span class="keyword">case</span> <span class="type">NamePhonePad</span> <span class="comment">// 为了方便输入名字和电话号码所使用的键盘</span></div><div class="line">    <span class="keyword">case</span> <span class="type">EmailAddress</span> <span class="comment">// 面向邮箱所使用的键盘</span></div><div class="line">    <span class="keyword">case</span> <span class="type">DecimalPad</span> <span class="comment">// 面向带小数点的数字键盘</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Twitter</span> <span class="comment">// 面向Twitter等社交所使用的键盘, 为了方便@和#</span></div><div class="line">    <span class="keyword">case</span> <span class="type">WebSearch</span> <span class="comment">// 面向网站所使用的键盘</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="TextField的大写样式"><a href="#TextField的大写样式" class="headerlink" title="TextField的大写样式"></a>TextField的大写样式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UITextAutocapitalizationType</span> : <span class="title">Int</span> </span>&#123;   </div><div class="line">    <span class="keyword">case</span> <span class="type">None</span> <span class="comment">// 不自动大写</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Words</span> <span class="comment">// 单个单词首字母大写</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Sentences</span> <span class="comment">// 句子首字母大写</span></div><div class="line">    <span class="keyword">case</span> <span class="type">AllCharacters</span> <span class="comment">// 全部大写</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="TextField的键盘外观颜色"><a href="#TextField的键盘外观颜色" class="headerlink" title="TextField的键盘外观颜色"></a>TextField的键盘外观颜色</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UIKeyboardAppearance</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Default</span> <span class="comment">// 默认是光亮的</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Dark</span> <span class="comment">// 设置为黑暗颜色</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Light</span> <span class="comment">// 设置为光亮的颜色</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="TextField的Return样式"><a href="#TextField的Return样式" class="headerlink" title="TextField的Return样式"></a>TextField的Return样式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UIReturnKeyType</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Default</span> <span class="comment">// 模样的样式</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Go</span> <span class="comment">// 标着有Go的蓝色样式</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Google</span> <span class="comment">// 标着Google的蓝色样式, 用于语音搜索, 显示的样式是Search</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Join</span> <span class="comment">// 标有Join的蓝色按钮</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Next</span> <span class="comment">// 标着有Next的蓝色按钮</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Route</span> <span class="comment">// 标着有Route的蓝色按钮</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Search</span> <span class="comment">// 标着有Search的蓝色按钮</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Send</span> <span class="comment">// 标着有Send的蓝色按钮</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Yahoo</span> <span class="comment">// 标着有Yahoo的蓝色按钮, 显示的样式是Search</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Done</span> <span class="comment">// 标着有Done的蓝色按钮</span></div><div class="line">    <span class="keyword">case</span> <span class="type">EmergencyCall</span> <span class="comment">// 标着有EmergencyCall的蓝色按钮, 紧急呼救的按钮</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="TextField的右边显示图样式"><a href="#TextField的右边显示图样式" class="headerlink" title="TextField的右边显示图样式"></a>TextField的右边显示图样式</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UITextFieldViewMode</span> : <span class="title">Int</span> </span>&#123;   </div><div class="line">    <span class="keyword">case</span> <span class="type">Never</span> <span class="comment">// 永远不显示</span></div><div class="line">    <span class="keyword">case</span> <span class="type">WhileEditing</span> <span class="comment">// 在编辑的情况下显示</span></div><div class="line">    <span class="keyword">case</span> <span class="type">UnlessEditing</span> <span class="comment">// 在非编辑的情况下显示</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Always</span> <span class="comment">// 永远显示</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="UITextField的垂直排列方式"><a href="#UITextField的垂直排列方式" class="headerlink" title="UITextField的垂直排列方式"></a>UITextField的垂直排列方式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UIControlContentVerticalAlignment</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Center</span> <span class="comment">// 居中对齐, 默认</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Top</span> <span class="comment">// 顶部对齐</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Bottom</span> <span class="comment">// 底部对齐</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Fill</span> <span class="comment">// 平铺整个TextField的高度</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="UITextField的水平排列方式"><a href="#UITextField的水平排列方式" class="headerlink" title="UITextField的水平排列方式"></a>UITextField的水平排列方式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UIControlContentHorizontalAlignment</span> : <span class="title">Int</span> </span>&#123;   </div><div class="line">    <span class="keyword">case</span> <span class="type">Center</span> <span class="comment">// 居中对齐</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Left</span> <span class="comment">// 左对齐, 默认</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Right</span> <span class="comment">// 右对齐</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Fill</span> <span class="comment">// 平铺整个TextField的宽度</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="UITextField的常用属性"><a href="#UITextField的常用属性" class="headerlink" title="UITextField的常用属性"></a>UITextField的常用属性</h1><blockquote>
+<p>字体颜色, 默认的字体颜色是黑色</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> textColor: <span class="type">UIColor</span>!</div></pre></td></tr></table></figure>
+<blockquote>
+<p>字体大小, 默认的字体大小是12</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">var</span> font: <span class="type">UIFont</span>!</div><div class="line">``` </div><div class="line"></div><div class="line">&gt;字体对齐方式, 默认是向左对齐</div><div class="line"></div><div class="line">```swift</div><div class="line">   <span class="keyword">var</span> textAlignment: <span class="type">NSTextAlignment</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>边框的样式, 默认是None. </p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> borderStyle: <span class="type">UITextBorderStyle</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>快捷清楚的按钮, 默认是不打开的</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> clearButtonMode: <span class="type">UITextFieldViewMode</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>提示文本, 默认是nil, 字体颜色是70%的灰</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> placeholder: <span class="type">String</span>?</div></pre></td></tr></table></figure>
+<blockquote>
+<p>再次编辑时对旧内容进行自动清除, 默认是false</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> clearsOnBeginEditing: <span class="type">Bool</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>根据TextField的大小自动缩放字体大小, 默认是false</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> adjustsFontSizeToFitWidth: <span class="type">Bool</span></div></pre></td></tr></table></figure>
+<h1 id="常用代理方法"><a href="#常用代理方法" class="headerlink" title="常用代理方法"></a>常用代理方法</h1><blockquote>
+<p>点击return会结束编辑, 也可以在这里设置取消TextField的第一响应者, 使键盘隐藏</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">textFieldShouldReturn</span><span class="params">(textField: UITextField)</span></span> -&gt; <span class="type">Bool</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>可限制文字输入的长度以及特定的字符, 如果返回true, 那么就是可以修改, 如果返回false就不可修改</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">textField</span><span class="params">(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String)</span></span> -&gt; <span class="type">Bool</span></div></pre></td></tr></table></figure>
+
+          
         
       
     </div>
@@ -657,6 +975,8 @@
     
 
     
+
+
 
     
 
@@ -788,17 +1108,6 @@
 
           
           
-             <span id="/2017/12/14/Swift/UIKit/UIImage-简单使用/" class="leancloud_visitors" data-flag-title="Swift-UIKit-UIImage-简单使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -821,15 +1130,16 @@
       
         
           
-          创建func myImage() &#123;   // 1.创建一个UIImageView, 并且设置它的frame       var myImageView = UIImageView(frame: CGRectMake(0, 0, self.view.frame.size.width, se
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/14/Swift/UIKit/UIImage-简单使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h1 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">myImage</span><span class="params">()</span></span> &#123;</div><div class="line">   <span class="comment">// 1.创建一个UIImageView, 并且设置它的frame</span></div><div class="line">       <span class="keyword">var</span> myImageView = <span class="type">UIImageView</span>(frame: <span class="type">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="keyword">self</span>.view.frame.size.width, <span class="keyword">self</span>.view.frame.size.height))</div><div class="line"></div><div class="line">       <span class="comment">// 2.设置UIImage的图片名, 以及展示的样式</span></div><div class="line">       <span class="keyword">var</span> myImage = <span class="type">UIImage</span>(named: <span class="string">"image_bate.jpg"</span>)?.imageWithRenderingMode(<span class="type">UIImageRenderingMode</span>.<span class="type">Automatic</span>)</div><div class="line">       <span class="comment">// 3.把UIImage添加到ImageView里面去</span></div><div class="line">       myImageView.image = myImage</div><div class="line"></div><div class="line">       <span class="keyword">self</span>.view.addSubview(myImageView)</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在viewDidload中实现:</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">       <span class="keyword">super</span>.viewDidLoad()</div><div class="line">       <span class="keyword">self</span>.myImage()</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><blockquote>
+<p>由于UIImage不能单独的拿出来展示, 它必须依赖于某个一个继承于UIView的一个View, 比如UIImageView或者UIButton, 这些都是可以的</p>
+</blockquote>
+
+          
         
       
     </div>
@@ -838,6 +1148,8 @@
     
 
     
+
+
 
     
 
@@ -969,17 +1281,6 @@
 
           
           
-             <span id="/2017/12/14/Swift/UIKit/UIImage-简介/" class="leancloud_visitors" data-flag-title="Swift-UIKit-UIImage-简介">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1002,18 +1303,23 @@
       
         
           
-          UIImage的状态
-UIImageOrientation
-
- enum UIImageOrientation : Int &#123;    case Up //默认方向    case Down //180°旋转    case Left //逆时针旋转90°    case Right //顺
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/14/Swift/UIKit/UIImage-简介/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h1 id="UIImage的状态"><a href="#UIImage的状态" class="headerlink" title="UIImage的状态"></a>UIImage的状态</h1><blockquote>
+<p>UIImageOrientation</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UIImageOrientation</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Up</span> <span class="comment">//默认方向</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Down</span> <span class="comment">//180°旋转</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Left</span> <span class="comment">//逆时针旋转90°</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Right</span> <span class="comment">//顺时针旋转90°</span></div><div class="line">    <span class="keyword">case</span> <span class="type">UpMirrored</span> <span class="comment">//水平向上翻转</span></div><div class="line">    <span class="keyword">case</span> <span class="type">DownMirrored</span> <span class="comment">//水平向下翻转</span></div><div class="line">    <span class="keyword">case</span> <span class="type">LeftMirrored</span> <span class="comment">//逆时针旋转90°后再垂直翻转</span></div><div class="line">    <span class="keyword">case</span> <span class="type">RightMirrored</span> <span class="comment">//顺时针旋转90°后再垂直翻转</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>UIImageResizingMode</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UIImageResizingMode</span> : <span class="title">Int</span> </span>&#123;    </div><div class="line">    <span class="keyword">case</span> <span class="type">Tile</span> <span class="comment">//平铺到调整完位置的图像</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Stretch</span> <span class="comment">//拉伸到调整完位置的图像</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>UIImageRenderingMode</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UIImageRenderingMode</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Automatic</span> <span class="comment">//默认上下文显示的图像位置</span></div><div class="line">    <span class="keyword">case</span> <span class="type">AlwaysOriginal</span> <span class="comment">//总是以图片为模板</span></div><div class="line">    <span class="keyword">case</span> <span class="type">AlwaysTemplate</span> <span class="comment">//会把图像作为绘画的模板, 忽略其他颜色</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="常用的属性"><a href="#常用的属性" class="headerlink" title="常用的属性"></a>常用的属性</h1><blockquote>
+<p>UIImage里面虽然有很多属性, 但唯一常用的属性就只有设置获取image名字的属性.</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">init</span>?(named name: <span class="type">String</span>) -&gt; <span class="type">UIImage</span></div></pre></td></tr></table></figure>
+          
         
       
     </div>
@@ -1022,6 +1328,8 @@ UIImageOrientation
     
 
     
+
+
 
     
 
@@ -1153,17 +1461,6 @@ UIImageOrientation
 
           
           
-             <span id="/2017/12/14/Swift/UIKit/UITableViewCell-简单使用/" class="leancloud_visitors" data-flag-title="Swift-UIKit-UITableViewCell-简单使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1186,18 +1483,15 @@ UIImageOrientation
       
         
           
-          UITableViewCell-简单使用
-由于 TableViewCell 是不可以单独存在的, 所以必须得依赖于 UITableView
-
-遵守 TableView 代理协议以及数据源协议 class ViewController: UIViewController, UITableViewDat
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/14/Swift/UIKit/UITableViewCell-简单使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h1 id="UITableViewCell-简单使用"><a href="#UITableViewCell-简单使用" class="headerlink" title="UITableViewCell-简单使用"></a>UITableViewCell-简单使用</h1><blockquote>
+<p>由于 TableViewCell 是不可以单独存在的, 所以必须得依赖于 UITableView</p>
+</blockquote>
+<h1 id="遵守-TableView-代理协议以及数据源协议"><a href="#遵守-TableView-代理协议以及数据源协议" class="headerlink" title="遵守 TableView 代理协议以及数据源协议"></a>遵守 TableView 代理协议以及数据源协议</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span>, <span class="title">UITableViewDataSource</span>, <span class="title">UITableViewDelegate</span> </span>&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="自定义-TableVIew"><a href="#自定义-TableVIew" class="headerlink" title="自定义 TableVIew"></a>自定义 TableVIew</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">myTableView</span><span class="params">()</span></span> &#123;</div><div class="line">       <span class="keyword">var</span> tableView = <span class="type">UITableView</span>(frame: <span class="keyword">self</span>.view.frame, style: <span class="type">UITableViewStyle</span>.<span class="type">Plain</span>)</div><div class="line">       tableView.dataSource = <span class="keyword">self</span></div><div class="line">       tableView.delegate = <span class="keyword">self</span></div><div class="line">       <span class="keyword">self</span>.view.addSubview(tableView)</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<h1 id="实现数据源方法"><a href="#实现数据源方法" class="headerlink" title="实现数据源方法"></a>实现数据源方法</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">numberOfSectionsInTableView</span><span class="params">(tableView: UITableView)</span></span> -&gt; <span class="type">Int</span> &#123;</div><div class="line">      <span class="keyword">return</span> <span class="number">1</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, numberOfRowsInSection section: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</div><div class="line">      <span class="keyword">return</span> <span class="number">5</span></div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<h1 id="自定义-UITableViewCell"><a href="#自定义-UITableViewCell" class="headerlink" title="自定义 UITableViewCell"></a>自定义 UITableViewCell</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)</span></span> -&gt; <span class="type">UITableViewCell</span> &#123;</div><div class="line">        <span class="comment">// 1.自定义 UITableViewCell 的样式以及标签, reuseIdentifier 是 Cell 得标签, 作用和 Tag 类似</span></div><div class="line">        <span class="keyword">var</span> cell = <span class="type">UITableViewCell</span>(style: <span class="type">UITableViewCellStyle</span>.<span class="type">Value1</span>, reuseIdentifier: <span class="string">"cell"</span>)</div><div class="line"></div><div class="line">        <span class="comment">// 2.设置 UITableViewCell 的标题Label</span></div><div class="line">        cell.textLabel!.text = <span class="string">"我是 Cell"</span></div><div class="line"></div><div class="line">        <span class="comment">// 3.设置 UITableViewCell 的简介Label</span></div><div class="line">        cell.detailTextLabel?.text = <span class="string">"Cell"</span></div><div class="line"></div><div class="line">        <span class="comment">// 4.设置 UITableViewCell 的 imageView 图片</span></div><div class="line">        cell.imageView?.image = <span class="type">UIImage</span>(named: <span class="string">"image_black.jpg"</span>)</div><div class="line"></div><div class="line">        <span class="comment">// 5.设置 UITableViewCell 的编辑模式是否开启, 以及是否执行动画效果</span></div><div class="line">        cell.setEditing(<span class="literal">true</span>, animated: <span class="literal">true</span>)</div><div class="line"></div><div class="line">        <span class="comment">// 6.设置 UITableViewCell 的背景色</span></div><div class="line">        cell.backgroundColor = <span class="type">UIColor</span>.greenColor()</div><div class="line"></div><div class="line">        <span class="comment">// 7.设置 UITableViewCell 的编辑模式辅助按钮</span></div><div class="line">        cell.editingAccessoryType = <span class="type">UITableViewCellAccessoryType</span>.<span class="type">DisclosureIndicator</span></div><div class="line"></div><div class="line">        <span class="comment">// 8.设置 UITableViewCell 被选中的样式</span></div><div class="line">        cell.selectionStyle = <span class="type">UITableViewCellSelectionStyle</span>.<span class="type">Default</span></div><div class="line"></div><div class="line">        <span class="comment">// 9.设置 UITableViewCell 分割线的位置</span></div><div class="line">        cell.separatorInset = <span class="type">UIEdgeInsetsMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">20</span>)</div><div class="line"></div><div class="line">        <span class="comment">// 10.设置 UITableViewCell 被选中时的背景View</span></div><div class="line">        cell.selectedBackgroundView = <span class="literal">nil</span></div><div class="line"></div><div class="line">        <span class="comment">// 11.设置 UITableViewCell 的辅助按钮样式</span></div><div class="line">        cell.accessoryType = <span class="type">UITableViewCellAccessoryType</span>.<span class="type">DisclosureIndicator</span></div><div class="line"></div><div class="line">        <span class="comment">// 返回自定的 Cell</span></div><div class="line">        <span class="keyword">return</span> cell</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h1 id="开启-TableViewCell-的编辑模式"><a href="#开启-TableViewCell-的编辑模式" class="headerlink" title="开启 TableViewCell 的编辑模式"></a>开启 TableViewCell 的编辑模式</h1> <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)</span></span> &#123;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+          
         
       
     </div>
@@ -1206,6 +1500,8 @@ UIImageOrientation
     
 
     
+
+
 
     
 
@@ -1337,17 +1633,6 @@ UIImageOrientation
 
           
           
-             <span id="/2017/12/14/Swift/UIKit/UITableViewCell-简介/" class="leancloud_visitors" data-flag-title="Swift-UIKit-UITableViewCell">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1370,15 +1655,58 @@ UIImageOrientation
       
         
           
-          常用属性UITableViewCell 显示的样式 enum UITableViewCellStyle : Int &#123;    case Default // 默认显示样式    case Value1 // 样式一    case Value2 // 样式二    case Subtitl
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/14/Swift/UIKit/UITableViewCell-简介/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h1 id="常用属性"><a href="#常用属性" class="headerlink" title="常用属性"></a>常用属性</h1><h2 id="UITableViewCell-显示的样式"><a href="#UITableViewCell-显示的样式" class="headerlink" title="UITableViewCell 显示的样式"></a>UITableViewCell 显示的样式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UITableViewCellStyle</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Default</span> <span class="comment">// 默认显示样式</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Value1</span> <span class="comment">// 样式一</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Value2</span> <span class="comment">// 样式二</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Subtitle</span> <span class="comment">// 副标题样式</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="UITableViewCell-选中的样式"><a href="#UITableViewCell-选中的样式" class="headerlink" title="UITableViewCell 选中的样式"></a>UITableViewCell 选中的样式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UITableViewCellEditingStyle</span> : <span class="title">Int</span> </span>&#123;   </div><div class="line">    <span class="keyword">case</span> <span class="type">None</span> <span class="comment">// 没有</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Delete</span> <span class="comment">// 删除</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Insert</span> <span class="comment">// 添加</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="UITableViewCell-辅助按钮的样式"><a href="#UITableViewCell-辅助按钮的样式" class="headerlink" title="UITableViewCell 辅助按钮的样式"></a>UITableViewCell 辅助按钮的样式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UITableViewCellAccessoryType</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">None</span> <span class="comment">// 没有按钮</span></div><div class="line">    <span class="keyword">case</span> <span class="type">DisclosureIndicator</span> <span class="comment">// 蓝色向右的箭头</span></div><div class="line">    <span class="keyword">case</span> <span class="type">DetailDisclosureButton</span> <span class="comment">// 蓝色向右的箭头以及信息按钮</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Checkmark</span> <span class="comment">// 复选框</span></div><div class="line">    @availability(iOS, introduced=<span class="number">7.0</span>)</div><div class="line">    <span class="keyword">case</span> <span class="type">DetailButton</span> <span class="comment">// 信息按钮</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="UITableViewCell-常用属性"><a href="#UITableViewCell-常用属性" class="headerlink" title="UITableViewCell 常用属性"></a>UITableViewCell 常用属性</h2><blockquote>
+<p>1.初始化 Cell 的 Style 以及标签名</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">init</span>(style: <span class="type">UITableViewCellStyle</span>, reuseIdentifier: <span class="type">String</span>?)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>2.设置 Cell 的 ImageView 内容</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> imageView: <span class="type">UIImageView</span>? &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>3.设置 Cell 的 textLabel 的内容</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> textLabel: <span class="type">UILabel</span>? &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>4.设置 Cell 的 副标题内容</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> detailTextLabel: <span class="type">UILabel</span>? &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>5.设置 Cell 的内容 View</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> contentView: <span class="type">UIView</span> &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>6.设置 Cell 的背景 View</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> backgroundView: <span class="type">UIView</span>?</div></pre></td></tr></table></figure>
+<blockquote>
+<p>7.设置 Cell 被选中时的背景 View</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> selectedBackgroundView: <span class="type">UIView</span>!</div></pre></td></tr></table></figure>
+<blockquote>
+<p>8.设置 Cell 多选中得背景 View</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> multipleSelectionBackgroundView: <span class="type">UIView</span>?</div></pre></td></tr></table></figure>
+<blockquote>
+<p>9.设置 Cell 被选中时的 Style</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> selectionStyle: <span class="type">UITableViewCellSelectionStyle</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>10.设置 Cell 编辑的 Style</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> editingStyle: <span class="type">UITableViewCellEditingStyle</span> &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>11.设置 Cell 是否开启编辑状态</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> editing: <span class="type">Bool</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>12.设置 Cell 的辅助按钮样式</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> accessoryType: <span class="type">UITableViewCellAccessoryType</span></div></pre></td></tr></table></figure>
+          
         
       
     </div>
@@ -1387,6 +1715,8 @@ UIImageOrientation
     
 
     
+
+
 
     
 
@@ -1518,17 +1848,6 @@ UIImageOrientation
 
           
           
-             <span id="/2017/12/13/Swift/UIKit/UITableView-简单使用/" class="leancloud_visitors" data-flag-title="Swift-UIKit-UITableView-简单使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1551,16 +1870,10 @@ UIImageOrientation
       
         
           
-          遵守代理协议和数据源协议class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource &#123;&#125;
-自定义 UITableViewfunc myTableView() &#123;  
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/13/Swift/UIKit/UITableView-简单使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h1 id="遵守代理协议和数据源协议"><a href="#遵守代理协议和数据源协议" class="headerlink" title="遵守代理协议和数据源协议"></a>遵守代理协议和数据源协议</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span>, <span class="title">UITableViewDelegate</span>, <span class="title">UITableViewDataSource</span> </span>&#123;&#125;</div></pre></td></tr></table></figure>
+<h1 id="自定义-UITableView"><a href="#自定义-UITableView" class="headerlink" title="自定义 UITableView"></a>自定义 UITableView</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">myTableView</span><span class="params">()</span></span> &#123;</div><div class="line">       <span class="comment">// 1.设置 TableView 的 frame 和 style</span></div><div class="line">       <span class="keyword">var</span> tableView: <span class="type">UITableView</span> = <span class="type">UITableView</span>(frame: <span class="keyword">self</span>.view.frame, style: <span class="type">UITableViewStyle</span>.<span class="type">Plain</span>)</div><div class="line"></div><div class="line">       <span class="comment">// 2.设置 TableView 的背景色</span></div><div class="line">       tableView.backgroundColor = <span class="type">UIColor</span>(red: <span class="number">0.0</span>, green: <span class="number">127.0</span>, blue: <span class="number">127.0</span>, alpha: <span class="number">1.0</span>)</div><div class="line"></div><div class="line">       <span class="comment">// 3.设置 TableView 的代理对象</span></div><div class="line">       tableView.delegate = <span class="keyword">self</span></div><div class="line"></div><div class="line">       <span class="comment">// 4.设置 TableView 的数据源对象</span></div><div class="line">       tableView.dataSource = <span class="keyword">self</span></div><div class="line"></div><div class="line">       <span class="comment">// 5.设置 TableView 每一行 Cell 的高度</span></div><div class="line">       tableView.rowHeight = <span class="number">44</span></div><div class="line"></div><div class="line">       <span class="comment">// 6.设置 TableView 每一行 Cell 页头的行高</span></div><div class="line">       tableView.sectionHeaderHeight = <span class="number">50</span></div><div class="line"></div><div class="line">       <span class="comment">// 7.设置 TableView 每一行 Cell 页尾的行高</span></div><div class="line">       tableView.sectionFooterHeight = <span class="number">50</span></div><div class="line"></div><div class="line">       <span class="comment">// 8.设置 TableView 每一行 Cell 的估计行高</span></div><div class="line">       tableView.estimatedRowHeight = <span class="number">100</span></div><div class="line"></div><div class="line">       <span class="comment">// 9.设置 TableView 每一行 Cell 的页头估计行高</span></div><div class="line">       tableView.estimatedSectionHeaderHeight = <span class="number">50</span></div><div class="line"></div><div class="line">       <span class="comment">// 10.设置 TableView 每一行 Cell 的页尾估计行高</span></div><div class="line">       tableView.estimatedSectionFooterHeight = <span class="number">50</span></div><div class="line"></div><div class="line">       <span class="comment">// 11.设置 TableView 每一行 Cell 之间分割线位置(分别是: 上, 左, 下, 右)</span></div><div class="line">       tableView.separatorInset = <span class="type">UIEdgeInsetsMake</span>(<span class="number">0</span>, <span class="number">50</span>, <span class="number">0</span>, <span class="number">50</span>)</div><div class="line"></div><div class="line">       <span class="comment">// 12.设置 TableView 每一行 Cell 之间分割线的颜色</span></div><div class="line">       tableView.separatorColor = <span class="type">UIColor</span>.redColor()</div><div class="line"></div><div class="line">       <span class="comment">// 13.设置 TableView 每一行 Cell 之间的分割效果(暂无方法, 目前只是用来实例化)</span></div><div class="line">       tableView.separatorEffect = <span class="type">UIVisualEffect</span>()</div><div class="line"></div><div class="line">       <span class="comment">// 14.设置 TableView 每一行 Cell 之间的分割线样式(默认是 SingleLine 样式)</span></div><div class="line">       tableView.separatorStyle = <span class="type">UITableViewCellSeparatorStyle</span>.<span class="type">SingleLine</span></div><div class="line"></div><div class="line">       <span class="comment">// 15.设置 TableView 的背景 View 对象</span></div><div class="line">       tableView.backgroundView = <span class="type">UIView</span>()</div><div class="line"></div><div class="line">       <span class="comment">// 16.设置 TableView 的编辑模式是否开启, 并且是否使用动画效果</span></div><div class="line">       tableView.setEditing(<span class="literal">true</span>, animated: <span class="literal">true</span>)</div><div class="line">       <span class="comment">// 17.添加到 self.view 上</span></div><div class="line">       <span class="keyword">self</span>.view.addSubview(tableView)</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<h1 id="实现代理方法和数据源方法"><a href="#实现代理方法和数据源方法" class="headerlink" title="实现代理方法和数据源方法"></a>实现代理方法和数据源方法</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 1.该方法是用来设置 TableView 有多少组 Cell</span></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">numberOfSectionsInTableView</span><span class="params">(tableView: UITableView)</span></span> -&gt; <span class="type">Int</span> &#123;</div><div class="line">      <span class="keyword">return</span> <span class="number">2</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 2.该方法是用来设置 TableView 有多少行 Cell</span></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, numberOfRowsInSection section: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</div><div class="line">      <span class="keyword">return</span> <span class="number">2</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 3.该方法是用来设置 TableView 每一行 Cell 的详细内容</span></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)</span></span> -&gt; <span class="type">UITableViewCell</span> &#123;</div><div class="line">      <span class="keyword">let</span> cell = <span class="type">UITableViewCell</span>()</div><div class="line">      cell.backgroundColor = <span class="type">UIColor</span>.blueColor()</div><div class="line">      <span class="keyword">return</span> cell</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 4.该方法是用来设置 TableView 每一行 Cell 的标题内容</span></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, titleForHeaderInSection section: Int)</span></span> -&gt; <span class="type">String</span>? &#123;</div><div class="line">      <span class="keyword">return</span> <span class="string">"我是页头"</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 5.该方法是用来设置 TableView 每一行 Cell 的页尾内容</span></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, titleForFooterInSection section: Int)</span></span> -&gt; <span class="type">String</span>? &#123;</div><div class="line">      <span class="keyword">return</span> <span class="string">"我是页尾"</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 6.该方法是用来设置 TableView 每一行 Cell 的高度, 一旦这里设置了, 那么在自定义里的 rowHeight 属性就会被覆盖</span></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath)</span></span> -&gt; <span class="type">CGFloat</span> &#123;</div><div class="line">      <span class="keyword">return</span> <span class="number">100</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 7.该方法是用来响应 TableVIewCell 被点击的事件</span></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)</span></span> &#123;</div><div class="line">      <span class="built_in">println</span>(<span class="string">"我被点击了"</span>)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 8.该方法是用来设置 TableView 每一行 Cell 的编辑模式, 如果不设置, 默认都是删除</span></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath)</span></span> -&gt; <span class="type">UITableViewCellEditingStyle</span> &#123;</div><div class="line">      <span class="keyword">return</span> <span class="type">UITableViewCellEditingStyle</span>.<span class="type">Insert</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 9.该方法是用来设置 Tabelview 的左滑快捷按钮, 只要写了该方法, 默认打开</span></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)</span></span> &#123;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 10.该方法是用来设置 TabelView 左滑快捷按钮的详细内容以及操作</span></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath)</span></span> -&gt; <span class="type">String</span>! &#123;</div><div class="line">      <span class="keyword">return</span> <span class="string">"删除"</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 11.该方法是用来设置 TableView 是否可以拖拽到其他行数, 只要写了该方法, 默认打开</span></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath)</span></span> &#123;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+          
         
       
     </div>
@@ -1569,6 +1882,8 @@ UIImageOrientation
     
 
     
+
+
 
     
 
@@ -1700,17 +2015,6 @@ UIImageOrientation
 
           
           
-             <span id="/2017/12/13/Swift/UIKit/UITableView-简介/" class="leancloud_visitors" data-flag-title="Swift-UIKit-UITableView-简介">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1733,16 +2037,102 @@ UIImageOrientation
       
         
           
-          UITableview常用属性UITableView 的样式 enum UITableViewStyle : Int &#123;    case Plain // 平铺样式    case Grouped // 分组样式&#125;
-UITableView 添加或者删除 Cell 时的动画 enu
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/13/Swift/UIKit/UITableView-简介/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h1 id="UITableview常用属性"><a href="#UITableview常用属性" class="headerlink" title="UITableview常用属性"></a>UITableview常用属性</h1><h2 id="UITableView-的样式"><a href="#UITableView-的样式" class="headerlink" title="UITableView 的样式"></a>UITableView 的样式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UITableViewStyle</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Plain</span> <span class="comment">// 平铺样式</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Grouped</span> <span class="comment">// 分组样式</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="UITableView-添加或者删除-Cell-时的动画"><a href="#UITableView-添加或者删除-Cell-时的动画" class="headerlink" title="UITableView 添加或者删除 Cell 时的动画"></a>UITableView 添加或者删除 Cell 时的动画</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UITableViewRowAnimation</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">Fade</span> <span class="comment">// 淡入淡出</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Right</span> <span class="comment">// 从右添加</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Left</span> <span class="comment">// 从左添加</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Top</span> <span class="comment">// 从上添加</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Bottom</span> <span class="comment">// 从底部添加</span></div><div class="line">    <span class="keyword">case</span> <span class="type">None</span> <span class="comment">// 没有动画</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Middle</span> <span class="comment">// 从中间添加</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Automatic</span> <span class="comment">// 随机添加</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="UITableView-滚动时指定的位置"><a href="#UITableView-滚动时指定的位置" class="headerlink" title="UITableView 滚动时指定的位置"></a>UITableView 滚动时指定的位置</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UITableViewScrollPosition</span> : <span class="title">Int</span> </span>&#123;   </div><div class="line">    <span class="keyword">case</span> <span class="type">None</span> <span class="comment">// 不指定</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Top</span> <span class="comment">// 指定上面</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Middle</span> <span class="comment">// 指定中间</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Bottom</span> <span class="comment">// 指定底部</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="UITableView-分割线的样式"><a href="#UITableView-分割线的样式" class="headerlink" title="UITableView 分割线的样式"></a>UITableView 分割线的样式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">UITableViewCellSeparatorStyle</span> : <span class="title">Int</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">None</span> <span class="comment">// 没有分割线</span></div><div class="line">    <span class="keyword">case</span> <span class="type">SingleLine</span> <span class="comment">// 单行分割线</span></div><div class="line">    <span class="keyword">case</span> <span class="type">SingleLineEtched</span> <span class="comment">// 多行分割线融合</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="UITableView-属性"><a href="#UITableView-属性" class="headerlink" title="UITableView 属性"></a>UITableView 属性</h2><blockquote>
+<p>1.设置 UITableView 的位置以及Style</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">init</span>(frame: <span class="type">CGRect</span>, style: <span class="type">UITableViewStyle</span>)    </div><div class="line"><span class="keyword">var</span> style: <span class="type">UITableViewStyle</span> &#123; <span class="keyword">get</span> &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>2.设置数据源对象</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">unowned</span>(unsafe) <span class="keyword">var</span> dataSource: <span class="type">UITableViewDataSource</span>?</div></pre></td></tr></table></figure>
+<blockquote>
+<p>3.设置代理对象</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">unowned</span>(unsafe) <span class="keyword">var</span> delegate: <span class="type">UITableViewDelegate</span>?</div></pre></td></tr></table></figure>
+<blockquote>
+<p>4.设置 Cell 的行高</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> rowHeight: <span class="type">CGFloat</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>5.设置 Cell 的标题高度</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> sectionHeaderHeight: <span class="type">CGFloat</span></div><div class="line">``` </div><div class="line"></div><div class="line">&gt; <span class="number">6</span>.设置 <span class="type">Cell</span> 的页尾高度</div><div class="line"></div><div class="line">```swift</div><div class="line"><span class="keyword">var</span> sectionFooterHeight: <span class="type">CGFloat</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>7.设置估计的 Cell 的行高</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> estimatedRowHeight: <span class="type">CGFloat</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>8.设置估计的 Cell 的标题行高</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> estimatedSectionHeaderHeight: <span class="type">CGFloat</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>9.设置估计的 Cell 的页尾行高</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> estimatedSectionFooterHeight: <span class="type">CGFloat</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>10.设置 Cell 与 Cell 之间的分割线位置</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> separatorInset: <span class="type">UIEdgeInsets</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>11.设置 UITableView 的背景 View 对象</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> backgroundView: <span class="type">UIView</span>?</div></pre></td></tr></table></figure>
+<h1 id="常用数据源方法"><a href="#常用数据源方法" class="headerlink" title="常用数据源方法"></a>常用数据源方法</h1><ul>
+<li>要使用数据源方法(DataSoucre方法), 首先我们需要遵守 UITableView 的数据源方法(UITableViewDataSoucre)协议</li>
+</ul>
+<blockquote>
+<p>1.该方法是用来设置 TableView 有多少行 Cell</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, numberOfRowsInSection section: Int)</span></span> -&gt; <span class="type">Int</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>2.该方法是用来设置 TableView 每一行 Cell 的详细内容</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)</span></span> -&gt; <span class="type">UITableViewCell</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>3.该方法是用来设置 TableView 有多少组 Cell</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">numberOfSectionsInTableView</span><span class="params">(tableView: UITableView)</span></span> -&gt; <span class="type">Int</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>4.该方法是用来设置每一组 Cell 的标题内容</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, titleForHeaderInSection section: Int)</span></span> -&gt; <span class="type">String</span>?</div></pre></td></tr></table></figure>
+<blockquote>
+<p>5.该方法是用来设置每一组 Cell 的页尾内容</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, titleForFooterInSection section: Int)</span></span> -&gt; <span class="type">String</span>?</div></pre></td></tr></table></figure>
+<blockquote>
+<p>6.该方法使用来设置 TableView 左滑快捷</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">optional func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>7.该方法是用来设置 TableView 是否可以拖拽到其他行数, 只要写了该方法, 默认打开</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath)</span></span></div></pre></td></tr></table></figure>
+<h1 id="常用代理方法"><a href="#常用代理方法" class="headerlink" title="常用代理方法"></a>常用代理方法</h1><blockquote>
+<p>1.该方法是用来设置每一行 Cell 的高度</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath)</span></span> -&gt; <span class="type">CGFloat</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>2.该方法是用来设置 Cell 标题内容的高度(如果该方法使用了, 那么在自定义 TableView 的sectionHeaderHeight属性就会被覆盖)</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, heightForHeaderInSection section: Int)</span></span> -&gt; <span class="type">CGFloat</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>3.该方法是用来设置 Cell 页尾内容的高度(如果该方法使用了, 那么在自定义 TableView 的sectionFooterHeight属性就会被覆盖)</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, heightForFooterInSection section: Int)</span></span> -&gt; <span class="type">CGFloat</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>4.该方法是用来设置 TableView 左滑快捷按钮的内容以及详细操作</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath)</span></span> -&gt; <span class="type">String</span>!</div></pre></td></tr></table></figure>
+<blockquote>
+<p>5.该方法是用来设置 TableView 每一行 Cell 的编辑模式, 如果不设置, 默认都是删除</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath)</span></span> -&gt; <span class="type">UITableViewCellEditingStyle</span></div></pre></td></tr></table></figure>
+          
         
       
     </div>
@@ -1752,378 +2142,7 @@ UITableView 添加或者删除 Cell 时的动画 enu
 
     
 
-    
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/13/Swift/UIKit/UIScrollView-简单使用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="千夜 QQ:738816656">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/13/Swift/UIKit/UIScrollView-简单使用/" itemprop="url">Swift-UIKit-UIScrollView-简单使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-13T22:04:22+08:00">
-                2017-12-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/UIKit/" itemprop="url" rel="index">
-                    <span itemprop="name">UIKit</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/UIKit/UIScrollView/" itemprop="url" rel="index">
-                    <span itemprop="name">UIScrollView</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/12/13/Swift/UIKit/UIScrollView-简单使用/" class="leancloud_visitors" data-flag-title="Swift-UIKit-UIScrollView-简单使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          实例化UIScrollView, UIImageView, UIImage class ViewController: UIViewController, UIScrollViewDelegate &#123;    var scrollView =  UIScrollView()    var i
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/13/Swift/UIKit/UIScrollView-简单使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/13/Swift/UIKit/UIScrollView-简介/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="千夜 QQ:738816656">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/13/Swift/UIKit/UIScrollView-简介/" itemprop="url">Swift-UIKit-UIScrollView-简介</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-13T21:54:14+08:00">
-                2017-12-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/UIKit/" itemprop="url" rel="index">
-                    <span itemprop="name">UIKit</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/UIKit/UIScrollView/" itemprop="url" rel="index">
-                    <span itemprop="name">UIScrollView</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/12/13/Swift/UIKit/UIScrollView-简介/" class="leancloud_visitors" data-flag-title="Swift-UIKit-UIScrollView-简介">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          UIScrollView的常用属性
- 设置内容的中心点, 默认是0
-
-var contentOffset: CGPoint
-
-设置内容的宽高, 默认是0
-
-var contentSize: CGSize
-
-设置UIScrollView的边距, 默认是0
-
-var contentInset: UIEd
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/13/Swift/UIKit/UIScrollView-简介/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
 
     
 
@@ -2153,7 +2172,7 @@ var contentInset: UIEd
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2184,66 +2203,64 @@ var contentInset: UIEd
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="千夜 QQ:738816656" />
-          <p class="site-author-name" itemprop="name">千夜 QQ:738816656</p>
-           
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">千夜 QQ:738816656</p>
               <p class="site-description motion-element" itemprop="description">ReactNative</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">201</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">106</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">77</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
+
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">198</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">105</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">77</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -2260,42 +2277,17 @@ var contentInset: UIEd
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        
-# 访客数
-
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  访客数:<span id="busuanzi_value_site_uv"></span>
-</span>
-</div>
-
-
-
-
-
-<div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">千夜 QQ:738816656</span>
+
+  
 </div>
 
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
 
 
         
@@ -2315,6 +2307,8 @@ var contentInset: UIEd
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -2349,46 +2343,54 @@ var contentInset: UIEd
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
   
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -2419,324 +2421,13 @@ var contentInset: UIEd
 
 
 
+
+
+
+
+
+
   
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === '') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
 
 
 
@@ -2745,114 +2436,10 @@ var contentInset: UIEd
   
 
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("GGOhuU9q4e5a7HISgedllhyN-gzGzoHsz", "1Dlb2KyTymPIvsleHp8s02I8");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
 
   
 
+  
   
 
   
@@ -2863,3 +2450,6 @@ var contentInset: UIEd
 
 </body>
 </html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

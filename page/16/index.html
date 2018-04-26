@@ -10,8 +10,23 @@
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
 
+<meta name="theme-color" content="#222">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
 
 
 
@@ -23,16 +38,6 @@
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 
-<script>
-    (function(){
-        if(''){
-            if (prompt('请输入文章密码') !== ''){
-                alert('密码错误！');
-                history.back();
-            }
-        }
-    })();
-</script>
 
 
 
@@ -55,38 +60,27 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Hexo, NexT" />
@@ -94,11 +88,6 @@
 
 
 
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
 
 
 
@@ -123,10 +112,11 @@
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
-    motion: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -169,8 +159,7 @@
   
 
   <div class="container sidebar-position-left 
-   page-home 
- ">
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -226,16 +215,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -256,54 +235,20 @@
         </li>
       
         
-        <li class="menu-item menu-item-read">
-          <a href="/read/" rel="section">
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            阅读榜
+            关于
           </a>
         </li>
       
 
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
-        </li>
       
     </ul>
   
 
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
   
 </nav>
 
@@ -318,6 +263,495 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/01/Swift/Grammar/Initialization初始化-析构/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/01/Swift/Grammar/Initialization初始化-析构/" itemprop="url">Swift-Grammar-Initialization初始化&Deinitialization析构</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-01T16:30:44+08:00">
+                2017-12-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/Grammar/" itemprop="url" rel="index">
+                    <span itemprop="name">Grammar</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Initialization-初始化"><a href="#Initialization-初始化" class="headerlink" title="Initialization 初始化"></a>Initialization 初始化</h1><h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><blockquote>
+<p>初始化，是当创建一个类、结构体、枚举类的时，完成存储属性的值的初始化，和其他一些初始化工作。准备好这个实例以供使用<br>反过来，当一个实例不再使用的时候，由析构过程释放这个实例所占用资源<br>完成初始化工作的一个方法一般称为初始化方法、构造器(Initializer)、构造方法等等<br>Swift中的构造器不需返回值，只是完成初始化工作。</p>
+</blockquote>
+<h2 id="类或结构体在创建的时候必须保证存储属性有初始化值"><a href="#类或结构体在创建的时候必须保证存储属性有初始化值" class="headerlink" title="类或结构体在创建的时候必须保证存储属性有初始化值"></a>类或结构体在创建的时候必须保证存储属性有初始化值</h2><blockquote>
+<p>目的的实现可以通过在定义属性的时候给存储属性添加上默认值，也可以在构造器中赋值。并且在这两种情况中都不会触发属性的观察器。<br>官方文档建议我们在一个存储属性通常具有同一个初始值的时候，使用属性定义的方式添加初始值。</p>
+<p>下面是这两种方法的代码<br><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> life: <span class="type">Int</span> = <span class="number">0</span>  </div><div class="line">    <span class="keyword">var</span> height: <span class="type">Double</span>  </div><div class="line">    <span class="keyword">init</span>()&#123;  </div><div class="line">        height = <span class="number">0</span>  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这里的init()方法就是构造器。注意它是不带func关键字的。而且也没有返回值。<br>以前创建一个实例的时候，都是使用“类名()”的形式，这其实就是调用了这个构造器。但是当时我们并没有写这个构造器，这是因为当一个类没有其他构造器的时候，编译器会自动生成这个默认的构造器。但是一旦有了其他的构造器，那么系统就不会再默认生成这个构造器。你也就再不能用“类名()”这种创建方法了。当然，当有其他构造器的时候，你也可以手动添加这个默认的构造器。</p>
+</blockquote>
+<h2 id="自定义构造器"><a href="#自定义构造器" class="headerlink" title="自定义构造器"></a>自定义构造器</h2><blockquote>
+<p>可以定义构造器，可以传入自定义的参数列表来初始化类。自定义的构造器的外部参数名规则和方法不太一样，构造器的每一个参数都会生成和局部参数名一样的外部参数名。如果不想要外部参数名，还是可以用下划线取消</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> life: <span class="type">Int</span> = <span class="number">0</span>  </div><div class="line">    <span class="keyword">var</span> height: <span class="type">Double</span>  </div><div class="line">    <span class="keyword">init</span>()&#123;    <span class="comment">//注意，当有其他构造器的时候，系统不会再生成这个构造器，必须手动写出来  </span></div><div class="line">        height = <span class="number">0</span>  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">init</span>(life: <span class="type">Int</span>, height: <span class="type">Double</span>) &#123;  </div><div class="line">        <span class="keyword">self</span>.life = life  </div><div class="line">        <span class="keyword">self</span>.height = height  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line"><span class="comment">//可以这样使用自定义的构造器  </span></div><div class="line"><span class="keyword">var</span> a = <span class="type">Animal</span>(life: <span class="number">29</span>, height: <span class="number">1.2</span>)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>再次提醒，当有类定义里面有自定义构造器的时候，不会再自动生成默认构造器。并且对于结构体也再不会自动生成遍历属性的构造器。<br>但是你可以将你自己的构造器写在扩展里面，这样就不会影响默认构造器的自动生成</p>
+</blockquote>
+<h2 id="构造器委托（Initializer-Delegation）"><a href="#构造器委托（Initializer-Delegation）" class="headerlink" title="构造器委托（Initializer Delegation）"></a>构造器委托（Initializer Delegation）</h2><blockquote>
+<p>构造器委托，就是在一个构造器里面调用另外一个构造器，这样可以减少多余的代码。在构造器里面使用self.init语法来调用另外一个构造器，且这个语法只能在构造器里面使用。<br>构造器委托在值类型（结构体和枚举类）和类直接是不太一样的。因为类需要考虑到继承问题。<br>先来看值类型的构造器委托。这个很简单，调用另外一个构造器就行了。下面的例子虽然有点脱裤子放屁的感觉，但。。就是举个例子而已</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Apple</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> totalPrice: <span class="type">Double</span>  </div><div class="line">      </div><div class="line">    <span class="keyword">init</span>(totalPrice: <span class="type">Double</span>) &#123;  </div><div class="line">        <span class="keyword">self</span>.totalPrice = totalPrice  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">init</span>(kg: <span class="type">Double</span>, pricePerKg: <span class="type">Double</span>) &#123;  </div><div class="line">        <span class="keyword">let</span> totalPrice = kg * pricePerKg  </div><div class="line">        <span class="keyword">self</span>.<span class="keyword">init</span>(totalPrice: totalPrice)   <span class="comment">//调用另外一个构造器  </span></div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="类的继承和初始化"><a href="#类的继承和初始化" class="headerlink" title="类的继承和初始化"></a>类的继承和初始化</h1><blockquote>
+<p>因为类可以继承，所以它的初始化规则就变得比结构体要复杂多了。<br>首先，类的构造器分为指定构造器（Designated Initializer） 和  便利构造器 （Convenience Initializer）<br>一个类通常具有很少数量（一般只有1个）的指定构造器。但是必须最少具有一个。<br>便利构造器是用来调用指定构造器完成初始化工作的。一个类可以不具有遍历构造器。<br>两种构造器的语法</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="comment">//指定构造器  </span></div><div class="line"><span class="keyword">init</span>(parameters) &#123;  </div><div class="line">    statements  </div><div class="line">&#125;  </div><div class="line"><span class="comment">//便利构造器  </span></div><div class="line"><span class="keyword">convenience</span> <span class="keyword">init</span>(parameters) &#123;  </div><div class="line">    statements  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="类的构造器委托规则："><a href="#类的构造器委托规则：" class="headerlink" title="类的构造器委托规则："></a>类的构造器委托规则：</h2><ul>
+<li><p>1、一个指定构造器必须调用它的直接父类的指定构造器</p>
+</li>
+<li><p>2、一个便利构造器必须调用同一个类的另外的构造器</p>
+</li>
+<li><p>3、一个便利构造器必须最终以调用指定构造器结束。</p>
+</li>
+</ul>
+<blockquote>
+<p>规则2和3连起来就是说，一个便利构造器可能会调用了另外一个便利构造器，然后这个构造器又调用了另外一个便利构造器….但是这个链的最后的一个便利构造器必须是调用指定构造器。<br>下面附上官方的图片。在图片上可以看到，三条规则总结起来就是：指定构造器往上调用，便利构造器平行调用且终结在指定构造器。</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/Swift-Grammar-Initialization%E5%88%9D%E5%A7%8B%E5%8C%96&amp;Deinitialization%E6%9E%90%E6%9E%84-001.png" alt="001"></p>
+<h2 id="类的初始化分为两阶段"><a href="#类的初始化分为两阶段" class="headerlink" title="类的初始化分为两阶段"></a>类的初始化分为两阶段</h2><h2 id="第一阶段"><a href="#第一阶段" class="headerlink" title="第一阶段"></a>第一阶段</h2><ul>
+<li>1、一个指定构造器或便利构造器被调用</li>
+<li>2、分配类实例所需的内存，但是内存没有初始化</li>
+<li>3、这个类的指定构造器确保该类引入的新的存储属性都初始化。（因为便利构造器最终会到指定构造器）。</li>
+<li>4、然后这个构造器调用父类的指定构造器完成和第三步同样的工作。</li>
+<li>5、直到继承链的最顶部分。</li>
+<li>6、这时候有的存储属性都有初始值了。</li>
+</ul>
+<h2 id="第二阶段"><a href="#第二阶段" class="headerlink" title="第二阶段"></a>第二阶段</h2><ul>
+<li>1、从继承链的最顶部分出发。每个指定构造器具有了修改实例的权利。并且可以调用实例方法。</li>
+<li>2、最后，这个初始化链条里面的便利构造器都具有了修改实例的权利。</li>
+</ul>
+<blockquote>
+<p>遵循上面两个阶段的步骤，避免了当在初始化链后面的构造器修改了属性之后，又被前面的构造器修改属性的可能性。避免了使用没有经过初始化的属性的可能性。</p>
+<p>为了确保两个阶段步骤的实施。编译器有4条检测规则，这四条规则决定了你在构造器里面某些代码的顺序。</p>
+</blockquote>
+<ul>
+<li><p>1、在调用父类构造器之前，必须确保子类引入的新属性已经得到初始化。</p>
+</li>
+<li><p>2、子类必须在调用了父类的构造器之后，才能访问继承的属性。</p>
+</li>
+<li><p>3、便利构造器必须在调用了其他构造器之后，才能访问属性或调用实例方法。</p>
+</li>
+<li><p>4、在完成第一阶段之前（其实就是完成初始化本类定义的新属性，调用父类构造器），构造器不能调用实例方法，不能访问属性的值，不能把self当做值访问。但是可以用self.属性名的方式给属性赋值。</p>
+</li>
+</ul>
+<blockquote>
+<p>下面可以看看分别违反每个规则的例子</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> life: <span class="type">Int</span>  </div><div class="line">    <span class="keyword">var</span> height: <span class="type">Double</span>  </div><div class="line">    <span class="keyword">init</span>(getLife: <span class="type">Int</span>, getHeight: <span class="type">Double</span>) &#123;  </div><div class="line">        <span class="keyword">self</span>.life = getLife  </div><div class="line">        <span class="keyword">self</span>.height = getHeight  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span>: <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> name: <span class="type">String</span>  </div><div class="line">    <span class="keyword">init</span>()&#123;  </div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(getLife: <span class="number">2</span>, getHeight: <span class="number">2.0</span>)  <span class="comment">//这句报错，违反第一条，必须先将本类引入的属性初始化才能调用父类构造器  </span></div><div class="line">        <span class="keyword">self</span>.name = <span class="string">"Larry"</span>                     <span class="comment">//所以这一句必须写在前面才没错  </span></div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">init</span>(name: <span class="type">String</span>, getLife: <span class="type">Int</span>, getHeight: <span class="type">Double</span>)&#123;  </div><div class="line">        <span class="keyword">self</span>.name = name  </div><div class="line">        <span class="keyword">self</span>.life = <span class="number">1</span>                            <span class="comment">//这句报错，违反第二条，必须调用了父类构造器之后才能访问继承的属性。  </span></div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(getLife: getLife, getHeight: getHeight)    <span class="comment">//这句必须放在第二句之前才没错  </span></div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">convenience</span> <span class="keyword">init</span>(getLife: <span class="type">Int</span>) &#123;  </div><div class="line">        <span class="keyword">self</span>.name = <span class="string">"Larry"</span>         <span class="comment">//这句报错，违反第三条，便利构造器里面必须调用了其他构造器之后才能访问属性  </span></div><div class="line">        <span class="keyword">self</span>.<span class="keyword">init</span>()                 <span class="comment">//这句应该放在前面  </span></div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">init</span>(getName: <span class="type">String</span>) &#123;  </div><div class="line">        <span class="keyword">self</span>.name = getName  </div><div class="line">        <span class="type">Dog</span>.sayHello()  </div><div class="line">        <span class="keyword">self</span>.printName()          <span class="comment">//这句报错，违反第四条，必须完成了阶段1才能调用实例方法或访问属性  </span></div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(getLife: <span class="number">21</span>, getHeight: <span class="number">2.3</span>)   <span class="comment">//这句应该放在前面  </span></div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">printName</span><span class="params">()</span></span>&#123;  </div><div class="line">        <span class="built_in">print</span>(<span class="keyword">self</span>.name)  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">sayHello</span><span class="params">()</span></span>&#123;  </div><div class="line">        <span class="built_in">print</span>(<span class="string">"hello"</span>)  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="属性观察器"><a href="#属性观察器" class="headerlink" title="属性观察器"></a>属性观察器</h1><blockquote>
+<p>以前说过，属性观察器在构造器里面给属性赋值的时候是不会被调用的。但是这个只针对于本类定义的属性。对于继承而来的属性，当已经经过父类的构造器完成初始化后，如果在子类里面修改了继承属性的值，那么就会触发父类观察器，如果你在子类里面也覆盖了这个观察器，那么子类和父类的观察器都会被调用</p>
+<p>另外再看</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> life: <span class="type">Int</span> = <span class="number">0</span> &#123;  </div><div class="line">        <span class="keyword">willSet</span>&#123;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"animial life newValue \(newValue)"</span>)  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">init</span>(getlife: <span class="type">Int</span>)&#123;  </div><div class="line">        <span class="built_in">print</span>(<span class="string">"animal life init \(self.life)"</span>)  </div><div class="line">        <span class="keyword">self</span>.life = <span class="number">1</span>  </div><div class="line">        <span class="built_in">print</span>(<span class="string">"animal life after assign \(self.life)"</span>)  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>如果我们调用下面的语句</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">var</span> a = <span class="type">Animal</span>(getlife: <span class="number">3</span>)  </div><div class="line"><span class="comment">//打印  </span></div><div class="line"><span class="comment">//animal life init 0  </span></div><div class="line"><span class="comment">//animal life after assign 1</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意一点，我们在init里面第一句已经用到了self。根据编译器规则第四条，不允许在属性没有初始化的前进行访问。从上面代码通过编译来看，这里编译器已经将属性初始化为定义时候的值了。如果你将定义时候的默认值删去，那么第一句就会报错<br>Swift默认是不继承父类的构造器的。<br>如果你想要和父类一样的构造器，那么必须自己写。如果你写的构造器（不管是指定还是便利）和父类的指定构造器一样，那么这个构造器前必须加上override关键字。如果你写的构造器和父类的便利构造器一样，那么不用加override，因为子类永远不能直接调用父类的便利构造器。<br>但是在某些情况下，子类可以自动继承父类构造器。<br>前提条件：子类新引入的属性都必须具有默认值</p>
+</blockquote>
+<ul>
+<li>规则1：如果子类没有定义任何的指定构造器。那么子类自动继承父类所有的指定构造器。</li>
+<li>规则2：如果子类实现了父类所有的指定构造器（可以通过规则1继承而来，也可以通过重写而来），那么子类自动继承父类所有的便利构造器。</li>
+</ul>
+<blockquote>
+<p>例子</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> life: <span class="type">Int</span>  </div><div class="line">    <span class="keyword">var</span> height: <span class="type">Double</span>  </div><div class="line">    <span class="keyword">convenience</span> <span class="keyword">init</span>(getLife: <span class="type">Int</span>)&#123;  </div><div class="line">        <span class="keyword">self</span>.<span class="keyword">init</span>(getLife: getLife, getHeight: <span class="number">0.0</span>)  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">init</span>(getLife: <span class="type">Int</span>, getHeight: <span class="type">Double</span>) &#123;  </div><div class="line">        <span class="keyword">self</span>.life = getLife  </div><div class="line">        <span class="keyword">self</span>.height = getHeight  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span>: <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> name: <span class="type">String</span> = <span class="string">"Larry"</span>  </div><div class="line">    <span class="comment">//    override init(getLife: Int, getHeight: Double)&#123;  </span></div><div class="line">    <span class="comment">//        super.init(getLife: getLife, getHeight:getHeight)  </span></div><div class="line">    <span class="comment">//    &#125;  </span></div><div class="line">      </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>无论上面Dog类里面注释的代码是否打开，Dog都继承了Animal的所有构造器</p>
+</blockquote>
+<h1 id="Failable-Initializers可失败的构造器"><a href="#Failable-Initializers可失败的构造器" class="headerlink" title="Failable Initializers可失败的构造器"></a>Failable Initializers可失败的构造器</h1><blockquote>
+<p>Swift中有个概念，就是创建实例的时候如果条件不符合，可以返回一个nil对象。这类可以返回nil的构造器叫做可失败的构造器。语法是在init的前面加上一个？。当条件不满足的时候，你可以用 return nil结束构造方法。那么这时候得到的实例其实是一个nil，这里也说明了，可失败构造器返回的是可选类型。其实之前也说过，Swift的构造器是不需要返回值的。所以你成功的时候不需要写return什么东东。</p>
+<h2 id="值类型的可失败构造器"><a href="#值类型的可失败构造器" class="headerlink" title="值类型的可失败构造器"></a>值类型的可失败构造器</h2><p>下面是structure的</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">struct</span> <span class="title">Apple</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> pricePerKg: <span class="type">Double</span>  </div><div class="line">    <span class="keyword">init</span>?(pricePerKg: <span class="type">Double</span>)&#123;  </div><div class="line">        <span class="keyword">if</span> pricePerKg &lt; <span class="number">0</span> &#123;  </div><div class="line">            <span class="keyword">return</span> <span class="literal">nil</span>  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">self</span>.pricePerKg = pricePerKg  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line"><span class="built_in">print</span>(<span class="type">Apple</span>(pricePerKg: <span class="number">2</span>))  </div><div class="line"><span class="built_in">print</span>(<span class="type">Apple</span>(pricePerKg: -<span class="number">2</span>))  </div><div class="line"><span class="comment">//打印  </span></div><div class="line"><span class="comment">//Optional(SwiftTest.Apple(pricePerKg: 2.0))  </span></div><div class="line"><span class="comment">//nil</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>接下来是枚举类的</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">enum FruitSet &#123;  </div><div class="line">    case apple, orange, banana  </div><div class="line">    init?(symbol: Character)&#123;  </div><div class="line">        switch symbol &#123;  </div><div class="line">        case &quot;a&quot;,&quot;A&quot; :  </div><div class="line">            self = .apple  </div><div class="line">        case &quot;o&quot;,&quot;O&quot; :  </div><div class="line">            self = .orange  </div><div class="line">        case &quot;b&quot;,&quot;B&quot; :  </div><div class="line">            self = .banana  </div><div class="line">        default :  </div><div class="line">            return nil  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">print(FruitSet(symbol: &quot;a&quot;))  </div><div class="line">print(FruitSet(symbol: &quot;e&quot;))  </div><div class="line">//打印  </div><div class="line">//Optional(SwiftTest.FruitSet.apple)  </div><div class="line">//nil</div></pre></td></tr></table></figure>
+<blockquote>
+<p>对应有默认值的枚举类，会自动生成一个init?(rawValue:)的构造器。如下</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">enum</span> <span class="title">FruitSet</span> : <span class="title">Character</span></span>&#123;  </div><div class="line">    <span class="keyword">case</span> apple = <span class="string">"a"</span>, orange = <span class="string">"o"</span>, banana = <span class="string">"b"</span>  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="built_in">print</span>(<span class="type">FruitSet</span>(rawValue: <span class="string">"a"</span>))  </div><div class="line"><span class="built_in">print</span>(<span class="type">FruitSet</span>(rawValue: <span class="string">"e"</span>))</div></pre></td></tr></table></figure>
+<h2 id="类的可失败构造器"><a href="#类的可失败构造器" class="headerlink" title="类的可失败构造器"></a>类的可失败构造器</h2><blockquote>
+<p>有一个规则，就是必须在本类所有的属性（包括继承的）都赋值之后才可以返回nil</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  </div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> pricePerKg: <span class="type">Double</span>  </div><div class="line">    <span class="keyword">init</span>?(pricePerKg: <span class="type">Double</span>)&#123;  </div><div class="line">        <span class="keyword">if</span> pricePerKg &lt; <span class="number">0</span> &#123;  </div><div class="line">            <span class="keyword">return</span> <span class="literal">nil</span>              <span class="comment">//这句报错，所以你必须先初始化其他属性值  </span></div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">self</span>.pricePerKg = pricePerKg  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="可失败初始化的传递过程"><a href="#可失败初始化的传递过程" class="headerlink" title="可失败初始化的传递过程"></a>可失败初始化的传递过程</h2><blockquote>
+<p>一个可失败的构造器可以调用其他的构造器，无论是可失败的还是不会失败的。</p>
+</blockquote>
+<p>但是一个不可失败的构造器不能去调用一个可失败的构造器。如果去调用父类的可失败构造器，虽然用解包可以解决，但是一旦父类的可失败构造器返回了nil，那么程序直接崩溃</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Fruit</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> name: <span class="type">String</span>  </div><div class="line">    <span class="keyword">init</span>?(name: <span class="type">String</span>)&#123;  </div><div class="line">        <span class="keyword">self</span>.name = name  </div><div class="line">        <span class="keyword">if</span> name.isEmpty &#123;  </div><div class="line">            <span class="keyword">return</span> <span class="literal">nil</span>  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span>: <span class="title">Fruit</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> pricePerKg: <span class="type">Double</span>  </div><div class="line">    <span class="keyword">init</span>(pricePerKg: <span class="type">Double</span>)&#123;  </div><div class="line">        <span class="keyword">self</span>.pricePerKg = pricePerKg  </div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(name: <span class="string">""</span>)!   <span class="comment">//利用解包调用了父类的可失败构造器，但是因为这样父类会返回一个nil，所以程序在这行会崩溃  </span></div><div class="line">  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">convenience</span> <span class="keyword">init</span>?()&#123;  </div><div class="line">        <span class="keyword">self</span>.<span class="keyword">init</span>(pricePerKg: <span class="number">3</span>)  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">var</span> i = <span class="type">Apple</span>(pricePerKg: <span class="number">3</span>)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>同样的，可失败的构造器也可以被重写，你可以重写为不可失败的构造器。<br>但是不可失败的构造器不能覆盖为可失败的构造器。<br>你可以用!代替?来实现可失败构造器，那么这样得到的实例会自动解包。当然，存在nil报错的问题。记得处理。</p>
+</blockquote>
+<h1 id="必须构造器（Required-Initializers）"><a href="#必须构造器（Required-Initializers）" class="headerlink" title="必须构造器（Required Initializers）"></a>必须构造器（Required Initializers）</h1><blockquote>
+<p>在构造器前面加上required关键字就行了。这样的构造器要求子类必须重写。子类重写这个构造器的时候，也必须加上required关键字。要求子类的子类也要重写这个构造器。<br>写了required后不用写override关键字。写了会有警告。</p>
+<p>给属性默认值时使用闭包或函数</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">getprice</span><span class="params">()</span></span>-&gt;<span class="type">Double</span> &#123;  </div><div class="line">    <span class="keyword">return</span> <span class="number">1</span>  </div><div class="line">&#125;  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> pricePerKg: <span class="type">Double</span> = getprice()  </div><div class="line">    <span class="keyword">var</span> name = &#123;  </div><div class="line">        <span class="keyword">return</span> <span class="string">"apple"</span>  </div><div class="line">    &#125;()     <span class="comment">//留意这对小括号，没有的话那就是给属性赋值一个闭包了。  </span></div><div class="line">&#125;  </div><div class="line"><span class="keyword">var</span> a = <span class="type">Apple</span>()  </div><div class="line"><span class="built_in">print</span>(a.pricePerKg,a.name)</div></pre></td></tr></table></figure>
+<h1 id="析构器"><a href="#析构器" class="headerlink" title="析构器"></a>析构器</h1><blockquote>
+<p>析构器，就是在一个实例再也不用到时候调用的方法。析构器里面完成一些清理工作或保存数据等等。析构器是系统自动调用的，不允许自行调用。</p>
+<p>语法</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">deinit</span> &#123;  </div><div class="line">    <span class="comment">// perform the deinitialization  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/01/Swift/Grammar/Inheritance-类继承基本用法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/01/Swift/Grammar/Inheritance-类继承基本用法/" itemprop="url">Swift-Grammar-Inheritance-类继承基本用法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-01T16:23:00+08:00">
+                2017-12-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/Grammar/" itemprop="url" rel="index">
+                    <span itemprop="name">Grammar</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/Grammar/Inheritance/" itemprop="url" rel="index">
+                    <span itemprop="name">Inheritance</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="类继承"><a href="#类继承" class="headerlink" title="类继承"></a>类继承</h1><p>.&gt;继承是类独有的，结构体和枚举类都不具有这个功能。<br>继承就好像子承父业一样，一个继承的类（称为子类subClass）可以获得被继承的类（称为父类superClass）的属性，方法和其他特性。</p>
+<blockquote>
+<p>子类可以重写父类的方法，也可以添加自己的属性，还可以为继承而来的属性添加观察器（对继承而来的存储和计算属性都可以）</p>
+</blockquote>
+<h1 id="基类"><a href="#基类" class="headerlink" title="基类"></a>基类</h1><blockquote>
+<p>一个不继承自任何类的类称为基类。<br>在Swift中，是没有共同的终极父类的。oc和java都是有终级父类的</p>
+<p>定义一个Animal基类</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;  </div><div class="line">     <span class="keyword">var</span> life : <span class="type">Int</span> = <span class="number">0</span>  </div><div class="line">     <span class="keyword">var</span> description: <span class="type">String</span>&#123;  </div><div class="line">         <span class="keyword">return</span> <span class="string">"An animal with a life of \(life)"</span>  </div><div class="line">     &#125;  </div><div class="line">       </div><div class="line">     <span class="function"><span class="keyword">func</span> <span class="title">makeSounds</span><span class="params">()</span></span> &#123;  </div><div class="line">       </div><div class="line">     &#125;  </div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>继承语法</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  &lt;span style=<span class="string">"color:#ff0000;"</span>&gt;<span class="class"><span class="keyword">class</span> <span class="title">Dog</span>: <span class="title">Animal</span>&lt;/<span class="title">span</span>&gt; </span>&#123;  </div><div class="line">    <span class="keyword">var</span> name : <span class="type">String</span> = <span class="string">"larry"</span>  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>上面的Dog类继承自Animal类，并且添加了自己的name属性。我们可以修改一下dog继承的属性，然后打印一下 </p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> dog = <span class="type">Dog</span>()  </div><div class="line">dog.life = <span class="number">10</span>  </div><div class="line"><span class="built_in">print</span>(<span class="string">"dog's life is"</span>,dog.life)  <span class="comment">//dog's life is 10</span></div></pre></td></tr></table></figure>
+<h1 id="覆盖（override）父类属性"><a href="#覆盖（override）父类属性" class="headerlink" title="覆盖（override）父类属性"></a>覆盖（override）父类属性</h1><blockquote>
+<p>对于继承而来的存储属性或者计算属性，我们可以通过重写这个属性的getter和setter方法来实现覆盖。下面是几条规则：</p>
+</blockquote>
+<ul>
+<li><p>1、当你重写了setter方法的时候，一定要重写getter方法。但是可以只重写getter方法。</p>
+</li>
+<li><p>2、覆盖属性的时候，属性名和类型都必须和继承的属性一致才算覆盖。并且前面要加上override关键字。</p>
+</li>
+<li><p>3、你可以将继承的只读属性重写为读写属性，但是不能将继承的读写属性重写为只读属性。</p>
+</li>
+</ul>
+<blockquote>
+<p>下面重写Animal的description属性</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span>: <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> name : <span class="type">String</span> = <span class="string">"larry"</span>  </div><div class="line">    <span class="keyword">override</span> <span class="keyword">var</span> description: <span class="type">String</span> &#123;  </div><div class="line">        <span class="keyword">get</span>&#123;  </div><div class="line">            <span class="keyword">return</span> <span class="string">"It's a dog with the name of \(name)"</span>  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="覆盖属性观察器"><a href="#覆盖属性观察器" class="headerlink" title="覆盖属性观察器"></a>覆盖属性观察器</h1><blockquote>
+<p>规则：</p>
+</blockquote>
+<ul>
+<li><p>1、不能对继承的常量，或者只读属性添加属性观察器</p>
+</li>
+<li><p>2、不能同时对一个继承属性同时添加属性观察器和setter方法。因为setter方法已经可以提供属性观察器的功能。</p>
+</li>
+<li><p>3、即使覆盖了之后，如果父类的该属性有观察器，那么当值修改的时候，父类的观察器也会被调用</p>
+</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Dog</span>: <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> name : <span class="type">String</span> = <span class="string">"larry"</span>  </div><div class="line">      </div><div class="line">    <span class="keyword">override</span> <span class="keyword">var</span> life: <span class="type">Int</span> &#123;  </div><div class="line">        <span class="keyword">didSet</span>&#123;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"The dog's life is \(life)"</span>)  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="keyword">override</span> <span class="keyword">var</span> description: <span class="type">String</span> &#123;  </div><div class="line">        <span class="keyword">get</span>&#123;  </div><div class="line">            <span class="keyword">return</span> <span class="string">"It's a dog with the name of \(name)"</span>  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="覆盖父类方法"><a href="#覆盖父类方法" class="headerlink" title="覆盖父类方法"></a>覆盖父类方法</h1><blockquote>
+<p>同样的，加上override后，重写父类方法就可以</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">makeSounds</span><span class="params">()</span></span> &#123;  </div><div class="line">        <span class="built_in">print</span>(<span class="string">"wang! wang!"</span>)  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="防止覆盖"><a href="#防止覆盖" class="headerlink" title="防止覆盖"></a>防止覆盖</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">用<span class="keyword">final</span>关键字去修饰就可以了。比如<span class="keyword">final</span> <span class="keyword">var</span>，<span class="keyword">final</span> <span class="function"><span class="keyword">func</span>， <span class="title">final</span> <span class="title">class</span> <span class="title">func</span>， <span class="title">final</span> <span class="title">subscript</span></span></div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -414,17 +848,6 @@
 
           
           
-             <span id="/2017/12/01/Swift/Grammar/Subscripts-下标/" class="leancloud_visitors" data-flag-title="Swift-Grammar-Subscripts-下标">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -447,16 +870,15 @@
       
         
           
-          下标
-所谓的下标，就是[]在Array和Dictionary的时候就已经接触过了。它其实算一种特殊的方法，利用下标，我们可以将属性的getter和setter写在一起。而且还可以提供另外的一些功能。String截串的时候无比麻烦,利用下标和扩展（Extension）封装后变得很简单。这个在讲到扩展的
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/01/Swift/Grammar/Subscripts-下标/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h1 id="下标"><a href="#下标" class="headerlink" title="下标"></a>下标</h1><blockquote>
+<p>所谓的下标，就是[]<br>在Array和Dictionary的时候就已经接触过了。它其实算一种特殊的方法，利用下标，我们可以将属性的getter和setter写在一起。而且还可以提供另外的一些功能。<br>String截串的时候无比麻烦,利用下标和扩展（Extension）封装后变得很简单。这个在讲到扩展的时候在写出来吧。<br>下标语法</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">subscript</span>(index: <span class="type">Int</span>) -&gt; <span class="type">Int</span> &#123;  </div><div class="line">    <span class="keyword">get</span> &#123;  </div><div class="line">        <span class="comment">// return an appropriate subscript value here  </span></div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">set</span>(newValue) &#123;  </div><div class="line">        <span class="comment">// perform a suitable setting action here  </span></div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>当然可以和计算属性一样将setter删去，变为只读。<br>下面举一个使用例子。假设在买橙子。下标表示你要买多少斤，下标能返回总共价格。 当对下标赋值的时候，表示买那么多斤的时候总共花了多少钱。然后修改了橙子的单价.<br>下标不止一个变量，还可以有多个变量。变量也可以是不同的类型</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">class</span> <span class="title">Orange</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> pricePerKg: <span class="type">Double</span> = <span class="number">3</span>  </div><div class="line">    <span class="keyword">subscript</span>(kg: <span class="type">Double</span>, str: <span class="type">String</span>) -&gt; <span class="type">Double</span> &#123;  </div><div class="line">        <span class="keyword">get</span>&#123;  </div><div class="line">            <span class="built_in">print</span>(str)  </div><div class="line">            <span class="keyword">return</span> kg * pricePerKg  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">set</span>&#123;  </div><div class="line">            <span class="built_in">print</span>(str)  </div><div class="line">            <span class="keyword">self</span>.pricePerKg = newValue / kg  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">var</span> o = <span class="type">Orange</span>()  </div><div class="line"><span class="built_in">print</span>(<span class="string">"price of 10kg orange "</span>,o[<span class="number">10</span>,<span class="string">"buy 10 kg orange"</span>])  </div><div class="line">o[<span class="number">100</span>,<span class="string">"buy 100kg orange"</span>] =  <span class="number">250</span>  </div><div class="line"><span class="built_in">print</span>(<span class="string">"price per kg when buying 100kg orange "</span>,o.pricePerKg)  </div><div class="line"><span class="comment">//打印  </span></div><div class="line"><span class="comment">//buy 10 kg orange  </span></div><div class="line"><span class="comment">//price of 10kg orange  30.0  </span></div><div class="line"><span class="comment">//buy 100kg orange  </span></div><div class="line"><span class="comment">//price per kg when buying 100kg orange  2.5</span></div></pre></td></tr></table></figure>
+          
         
       
     </div>
@@ -465,6 +887,8 @@
     
 
     
+
+
 
     
 
@@ -585,17 +1009,6 @@
 
           
           
-             <span id="/2017/12/01/Swift/Grammar/Method-方法/" class="leancloud_visitors" data-flag-title="Swift-Grammar-Method-方法">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -618,18 +1031,32 @@
       
         
           
-          Method
-方法 其实就是函数，只不过方法是属于某个类、结构体、枚举类的函数方法的定义和函数一样。调用通过点语法实现。注意，方法和属性不能同名。但是类型方法可以和实例方法重名
+            <h1 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h1><blockquote>
+<p><strong>方法</strong> 其实就是函数，只不过方法是属于某个类、结构体、枚举类的函数<br>方法的定义和函数一样。调用通过点语法实现。注意，方法和属性不能同名。但是类型方法可以和实例方法重名</p>
+</blockquote>
+<h2 id="Instance-Methods实例方法"><a href="#Instance-Methods实例方法" class="headerlink" title="Instance Methods实例方法"></a>Instance Methods实例方法</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Video</span> </span>&#123;  </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">play</span><span class="params">(videoName: String)</span></span> &#123;  </div><div class="line">        <span class="built_in">print</span>(<span class="string">"Now play"</span>,videoName)  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">var</span> v = <span class="type">Video</span>()  </div><div class="line">v.play(<span class="string">"\"monkey king\""</span>)   <span class="comment">//打印 Now play "monkey king"</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>在实例方法里面具有 self 属性，该属性就是指这个实例本身。学习过java或OC的应该很熟悉。就是用来当参数名和属性名一样的时候，用来区分究竟是哪个变量。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Video</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> videoName: <span class="type">String</span>?  </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">play</span><span class="params">(videoName: String)</span></span> &#123;  </div><div class="line">        <span class="keyword">self</span>.videoName = videoName  </div><div class="line">        <span class="built_in">print</span>(<span class="string">"Now play"</span>,videoName)  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">var</span> v = <span class="type">Video</span>()  </div><div class="line">v.play(<span class="string">"\"monkey king\""</span>)  </div><div class="line"><span class="built_in">print</span>(v.videoName!)  </div><div class="line"><span class="comment">//打印  </span></div><div class="line"><span class="comment">//Now play "monkey king"  </span></div><div class="line"><span class="comment">//"monkey king"</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>如果是对于结构体，因为它是值传递，所以一般方法里面如果和上面一样尝试修改存储属性的值的话，是不允许的。直接报错。<br>如果需要修改，那么可以在方法前面加上mutating关键字<br>changeVideo方法将整个self都赋值了一个新实例。<br>因为枚举类是不存在存储属性的，所以没有上面修改属性的情况。但是self关键字还是有的</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Video</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> videoName: <span class="type">String</span>?  </div><div class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">play</span><span class="params">(videoName: String)</span></span> &#123;  </div><div class="line">        <span class="keyword">self</span>.videoName = videoName  </div><div class="line">        <span class="built_in">print</span>(<span class="string">"Now play"</span>,videoName)  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">changeVideo</span><span class="params">(newVideo: String)</span></span>&#123;  </div><div class="line">        <span class="keyword">self</span> = <span class="type">Video</span>(videoName: newVideo)  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">&#125;  </div><div class="line"><span class="keyword">var</span> v = <span class="type">Video</span>()  </div><div class="line">v.play(<span class="string">"\"monkey king\""</span>)  </div><div class="line">v.changeVideo(<span class="string">"misson impossible"</span>)  </div><div class="line"><span class="built_in">print</span>(v.videoName!)  </div><div class="line"><span class="comment">//打印  </span></div><div class="line"><span class="comment">//Now play "monkey king"  </span></div><div class="line"><span class="comment">//misson impossible</span></div></pre></td></tr></table></figure>
+<h2 id="Type-Methods类型方法"><a href="#Type-Methods类型方法" class="headerlink" title="Type Methods类型方法"></a>Type Methods类型方法</h2><blockquote>
+<p>这个和类型属性一样，加上static或class就行了。class允许子类覆盖父类方法</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">Video</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> videoName: <span class="type">String</span>?  </div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> playTime: <span class="type">Int</span> = <span class="number">0</span>  </div><div class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">play</span><span class="params">(videoName: String)</span></span> &#123;  </div><div class="line">        <span class="keyword">self</span>.videoName = videoName    <span class="comment">//这里是self指的是Video的实例  </span></div><div class="line">        <span class="built_in">print</span>(<span class="string">"Now play"</span>,videoName)  </div><div class="line">        <span class="type">Video</span>.playTime++  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">changeVideo</span><span class="params">(newVideo: String)</span></span>&#123;  </div><div class="line">        <span class="keyword">self</span> = <span class="type">Video</span>(videoName: newVideo)  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">showPlayTime</span><span class="params">()</span></span>&#123;  </div><div class="line">        <span class="built_in">print</span>(<span class="keyword">self</span>.playTime)   <span class="comment">//注意这里的self是指Video这个结构体，而不是实例  </span></div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line"><span class="keyword">var</span> v = <span class="type">Video</span>()  </div><div class="line"><span class="type">Video</span>.showPlayTime()  </div><div class="line">v.play(<span class="string">"\"monkey king\""</span>)  </div><div class="line"><span class="type">Video</span>.showPlayTime()  </div><div class="line"><span class="comment">//打印  </span></div><div class="line"><span class="comment">//0  </span></div><div class="line"><span class="comment">//Now play "monkey king"  </span></div><div class="line"><span class="comment">//1</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>注意，调用类型方法只能通过类名的点语法来实现，不能通过实例的点语法。这点和类型属性是一样的。</p>
+</li>
+<li><p>关于这个类型方法，需要注意里面的self和实例方法里面的self指向的不是用一个东西，前者是指类型本身，后者是指类型的实例。</p>
+</li>
+<li><p>所以在类型方法和实例方法里面访问类型变量和实例变量也有不同。在实例方法里面访问类型变量，需要加上类型前缀。 在类型方法里面访问类型变量，可以加上类型前缀，用self，或者不加前缀。在类型方法里面是不能访问实例变量的</p>
+</li>
+</ul>
 
-Instance Methods实例方法  class Video &#123;      func play(vide
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/01/Swift/Grammar/Method-方法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -638,6 +1065,8 @@ Instance Methods实例方法  class Video &#123;      func play(vide
     
 
     
+
+
 
     
 
@@ -758,17 +1187,6 @@ Instance Methods实例方法  class Video &#123;      func play(vide
 
           
           
-             <span id="/2017/12/01/Swift/Grammar/Properties-属性/" class="leancloud_visitors" data-flag-title="Swift-Grammar-Properties-属性">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -791,21 +1209,61 @@ Instance Methods实例方法  class Video &#123;      func play(vide
       
         
           
-          Properties
-Swift中，属性大致分为两种，存储属性+计算属性
+            <h1 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h1><blockquote>
+<p>Swift中，属性大致分为两种，存储属性+计算属性</p>
+</blockquote>
+<h2 id="Stored-Properties存储属性"><a href="#Stored-Properties存储属性" class="headerlink" title="Stored Properties存储属性"></a>Stored Properties存储属性</h2><blockquote>
+<p>存储属性:能保存数据的属性。枚举类、结构体、类都具有存储属性<br>存储属性可以设为var 或let。分别对应常量和变量</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">CPU</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> clockSpeed = <span class="number">1.0</span>   <span class="comment">//变量  </span></div><div class="line">    <span class="keyword">let</span> coreNum = <span class="number">2</span>        <span class="comment">//常量  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>计算属性就是它本身不保存数据，而是通过处理其他的数据得到返回值。 结构体和类才具有计算属性<br>然后我们初始化一个CPU实例，但是这个实例我们设置为常量。这样会导致一个后果：对应值传递的结构体，当实例是常量的时候，即使存储属性是变量，也不能修改里面属性的值</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">let</span> cpu = <span class="type">CPU</span>(clockSpeed: <span class="number">3.2</span>)   <span class="comment">//注意到这个初始化方法只有一个参数，因为我们设置了coreNum为常量，并且给了初始值，所以构造方法会发生变化  </span></div><div class="line">cpu.clockSpeed = <span class="number">3.3</span>      <span class="comment">//这句会报错</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>然而对于引用传递的类来讲，即使实例是常量，里面设置为变量的存储属性还是可以更改值的</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  </div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Telephone</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> cpu = <span class="type">CPU</span>()  </div><div class="line">    <span class="keyword">var</span> screenSize: <span class="type">Int</span>?  </div><div class="line">    <span class="keyword">var</span> price: <span class="type">Int</span>?  </div><div class="line">&#125;  </div><div class="line"><span class="keyword">let</span> myTelephont = <span class="type">Telephone</span>()  </div><div class="line">myTelephont.screenSize = <span class="number">4</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>懒加载存储属性<br>Swift需要保证一个类或结构体或枚举类在初始化之后，所以的存储属性都必须有初始值（除开可选类型）。所以当实例初始化完成以后，所以的存储属性都初始化了。但是有些时候某些存储属性不一定会用到，所以我们可以把这些存储属性设置为lazy存储属性。那么它在要用到的时候才会进行初始化。lazy存储属性只能是变量。而且在多线程调用的时候，如果lazy属性没有初始化，那么不能保证只会初始化一次</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">struct</span> <span class="title">CPU</span> </span>&#123;  </div><div class="line">    <span class="built_in">lazy</span> <span class="keyword">var</span> clockSpeed = <span class="number">1.0</span>  </div><div class="line">    <span class="keyword">let</span> coreNum = <span class="number">2</span>  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">let</span> cpu = <span class="type">CPU</span>()  <span class="comment">//这时候clockSpeed还是为nil</span></div></pre></td></tr></table></figure>
+<h2 id="Computed-Properties-计算属性"><a href="#Computed-Properties-计算属性" class="headerlink" title="Computed Properties 计算属性"></a>Computed Properties 计算属性</h2><blockquote>
+<p>故名思议，它本身不保存数据，只是用其他数据得到返回值，或者当设置它的时候修改其他数据。下面的例子利用存储属性得到apple的总价。或者修改总价的时候修改重量</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Apple</span> </span>&#123;  </div><div class="line">    <span class="keyword">let</span> pricePerKg = <span class="number">6.0</span>  </div><div class="line">    <span class="keyword">var</span> weight: <span class="type">Double</span>  </div><div class="line">    <span class="keyword">var</span> totalPrice: <span class="type">Double</span> &#123;  </div><div class="line">        <span class="keyword">get</span> &#123;  </div><div class="line">            <span class="keyword">return</span> pricePerKg * weight  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">set</span>(newTotalPrice) &#123;  </div><div class="line">            weight = newTotalPrice / pricePerKg  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">var</span> apple = <span class="type">Apple</span>(weight: <span class="number">2.0</span>)  </div><div class="line"><span class="built_in">print</span>(apple.totalPrice)    <span class="comment">//12.0  </span></div><div class="line">apple.totalPrice = <span class="number">6.0</span>  </div><div class="line"><span class="built_in">print</span>(apple.weight)       <span class="comment">//1.0</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>算属性的setter方法新值自带一个默认名 newValue，所以上面的定义可以改为 </p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">Apple</span> </span>&#123;  </div><div class="line">    <span class="keyword">let</span> pricePerKg = <span class="number">6.0</span>  </div><div class="line">    <span class="keyword">var</span> weight: <span class="type">Double</span>  </div><div class="line">    <span class="keyword">var</span> totalPrice: <span class="type">Double</span> &#123;  </div><div class="line">        <span class="keyword">get</span> &#123;  </div><div class="line">            <span class="keyword">return</span> pricePerKg * weight  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">set</span> &#123;  </div><div class="line">            weight = newValue / pricePerKg  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>可以将计算属性的setter去掉，那么这个计算数据就变成了只读的。这时候还可以省去get关键字 </p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Apple</span> </span>&#123;  </div><div class="line">    <span class="keyword">let</span> pricePerKg = <span class="number">6.0</span>  </div><div class="line">    <span class="keyword">var</span> weight: <span class="type">Double</span>  </div><div class="line">    <span class="keyword">var</span> totalPrice: <span class="type">Double</span> &#123;  </div><div class="line">        <span class="keyword">return</span> pricePerKg * weight  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>不要在计算属性的setter和getter里面获取该计算属性，这样会导致循环调用</li>
+</ul>
+<h2 id="Property-Observers属性观察器"><a href="#Property-Observers属性观察器" class="headerlink" title="Property Observers属性观察器"></a>Property Observers属性观察器</h2><blockquote>
+<p>有了属性观察器，我们可以在属性被修改的时候做一些事情。注意的是对于非继承而来的计算属性，没有必要设置属性观察器，因为直接可以在计算属性的setter定义中完成这项功能。</p>
+<p>属性观察器有两个方法<br>willSet 在属性将要赋值的时候调用，这时候属性的值还没改变<br>didSet在属性值被赋值完的时候就会调用。（即使是赋值和原来值一样的值）这时候属性的值已经改变。<br>willSet方法里面会传递新值过来，你可以自己定义这个新值的名称，如果不定义，会具有默认值newValue<br>didSet方法里面会传递属性的旧值过来，你可以自己定义这个旧值的名称，如果不定义，会具有默认值oldValue。如果你在didSet方法里面又对这个存储属性赋值，那么这个值会覆盖掉刚刚赋值的值。且不会导致循环调用。比如下面例子里面，当pricePerKg小于3的时候，会把它改为3</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Apple</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> pricePerKg = <span class="number">6.0</span> &#123;  </div><div class="line">        <span class="keyword">willSet</span>(priceNewValue)&#123;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"In willSet, priceNewValue="</span>,priceNewValue)  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"In willSet, pricePerKg="</span>,pricePerKg)  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">didSet</span>&#123;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"In didSet, oldValue="</span>,oldValue)  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"In didSet, pricePerKg="</span>,pricePerKg)  </div><div class="line">            <span class="keyword">if</span> pricePerKg &lt; <span class="number">3</span> &#123;  </div><div class="line">                pricePerKg = <span class="number">3</span>  </div><div class="line">            &#125;  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">var</span> weight: <span class="type">Double</span>  </div><div class="line">    <span class="keyword">var</span> totalPrice: <span class="type">Double</span> &#123;  </div><div class="line">        <span class="keyword">get</span> &#123;  </div><div class="line">            <span class="keyword">return</span> pricePerKg * weight  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">set</span> &#123;  </div><div class="line">            weight = newValue / pricePerKg  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">var</span> apple = <span class="type">Apple</span>(pricePerKg: <span class="number">6.0</span>, weight: <span class="number">1.0</span>)  </div><div class="line">apple.pricePerKg = <span class="number">2.0</span>  </div><div class="line"><span class="built_in">print</span>(<span class="string">"apple.pricePerKg="</span>,apple.pricePerKg)  </div><div class="line"><span class="comment">/* 输出 </span></div><div class="line"><span class="comment">In willSet, priceNewValue= 2.0 </span></div><div class="line"><span class="comment">In willSet, pricePerKg= 6.0 </span></div><div class="line"><span class="comment">In didSet, oldValue= 6.0 </span></div><div class="line"><span class="comment">In didSet, pricePerKg= 2.0 </span></div><div class="line"><span class="comment">apple.pricePerKg= 3.0 </span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
+<h2 id="Global-and-Local-Variables全局变量和局部变量"><a href="#Global-and-Local-Variables全局变量和局部变量" class="headerlink" title="Global and Local Variables全局变量和局部变量"></a>Global and Local Variables全局变量和局部变量</h2><blockquote>
+<p>所谓的局部变量，就是定义在函数、方法、闭包、类型上下文里面的变量。<br>全局变量就是定义在函数、方法、闭包、类型上下文之外的变量。<br>局部变量和全局变量都称为存储变量。<br>在全局和局部范围内，都可以定义计算变量，或者为存储变量定义观察器</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">var</span> apple = <span class="type">Apple</span>(pricePerKg: <span class="number">6.0</span>, weight: <span class="number">1.0</span>) &#123;  <span class="comment">//为apple变量定义观察器  </span></div><div class="line"><span class="keyword">willSet</span> &#123;  </div><div class="line">    <span class="built_in">print</span>(<span class="string">"newApple"</span>,newValue)  </div><div class="line">&#125;  </div><div class="line"><span class="keyword">didSet</span>&#123;  </div><div class="line">    <span class="built_in">print</span>(<span class="string">"oldApple"</span>,oldValue)  </div><div class="line">&#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">apple = <span class="type">Apple</span>(pricePerKg: <span class="number">6.0</span>, weight: <span class="number">2.0</span>)  </div><div class="line">  </div><div class="line"><span class="keyword">var</span> <span class="built_in">c</span>: <span class="type">Double</span> &#123;  <span class="comment">//定义一个计算变量  </span></div><div class="line"><span class="keyword">get</span>&#123;  </div><div class="line">    <span class="keyword">return</span> <span class="number">9</span>  </div><div class="line">&#125;  </div><div class="line"><span class="keyword">set</span> &#123;  </div><div class="line">    <span class="built_in">print</span>(<span class="string">"In setter,"</span>,newValue)  </div><div class="line">&#125;  </div><div class="line">&#125;  </div><div class="line"><span class="built_in">c</span> = <span class="number">2</span>  </div><div class="line"><span class="built_in">print</span>(<span class="built_in">c</span>)  </div><div class="line"><span class="comment">/* </span></div><div class="line"><span class="comment">newApple Apple(pricePerKg: 6.0, weight: 2.0) </span></div><div class="line"><span class="comment">oldApple Apple(pricePerKg: 6.0, weight: 1.0) </span></div><div class="line"><span class="comment">In setter, 2.0 </span></div><div class="line"><span class="comment">9.0 </span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
+<ul>
+<li>官方文档说全局变量常量都是懒加载，局部变量常量都不是懒加载</li>
+</ul>
+<h2 id="Type-Properties类型属性"><a href="#Type-Properties类型属性" class="headerlink" title="Type Properties类型属性"></a>Type Properties类型属性</h2><blockquote>
+<p>所谓的类型属性，就是这个属性是属于这个类型的，即使这个类型由多个实例，也只会有一个类型变量。</p>
+</blockquote>
+<p>类型属性是懒加载的，而且必须在定义的时候给初始值。</p>
+<p>一般是用static来定义类型属性。特别的，对应类的计算类型属性，还可以用class关键字定义，这样可以使得子类可以覆盖它。</p>
+<p>注意类型属性访问的时候用的是类名，不能使用实例来访问</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">SomeStructure</span> </span>&#123;  </div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> storedTypeProperty = <span class="string">"Some value."</span>  </div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> computedTypeProperty: <span class="type">Int</span> &#123;  </div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">SomeEnumeration</span> </span>&#123;  </div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> storedTypeProperty = <span class="string">"Some value."</span>  </div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> computedTypeProperty: <span class="type">Int</span> &#123;  </div><div class="line">        <span class="keyword">return</span> <span class="number">6</span>  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span> </span>&#123;  </div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> storedTypeProperty = <span class="string">"Some value."</span>  </div><div class="line">    <span class="keyword">static</span> <span class="keyword">var</span> computedTypeProperty: <span class="type">Int</span> &#123;  </div><div class="line">        <span class="keyword">return</span> <span class="number">27</span>  </div><div class="line">    &#125;  </div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">var</span> <span class="title">overrideableComputedTypeProperty</span>: <span class="title">Int</span> </span>&#123;  </div><div class="line">        <span class="keyword">return</span> <span class="number">107</span>  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="built_in">print</span>(<span class="type">SomeStructure</span>.storedTypeProperty)  </div><div class="line"><span class="comment">// prints "Some value."  </span></div><div class="line"><span class="type">SomeStructure</span>.storedTypeProperty = <span class="string">"Another value."</span>  </div><div class="line"><span class="built_in">print</span>(<span class="type">SomeStructure</span>.storedTypeProperty)  </div><div class="line"><span class="comment">// prints "Another value."  </span></div><div class="line"><span class="built_in">print</span>(<span class="type">SomeEnumeration</span>.computedTypeProperty)  </div><div class="line"><span class="comment">// prints "6"  </span></div><div class="line"><span class="built_in">print</span>(<span class="type">SomeClass</span>.computedTypeProperty)  </div><div class="line"><span class="comment">// prints "27"</span></div></pre></td></tr></table></figure>
 
-Stored Properties存储属性
-存储属性:能保存数据的属性。枚举类、结构体、类都具有存储属性存储属性可以设为var 或let。分别对应常量和变量
-
-struct CPU &#123;      var clock
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/01/Swift/Grammar/Properties-属性/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -814,6 +1272,8 @@ struct CPU &#123;      var clock
     
 
     
+
+
 
     
 
@@ -934,17 +1394,6 @@ struct CPU &#123;      var clock
 
           
           
-             <span id="/2017/11/30/OC/Func/iOS-Func-图片的解压缩/" class="leancloud_visitors" data-flag-title="iOS-Func-图片的解压缩">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -967,16 +1416,9 @@ struct CPU &#123;      var clock
       
         
           
-          http://blog.leichunfeng.com/atom.xml
+            <p><a href="http://blog.leichunfeng.com/atom.xml" target="_blank" rel="external">http://blog.leichunfeng.com/atom.xml</a></p>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/30/OC/Func/iOS-Func-图片的解压缩/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -985,6 +1427,8 @@ struct CPU &#123;      var clock
     
 
     
+
+
 
     
 
@@ -1105,17 +1549,6 @@ struct CPU &#123;      var clock
 
           
           
-             <span id="/2017/11/30/OC/Grammar/iOS-GCD-多线程编程GCD/" class="leancloud_visitors" data-flag-title="iOS-GCD-多线程编程GCD">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1138,16 +1571,9 @@ struct CPU &#123;      var clock
       
         
           
-          http://blog.mogoal.com/2016/09/12/grand-central-dispatch/
+            <p><a href="http://blog.mogoal.com/2016/09/12/grand-central-dispatch/" target="_blank" rel="external">http://blog.mogoal.com/2016/09/12/grand-central-dispatch/</a></p>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/30/OC/Grammar/iOS-GCD-多线程编程GCD/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1156,6 +1582,8 @@ struct CPU &#123;      var clock
     
 
     
+
+
 
     
 
@@ -1276,17 +1704,6 @@ struct CPU &#123;      var clock
 
           
           
-             <span id="/2017/11/29/OC/Code/OC_Code_上架配置文档/" class="leancloud_visitors" data-flag-title="OC-Code上架配置文档">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1309,24 +1726,99 @@ struct CPU &#123;      var clock
       
         
           
-          #第三方服务平台对接
+            <p>#第三方服务平台对接</p>
+<ul>
+<li>辈出设计登录，分享</li>
+</ul>
+<p>##阿里云(直播类一般需要，不需要跳过)</p>
+<p>-（<a href="https://www.aliyun.com购买一年只要10个月的费用，oss和" target="_blank" rel="external">https://www.aliyun.com购买一年只要10个月的费用，oss和</a> slb 是按流量收费，请保证账户有余额）500并发  一月</p>
+<blockquote>
+<p>账号：xxxxx<br>密码：xxxxx</p>
+</blockquote>
+<p>##腾讯云(直播类一般需要，不需要跳过)</p>
+<blockquote>
+<p>腾讯云请使用qq或qq邮箱注册（<a href="https://www.qcloud.com账户需充值）差认证" target="_blank" rel="external">https://www.qcloud.com账户需充值）差认证</a><br>账号：xxxxxx<br>密码：xxxxxx<br>SdkAppId ：1314xxxx<br>accountType ：1314xxxx</p>
+</blockquote>
+<h2 id="短信平台"><a href="#短信平台" class="headerlink" title="短信平台"></a>短信平台</h2><blockquote>
+<p>iOS 只要注意短信可用即可</p>
+</blockquote>
+<h2 id="QQ登录的功能（open-qq-com）"><a href="#QQ登录的功能（open-qq-com）" class="headerlink" title="QQ登录的功能（open.qq.com）"></a>QQ登录的功能（open.qq.com）</h2><blockquote>
+<p>登录的APP ID：xxxx<br>APP KEY：xxxxx</p>
+</blockquote>
+<h2 id="app上的腾讯地图"><a href="#app上的腾讯地图" class="headerlink" title="app上的腾讯地图"></a>app上的腾讯地图</h2><blockquote>
+<p>app上的腾讯地图key信息（HYPERLINK “<a href="http://lbs.qq.com/index.html&quot;http://lbs.qq.com/index.html）" target="_blank" rel="external">http://lbs.qq.com/index.html&quot;http://lbs.qq.com/index.html）</a><br>您的腾讯地图的 key：xxxxx<br>账号：xxxx<br>密码：xxx</p>
+</blockquote>
+<h2 id="App新浪微博登"><a href="#App新浪微博登" class="headerlink" title="App新浪微博登"></a>App新浪微博登</h2><blockquote>
+<p>App新浪微博登录信息（ HYPERLINK “<a href="http://open.weibo.com/development/mobile" target="_blank" rel="external">http://open.weibo.com/development/mobile</a>“ <a href="http://open.weibo.com/development/mobile）" target="_blank" rel="external">http://open.weibo.com/development/mobile）</a><br>App Key：   xxxx不要微博<br>APP secret：xxxx<br>账号：       xxxx<br>密码：       xxxx</p>
+</blockquote>
+<h2 id="微信开放平台"><a href="#微信开放平台" class="headerlink" title="微信开放平台"></a>微信开放平台</h2><blockquote>
+<p>HYPERLINK “<a href="https://open.weixin.qq.com/" target="_blank" rel="external">https://open.weixin.qq.com/</a>“ <a href="https://open.weixin.qq.com/" target="_blank" rel="external">https://open.weixin.qq.com/</a><br>您的微信的APP ID：xxxxx<br>APP secret：8xxxxx<br>账号：xxx<br>密码：xxxx</p>
+</blockquote>
+<h2 id="开通微信支付-Beichoo暂时不需要"><a href="#开通微信支付-Beichoo暂时不需要" class="headerlink" title="开通微信支付(Beichoo暂时不需要)"></a>开通微信支付(Beichoo暂时不需要)</h2><blockquote>
+<p>开通微信支付（直播需要文网文）：用于观众支付（具体操作步骤请参考售后文档-后台需要配置的地方-微信支付文档）并留意和保留相关邮箱，等交付后台后填写到后台的资金管理-支付接口列表-微信支付。</p>
+<p>注：最后确认分享到朋友圈、发送给朋友、微信登录和微信支付（直播需要文网文）的接口都已经获得。</p>
+</blockquote>
+<h2 id="企业微信公众号的服务号信息"><a href="#企业微信公众号的服务号信息" class="headerlink" title="企业微信公众号的服务号信息"></a>企业微信公众号的服务号信息</h2><blockquote>
+<p>您的微信公众号名称：xxxxxx<br>开通微信支付：用于主播提现（具体操作步骤请参考售后文档-后台需要配置的地方-微信提现文档）并留意和保留相关邮箱，等交付后台后填写到后台的资金管理-支付接口列表-微信提现。<br>开通企业付款到用户</p>
+</blockquote>
+<p>##企业支付宝申请/签约及app支付申请（直播需要文网文）</p>
+<blockquote>
+<p>企业支付宝申请、签约及app支付申请（直播需要文网文）<br>您的支付宝账号： XXXXXX</p>
+</blockquote>
+<p>##友盟账户信息</p>
+<blockquote>
+<p>HYPERLINK “<a href="http://www.umeng.com" target="_blank" rel="external">http://www.umeng.com</a>“ <a href="http://www.umeng.com" target="_blank" rel="external">http://www.umeng.com</a><br>账号：xxxxxx<br>密码: xxxxx</p>
+</blockquote>
+<p>#苹果开发者账号</p>
+<blockquote>
+<p>苹果开发者账号：738816656@qq.com（具体找相关人要）<br>密码：xxxxxxxx<br>如有有内购<br>银行卡卡号：6236 6818 2000 3886 174<br>开户行：   中国建设银行<br>持卡人姓名：岳克奎<br>12位识别码（打电话问银行）：105391004150</p>
+</blockquote>
+<h1 id="app名称和BID"><a href="#app名称和BID" class="headerlink" title="app名称和BID"></a>app名称和BID</h1><blockquote>
+<p>app名<br>国内发布APP，名字是中文</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">在项目info文件里边，把Bundle display name 填写一个中文名字，Localization native development regior 选择中国。如果刚才提到的两个都没有，自己手动添加即可</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Bundle identifier 命名规范</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">命名规范，且具有唯一性，因为在发布时候，描述证书要匹配当前id。</div><div class="line">一般采用com/cn +公司名+项目名，例如com.jindong.jd</div><div class="line"></div><div class="line">注：在申请QQ、微信、地图、微博等第三方所需填写的包名均要与此包名统一，如果不统一就会导致各功能无法正常使用</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Version</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">格式： 1.1.1  最好写3位</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Build:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">格式： 1 （写整数 1，2，3，4，5即可）</div></pre></td></tr></table></figure>
+<p><img src="http://ot0mms4k8.bkt.clouddn.com/iOS-APP-Code%E4%B8%8A%E6%9E%B6%E5%89%8D%E9%85%8D%E7%BD%AE%E6%96%87%E6%A1%A3%E8%AF%B4%E6%98%8E-001.png" alt="001"></p>
+<h1 id="Clean"><a href="#Clean" class="headerlink" title="Clean"></a>Clean</h1><ul>
+<li>通知全员提交代码</li>
+<li>预先跑一边，自测，然后，clean工程，僵尸模式，断点统统清楚</li>
+<li>Edit Scheme  必须改为 Release</li>
+</ul>
+<h1 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h1><blockquote>
+<p>FFConfig.h<br>服务器接口</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">#define APP_ENVIRONMENT_EDITION  0</div><div class="line"></div><div class="line"> 0 上线  （不准Mac跑去测，必须打包TestFlight方式）</div><div class="line"> 1 开发  </div><div class="line"> 2 测试</div><div class="line"> 3 stage</div></pre></td></tr></table></figure>
+<blockquote>
+<p>服务器版本<br>目前0.1版本</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">#define API_VERSION @&quot;/bc/0.1/&quot;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Push Notification 务必打开 平时这个不要关了！！！</p>
+</blockquote>
+<p><img src="http://ot0mms4k8.bkt.clouddn.com/iOS-APP-Code%E4%B8%8A%E6%9E%B6%E5%89%8D%E9%85%8D%E7%BD%AE%E6%96%87%E6%A1%A3%E8%AF%B4%E6%98%8E-002.png" alt="002"></p>
+<blockquote>
+<p>Applinks 开启H5跳转App</p>
+</blockquote>
+<p><img src="http://ot0mms4k8.bkt.clouddn.com/iOS-APP-Code%E4%B8%8A%E6%9E%B6%E5%89%8D%E9%85%8D%E7%BD%AE%E6%96%87%E6%A1%A3%E8%AF%B4%E6%98%8E-003.png" alt="003"></p>
+<h1 id="App-信息"><a href="#App-信息" class="headerlink" title="App  信息"></a>App  信息</h1><blockquote>
+<p>iTunesConnect:<a href="https://itunesconnect.apple.com/login" target="_blank" rel="external">https://itunesconnect.apple.com/login</a><br> <a href="https://itunesconnect.apple.com/login" target="_blank" rel="external">iTunesConnect点击—&gt;登录</a></p>
+<p>根据运营会给 多套 关键字，副标题，多种语言环境<br>为了在构建版本里，多加几套关键字</p>
+</blockquote>
+<p><img src="http://ot0mms4k8.bkt.clouddn.com/iOS-APP-Code%E4%B8%8A%E6%9E%B6%E5%89%8D%E9%85%8D%E7%BD%AE%E6%96%87%E6%A1%A3%E8%AF%B4%E6%98%8E-004.png" alt="004"></p>
+<h1 id="构建版本"><a href="#构建版本" class="headerlink" title="构建版本"></a>构建版本</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">截图 发布时 来传</div></pre></td></tr></table></figure>
 
-辈出设计登录，分享
-
-##阿里云(直播类一般需要，不需要跳过)
--（https://www.aliyun.com购买一年只要10个月的费用，oss和 slb 是按流量收费，请保证账户有余额）500并发  一月
-
-账号：xxxxx密码：xxxxx
-
-##腾讯云(直播类一般需要，
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/29/OC/Code/OC_Code_上架配置文档/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1335,6 +1827,8 @@ struct CPU &#123;      var clock
     
 
     
+
+
 
     
 
@@ -1444,17 +1938,6 @@ struct CPU &#123;      var clock
 
           
           
-             <span id="/2017/11/29/Git/Git-基本使用/" class="leancloud_visitors" data-flag-title="Git-基本使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1477,26 +1960,94 @@ struct CPU &#123;      var clock
       
         
           
-          基本使用初始化仓库
-创建普通仓库
+            <h1 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h1><h2 id="初始化仓库"><a href="#初始化仓库" class="headerlink" title="初始化仓库"></a>初始化仓库</h2><blockquote>
+<p>创建普通仓库</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ git init</div></pre></td></tr></table></figure>
+<blockquote>
+<p>创建裸仓库，这里面许多git命令不能使用，切换分支都不可用，一般用来当远程仓库</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ git --bare init</div></pre></td></tr></table></figure>
+<h2 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h2><blockquote>
+<p>使用config alias.命令进行，添加–global参数后可以对全局git的config文件进行配置</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ git config --global alias.st status</div></pre></td></tr></table></figure>
+<p><a href="https://luolei.org//better-git-log/" target="_blank" rel="external">一个很吊的配置，让你的git变得更好看，摘自</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ git config --global alias.lg &quot;log --color --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&apos; --abbrev-commit&quot;</div></pre></td></tr></table></figure>
+<h2 id="本地的一些命令"><a href="#本地的一些命令" class="headerlink" title="本地的一些命令"></a>本地的一些命令</h2><blockquote>
+<p>配置信息</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ git config user.name &quot;名字&quot; git config user.email &quot;email&quot;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>branch<br>分支相关命令</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ git branch -a //显示所有分支 git branch 分支名字 //如果该分支不存在，就会新建 git branch --delete 分支名字 //删除分支</div></pre></td></tr></table></figure>
+<blockquote>
+<p>add<br>将本目录下的文件都添加到暂缓区，准备提交用</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ git add .</div></pre></td></tr></table></figure>
+<blockquote>
+<p>commit 提交</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ git commit -m &quot;注释&quot;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>merge<br>这个命令会将本分支merge别处的分支。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ git merge merge过来的分支</div></pre></td></tr></table></figure>
+<h2 id="远程命令"><a href="#远程命令" class="headerlink" title="远程命令"></a>远程命令</h2><blockquote>
+<p>添加远程仓库</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ git remote add &lt;远程主机名&gt; url</div></pre></td></tr></table></figure>
+<blockquote>
+<p>push，命令格式：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&amp; git push 远程主机名 本地分支:远程分支</div></pre></td></tr></table></figure>
+<blockquote>
+<p>举个例子<br>下面命令将本地分支a，push到远程主机origin的a_remote上，如果远程主机里面没有a_remote分支，那么就会创建一个这名字的分支。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$  git push origin a:a_remote</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：如果没有远程分支的名字，那么将会在远程仓库建立一个同名的分支。如果没有本地名字，就像 :a_remote，这就相当于传了一个空的分支给远程， 那么会删除掉远程仓库的这个分支。</p>
+<p>pull<br>这个命令会将本地和远程分支进行merge，如果出现冲突，需要自己解决。</p>
+<p>命令格式：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ git push 远程主机名 远程分支:本地分支</div></pre></td></tr></table></figure>
+<p>例子在此，将远程主机的</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ git pull orgin a_remote:a</div></pre></td></tr></table></figure>
+<blockquote>
+<p>发生冲突的时候，如果需要丢弃本地工作，那么使用</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ git reset --hard</div></pre></td></tr></table></figure>
+<blockquote>
+<p>branch相关的远程命令<br>将远程分支和本地分支相关联</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">git branch --track 本地分支 远程主机/远程分支 //在创建本地分支的时候指定它所关联的远程分支 git branch --set-upstream-to 远程主机/远程分支 //将当前分支关联远程分支</div></pre></td></tr></table></figure>
+<blockquote>
+<p>fetch<br>这个命令将远程的分支fetch下来，然后可以将这些fetch下来的分支和本地分支进行合并</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">git fetch 主机名 git fetch -p 主机名 //fetch完成后，删除本地仍存在，但是远程不存在的分支关联</div></pre></td></tr></table></figure>
+<blockquote>
+<p>下面的命令将本地分支绑定远程分支，但好像并没什么用，push的时候如果不输入远程分支名字，那么还是会新建一个和本地分支同名的远程分支。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">git branch --set-upstream-to origin/aa_remote</div></pre></td></tr></table></figure>
+<blockquote>
+<p>stash<br>在进行pull的时候，经常会遇到</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">error: Your local changes to the following files would be overwritten by merge: xxx/xxx/xxx.java Please, commit your changes or stash them before you can merge. Aborting</div></pre></td></tr></table></figure>
+<p>这里要么将你当前的工作commit一下，要么就可以使用stash命令。<br>先用stash命令缓存当前工作，然后pull，pull后再用stash pop还原之前的工作</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ git pull ... file foobar not up to date, cannot merge. $ git stash $ git pull $ git stash pop</div></pre></td></tr></table></figure>
+<blockquote>
+<p>另外的情况就是：你在工作的时候，突然被老板要求去改别的东西，你也可以用stash把当前的工作缓存起来。改完别的东西后再回来继续工作。</p>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1></blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$... hack hack hack ... </div><div class="line">$ git stash $ edit emergency fix </div><div class="line">$ git commit -a -m &quot;Fix in a hurry&quot; </div><div class="line">$ git stash pop # ... continue hacking ...</div></pre></td></tr></table></figure>
+<h1 id="最后一些坑"><a href="#最后一些坑" class="headerlink" title="最后一些坑"></a>最后一些坑</h1><ul>
+<li>1、初始化的仓库要先commit一下才能新建分支<ul>
+<li>2、如果远程仓库在使用这个分支，那么不能提交到这个分支上去，除非建立bare仓库，但是bare仓库不能使用git命令。</li>
+</ul>
+</li>
+</ul>
 
-$ git init
-
-创建裸仓库，这里面许多git命令不能使用，切换分支都不可用，一般用来当远程仓库
-
-$ git --bare init
-别名
-使用config alias.命令进行，添加–global参数后可以对全局git的config文件进行配置
-
-$ g
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/29/Git/Git-基本使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1505,6 +2056,8 @@ $ g
     
 
     
+
+
 
     
 
@@ -1625,17 +2178,6 @@ $ g
 
           
           
-             <span id="/2017/11/29/Swift/Grammar/Classes-Structures类和结构体/" class="leancloud_visitors" data-flag-title="Swift-Grammar-Classes/Structures类和结构体">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1658,22 +2200,40 @@ $ g
       
         
           
-          类和结构体简叙述
-Swift中，类和结构体是很相近的。所有下面类和结构体的实例都统称为实例。不再单独为类的实例称为对象。和C或OC，不同，swift的类只写在一个文件里面。这点和java一样。
+            <h1 id="类和结构体简叙述"><a href="#类和结构体简叙述" class="headerlink" title="类和结构体简叙述"></a>类和结构体简叙述</h1><blockquote>
+<p>Swift中，类和结构体是很相近的。所有下面类和结构体的实例都统称为实例。不再单独为类的实例称为对象。<br>和C或OC，不同，swift的类只写在一个文件里面。这点和java一样。</p>
+</blockquote>
+<h2 id="类和结构体的共同点："><a href="#类和结构体的共同点：" class="headerlink" title="类和结构体的共同点："></a>类和结构体的共同点：</h2><ul>
+<li>1、能定义属性用来存储值</li>
+<li>2、能定义方法实现功能</li>
+<li>3、能定义下标来得到值</li>
+<li>4、具有初始化构造器初始化实例</li>
+<li>5、能被扩展</li>
+<li>6、能实现协议</li>
+</ul>
+<h2 id="类比结构体多出来的特点："><a href="#类比结构体多出来的特点：" class="headerlink" title="类比结构体多出来的特点："></a>类比结构体多出来的特点：</h2><ul>
+<li><p>1、能被继承</p>
+</li>
+<li><p>2、能在运行时使用类型转换判断一个实例是否为某个类</p>
+</li>
+<li><p>3、具有析构器</p>
+</li>
+<li><p>4、引用计数可以大于1，使得可以有多个引用指向同一个类的实例（注明：结构体是值传递，所有没有引用计数）</p>
+</li>
+</ul>
+<blockquote>
+<p>下面定义一个类和结构体，这里先提一下，类的每个属性都给了默认值，除了可选类型之外。这个是swift要求的，以后文章会详细讲到。</p>
+</blockquote>
+<p>struct CPU {<br>       var clockSpeed = 1.0 var coreNum = 4<br>        }<br> class Telephone {<br> var cpu = CPU()<br> // CPU()是CPU结构体的默认构造器。它生成一个CPU实例，以后构造器的文章详细讲这方面内容 var screenSize = 5.0 var price: Int? }<br>然后定义他们的实例</p>
+<p>var myTelephone = Telephone() var newCPU = CPU()<br>注意结构体是值传递，而类是引用传递。下面的代码清楚说明了这个特点。</p>
+<p>var myTelephone = Telephone()<br>var newCPU = CPU()<br> print(myTelephone.cpu.clockSpeed) //1.0 swift使用点语法来获得属性 newCPU.clockSpeed = 2.0 myTelephone.cpu = newCPU //给myTelephone一个新的CPU print(myTelephone.cpu.clockSpeed) //2.0 newCPU.clockSpeed = 2.2 print(myTelephone.cpu.clockSpeed) //2.0 赋值后修改newCPU并不影响myTelephone里面的CPU var cpu = myTelephone.cpu //取出一份CPU，但是是值传递 cpu.clockSpeed = 3.0 print(myTelephone.cpu.clockSpeed) //2.0 所以修改取出的cpu不影响myTelephone里面的 var yourTelephone = myTelephone // 定义一个yourTelephone，它指向myTelephone的同一个实例 yourTelephone.screenSize = 6.0 print(myTelephone.screenSize) //6.0 修改yourTelephone会影响myTelephone<br>Array，String，Dictionary都是值传递。这个和OC是不一样的。值得注意。</p>
+<p>结构体自带一个遍历所有属性的构造器，但是类没有。</p>
+<p>var cpu2 = CPU(clockSpeed: 3.3, coreNum: 8)</p>
+<p>操作符  === 和 !==<br>===用来判断两个变量是否指向同一个类的实例。如果是返回true。</p>
+<p>!==反之。指向不同实例，返回true。</p>
+<p>而 == 是判断两个实例是否“相等”，这个相等的条件可以有类的定义者自己决定。</p>
 
-类和结构体的共同点：
-1、能定义属性用来存储值
-2、能定义方法实现功能
-3、能定义下标来得到值
-4、具有
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/29/Swift/Grammar/Classes-Structures类和结构体/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1683,351 +2243,7 @@ Swift中，类和结构体是很相近的。所有下面类和结构体的实例
 
     
 
-    
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/29/520/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="千夜 QQ:738816656">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/29/520/" itemprop="url">Swift-Garmmar-Enumerations枚举类</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-29T09:27:03+08:00">
-                2017-11-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/Grammar/" itemprop="url" rel="index">
-                    <span itemprop="name">Grammar</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/11/29/520/" class="leancloud_visitors" data-flag-title="Swift-Garmmar-Enumerations枚举类">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          枚举类
-Swift中的枚举和C中的枚举不一样,枚举类而不是枚举类型,它是值传递在C中，枚举类型中的每一项都整形然而在Swift中，你不必为每一项赋值。定义的时候所用的名字就是用来枚举的。当然也可以为枚举成员赋值，这个赋值不单单是整形，可以是Charater，String，浮点数。
-定义一个枚举类型注
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/29/520/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/27/Swift/Grammar/Closures闭包/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="千夜 QQ:738816656">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/27/Swift/Grammar/Closures闭包/" itemprop="url">Swift-Grammar-Closures闭包</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-27T18:18:21+08:00">
-                2017-11-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/Grammar/" itemprop="url" rel="index">
-                    <span itemprop="name">Grammar</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/11/27/Swift/Grammar/Closures闭包/" class="leancloud_visitors" data-flag-title="Swift-Grammar-Closures闭包">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          闭包
-闭包可以看做是匿名的函数
-回想一下函数作为参数的情况定义一个函数，它最后的参数是一个函数类型
-
-func doMath(first: Int, second: Int, mathFunc: (Int, Int) -&gt; Int) &#123;    print("mathFunc =",m
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/27/Swift/Grammar/Closures闭包/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
 
     
 
@@ -2057,7 +2273,7 @@ func doMath(first: Int, second: Int, mathFunc: (Int, Int) -&gt; Int) &#123;    p
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2088,66 +2304,64 @@ func doMath(first: Int, second: Int, mathFunc: (Int, Int) -&gt; Int) &#123;    p
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="千夜 QQ:738816656" />
-          <p class="site-author-name" itemprop="name">千夜 QQ:738816656</p>
-           
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">千夜 QQ:738816656</p>
               <p class="site-description motion-element" itemprop="description">ReactNative</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">201</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">106</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">77</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
+
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">198</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">105</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">77</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -2164,42 +2378,17 @@ func doMath(first: Int, second: Int, mathFunc: (Int, Int) -&gt; Int) &#123;    p
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        
-# 访客数
-
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  访客数:<span id="busuanzi_value_site_uv"></span>
-</span>
-</div>
-
-
-
-
-
-<div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">千夜 QQ:738816656</span>
+
+  
 </div>
 
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
 
 
         
@@ -2219,6 +2408,8 @@ func doMath(first: Int, second: Int, mathFunc: (Int, Int) -&gt; Int) &#123;    p
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -2253,46 +2444,54 @@ func doMath(first: Int, second: Int, mathFunc: (Int, Int) -&gt; Int) &#123;    p
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
   
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -2323,324 +2522,13 @@ func doMath(first: Int, second: Int, mathFunc: (Int, Int) -&gt; Int) &#123;    p
 
 
 
+
+
+
+
+
+
   
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === '') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
 
 
 
@@ -2649,114 +2537,10 @@ func doMath(first: Int, second: Int, mathFunc: (Int, Int) -&gt; Int) &#123;    p
   
 
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("GGOhuU9q4e5a7HISgedllhyN-gzGzoHsz", "1Dlb2KyTymPIvsleHp8s02I8");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
 
   
 
+  
   
 
   
@@ -2767,3 +2551,6 @@ func doMath(first: Int, second: Int, mathFunc: (Int, Int) -&gt; Int) &#123;    p
 
 </body>
 </html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

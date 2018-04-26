@@ -10,8 +10,23 @@
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
 
+<meta name="theme-color" content="#222">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
 
 
 
@@ -23,16 +38,6 @@
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 
-<script>
-    (function(){
-        if(''){
-            if (prompt('请输入文章密码') !== ''){
-                alert('密码错误！');
-                history.back();
-            }
-        }
-    })();
-</script>
 
 
 
@@ -55,38 +60,27 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Hexo, NexT" />
@@ -94,11 +88,6 @@
 
 
 
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
 
 
 
@@ -123,10 +112,11 @@
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
-    motion: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -169,8 +159,7 @@
   
 
   <div class="container sidebar-position-left 
-   page-home 
- ">
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -226,16 +215,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -256,54 +235,20 @@
         </li>
       
         
-        <li class="menu-item menu-item-read">
-          <a href="/read/" rel="section">
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            阅读榜
+            关于
           </a>
         </li>
       
 
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
-        </li>
       
     </ul>
   
 
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
   
 </nav>
 
@@ -318,6 +263,366 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/19/SceneKit/Grammar/SceneKit-射线检测/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/19/SceneKit/Grammar/SceneKit-射线检测/" itemprop="url">SceneKit-射线检测</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-19T20:57:41+08:00">
+                2018-01-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SceneKit/" itemprop="url" rel="index">
+                    <span itemprop="name">SceneKit</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SceneKit/Grammar/" itemprop="url" rel="index">
+                    <span itemprop="name">Grammar</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#SceneKit-射线检测</p>
+<blockquote>
+<p>touchesBegan方法在3D中仍然可用<br>在3D空间内采用了射线检测方法来返回触摸到的物体</p>
+</blockquote>
+<h1 id="当有触摸事件发生时"><a href="#当有触摸事件发生时" class="headerlink" title="当有触摸事件发生时"></a>当有触摸事件发生时</h1><ul>
+<li>拿到用户触摸在屏幕上的位置</li>
+<li>转换到SCNView的坐标系中</li>
+<li>当触摸点在SCNView上时,发射一个射线,返回与该射线相交的一系列物体</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">touchesBegan</span><span class="params">(touches: Set&lt;UITouch&gt;, withEvent event:</span></span></div><div class="line"><span class="function"><span class="params">UIEvent?)</span></span> &#123;</div><div class="line"><span class="comment">// 1 拿到触摸对象</span></div><div class="line">  <span class="keyword">let</span> touch = touches.first!</div><div class="line">  <span class="comment">// 2 转换坐标系</span></div><div class="line">  <span class="keyword">let</span> location = touch.locationInView(scnView)</div><div class="line">  <span class="comment">// 3 执行hitTest,发射射线,返回相交的物体</span></div><div class="line">  <span class="keyword">let</span> hitResults = scnView.hitTest(location, options: <span class="literal">nil</span>)</div><div class="line">  <span class="comment">// 4 </span></div><div class="line">  <span class="keyword">if</span> hitResults.<span class="built_in">count</span> &gt; <span class="number">0</span> &#123;</div><div class="line"><span class="comment">// 5 取出最近的物体</span></div><div class="line">    <span class="keyword">let</span> result = hitResults.first!</div><div class="line">    <span class="comment">// 6 处理该节点</span></div><div class="line">    handleTouchFor(result.node)</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/19/SceneKit/Grammar/SCNCamera-相机/SCNCamera-相机-Base/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/19/SceneKit/Grammar/SCNCamera-相机/SCNCamera-相机-Base/" itemprop="url">SceneKit-SCNCamera-相机-Base</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-19T19:53:53+08:00">
+                2018-01-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SceneKit/" itemprop="url" rel="index">
+                    <span itemprop="name">SceneKit</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SceneKit/Grammar/" itemprop="url" rel="index">
+                    <span itemprop="name">Grammar</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SceneKit/Grammar/SCNCamera/" itemprop="url" rel="index">
+                    <span itemprop="name">SCNCamera</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="SCNCamera-相机"><a href="#SCNCamera-相机" class="headerlink" title="SCNCamera-相机"></a>SCNCamera-相机</h1><ul>
+<li>SCNCamera相机是用于显示场景内容必须的节点, 需要把相机加到节点之上, 再把节点加到根节点上</li>
+<li>SCNNode包含相机物体观察视野的观察点, 即相机的 <strong>位置</strong> &amp; <strong>方向</strong></li>
+<li>相机的视角始终沿着节点的局部坐标系的负Z轴, 要在不同的场景指定不同的相机的视野, 使用<strong>position</strong>, <strong>rotation</strong>, <strong>transfrom</strong>来设置</li>
+</ul>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/%E7%9B%B8%E6%9C%BA%E7%9A%84%E8%A7%86%E8%A7%92.png" alt=""></p>
+<h1 id="相机类型"><a href="#相机类型" class="headerlink" title="相机类型"></a>相机类型</h1><blockquote>
+<p>透视(perspective)<br>正交(orthographic)</p>
+</blockquote>
+<h2 id="透视相机"><a href="#透视相机" class="headerlink" title="透视相机"></a>透视相机</h2><blockquote>
+<p>游戏中经常使用第一视角的相机, 会有一种近大远小的感觉</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/%E9%80%8F%E8%A7%86%E7%9B%B8%E6%9C%BA.png" alt="透视相机"></p>
+<h2 id="正交投影"><a href="#正交投影" class="headerlink" title="正交投影"></a>正交投影</h2><blockquote>
+<p>投影线垂直于投影面的投影属于正交投影 ，属于平行投影一种<br>靠近和远离, 物体大小都是相同的</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/%E6%AD%A3%E4%BA%A4%E6%8A%95%E5%BD%B1.png" alt=""></p>
+<h1 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a>原理分析</h1><h2 id="视角"><a href="#视角" class="headerlink" title="视角"></a>视角</h2><blockquote>
+<p>场景:</p>
+</blockquote>
+<ul>
+<li>照相机的位置为(10,0,0) </li>
+<li>物体A的位置为(0,0,-6)，yFor 表示的是Y轴上的视角</li>
+</ul>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/SCNCamera-%E7%9B%B8%E6%9C%BA-Base-001.png" alt="视角"></p>
+<blockquote>
+<p>,照相机好比眼睛,眼睛在X轴(左右看)和Y轴(上下看)有个最大角度，这个角度叫做xFov和yFov<br>对于同一个物体，当然在视野小的时候，显示的体积大，在视野大的时候，显示的体积小</p>
+</blockquote>
+<h2 id="焦距"><a href="#焦距" class="headerlink" title="焦距"></a>焦距</h2><p><img src="http://ozr735s7e.bkt.clouddn.com/SCNCamera-%E7%9B%B8%E6%9C%BA-Base-%E7%84%A6%E8%B7%9D.png" alt="焦距"></p>
+<ul>
+<li>设备屏幕中的物体都是能被照相机看到的物体</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -414,17 +719,6 @@
 
           
           
-             <span id="/2018/01/19/SceneKit/Grammar/RenderLoop渲染循环/" class="leancloud_visitors" data-flag-title="SceneKit-RenderLoop渲染循环">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -447,21 +741,44 @@
       
         
           
-          SCNSceneRendererDelegate协议
-SCNView有一个delegate属性,需要遵守SCNSceneRendererDelegate协议,可以在每帧画面的动画和渲染过程中收到代理方法的调用
+            <h1 id="SCNSceneRendererDelegate协议"><a href="#SCNSceneRendererDelegate协议" class="headerlink" title="SCNSceneRendererDelegate协议"></a>SCNSceneRendererDelegate协议</h1><blockquote>
+<p>SCNView有一个delegate属性,需要遵守SCNSceneRendererDelegate协议,可以在每帧画面的动画和渲染过程中收到代理方法的调用</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/%E5%8D%8F%E8%AE%AE.png" alt=""></p>
+<p>##Update</p>
+<ul>
+<li>会调用renderer(_:updateAtTime:)代理方法,可以在这里写一些基础逻辑,比如添加或移除node节点.</li>
+</ul>
+<h2 id="Execute-Actions-amp-Animations"><a href="#Execute-Actions-amp-Animations" class="headerlink" title="Execute Actions&amp;Animations:"></a>Execute Actions&amp;Animations:</h2><ul>
+<li>执行actions(动作)和animations(动画).</li>
+</ul>
+<h2 id="Did-Apply-Animations"><a href="#Did-Apply-Animations" class="headerlink" title="Did Apply Animations:"></a>Did Apply Animations:</h2><ul>
+<li>会调用renderer(_: didApplyAnimationsAtTime:)方法,此时场景中所有节点在这一帧的actions(动作)和animations(动画)都已经更新完成.</li>
+</ul>
+<h2 id="Simulates-Physics"><a href="#Simulates-Physics" class="headerlink" title="Simulates Physics:"></a>Simulates Physics:</h2><ul>
+<li>物理效果模拟.</li>
+</ul>
+<h2 id="Did-Simulate-Physics"><a href="#Did-Simulate-Physics" class="headerlink" title="Did Simulate Physics:"></a>Did Simulate Physics:</h2><ul>
+<li>会调用renderer(_:didSimulatePhysicsAtTime:)方法,此时物理效果模拟已经完成,可以在这里添加和物理效果有关的代码,比如node在受到一个力影响后改变颜色.</li>
+</ul>
+<h2 id="Evaluates-Constraints"><a href="#Evaluates-Constraints" class="headerlink" title="Evaluates Constraints:"></a>Evaluates Constraints:</h2><ul>
+<li>约束更新.</li>
+</ul>
+<h2 id="Will-Render-Scene"><a href="#Will-Render-Scene" class="headerlink" title="Will Render Scene:"></a>Will Render Scene:</h2><ul>
+<li>会调用renderer(_:willRenderScene:atTime:)方法,此时即将要渲染场景,可以在这里对场景做最后的更改.</li>
+</ul>
+<h2 id="Renders-Scene-In-View-SceneKit"><a href="#Renders-Scene-In-View-SceneKit" class="headerlink" title="Renders Scene In View:SceneKit"></a>Renders Scene In View:SceneKit</h2><ul>
+<li>在view中渲染场景.</li>
+</ul>
+<h2 id="Did-Render-Scene"><a href="#Did-Render-Scene" class="headerlink" title="Did Render Scene:"></a>Did Render Scene:</h2><ul>
+<li>会调用renderer(_: didRenderScene: atTime:)方法,它标识着一个渲染循环的结束,可以写一些逻辑更新代码在这里,比如游戏中血量增减</li>
+</ul>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><blockquote>
+<p>默认情况下,如果一个场景中没有任何改变时,Scene Kit会进入”paused”(暂停)状态,渲染循环暂停后代理方法将不会继续调用,为了防止这种情况,需要在创建SCNView实例时设置playing属性为true如:<br>渲染循环的代理就会一直调用</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">scnView.playing = <span class="literal">true</span></div></pre></td></tr></table></figure>
 
-
-##Update
-
-会调用renderer(_:updateAtTime:)代理方法,
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/19/SceneKit/Grammar/RenderLoop渲染循环/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -470,6 +787,8 @@ SCNView有一个delegate属性,需要遵守SCNSceneRendererDelegate协议,可以
     
 
     
+
+
 
     
 
@@ -590,17 +909,6 @@ SCNView有一个delegate属性,需要遵守SCNSceneRendererDelegate协议,可以
 
           
           
-             <span id="/2018/01/18/SceneKit/Grammar/SceneKit-Grammar-Physics物理效果/" class="leancloud_visitors" data-flag-title="SceneKit-Grammar-Physics物理效果">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -623,18 +931,79 @@ SCNView有一个delegate属性,需要遵守SCNSceneRendererDelegate协议,可以
       
         
           
-          物理仿真模拟实质
-物理仿真中的type就是为了定义当一个物体受到力的作用时该如何去响应.
+            <h1 id="物理仿真模拟"><a href="#物理仿真模拟" class="headerlink" title="物理仿真模拟"></a>物理仿真模拟</h1><h2 id="实质"><a href="#实质" class="headerlink" title="实质"></a>实质</h2><blockquote>
+<p>物理仿真中的type就是为了定义当一个物体受到力的作用时该如何去响应.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">首先, 力的作用的相互的, 当两个物体之间进行力的作用时情况是多样的, 可能两者都有运动, 也可能只有其中的一个会运动, 试想, 如果拿一个鸡蛋去碰撞一块很大的石头, 很显然, 鸡蛋碎了, 石头不会有任何变化(以我们肉眼来观察, 石头是不会有变化的, 实质上石头是有变化的),</div></pre></td></tr></table></figure>
+<h1 id="physics-body物理形体"><a href="#physics-body物理形体" class="headerlink" title="physics body物理形体"></a>physics body物理形体</h1><h2 id="static"><a href="#static" class="headerlink" title="static"></a>static</h2><blockquote>
+<p>静态物体不会移动</p>
+</blockquote>
+<ul>
+<li>当其他物体可能与这些物体碰撞时，静态物体本身不受模拟中的任何力和碰撞的影响。</li>
+<li>可以使用这种类型的墙壁和大块不动的巨石</li>
+</ul>
+<h2 id="dynamic"><a href="#dynamic" class="headerlink" title="dynamic"></a>dynamic</h2><blockquote>
+<p>动力体受力量和碰撞的影响</p>
+</blockquote>
+<ul>
+<li>可以使用这种类型的东西，如活动椅子，桌子和杯子</li>
+</ul>
+<h2 id="kinematic"><a href="#kinematic" class="headerlink" title="kinematic"></a>kinematic</h2><blockquote>
+<p>运动体类似于静态体，因为它们也不受影响</p>
+</blockquote>
+<ul>
+<li>力量和碰撞 但是可以移动这些类型，并且它们也可能与动态主体相冲突</li>
+<li>可以使用这种类型的身体，例如移动电梯或可以打开和关闭的门</li>
+</ul>
+<h2 id="SCNPhysicsBody"><a href="#SCNPhysicsBody" class="headerlink" title="SCNPhysicsBody"></a>SCNPhysicsBody</h2><blockquote>
+<p>SceneKit中所有的物理对象都是SCNPhysicsBody<br>然后需要把该对象绑定到SCNNode的physicsBody实例属性,<br>然后物理引擎就可以进行仿真模拟</p>
+<p>物理形状决定了物理引擎在处理碰撞时的形状检测.<br>为了让物理模拟器运行的更快,最好将物理形状设定为简单的方形,球形或其他系统提供的原始形状,大略匹配节点外观就行了</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/%E7%89%A9%E7%90%86%E5%BD%A2%E7%8A%B6.png" alt=""></p>
+<h2 id="管理物理引擎"><a href="#管理物理引擎" class="headerlink" title="管理物理引擎"></a>管理物理引擎</h2><blockquote>
+<p>使用Node去管理一个几何体, 同样, SCNPhysicsBody对象也管理物理引擎<br>也就是说, 此时我们的node拥有一个可以做物理仿真模拟的几何体</p>
+</blockquote>
+<h2 id="指定物体应具有的类型和形状"><a href="#指定物体应具有的类型和形状" class="headerlink" title="指定物体应具有的类型和形状"></a>指定物体应具有的类型和形状</h2><blockquote>
+<p>创建物理体时，可以指定物体应具有的类型和形状<br>如果为nil，Scene Kit将根据节点的几何形状自动生成一个形状</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> geometryNode = <span class="type">SCNNode</span>(geometry: geometry)</div><div class="line"> <span class="comment">//--- &gt;添加代码</span></div><div class="line">  geometryNode.physicsBody = <span class="type">SCNPhysicsBody</span>(type: .<span class="keyword">dynamic</span>, shape: <span class="literal">nil</span>)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Scene Kit中的scene默认打开了重力,当设定过动态形体后,物体就会受到重力影响下落<br>接下来运行工程,  会发现一个立方体很快的掉落下来, 然后消失.</p>
+</blockquote>
+<h2 id="修改下视角"><a href="#修改下视角" class="headerlink" title="修改下视角"></a>修改下视角</h2><blockquote>
+<p>接下来我们需要修改下视角, 让物体受重力作用更明显一些.<br>看到一个物体从顶部掉下来</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">cameraNode.position = <span class="type">SCNVector3</span>(x: <span class="number">0</span>, y: -<span class="number">5</span>, z: <span class="number">10</span>)</div></pre></td></tr></table></figure>
+<h2 id="抛物线的自由落体运动"><a href="#抛物线的自由落体运动" class="headerlink" title="抛物线的自由落体运动"></a>抛物线的自由落体运动</h2><blockquote>
+<p>自由落体实现了, 接下来我们给该物体添加一个向上的推力<br>让物体实现一个抛物线的自由落体运动<br>在geometryNode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)下面添加如下代码</p>
+<p>这个设置我们的物体要移动的重点位置,<br>下面三个值得意思是, x为0, 代表从中心带开始运动, y值为正数, 代表向上, z为0代表我们看的视角的深度不会变, 如果是负数, 则会发现在运动过程中, 物体越来越小, 如果为正, 则发现在运动过程中物体则会运来越大</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">let force = SCNVector3(x: 0, y: 15 , z: 0)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>作用力的位置</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">let position = SCNVector3(x: 0.05, y: 0.05, z: 0.05)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>给节点上的几何体添加一个作用力, 当您向物理机构施加力量时，您可以使用applyForce（_：atPosition：impluse :)，并将SCNVector3的实例传递给要施加该力的力和位置，以及是否强制将被用作冲动。您应用的力将影响物理体的线性和角加速度</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">geometryNode.physicsBody?.applyForce(force, at: position, asImpulse: <span class="literal">true</span>)</div></pre></td></tr></table></figure>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><blockquote>
+<p>刚刚为了观察自由落体效果, 我们把视角修改了, 让物体从顶部掉落, 现在需要把它再改回来, 让其从底部出现</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">cameraNode.position = <span class="type">SCNVector3</span>(x: <span class="number">0</span>, y: <span class="number">5</span>, z: <span class="number">10</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>物理仿真中的力使用的是向量表示的, 向量是有方向有距离的一个值</li>
+</ul>
+<h2 id="forces力"><a href="#forces力" class="headerlink" title="forces力"></a>forces力</h2><blockquote>
+<p>力使用3维向量SCNVector3表示,使用applyForce(_: atPosition: impluse:)方法来添加一个力,并指定位置.一个力可以同时影响线速度和角速度.<br>impluse脉冲状只作用一次,比如踢一个球,非脉冲状的则可以持续作用.<br>Position位置可以影响力的作用效果</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/forces%E5%8A%9B.png" alt=""></p>
+<h2 id="torque力矩"><a href="#torque力矩" class="headerlink" title="torque力矩"></a>torque力矩</h2><blockquote>
+<p>力矩使用4维向量SCNVector4表示,使用applyTorque(_: impulse:)来添加一个力矩,力矩只影响角动量.<br>x-,y-,z-指定旋转轴,w-指定旋转角度也就是大小值<br>Scene Kit使用国际单位制,因此质量单位是kg千克,力的单位是N牛,脉冲单位是N-s牛秒,力矩单位是N-m牛米.</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/torque%E5%8A%9B%E7%9F%A9.png" alt=""></p>
 
-首先, 力的作用的相互的, 当两个物体之间进行力的作用时情况是多样的, 可能两者都有运动, 也可能只有其中的一个会运动, 试想, 如果拿一个鸡蛋去碰撞一块很大的石头, 很显然, 鸡蛋碎了, 石头不会有任何变化
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/18/SceneKit/Grammar/SceneKit-Grammar-Physics物理效果/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -643,6 +1012,8 @@ SCNView有一个delegate属性,需要遵守SCNSceneRendererDelegate协议,可以
     
 
     
+
+
 
     
 
@@ -763,17 +1134,6 @@ SCNView有一个delegate属性,需要遵守SCNSceneRendererDelegate协议,可以
 
           
           
-             <span id="/2018/01/18/SceneKit/Grammar/SceneKit-几何物体-正方体(Swift)/" class="leancloud_visitors" data-flag-title="SceneKit-几何物体-正方体">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -796,16 +1156,15 @@ SCNView有一个delegate属性,需要遵守SCNSceneRendererDelegate协议,可以
       
         
           
-          ////  ViewController.swift//  SceneKit-几何物体-正方体(Swift)////  Created by RN on 2018/1/18.//  Copyright © 2018年 YKK. All rights reserved.//
-import UIKiti
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/18/SceneKit/Grammar/SceneKit-几何物体-正方体(Swift)/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>//<br>//  ViewController.swift<br>//  SceneKit-几何物体-正方体(Swift)<br>//<br>//  Created by RN on 2018/1/18.<br>//  Copyright © 2018年 YKK. All rights reserved.<br>//</p>
+<p>import UIKit<br>import SceneKit<br>class ViewController: UIViewController {<br>//显示3D场景的视图<br>fileprivate lazy  var scnView : SCNView = {<br>let scnView =  SCNView()<br>scnView.showsStatistics = true<br>// 2<br>scnView.allowsCameraControl = true<br>// 3<br>scnView.autoenablesDefaultLighting = true<br>return scnView<br>}()</p>
+<p>//场景scene<br>fileprivate lazy  var  scnScene : SCNScene = {<br>let  scnScene = SCNScene()<br>//设置背景图片, GeometryFighter.scnassets是我设置的一个资源库, 存放3D资源的<br>// scnScene.background.contents = “GeometryFighter.scnassets/Textures/Background_Diffuse.png”<br>return scnScene<br>}()</p>
+<p>//3. 添加一个SCNCamera<br>fileprivate lazy  var cameraNode : SCNNode = {<br>// 创建一个节点<br>let  cameraNode = SCNNode()<br>// 给相机节点赋值相机<br>cameraNode.camera = SCNCamera()<br>// 设置视角的位置, x:0,y:0就是中心点, z只代表观察的距离, z越大, 物体越小<br>cameraNode.position = SCNVector3(x: 0, y: 0, z: 10)<br>return cameraNode<br>}()</p>
+<p>//4.几何物体<br>fileprivate lazy  var geometryNode : SCNNode =  {<br>//画一个立方体<br>let  shape  = SCNBox(width: 1.0,<br>height: 1.0,<br>length: 1.0,<br>chamferRadius: 0.0)<br>//把立方体绑定到节点<br>let geometryNode = SCNNode(geometry: shape)<br>return geometryNode<br>}()</p>
+<p>override func viewDidLoad() {<br>super.viewDidLoad()<br>//给当前的SCNView 赋值SCNScene<br>scnView.scene = scnScene<br>// 把相机的节点添加到根节点里面<br>scnScene.rootNode.addChildNode(cameraNode)<br>//把节点添加到场景<br>scnScene.rootNode.addChildNode(geometryNode)<br>}<br>//控制屏幕旋转<br>override var shouldAutorotate: Bool {<br>return true<br>}<br>//隐藏状态栏<br>override var prefersStatusBarHidden: Bool {<br>return true<br>}</p>
+<p>}</p>
+
+          
         
       
     </div>
@@ -814,6 +1173,8 @@ import UIKiti
     
 
     
+
+
 
     
 
@@ -923,17 +1284,6 @@ import UIKiti
 
           
           
-             <span id="/2018/01/17/SceneKit/Grammar/SceneKit-构建简单几何模型/" class="leancloud_visitors" data-flag-title="SceneKit-构建简单几何模型">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -956,15 +1306,37 @@ import UIKiti
       
         
           
-          属性构建3D节点@property (nonatomic,strong) SCNScene    *scene;           //场景，存放元素节点@property (nonatomic,strong) SCNView     *sceneView;       //用来展示3D图形的控件
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/17/SceneKit/Grammar/SceneKit-构建简单几何模型/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h1 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h1><h2 id="构建3D节点"><a href="#构建3D节点" class="headerlink" title="构建3D节点"></a>构建3D节点</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">SCNScene</span>    *scene;           <span class="comment">//场景，存放元素节点</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">SCNView</span>     *sceneView;       <span class="comment">//用来展示3D图形的控件</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">SCNNode</span>     *lightNode;       <span class="comment">//环境光Node</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">SCNNode</span>     *assistLightNode; <span class="comment">//增加一个副光</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">SCNNode</span>     *caremaNode;      <span class="comment">//添加摄像机节点</span></div></pre></td></tr></table></figure>
+<p>##创建几何模型</p>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">SCNGeometry</span> *carbonAtom;   <span class="comment">// C 原子</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">SCNGeometry</span> *hydrogenAtom; <span class="comment">// H 原子</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">SCNGeometry</span> *oxyGenAtom;   <span class="comment">// O 原子</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">SCNGeometry</span> *fluorAtom;    <span class="comment">// F 原子</span></div></pre></td></tr></table></figure>
+<h1 id="添加场景"><a href="#添加场景" class="headerlink" title="添加场景"></a>添加场景</h1><h2 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">[<span class="keyword">self</span> addScene];</div></pre></td></tr></table></figure>
+<h2 id="构建场景设置节点"><a href="#构建场景设置节点" class="headerlink" title="构建场景设置节点"></a>构建场景设置节点</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)addScene&#123;</div><div class="line"><span class="comment">//    SCNBox *box = [SCNBox boxWithWidth:10 height:10 length:10 chamferRadius:1];</span></div><div class="line"><span class="comment">//    SCNNode *node = [SCNNode nodeWithGeometry:box];</span></div><div class="line">     <span class="comment">//添加摄像机</span></div><div class="line">    <span class="comment">//[self.scene.rootNode addChildNode:self.caremaNode];</span></div><div class="line">    <span class="comment">//添加环境副光</span></div><div class="line">      [<span class="keyword">self</span>.scene.rootNode addChildNode:<span class="keyword">self</span>.assistLightNode];</div><div class="line">    <span class="comment">//添加环境光</span></div><div class="line"><span class="comment">//[self.scene.rootNode addChildNode:self.lightNode];//添加环境光</span></div><div class="line">    <span class="comment">//添加正方体</span></div><div class="line">    <span class="comment">// [self.scene.rootNode addChildNode:node];</span></div><div class="line">    <span class="comment">//将创建的原子节点添加到根节点</span></div><div class="line">    [<span class="keyword">self</span>.scene.rootNode addChildNode:[<span class="keyword">self</span> addGeometryToSCNNode]];</div><div class="line">    <span class="keyword">self</span>.sceneView.scene = <span class="keyword">self</span>.scene;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="几何体添加到节点"><a href="#几何体添加到节点" class="headerlink" title="几何体添加到节点"></a>几何体添加到节点</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">SCNNode</span> *)addGeometryToSCNNode&#123;</div><div class="line">    <span class="comment">//Creates and initializes a node instance with the specified geometry attached</span></div><div class="line">    <span class="comment">//指定几何图形添加到节点</span></div><div class="line">    <span class="built_in">SCNNode</span> *carbonNode = [<span class="built_in">SCNNode</span> nodeWithGeometry:[<span class="keyword">self</span> carbonAtom]];</div><div class="line">    <span class="built_in">SCNNode</span> *hydrogenNode = [<span class="built_in">SCNNode</span> nodeWithGeometry:[<span class="keyword">self</span> hydrogenAtom]];</div><div class="line">    <span class="built_in">SCNNode</span> *oxygenNode = [<span class="built_in">SCNNode</span> nodeWithGeometry:[<span class="keyword">self</span> oxyGenAtom]];</div><div class="line">    <span class="built_in">SCNNode</span> *fluorNode = [<span class="built_in">SCNNode</span> nodeWithGeometry:[<span class="keyword">self</span> fluorAtom]];</div><div class="line">    </div><div class="line">    <span class="comment">//节点位置</span></div><div class="line">    carbonNode.position = <span class="built_in">SCNVector3Make</span>(<span class="number">-6</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">    hydrogenNode.position = <span class="built_in">SCNVector3Make</span>(<span class="number">-2</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">    oxygenNode.position = <span class="built_in">SCNVector3Make</span>(<span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">    fluorNode.position = <span class="built_in">SCNVector3Make</span>(<span class="number">6</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">    </div><div class="line">    <span class="comment">//子节点添加到某个父节点</span></div><div class="line">    <span class="built_in">SCNNode</span> *tempNode = [<span class="built_in">SCNNode</span> node];</div><div class="line">    [tempNode addChildNode:carbonNode];</div><div class="line">    [tempNode addChildNode:hydrogenNode];</div><div class="line">    [tempNode addChildNode:oxygenNode];</div><div class="line">    [tempNode addChildNode:fluorNode];</div><div class="line">    <span class="keyword">return</span> tempNode;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Getetr"><a href="#Getetr" class="headerlink" title="Getetr"></a>Getetr</h1><h2 id="SCNView"><a href="#SCNView" class="headerlink" title="SCNView"></a>SCNView</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">SCNView</span> *)sceneView&#123;</div><div class="line">    <span class="keyword">if</span> (!_sceneView) &#123;</div><div class="line">        _sceneView = [[<span class="built_in">SCNView</span> alloc]initWithFrame:<span class="keyword">self</span>.view.bounds];</div><div class="line">        _sceneView.center = <span class="keyword">self</span>.view.center;</div><div class="line">        _sceneView.backgroundColor = [<span class="built_in">UIColor</span> grayColor];</div><div class="line">        _sceneView.allowsCameraControl = <span class="literal">YES</span>;</div><div class="line">        _sceneView.autoenablesDefaultLighting = <span class="literal">YES</span>;</div><div class="line">        [<span class="keyword">self</span>.view addSubview:_sceneView];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _sceneView;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="SCNScene"><a href="#SCNScene" class="headerlink" title="SCNScene"></a>SCNScene</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">SCNScene</span> *)scene&#123;</div><div class="line">    <span class="keyword">if</span> (!_scene) &#123;</div><div class="line">        _scene =[<span class="built_in">SCNScene</span> scene];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _scene;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="环境光"><a href="#环境光" class="headerlink" title="环境光"></a>环境光</h2><blockquote>
+<p>添加一个环境光node<br>前后都是亮滴</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">SCNNode</span> *)lightNode&#123;</div><div class="line">    <span class="keyword">if</span> (!_lightNode) &#123;</div><div class="line">        _lightNode = [<span class="built_in">SCNNode</span> node];</div><div class="line">        _lightNode.light = [<span class="built_in">SCNLight</span> light];</div><div class="line">        _lightNode.light.type = <span class="built_in">SCNLightTypeAmbient</span>;</div><div class="line">        _lightNode.light.color = [<span class="built_in">UIColor</span> colorWithWhite:<span class="number">0.4</span></div><div class="line">                                                   alpha:<span class="number">1.0</span>];</div><div class="line">        <span class="comment">//_lightNode.light.color = [UIColor redColor];</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _lightNode;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="增加一个副光"><a href="#增加一个副光" class="headerlink" title="增加一个副光"></a>增加一个副光</h2><blockquote>
+<p>SCNLightTypeDirectional 平行光  SCNLightTypeSpot   聚焦光<br>小球前表面亮。后表面暗</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">SCNNode</span> *)assistLightNode&#123;</div><div class="line">    <span class="keyword">if</span> (!_assistLightNode) &#123;</div><div class="line">        _assistLightNode =  [<span class="built_in">SCNNode</span> node];</div><div class="line">        _assistLightNode.light = [<span class="built_in">SCNLight</span> light];</div><div class="line">        _assistLightNode.light.type = <span class="built_in">SCNLightTypeOmni</span>;<span class="comment">//像各方向发出的光照强度一样</span></div><div class="line">        _assistLightNode.light.color = [<span class="built_in">UIColor</span> colorWithWhite:<span class="number">0.75</span> alpha:<span class="number">1</span>];</div><div class="line">         _assistLightNode.light.color = [<span class="built_in">UIColor</span> redColor];</div><div class="line">        _assistLightNode.position = <span class="built_in">SCNVector3Make</span>(<span class="number">0</span>, <span class="number">-50</span>, <span class="number">50</span>);<span class="comment">//设置光源</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _assistLightNode;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="添加摄像机节点"><a href="#添加摄像机节点" class="headerlink" title="添加摄像机节点"></a>添加摄像机节点</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">SCNNode</span> *)caremaNode&#123;</div><div class="line">    <span class="keyword">if</span> (!_caremaNode) &#123;</div><div class="line">        _caremaNode =  [<span class="built_in">SCNNode</span> node];</div><div class="line">        _caremaNode.camera = [<span class="built_in">SCNCamera</span> camera];<span class="comment">//Creates and returns a camera instance.</span></div><div class="line">        _caremaNode.position = <span class="built_in">SCNVector3Make</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">50</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _caremaNode;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>##几何模型-C 原子</p>
+<blockquote>
+<p>SCNSphere  有半径属性，类似iOS 剪切</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">SCNGeometry</span> *)carbonAtom&#123;</div><div class="line">    <span class="keyword">if</span>(!_carbonAtom)&#123;</div><div class="line">        <span class="built_in">SCNSphere</span> *phere = [<span class="built_in">SCNSphere</span> sphereWithRadius:<span class="number">1.7</span>];</div><div class="line">        phere.firstMaterial.diffuse.contents = [<span class="built_in">UIColor</span> darkGrayColor];</div><div class="line">        phere.firstMaterial.specular.contents = [<span class="built_in">UIColor</span> whiteColor];</div><div class="line">        _carbonAtom = phere;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _carbonAtom;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>##几何模型 -  H 原子</p>
+<blockquote>
+<p>contents 扩散de 内容 颜色(NSColor, UIColor, CGColorRef)，一个图像(NSImage, UIImage, CGImageRef)，一个层(CALayer)，一个路径(NSString或NSURL)，一个SpriteKit场景(SKScene)，一个纹理(sk纹理，id&lt; mtl纹理&gt;或GLKTextureInfo)，或一个浮动值在0到1 (NSNumber)之间的金属和粗糙度属性</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">SCNGeometry</span> *)hydrogenAtom&#123;</div><div class="line">    <span class="keyword">if</span> (!_hydrogenAtom) &#123;</div><div class="line">        <span class="built_in">SCNSphere</span> *sphere = [<span class="built_in">SCNSphere</span> sphereWithRadius:<span class="number">1.2</span>];</div><div class="line">        sphere.firstMaterial.diffuse.contents = [<span class="built_in">UIColor</span> lightGrayColor];</div><div class="line">        <span class="comment">//specular - 镜面</span></div><div class="line">        sphere.firstMaterial.specular.contents = [<span class="built_in">UIColor</span> whiteColor];</div><div class="line">        _hydrogenAtom = sphere;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _hydrogenAtom;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="几何模型-O-原子"><a href="#几何模型-O-原子" class="headerlink" title="几何模型 -  O 原子"></a>几何模型 -  O 原子</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">SCNGeometry</span> *)oxyGenAtom&#123;</div><div class="line">    <span class="keyword">if</span> (!_oxyGenAtom) &#123;</div><div class="line">        <span class="built_in">SCNSphere</span> *sphere = [<span class="built_in">SCNSphere</span> sphereWithRadius:<span class="number">1.52</span>];</div><div class="line">        sphere.firstMaterial.diffuse.contents = [<span class="built_in">UIColor</span> redColor];</div><div class="line">        sphere.firstMaterial.specular.contents = [<span class="built_in">UIColor</span> whiteColor];</div><div class="line">        _oxyGenAtom = sphere;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _oxyGenAtom;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>##几何模型 -  F 原子</p>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">SCNGeometry</span> *)fluorAtom</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (!_fluorAtom) &#123;</div><div class="line">        <span class="built_in">SCNSphere</span> *sphere = [<span class="built_in">SCNSphere</span> sphereWithRadius:<span class="number">1.47</span>];</div><div class="line">        sphere.firstMaterial.diffuse.contents = [<span class="built_in">UIColor</span> yellowColor];</div><div class="line">        sphere.firstMaterial.specular.contents = [<span class="built_in">UIColor</span> whiteColor];</div><div class="line">        _fluorAtom = sphere;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _fluorAtom;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
         
       
     </div>
@@ -973,6 +1345,8 @@ import UIKiti
     
 
     
+
+
 
     
 
@@ -1082,17 +1456,6 @@ import UIKiti
 
           
           
-             <span id="/2018/01/17/SceneKit/Grammar/SceneKit-SCNNode/" class="leancloud_visitors" data-flag-title="SceneKit-SCNNode">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1115,42 +1478,220 @@ import UIKiti
       
         
           
-          SCNNode
-SCNNode : NSObjectabstract SCNNode is the model class for node-tree object
+            <h1 id="SCNNode"><a href="#SCNNode" class="headerlink" title="SCNNode"></a>SCNNode</h1><blockquote>
+<p>SCNNode : NSObject<br>abstract SCNNode is the model class for node-tree object</p>
+</blockquote>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>NSString</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>light</td>
+<td>SCNLight</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>camera</td>
+<td>SCNGeometry</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>skinner</td>
+<td>SCNSkinner</td>
+<td>控制皮肤几何图形的变形</td>
+<td></td>
+</tr>
+<tr>
+<td>morpher</td>
+<td>SCNMorpher</td>
+<td>控制变形的几何图形</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>transform</td>
+<td>SCNMatrix4</td>
+<td>变换</td>
+<td></td>
+</tr>
+<tr>
+<td>worldTransform</td>
+<td>SCNMatrix4</td>
+<td>世界转换</td>
+<td>在世界空间中的转换(相对于场景的根节点)</td>
+</tr>
+<tr>
+<td>position</td>
+<td>SCNVector3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>worldPosition</td>
+<td>SCNVector3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>rotation</td>
+<td>SCNVector4</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>orientation</td>
+<td>SCNQuaternion</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>worldOrientation</td>
+<td>SCNQuaternion</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>eulerAngles</td>
+<td>SCNVector3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>scale</td>
+<td>SCNVector3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>pivot</td>
+<td>SCNMatrix4</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>hidden</td>
+<td>BOOL</td>
+<td>否显示</td>
+<td>dedault NO</td>
+</tr>
+<tr>
+<td>opacity</td>
+<td>CGFloat</td>
+<td>不透明度</td>
+<td>Default is 1</td>
+</tr>
+<tr>
+<td>castsShadow</td>
+<td>BOOL</td>
+<td>投下阴影</td>
+<td>Defaults to YES</td>
+</tr>
+<tr>
+<td>movabilityHint</td>
+<td>SCNMovabilityHint</td>
+<td>可动性暗示</td>
+<td>与SceneKit的呈现系统沟通你想如何在场景中移动内容<br>它不会影响您更改节点位置或向节点添加动画或物理的能力<br>默认为SCNMovabilityHintFixed</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>parentNode</td>
+<td>SCNNode</td>
+<td>父节点</td>
+<td></td>
+</tr>
+<tr>
+<td>childNodes</td>
+<td>NSArray<scnnode *=""></scnnode></td>
+<td>子节点数组</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><blockquote>
+<p>加载</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="keyword">instancetype</span>)node;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>加载<br>geometry： 几何模型</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="built_in">SCNNode</span> *)nodeWithGeometry:(<span class="keyword">nullable</span> <span class="built_in">SCNGeometry</span> *)geometry;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>克隆</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="keyword">instancetype</span>)clone;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>被克隆</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="keyword">instancetype</span>)flattenedClone</div></pre></td></tr></table></figure>
+<blockquote>
+<p>世界转换|在世界空间中的转换(相对于场景的根节点)</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)setWorldTransform:(<span class="built_in">SCNMatrix4</span>)worldTransform;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>加子节点</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)addChildNode:(<span class="built_in">SCNNode</span> *)child;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>根据index加子节点</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)insertChildNode:(<span class="built_in">SCNNode</span> *)child atIndex:(<span class="built_in">NSUInteger</span>)index;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>从父节点移除</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)removeFromParentNode;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>新的子节点替换某个节点</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)replaceChildNode:(<span class="built_in">SCNNode</span> *)oldChild with:(<span class="built_in">SCNNode</span> *)newChild;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Returns the first node found in the node tree with the specified name<br>返回在节点树中找到具有指定名称的第一个节点<br>recursively 递归</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="keyword">nullable</span> <span class="built_in">SCNNode</span> *)childNodeWithName:(<span class="built_in">NSString</span> *)name recursively:(<span class="built_in">BOOL</span>)recursively;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>子节点通过测试<br>Returns the child nodes of the receiver that passes a test in a given Block.返回在给定块中通过测试的接收方的子节点</p>
+<p>predicate:谓词</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">NSArray</span>&lt;<span class="built_in">SCNNode</span> *&gt; *)childNodesPassingTest:(<span class="built_in">NS_NOESCAPE</span> <span class="built_in">BOOL</span> (^)(<span class="built_in">SCNNode</span> *child, <span class="built_in">BOOL</span> *stop))predicate;</div></pre></td></tr></table></figure>
+<p>&gt;</p>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<p>系统文档太多了。。。</p>
 
-属性
-
-
-
-
-
-
-
-
-
-
-name
-NSString
-
-
-
-
-light
-SCNLight
-
-
-
-
-camera
-SCNGeomet
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/17/SceneKit/Grammar/SceneKit-SCNNode/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1159,6 +1700,8 @@ SCNGeomet
     
 
     
+
+
 
     
 
@@ -1268,17 +1811,6 @@ SCNGeomet
 
           
           
-             <span id="/2018/01/17/SceneKit/Grammar/SceneKit-SCNMaterial/" class="leancloud_visitors" data-flag-title="SceneKit-SCNMaterial- 材质">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1301,39 +1833,204 @@ SCNGeomet
       
         
           
-          SCNMaterial- 材质
-SCNMaterial : NSObject
+            <h1 id="SCNMaterial-材质"><a href="#SCNMaterial-材质" class="headerlink" title="SCNMaterial- 材质"></a>SCNMaterial- 材质</h1><blockquote>
+<p>SCNMaterial : NSObject</p>
+</blockquote>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="keyword">instancetype</span>)material;</div></pre></td></tr></table></figure>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><table>
+<thead>
+<tr>
+<th>Properties</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>NSString</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>diffuse</td>
+<td>SCNMaterialProperty</td>
+<td>扩散</td>
+<td>漫射属性指定从表面漫反射的光量<br>漫射光在各个方向上都是均匀反射的，因此与视点无关</td>
+</tr>
+<tr>
+<td>ambient</td>
+<td>SCNMaterialProperty</td>
+<td>环境</td>
+<td>环境属性指定要反射的环境光的数量<br>这个属性对没有环境光的场景没有视觉效果<br>如果将locksambientwith扩散设置为YES，则设置环境没有效果</td>
+</tr>
+<tr>
+<td>specular</td>
+<td>SCNMaterialProperty</td>
+<td>镜面</td>
+<td>镜子的属性指定光的数量以类似镜子的方式反射<br>当视点与反射光的方向一致时，镜面强度增加</td>
+</tr>
+<tr>
+<td>emission</td>
+<td>SCNMaterialProperty</td>
+<td>发射</td>
+<td>发射属性指定材料发出的光量<br>这种发射不会照亮场景中的其他表面</td>
+</tr>
+<tr>
+<td>transparent</td>
+<td>SCNMaterialProperty</td>
+<td>透明</td>
+<td>透明属性指定材料的透明区域</td>
+</tr>
+<tr>
+<td>reflective</td>
+<td>SCNMaterialProperty</td>
+<td>反射</td>
+<td>反射特性指定了表面的反射率<br>表面不会真实地反映场景中的其他物体<br>这个属性可以作为一个球体映射来反映一个预先计算的环境</td>
+</tr>
+<tr>
+<td>multiply</td>
+<td>SCNMaterialProperty</td>
+<td>乘法</td>
+<td>乘法属性指定用于将输出片段相乘的颜色或图像<br>计算出的片段与相乘值相乘以产生最后的片段<br>此属性可用于阴影映射、淡出或tint 3d对象</td>
+</tr>
+<tr>
+<td>normal</td>
+<td>SCNMaterialProperty</td>
+<td>普通</td>
+<td>普通属性指定表面方向<br>当一个图像设置在正常的属性上时，每个像素的材料会自动被点亮<br>设置颜色没有效果</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>displacement</td>
+<td>SCNMaterialProperty</td>
+<td>位移</td>
+<td></td>
+</tr>
+<tr>
+<td>ambientOcclusion</td>
+<td>SCNMaterialProperty</td>
+<td>环境闭塞</td>
+<td>指定了表面的环境遮挡<br>环境遮挡与环境光相乘，结果被添加到照明贡献<br>这个属性对没有环境光的场景没有视觉效果<br>当环境遮挡图被设置时，环境属性被忽略。</td>
+</tr>
+<tr>
+<td>selfIllumination</td>
+<td>SCNMaterialProperty</td>
+<td>纹理或颜色</td>
+<td>属性指定一个纹理或颜色，它被添加到表面的照明贡献中<br>当设置一个自填体时，会忽略发射特性</td>
+</tr>
+<tr>
+<td>metalness</td>
+<td>SCNMaterialProperty</td>
+<td>金属属性</td>
+<td>金属属性指定材料表面的金属材质<br>较低的值(较深的颜色)使材料看起来更像介质表面<br>较高的值(较亮的颜色)会使表面看起来更有金属感<br>此属性时才会被“lightingModelName”是“SCNLightingModelPhysicallyBased”。</td>
+</tr>
+<tr>
+<td>roughness</td>
+<td>SCNMaterialProperty</td>
+<td>粗糙度</td>
+<td>粗糙度属性指定表面平滑度<br>较低的颜色(较深的颜色)使材料看起来闪闪发亮，有明确的高光<br>较高的值(较亮的颜色)会导致高光的高光，使材料的弥散性变得更强反射性<br>此属性时才会被“lightingModelName”是“SCNLightingModelPhysicallyBased”</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>shininess</td>
+<td>CGFloat</td>
+<td>亮度值</td>
+<td>默认为1.0</td>
+</tr>
+<tr>
+<td>transparency</td>
+<td>CGFloat</td>
+<td>透明度</td>
+<td>默认为1.0</td>
+</tr>
+<tr>
+<td>lightingModelName</td>
+<td>SCNLightingModel</td>
+<td>明模型名称</td>
+<td>决定了接收机的照明模型<br>请参阅上面的照明模型列表<br>默认为SCNLightingModelBlinn</td>
+</tr>
+<tr>
+<td>litPerPixel</td>
+<td>BOOL</td>
+<td>否按像素点亮</td>
+<td>默认YES</td>
+</tr>
+<tr>
+<td>doubleSided</td>
+<td>BOOL</td>
+<td>是否为双面</td>
+<td>默认NO</td>
+</tr>
+<tr>
+<td>fillMode</td>
+<td>SCNFillMode</td>
+<td>栅格化</td>
+<td>默认为SCNFillModeFill</td>
+</tr>
+<tr>
+<td>cullMode</td>
+<td>SCNCullMode</td>
+<td>筛选模式</td>
+<td>默认为SCNCullBack</td>
+</tr>
+<tr>
+<td>transparencyMode</td>
+<td>SCNTransparencyMode</td>
+<td>透明模式</td>
+<td>透明模式见上文<br>默认为SCNTransparencyModeDefault</td>
+</tr>
+<tr>
+<td>locksAmbientWithDiffuse</td>
+<td>BOOL</td>
+<td>环境属性自动匹配扩散属性</td>
+<td>默认值为YES</td>
+</tr>
+<tr>
+<td>writesToDepthBuffer</td>
+<td>BOOL</td>
+<td>是否写入到深度缓冲区</td>
+<td>默认值为YES</td>
+</tr>
+<tr>
+<td>colorBufferWriteMask</td>
+<td>SCNColorMask</td>
+<td>是否写入颜色缓冲区</td>
+<td>默认为SCNColorMaskAll</td>
+</tr>
+<tr>
+<td>readsFromDepthBuffer</td>
+<td>BOOL</td>
+<td>是否从深度缓冲区读取</td>
+<td>默认值为YES</td>
+</tr>
+<tr>
+<td>fresnelExponent</td>
+<td>CGFloat</td>
+<td>y菲涅耳指数</td>
+<td>默认为0.0<br>反射率特性的影响<br>fresnel指数改变了反射率的指数<br>指数越大，反射就越集中在边缘</td>
+</tr>
+<tr>
+<td>blendMode</td>
+<td>SCNBlendMode</td>
+<td>混合模式</td>
+<td>默认为SCNBlendModeAlpha</td>
+</tr>
+</tbody>
+</table>
 
-初始化+ (instancetype)material;
-属性
-
-
-Properties
-
-
-
-
-
-
-
-name
-NSString
-
-
-
-
-diffuse
-SCNMaterialProperty
-扩散
-漫射属性指定从表面
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/17/SceneKit/Grammar/SceneKit-SCNMaterial/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1342,6 +2039,8 @@ SCNMaterialProperty
     
 
     
+
+
 
     
 
@@ -1473,17 +2172,6 @@ SCNMaterialProperty
 
           
           
-             <span id="/2018/01/17/SceneKit/Grammar/SCNGeometry/SCNGeometry-SCNSphere-几何-球/" class="leancloud_visitors" data-flag-title="SceneKit-SCNGeometry-SCNSphere-几何-球">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1506,39 +2194,60 @@ SCNMaterialProperty
       
         
           
-          Sphere 几何-球
-SCNPlane : SCNGeometry
-
-初始化
-radius:球的半径
-
-+ (instancetype)sphereWithRadius:(CGFloat)radius;
-属性
-
-
-
-
-
-
-
-
-
-
-radius
-CGFloat
-球的半径
-默认值是0.5
-
-
-geod
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/17/SceneKit/Grammar/SCNGeometry/SCNGeometry-SCNSphere-几何-球/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h1 id="Sphere-几何-球"><a href="#Sphere-几何-球" class="headerlink" title="Sphere 几何-球"></a>Sphere 几何-球</h1><blockquote>
+<p>SCNPlane : SCNGeometry</p>
+</blockquote>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><blockquote>
+<p>radius:球的半径</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="keyword">instancetype</span>)sphereWithRadius:(<span class="built_in">CGFloat</span>)radius;</div></pre></td></tr></table></figure>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>radius</td>
+<td>CGFloat</td>
+<td>球的半径</td>
+<td>默认值是0.5</td>
+</tr>
+<tr>
+<td>geodesic</td>
+<td>BOOL</td>
+<td>测地线</td>
+<td>表示几何是一个岩石圈<br>默认值为NO</td>
+</tr>
+<tr>
+<td>segmentCount</td>
+<td>NSInteger</td>
+<td>段数</td>
+<td>在两个球坐标下的线段数。可以做成动画<br>如果值小于3，则该行为是未定义的。默认值是24</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><blockquote>
+<p>创建 C 原子模型</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"> - (<span class="built_in">SCNGeometry</span> *) carbonAtom</div><div class="line">&#123;</div><div class="line">    <span class="built_in">SCNSphere</span> *phere = [<span class="built_in">SCNSphere</span> sphereWithRadius:<span class="number">1.7</span>];</div><div class="line">    phere.firstMaterial.diffuse.contents = [<span class="built_in">UIColor</span> darkGrayColor];</div><div class="line">    phere.firstMaterial.specular.contents = [<span class="built_in">UIColor</span> whiteColor];</div><div class="line">    <span class="keyword">return</span> phere;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>原子添加到节点</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">SCNNode</span> *tempNode = [<span class="built_in">SCNNode</span> node];</div><div class="line"><span class="built_in">SCNNode</span> *carbonNode = [<span class="built_in">SCNNode</span> nodeWithGeometry:[<span class="keyword">self</span> carbonAtom]];</div><div class="line">[tempNode addChildNode:carbonNode];</div></pre></td></tr></table></figure>
+<blockquote>
+<p>将创建的原子节点添加到根节点</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">[<span class="keyword">self</span>.scene.rootNode addChildNode:[<span class="keyword">self</span> AddFunction]];</div></pre></td></tr></table></figure>
+          
         
       
     </div>
@@ -1547,6 +2256,8 @@ geod
     
 
     
+
+
 
     
 
@@ -1656,17 +2367,6 @@ geod
 
           
           
-             <span id="/2018/01/17/SceneKit/Grammar/SceneKit-SCNGeometry/" class="leancloud_visitors" data-flag-title="SceneKit-SCNGeometry">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1689,41 +2389,47 @@ geod
       
         
           
-          SCNGeometry 几何创建
-创建并返回一个空的几何对象
+            <h1 id="SCNGeometry-几何"><a href="#SCNGeometry-几何" class="headerlink" title="SCNGeometry 几何"></a>SCNGeometry 几何</h1><h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><blockquote>
+<p>创建并返回一个空的几何对象</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">+ (<span class="keyword">instancetype</span>)geometry;</div></pre></td></tr></table></figure>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>NSString</td>
+<td></td>
+</tr>
+<tr>
+<td>materials</td>
+<td>NSArray<scnmaterial *=""></scnmaterial></td>
+<td>材料数组</td>
+</tr>
+<tr>
+<td>firstMaterial</td>
+<td>SCNMaterial</td>
+<td>决定几何的第一个材料<br>如果几何图形没有材质，返回nil<br>它等价于上面的“材料”数组中的第一个对象</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 
-+ (instancetype)geometry;
-属性
-
-
-
-
-
-
-
-
-
-name
-NSString
-
-
-
-materials
-NSArray
-材料数组
-
-
-firstMaterial
-SCNMaterial
-决定几何的第一个材料如果
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/17/SceneKit/Grammar/SceneKit-SCNGeometry/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1733,355 +2439,7 @@ SCNMaterial
 
     
 
-    
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/17/SceneKit/Grammar/SCNScene-场景/SCNScene/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="千夜 QQ:738816656">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/17/SceneKit/Grammar/SCNScene-场景/SCNScene/" itemprop="url">SceneKit-SCNScene-场景</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T10:13:44+08:00">
-                2018-01-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SceneKit/" itemprop="url" rel="index">
-                    <span itemprop="name">SceneKit</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/01/17/SceneKit/Grammar/SCNScene-场景/SCNScene/" class="leancloud_visitors" data-flag-title="SceneKit-SCNScene-场景">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          SCNScene-场景初始化
-SCNScene : NSObject
-
-+ (instancetype)scene;
-属性
-根节点
-
-@property(nonatomic, readonly) SCNNode *rootNode;
-
-物理世界
-
-
-每个场景自动创建一个物理世界对象来模拟场景中的节点
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/17/SceneKit/Grammar/SCNScene-场景/SCNScene/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/17/SceneKit/Grammar/SceneKit-SCNLight/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="千夜 QQ:738816656">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/17/SceneKit/Grammar/SceneKit-SCNLight/" itemprop="url">SceneKit-SCNLight</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T09:57:35+08:00">
-                2018-01-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SceneKit/" itemprop="url" rel="index">
-                    <span itemprop="name">SceneKit</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/01/17/SceneKit/Grammar/SceneKit-SCNLight/" class="leancloud_visitors" data-flag-title="SceneKit-SCNLight">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          SCNLight 光源
-光源可以附加到节点上，在渲染场景中提供着色
-
-初始化
-初始化
-
-+ (instancetype)light;
-属性
-type
-
-@property(nonatomic, copy) SCNLightType type;
-
-
-
-SCNLightType
-
-
-
-
-
-SCNLigh
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/17/SceneKit/Grammar/SceneKit-SCNLight/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
 
     
 
@@ -2111,7 +2469,7 @@ SCNLigh
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2142,66 +2500,64 @@ SCNLigh
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="千夜 QQ:738816656" />
-          <p class="site-author-name" itemprop="name">千夜 QQ:738816656</p>
-           
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">千夜 QQ:738816656</p>
               <p class="site-description motion-element" itemprop="description">ReactNative</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">201</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">106</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">77</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
+
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">198</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">105</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">77</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -2218,42 +2574,17 @@ SCNLigh
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        
-# 访客数
-
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  访客数:<span id="busuanzi_value_site_uv"></span>
-</span>
-</div>
-
-
-
-
-
-<div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">千夜 QQ:738816656</span>
+
+  
 </div>
 
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
 
 
         
@@ -2273,6 +2604,8 @@ SCNLigh
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -2307,46 +2640,54 @@ SCNLigh
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
   
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -2377,324 +2718,13 @@ SCNLigh
 
 
 
+
+
+
+
+
+
   
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === '') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
 
 
 
@@ -2703,114 +2733,10 @@ SCNLigh
   
 
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("GGOhuU9q4e5a7HISgedllhyN-gzGzoHsz", "1Dlb2KyTymPIvsleHp8s02I8");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
 
   
 
+  
   
 
   
@@ -2821,3 +2747,6 @@ SCNLigh
 
 </body>
 </html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

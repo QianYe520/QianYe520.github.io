@@ -10,8 +10,23 @@
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
 
+<meta name="theme-color" content="#222">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
 
 
 
@@ -23,16 +38,6 @@
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 
-<script>
-    (function(){
-        if(''){
-            if (prompt('请输入文章密码') !== ''){
-                alert('密码错误！');
-                history.back();
-            }
-        }
-    })();
-</script>
 
 
 
@@ -55,38 +60,27 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Hexo, NexT" />
@@ -94,11 +88,6 @@
 
 
 
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
 
 
 
@@ -123,10 +112,11 @@
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
-    motion: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -169,8 +159,7 @@
   
 
   <div class="container sidebar-position-left 
-   page-home 
- ">
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -226,16 +215,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -256,54 +235,20 @@
         </li>
       
         
-        <li class="menu-item menu-item-read">
-          <a href="/read/" rel="section">
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            阅读榜
+            关于
           </a>
         </li>
       
 
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
-        </li>
       
     </ul>
   
 
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
   
 </nav>
 
@@ -318,6 +263,313 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/09/Git/Git-Gitlab代码托管配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/09/Git/Git-Gitlab代码托管配置/" itemprop="url">Git-Gitlab代码托管配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-09T18:50:53+08:00">
+                2018-01-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git/" itemprop="url" rel="index">
+                    <span itemprop="name">Git</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Gitlab平台设置"><a href="#Gitlab平台设置" class="headerlink" title="Gitlab平台设置"></a>Gitlab平台设置</h1><p>为Project添加Gitcd “本地项目的路径”</p>
+<p> git init //初始化</p>
+<p> git remote add origin git@gitlab.com:USERNAME/PROJECTNAME.git //将”USERNAME”和”PROJECTNAME”替换为自己的用户名和项目名</p>
+<p> git add . //注意add和”.”之间的空格</p>
+<p> git commit -m ‘commit description’</p>
+<p>  //提交改动到本地库git push -u origin master //push到Gitlab</p>
+<h1 id="问题1"><a href="#问题1" class="headerlink" title="问题1"></a>问题1</h1><p>  需要注意，输入commit命令后会提示输入commit message，如下图，对终端不熟悉的同学可能要抓狂了，这里需要按s键进入INSERT模式,开始输入commit message，最后按ESC，然后输入:wq退出commit message输入模式</p>
+<p>注意：建议commit message第一行输入标题（概要），空一行再输入详细信息。当然，这是建议，如果你觉得无所谓，也可以随意输入或直接:wq跳过</p>
+<p>输入commit message</p>
+<h1 id="坑No-2"><a href="#坑No-2" class="headerlink" title="坑No.2"></a>坑No.2</h1><p>git push -u origin master命令后可以看到提示：error: src refspec master does not match any.error: failed to push some refs to ‘git@gitlab.com:int1987/testProject.git’</p>
+<p>这是因为没有项目说明书，所以push失败</p>
+<p>解决方案：<br>touch README //生成说明文件</p>
+<p>git add README //添加说明文件到</p>
+<p>git commit -m ‘commit readme file’ //提交改动</p>
+<p>Push到Gitlab添加README后再重新输入git push -u origin master，push项目到Gitlab，</p>
+<p>首次push会提示gitlab.com的真实性无法确定，输入yes，确定即可。之后gitlab.com就会被添加到已知服务器（可以在~/.ssh文件夹中查看到多了一个known_hosts文件，它就是存储已知服务器的文件）</p>
+<p>Gitlab <a href="https://baijiahao.baidu.com/s?id=1560915146966961&amp;wfr=spider&amp;for=pc" target="_blank" rel="external">https://baijiahao.baidu.com/s?id=1560915146966961&amp;wfr=spider&amp;for=pc</a></p>
+<p><a href="http://blog.csdn.net/lemonaha/article/details/69977098" target="_blank" rel="external">http://blog.csdn.net/lemonaha/article/details/69977098</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/09/SceneKit/Grammar/SceneKit-Reference/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/09/SceneKit/Grammar/SceneKit-Reference/" itemprop="url">iOS-SceneKit-Reference</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-09T11:07:40+08:00">
+                2018-01-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SceneKit/" itemprop="url" rel="index">
+                    <span itemprop="name">SceneKit</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h1><p> <a href="https://www.jianshu.com/p/079a05381f02" target="_blank" rel="external">参考学习1</a><br> <a href="https://juejin.im/post/5a322530f265da43062ac948" target="_blank" rel="external">参考学习2</a></p>
+<p><a href="https://juejin.im/user/5a311af051882554bd510dd0" target="_blank" rel="external">只能学习而已，太难</a></p>
+<p><a href="https://gitee.com/Roc.Tian/Blog_DEMO" target="_blank" rel="external">没找到博客</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -403,17 +655,6 @@
 
           
           
-             <span id="/2018/01/08/SceneKit/Grammar/SceneKit-展示3D模型&施加动画/" class="leancloud_visitors" data-flag-title="iOS-SceneKit-展示3D模型&施加动画">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -436,15 +677,8 @@
       
         
           
+            
           
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/08/SceneKit/Grammar/SceneKit-展示3D模型&施加动画/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -453,6 +687,8 @@
     
 
     
+
+
 
     
 
@@ -562,17 +798,6 @@
 
           
           
-             <span id="/2018/01/08/SceneKit/Grammar/SceneKit-加载obj文件/" class="leancloud_visitors" data-flag-title="iOS-SceneKit-加载obj文件">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -595,16 +820,9 @@
       
         
           
-          
+            <p><a href="https://www.jianshu.com/p/6a761a834ab9" target="_blank" rel="external"></a></p>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/08/SceneKit/Grammar/SceneKit-加载obj文件/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -613,6 +831,8 @@
     
 
     
+
+
 
     
 
@@ -722,17 +942,6 @@
 
           
           
-             <span id="/2018/01/08/SceneKit/Grammar/SceneKit- Base/" class="leancloud_visitors" data-flag-title="iOS-SceneKit-Base">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -755,31 +964,58 @@
       
         
           
-          SceneKitSceneKit 的三维坐标系
-右手坐标系(笛卡尔坐标系)与其他3D框架共享数据，了解其框架是右、左手坐标系（就是Z 轴的正负不一样）
+            <h1 id="SceneKit"><a href="#SceneKit" class="headerlink" title="SceneKit"></a>SceneKit</h1><h2 id="SceneKit-的三维坐标系"><a href="#SceneKit-的三维坐标系" class="headerlink" title="SceneKit 的三维坐标系"></a>SceneKit 的三维坐标系</h2><blockquote>
+<p>右手坐标系(笛卡尔坐标系)<br>与其他3D框架共享数据，了解其框架是右、左手坐标系（就是Z 轴的正负不一样）</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/SceneKit%20%E7%9A%84%E4%B8%89%E7%BB%B4%E5%9D%90%E6%A0%87%E7%B3%BB.jpg" alt="三维坐标系"></p>
+<h2 id="相关类"><a href="#相关类" class="headerlink" title="相关类"></a>相关类</h2><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SCNView<br>SCNSceneRenderer</td>
+<td>类似UIView</td>
+<td>用来显示 SceneKit 的内容，定义了一些代理方法，可以用 addSubView 方法添加到UiView 中</td>
+</tr>
+<tr>
+<td>SCNScene</td>
+<td>场景图(SceneKit内容的容器)</td>
+<td>从3D建模工具生成的.dae文件中加载一个场景，或者用代码创建一个 ，然后把它显示在视图上</td>
+</tr>
+<tr>
+<td>SCNNode</td>
+<td>节点树的模型类对象</td>
+<td>可以把摄像机，灯光，几何体附加到节点上</td>
+</tr>
+<tr>
+<td>SCNGeometry</td>
+<td>一个可以连接到一个节点的三维物体</td>
+<td>一个几何体（有时称为模型或网格）只定义了一个可见物体的形状。要定义对象的表面颜色图案，你必需要给几何体要附加材料。然后给材料贴图，或者上色，这个几何体表面才会有颜色，或者图案。SceneKit 提供了几种常见几何体，是SCNGeometry的子类，比如长方体，球，圆柱球等等</td>
+</tr>
+<tr>
+<td>SCNMaterial</td>
+<td>材质</td>
+<td>由于在3D建模工具中呈现球形，所以也叫材质球。上色，贴图全靠它</td>
+</tr>
+<tr>
+<td>SCNLight</td>
+<td>光源</td>
+<td>光源可以附加到节点上，在渲染场景中提供着色</td>
+</tr>
+<tr>
+<td>SCNCamera</td>
+<td>虚拟摄像机,观察场景的视角</td>
+<td>虚拟摄像机可以附加到节点上，提供了一个场景的视图<br>要显示场景中的内容, 必须为节点指定一个SCNCamera对象<br>相机的视角始终沿着节点的局部坐标系的负z轴</td>
+</tr>
+</tbody>
+</table>
 
-
-相关类
-
-
-
-
-
-
-
-
-
-SCNViewSCNSceneRenderer
-类似UIView
-用来显示 SceneKit 的内容，定义了一些代理方
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/08/SceneKit/Grammar/SceneKit- Base/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -788,6 +1024,8 @@ SCNViewSCNSceneRenderer
     
 
     
+
+
 
     
 
@@ -919,17 +1157,6 @@ SCNViewSCNSceneRenderer
 
           
           
-             <span id="/2018/01/08/OC/Lib/ArcGIS/OC-Lib-ArcGIS-大图加载/" class="leancloud_visitors" data-flag-title="iOS-Lib-ArcGIS-大图加载">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -952,18 +1179,11 @@ SCNViewSCNSceneRenderer
       
         
           
-          资料
-https://developers.arcgis.com
-http://blog.csdn.net/pzhtpf/article/details/51027047
+            <p>资料</p>
+<p><a href="https://developers.arcgis.com" target="_blank" rel="external">https://developers.arcgis.com</a></p>
+<p><a href="http://blog.csdn.net/pzhtpf/article/details/51027047" target="_blank" rel="external">http://blog.csdn.net/pzhtpf/article/details/51027047</a></p>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/08/OC/Lib/ArcGIS/OC-Lib-ArcGIS-大图加载/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -972,6 +1192,8 @@ http://blog.csdn.net/pzhtpf/article/details/51027047
     
 
     
+
+
 
     
 
@@ -1081,17 +1303,6 @@ http://blog.csdn.net/pzhtpf/article/details/51027047
 
           
           
-             <span id="/2018/01/08/Git/Git-常用的命令/" class="leancloud_visitors" data-flag-title="Git-常用的命令">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1114,15 +1325,9 @@ http://blog.csdn.net/pzhtpf/article/details/51027047
       
         
           
-            1. git status（查看本地分支文件信息，确保更新时不产生冲突）2. git checkout -- [file name] （若文件有修改，可以还原到最初状态; 若文件需要更新到服务器上，应该先merge到服务器，再更新到本地）3. git branch（查看当前分支情况）4. git
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/08/Git/Git-常用的命令/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">  1. git status（查看本地分支文件信息，确保更新时不产生冲突）</div><div class="line"></div><div class="line">2. git checkout -- [file name] （若文件有修改，可以还原到最初状态; 若文件需要更新到服务器上，应该先merge到服务器，再更新到本地）</div><div class="line"></div><div class="line">3. git branch（查看当前分支情况）</div><div class="line"></div><div class="line">4. git checkout [remote branch](若分支为本地分支，则需切换到服务器的远程分支)</div><div class="line"></div><div class="line">5. git pull</div><div class="line"></div><div class="line">若命令执行成功，则更新代码成功！</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"> &lt;a&gt;github的提交方式 </div><div class="line">     （1）git add .--------------------存储到本地 </div><div class="line">         git commit -m &apos;message&apos;-------存储时的标记（修改了哪些地方，方便下次查询） </div><div class="line">         git pull------------------------下载服务器代码 </div><div class="line">         git push------------------------上传代码至服务器 </div><div class="line">  &lt;b&gt;svn服务器的提交方式 </div><div class="line">   （1）git add .  ------------------存储到本地 </div><div class="line">        git commit -m &apos;message&apos;--------存储时的标记（修改了哪些地方，方便下次查询） </div><div class="line">        git svn rebase------------------下载服务器代码 </div><div class="line">        git svn dcommit-----------------上传代码至服务器 </div><div class="line">   &lt;c&gt;其他相关的git命令 </div><div class="line">（1）git branch-------------------查看当前属于哪个分支 </div><div class="line">    1、只有冲突存在时才会修改分支——改为冲突再git add . </div><div class="line">    2、git rebase –-continue-------------------自动合并 </div><div class="line">    3、git checkout –b svn 新建分支名----------新建分支存储现有文件 </div><div class="line">    4、git branch-------------------------------查看在哪个分支下 </div><div class="line">    5、git checkout master----------------------将其放到master分支下 </div><div class="line">    6、git merge-------------------------------整合分支 </div><div class="line">    7、git branch -d 分支名----------------------删除分支 </div><div class="line">（2）git checkout + 上传的commit编号-----------将本地代码恢复到此状态 </div><div class="line">（3）git log------------------------------------查看本地git上传日志 </div><div class="line">（4）git log -p app/controllers/grids_controller.rb----查看某个文件的修改历史 </div><div class="line">（5）git checkout d0eb6ef3afe8a377943d3cf6f1e9c320c18f6f32 </div><div class="line">     app/controllers/charts_controller.rb-----------返回到这个版本的文件（重现错误） </div><div class="line">（6）git diff ＋ commit编号--------------------------查询不同代码</div></pre></td></tr></table></figure>
+          
         
       
     </div>
@@ -1131,6 +1336,8 @@ http://blog.csdn.net/pzhtpf/article/details/51027047
     
 
     
+
+
 
     
 
@@ -1262,17 +1469,6 @@ http://blog.csdn.net/pzhtpf/article/details/51027047
 
           
           
-             <span id="/2017/12/21/Swift/UIKit/Swift-UIKit-UIWKWebView/" class="leancloud_visitors" data-flag-title="Swift-UIKit-UIWKWebView">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1295,15 +1491,8 @@ http://blog.csdn.net/pzhtpf/article/details/51027047
       
         
           
+            
           
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/21/Swift/UIKit/Swift-UIKit-UIWKWebView/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1312,6 +1501,8 @@ http://blog.csdn.net/pzhtpf/article/details/51027047
     
 
     
+
+
 
     
 
@@ -1432,17 +1623,6 @@ http://blog.csdn.net/pzhtpf/article/details/51027047
 
           
           
-             <span id="/2017/12/19/RxSwift/Grammar/Operators-错误处理操作/" class="leancloud_visitors" data-flag-title="Swift-RxSwift-错误处理操作">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1465,25 +1645,38 @@ http://blog.csdn.net/pzhtpf/article/details/51027047
       
         
           
-          错误处理操作
-①catchErrorJustReturn
-②catchError
-③retry
-④debug
+            <h1 id="错误处理操作"><a href="#错误处理操作" class="headerlink" title="错误处理操作"></a>错误处理操作</h1><ul>
+<li><a href="#1.1">①catchErrorJustReturn</a></li>
+<li><a href="#1.2">②catchError</a></li>
+<li><a href="#1.3">③retry</a></li>
+<li><a href="#1.4">④debug</a></li>
+</ul>
+<p><span id="1.1">①catchErrorJustReturn</span></p>
+<h2 id="①catchErrorJustReturn"><a href="#①catchErrorJustReturn" class="headerlink" title="①catchErrorJustReturn"></a>①catchErrorJustReturn</h2><blockquote>
+<p>遇到error事件的时候，就return一个值，然后结束</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">    </div><div class="line"><span class="keyword">let</span> sequenceThatFails = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line">    </div><div class="line">sequenceThatFails</div><div class="line">    .catchErrorJustReturn(<span class="string">"😊"</span>)</div><div class="line">    .subscribe &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line">    </div><div class="line">sequenceThatFails.onNext(<span class="string">"😬"</span>)</div><div class="line">sequenceThatFails.onNext(<span class="string">"😨"</span>)</div><div class="line">sequenceThatFails.onNext(<span class="string">"😡"</span>)</div><div class="line">sequenceThatFails.onNext(<span class="string">"🔴"</span>)</div><div class="line">sequenceThatFails.onError(<span class="type">TestError</span>.test)</div><div class="line"></div><div class="line"><span class="comment">///</span></div><div class="line">next(😬)</div><div class="line">next(😨)</div><div class="line">next(😡)</div><div class="line">next(🔴)</div><div class="line">next(😊)</div><div class="line">completed</div></pre></td></tr></table></figure>
+<p><span id="1.2">②catchError</span></p>
+<h2 id="②catchError"><a href="#②catchError" class="headerlink" title="②catchError"></a>②catchError</h2><blockquote>
+<p>捕获error进行处理，可以返回另一个sequence进行订阅</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">    </div><div class="line"><span class="keyword">let</span> sequenceThatFails = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"><span class="keyword">let</span> recoverySequence = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line">    </div><div class="line">sequenceThatFails</div><div class="line">    .catchError &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"Error:"</span>, $<span class="number">0</span>)</div><div class="line">        <span class="keyword">return</span> recoverySequence</div><div class="line">    &#125;</div><div class="line">    .subscribe &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line">    </div><div class="line">sequenceThatFails.onNext(<span class="string">"😬"</span>)</div><div class="line">sequenceThatFails.onNext(<span class="string">"😨"</span>)</div><div class="line">sequenceThatFails.onNext(<span class="string">"😡"</span>)</div><div class="line">sequenceThatFails.onNext(<span class="string">"🔴"</span>)</div><div class="line">sequenceThatFails.onError(<span class="type">TestError</span>.test)</div><div class="line">    </div><div class="line">recoverySequence.onNext(<span class="string">"😊"</span>)</div><div class="line"></div><div class="line"><span class="comment">//</span></div><div class="line">next(😬)</div><div class="line">next(😨)</div><div class="line">next(😡)</div><div class="line">next(🔴)</div><div class="line"><span class="type">Error</span>: test</div><div class="line">next(😊)</div></pre></td></tr></table></figure>
+<p><span id="1.3">③retry</span></p>
+<h2 id="③retry"><a href="#③retry" class="headerlink" title="③retry"></a>③retry</h2><blockquote>
+<p>遇见error事件可以进行重试，比如网络请求失败，可以进行重新连接</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="keyword">var</span> <span class="built_in">count</span> = <span class="number">1</span></div><div class="line">    </div><div class="line"><span class="keyword">let</span> sequenceThatErrors = <span class="type">Observable</span>&lt;<span class="type">String</span>&gt;.create &#123; observer <span class="keyword">in</span></div><div class="line">    observer.onNext(<span class="string">"🍎"</span>)</div><div class="line">    observer.onNext(<span class="string">"🍐"</span>)</div><div class="line">    observer.onNext(<span class="string">"🍊"</span>)</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> <span class="built_in">count</span> == <span class="number">1</span> &#123;</div><div class="line">        observer.onError(<span class="type">TestError</span>.test)</div><div class="line">        <span class="built_in">print</span>(<span class="string">"Error encountered"</span>)</div><div class="line">        <span class="built_in">count</span> += <span class="number">1</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    observer.onNext(<span class="string">"🐶"</span>)</div><div class="line">    observer.onNext(<span class="string">"🐱"</span>)</div><div class="line">    observer.onNext(<span class="string">"🐭"</span>)</div><div class="line">    observer.onCompleted()</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="type">Disposables</span>.create()</div><div class="line">&#125;</div><div class="line">    </div><div class="line">sequenceThatErrors</div><div class="line">    .retry(<span class="number">3</span>)       <span class="comment">//不传入数字的话，只会重试一次</span></div><div class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<p><span id="1.4">④debug</span></p>
+<h1 id="④debug"><a href="#④debug" class="headerlink" title="④debug"></a>④debug</h1><blockquote>
+<p>打印所有的订阅, 事件和disposals</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   </div><div class="line"></div><div class="line">sequenceThatErrors</div><div class="line">    .retry(<span class="number">3</span>)</div><div class="line">    .debug()</div><div class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<h1 id="RxSwift-Resources-total"><a href="#RxSwift-Resources-total" class="headerlink" title="RxSwift.Resources.total"></a>RxSwift.Resources.total</h1><blockquote>
+<p>查看RxSwift所有资源的占用</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="built_in">print</span>(<span class="type">RxSwift</span>.<span class="type">Resources</span>.total)</div></pre></td></tr></table></figure>
 
-①catchErrorJustReturn
-①catchErrorJustReturn
-遇到error事件的时候，就return一个值，然后结束
-
-let disposeBag = Dis
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/19/RxSwift/Grammar/Operators-错误处理操作/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1492,6 +1685,8 @@ let disposeBag = Dis
     
 
     
+
+
 
     
 
@@ -1612,17 +1807,6 @@ let disposeBag = Dis
 
           
           
-             <span id="/2017/12/19/RxSwift/Grammar/Operators-连接性操作/" class="leancloud_visitors" data-flag-title="Swift-RxSwift-连接性操作">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1645,21 +1829,30 @@ let disposeBag = Dis
       
         
           
-          连接性操作
-①publish
-②replay
-③multicast
-
-
-Connectable Observable有订阅时不开始发射事件消息，而是仅当调用它们的connect（）方法时。这样就可以等待所有我们想要的订阅者都已经订阅了以后，再开始发出事件消息，这样能保证我们想要的所有订阅者都能接收到
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/19/RxSwift/Grammar/Operators-连接性操作/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h1 id="连接性操作"><a href="#连接性操作" class="headerlink" title="连接性操作"></a>连接性操作</h1><ul>
+<li><a href="#1.1">①publish</a></li>
+<li><a href="#1.2">②replay</a></li>
+<li><a href="#1.3">③multicast</a></li>
+</ul>
+<blockquote>
+<p>Connectable Observable有订阅时不开始发射事件消息，而是仅当调用它们的connect（）方法时。这样就可以等待所有我们想要的订阅者都已经订阅了以后，再开始发出事件消息，这样能保证我们想要的所有订阅者都能接收到事件消息。其实也就是等大家都就位以后，开始发出消息</p>
+</blockquote>
+<p><span id="1.1">①publish</span></p>
+<h2 id="①publish"><a href="#①publish" class="headerlink" title="①publish"></a>①publish</h2><blockquote>
+<p>将一个正常的sequence转换成一个connectable sequence</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> intSequence = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.interval(<span class="number">1</span>, scheduler: <span class="type">MainScheduler</span>.instance)</div><div class="line">    .publish()</div><div class="line">    </div><div class="line"><span class="number">_</span> = intSequence</div><div class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>(<span class="string">"Subscription 1:, Event: \($0)"</span>) &#125;)</div><div class="line">    </div><div class="line">delay(<span class="number">2</span>) &#123; <span class="number">_</span> = intSequence.connect() &#125; <span class="comment">//相当于把事件消息推迟了两秒</span></div><div class="line">    </div><div class="line">delay(<span class="number">4</span>) &#123;</div><div class="line">    <span class="number">_</span> = intSequence</div><div class="line">        .subscribe(onNext: &#123; <span class="built_in">print</span>(<span class="string">"Subscription 2:, Event: \($0)"</span>) &#125;)</div><div class="line">&#125;</div><div class="line">    </div><div class="line">delay(<span class="number">6</span>) &#123;</div><div class="line">    <span class="number">_</span> = intSequence</div><div class="line">        .subscribe(onNext: &#123; <span class="built_in">print</span>(<span class="string">"Subscription 3:, Event: \($0)"</span>) &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="type">Subscription</span> <span class="number">1</span>:, <span class="type">Event</span>: <span class="number">0</span></div><div class="line"><span class="type">Subscription</span> <span class="number">1</span>:, <span class="type">Event</span>: <span class="number">1</span></div><div class="line"><span class="type">Subscription</span> <span class="number">2</span>:, <span class="type">Event</span>: <span class="number">1</span></div><div class="line"><span class="type">Subscription</span> <span class="number">1</span>:, <span class="type">Event</span>: <span class="number">2</span></div><div class="line"><span class="type">Subscription</span> <span class="number">2</span>:, <span class="type">Event</span>: <span class="number">2</span></div><div class="line"><span class="type">Subscription</span> <span class="number">1</span>:, <span class="type">Event</span>: <span class="number">3</span></div><div class="line"><span class="type">Subscription</span> <span class="number">3</span>:, <span class="type">Event</span>: <span class="number">3</span></div><div class="line"><span class="type">Subscription</span> <span class="number">2</span>:, <span class="type">Event</span>: <span class="number">3</span></div><div class="line"><span class="type">Subscription</span> <span class="number">1</span>:, <span class="type">Event</span>: <span class="number">4</span></div><div class="line"><span class="type">Subscription</span> <span class="number">3</span>:, <span class="type">Event</span>: <span class="number">4</span></div></pre></td></tr></table></figure>
+<p><span id="1.2">②replay</span></p>
+<h2 id="②replay"><a href="#②replay" class="headerlink" title="②replay"></a>②replay</h2><blockquote>
+<p>将一个正常的sequence转换成一个connectable sequence，然后和replaySubject相似，能接收到订阅之前的事件消息</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">let</span> intSequence = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.interval(<span class="number">1</span>, scheduler: <span class="type">MainScheduler</span>.instance)</div><div class="line">    .replay(<span class="number">5</span>)  <span class="comment">//接收到订阅之前的5条事件消息</span></div><div class="line">    </div><div class="line"><span class="number">_</span> = intSequence</div><div class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>(<span class="string">"Subscription 1:, Event: \($0)"</span>) &#125;)</div><div class="line">    </div><div class="line">delay(<span class="number">2</span>) &#123; <span class="number">_</span> = intSequence.connect() &#125;</div><div class="line">    </div><div class="line">delay(<span class="number">4</span>) &#123;</div><div class="line">    <span class="number">_</span> = intSequence</div><div class="line">        .subscribe(onNext: &#123; <span class="built_in">print</span>(<span class="string">"Subscription 2:, Event: \($0)"</span>) &#125;)</div><div class="line">&#125;</div><div class="line">    </div><div class="line">delay(<span class="number">8</span>) &#123;</div><div class="line">    <span class="number">_</span> = intSequence</div><div class="line">        .subscribe(onNext: &#123; <span class="built_in">print</span>(<span class="string">"Subscription 3:, Event: \($0)"</span>) &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><span id="1.3">③multicast</span></p>
+<h2 id="③multicast"><a href="#③multicast" class="headerlink" title="③multicast"></a>③multicast</h2><blockquote>
+<p>将一个正常的sequence转换成一个connectable sequence，并且通过特性的subject发送出去，比如PublishSubject，或者replaySubject，behaviorSubject等。不同的Subject会有不同的结果</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">let</span> subject = <span class="type">PublishSubject</span>&lt;<span class="type">Int</span>&gt;()</div><div class="line">    </div><div class="line"><span class="number">_</span> = subject</div><div class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>(<span class="string">"Subject: \($0)"</span>) &#125;)</div><div class="line">    </div><div class="line"><span class="keyword">let</span> intSequence = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.interval(<span class="number">1</span>, scheduler: <span class="type">MainScheduler</span>.instance)</div><div class="line">    .multicast(subject)</div><div class="line">    </div><div class="line"><span class="number">_</span> = intSequence</div><div class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>(<span class="string">"\tSubscription 1:, Event: \($0)"</span>) &#125;)</div><div class="line">    </div><div class="line">delay(<span class="number">2</span>) &#123; <span class="number">_</span> = intSequence.connect() &#125;</div><div class="line">    </div><div class="line">delay(<span class="number">4</span>) &#123;</div><div class="line">    <span class="number">_</span> = intSequence</div><div class="line">        .subscribe(onNext: &#123; <span class="built_in">print</span>(<span class="string">"\tSubscription 2:, Event: \($0)"</span>) &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
         
       
     </div>
@@ -1669,356 +1862,7 @@ Connectable Observable有订阅时不开始发射事件消息，而是仅当调�
 
     
 
-    
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/19/RxSwift/Grammar/Operators-过滤和条件操作符/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="千夜 QQ:738816656">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/19/RxSwift/Grammar/Operators-过滤和条件操作符/" itemprop="url">Swift-RxSwift-过滤和条件操作符</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-19T16:06:59+08:00">
-                2017-12-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/12/19/RxSwift/Grammar/Operators-过滤和条件操作符/" class="leancloud_visitors" data-flag-title="Swift-RxSwift-过滤和条件操作符">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          过滤和条件操作符①filter②distinctUntilChanged③elementAt④single⑤take⑥takeLast⑦takeWhile⑧takeUntil⑨skip⑩ skipWhile⑪skipWhileWithIndex⑫skipUntil 
-①filter 
-①filter
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/19/RxSwift/Grammar/Operators-过滤和条件操作符/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/19/RxSwift/Grammar/Operators-数学和集合操作符/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="千夜 QQ:738816656">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/19/RxSwift/Grammar/Operators-数学和集合操作符/" itemprop="url">Swift-RxSwift-Mathematical & Aggregate Operators-数学和集合操作符</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-19T16:06:59+08:00">
-                2017-12-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/12/19/RxSwift/Grammar/Operators-数学和集合操作符/" class="leancloud_visitors" data-flag-title="Swift-RxSwift-Mathematical & Aggregate Operators-数学和集合操作符">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          数学和集合操作符
-①toArray
-①②reduce
-③concat
-
-①toArray
-①toArray
-将sequence转换成一个array，并转换成单一事件信号，然后结束
-
-let disposeBag = DisposeBag()Observable.range(start: 1, cou
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/19/RxSwift/Grammar/Operators-数学和集合操作符/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
 
     
 
@@ -2048,7 +1892,7 @@ let disposeBag = DisposeBag()Observable.range(start: 1, cou
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2079,66 +1923,64 @@ let disposeBag = DisposeBag()Observable.range(start: 1, cou
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="千夜 QQ:738816656" />
-          <p class="site-author-name" itemprop="name">千夜 QQ:738816656</p>
-           
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">千夜 QQ:738816656</p>
               <p class="site-description motion-element" itemprop="description">ReactNative</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">201</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">106</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">77</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
+
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">198</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">105</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">77</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -2155,42 +1997,17 @@ let disposeBag = DisposeBag()Observable.range(start: 1, cou
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        
-# 访客数
-
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  访客数:<span id="busuanzi_value_site_uv"></span>
-</span>
-</div>
-
-
-
-
-
-<div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">千夜 QQ:738816656</span>
+
+  
 </div>
 
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
 
 
         
@@ -2210,6 +2027,8 @@ let disposeBag = DisposeBag()Observable.range(start: 1, cou
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -2244,46 +2063,54 @@ let disposeBag = DisposeBag()Observable.range(start: 1, cou
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
   
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -2314,324 +2141,13 @@ let disposeBag = DisposeBag()Observable.range(start: 1, cou
 
 
 
+
+
+
+
+
+
   
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === '') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
 
 
 
@@ -2640,114 +2156,10 @@ let disposeBag = DisposeBag()Observable.range(start: 1, cou
   
 
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("GGOhuU9q4e5a7HISgedllhyN-gzGzoHsz", "1Dlb2KyTymPIvsleHp8s02I8");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
 
   
 
+  
   
 
   
@@ -2758,3 +2170,6 @@ let disposeBag = DisposeBag()Observable.range(start: 1, cou
 
 </body>
 </html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

@@ -10,8 +10,23 @@
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
 
+<meta name="theme-color" content="#222">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
 
 
 
@@ -23,16 +38,6 @@
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 
-<script>
-    (function(){
-        if(''){
-            if (prompt('请输入文章密码') !== ''){
-                alert('密码错误！');
-                history.back();
-            }
-        }
-    })();
-</script>
 
 
 
@@ -55,38 +60,27 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Hexo, NexT" />
@@ -94,11 +88,6 @@
 
 
 
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
 
 
 
@@ -123,10 +112,11 @@
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
-    motion: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -169,8 +159,7 @@
   
 
   <div class="container sidebar-position-left 
-   page-home 
- ">
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -226,16 +215,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -256,54 +235,20 @@
         </li>
       
         
-        <li class="menu-item menu-item-read">
-          <a href="/read/" rel="section">
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            阅读榜
+            关于
           </a>
         </li>
       
 
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
-        </li>
       
     </ul>
   
 
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
   
 </nav>
 
@@ -318,6 +263,255 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/15/RxSwift/Grammar/Subject/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/15/RxSwift/Grammar/Subject/" itemprop="url">Swift-RxSwift-Subject</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T15:15:17+08:00">
+                2017-12-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Subject"><a href="#Subject" class="headerlink" title="Subject"></a>Subject</h1><blockquote>
+<p>Subject是observable和Observer之间的桥梁<br>一个Subject既是一个Obserable也是一个Observer<br>既可以发出事件，也可以监听事件<br>Subject是一个代理，它既是Observer，也是Observable。因为它是一个Observer，它可以订阅一个或多个Observable;因为它是一个Observable，它又可以被其他的Observer订阅<br>可以传递/转发作为Observer收到的值，也可以主动发射值。</p>
+</blockquote>
+<ul>
+<li>作为一个 Observer ，它可以订阅序列</li>
+<li>同时作为一个 Observable ，它可以转发或者发射数据</li>
+</ul>
+<h1 id="Subject-有以下几种"><a href="#Subject-有以下几种" class="headerlink" title="Subject 有以下几种"></a>Subject 有以下几种</h1><ul>
+<li>①PublishSubject 只发射给观察者订阅后的数据</li>
+<li>②ReplaySubject</li>
+<li>③BehaviorSubject</li>
+<li>④Variable</li>
+</ul>
+<blockquote>
+<p>PublishSubject, ReplaySubject和BehaviorSubject是不会自动发出completed事件的</p>
+</blockquote>
+<h2 id="①PublishSubject"><a href="#①PublishSubject" class="headerlink" title="①PublishSubject"></a>①PublishSubject</h2><blockquote>
+<p>当有观察者订阅 PublishSubject 时，PublishSubject 会发射订阅之后的数据给这个观察者,<strong><em>只能接收到订阅他之后发生的事件</em></strong><br>于是这里存在丢失数据的问题，如需全部数据，推荐改用 ReplaySubject<br>subject.onNext()发出onNext事件<br>对应的还有onError()和onCompleted()事件</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/Swift-RxSwift-Subject-001.png" alt="001"></p>
+<blockquote>
+<p>如果序列因为错误终止发射序列，此时 PublishSubject 就不会发射数据，只是传递这次错误事件</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> publishSubject = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"></div><div class="line">publishSubject.subscribe &#123; e <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Subscription: 1, event: \(e)"</span>)</div><div class="line">    &#125;.addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">publishSubject.on(.<span class="type">Next</span>(<span class="string">"a"</span>))</div><div class="line">publishSubject.on(.<span class="type">Next</span>(<span class="string">"b"</span>))</div><div class="line"></div><div class="line">publishSubject.subscribe &#123; e <span class="keyword">in</span> <span class="comment">/// 我们可以在这里看到，这个订阅只收到了两个数据，只有 "c" 和 "d"</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Subscription: 2, event: \(e)"</span>)</div><div class="line">    &#125;.addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">publishSubject.on(.<span class="type">Next</span>(<span class="string">"c"</span>))</div><div class="line">publishSubject.on(.<span class="type">Next</span>(<span class="string">"d"</span>))</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="keyword">let</span> subject = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line">    </div><div class="line">subject.addObserver(<span class="string">"1"</span>).addDisposableTo(disposeBag)</div><div class="line">subject.onNext(<span class="string">"🐶"</span>)</div><div class="line">subject.onNext(<span class="string">"🐱"</span>)</div><div class="line">    </div><div class="line">subject.addObserver(<span class="string">"2"</span>).addDisposableTo(disposeBag)</div><div class="line">subject.onNext(<span class="string">"🅰️"</span>)</div><div class="line">subject.onNext(<span class="string">"🅱️"</span>)</div><div class="line"></div><div class="line"><span class="type">Subscription</span>: <span class="number">1</span> <span class="type">Event</span>: next(🐶)</div><div class="line"><span class="type">Subscription</span>: <span class="number">1</span> <span class="type">Event</span>: next(🐱)</div><div class="line"><span class="type">Subscription</span>: <span class="number">1</span> <span class="type">Event</span>: next(🅰️)</div><div class="line"><span class="type">Subscription</span>: <span class="number">2</span> <span class="type">Event</span>: next(🅰️)</div><div class="line"><span class="type">Subscription</span>: <span class="number">1</span> <span class="type">Event</span>: next(🅱️)</div><div class="line"><span class="type">Subscription</span>: <span class="number">2</span> <span class="type">Event</span>: next(🅱️)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>先以PublishSubject为例来解释Subject是一个代理的含义</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"></div><div class="line">  <span class="keyword">let</span> subject = <span class="type">PublishSubject</span>&lt;<span class="type">Int</span>&gt;()</div><div class="line">  subject.subscribe(&#123;(event) <span class="keyword">in</span> </div><div class="line">      <span class="built_in">print</span> (<span class="string">"Event:\(event)"</span>)</div><div class="line">  &#125;)</div><div class="line">  </div><div class="line"> <span class="comment">//打印结果</span></div><div class="line"><span class="type">Event</span>:next(<span class="number">1</span>)</div><div class="line"><span class="type">Event</span>:next(<span class="number">2</span>)</div><div class="line"><span class="type">Event</span>:completed</div></pre></td></tr></table></figure>
+<ul>
+<li>Subject作为一个Observable提供了subscribe等方法</li>
+<li>在订阅之后，调用onNext()，向Observer发射了1、2，以及onCompleted()</li>
+</ul>
+<blockquote>
+<p>调用Subject的on系列方法主动给Observer发送值<br>Subject可以作为代理转发订阅到的结果</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">let</span> subject = <span class="type">PublishSubject</span>&lt;<span class="type">Int</span>&gt;()</div><div class="line">subject.subscribe(&#123; (event) <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Event:\(event)"</span>)</div><div class="line">&#125;)</div><div class="line">   </div><div class="line"><span class="keyword">let</span> reveseSubject = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.create(&#123; </div><div class="line"> (observer) -&gt; <span class="type">Disposable</span> <span class="keyword">in</span></div><div class="line">    observer.onNext(<span class="number">1</span>)</div><div class="line">    observer.onNext(<span class="number">2</span>)</div><div class="line">    observer.onCompleted()</div><div class="line">        </div><div class="line">    <span class="keyword">return</span> <span class="type">Disposables</span>.create()</div><div class="line">&#125;)</div><div class="line">   </div><div class="line">reveseSubject.subscribe(subject)</div></pre></td></tr></table></figure>
+<ul>
+<li>subject订阅了reveseSubject，并将结果转发给了Observer</li>
+<li>Observer订阅subject时,不会收到订阅之前subject的值</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">let</span> subject = <span class="type">PublishSubject</span>&lt;<span class="type">Int</span>&gt;()</div><div class="line"> subject.onNext(<span class="number">0</span>)</div><div class="line"> subject.subscribe(&#123;</div><div class="line">  (event) <span class="keyword">in</span></div><div class="line">	 <span class="built_in">print</span>(<span class="string">"Event:\(event)"</span>)</div><div class="line">&#125;)</div><div class="line">    </div><div class="line">subject.onNext(<span class="number">1</span>)</div><div class="line">subject.onNext(<span class="number">2</span>)</div><div class="line">subject.onCompleted()</div><div class="line"></div><div class="line"><span class="comment">// 打印结果</span></div><div class="line"><span class="type">Event</span>:next(<span class="number">1</span>)</div><div class="line"><span class="type">Event</span>:next(<span class="number">2</span>)</div><div class="line"><span class="type">Event</span>:completed</div><div class="line">observer无法接收到<span class="number">0</span>这个值</div></pre></td></tr></table></figure>
+<h2 id="②ReplaySubject"><a href="#②ReplaySubject" class="headerlink" title="②ReplaySubject"></a>②ReplaySubject</h2><blockquote>
+<p>和 PushblishSubject 不同，不论观察者什么时候订阅， ReplaySubject 都会发射完整的数据给观察者<br>ReplaySubject和PublishSubject不同的是，Observer有可能接收到订阅之前的值</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/Swift-RxSwift-Subject-003.png" alt="003"></p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> replaySubject = <span class="type">ReplaySubject</span>&lt;<span class="type">String</span>&gt;.create(bufferSize: <span class="number">2</span>)</div><div class="line"></div><div class="line">replaySubject.subscribe &#123; e <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Subscription: 1, event: \(e)"</span>)</div><div class="line">    &#125;.addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">replaySubject.on(.<span class="type">Next</span>(<span class="string">"a"</span>))</div><div class="line">replaySubject.on(.<span class="type">Next</span>(<span class="string">"b"</span>))</div><div class="line"></div><div class="line">replaySubject.subscribe &#123; e <span class="keyword">in</span> <span class="comment">/// 我们可以在这里看到，这个订阅收到了四个数据</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Subscription: 2, event: \(e)"</span>)</div><div class="line">    &#125;.addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">replaySubject.on(.<span class="type">Next</span>(<span class="string">"c"</span>))</div><div class="line">replaySubject.on(.<span class="type">Next</span>(<span class="string">"d"</span>))</div></pre></td></tr></table></figure>
+<blockquote>
+<p>ReplaySubject举例分析</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">let</span> subject = <span class="type">ReplaySubject</span>.create(bufferSize: <span class="number">1</span>)</div><div class="line">  subject.onNext(<span class="number">0</span>)</div><div class="line">  subject.subscribe(&#123;</div><div class="line">   (event) <span class="keyword">in</span> </div><div class="line">   <span class="built_in">print</span>(<span class="string">"Event:\(event)"</span>)</div><div class="line">  &#125;)</div><div class="line">  subject.onNext(<span class="number">1</span>)</div><div class="line">  subject.onNext(<span class="number">2</span>)</div><div class="line">  subject.onCompleted()</div><div class="line">  </div><div class="line">  <span class="comment">//打印结果</span></div><div class="line">  <span class="type">Event</span>:next(<span class="number">0</span>)</div><div class="line"><span class="type">Event</span>:next(<span class="number">1</span>)</div><div class="line"><span class="type">Event</span>:next(<span class="number">2</span>)</div><div class="line"><span class="type">Event</span>:completed</div></pre></td></tr></table></figure>
+<ul>
+<li>ReplaySubject具有重放(replay)的功能，replay的个数可以通过参数指定。</li>
+<li>可以将其理解为缓存的效果。</li>
+</ul>
+<blockquote>
+<p>一般我们使用ReplaySubject的时候，都是先发射，后订阅，然后通过指定缓存的大小，可以获取对应的值。(注意：不考虑Error和Completed)</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> subject = <span class="type">ReplaySubject</span>&lt;<span class="type">Int</span>&gt;.create(bufferSize: <span class="number">1</span>)</div><div class="line"></div><div class="line">subject.onNext(<span class="number">0</span>)</div><div class="line">subject.onNext(<span class="number">1</span>)</div><div class="line">subject.onNext(<span class="number">2</span>)</div><div class="line"></div><div class="line">subject.subscribe(&#123;</div><div class="line"> (event) <span class="keyword">in</span> </div><div class="line"> <span class="built_in">print</span> (<span class="string">"Event:\(event)"</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">//指定了bufferSize等于1，所以只缓存了最新的值，打印结果</span></div><div class="line"><span class="type">Event</span>:next(<span class="number">2</span>)</div><div class="line"><span class="type">Event</span>:completed</div></pre></td></tr></table></figure>
+<ul>
+<li>需要缓存所有值的时候,可以调用createUnbounded()方法</li>
+</ul>
+<h2 id="③BehaviorSubject"><a href="#③BehaviorSubject" class="headerlink" title="③BehaviorSubject"></a>③BehaviorSubject</h2><blockquote>
+<p>当一个观察者订阅一个 BehaviorSubject ，它会发送原序列最近的那个值（如果原序列还有没发射值那就用一个默认值代替），之后继续发射原序列的值</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/Swift-RxSwift-Subject-004.png" alt="004"></p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> behaviorSubject = <span class="type">BehaviorSubject</span>(value: <span class="string">"z"</span>)</div><div class="line">behaviorSubject.subscribe &#123; e <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Subscription: 1, event: \(e)"</span>)</div><div class="line">    &#125;.addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">behaviorSubject.on(.<span class="type">Next</span>(<span class="string">"a"</span>))</div><div class="line">behaviorSubject.on(.<span class="type">Next</span>(<span class="string">"b"</span>))</div><div class="line"></div><div class="line">behaviorSubject.subscribe &#123; e <span class="keyword">in</span> <span class="comment">/// 我们可以在这里看到，这个订阅收到了四个数据</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Subscription: 2, event: \(e)"</span>)</div><div class="line">    &#125;.addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">behaviorSubject.on(.<span class="type">Next</span>(<span class="string">"c"</span>))</div><div class="line">behaviorSubject.on(.<span class="type">Next</span>(<span class="string">"d"</span>))</div><div class="line">behaviorSubject.on(.<span class="type">Completed</span>)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>PublishSubject, ReplaySubject和BehaviorSubject是不会自动发出completed事件的</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="keyword">let</span> subject = <span class="type">BehaviorSubject</span>(value: <span class="string">"🔴"</span>)</div><div class="line">    </div><div class="line">subject.addObserver(<span class="string">"1"</span>).addDisposableTo(disposeBag)</div><div class="line">subject.onNext(<span class="string">"🐶"</span>)</div><div class="line">subject.onNext(<span class="string">"🐱"</span>)</div><div class="line">    </div><div class="line">subject.addObserver(<span class="string">"2"</span>).addDisposableTo(disposeBag)</div><div class="line">subject.onNext(<span class="string">"🅰️"</span>)</div><div class="line">subject.onNext(<span class="string">"🅱️"</span>)</div><div class="line">    </div><div class="line">subject.addObserver(<span class="string">"3"</span>).addDisposableTo(disposeBag)</div><div class="line">subject.onNext(<span class="string">"🍐"</span>)</div><div class="line">subject.onNext(<span class="string">"🍊"</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="type">Subscription</span>: <span class="number">1</span> <span class="type">Event</span>: next(🔴)</div><div class="line"><span class="type">Subscription</span>: <span class="number">1</span> <span class="type">Event</span>: next(🐶)</div><div class="line"><span class="type">Subscription</span>: <span class="number">1</span> <span class="type">Event</span>: next(🐱)</div><div class="line"><span class="type">Subscription</span>: <span class="number">2</span> <span class="type">Event</span>: next(🐱) <span class="comment">//订阅之前的最后一个事件</span></div><div class="line"><span class="type">Subscription</span>: <span class="number">1</span> <span class="type">Event</span>: next(🅰️)</div><div class="line"><span class="type">Subscription</span>: <span class="number">2</span> <span class="type">Event</span>: next(🅰️)</div><div class="line"><span class="type">Subscription</span>: <span class="number">1</span> <span class="type">Event</span>: next(🅱️)</div><div class="line"><span class="type">Subscription</span>: <span class="number">2</span> <span class="type">Event</span>: next(🅱️)</div><div class="line"><span class="type">Subscription</span>: <span class="number">3</span> <span class="type">Event</span>: next(🅱️) <span class="comment">//订阅之前的最后一个事件</span></div><div class="line"><span class="type">Subscription</span>: <span class="number">1</span> <span class="type">Event</span>: next(🍐)</div><div class="line"><span class="type">Subscription</span>: <span class="number">3</span> <span class="type">Event</span>: next(🍐)</div><div class="line"><span class="type">Subscription</span>: <span class="number">2</span> <span class="type">Event</span>: next(🍐)</div><div class="line"><span class="type">Subscription</span>: <span class="number">1</span> <span class="type">Event</span>: next(🍊)</div><div class="line"><span class="type">Subscription</span>: <span class="number">3</span> <span class="type">Event</span>: next(🍊)</div><div class="line"><span class="type">Subscription</span>: <span class="number">2</span> <span class="type">Event</span>: next(🍊)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>BehaviorSubject类似于ReplaySubject具有缓存能力，但是略有不同<br>只缓存一个最新值，类似ReplaySubject.create(bufferSize: 1)<br>需要提供默认值</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> behaviorSubject = <span class="type">BehaviorSubject</span>&lt;<span class="type">Int</span>&gt;(value: <span class="number">1</span>)</div><div class="line">behaviorSubject.subscribe(&#123; (event) <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Event:\(event)"</span>)</div><div class="line">&#125;)</div><div class="line"><span class="comment">//打印结果</span></div><div class="line"><span class="type">Event</span>:next(<span class="number">1</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>使用BehaviorSubject有一点好处，可以确定当Observer订阅时，至少可以收到最新的一个值</li>
+</ul>
+<h2 id="④Variable"><a href="#④Variable" class="headerlink" title="④Variable"></a>④Variable</h2><blockquote>
+<p>Variable 是 BehaviorSubject 的一个封装<br>相比 BehaviorSubject ，它不会因为错误终止也不会正常终止，是一个无限序列<br>Variable是BehaviorSubject一个包装箱，就像是一个箱子一样，使用的时候需要调用asObservable()拆箱，里面的value是一个BehaviorSubject，他不会发出error事件，但是会自动发出completed事件</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> variable = <span class="type">Variable</span>(<span class="string">"z"</span>)</div><div class="line">variable.asObservable().subscribe &#123; e <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Subscription: 1, event: \(e)"</span>)</div><div class="line">    &#125;.addDisposableTo(disposeBag)</div><div class="line">variable.value = <span class="string">"a"</span></div><div class="line">variable.value = <span class="string">"b"</span></div><div class="line">variable.asObservable().subscribe &#123; e <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Subscription: 1, event: \(e)"</span>)</div><div class="line">    &#125;.addDisposableTo(disposeBag)</div><div class="line">variable.value = <span class="string">"c"</span></div><div class="line">variable.value = <span class="string">"d"</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>最常用的 Subject 应该就是 Variable<br>Variable 很适合做数据源，比如作为一个 UITableView 的数据源，我们可以在这里保留一个完整的 Array 数据，每一个订阅者都可以获得这个 Array</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> elements = <span class="type">Variable</span>&lt;[<span class="type">String</span>]&gt;([])</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Variable和BehaviorSubject又很相似，Variable是BehaviorSubject的一个封装，同样具备了缓存最新值和提供默认值的能力但是Variable没有on系列方法，只提供了value属性。<br>直接对value进行set等同于调用了onNext()方法。<br>这表明了Variable不会发射error也不会发射completed<br>在Variable被销毁的时候会调用发射completed给Observer</p>
+<p>在订阅Variable的时候，我们无法直接调用subscribe方法，需要先调用asObservable()方法</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">let</span> variable = <span class="type">Variable</span>&lt;<span class="type">Int</span>&gt;(<span class="number">1</span>)</div><div class="line">variable.asObservable().subscribe(&#123; (event) <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"Event:\(event)"</span>)</div><div class="line">&#125;)</div><div class="line">variable.value = <span class="number">2</span></div><div class="line"></div><div class="line"><span class="comment">//结果</span></div><div class="line"><span class="type">Event</span>:next(<span class="number">1</span>)</div><div class="line"><span class="type">Event</span>:next(<span class="number">2</span>)</div><div class="line"><span class="type">Event</span>:completed</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Variable可以用来储存数据，因为我们可以拥有value的get和set方法。比如</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">let</span> variable = <span class="type">Variable</span>(<span class="number">1</span>)</div><div class="line"><span class="built_in">print</span>(<span class="string">"Value: \(variable.value)"</span>)</div><div class="line">variable.value = <span class="number">2</span></div><div class="line"><span class="built_in">print</span>(<span class="string">"Value: \(variable.value)"</span>)</div><div class="line"></div><div class="line"><span class="comment">//打印</span></div><div class="line"><span class="comment">//这是BehaviorSubject不具备的</span></div><div class="line">  	<span class="type">Value</span>: <span class="number">1</span></div><div class="line">   <span class="type">Value</span>: <span class="number">2</span></div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -414,16 +608,221 @@
 
           
           
-             <span id="/2017/12/15/RxSwift/Grammar/创建序列Observable/" class="leancloud_visitors" data-flag-title="Swift-RxSwift-创建序列Observable">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Rx-几种创建方式"><a href="#Rx-几种创建方式" class="headerlink" title="Rx 几种创建方式"></a>Rx 几种创建方式</h1><ul>
+<li>asObservable 返回一个序列</li>
+<li>create 使用 Swift 闭包的方式创建序列</li>
+<li>deferred 只有在有观察者订阅时，才去创建序列</li>
+<li>empty 创建一个空的序列，只发射一个 .Completed</li>
+<li>error 创建一个发射 error 终止的序列</li>
+<li>toObservable 使用 SequenceType 创建序列</li>
+<li>interval 创建一个每隔一段时间就发射的递增序列</li>
+<li>never 不创建序列，也不发送通知</li>
+<li>just 只创建包含一个元素的序列。换言之，只发送一个值和 .Completed</li>
+<li>of 通过一组元素创建一个序列</li>
+<li>range 创建一个有范围的递增序列</li>
+<li>repeatElement 创建一个发射重复值的序列</li>
+<li>timer 创建一个带延迟的序列</li>
+</ul>
+<h1 id="create"><a href="#create" class="headerlink" title="create"></a>create</h1><blockquote>
+<p>使用 Swift 闭包的方式创建序列，这里创建了一个 Just 的示例</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> myJust = &#123; (singleElement: <span class="type">Int</span>) -&gt; <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt; <span class="keyword">in</span></div><div class="line">    <span class="keyword">return</span> <span class="type">Observable</span>.create &#123; observer <span class="keyword">in</span></div><div class="line">        observer.on(.<span class="type">Next</span>(singleElement))</div><div class="line">        observer.on(.<span class="type">Completed</span>)</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> <span class="type">NopDisposable</span>.instance</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="number">_</span> = myJust(<span class="number">5</span>)</div><div class="line">    .subscribe &#123; event <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="deferred"><a href="#deferred" class="headerlink" title="deferred"></a>deferred</h1><blockquote>
+<p>只有在有观察者订阅时，才去创建序列</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">  let deferredSequence: Observable&lt;Int&gt; = Observable.deferred &#123;</div><div class="line">    print(&quot;creating&quot;)</div><div class="line">    return Observable.create &#123; observer in</div><div class="line">        print(&quot;emmiting&quot;)</div><div class="line">        observer.on(.Next(0))</div><div class="line">        observer.on(.Next(1))</div><div class="line">        observer.on(.Next(2))</div><div class="line">        </div><div class="line">        return NopDisposable.instance</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">_ = deferredSequence</div><div class="line">    .subscribe &#123; event in</div><div class="line">        print(event)</div><div class="line">&#125;</div><div class="line"></div><div class="line">_ = deferredSequence</div><div class="line">    .subscribe &#123; event in</div><div class="line">        print(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="empty"><a href="#empty" class="headerlink" title="empty"></a>empty</h1><blockquote>
+<p>创建一个空的序列，只发射一个 .Completed：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> emptySequence = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.empty()</div><div class="line"></div><div class="line"><span class="number">_</span> = emptySequence</div><div class="line">    .subscribe &#123; event <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="error"><a href="#error" class="headerlink" title="error"></a>error</h1><blockquote>
+<p>创建一个发射 error 终止的序列</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> error = <span class="type">NSError</span>(domain: <span class="string">"Test"</span>, code: -<span class="number">1</span>, userInfo: <span class="literal">nil</span>)</div><div class="line"></div><div class="line"><span class="keyword">let</span> erroredSequence = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.error(error)</div><div class="line"></div><div class="line"><span class="number">_</span> = erroredSequence</div><div class="line">    .subscribe &#123; event <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="toObservable"><a href="#toObservable" class="headerlink" title="toObservable"></a>toObservable</h1><blockquote>
+<p>使用 SequenceType 创建序列：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> sequenceFromArray = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>].toObservable()</div><div class="line"></div><div class="line"><span class="number">_</span> = sequenceFromArray</div><div class="line">    .subscribe &#123; event <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="interval"><a href="#interval" class="headerlink" title="interval"></a>interval</h1><blockquote>
+<p>创建一个每隔一段时间就发射的递增序列：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> intervalSequence = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.interval(<span class="number">3</span>, scheduler: <span class="type">MainScheduler</span>.instance)</div><div class="line"></div><div class="line"><span class="number">_</span> = intervalSequence.subscribe &#123; event <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="never"><a href="#never" class="headerlink" title="never"></a>never</h1><blockquote>
+<p>不创建序列，也不发送通知：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> neverSequence = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.never()</div><div class="line"></div><div class="line"><span class="number">_</span> = neverSequence</div><div class="line">    .subscribe &#123; <span class="number">_</span> <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(<span class="string">"这句话永远不会打出来."</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="just"><a href="#just" class="headerlink" title="just"></a>just</h1><blockquote>
+<p>只创建包含一个元素的序列。换言之，只发送一个值和 .Completed：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   et singleElementSequence = <span class="type">Observable</span>.just(<span class="number">32</span>)</div><div class="line"></div><div class="line"><span class="number">_</span> = singleElementSequence</div><div class="line">    .subscribe &#123; event <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="of"><a href="#of" class="headerlink" title="of"></a>of</h1><blockquote>
+<p>通过一组元素创建一个序列：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> sequenceOfElements<span class="comment">/* : Observable&lt;Int&gt; */</span> = <span class="type">Observable</span>.of(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>)</div><div class="line"></div><div class="line"><span class="number">_</span> = sequenceOfElements</div><div class="line">    .subscribe &#123; event <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="range"><a href="#range" class="headerlink" title="range"></a>range</h1><blockquote>
+<p>创建一个有范围的递增序列：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> rangeSequence = <span class="type">Observable</span>.range(start: <span class="number">1</span>, <span class="built_in">count</span>: <span class="number">10</span>)</div><div class="line"></div><div class="line"><span class="number">_</span> = rangeSequence.subscribe &#123; event <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="repeatElement"><a href="#repeatElement" class="headerlink" title="repeatElement"></a>repeatElement</h1><blockquote>
+<p>创建一个发射重复值的序列：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> repeatElementSequence = <span class="type">Observable</span>.repeatElement(<span class="number">1</span>)</div><div class="line"></div><div class="line"><span class="number">_</span> = repeatElementSequence.subscribe &#123; event <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="timer"><a href="#timer" class="headerlink" title="timer"></a>timer</h1><blockquote>
+<p>创建一个带延迟的序列：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> timerSequence = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.timer(<span class="number">1</span>, period: <span class="number">1</span>, scheduler: <span class="type">MainScheduler</span>.instance)</div><div class="line"></div><div class="line"><span class="number">_</span> = timerSequence.subscribe &#123; event <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/15/RxSwift/Grammar/简介以及简单学习使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/15/RxSwift/Grammar/简介以及简单学习使用/" itemprop="url">Swift-RxSwift-简介以及简单学习使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T10:28:28+08:00">
+                2017-12-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
           
 
           
@@ -447,21 +846,49 @@
       
         
           
-          Rx 几种创建方式
-asObservable 返回一个序列
-create 使用 Swift 闭包的方式创建序列
-deferred 只有在有观察者订阅时，才去创建序列
-empty 创建一个空的序列，只发射一个 .Completed
-error 创建一个发射 error 终止的序列
-toObservab
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/15/RxSwift/Grammar/创建序列Observable/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h1 id="Swift-RxSwift-简介以及简单学习使用"><a href="#Swift-RxSwift-简介以及简单学习使用" class="headerlink" title="Swift-RxSwift-简介以及简单学习使用"></a>Swift-RxSwift-简介以及简单学习使用</h1><blockquote>
+<p><a href="https://github.com/ReactiveX/RxSwift/blob/master/Documentation/Why.md" target="_blank" rel="external">RxSwift 项目文档中 Why</a> 已有详细介绍</p>
+</blockquote>
+<h2 id="Bindings"><a href="#Bindings" class="headerlink" title="Bindings"></a>Bindings</h2><blockquote>
+<p>[RxWhy] -&gt; [Bindings] -&gt; [BindingsViewController.swift]</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">Observable</span>.combineLatest(firstName.rx_text, lastName.rx_text) &#123; $<span class="number">0</span> + <span class="string">" "</span> + $<span class="number">1</span> &#125; <span class="comment">// ①</span></div><div class="line">          .<span class="built_in">map</span> &#123; <span class="string">"Greeting \($0)"</span> &#125;                                             <span class="comment">// ②</span></div><div class="line">          .bindTo(greetingLabel.rx_text)                                        <span class="comment">// ③</span></div></pre></td></tr></table></figure>
+<ul>
+<li>将 firstName 和 lastName 的 text 属性结合起来，并进行合并处理，也就是 $0 + “ “ + $1 这部分，用空格将两个值合并起来作为结果传递给后面使用</li>
+<li>使用 map 的方法，将上一步得到值前面加上一个 Greeting ，并将该值传递给后面使用</li>
+<li>bindTo 就是绑定，将上一步的值绑定到 greetingLabel 的 text</li>
+</ul>
+<blockquote>
+<p>代码就是实时的执行</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">greetingLabel.text = <span class="string">"Greeting "</span> + firstName.text + <span class="string">" "</span> + lastName.text</div></pre></td></tr></table></figure>
+<ul>
+<li>要求是实时</li>
+<li>每当 fisrtName.text 或者 lastName.text 改变时， greetingLabel.text 都要随之改变</li>
+</ul>
+<h2 id="ContentOffset"><a href="#ContentOffset" class="headerlink" title="ContentOffset"></a>ContentOffset</h2><blockquote>
+<p>经常通过 delegate 处理 scrollView 的 contentOffset 变化问题</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">scrollViewDidScroll</span><span class="params">(scrollView: UIScrollView)</span></span> &#123;</div><div class="line">    <span class="keyword">self</span>.title = <span class="string">"contentOffset.x = \(scrollView.contentOffset.y)"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>可能就和关联的逻辑分家了，内聚性啊…而且多个 scrollView ，还要做额外的判断处理，复杂性可想而知<br>也有写过通过 closure 来解决的，其实可以认为 Rx 自带了这些功能（而且更强大<br>[RxWhy] -&gt; [ContentOffset] -&gt; [ContentOffsetViewController.swift]<br>Note: 在使用了 rx_contentOffset 后，最好不要去更改 delegate<br>同样 button 也有类似的功能</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">tableView.rx_contentOffset</div><div class="line">  .<span class="built_in">map</span> &#123; $<span class="number">0</span>.y &#125;</div><div class="line">  .subscribeNext &#123; [<span class="keyword">unowned</span> <span class="keyword">self</span>] <span class="keyword">in</span></div><div class="line">      <span class="keyword">self</span>.title = <span class="string">"contentOffset.x = \($0)"</span></div><div class="line">  &#125;.addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<h2 id="Tap"><a href="#Tap" class="headerlink" title="Tap"></a>Tap</h2><blockquote>
+<p>button 的点击事件是一个很棘手的问题了，建立一个 target ，同时还使用的带字符串的 Select，button 的点击也和响应逻辑分家了<br>处理方式会有两个问题</p>
+</blockquote>
+<ul>
+<li>使用了带 String 的 Target</li>
+<li>点击的关联事件代码和处理的逻辑分开了</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">button.addTarget(<span class="keyword">self</span>, action: <span class="string">"tapButton"</span>, forControlEvents: .<span class="type">TouchDragInside</span>)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Rx 已经提供了 closure 的功能</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">button.rx_tap</div><div class="line"> .subscribeNext &#123;</div><div class="line">     <span class="built_in">print</span>(<span class="string">"Tap"</span>)</div><div class="line"> &#125;.addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<p><a href="http://t.swift.gg/d/2-rxswift" target="_blank" rel="external">资料来源</a></p>
+
+          
         
       
     </div>
@@ -470,6 +897,8 @@ toObservab
     
 
     
+
+
 
     
 
@@ -601,17 +1030,6 @@ toObservab
 
           
           
-             <span id="/2017/12/14/Swift/UIKit/UIImagePickerController/" class="leancloud_visitors" data-flag-title="Swift-UIKit-UIImagePickerController">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -634,16 +1052,9 @@ toObservab
       
         
           
-          http://blog.csdn.net/qq_14920635/article/details/51472057
+            <p><a href="http://blog.csdn.net/qq_14920635/article/details/51472057" target="_blank" rel="external">http://blog.csdn.net/qq_14920635/article/details/51472057</a></p>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/14/Swift/UIKit/UIImagePickerController/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -652,6 +1063,8 @@ toObservab
     
 
     
+
+
 
     
 
@@ -783,17 +1196,6 @@ toObservab
 
           
           
-             <span id="/2017/12/14/Swift/UIKit/NSAttributedString/" class="leancloud_visitors" data-flag-title="Swift-UIKit-NSAttributedString">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -816,16 +1218,9 @@ toObservab
       
         
           
-          http://blog.csdn.net/qq_14920635/article/details/76318309
+            <p><a href="http://blog.csdn.net/qq_14920635/article/details/76318309" target="_blank" rel="external">http://blog.csdn.net/qq_14920635/article/details/76318309</a></p>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/14/Swift/UIKit/NSAttributedString/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -834,6 +1229,8 @@ toObservab
     
 
     
+
+
 
     
 
@@ -954,17 +1351,6 @@ toObservab
 
           
           
-             <span id="/2017/12/14/Swift/Func/Swift-Func-Mirror-反射/" class="leancloud_visitors" data-flag-title="Swift-Func-Mirror-反射">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -987,16 +1373,9 @@ toObservab
       
         
           
-          http://blog.csdn.net/qq_14920635/article/details/77676231
+            <p><a href="http://blog.csdn.net/qq_14920635/article/details/77676231" target="_blank" rel="external">http://blog.csdn.net/qq_14920635/article/details/77676231</a></p>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/14/Swift/Func/Swift-Func-Mirror-反射/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1005,6 +1384,8 @@ toObservab
     
 
     
+
+
 
     
 
@@ -1125,17 +1506,6 @@ toObservab
 
           
           
-             <span id="/2017/12/14/Swift/Func/Swift-Func-正则表达式/" class="leancloud_visitors" data-flag-title="Swift-Func-正则表达式">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1158,16 +1528,17 @@ toObservab
       
         
           
-          #常用的正则表达式方式
-在NSpredicate中使用   let email = "lifusc464@qq.com"  let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]&#123;2,4&#125;"  let predicate 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/14/Swift/Func/Swift-Func-正则表达式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>#常用的正则表达式方式</p>
+<h2 id="在NSpredicate中使用"><a href="#在NSpredicate中使用" class="headerlink" title="在NSpredicate中使用"></a>在NSpredicate中使用</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> email = <span class="string">"lifusc464@qq.com"</span>  </div><div class="line"><span class="keyword">let</span> regex = <span class="string">"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]&#123;2,4&#125;"</span>  </div><div class="line"><span class="keyword">let</span> predicate = <span class="type">NSPredicate</span>(format: <span class="string">"SELF MATCHES %@"</span>, regex)  </div><div class="line"><span class="keyword">let</span> isValid = predicate.evaluate(with: email)  </div><div class="line"><span class="built_in">print</span>(isValid ? <span class="string">"正确的邮箱地址"</span> : <span class="string">"错误的邮箱地址"</span>)</div></pre></td></tr></table></figure>
+<h2 id="利用String的RangeOfString-option-直接查找"><a href="#利用String的RangeOfString-option-直接查找" class="headerlink" title="利用String的RangeOfString: option: 直接查找"></a>利用String的RangeOfString: option: 直接查找</h2><blockquote>
+<p>正则表达判断是否含有结果值 </p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="comment">/** </span></div><div class="line"><span class="comment"> 正则表达判断是否含有结果值 </span></div><div class="line"><span class="comment"> - parameter pattern: 一个字符串类型的正则表达式 </span></div><div class="line"><span class="comment"> - parameter str: 需要比较判断的对象 </span></div><div class="line"><span class="comment"> - returns: 返回布尔值判断结果 </span></div><div class="line"><span class="comment"> - warning: 注意匹配到结果的话就会返回true，没有匹配到结果就会返回false </span></div><div class="line"><span class="comment"> */</span>  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">regex</span>(<span class="title">pattern</span>:<span class="title">String</span>, <span class="title">str</span>:<span class="title">String</span>) -&gt; <span class="title">Bool</span> </span>&#123;  </div><div class="line">    <span class="keyword">let</span> regex = <span class="keyword">try</span>! <span class="type">NSRegularExpression</span>(pattern: pattern, options:[<span class="type">NSRegularExpression</span>.<span class="type">Options</span>.caseInsensitive])  </div><div class="line">    <span class="keyword">let</span> resultNum = regex.numberOfMatches(<span class="keyword">in</span>: str, options: <span class="type">NSRegularExpression</span>.<span class="type">MatchingOptions</span>(rawValue: <span class="number">0</span>) , range: <span class="type">NSMakeRange</span>(<span class="number">0</span>, str.characters.<span class="built_in">count</span>))  </div><div class="line">    <span class="keyword">if</span> resultNum&gt;=<span class="number">1</span> &#123;  </div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p> 正则表达式获取目的值</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="comment">/** </span></div><div class="line"><span class="comment"> 正则表达式获取目的值 </span></div><div class="line"><span class="comment"> - parameter pattern: 一个字符串类型的正则表达式 </span></div><div class="line"><span class="comment"> - parameter str: 需要比较判断的对象 </span></div><div class="line"><span class="comment"> - imports: 这里子串的获取先转话为NSString的[以后处理结果含NS的还是可以转换为NS前缀的方便] </span></div><div class="line"><span class="comment"> - returns: 返回目的字符串结果值数组(目前将String转换为NSString获得子串方法较为容易) </span></div><div class="line"><span class="comment"> - warning: 注意匹配到结果的话就会返回true，没有匹配到结果就会返回false </span></div><div class="line"><span class="comment"> */</span>  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">regexGetSub</span>(<span class="title">pattern</span>:<span class="title">String</span>, <span class="title">str</span>:<span class="title">String</span>) -&gt; [<span class="title">String</span>] </span>&#123;  </div><div class="line">    <span class="keyword">var</span> subStr = [<span class="type">String</span>]()  </div><div class="line">    <span class="keyword">let</span> regex = <span class="keyword">try</span>! <span class="type">NSRegularExpression</span>(pattern: pattern, options:[<span class="type">NSRegularExpression</span>.<span class="type">Options</span>.caseInsensitive])  </div><div class="line">    <span class="keyword">let</span> results = regex.matches(<span class="keyword">in</span>: str, options: <span class="type">NSRegularExpression</span>.<span class="type">MatchingOptions</span>.<span class="keyword">init</span>(rawValue: <span class="number">0</span>), range: <span class="type">NSMakeRange</span>(<span class="number">0</span>, str.characters.<span class="built_in">count</span>))  </div><div class="line">    <span class="comment">//解析出子串  </span></div><div class="line">    <span class="keyword">for</span>  rst <span class="keyword">in</span> results &#123;  </div><div class="line">        <span class="keyword">let</span> nsStr = str <span class="keyword">as</span>  <span class="type">NSString</span>  <span class="comment">//可以方便通过range获取子串  </span></div><div class="line">        subStr.append(nsStr.substring(with: rst.range))  </div><div class="line">        <span class="comment">//str.substring(with: Range&lt;String.Index&gt;) //本应该用这个的，可以无法直接获得参数，必须自己手动获取starIndex 和 endIndex作为区间  </span></div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">return</span> subStr  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
         
       
     </div>
@@ -1176,6 +1547,8 @@ toObservab
     
 
     
+
+
 
     
 
@@ -1296,17 +1669,6 @@ toObservab
 
           
           
-             <span id="/2017/12/14/Swift/Func/Swift-Func-使用iconfont图标/" class="leancloud_visitors" data-flag-title="Swift-Func-使用iconfont图标">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1329,16 +1691,9 @@ toObservab
       
         
           
-          http://blog.csdn.net/qq_14920635/article/details/78408761
+            <p><a href="http://blog.csdn.net/qq_14920635/article/details/78408761" target="_blank" rel="external">http://blog.csdn.net/qq_14920635/article/details/78408761</a></p>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/14/Swift/Func/Swift-Func-使用iconfont图标/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1347,6 +1702,8 @@ toObservab
     
 
     
+
+
 
     
 
@@ -1478,17 +1835,6 @@ toObservab
 
           
           
-             <span id="/2017/12/14/Swift/UIKit/NSNotificationCenter-简介/" class="leancloud_visitors" data-flag-title="Swift-UIKit-NSNotificationCenter-简介">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1511,19 +1857,23 @@ toObservab
       
         
           
-          NSNotificationCenter
-如果被通知对象创建了，那么执行完发送通知之后就会执行被通知的selector的方法，之后再回来执行后一行代码通知一般在mode与View需要交流（传递数据）时使用，或者也可以用于多线程的消息传递，也可是其他的信息传递,最常用的场景是页面值的回传
-
-注册通知
-
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/14/Swift/UIKit/NSNotificationCenter-简介/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h1 id="NSNotificationCenter"><a href="#NSNotificationCenter" class="headerlink" title="NSNotificationCenter"></a>NSNotificationCenter</h1><blockquote>
+<p>如果被通知对象创建了，那么执行完发送通知之后就会执行被通知的selector的方法，之后再回来执行后一行代码<br>通知一般在mode与View需要交流（传递数据）时使用，或者也可以用于多线程的消息传递，也可是其他的信息传递,最常用的场景是页面值的回传</p>
+</blockquote>
+<h2 id="注册通知"><a href="#注册通知" class="headerlink" title="注册通知"></a>注册通知</h2><blockquote>
+<p>参数：第一个是响应被通知的对象，一般是self， selector:一个自定义方法，实现得到通知后的操作（如果使用闭包的方法，就在回调中实现），<br>name:通知的名字（注意注册通知和发送通知必须一致才能够响应通知），<br>object:发通知的对象，如果填nil则表示接受所有通知，如果填上具体的对象，则是1对1的通知。<br>建议：如果通知多可以单独写一个方法放通知（调用第二个方法），如果通知比较少建议使用第一种，再实现其selector方法，注册通知是在需要被通知的类里写</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">NSNotificationCenter</span>.defaultCenter().addObserver(<span class="keyword">self</span>, selector: #selector(<span class="type">TiltleNotification</span>), name: <span class="string">"TiltleNotification"</span>, object: <span class="literal">nil</span>)<span class="comment">//注册了一个名字叫做TiltleNotification</span></div></pre></td></tr></table></figure>
+<h2 id="发送通知post"><a href="#发送通知post" class="headerlink" title="发送通知post"></a>发送通知post</h2><blockquote>
+<p>在需要通知的类（即需要传信息出去的类）中使用通知传递消息<br>name也可以这样写:NSNotification.Name.init(“TiltleNotification”) </p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">NSNotificationCenter</span>.defaultCenter().postNotificationName(<span class="type">NSNotification</span>.<span class="type">Name</span>(<span class="string">"TiltleNotification"</span>), object: <span class="keyword">self</span>, userInfo: [<span class="string">"success"</span>:<span class="literal">true</span>,<span class="string">"img"</span>:<span class="type">UIImage</span>(named:<span class="string">"image"</span>])</div></pre></td></tr></table></figure>
+<h2 id="在完成通知中的选择器方法"><a href="#在完成通知中的选择器方法" class="headerlink" title="在完成通知中的选择器方法"></a>在完成通知中的选择器方法</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">pushBookTiltleNotification</span><span class="params">(notification:NSNotification)</span></span>&#123; <span class="comment">//记得参数加上，才能得到信息  </span></div><div class="line">      <span class="keyword">let</span> dict = notification.userInfo   </div><div class="line">      <span class="keyword">if</span> (dict[<span class="string">"success"</span>] <span class="keyword">as</span>! <span class="type">Bool</span>) &#123;<span class="comment">//获取传递过来的值,而且需要转换下  </span></div><div class="line">          <span class="type">ProgressHUD</span>.showSuccess(<span class="string">"通知成功"</span>)  </div><div class="line">      &#125;<span class="keyword">else</span>&#123;  </div><div class="line">          <span class="type">ProgressHUD</span>.showError(<span class="string">"通知失败"</span>)  </div><div class="line">      &#125;  </div><div class="line"></div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<h2 id="移除通知"><a href="#移除通知" class="headerlink" title="移除通知"></a>移除通知</h2><blockquote>
+<p>由于通知是单列的，所以使用完后必须在析构deinit中移除通知，否则后期将引发难以查询的莫名错误</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">deinit</span>&#123;  </div><div class="line">       </div><div class="line">      <span class="comment">//注意由于通知是单例的，所以用了之后需要析构，  </span></div><div class="line">      <span class="type">NSNotificationCenter</span>.defaultCenter().removeObserver(<span class="keyword">self</span>, name: <span class="string">"TiltleNotification"</span>, object: <span class="literal">nil</span>)  </div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+          
         
       
     </div>
@@ -1532,6 +1882,8 @@ toObservab
     
 
     
+
+
 
     
 
@@ -1652,17 +2004,6 @@ toObservab
 
           
           
-             <span id="/2017/12/14/OC/Func/iOS-Func-高效切圆角/" class="leancloud_visitors" data-flag-title="iOS-Func-高效切圆角">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1685,18 +2026,44 @@ toObservab
       
         
           
-          UIView（不包括其子类）
-UIView 只要设置图层的 cornerRadius 属性即可（不明白的话，可以看看官方文档里对 cornerRadius 的描述）设置 layer.masksToBounds = YES，会造成不必要的离屏渲染
+            <h1 id="UIView（不包括其子类）"><a href="#UIView（不包括其子类）" class="headerlink" title="UIView（不包括其子类）"></a>UIView（不包括其子类）</h1><blockquote>
+<p>UIView 只要设置图层的 cornerRadius 属性即可<br>（不明白的话，可以看看官方文档里对 cornerRadius 的描述）<br>设置 layer.masksToBounds = YES，会造成不必要的离屏渲染</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">UIView</span> *view = [[<span class="built_in">UIView</span> alloc] init];</div><div class="line">view.backgroundColor = [<span class="built_in">UIColor</span> blackColor];</div><div class="line">view.layer.cornerRadius = <span class="number">3.</span>f;</div><div class="line"><span class="comment">// 以下两行，任写一行</span></div><div class="line">view.layer.masksToBounds = <span class="literal">NO</span>;</div><div class="line">view.clipToBounds = <span class="literal">NO</span>;</div></pre></td></tr></table></figure>
+<blockquote>
+<p> 以下两行，千万不要加！</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">view.layer.masksToBounds = <span class="literal">YES</span>;</div><div class="line">view.clipToBounds = <span class="literal">YES</span>;</div></pre></td></tr></table></figure>
+<h1 id="文本类视图"><a href="#文本类视图" class="headerlink" title="文本类视图"></a>文本类视图</h1><h2 id="UITextField"><a href="#UITextField" class="headerlink" title="UITextField"></a>UITextField</h2><blockquote>
+<p>UITextField有两种实现方法</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 支持设置圆角边框</span></div><div class="line"><span class="built_in">UITextField</span> *textField = [[<span class="built_in">UITextField</span> alloc] init];</div><div class="line">textField.borderStyle = <span class="built_in">UITextBorderStyleRoundedRect</span>;</div><div class="line"></div><div class="line"><span class="comment">// 与 UIView 类似</span></div><div class="line"><span class="built_in">UITextField</span> *textField = [[<span class="built_in">UITextField</span> alloc] init];</div><div class="line">textField.layer.cornerRadius = cornerRadius;</div></pre></td></tr></table></figure>
+<h2 id="UITextView"><a href="#UITextView" class="headerlink" title="UITextView"></a>UITextView</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 与 UIView 类似</span></div><div class="line"><span class="built_in">UITextView</span> *textView = [[<span class="built_in">UITextView</span> alloc] init];</div><div class="line">textView.layer.cornerRadius = cornerRadius;</div></pre></td></tr></table></figure>
+<h2 id="UILabel"><a href="#UILabel" class="headerlink" title="UILabel"></a>UILabel</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">UILabel</span> *label = [[<span class="built_in">UILabel</span> alloc] init];</div><div class="line"><span class="comment">// 重点在此！！设置视图的图层背景色，千万不要直接设置 label.backgroundColor</span></div><div class="line">label.layer.backgroundColor = [<span class="built_in">UIColor</span> grayColor].CGColor;</div><div class="line">label.layer.cornerRadius = cornerRadius;</div></pre></td></tr></table></figure>
+<h1 id="UIButton"><a href="#UIButton" class="headerlink" title="UIButton"></a>UIButton</h1><blockquote>
+<p>UIButton 的背景图片，如果是复杂的图片，可以依靠 UI 切图来实现<br>如果是简单的纯色背景图片，可以利用代码绘制带圆角的图片</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">UIButton</span> *button = [<span class="built_in">UIButton</span> buttonWithType:<span class="built_in">UIButtonTypeCustom</span>];</div><div class="line"></div><div class="line"><span class="comment">// 设置 UIButton 的背景图片。</span></div><div class="line">[button setBackgroundImage:image forState:<span class="built_in">UIControlStateNormal</span>];</div></pre></td></tr></table></figure>
+<blockquote>
+<p>背景图片绘制方法</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">    + (<span class="built_in">UIImage</span> *)pureColorImageWithSize:(<span class="built_in">CGSize</span>)size color:(<span class="built_in">UIColor</span> *)color cornRadius:(<span class="built_in">CGFloat</span>)cornRadius &#123;</div><div class="line">      <span class="built_in">UIView</span> *view = [[<span class="built_in">UIView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0.0</span>f, <span class="number">0.0</span>f, size.width, size.height)];</div><div class="line">      view.backgroundColor = color;</div><div class="line">      view.layer.cornerRadius = cornerRadius;</div><div class="line">      <span class="comment">// 下面方法，第一个参数表示区域大小。第二个参数表示是否是非透明的。如果需要显示半透明效果，需要传NO，否则传YES。第三个参数是屏幕密度</span></div><div class="line"><span class="built_in">UIGraphicsBeginImageContextWithOptions</span>(view.bounds.size, <span class="literal">NO</span>, [<span class="built_in">UIScreen</span> mainScreen].scale);</div><div class="line">      [view.layer renderInContext:<span class="built_in">UIGraphicsGetCurrentContext</span>()];</div><div class="line">      <span class="built_in">UIImage</span> *image = <span class="built_in">UIGraphicsGetImageFromCurrentImageContext</span>();</div><div class="line">      <span class="built_in">UIGraphicsEndImageContext</span>();</div><div class="line">      <span class="keyword">return</span> image;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h1 id="UIImageView"><a href="#UIImageView" class="headerlink" title="UIImageView"></a>UIImageView</h1><blockquote>
+<p>方式一：贝塞尔曲线切割圆角</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="built_in">UIImageView</span> *)roundedRectImageViewWithCornerRadius:(<span class="built_in">CGFloat</span>)cornerRadius &#123;</div><div class="line">    <span class="built_in">UIBezierPath</span> *bezierPath = [<span class="built_in">UIBezierPath</span> bezierPathWithRoundedRect:<span class="keyword">self</span>.bounds cornerRadius:cornerRadius];</div><div class="line">    <span class="built_in">CAShapeLayer</span> *layer = [<span class="built_in">CAShapeLayer</span> layer];</div><div class="line">    layer.path = bezierPath.CGPath;</div><div class="line">    <span class="keyword">self</span>.layer.mask = layer;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>绘制四个角的遮罩（使用场景受限）</p>
+</blockquote>
+<ul>
+<li>在 UIImageView 上添加一个四个角有内容，其它部分是透明的视图，只对 UIImageView 圆角部分进行遮挡。但要保证被遮挡的部分背景色要与周围背景相同，避免穿帮。所以当 UIImageView 处于一个复杂的背景时，是不适合使用这个方法的</li>
+</ul>
+<blockquote>
+<p>最不推荐做法（当一个页面只有少量圆角图片时才推荐使用）</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">UIImageView</span> *imageView = [[<span class="built_in">UIImageView</span> alloc] init];</div><div class="line">imageView.layer.cornerRadius = <span class="number">5.</span>f;</div><div class="line">imageView.layer.masksToBounds = <span class="literal">YES</span>;</div></pre></td></tr></table></figure>
 
-UIView *view = [[UIView al
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/14/OC/Func/iOS-Func-高效切圆角/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1706,371 +2073,7 @@ UIView *view = [[UIView al
 
     
 
-    
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/14/Swift/UIKit/UISearchController-简介/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="千夜 QQ:738816656">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/14/Swift/UIKit/UISearchController-简介/" itemprop="url">Swift-UIKit-UISearchController-简介</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-14T17:33:56+08:00">
-                2017-12-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/UIKit/" itemprop="url" rel="index">
-                    <span itemprop="name">UIKit</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/UIKit/UISearchController/" itemprop="url" rel="index">
-                    <span itemprop="name">UISearchController</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/12/14/Swift/UIKit/UISearchController-简介/" class="leancloud_visitors" data-flag-title="Swift-UIKit-UISearchController-简介">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/14/Swift/UIKit/UISearchController-简介/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/14/Swift/UIKit/UITableView-双表联动/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="千夜 QQ:738816656">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/14/Swift/UIKit/UITableView-双表联动/" itemprop="url">Swift-UIKit-UITableView-双表联动</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-14T16:53:17+08:00">
-                2017-12-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/UIKit/" itemprop="url" rel="index">
-                    <span itemprop="name">UIKit</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/UIKit/UITableView/" itemprop="url" rel="index">
-                    <span itemprop="name">UITableView</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/12/14/Swift/UIKit/UITableView-双表联动/" class="leancloud_visitors" data-flag-title="Swift-UIKit-UITableView-双表联动">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          FFTableViewCtl.swift协议class FFTableViewCtl: UIViewController, UITableViewDataSource, UITableViewDelegate&#123;&#125;
-声明变量
-左侧 菜单分类数据源
-
-fileprivate lazy
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/14/Swift/UIKit/UITableView-双表联动/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
 
     
 
@@ -2100,7 +2103,7 @@ fileprivate lazy
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2131,66 +2134,64 @@ fileprivate lazy
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="千夜 QQ:738816656" />
-          <p class="site-author-name" itemprop="name">千夜 QQ:738816656</p>
-           
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">千夜 QQ:738816656</p>
               <p class="site-description motion-element" itemprop="description">ReactNative</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">201</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">106</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">77</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
+
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">198</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">105</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">77</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -2207,42 +2208,17 @@ fileprivate lazy
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        
-# 访客数
-
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  访客数:<span id="busuanzi_value_site_uv"></span>
-</span>
-</div>
-
-
-
-
-
-<div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">千夜 QQ:738816656</span>
+
+  
 </div>
 
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
 
 
         
@@ -2262,6 +2238,8 @@ fileprivate lazy
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -2296,46 +2274,54 @@ fileprivate lazy
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
   
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -2366,324 +2352,13 @@ fileprivate lazy
 
 
 
+
+
+
+
+
+
   
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === '') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
 
 
 
@@ -2692,114 +2367,10 @@ fileprivate lazy
   
 
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("GGOhuU9q4e5a7HISgedllhyN-gzGzoHsz", "1Dlb2KyTymPIvsleHp8s02I8");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
 
   
 
+  
   
 
   
@@ -2810,3 +2381,6 @@ fileprivate lazy
 
 </body>
 </html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
