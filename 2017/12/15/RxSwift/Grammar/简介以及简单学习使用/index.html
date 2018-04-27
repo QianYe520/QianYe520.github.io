@@ -418,7 +418,7 @@
 <h2 id="Bindings"><a href="#Bindings" class="headerlink" title="Bindings"></a>Bindings</h2><blockquote>
 <p>[RxWhy] -&gt; [Bindings] -&gt; [BindingsViewController.swift]</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">Observable</span>.combineLatest(firstName.rx_text, lastName.rx_text) &#123; $<span class="number">0</span> + <span class="string">" "</span> + $<span class="number">1</span> &#125; <span class="comment">// ①</span></div><div class="line">          .<span class="built_in">map</span> &#123; <span class="string">"Greeting <span class="subst">\($<span class="number">0</span>)</span>"</span> &#125;                                             <span class="comment">// ②</span></div><div class="line">          .bindTo(greetingLabel.rx_text)                                        <span class="comment">// ③</span></div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">Observable</span>.combineLatest(firstName.rx_text, lastName.rx_text) &#123; $<span class="number">0</span> + <span class="string">" "</span> + $<span class="number">1</span> &#125; <span class="comment">// ①</span></div><div class="line">          .<span class="built_in">map</span> &#123; <span class="string">"Greeting \($0)"</span> &#125;                                             <span class="comment">// ②</span></div><div class="line">          .bindTo(greetingLabel.rx_text)                                        <span class="comment">// ③</span></div></pre></td></tr></table></figure>
 <ul>
 <li>将 firstName 和 lastName 的 text 属性结合起来，并进行合并处理，也就是 $0 + “ “ + $1 这部分，用空格将两个值合并起来作为结果传递给后面使用</li>
 <li>使用 map 的方法，将上一步得到值前面加上一个 Greeting ，并将该值传递给后面使用</li>
@@ -435,11 +435,11 @@
 <h2 id="ContentOffset"><a href="#ContentOffset" class="headerlink" title="ContentOffset"></a>ContentOffset</h2><blockquote>
 <p>经常通过 delegate 处理 scrollView 的 contentOffset 变化问题</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">scrollViewDidScroll</span><span class="params">(scrollView: UIScrollView)</span></span> &#123;</div><div class="line">    <span class="keyword">self</span>.title = <span class="string">"contentOffset.x = <span class="subst">\(scrollView.contentOffset.y)</span>"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">scrollViewDidScroll</span><span class="params">(scrollView: UIScrollView)</span></span> &#123;</div><div class="line">    <span class="keyword">self</span>.title = <span class="string">"contentOffset.x = \(scrollView.contentOffset.y)"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>可能就和关联的逻辑分家了，内聚性啊…而且多个 scrollView ，还要做额外的判断处理，复杂性可想而知<br>也有写过通过 closure 来解决的，其实可以认为 Rx 自带了这些功能（而且更强大<br>[RxWhy] -&gt; [ContentOffset] -&gt; [ContentOffsetViewController.swift]<br>Note: 在使用了 rx_contentOffset 后，最好不要去更改 delegate<br>同样 button 也有类似的功能</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">tableView.rx_contentOffset</div><div class="line">  .<span class="built_in">map</span> &#123; $<span class="number">0</span>.y &#125;</div><div class="line">  .subscribeNext &#123; [<span class="keyword">unowned</span> <span class="keyword">self</span>] <span class="keyword">in</span></div><div class="line">      <span class="keyword">self</span>.title = <span class="string">"contentOffset.x = <span class="subst">\($<span class="number">0</span>)</span>"</span></div><div class="line">  &#125;.addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">tableView.rx_contentOffset</div><div class="line">  .<span class="built_in">map</span> &#123; $<span class="number">0</span>.y &#125;</div><div class="line">  .subscribeNext &#123; [<span class="keyword">unowned</span> <span class="keyword">self</span>] <span class="keyword">in</span></div><div class="line">      <span class="keyword">self</span>.title = <span class="string">"contentOffset.x = \($0)"</span></div><div class="line">  &#125;.addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
 <h2 id="Tap"><a href="#Tap" class="headerlink" title="Tap"></a>Tap</h2><blockquote>
 <p>button 的点击事件是一个很棘手的问题了，建立一个 target ，同时还使用的带字符串的 Select，button 的点击也和响应逻辑分家了<br>处理方式会有两个问题</p>
 </blockquote>
@@ -576,7 +576,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">201</span>
+                  <span class="site-state-item-count">202</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
