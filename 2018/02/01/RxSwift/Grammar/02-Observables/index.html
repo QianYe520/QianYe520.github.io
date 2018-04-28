@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="概念 每一个Observable的实例都是一个序列Observable序列相比于Swift序列的关键优势点在于它能够异步地接收元素            Observable(ObservableType) 等效于Sequence    observableType.subscribe(_:) 方法等效于Sequence.makeIterator()    ObservableType.subsc">
+<meta name="description" content="❶❷❸❹❺❼❽❾①②③④⑤⑥⑦⑧⑨⑩⑪⑫ ①概念❶Observable Observable 这个类就是 Rx 框架的基础，称为可观察序列。它的作用就是可以异步地产生一系列的 Event（事件），即一个 Observable 对象会随着时间推移不定期地发出 event(element : T) 这样一个东西 Event 还可以携带数据，它的泛型  就是用来指定这个 Event 携带的数据的类型 每">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RxSwift-Grammar-Observables-02">
 <meta property="og:url" content="http://yoursite.com/2018/02/01/RxSwift/Grammar/02-Observables/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="概念 每一个Observable的实例都是一个序列Observable序列相比于Swift序列的关键优势点在于它能够异步地接收元素            Observable(ObservableType) 等效于Sequence    observableType.subscribe(_:) 方法等效于Sequence.makeIterator()    ObservableType.subsc">
+<meta property="og:description" content="❶❷❸❹❺❼❽❾①②③④⑤⑥⑦⑧⑨⑩⑪⑫ ①概念❶Observable Observable 这个类就是 Rx 框架的基础，称为可观察序列。它的作用就是可以异步地产生一系列的 Event（事件），即一个 Observable 对象会随着时间推移不定期地发出 event(element : T) 这样一个东西 Event 还可以携带数据，它的泛型  就是用来指定这个 Event 携带的数据的类型 每">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-28T01:27:09.905Z">
+<meta property="og:updated_time" content="2018-04-28T01:39:28.715Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RxSwift-Grammar-Observables-02">
-<meta name="twitter:description" content="概念 每一个Observable的实例都是一个序列Observable序列相比于Swift序列的关键优势点在于它能够异步地接收元素            Observable(ObservableType) 等效于Sequence    observableType.subscribe(_:) 方法等效于Sequence.makeIterator()    ObservableType.subsc">
+<meta name="twitter:description" content="❶❷❸❹❺❼❽❾①②③④⑤⑥⑦⑧⑨⑩⑪⑫ ①概念❶Observable Observable 这个类就是 Rx 框架的基础，称为可观察序列。它的作用就是可以异步地产生一系列的 Event（事件），即一个 Observable 对象会随着时间推移不定期地发出 event(element : T) 这样一个东西 Event 还可以携带数据，它的泛型  就是用来指定这个 Event 携带的数据的类型 每">
 
 
 
@@ -411,9 +411,14 @@
       
 
       
-        <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><blockquote>
-<p>每一个Observable的实例都是一个序列<br>Observable序列相比于Swift序列的关键优势点在于它能够异步地接收元素</p>
-</blockquote>
+        <p>❶❷❸❹❺❼❽❾①②③④⑤⑥⑦⑧⑨⑩⑪⑫</p>
+<h1 id="①概念"><a href="#①概念" class="headerlink" title="①概念"></a>①概念</h1><h2 id="❶Observable"><a href="#❶Observable" class="headerlink" title="❶Observable"></a>❶Observable<t></t></h2><ul>
+<li>Observable<t> 这个类就是 Rx 框架的基础，称为可观察序列。它的作用就是可以异步地产生一系列的 Event（事件），即一个 Observable<t> 对象会随着时间推移不定期地发出 event(element : T) 这样一个东西</t></t></li>
+<li>Event 还可以携带数据，它的泛型 <t> 就是用来指定这个 Event 携带的数据的类型</t></li>
+<li>每一个Observable的实例都是一个序列</li>
+<li>Observable序列相比于Swift序列的关键优势点在于它能够异步地接收元素</li>
+<li>有了可观察序列，我们还需要有一个 Observer（订阅者）来订阅它，这样这个订阅者才能收到 Observable<t> 不时发出的 Event</t></li>
+</ul>
 <table>
 <thead>
 <tr>
@@ -453,25 +458,40 @@
 <li>如果一个Observable发出一个next事件(Event.next(Element)),它还能够继续发出更多的事件</li>
 <li>如果一个Observable发出一个error事件(Event.error(ErrorType))或者一个completed事件(Event.completed)，那么这个Observable序列就不能给订阅者发送其他的事件了</li>
 </ul>
-<h1 id="Observables-and-Observers-又名subscribers-–-订阅者"><a href="#Observables-and-Observers-又名subscribers-–-订阅者" class="headerlink" title="Observables and Observers(又名subscribers – 订阅者)"></a>Observables and Observers(又名subscribers – 订阅者)</h1><blockquote>
-<p>除非有订阅者，否则Observable不会执行它们的闭包<br>没有订阅者订阅,Observable的闭包将不会被执行</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">_ = Observable&lt;String&gt;.create(&#123; (observingString) -&gt; Disposable in</div><div class="line">      print(&quot;the code will not be executed&quot;)</div><div class="line">      observingString.onNext(&quot;😁&quot;)</div><div class="line">      observingString.onCompleted()</div><div class="line">      return Disposables.create()</div><div class="line">  &#125;)</div></pre></td></tr></table></figure>
+<p>##❷Event</p>
 <blockquote>
-<p>有订阅者订阅,Observable的闭包将会被执行</p>
+<p>事件 Event 的定义</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="number">_</span> = <span class="type">Observable</span>&lt;<span class="type">String</span>&gt;.create(&#123; (observingString) -&gt; <span class="type">Disposable</span> <span class="keyword">in</span></div><div class="line">       <span class="built_in">print</span>(<span class="string">"the code will be executed"</span>)</div><div class="line">       observingString.onNext(<span class="string">"😁"</span>)</div><div class="line">       observingString.onCompleted()</div><div class="line">       <span class="keyword">return</span> <span class="type">Disposables</span>.create()</div><div class="line">   &#125;).subscribe(&#123; (event) <span class="keyword">in</span></div><div class="line">       <span class="built_in">print</span>(event)</div><div class="line">   &#125;)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Event</span>&lt;<span class="title">Element</span>&gt; </span>&#123;</div><div class="line">    <span class="comment">/// Next element is produced.</span></div><div class="line">    <span class="keyword">case</span> next(<span class="type">Element</span>)</div><div class="line"> </div><div class="line">    <span class="comment">/// Sequence terminated with an error.</span></div><div class="line">    <span class="keyword">case</span> error(<span class="type">Swift</span>.<span class="type">Error</span>)</div><div class="line"> </div><div class="line">    <span class="comment">/// Sequence completed successfully.</span></div><div class="line">    <span class="keyword">case</span> completed</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Event 就是一个枚举，也就是说 一个 Observable 是可以发出 3 种不同类型的 Event 事件</p>
+</blockquote>
+<h3 id="next"><a href="#next" class="headerlink" title="next"></a>next</h3><blockquote>
+<p>next：next 事件就是那个可以携带数据 <t> 的事件，可以说它就是一个“最正常”的事件</t></p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="number">1</span>--<span class="number">2</span>--<span class="number">3</span>---&gt;</div></pre></td></tr></table></figure>
+<h3 id="error"><a href="#error" class="headerlink" title="error"></a>error</h3><blockquote>
+<p>error：error 事件表示一个错误，它可以携带具体的错误内容，一旦 Observable 发出了 error event，则这个 Observable 就等于终止了，以后它再也不会发出 event 事件了</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">-------1-----2------ x</div></pre></td></tr></table></figure>
+<h3 id="completed"><a href="#completed" class="headerlink" title="completed"></a>completed</h3><blockquote>
+<p>completed：completed 事件表示 Observable 发出的事件正常地结束了，跟 error 一样，一旦 Observable 发出了 completed event，则这个 Observable 就等于终止了，以后它再也不会发出 event 事件了</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">                            </div><div class="line">------1 ------2--------3-------|</div></pre></td></tr></table></figure>
+<h2 id="❸Observable-与-Sequence比较"><a href="#❸Observable-与-Sequence比较" class="headerlink" title="❸Observable 与 Sequence比较"></a>❸Observable 与 Sequence比较</h2><blockquote>
+<p>可以把每一个 Observable 的实例想象成于一个 Swift 中的 Sequence</p>
+</blockquote>
 <ul>
-<li>subscribe(_:)返回一个一次性的实例，该实例表示一个可使用的资源，如订阅。在前面的简单示例中，它被忽略了，但是应该正常地处理它。这通常意味着将它添加到一个DisposeBag实例中</li>
+<li>即一个 Observable（ObservableType）相当于一个序列 Sequence（SequenceType）</li>
+<li>ObservableType.subscribe(_:) 方法其实就相当于 SequenceType.generate()</li>
 </ul>
-<h1 id="Creating-and-Subscribing-to-Observables"><a href="#Creating-and-Subscribing-to-Observables" class="headerlink" title="Creating and Subscribing to Observables"></a>Creating and Subscribing to Observables</h1><blockquote>
-<p>有几种方式创建和订阅Observables:</p>
+<blockquote>
+<p>区别</p>
 </blockquote>
-<h2 id="never"><a href="#never" class="headerlink" title="never"></a>never</h2><blockquote>
-<p>创建一个永不终止且不发出任何事件的序列。更多详情</p>
-</blockquote>
-<pre><code>
-</code></pre><p><a href="http://www.cnblogs.com/scott-mr/p/7211316.html" target="_blank" rel="external"></a></p>
+<ul>
+<li>Swift 中的 SequenceType 是同步的循环，而 Observable 是异步的</li>
+<li>Observable 对象会在有任何 Event 时候，自动将 Event 作为一个参数通过 ObservableType.subscribe(_:) 发出，并不需要使用 next 方法</li>
+</ul>
 
       
     </div>
@@ -642,7 +662,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Observables-and-Observers-又名subscribers-–-订阅者"><span class="nav-number">2.</span> <span class="nav-text">Observables and Observers(又名subscribers – 订阅者)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Creating-and-Subscribing-to-Observables"><span class="nav-number">3.</span> <span class="nav-text">Creating and Subscribing to Observables</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#never"><span class="nav-number">3.1.</span> <span class="nav-text">never</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#①概念"><span class="nav-number">1.</span> <span class="nav-text">①概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#❶Observable"><span class="nav-number">1.1.</span> <span class="nav-text">❶Observable</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#next"><span class="nav-number">1.1.1.</span> <span class="nav-text">next</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#error"><span class="nav-number">1.1.2.</span> <span class="nav-text">error</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#completed"><span class="nav-number">1.1.3.</span> <span class="nav-text">completed</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#❸Observable-与-Sequence比较"><span class="nav-number">1.2.</span> <span class="nav-text">❸Observable 与 Sequence比较</span></a></li></ol></li></ol></div>
             
 
           </div>
