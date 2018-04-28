@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="Rx 几种创建方式❶❷❸❹❺❼❽❾①②③④⑤⑥⑦⑧⑨⑩⑪⑫  ①just ②of   create 使用 Swift 闭包的方式创建序列 deferred 只有在有观察者订阅时，才去创建序列 empty 创建一个空的序列，只发射一个 .Completed error 创建一个发射 error 终止的序列 toObservable 使用 SequenceType 创建序列 interval 创建一">
+<meta name="description" content="❶❷❸❹❺❼❽❾①②③④⑤⑥⑦⑧⑨⑩⑪⑫  ①just ②of ③from ④empty ⑤never ⑥error ⑦range ⑧repeatElement ⑨generate ⑩create ⑪deferred ⑫interval ⑬timer  ①just ①just just() 方法该方法通过传入一个默认值来初始化只创建包含一个元素的序列。换言之，只发送一个值和 .Completed：">
 <meta name="keywords" content="Swift,RxSwift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift-RxSwift-创建序列Observable-03">
 <meta property="og:url" content="http://yoursite.com/2017/12/15/RxSwift/Grammar/03-创建序列Observable/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="Rx 几种创建方式❶❷❸❹❺❼❽❾①②③④⑤⑥⑦⑧⑨⑩⑪⑫  ①just ②of   create 使用 Swift 闭包的方式创建序列 deferred 只有在有观察者订阅时，才去创建序列 empty 创建一个空的序列，只发射一个 .Completed error 创建一个发射 error 终止的序列 toObservable 使用 SequenceType 创建序列 interval 创建一">
+<meta property="og:description" content="❶❷❸❹❺❼❽❾①②③④⑤⑥⑦⑧⑨⑩⑪⑫  ①just ②of ③from ④empty ⑤never ⑥error ⑦range ⑧repeatElement ⑨generate ⑩create ⑪deferred ⑫interval ⑬timer  ①just ①just just() 方法该方法通过传入一个默认值来初始化只创建包含一个元素的序列。换言之，只发送一个值和 .Completed：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-28T01:53:35.269Z">
+<meta property="og:updated_time" content="2018-04-28T03:22:19.404Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift-RxSwift-创建序列Observable-03">
-<meta name="twitter:description" content="Rx 几种创建方式❶❷❸❹❺❼❽❾①②③④⑤⑥⑦⑧⑨⑩⑪⑫  ①just ②of   create 使用 Swift 闭包的方式创建序列 deferred 只有在有观察者订阅时，才去创建序列 empty 创建一个空的序列，只发射一个 .Completed error 创建一个发射 error 终止的序列 toObservable 使用 SequenceType 创建序列 interval 创建一">
+<meta name="twitter:description" content="❶❷❸❹❺❼❽❾①②③④⑤⑥⑦⑧⑨⑩⑪⑫  ①just ②of ③from ④empty ⑤never ⑥error ⑦range ⑧repeatElement ⑨generate ⑩create ⑪deferred ⑫interval ⑬timer  ①just ①just just() 方法该方法通过传入一个默认值来初始化只创建包含一个元素的序列。换言之，只发送一个值和 .Completed：">
 
 
 
@@ -412,75 +412,96 @@
       
 
       
-        <p> Rx 几种创建方式<br>❶❷❸❹❺❼❽❾①②③④⑤⑥⑦⑧⑨⑩⑪⑫</p>
+        <p>❶❷❸❹❺❼❽❾①②③④⑤⑥⑦⑧⑨⑩⑪⑫</p>
 <ul>
 <li><a href="#①just">①just</a></li>
 <li><a href="#②of">②of</a></li>
-</ul>
-<ul>
-<li>create 使用 Swift 闭包的方式创建序列</li>
-<li>deferred 只有在有观察者订阅时，才去创建序列</li>
-<li>empty 创建一个空的序列，只发射一个 .Completed</li>
-<li>error 创建一个发射 error 终止的序列</li>
-<li>toObservable 使用 SequenceType 创建序列</li>
-<li>interval 创建一个每隔一段时间就发射的递增序列</li>
-<li>never 不创建序列，也不发送通知</li>
-<li>just 只创建包含一个元素的序列。换言之，只发送一个值和 .Completed</li>
-<li>of 通过一组元素创建一个序列</li>
-<li>range 创建一个有范围的递增序列</li>
-<li>repeatElement 创建一个发射重复值的序列</li>
-<li>timer 创建一个带延迟的序列</li>
+<li><a href="#③from">③from</a></li>
+<li><a href="#④empty">④empty</a></li>
+<li><a href="#⑤never">⑤never</a></li>
+<li><a href="#⑥error">⑥error</a></li>
+<li><a href="#⑦range">⑦range</a></li>
+<li><a href="#⑧repeatElement">⑧repeatElement</a></li>
+<li><a href="#⑨generatet">⑨generate</a></li>
+<li><a href="#⑩create">⑩create</a></li>
+<li><a href="#⑪deferredt">⑪deferred</a></li>
+<li><a href="#⑫intervalt">⑫interval</a></li>
+<li><a href="#⑬timer">⑬timer</a></li>
 </ul>
 <p><span id="①just">①just</span></p>
 <h1 id="①just"><a href="#①just" class="headerlink" title="①just"></a>①just</h1><blockquote>
 <p>just() 方法<br>该方法通过传入一个默认值来初始化<br>只创建包含一个元素的序列。换言之，只发送一个值和 .Completed：</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> observable = <span class="type">Observable</span>.just(<span class="number">998</span>)</div><div class="line"></div><div class="line"><span class="number">_</span> = observable.subscribe &#123; event <span class="keyword">in</span></div><div class="line">          <span class="built_in">print</span>(event)</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.just(<span class="number">5</span>)</div></pre></td></tr></table></figure>
 <p><span id="②of">②of</span></p>
 <h1 id="②of"><a href="#②of" class="headerlink" title="②of"></a>②of</h1><blockquote>
 <p>通过一组元素创建一个序列<br>该方法可以接受可变数量的参数（必需要是同类型的）</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> observable = <span class="type">Observable</span>.of(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</div><div class="line"></div><div class="line"><span class="number">_</span> = observable.subscribe &#123; event <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(event)</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<h1 id="create"><a href="#create" class="headerlink" title="create"></a>create</h1><blockquote>
-<p>使用 Swift 闭包的方式创建序列，这里创建了一个 Just 的示例</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>.of(<span class="string">"A"</span>, <span class="string">"B"</span>, <span class="string">"C"</span>)</div></pre></td></tr></table></figure>
+<p><span id="③from">③from</span></p>
+<h1 id="③from"><a href="#③from" class="headerlink" title="③from"></a>③from</h1><blockquote>
+<p>需要一个数组参数<br>数据里的元素就会被当做这个 Observable 所发出 event 携带的数据内容，最终效果同上面 of 样例是一样的</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> myJust = &#123; (singleElement: <span class="type">Int</span>) -&gt; <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt; <span class="keyword">in</span></div><div class="line">    <span class="keyword">return</span> <span class="type">Observable</span>.create &#123; observer <span class="keyword">in</span></div><div class="line">        observer.on(.<span class="type">Next</span>(singleElement))</div><div class="line">        observer.on(.<span class="type">Completed</span>)</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> <span class="type">NopDisposable</span>.instance</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="number">_</span> = myJust(<span class="number">5</span>)</div><div class="line">    .subscribe &#123; event <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="deferred"><a href="#deferred" class="headerlink" title="deferred"></a>deferred</h1><blockquote>
-<p>只有在有观察者订阅时，才去创建序列</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>.from([<span class="string">"A"</span>, <span class="string">"B"</span>, <span class="string">"C"</span>])</div></pre></td></tr></table></figure>
+<p><span id="④empty">④empty</span></p>
+<h1 id="④empty"><a href="#④empty" class="headerlink" title="④empty"></a>④empty</h1><blockquote>
+<p>创建一个空内容的 Observable 序列</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">  let deferredSequence: Observable&lt;Int&gt; = Observable.deferred &#123;</div><div class="line">    print(&quot;creating&quot;)</div><div class="line">    return Observable.create &#123; observer in</div><div class="line">        print(&quot;emmiting&quot;)</div><div class="line">        observer.on(.Next(0))</div><div class="line">        observer.on(.Next(1))</div><div class="line">        observer.on(.Next(2))</div><div class="line">        </div><div class="line">        return NopDisposable.instance</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">_ = deferredSequence</div><div class="line">    .subscribe &#123; event in</div><div class="line">        print(event)</div><div class="line">&#125;</div><div class="line"></div><div class="line">_ = deferredSequence</div><div class="line">    .subscribe &#123; event in</div><div class="line">        print(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="empty"><a href="#empty" class="headerlink" title="empty"></a>empty</h1><blockquote>
-<p>创建一个空的序列，只发射一个 .Completed：</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.empty()</div></pre></td></tr></table></figure>
+<p><span id="⑤never">⑤never</span></p>
+<h1 id="⑤never"><a href="#⑤never" class="headerlink" title="⑤never"></a>⑤never</h1><blockquote>
+<p>创建一个永远不会发出 Event（也不会终止）的 Observable 序列</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> emptySequence = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.empty()</div><div class="line"></div><div class="line"><span class="number">_</span> = emptySequence</div><div class="line">    .subscribe &#123; event <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="error"><a href="#error" class="headerlink" title="error"></a>error</h1><blockquote>
-<p>创建一个发射 error 终止的序列</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.never()</div></pre></td></tr></table></figure>
+<p><span id="⑥error">⑥error</span></p>
+<h1 id="⑥error"><a href="#⑥error" class="headerlink" title="⑥error"></a>⑥error</h1><blockquote>
+<p>创建一个不做任何操作，而是直接发送一个错误的 Observable 序列</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> error = <span class="type">NSError</span>(domain: <span class="string">"Test"</span>, code: -<span class="number">1</span>, userInfo: <span class="literal">nil</span>)</div><div class="line"></div><div class="line"><span class="keyword">let</span> erroredSequence = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.error(error)</div><div class="line"></div><div class="line"><span class="number">_</span> = erroredSequence</div><div class="line">    .subscribe &#123; event <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="toObservable"><a href="#toObservable" class="headerlink" title="toObservable"></a>toObservable</h1><blockquote>
-<p>使用 SequenceType 创建序列：</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">MyError</span>: <span class="title">Error</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">A</span></div><div class="line">    <span class="keyword">case</span> <span class="type">B</span></div><div class="line">&#125;</div><div class="line">         </div><div class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.error(<span class="type">MyError</span>.<span class="type">A</span>)</div></pre></td></tr></table></figure>
+<p><span id="⑦range">⑦range</span></p>
+<h1 id="⑦range"><a href="#⑦range" class="headerlink" title="⑦range"></a>⑦range</h1><blockquote>
+<p>通过指定起始和结束数值，创建一个以这个范围内所有值作为初始值的 Observable 序列。<br>下面样例中，两种方法创建的 Observable 序列都是一样的</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> sequenceFromArray = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>].toObservable()</div><div class="line"></div><div class="line"><span class="number">_</span> = sequenceFromArray</div><div class="line">    .subscribe &#123; event <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="interval"><a href="#interval" class="headerlink" title="interval"></a>interval</h1><blockquote>
-<p>创建一个每隔一段时间就发射的递增序列：</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">//使用range()</span></div><div class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>.range(start: <span class="number">1</span>, <span class="built_in">count</span>: <span class="number">5</span>)</div><div class="line"> </div><div class="line"><span class="comment">//使用of()</span></div><div class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ,<span class="number">4</span> ,<span class="number">5</span>)</div></pre></td></tr></table></figure>
+<p><span id="⑧repeatElement">⑧repeatElement</span></p>
+<h1 id="⑧repeatElement"><a href="#⑧repeatElement" class="headerlink" title="⑧repeatElement"></a>⑧repeatElement</h1><blockquote>
+<p>法创建一个可以无限发出给定元素的 Event 的 Observable 序列（永不终止）</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> intervalSequence = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.interval(<span class="number">3</span>, scheduler: <span class="type">MainScheduler</span>.instance)</div><div class="line"></div><div class="line"><span class="number">_</span> = intervalSequence.subscribe &#123; event <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="never"><a href="#never" class="headerlink" title="never"></a>never</h1><blockquote>
-<p>不创建序列，也不发送通知：</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>.repeatElement(<span class="number">1</span>)</div></pre></td></tr></table></figure>
+<p><span id="⑨generate">⑨generate</span></p>
+<p>#⑨generate</p>
+<blockquote>
+<p>该方法创建一个只有当提供的所有的判断条件都为 true 的时候，才会给出动作的 Observable 序列<br>两种方法创建的 Observable 序列都是一样的</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> neverSequence = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.never()</div><div class="line"></div><div class="line"><span class="number">_</span> = neverSequence</div><div class="line">    .subscribe &#123; <span class="number">_</span> <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(<span class="string">"这句话永远不会打出来."</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="range"><a href="#range" class="headerlink" title="range"></a>range</h1><blockquote>
-<p>创建一个有范围的递增序列：</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">//使用generate()方法</span></div><div class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>.generate(</div><div class="line">    initialState: <span class="number">0</span>,</div><div class="line">    condition: &#123; $<span class="number">0</span> &lt;= <span class="number">10</span> &#125;,</div><div class="line">    iterate: &#123; $<span class="number">0</span> + <span class="number">2</span> &#125;</div><div class="line">)</div><div class="line"> </div><div class="line"><span class="comment">//使用of()方法</span></div><div class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>.of(<span class="number">0</span> , <span class="number">2</span> ,<span class="number">4</span> ,<span class="number">6</span> ,<span class="number">8</span> ,<span class="number">10</span>)</div></pre></td></tr></table></figure>
+<p><span id="⑩create">⑩create</span></p>
+<p>#⑩create</p>
+<blockquote>
+<p>接受一个 block 形式的参数，任务是对每一个过来的订阅进行处理<br>方便演示，这里增加了订阅相关代码</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> rangeSequence = <span class="type">Observable</span>.range(start: <span class="number">1</span>, <span class="built_in">count</span>: <span class="number">10</span>)</div><div class="line"></div><div class="line"><span class="number">_</span> = rangeSequence.subscribe &#123; event <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="repeatElement"><a href="#repeatElement" class="headerlink" title="repeatElement"></a>repeatElement</h1><blockquote>
-<p>创建一个发射重复值的序列：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">//这个block有一个回调参数observer就是订阅这个Observable对象的订阅者</div><div class="line">//当一个订阅者订阅这个Observable对象的时候，就会将订阅者作为参数传入这个block来执行一些内容</div><div class="line">let observable = Observable&lt;String&gt;.create&#123;observer in</div><div class="line">    //对订阅者发出了.next事件，且携带了一个数据&quot;hangge.com&quot;</div><div class="line">    observer.onNext(&quot;hangge.com&quot;)</div><div class="line">    //对订阅者发出了.completed事件</div><div class="line">    observer.onCompleted()</div><div class="line">    //因为一个订阅行为会有一个Disposable类型的返回值，所以在结尾一定要returen一个Disposable</div><div class="line">    return Disposables.create()</div><div class="line">&#125;</div><div class="line"> </div><div class="line">//订阅测试</div><div class="line">observable.subscribe &#123;</div><div class="line">    print($0)</div><div class="line">&#125;</div><div class="line"></div><div class="line">//打印</div><div class="line"> next(hangge.com)</div><div class="line"> completed</div></pre></td></tr></table></figure>
+<p><span id="⑪deferred">⑪deferred</span></p>
+<p>#⑪deferred</p>
+<blockquote>
+<p>该个方法相当于是创建一个 Observable 工厂，通过传入一个 block 来执行延迟 Observable 序列创建的行为，而这个 block 里就是真正的实例化序列对象的地方</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> repeatElementSequence = <span class="type">Observable</span>.repeatElement(<span class="number">1</span>)</div><div class="line"></div><div class="line"><span class="number">_</span> = repeatElementSequence.subscribe &#123; event <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="timer"><a href="#timer" class="headerlink" title="timer"></a>timer</h1><blockquote>
-<p>创建一个带延迟的序列：</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">//用于标记是奇数、还是偶数</span></div><div class="line"><span class="keyword">var</span> isOdd = <span class="literal">true</span></div><div class="line"> </div><div class="line"><span class="comment">//使用deferred()方法延迟Observable序列的初始化，通过传入的block来实现Observable序列的初始化并且返回。</span></div><div class="line"><span class="keyword">let</span> factory : <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt; = <span class="type">Observable</span>.deferred &#123;</div><div class="line">     </div><div class="line">    <span class="comment">//让每次执行这个block时候都会让奇、偶数进行交替</span></div><div class="line">    isOdd = !isOdd</div><div class="line">     </div><div class="line">    <span class="comment">//根据isOdd参数，决定创建并返回的是奇数Observable、还是偶数Observable</span></div><div class="line">    <span class="keyword">if</span> isOdd &#123;</div><div class="line">        <span class="keyword">return</span> <span class="type">Observable</span>.of(<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span> ,<span class="number">7</span>)</div><div class="line">    &#125;<span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="type">Observable</span>.of(<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">//第1次订阅测试</span></div><div class="line">factory.subscribe &#123; event <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"<span class="subst">\(isOdd)</span>"</span>, event)</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">//第2次订阅测试</span></div><div class="line">factory.subscribe &#123; event <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"<span class="subst">\(isOdd)</span>"</span>, event)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// print</span></div><div class="line"><span class="literal">false</span> next(<span class="number">2</span>)</div><div class="line"><span class="literal">false</span> next(<span class="number">4</span>)</div><div class="line"><span class="literal">false</span> next(<span class="number">6</span>)</div><div class="line"><span class="literal">false</span> next(<span class="number">8</span>)</div><div class="line"><span class="literal">false</span> completed</div><div class="line"><span class="literal">true</span> next(<span class="number">1</span>)</div><div class="line"><span class="literal">true</span> next(<span class="number">3</span>)</div><div class="line"><span class="literal">true</span> next(<span class="number">5</span>)</div><div class="line"><span class="literal">true</span> next(<span class="number">7</span>)</div><div class="line"><span class="literal">true</span> completed</div></pre></td></tr></table></figure>
+<p><span id="⑫interval">⑫interval</span></p>
+<p>#⑫interval</p>
+<blockquote>
+<p>创建的 Observable 序列每隔一段设定的时间，会发出一个索引数的元素。而且它会一直发送下去<br>创建的 Observable 序列每隔一段设定的时间，会发出一个索引数的元素。而且它会一直发送下去</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> timerSequence = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.timer(<span class="number">1</span>, period: <span class="number">1</span>, scheduler: <span class="type">MainScheduler</span>.instance)</div><div class="line"></div><div class="line"><span class="number">_</span> = timerSequence.subscribe &#123; event <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(event)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.interval(<span class="number">1</span>, scheduler: <span class="type">MainScheduler</span>.instance)</div><div class="line">observable.subscribe &#123; event <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(event)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//print</span></div><div class="line">next(<span class="number">0</span>)</div><div class="line">next(<span class="number">1</span>)</div><div class="line">next(<span class="number">2</span>)</div><div class="line">next(<span class="number">3</span>)</div></pre></td></tr></table></figure>
+<p><span id="⑬timer">⑬timer</span></p>
+<h1 id="⑬timer"><a href="#⑬timer" class="headerlink" title="⑬timer"></a>⑬timer</h1><blockquote>
+<p>这个方法有两种用法，一种是创建的 Observable 序列在经过设定的一段时间后，产生唯一的一个元素</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">//5秒种后发出唯一的一个元素0</span></div><div class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.timer(<span class="number">5</span>, scheduler: <span class="type">MainScheduler</span>.instance)</div><div class="line">observable.subscribe &#123; event <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(event)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//print</span></div><div class="line">next(<span class="number">0</span>)</div><div class="line">competed</div></pre></td></tr></table></figure>
+<blockquote>
+<p>另一种是创建的 Observable 序列在经过设定的一段时间后，每隔一段时间产生一个元素</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">//延时5秒种后，每隔1秒钟发出一个元素</span></div><div class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.timer(<span class="number">5</span>, period: <span class="number">1</span>, scheduler: <span class="type">MainScheduler</span>.instance)</div><div class="line">observable.subscribe &#123; event <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(event)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//print</span></div><div class="line">next(<span class="number">0</span>)</div><div class="line">next(<span class="number">1</span>)</div><div class="line">next(<span class="number">2</span>)</div><div class="line">next(<span class="number">3</span>)</div></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -514,8 +535,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/14/Swift/UIKit/UIImagePickerController/" rel="next" title="Swift-UIKit-UIImagePickerController">
-                <i class="fa fa-chevron-left"></i> Swift-UIKit-UIImagePickerController
+              <a href="/2017/12/15/RxSwift/Grammar/简介以及简单学习使用/" rel="next" title="Swift-RxSwift-简介以及简单学习使用">
+                <i class="fa fa-chevron-left"></i> Swift-RxSwift-简介以及简单学习使用
               </a>
             
           </div>
@@ -524,8 +545,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/15/RxSwift/Grammar/简介以及简单学习使用/" rel="prev" title="Swift-RxSwift-简介以及简单学习使用">
-                Swift-RxSwift-简介以及简单学习使用 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/15/RxSwift/Grammar/Subject/" rel="prev" title="Swift-RxSwift-Subject">
+                Swift-RxSwift-Subject <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -658,7 +679,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#①just"><span class="nav-number">1.</span> <span class="nav-text">①just</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#②of"><span class="nav-number">2.</span> <span class="nav-text">②of</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#create"><span class="nav-number">3.</span> <span class="nav-text">create</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#deferred"><span class="nav-number">4.</span> <span class="nav-text">deferred</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#empty"><span class="nav-number">5.</span> <span class="nav-text">empty</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#error"><span class="nav-number">6.</span> <span class="nav-text">error</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#toObservable"><span class="nav-number">7.</span> <span class="nav-text">toObservable</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#interval"><span class="nav-number">8.</span> <span class="nav-text">interval</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#never"><span class="nav-number">9.</span> <span class="nav-text">never</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#range"><span class="nav-number">10.</span> <span class="nav-text">range</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#repeatElement"><span class="nav-number">11.</span> <span class="nav-text">repeatElement</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#timer"><span class="nav-number">12.</span> <span class="nav-text">timer</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#①just"><span class="nav-number">1.</span> <span class="nav-text">①just</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#②of"><span class="nav-number">2.</span> <span class="nav-text">②of</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#③from"><span class="nav-number">3.</span> <span class="nav-text">③from</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#④empty"><span class="nav-number">4.</span> <span class="nav-text">④empty</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#⑤never"><span class="nav-number">5.</span> <span class="nav-text">⑤never</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#⑥error"><span class="nav-number">6.</span> <span class="nav-text">⑥error</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#⑦range"><span class="nav-number">7.</span> <span class="nav-text">⑦range</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#⑧repeatElement"><span class="nav-number">8.</span> <span class="nav-text">⑧repeatElement</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#⑬timer"><span class="nav-number">9.</span> <span class="nav-text">⑬timer</span></a></li></ol></div>
             
 
           </div>
