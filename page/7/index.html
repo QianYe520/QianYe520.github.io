@@ -311,7 +311,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/19/RxSwift/Grammar/Operators-数学和集合操作符/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/19/RxSwift/Grammar/Operators-过滤和条件操作符/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -330,7 +330,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/19/RxSwift/Grammar/Operators-数学和集合操作符/" itemprop="url">Swift-RxSwift-Mathematical & Aggregate Operators-数学和集合操作符</a></h1>
+                <a class="post-title-link" href="/2017/12/19/RxSwift/Grammar/Operators-过滤和条件操作符/" itemprop="url">Swift-RxSwift-过滤和条件操作符</a></h1>
         
 
         <div class="post-meta">
@@ -415,20 +415,13 @@
       
         
           
-          数学和集合操作符
-①toArray
-①②reduce
-③concat
-
-①toArray
-①toArray
-将sequence转换成一个array，并转换成单一事件信号，然后结束
-
-let disposeBag = DisposeBag()Observable.range(start: 1, cou
+          过滤和条件操作符①filter②distinctUntilChanged③elementAt④single⑤take⑥takeLast⑦takeWhile⑧takeUntil⑨skip⑩ skipWhile⑪skipWhileWithIndex⑫skipUntil 
+①filter 
+①filter
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/19/RxSwift/Grammar/Operators-数学和集合操作符/#more" rel="contents">
+            <a class="btn" href="/2017/12/19/RxSwift/Grammar/Operators-过滤和条件操作符/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1391,10 +1384,12 @@ let disposeBag = DisposeBag()Obser
 ②直接在 subscribe、bind 方法中创建观察者
 ③使用 AnyObserver 创建观察者
 ④使用 Binder 创建观察者
+⑤自定义可绑定属性
+⑥RxSwift 自带的可绑定属性（UI 观察者）
 
 ①1
 ①Observer观察者
-观察者（Observer）的作用就是监听事件，然后对这个事件做出响应。或者说任何响应事件的行为都是观察
+观察者（Observer）的作
           ...
           <!--noindex-->
           <div class="post-button text-center">
