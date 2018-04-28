@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="❶❷❸❹❺❼❽❾①②③④⑤⑥⑦⑧⑨⑩⑪⑫ ①概念❶Observable Observable 这个类就是 Rx 框架的基础，称为可观察序列。它的作用就是可以异步地产生一系列的 Event（事件），即一个 Observable 对象会随着时间推移不定期地发出 event(element : T) 这样一个东西 Event 还可以携带数据，它的泛型  就是用来指定这个 Event 携带的数据的类型 每">
+<meta name="description" content="①概念❶Observable Observable 这个类就是 Rx 框架的基础，称为可观察序列。它的作用就是可以异步地产生一系列的 Event（事件），即一个 Observable 对象会随着时间推移不定期地发出 event(element : T) 这样一个东西 Event 还可以携带数据，它的泛型  就是用来指定这个 Event 携带的数据的类型 每一个Observable的实例都是一个序列">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RxSwift-Grammar-Observables-02">
 <meta property="og:url" content="http://yoursite.com/2017/12/15/RxSwift/Grammar/02-Observables/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="❶❷❸❹❺❼❽❾①②③④⑤⑥⑦⑧⑨⑩⑪⑫ ①概念❶Observable Observable 这个类就是 Rx 框架的基础，称为可观察序列。它的作用就是可以异步地产生一系列的 Event（事件），即一个 Observable 对象会随着时间推移不定期地发出 event(element : T) 这样一个东西 Event 还可以携带数据，它的泛型  就是用来指定这个 Event 携带的数据的类型 每">
+<meta property="og:description" content="①概念❶Observable Observable 这个类就是 Rx 框架的基础，称为可观察序列。它的作用就是可以异步地产生一系列的 Event（事件），即一个 Observable 对象会随着时间推移不定期地发出 event(element : T) 这样一个东西 Event 还可以携带数据，它的泛型  就是用来指定这个 Event 携带的数据的类型 每一个Observable的实例都是一个序列">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-28T04:01:24.983Z">
+<meta property="og:updated_time" content="2018-04-28T07:20:57.938Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RxSwift-Grammar-Observables-02">
-<meta name="twitter:description" content="❶❷❸❹❺❼❽❾①②③④⑤⑥⑦⑧⑨⑩⑪⑫ ①概念❶Observable Observable 这个类就是 Rx 框架的基础，称为可观察序列。它的作用就是可以异步地产生一系列的 Event（事件），即一个 Observable 对象会随着时间推移不定期地发出 event(element : T) 这样一个东西 Event 还可以携带数据，它的泛型  就是用来指定这个 Event 携带的数据的类型 每">
+<meta name="twitter:description" content="①概念❶Observable Observable 这个类就是 Rx 框架的基础，称为可观察序列。它的作用就是可以异步地产生一系列的 Event（事件），即一个 Observable 对象会随着时间推移不定期地发出 event(element : T) 这样一个东西 Event 还可以携带数据，它的泛型  就是用来指定这个 Event 携带的数据的类型 每一个Observable的实例都是一个序列">
 
 
 
@@ -411,8 +411,7 @@
       
 
       
-        <p>❶❷❸❹❺❼❽❾①②③④⑤⑥⑦⑧⑨⑩⑪⑫</p>
-<h1 id="①概念"><a href="#①概念" class="headerlink" title="①概念"></a>①概念</h1><h2 id="❶Observable"><a href="#❶Observable" class="headerlink" title="❶Observable"></a>❶Observable<t></t></h2><ul>
+        <h1 id="①概念"><a href="#①概念" class="headerlink" title="①概念"></a>①概念</h1><h2 id="❶Observable"><a href="#❶Observable" class="headerlink" title="❶Observable"></a>❶Observable<t></t></h2><ul>
 <li>Observable<t> 这个类就是 Rx 框架的基础，称为可观察序列。它的作用就是可以异步地产生一系列的 Event（事件），即一个 Observable<t> 对象会随着时间推移不定期地发出 event(element : T) 这样一个东西</t></t></li>
 <li>Event 还可以携带数据，它的泛型 <t> 就是用来指定这个 Event 携带的数据的类型</t></li>
 <li>每一个Observable的实例都是一个序列</li>
@@ -458,8 +457,7 @@
 <li>如果一个Observable发出一个next事件(Event.next(Element)),它还能够继续发出更多的事件</li>
 <li>如果一个Observable发出一个error事件(Event.error(ErrorType))或者一个completed事件(Event.completed)，那么这个Observable序列就不能给订阅者发送其他的事件了</li>
 </ul>
-<p>##❷Event</p>
-<blockquote>
+<h2 id="❷Event"><a href="#❷Event" class="headerlink" title="❷Event"></a>❷Event</h2><blockquote>
 <p>事件 Event 的定义</p>
 </blockquote>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Event</span>&lt;<span class="title">Element</span>&gt; </span>&#123;</div><div class="line">    <span class="comment">/// Next element is produced.</span></div><div class="line">    <span class="keyword">case</span> next(<span class="type">Element</span>)</div><div class="line"> </div><div class="line">    <span class="comment">/// Sequence terminated with an error.</span></div><div class="line">    <span class="keyword">case</span> error(<span class="type">Swift</span>.<span class="type">Error</span>)</div><div class="line"> </div><div class="line">    <span class="comment">/// Sequence completed successfully.</span></div><div class="line">    <span class="keyword">case</span> completed</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -528,8 +526,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/15/RxSwift/Grammar/简介以及简单学习使用/" rel="prev" title="Swift-RxSwift-简介以及简单学习使用">
-                Swift-RxSwift-简介以及简单学习使用 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/15/RxSwift/Grammar/03-创建序列Observable/" rel="prev" title="Swift-RxSwift-创建序列Observable-03">
+                Swift-RxSwift-创建序列Observable-03 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -662,7 +660,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#①概念"><span class="nav-number">1.</span> <span class="nav-text">①概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#❶Observable"><span class="nav-number">1.1.</span> <span class="nav-text">❶Observable</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#next"><span class="nav-number">1.1.1.</span> <span class="nav-text">next</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#error"><span class="nav-number">1.1.2.</span> <span class="nav-text">error</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#completed"><span class="nav-number">1.1.3.</span> <span class="nav-text">completed</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#❸Observable-与-Sequence比较"><span class="nav-number">1.2.</span> <span class="nav-text">❸Observable 与 Sequence比较</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#①概念"><span class="nav-number">1.</span> <span class="nav-text">①概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#❶Observable"><span class="nav-number">1.1.</span> <span class="nav-text">❶Observable</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#❷Event"><span class="nav-number">1.2.</span> <span class="nav-text">❷Event</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#next"><span class="nav-number">1.2.1.</span> <span class="nav-text">next</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#error"><span class="nav-number">1.2.2.</span> <span class="nav-text">error</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#completed"><span class="nav-number">1.2.3.</span> <span class="nav-text">completed</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#❸Observable-与-Sequence比较"><span class="nav-number">1.3.</span> <span class="nav-text">❸Observable 与 Sequence比较</span></a></li></ol></li></ol></div>
             
 
           </div>
