@@ -482,7 +482,7 @@
 <p>以前说过，属性观察器在构造器里面给属性赋值的时候是不会被调用的。但是这个只针对于本类定义的属性。对于继承而来的属性，当已经经过父类的构造器完成初始化后，如果在子类里面修改了继承属性的值，那么就会触发父类观察器，如果你在子类里面也覆盖了这个观察器，那么子类和父类的观察器都会被调用</p>
 <p>另外再看</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> life: <span class="type">Int</span> = <span class="number">0</span> &#123;  </div><div class="line">        <span class="keyword">willSet</span>&#123;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"animial life newValue <span class="subst">\(newValue)</span>"</span>)  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">init</span>(getlife: <span class="type">Int</span>)&#123;  </div><div class="line">        <span class="built_in">print</span>(<span class="string">"animal life init <span class="subst">\(<span class="keyword">self</span>.life)</span>"</span>)  </div><div class="line">        <span class="keyword">self</span>.life = <span class="number">1</span>  </div><div class="line">        <span class="built_in">print</span>(<span class="string">"animal life after assign <span class="subst">\(<span class="keyword">self</span>.life)</span>"</span>)  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;  </div><div class="line">    <span class="keyword">var</span> life: <span class="type">Int</span> = <span class="number">0</span> &#123;  </div><div class="line">        <span class="keyword">willSet</span>&#123;  </div><div class="line">            <span class="built_in">print</span>(<span class="string">"animial life newValue \(newValue)"</span>)  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">init</span>(getlife: <span class="type">Int</span>)&#123;  </div><div class="line">        <span class="built_in">print</span>(<span class="string">"animal life init \(self.life)"</span>)  </div><div class="line">        <span class="keyword">self</span>.life = <span class="number">1</span>  </div><div class="line">        <span class="built_in">print</span>(<span class="string">"animal life after assign \(self.life)"</span>)  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>如果我们调用下面的语句</p>
 </blockquote>
@@ -650,7 +650,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">209</span>
+                  <span class="site-state-item-count">210</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
