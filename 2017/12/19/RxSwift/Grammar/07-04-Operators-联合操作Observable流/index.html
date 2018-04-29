@@ -83,7 +83,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Swift,RxSwift," />
 
 
 
@@ -94,17 +94,25 @@
 
 
 
-<meta name="description" content="iOS-UI-UIButton-Img和Title位置 UIButton 的image title 的位置都是可以调整的，具体如何调整可以按照下面的步骤  设置内容的水平垂直位置self.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;self.contentHorizontalAlignment = UIContro">
+<meta name="description" content="联合操作Observable流 联合操作Observable流 结合操作（或者称合并操作）指的是将多个 Observable 序列进行组合，拼装成一个新的 Observable 序列联合操作就是把多个Observable流合成单个Observable流   ①startWith (优先插入特定的事件消息) ②merge （组合成单个Observable,并且按照时间顺序发射对应事件） ③zip （">
+<meta name="keywords" content="Swift,RxSwift">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS-UIKit-UIButton-Img和Title位置">
-<meta property="og:url" content="http://yoursite.com/2017/12/01/OC/Kit/UIButton-Img和Title位置/index.html">
+<meta property="og:title" content="Swift-RxSwift-Combination Operators-联合操作Observable流-07-04">
+<meta property="og:url" content="http://yoursite.com/2017/12/19/RxSwift/Grammar/07-04-Operators-联合操作Observable流/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="iOS-UI-UIButton-Img和Title位置 UIButton 的image title 的位置都是可以调整的，具体如何调整可以按照下面的步骤  设置内容的水平垂直位置self.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;self.contentHorizontalAlignment = UIContro">
+<meta property="og:description" content="联合操作Observable流 联合操作Observable流 结合操作（或者称合并操作）指的是将多个 Observable 序列进行组合，拼装成一个新的 Observable 序列联合操作就是把多个Observable流合成单个Observable流   ①startWith (优先插入特定的事件消息) ②merge （组合成单个Observable,并且按照时间顺序发射对应事件） ③zip （">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-21T00:53:48.861Z">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/startWith.png">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/merge.png">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/combineLatest.png">
+<meta property="og:image" content="http://ot0mms4k8.bkt.clouddn.com/Combination-Operators-4-2.png">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/switchLatest.png">
+<meta property="og:image" content="http://ot0mms4k8.bkt.clouddn.com/switchLatest-002.png">
+<meta property="og:updated_time" content="2018-04-29T06:53:50.463Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS-UIKit-UIButton-Img和Title位置">
-<meta name="twitter:description" content="iOS-UI-UIButton-Img和Title位置 UIButton 的image title 的位置都是可以调整的，具体如何调整可以按照下面的步骤  设置内容的水平垂直位置self.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;self.contentHorizontalAlignment = UIContro">
+<meta name="twitter:title" content="Swift-RxSwift-Combination Operators-联合操作Observable流-07-04">
+<meta name="twitter:description" content="联合操作Observable流 联合操作Observable流 结合操作（或者称合并操作）指的是将多个 Observable 序列进行组合，拼装成一个新的 Observable 序列联合操作就是把多个Observable流合成单个Observable流   ①startWith (优先插入特定的事件消息) ②merge （组合成单个Observable,并且按照时间顺序发射对应事件） ③zip （">
+<meta name="twitter:image" content="http://ozr735s7e.bkt.clouddn.com/startWith.png">
 
 
 
@@ -134,13 +142,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/01/OC/Kit/UIButton-Img和Title位置/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/19/RxSwift/Grammar/07-04-Operators-联合操作Observable流/"/>
 
 
 
 
 
-  <title>iOS-UIKit-UIButton-Img和Title位置 | 千夜、おれはおまえをずっと爱している</title>
+  <title>Swift-RxSwift-Combination Operators-联合操作Observable流-07-04 | 千夜、おれはおまえをずっと爱している</title>
   
 
 
@@ -311,7 +319,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/01/OC/Kit/UIButton-Img和Title位置/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/19/RxSwift/Grammar/07-04-Operators-联合操作Observable流/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -328,7 +336,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">iOS-UIKit-UIButton-Img和Title位置</h1>
+          <h1 class="post-title" itemprop="name headline">Swift-RxSwift-Combination Operators-联合操作Observable流-07-04</h1>
         
 
         <div class="post-meta">
@@ -340,8 +348,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-01T16:30:44+08:00">
-                2017-12-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-19T21:13:56+08:00">
+                2017-12-19
               </time>
             
 
@@ -363,8 +371,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OC/" itemprop="url" rel="index">
-                    <span itemprop="name">OC</span>
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
                   </a>
                 </span>
 
@@ -374,19 +382,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OC/UIKit/" itemprop="url" rel="index">
-                    <span itemprop="name">UIKit</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OC/UIKit/UIButton/" itemprop="url" rel="index">
-                    <span itemprop="name">UIButton</span>
+                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
                   </a>
                 </span>
 
@@ -422,26 +419,71 @@
       
 
       
-        <h1 id="iOS-UI-UIButton-Img和Title位置"><a href="#iOS-UI-UIButton-Img和Title位置" class="headerlink" title="iOS-UI-UIButton-Img和Title位置"></a>iOS-UI-UIButton-Img和Title位置</h1><blockquote>
-<p>UIButton 的image title 的位置都是可以调整的，具体如何调整可以按照下面的步骤</p>
+        <p><span id="1">联合操作Observable流</span></p>
+<h1 id="联合操作Observable流"><a href="#联合操作Observable流" class="headerlink" title="联合操作Observable流"></a>联合操作Observable流</h1><blockquote>
+<p>结合操作（或者称合并操作）指的是将多个 Observable 序列进行组合，拼装成一个新的 Observable 序列<br>联合操作就是把多个<strong>Observable流</strong>合成<strong>单个Observable流</strong></p>
 </blockquote>
-<h2 id="设置内容的水平垂直位置"><a href="#设置内容的水平垂直位置" class="headerlink" title="设置内容的水平垂直位置"></a>设置内容的水平垂直位置</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">self</span>.contentVerticalAlignment = <span class="built_in">UIControlContentVerticalAlignmentTop</span>;</div><div class="line"><span class="keyword">self</span>.contentHorizontalAlignment = <span class="built_in">UIControlContentHorizontalAlignmentLeft</span>;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>self指的是UIButton对象，这是继承自UIButon的方法里面或者给UIButton添加扩展方法里面。<br>通过这样的设置可以使得imageView显示在UIButton对象的左上角，titleLabel显示在imageView的右边</p>
-</blockquote>
-<h2 id="调整imageView居中"><a href="#调整imageView居中" class="headerlink" title="调整imageView居中"></a>调整imageView居中</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">CGFloat</span> btn_width = <span class="keyword">self</span>.frame.size.width;</div><div class="line"><span class="keyword">self</span>.imageEdgeInsets = <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">10</span>, (btn_width - <span class="keyword">self</span>.imageView.frame.size.width)/<span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span>);</div></pre></td></tr></table></figure>
-<h2 id="调整-titleLabel居中"><a href="#调整-titleLabel居中" class="headerlink" title="调整 titleLabel居中"></a>调整 titleLabel居中</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="built_in">CGFloat</span> btn_width = <span class="keyword">self</span>.frame.size.width;</div><div class="line"><span class="keyword">self</span>.titleEdgeInsets = <span class="built_in">UIEdgeInsetsMake</span>(<span class="keyword">self</span>.imageView.frame.size.height + vSpace+<span class="number">10</span>, - <span class="keyword">self</span>.imageView.frame.size.width+(btn_width/<span class="number">2</span>-<span class="keyword">self</span>.titleLabel.frame.size.width/<span class="number">2</span>), <span class="number">0</span>, <span class="number">0</span>);</div></pre></td></tr></table></figure>
-<blockquote>
-<p>通过减去 imageView的宽度使titleLabel处在左上角，让后将label移植中心。<br>经过以上三步就可以使imageView 、titleLabelLabel 居中，其它的显示形式一样可以参照以上的设置。</p>
-</blockquote>
-<h1 id="整理成了方法，"><a href="#整理成了方法，" class="headerlink" title="整理成了方法，"></a>整理成了方法，</h1><blockquote>
-<p>不需要每次都写</p>
-</blockquote>
-<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">- (<span class="keyword">void</span>) setImageAndTitleCenterWithVerticalGapSpace:(<span class="built_in">CGFloat</span>) vSpace imageTopSpace:(<span class="built_in">CGFloat</span>) iSpace &#123;</div><div class="line"></div><div class="line">    <span class="keyword">self</span>.contentVerticalAlignment = <span class="built_in">UIControlContentVerticalAlignmentTop</span>;</div><div class="line">    <span class="keyword">self</span>.contentHorizontalAlignment = <span class="built_in">UIControlContentHorizontalAlignmentLeft</span>;</div><div class="line"></div><div class="line">    <span class="built_in">CGFloat</span> btn_width = <span class="keyword">self</span>.frame.size.width;</div><div class="line">    <span class="built_in">CGFloat</span> iTop = iSpace;</div><div class="line">    <span class="keyword">self</span>.imageEdgeInsets = <span class="built_in">UIEdgeInsetsMake</span>(iTop, (btn_width - <span class="keyword">self</span>.imageView.frame.size.width)/<span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line"><span class="comment">//    self.titleEdgeInsets = UIEdgeInsetsMake(self.imageView.frame.size.height + vSpace+iTop, - self.imageView.frame.size.width+(btn_width/2-self.titleLabel.frame.size.width/2), 0, 0);</span></div><div class="line"><span class="comment">// 使用中发现对于label的width取值不准确，遂通过计算一次获取，准确</span></div><div class="line">    <span class="built_in">CGSize</span> size = [<span class="keyword">self</span>.titleLabel sizeThatFits:<span class="built_in">CGSizeMake</span>(<span class="built_in">CGRectGetWidth</span>(<span class="keyword">self</span>.frame), <span class="built_in">CGRectGetHeight</span>(<span class="keyword">self</span>.frame))];</div><div class="line">    <span class="keyword">self</span>.titleEdgeInsets = <span class="built_in">UIEdgeInsetsMake</span>(<span class="built_in">CGRectGetHeight</span>(<span class="keyword">self</span>.imageView.frame)+ vSpace + iTop, - <span class="built_in">CGRectGetWidth</span>(<span class="keyword">self</span>.imageView.frame) + (<span class="built_in">CGRectGetWidth</span>(<span class="keyword">self</span>.frame) - size.width)/<span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
-<li>vSpace imageView与titleLabel垂直间隔</li>
-<li>iSpace imageView 距离 top的间隔</li>
+<li>①startWith (优先插入特定的事件消息)</li>
+<li>②merge （组合成单个Observable,并且按照时间顺序发射对应事件）</li>
+<li>③zip （一个事件对应另一个流一个事件）</li>
+<li>④combineLatest （一个流的事件对应另一个流的最新的事件）</li>
+<li>⑤switchLatest (事件流进行转换)</li>
 </ul>
+<ul>
+<li><a href="#1">联合操作Observable流</a></li>
+<li><a href="#①startWith">①startWith</a></li>
+<li><a href="#②merge">②merge</a></li>
+<li><a href="#1.3">③zip</a></li>
+<li><a href="#1.4">④combineLatest</a></li>
+<li><a href="#1.5">⑤switchLatest</a></li>
+</ul>
+<p><span id="①startWith">①startWith</span></p>
+<p>#①startWith</p>
+<h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><blockquote>
+<p>在发出事件消息之前，先发出某个特定的事件消息。<br>比如发出事件2 ，3然后我startWith(1)，那么就会先发出1，然后2 ，3</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/startWith.png" alt="startWith"></p>
+<h2 id="使用样例1"><a href="#使用样例1" class="headerlink" title="使用样例1"></a>使用样例1</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="type">Observable</span>.of(<span class="string">"2"</span>,<span class="string">"3"</span>)</div><div class="line">         .startWith(<span class="string">"1"</span>)</div><div class="line">         .subscribe(onNext:&#123;</div><div class="line">                      <span class="built_in">print</span>($<span class="number">0</span>)</div><div class="line">                      &#125;)</div><div class="line">         .addDisposableTo(disposeBag)</div><div class="line"><span class="comment">//</span></div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">2</span></div><div class="line"><span class="number">3</span></div></pre></td></tr></table></figure>
+<h2 id="使用样例2"><a href="#使用样例2" class="headerlink" title="使用样例2"></a>使用样例2</h2><blockquote>
+<p>在Observable释放元素之前，发射指定的元素序列<br>startWith和栈类似，先进后出<br>在发送一个东西前，先发送一个指定的</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">let disposeBag = DisposeBag()</div><div class="line">Observable.of([&quot;C&quot;,&quot;C++&quot;,&quot;OC&quot;])</div><div class="line">          .startWith([&quot;今晚吃鸡，大吉大利&quot;])</div><div class="line">          .subscribe(&#123; (event) in</div><div class="line">                 print(event)</div><div class="line">            &#125;)</div><div class="line">          .disposed(by: disposeBag)</div><div class="line">//打印</div><div class="line">next([&quot;今晚吃鸡，大吉大利&quot;])</div><div class="line">next([&quot;C&quot;, &quot;C++&quot;, &quot;OC&quot;])</div><div class="line">completed</div></pre></td></tr></table></figure>
+<p><span id="②merge">②merge</span></p>
+<h1 id="②merge"><a href="#②merge" class="headerlink" title="②merge"></a>②merge</h1><h2 id="基本介绍-1"><a href="#基本介绍-1" class="headerlink" title="基本介绍"></a>基本介绍</h2><blockquote>
+<p>将多个Observable组合成单个Observable,并且按照时间顺序发射对应事件</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/merge.png" alt="merge"></p>
+<h2 id="使用样例"><a href="#使用样例" class="headerlink" title="使用样例"></a>使用样例</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="keyword">let</span> sbj1 = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"><span class="keyword">let</span> sbj2 = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"><span class="type">Observable</span>.of(sbj1,sbj2)</div><div class="line">          .merge()</div><div class="line">          .subscribe(onNext: &#123; </div><div class="line">                    <span class="built_in">print</span>($<span class="number">0</span>)</div><div class="line">               &#125;)</div><div class="line">          .addDisposableTo(disposeBag)</div><div class="line">subject1.onNext(<span class="string">"🅰️"</span>)</div><div class="line">subject1.onNext(<span class="string">"🅱️"</span>)</div><div class="line">subject2.onNext(<span class="string">"①"</span>)</div><div class="line">subject2.onNext(<span class="string">"②"</span>)</div><div class="line">subject1.onNext(<span class="string">"🆎"</span>)</div><div class="line">subject2.onNext(<span class="string">"③"</span>)</div><div class="line">   </div><div class="line"><span class="comment">//</span></div><div class="line">🅰️</div><div class="line">🅱️</div><div class="line">①</div><div class="line">②</div><div class="line">🆎</div><div class="line">③</div></pre></td></tr></table></figure>
+<p><span id="③zip">③zip</span></p>
+<h2 id="③zip"><a href="#③zip" class="headerlink" title="③zip"></a>③zip</h2><h2 id="基本介绍-2"><a href="#基本介绍-2" class="headerlink" title="基本介绍"></a>基本介绍</h2><blockquote>
+<p>绑定超过最多不超过8个的Observable流，结合在一起处理<br>注意Zip是一个事件对应另一个流一个事件<br>将多个Observable(注意：必须是要成对)组合成单个Observable，当有事件到达时，会在每个序列中对应的索引上对应的元素发出。(ps:之前版本的RxSwift好像最多只能组合8个Observable)</p>
+</blockquote>
+<p><a href="http://reactivex.io/documentation/operators/zip.html" target="_blank" rel="external">zip-文档</a></p>
+<h2 id="使用样例-1"><a href="#使用样例-1" class="headerlink" title="使用样例"></a>使用样例</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"> </div><div class="line"><span class="keyword">let</span> strSbj = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"><span class="keyword">let</span> intSbj = <span class="type">PublishSubject</span>&lt;<span class="type">Int</span>&gt;()</div><div class="line">   </div><div class="line"><span class="type">Observable</span>.<span class="built_in">zip</span>(strSbj, intSbj)&#123;</div><div class="line">				  strElement,intElement  <span class="keyword">in</span> </div><div class="line">				  <span class="string">"<span class="subst">\(strElement)</span> <span class="subst">\(intElement)</span>"</span></div><div class="line">				 &#125;</div><div class="line">         .subscribe(<span class="type">OnNext</span>: &#123;</div><div class="line">                   pint($<span class="number">0</span>)</div><div class="line">              &#125;)</div><div class="line">         .addDisposableTo(disposeBag)</div><div class="line">   </div><div class="line">strSbj.onNext(<span class="string">"🅰️"</span>)</div><div class="line">strSbj.onNext(<span class="string">"🅱️"</span>)</div><div class="line">   </div><div class="line">intSbj.onNext(<span class="number">1</span>)</div><div class="line">intSbj.onNext(<span class="number">2</span>)</div><div class="line">   </div><div class="line">strSbj.onNext(<span class="string">"🆎"</span>)</div><div class="line">intSbj.onNext(<span class="number">2</span>)</div><div class="line">   </div><div class="line"><span class="comment">//</span></div><div class="line">🅰️ <span class="number">1</span>   将stringSubject和intSubject压缩到一起共同处理</div><div class="line">🅱️ <span class="number">2</span></div><div class="line">🆎 <span class="number">3</span></div></pre></td></tr></table></figure>
+<p><span id="④combineLatest">④combineLatest</span></p>
+<h1 id="④combineLatest"><a href="#④combineLatest" class="headerlink" title="④combineLatest"></a>④combineLatest</h1><h2 id="基本介绍-3"><a href="#基本介绍-3" class="headerlink" title="基本介绍"></a>基本介绍</h2><blockquote>
+<p>绑定超过最多不超过8个的Observable流，结合在一起处理<br>和Zip不同的是combineLatest是一个流的事件对应另一个流的最新的事件，两个事件都会是最新的事件，可将下图与Zip的图进行对比<br>邻近事件一起处理</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/combineLatest.png" alt="combineLatest"></p>
+<h2 id="使用样例-2"><a href="#使用样例-2" class="headerlink" title="使用样例"></a>使用样例</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="keyword">let</span> strSbj = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"><span class="keyword">let</span> intSbj = <span class="type">PublishSubject</span>&lt;<span class="type">Int</span>&gt;()</div><div class="line">   </div><div class="line"><span class="type">Observable</span>.combineLatest(strSbj, intSbj)&#123; strElement,intElement <span class="keyword">in</span></div><div class="line">                     <span class="string">"<span class="subst">\(strElement)</span> <span class="subst">\(intElement)</span>"</span></div><div class="line">              &#125;</div><div class="line">         .addscribe(onNext: &#123;<span class="built_in">print</span>(</div><div class="line">                   $<span class="number">0</span>)</div><div class="line">                 &#125;)</div><div class="line">         .addDisposableTo(disposeBag)</div><div class="line">   </div><div class="line">strSbj.onNext(<span class="string">"🅰️"</span>)</div><div class="line">strSbj.onNext(<span class="string">"🅱️"</span>)</div><div class="line">intSbj.onNext(<span class="number">1</span>)</div><div class="line">intSbj.onNext(<span class="number">2</span>)</div><div class="line">strSbj.onNext(<span class="string">"🆎"</span>)</div><div class="line"></div><div class="line"><span class="comment">// 输出</span></div><div class="line">🅱️ <span class="number">1</span></div><div class="line">🅱️ <span class="number">2</span></div><div class="line">🆎 <span class="number">2</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>当一个项目由两个Observables发射时，通过一个指定的功能将每个Observable观察到的最新项目组合起来，并根据该功能的结果发射事件</p>
+</blockquote>
+<p><img src="http://ot0mms4k8.bkt.clouddn.com/Combination-Operators-4-2.png" alt=""></p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"></div><div class="line"><span class="keyword">let</span> subject1 = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"><span class="keyword">let</span> subject2 = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line">	    </div><div class="line"><span class="type">Observable</span>.combineLatest(subject1, subject2) &#123; string1,string2 <span class="keyword">in</span></div><div class="line">                <span class="string">"<span class="subst">\(string1)</span>--<span class="subst">\(string2)</span>"</span></div><div class="line">              &#125;</div><div class="line">		    .subscribe(onNext: &#123;</div><div class="line">		            <span class="built_in">print</span>($<span class="number">0</span>)</div><div class="line">		            &#125;)</div><div class="line">		    .disposed(by: disposeBag)</div><div class="line">	    </div><div class="line">subject1.onNext(<span class="string">"A"</span>)</div><div class="line">    </div><div class="line">subject2.onNext(<span class="string">"1"</span>)</div><div class="line">subject2.onNext(<span class="string">"2"</span>)</div><div class="line">    </div><div class="line">subject1.onNext(<span class="string">"B"</span>)</div><div class="line">subject1.onNext(<span class="string">"C"</span>)</div><div class="line">	</div><div class="line"><span class="comment">//输出结果</span></div><div class="line"><span class="type">A</span>--<span class="number">1</span></div><div class="line"><span class="type">A</span>--<span class="number">2</span></div><div class="line"><span class="type">B</span>--<span class="number">2</span></div><div class="line"><span class="type">C</span>--<span class="number">2</span></div></pre></td></tr></table></figure>
+<p><span id="⑤switchLatest">⑤switchLatest</span></p>
+<p>#⑤switchLatest</p>
+<h2 id="基本介绍-4"><a href="#基本介绍-4" class="headerlink" title="基本介绍"></a>基本介绍</h2><blockquote>
+<p>切换Observable队列<br>switchLatest可以对事件流进行转换，本来监听的sbj1，可以通过更改variable里面的value更换事件源—&gt;变成监听sbj2<br>witchLatest 有点像其他语言的 switch 方法，可以对事件流进行转换</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/switchLatest.png" alt="hexo"></p>
+<h2 id="使用样例-3"><a href="#使用样例-3" class="headerlink" title="使用样例"></a>使用样例</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"></div><div class="line"><span class="keyword">let</span> sbj1 = <span class="type">BehaviorSubject</span>(value: <span class="string">"⚽️"</span>)</div><div class="line"><span class="keyword">let</span> sbj2 = <span class="type">BehaviorSubject</span>(value: <span class="string">"🍎"</span>)</div><div class="line">   </div><div class="line"><span class="keyword">let</span> variable = <span class="type">Variable</span>(sbj1)</div><div class="line">variable.asObservable()</div><div class="line">        .switchLatest()</div><div class="line">        .subscribe(onNext: &#123; </div><div class="line">                     <span class="built_in">print</span>($<span class="number">0</span>) </div><div class="line">                 &#125;)</div><div class="line">        .addDisposableTo(disposeBag)</div><div class="line">    </div><div class="line">sbj1.onNext(<span class="string">"🏈"</span>)</div><div class="line">sbj1.onNext(<span class="string">"🏀"</span>)</div><div class="line">	    </div><div class="line">variable.value = sbj1</div><div class="line">	    </div><div class="line">subject1.onNext(<span class="string">"⚾️"</span>)</div><div class="line">	    </div><div class="line">sbj2.onNext(<span class="string">"🍐"</span>)</div><div class="line">variable.value = sbj1</div><div class="line">sbj2.onNext(<span class="string">"54321"</span>)</div><div class="line">sbj1.onNext(<span class="string">"12345"</span>)</div><div class="line">   <span class="comment">///</span></div><div class="line">⚽️</div><div class="line">🏈</div><div class="line">🏀</div><div class="line">🍎</div><div class="line">🍐</div><div class="line">⚾️</div><div class="line"><span class="number">12345</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>例子分析</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> et disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">    </div><div class="line"><span class="keyword">let</span> subject1 = <span class="type">BehaviorSubject</span>(value: <span class="string">"1"</span>)</div><div class="line"><span class="keyword">let</span> subject2 = <span class="type">BehaviorSubject</span>(value: <span class="string">"A"</span>)</div><div class="line">    </div><div class="line"><span class="keyword">let</span> variable = <span class="type">Variable</span>(subject1)</div><div class="line">    </div><div class="line">variable.asObservable()</div><div class="line">        .switchLatest()</div><div class="line">        .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</div><div class="line">        .disposed(by: disposeBag)</div><div class="line">    </div><div class="line">subject1.onNext(<span class="string">"2"</span>)</div><div class="line">subject1.onNext(<span class="string">"3"</span>)</div><div class="line">    </div><div class="line">variable.value = subject2</div><div class="line">    </div><div class="line">subject1.onNext(<span class="string">"4"</span>)</div><div class="line">subject2.onNext(<span class="string">"B"</span>)</div><div class="line"></div><div class="line"><span class="comment">//打印结果</span></div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">2</span></div><div class="line"><span class="number">3</span></div><div class="line"><span class="type">A</span></div><div class="line"><span class="type">B</span></div></pre></td></tr></table></figure>
+<p><img src="http://ot0mms4k8.bkt.clouddn.com/switchLatest-002.png" alt=""></p>
 
       
     </div>
@@ -459,6 +501,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
+          
+        </div>
+      
 
       
       
@@ -468,8 +518,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/01/Swift/Grammar/Inheritance-类继承基本用法/" rel="next" title="Swift-Grammar-Inheritance-类继承基本用法">
-                <i class="fa fa-chevron-left"></i> Swift-Grammar-Inheritance-类继承基本用法
+              <a href="/2017/12/19/RxSwift/Grammar/07-03-操作符-条件和布尔/" rel="next" title="RxSwift-Conditional  Boolean Operators过滤操作符-07-03">
+                <i class="fa fa-chevron-left"></i> RxSwift-Conditional  Boolean Operators过滤操作符-07-03
               </a>
             
           </div>
@@ -478,8 +528,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/01/Swift/Grammar/Initialization初始化-析构/" rel="prev" title="Swift-Grammar-Initialization初始化&Deinitialization析构">
-                Swift-Grammar-Initialization初始化&Deinitialization析构 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/21/Swift/UIKit/Swift-UIKit-UIWKWebView/" rel="prev" title="Swift-UIKit-UIWKWebView">
+                Swift-UIKit-UIWKWebView <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -612,7 +662,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#iOS-UI-UIButton-Img和Title位置"><span class="nav-number">1.</span> <span class="nav-text">iOS-UI-UIButton-Img和Title位置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设置内容的水平垂直位置"><span class="nav-number">1.1.</span> <span class="nav-text">设置内容的水平垂直位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调整imageView居中"><span class="nav-number">1.2.</span> <span class="nav-text">调整imageView居中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调整-titleLabel居中"><span class="nav-number">1.3.</span> <span class="nav-text">调整 titleLabel居中</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#整理成了方法，"><span class="nav-number">2.</span> <span class="nav-text">整理成了方法，</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#联合操作Observable流"><span class="nav-number">1.</span> <span class="nav-text">联合操作Observable流</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本介绍"><span class="nav-number">1.1.</span> <span class="nav-text">基本介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用样例1"><span class="nav-number">1.2.</span> <span class="nav-text">使用样例1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用样例2"><span class="nav-number">1.3.</span> <span class="nav-text">使用样例2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#②merge"><span class="nav-number">2.</span> <span class="nav-text">②merge</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本介绍-1"><span class="nav-number">2.1.</span> <span class="nav-text">基本介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用样例"><span class="nav-number">2.2.</span> <span class="nav-text">使用样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#③zip"><span class="nav-number">2.3.</span> <span class="nav-text">③zip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本介绍-2"><span class="nav-number">2.4.</span> <span class="nav-text">基本介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用样例-1"><span class="nav-number">2.5.</span> <span class="nav-text">使用样例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#④combineLatest"><span class="nav-number">3.</span> <span class="nav-text">④combineLatest</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本介绍-3"><span class="nav-number">3.1.</span> <span class="nav-text">基本介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用样例-2"><span class="nav-number">3.2.</span> <span class="nav-text">使用样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本介绍-4"><span class="nav-number">3.3.</span> <span class="nav-text">基本介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用样例-3"><span class="nav-number">3.4.</span> <span class="nav-text">使用样例</span></a></li></ol></li></ol></div>
             
 
           </div>
