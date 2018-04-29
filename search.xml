@@ -266,9 +266,9 @@
         <category>NSSet</category>
       </categories>
       <tags>
+        <tag>UIKit</tag>
         <tag>Grammar</tag>
         <tag>OC</tag>
-        <tag>UIKit</tag>
       </tags>
   </entry>
   <entry>
@@ -888,12 +888,12 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Swift-RxSwift-创建序列Observable-03]]></title>
-    <url>%2F2017%2F12%2F15%2FRxSwift%2FGrammar%2F03-%E5%88%9B%E5%BB%BA%E5%BA%8F%E5%88%97Observable%2F</url>
-    <content type="text"><![CDATA[①just ②of ③from ④empty ⑤never ⑥error ⑦range ⑧repeatElement ⑨generate ⑩create ⑪deferred ⑫interval ⑬timer ①just ①just just() 方法该方法通过传入一个默认值来初始化只创建包含一个元素的序列。换言之，只发送一个值和 .Completed： let observable = Observable&lt;Int&gt;.just(5) ②of ②of 通过一组元素创建一个序列该方法可以接受可变数量的参数（必需要是同类型的） let observable = Observable.of("A", "B", "C") ③from ③from 需要一个数组参数数据里的元素就会被当做这个 Observable 所发出 event 携带的数据内容，最终效果同上面 of 样例是一样的 let observable = Observable.from(["A", "B", "C"]) ④empty ④empty 创建一个空内容的 Observable 序列 let observable = Observable&lt;Int&gt;.empty() ⑤never ⑤never 创建一个永远不会发出 Event（也不会终止）的 Observable 序列 let observable = Observable&lt;Int&gt;.never() ⑥error ⑥error 创建一个不做任何操作，而是直接发送一个错误的 Observable 序列 enum MyError: Error &#123; case A case B&#125; let observable = Observable&lt;Int&gt;.error(MyError.A) ⑦range ⑦range 通过指定起始和结束数值，创建一个以这个范围内所有值作为初始值的 Observable 序列。下面样例中，两种方法创建的 Observable 序列都是一样的 //使用range()let observable = Observable.range(start: 1, count: 5) //使用of()let observable = Observable.of(1, 2, 3 ,4 ,5) ⑧repeatElement ⑧repeatElement 法创建一个可以无限发出给定元素的 Event 的 Observable 序列（永不终止） let observable = Observable.repeatElement(1) ⑨generate #⑨generate 该方法创建一个只有当提供的所有的判断条件都为 true 的时候，才会给出动作的 Observable 序列两种方法创建的 Observable 序列都是一样的 //使用generate()方法let observable = Observable.generate( initialState: 0, condition: &#123; $0 &lt;= 10 &#125;, iterate: &#123; $0 + 2 &#125;) //使用of()方法let observable = Observable.of(0 , 2 ,4 ,6 ,8 ,10) ⑩create #⑩create 接受一个 block 形式的参数，任务是对每一个过来的订阅进行处理方便演示，这里增加了订阅相关代码 //这个block有一个回调参数observer就是订阅这个Observable对象的订阅者//当一个订阅者订阅这个Observable对象的时候，就会将订阅者作为参数传入这个block来执行一些内容let observable = Observable&lt;String&gt;.create&#123;observer in //对订阅者发出了.next事件，且携带了一个数据&quot;hangge.com&quot; observer.onNext(&quot;hangge.com&quot;) //对订阅者发出了.completed事件 observer.onCompleted() //因为一个订阅行为会有一个Disposable类型的返回值，所以在结尾一定要returen一个Disposable return Disposables.create()&#125; //订阅测试observable.subscribe &#123; print($0)&#125;//打印 next(hangge.com) completed ⑪deferred #⑪deferred 该个方法相当于是创建一个 Observable 工厂，通过传入一个 block 来执行延迟 Observable 序列创建的行为，而这个 block 里就是真正的实例化序列对象的地方 //用于标记是奇数、还是偶数var isOdd = true //使用deferred()方法延迟Observable序列的初始化，通过传入的block来实现Observable序列的初始化并且返回。let factory : Observable&lt;Int&gt; = Observable.deferred &#123; //让每次执行这个block时候都会让奇、偶数进行交替 isOdd = !isOdd //根据isOdd参数，决定创建并返回的是奇数Observable、还是偶数Observable if isOdd &#123; return Observable.of(1, 3, 5 ,7) &#125;else &#123; return Observable.of(2, 4, 6, 8) &#125;&#125; //第1次订阅测试factory.subscribe &#123; event in print("\(isOdd)", event)&#125; //第2次订阅测试factory.subscribe &#123; event in print("\(isOdd)", event)&#125;// printfalse next(2)false next(4)false next(6)false next(8)false completedtrue next(1)true next(3)true next(5)true next(7)true completed ⑫interval #⑫interval 创建的 Observable 序列每隔一段设定的时间，会发出一个索引数的元素。而且它会一直发送下去创建的 Observable 序列每隔一段设定的时间，会发出一个索引数的元素。而且它会一直发送下去 let observable = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance)observable.subscribe &#123; event in print(event)&#125;//printnext(0)next(1)next(2)next(3) ⑬timer ⑬timer 这个方法有两种用法，一种是创建的 Observable 序列在经过设定的一段时间后，产生唯一的一个元素 //5秒种后发出唯一的一个元素0let observable = Observable&lt;Int&gt;.timer(5, scheduler: MainScheduler.instance)observable.subscribe &#123; event in print(event)&#125;//printnext(0)competed 另一种是创建的 Observable 序列在经过设定的一段时间后，每隔一段时间产生一个元素 //延时5秒种后，每隔1秒钟发出一个元素let observable = Observable&lt;Int&gt;.timer(5, period: 1, scheduler: MainScheduler.instance)observable.subscribe &#123; event in print(event)&#125;//printnext(0)next(1)next(2)next(3)]]></content>
+    <title><![CDATA[Swift-RxSwift-简介以及简单学习使用]]></title>
+    <url>%2F2017%2F12%2F15%2FRxSwift%2FGrammar%2F%E7%AE%80%E4%BB%8B%E4%BB%A5%E5%8F%8A%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[Swift-RxSwift-简介以及简单学习使用 RxSwift 项目文档中 Why 已有详细介绍 Bindings [RxWhy] -&gt; [Bindings] -&gt; [BindingsViewController.swift] Observable.combineLatest(firstName.rx_text, lastName.rx_text) &#123; $0 + " " + $1 &#125; // ① .map &#123; "Greeting \($0)" &#125; // ② .bindTo(greetingLabel.rx_text) // ③ 将 firstName 和 lastName 的 text 属性结合起来，并进行合并处理，也就是 $0 + “ “ + $1 这部分，用空格将两个值合并起来作为结果传递给后面使用 使用 map 的方法，将上一步得到值前面加上一个 Greeting ，并将该值传递给后面使用 bindTo 就是绑定，将上一步的值绑定到 greetingLabel 的 text 代码就是实时的执行 greetingLabel.text = "Greeting " + firstName.text + " " + lastName.text 要求是实时 每当 fisrtName.text 或者 lastName.text 改变时， greetingLabel.text 都要随之改变 ContentOffset 经常通过 delegate 处理 scrollView 的 contentOffset 变化问题 public func scrollViewDidScroll(scrollView: UIScrollView) &#123; self.title = "contentOffset.x = \(scrollView.contentOffset.y)"&#125; 可能就和关联的逻辑分家了，内聚性啊…而且多个 scrollView ，还要做额外的判断处理，复杂性可想而知也有写过通过 closure 来解决的，其实可以认为 Rx 自带了这些功能（而且更强大[RxWhy] -&gt; [ContentOffset] -&gt; [ContentOffsetViewController.swift]Note: 在使用了 rx_contentOffset 后，最好不要去更改 delegate同样 button 也有类似的功能 tableView.rx_contentOffset .map &#123; $0.y &#125; .subscribeNext &#123; [unowned self] in self.title = "contentOffset.x = \($0)" &#125;.addDisposableTo(disposeBag) Tap button 的点击事件是一个很棘手的问题了，建立一个 target ，同时还使用的带字符串的 Select，button 的点击也和响应逻辑分家了处理方式会有两个问题 使用了带 String 的 Target 点击的关联事件代码和处理的逻辑分开了 button.addTarget(self, action: "tapButton", forControlEvents: .TouchDragInside) Rx 已经提供了 closure 的功能 button.rx_tap .subscribeNext &#123; print("Tap") &#125;.addDisposableTo(disposeBag) 资料来源]]></content>
       <categories>
+        <category>Swift</category>
         <category>RxSwift</category>
-        <category>Grammar</category>
       </categories>
       <tags>
         <tag>Swift</tag>
@@ -901,12 +901,12 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Swift-RxSwift-简介以及简单学习使用]]></title>
-    <url>%2F2017%2F12%2F15%2FRxSwift%2FGrammar%2F%E7%AE%80%E4%BB%8B%E4%BB%A5%E5%8F%8A%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8%2F</url>
-    <content type="text"><![CDATA[Swift-RxSwift-简介以及简单学习使用 RxSwift 项目文档中 Why 已有详细介绍 Bindings [RxWhy] -&gt; [Bindings] -&gt; [BindingsViewController.swift] Observable.combineLatest(firstName.rx_text, lastName.rx_text) &#123; $0 + " " + $1 &#125; // ① .map &#123; "Greeting \($0)" &#125; // ② .bindTo(greetingLabel.rx_text) // ③ 将 firstName 和 lastName 的 text 属性结合起来，并进行合并处理，也就是 $0 + “ “ + $1 这部分，用空格将两个值合并起来作为结果传递给后面使用 使用 map 的方法，将上一步得到值前面加上一个 Greeting ，并将该值传递给后面使用 bindTo 就是绑定，将上一步的值绑定到 greetingLabel 的 text 代码就是实时的执行 greetingLabel.text = "Greeting " + firstName.text + " " + lastName.text 要求是实时 每当 fisrtName.text 或者 lastName.text 改变时， greetingLabel.text 都要随之改变 ContentOffset 经常通过 delegate 处理 scrollView 的 contentOffset 变化问题 public func scrollViewDidScroll(scrollView: UIScrollView) &#123; self.title = "contentOffset.x = \(scrollView.contentOffset.y)"&#125; 可能就和关联的逻辑分家了，内聚性啊…而且多个 scrollView ，还要做额外的判断处理，复杂性可想而知也有写过通过 closure 来解决的，其实可以认为 Rx 自带了这些功能（而且更强大[RxWhy] -&gt; [ContentOffset] -&gt; [ContentOffsetViewController.swift]Note: 在使用了 rx_contentOffset 后，最好不要去更改 delegate同样 button 也有类似的功能 tableView.rx_contentOffset .map &#123; $0.y &#125; .subscribeNext &#123; [unowned self] in self.title = "contentOffset.x = \($0)" &#125;.addDisposableTo(disposeBag) Tap button 的点击事件是一个很棘手的问题了，建立一个 target ，同时还使用的带字符串的 Select，button 的点击也和响应逻辑分家了处理方式会有两个问题 使用了带 String 的 Target 点击的关联事件代码和处理的逻辑分开了 button.addTarget(self, action: "tapButton", forControlEvents: .TouchDragInside) Rx 已经提供了 closure 的功能 button.rx_tap .subscribeNext &#123; print("Tap") &#125;.addDisposableTo(disposeBag) 资料来源]]></content>
+    <title><![CDATA[Swift-RxSwift-创建序列Observable-03]]></title>
+    <url>%2F2017%2F12%2F15%2FRxSwift%2FGrammar%2F03-%E5%88%9B%E5%BB%BA%E5%BA%8F%E5%88%97Observable%2F</url>
+    <content type="text"><![CDATA[①just ②of ③from ④empty ⑤never ⑥error ⑦range ⑧repeatElement ⑨generate ⑩create ⑪deferred ⑫interval ⑬timer ①just ①just just() 方法该方法通过传入一个默认值来初始化只创建包含一个元素的序列。换言之，只发送一个值和 .Completed： let observable = Observable&lt;Int&gt;.just(5) ②of ②of 通过一组元素创建一个序列该方法可以接受可变数量的参数（必需要是同类型的） let observable = Observable.of("A", "B", "C") ③from ③from 需要一个数组参数数据里的元素就会被当做这个 Observable 所发出 event 携带的数据内容，最终效果同上面 of 样例是一样的 let observable = Observable.from(["A", "B", "C"]) ④empty ④empty 创建一个空内容的 Observable 序列 let observable = Observable&lt;Int&gt;.empty() ⑤never ⑤never 创建一个永远不会发出 Event（也不会终止）的 Observable 序列 let observable = Observable&lt;Int&gt;.never() ⑥error ⑥error 创建一个不做任何操作，而是直接发送一个错误的 Observable 序列 enum MyError: Error &#123; case A case B&#125; let observable = Observable&lt;Int&gt;.error(MyError.A) ⑦range ⑦range 通过指定起始和结束数值，创建一个以这个范围内所有值作为初始值的 Observable 序列。下面样例中，两种方法创建的 Observable 序列都是一样的 //使用range()let observable = Observable.range(start: 1, count: 5) //使用of()let observable = Observable.of(1, 2, 3 ,4 ,5) ⑧repeatElement ⑧repeatElement 法创建一个可以无限发出给定元素的 Event 的 Observable 序列（永不终止） let observable = Observable.repeatElement(1) ⑨generate #⑨generate 该方法创建一个只有当提供的所有的判断条件都为 true 的时候，才会给出动作的 Observable 序列两种方法创建的 Observable 序列都是一样的 //使用generate()方法let observable = Observable.generate( initialState: 0, condition: &#123; $0 &lt;= 10 &#125;, iterate: &#123; $0 + 2 &#125;) //使用of()方法let observable = Observable.of(0 , 2 ,4 ,6 ,8 ,10) ⑩create #⑩create 接受一个 block 形式的参数，任务是对每一个过来的订阅进行处理方便演示，这里增加了订阅相关代码 //这个block有一个回调参数observer就是订阅这个Observable对象的订阅者//当一个订阅者订阅这个Observable对象的时候，就会将订阅者作为参数传入这个block来执行一些内容let observable = Observable&lt;String&gt;.create&#123;observer in //对订阅者发出了.next事件，且携带了一个数据&quot;hangge.com&quot; observer.onNext(&quot;hangge.com&quot;) //对订阅者发出了.completed事件 observer.onCompleted() //因为一个订阅行为会有一个Disposable类型的返回值，所以在结尾一定要returen一个Disposable return Disposables.create()&#125; //订阅测试observable.subscribe &#123; print($0)&#125;//打印 next(hangge.com) completed ⑪deferred #⑪deferred 该个方法相当于是创建一个 Observable 工厂，通过传入一个 block 来执行延迟 Observable 序列创建的行为，而这个 block 里就是真正的实例化序列对象的地方 //用于标记是奇数、还是偶数var isOdd = true //使用deferred()方法延迟Observable序列的初始化，通过传入的block来实现Observable序列的初始化并且返回。let factory : Observable&lt;Int&gt; = Observable.deferred &#123; //让每次执行这个block时候都会让奇、偶数进行交替 isOdd = !isOdd //根据isOdd参数，决定创建并返回的是奇数Observable、还是偶数Observable if isOdd &#123; return Observable.of(1, 3, 5 ,7) &#125;else &#123; return Observable.of(2, 4, 6, 8) &#125;&#125; //第1次订阅测试factory.subscribe &#123; event in print("\(isOdd)", event)&#125; //第2次订阅测试factory.subscribe &#123; event in print("\(isOdd)", event)&#125;// printfalse next(2)false next(4)false next(6)false next(8)false completedtrue next(1)true next(3)true next(5)true next(7)true completed ⑫interval #⑫interval 创建的 Observable 序列每隔一段设定的时间，会发出一个索引数的元素。而且它会一直发送下去创建的 Observable 序列每隔一段设定的时间，会发出一个索引数的元素。而且它会一直发送下去 let observable = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance)observable.subscribe &#123; event in print(event)&#125;//printnext(0)next(1)next(2)next(3) ⑬timer ⑬timer 这个方法有两种用法，一种是创建的 Observable 序列在经过设定的一段时间后，产生唯一的一个元素 //5秒种后发出唯一的一个元素0let observable = Observable&lt;Int&gt;.timer(5, scheduler: MainScheduler.instance)observable.subscribe &#123; event in print(event)&#125;//printnext(0)competed 另一种是创建的 Observable 序列在经过设定的一段时间后，每隔一段时间产生一个元素 //延时5秒种后，每隔1秒钟发出一个元素let observable = Observable&lt;Int&gt;.timer(5, period: 1, scheduler: MainScheduler.instance)observable.subscribe &#123; event in print(event)&#125;//printnext(0)next(1)next(2)next(3)]]></content>
       <categories>
-        <category>Swift</category>
         <category>RxSwift</category>
+        <category>Grammar</category>
       </categories>
       <tags>
         <tag>Swift</tag>
@@ -921,6 +921,20 @@
         <category>RxSwift</category>
         <category>Grammar</category>
       </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[RxSwift-UIKit-UILabel响应式扩展-01]]></title>
+    <url>%2F2017%2F12%2F15%2FRxSwift%2FUIKit%2F01-UILabel%2F</url>
+    <content type="text"><![CDATA[RxSwift RxSwift 是一个用于与 Swift 语言交互的框架，但它只是基础，并不能用来进行用户交互、网络请求等。 而 RxCocoa 是让 Cocoa APIs 更容易使用响应式编程的一个框架。RxCocoa 能够让我们方便地进行响应式网络请求、响应式的用户交互、绑定数据模型到 UI 控件等等。而且大多数的 UIKit 控件都有响应式扩展，它们都是通过 rx 属性进行使用 UILabelclass ViewController: UIViewController &#123; let disposeBag = DisposeBag() //MARK:UI- 显示时间lab fileprivate lazy var timeLabel: UILabel = &#123; let timeLabel = UILabel() timeLabel.frame = CGRect(x:30,y:40,width:300,height:111) return timeLabel &#125;() //MARK:UI- 显示彩色时间lab fileprivate lazy var timeColorLabel: UILabel = &#123; let timeColorLabel = UILabel() timeColorLabel.frame = CGRect(x:30,y:40+150,width:300,height:111) return timeColorLabel &#125;() override func viewDidLoad() &#123; super.viewDidLoad() // Do any additional setup after loading the view, typically from a nib. //MARK:UI- 添加UI view.addSubview(timeLabel) //MARK: 把时间弄到lab上显示 //创建一个计时器（每0.1秒发送一个索引数） let timer = Observable&lt;Int&gt;.interval(0.1, scheduler: MainScheduler.instance) //将已过去的时间格式化成想要的字符串，并绑定到label上 timer.map&#123;(String(format: "过去多少时间:%0.2d:%0.2d.%0.1d", arguments:[($0 / 600) % 600, ($0 % 600) / 10, $0 % 10]))&#125; .bind(to: timeLabel.rx.text) .disposed(by: disposeBag) //MARK:UI-彩色lab view.addSubview(timeColorLabel) //将已过去的时间格式化成想要的字符串，并绑定到timeColorLabel上 timer.map(formatTimeInterval) .bind(to: timeColorLabel.rx.attributedText) .disposed(by: disposeBag) &#125; //MARK:将数字转成对应的富文本 func formatTimeInterval(ms: NSInteger) -&gt; NSMutableAttributedString &#123; let string = String(format: "过去多少时间%0.2d:%0.2d.%0.1d", arguments: [(ms / 600) % 600, (ms % 600 ) / 10, ms % 10]) //富文本设置 let attibuteString = NSMutableAttributedString(string: string) //从文本0开始6个字符字体HelveticaNeue-Bold,16号 attibuteString.addAttributes([NSAttributedStringKey.font : UIFont(name: "HelveticaNeue-Bold", size: 16)!], range: NSMakeRange(0, 5)) //设置字体颜色 attibuteString.addAttributes([NSAttributedStringKey.foregroundColor : UIColor.white], range: NSMakeRange(0,5)) //设置文字背景颜色 attibuteString.addAttributes([NSAttributedStringKey.backgroundColor : UIColor.orange], range: NSMakeRange(0,5)) return attibuteString &#125; override func didReceiveMemoryWarning() &#123; super.didReceiveMemoryWarning() // Dispose of any resources that can be recreated. &#125;&#125; 效果图]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>UIKit</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>RxSwift</tag>
+        <tag>UIKit</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[RxSwift-基本介绍&安装配置-01]]></title>
@@ -1878,8 +1892,8 @@
         <category>NSSet</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>UIKit</tag>
+        <tag>iOS</tag>
         <tag>NSSet</tag>
       </tags>
   </entry>
@@ -1893,8 +1907,8 @@
         <category>NSDictionary</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>UIKit</tag>
+        <tag>iOS</tag>
         <tag>NSDictionary</tag>
       </tags>
   </entry>
@@ -1907,8 +1921,8 @@
         <category>UIKit</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>UIKit</tag>
+        <tag>iOS</tag>
       </tags>
   </entry>
   <entry>
@@ -2235,8 +2249,8 @@
         <category>Layer</category>
       </categories>
       <tags>
-        <tag>OC</tag>
         <tag>UIKit</tag>
+        <tag>OC</tag>
         <tag>Layer</tag>
         <tag>Shadow</tag>
       </tags>
@@ -2263,8 +2277,8 @@
         <category>UIScrollView</category>
       </categories>
       <tags>
-        <tag>OC</tag>
         <tag>UIKit</tag>
+        <tag>OC</tag>
         <tag>UIScrollView</tag>
       </tags>
   </entry>
@@ -2473,8 +2487,8 @@
         <category>UIKit</category>
       </categories>
       <tags>
-        <tag>OC</tag>
         <tag>UIKit</tag>
+        <tag>OC</tag>
         <tag>Autoreleasepool</tag>
       </tags>
   </entry>
