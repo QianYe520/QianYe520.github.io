@@ -83,7 +83,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="RxSwift,Grammar," />
 
 
 
@@ -94,17 +94,18 @@
 
 
 
-<meta name="description" content="Disposing   当监听一个事件序列的时候，有消息事件来了，我们做某些事情   但是这个事件序列不再发出消息了，我们的监听也就没有什么存在价值了，所以我们需要释放我们这些监听资源，其实也就是每种编程语言中的内存资源释放   OC和Swift中也一样，在你不需要用某些变量的时候，你需要把这些变量所占用的内存空间释放掉  释放某一个监听的时候我们可以手动调用释放方法，但是这个貌似一般不常用：">
+<meta name="description" content="https://www.jianshu.com/p/431f645cb805 Disposing 当监听一个事件序列的时候，有消息事件来了，做某些事情but,这个事件序列不再发出消息，监听也就没有存在价值，so,需要释放监听资源(内存资源释放)不需要用某些变量时，把这些变量所占用的内存空间释放掉释放某一个监听的时可手动调用释放方法，但是这个貌似一般不常用：  let subscription =">
+<meta name="keywords" content="RxSwift,Grammar">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift-RxSwift-进阶理解">
 <meta property="og:url" content="http://yoursite.com/2017/12/18/RxSwift/Grammar/进阶理解/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="Disposing   当监听一个事件序列的时候，有消息事件来了，我们做某些事情   但是这个事件序列不再发出消息了，我们的监听也就没有什么存在价值了，所以我们需要释放我们这些监听资源，其实也就是每种编程语言中的内存资源释放   OC和Swift中也一样，在你不需要用某些变量的时候，你需要把这些变量所占用的内存空间释放掉  释放某一个监听的时候我们可以手动调用释放方法，但是这个貌似一般不常用：">
+<meta property="og:description" content="https://www.jianshu.com/p/431f645cb805 Disposing 当监听一个事件序列的时候，有消息事件来了，做某些事情but,这个事件序列不再发出消息，监听也就没有存在价值，so,需要释放监听资源(内存资源释放)不需要用某些变量时，把这些变量所占用的内存空间释放掉释放某一个监听的时可手动调用释放方法，但是这个貌似一般不常用：  let subscription =">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-18T05:57:59.116Z">
+<meta property="og:updated_time" content="2018-09-12T02:19:38.961Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift-RxSwift-进阶理解">
-<meta name="twitter:description" content="Disposing   当监听一个事件序列的时候，有消息事件来了，我们做某些事情   但是这个事件序列不再发出消息了，我们的监听也就没有什么存在价值了，所以我们需要释放我们这些监听资源，其实也就是每种编程语言中的内存资源释放   OC和Swift中也一样，在你不需要用某些变量的时候，你需要把这些变量所占用的内存空间释放掉  释放某一个监听的时候我们可以手动调用释放方法，但是这个貌似一般不常用：">
+<meta name="twitter:description" content="https://www.jianshu.com/p/431f645cb805 Disposing 当监听一个事件序列的时候，有消息事件来了，做某些事情but,这个事件序列不再发出消息，监听也就没有存在价值，so,需要释放监听资源(内存资源释放)不需要用某些变量时，把这些变量所占用的内存空间释放掉释放某一个监听的时可手动调用释放方法，但是这个貌似一般不常用：  let subscription =">
 
 
 
@@ -351,6 +352,39 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RxSwift/Grammar/" itemprop="url" rel="index">
+                    <span itemprop="name">Grammar</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -378,33 +412,46 @@
       
 
       
-        <h1 id="Disposing"><a href="#Disposing" class="headerlink" title="Disposing"></a>Disposing</h1><p>   当监听一个事件序列的时候，有消息事件来了，我们做某些事情<br>   但是这个事件序列不再发出消息了，我们的监听也就没有什么存在价值了，所以我们需要释放我们这些监听资源，其实也就是每种编程语言中的内存资源释放<br>   OC和Swift中也一样，在你不需要用某些变量的时候，你需要把这些变量所占用的内存空间释放掉</p>
-<blockquote>
-<p>释放某一个监听的时候我们可以手动调用释放方法，但是这个貌似一般不常用：</p>
+        <p><a href="https://www.jianshu.com/p/431f645cb805" target="_blank" rel="external">https://www.jianshu.com/p/431f645cb805</a></p>
+<h1 id="Disposing"><a href="#Disposing" class="headerlink" title="Disposing"></a>Disposing</h1><blockquote>
+<p>当监听一个事件序列的时候，有消息事件来了，做某些事情<br>but,这个事件序列不再发出消息，监听也就没有存在价值，so,需要释放监听资源(内存资源释放)<br>不需要用某些变量时，把这些变量所占用的内存空间释放掉<br>释放某一个监听的时可手动调用释放方法，但是这个貌似一般不常用：</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="comment">// 关于scheduler，我们会在下面讲到</span></div><div class="line"><span class="keyword">let</span> subscription = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.interval(<span class="number">0.3</span>, scheduler: <span class="type">SerialDispatchQueueScheduler</span>.<span class="keyword">init</span>(internalSerialQueueName: <span class="string">"test"</span>))</div><div class="line">    .observeOn(<span class="type">MainScheduler</span>.instance)	<span class="comment">//observeOn也会在下面讲到</span></div><div class="line">    .subscribe &#123; event <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(event)</div><div class="line">&#125;</div><div class="line">    </div><div class="line"><span class="type">Thread</span>.sleep(forTimeInterval: <span class="number">2.0</span>)</div><div class="line">    </div><div class="line">subscription.dispose()</div><div class="line"></div><div class="line">	<span class="comment">//</span></div><div class="line">	next(<span class="number">0</span>)</div><div class="line">	next(<span class="number">1</span>)</div><div class="line">	next(<span class="number">2</span>)</div><div class="line">	next(<span class="number">3</span>)</div><div class="line">	next(<span class="number">4</span>)</div><div class="line">	next(<span class="number">5</span>)</div></pre></td></tr></table></figure>
-<p>比如上面这个例子，我们创建了一个subscription监听，在两秒以后我们不需要了，手动调用dispose()方法，就能释放监听资源，不再打印信息。上面的subscription不伦是在哪个线程中监听，就算在主线程中调用的dispose()方法一样会销毁资源</p>
-<h1 id="Dispose-Bag"><a href="#Dispose-Bag" class="headerlink" title="Dispose Bag"></a>Dispose Bag</h1><p>还有一种是自动的方式，推荐大家使用这种方式，这种方式就好像iOS中的ARC方式似得，会自动去释放资源</p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">   </div><div class="line"><span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.empty()</div><div class="line">   .subscribe &#123; event <span class="keyword">in</span></div><div class="line">       <span class="built_in">print</span>(event)</div><div class="line">   &#125;</div><div class="line">   .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
-<p>如上个例子，我们创建一个disposeBag来盛放我们需要管理的资源，然后把新建的监听都放进去，会在适当的时候销毁这些资源。如果你需要立即释放资源只需要新建一个DisposeBag()，那么上一个DisposeBag就会被销毁</p>
-<h1 id="observeOn-和subscribeOn"><a href="#observeOn-和subscribeOn" class="headerlink" title="observeOn()和subscribeOn()"></a>observeOn()和subscribeOn()</h1><p>区别其实我感觉其实就一句话，subscribeOn()设置起点在哪个线程，observeOn()设置了后续工作在哪个线程</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> subscription = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.interval(<span class="number">0.3</span>,</div><div class="line">                                            scheduler: <span class="type">SerialDispatchQueueScheduler</span>.<span class="keyword">init</span>(internalSerialQueueName: <span class="string">"test"</span>))<span class="comment">//关于scheduler，我们会在下面讲到</span></div><div class="line">                                  .observeOn(<span class="type">MainScheduler</span>.instance)  <span class="comment">//observeOn也会在下面讲到</span></div><div class="line">                                  .subscribe &#123; </div><div class="line">                                         event <span class="keyword">in</span></div><div class="line">                                             <span class="built_in">print</span>(event)</div><div class="line">                                     &#125;</div><div class="line">    </div><div class="line"><span class="type">Thread</span>.sleep(forTimeInterval: <span class="number">2.0</span>)</div><div class="line">subscription.dispose()</div><div class="line"></div><div class="line"><span class="comment">//--</span></div><div class="line">next(<span class="number">0</span>)</div><div class="line">next(<span class="number">1</span>)</div><div class="line">next(<span class="number">2</span>)</div><div class="line">next(<span class="number">3</span>)</div><div class="line">next(<span class="number">4</span>)</div><div class="line">next(<span class="number">5</span>)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>创建了一个subscription监听，2s后不需要了，手动调用dispose()方法，释放监听资源，不再打印信息<br>subscription不伦是在哪个线程中监听，就算在主线程中调用的dispose()方法一样会销毁资源</p>
+</blockquote>
+<h1 id="Dispose-Bag"><a href="#Dispose-Bag" class="headerlink" title="Dispose Bag"></a>Dispose Bag</h1><blockquote>
+<p>自动的方式<br>推荐使用，ARC方式相似，会自动去释放资源</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()   </div><div class="line"><span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.empty()</div><div class="line">				  .subscribe &#123; </div><div class="line">				       event <span class="keyword">in</span></div><div class="line">				         <span class="built_in">print</span>(event)</div><div class="line">				      &#125;</div><div class="line">               .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>创建一个disposeBag来盛放需要管理的资源，然后把新建的监听都放进去，会在适当的时候销毁这些资源<br>如需要立即释放资源，只需要新建一个DisposeBag()，那么上一个DisposeBag就会被销毁</p>
+</blockquote>
+<h1 id="observeOn-和subscribeOn"><a href="#observeOn-和subscribeOn" class="headerlink" title="observeOn()和subscribeOn()"></a>observeOn()和subscribeOn()</h1><blockquote>
+<p>subscribeOn()设置起点在哪个线程<br>observeOn()设置了后续工作在哪个线程</p>
+</blockquote>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">someObservable </div><div class="line"> .doOneThing() ①</div><div class="line"> .observeOn(<span class="type">MainRouteScheduler</span>.instance) ②</div><div class="line"> .subscribeOn(<span class="type">OtherScheduler</span>.instance) ③</div><div class="line"> .subscribeNext &#123; ④</div><div class="line"> 	......</div><div class="line"> &#125;</div><div class="line"> .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
-<p> ① 所有动作都发生在当前的默认线程<br> ② observeOn转换线程到主线程，下面所有的操作都是在主线程中<br> ③ subscribeOn规定动作一开始不是发生在默认线程了，而是在OtherScheduler了<br> ④ 如果我们之前没有调用observeOn，那么这边会在OtherScheduler发生，但是我们前面调用了observeOn，所以这个动作会在主线程中调用</p>
 <ul>
+<li>① 所有动作都发生在当前的默认线程</li>
+<li>② observeOn转换线程到主线程，下面所有的操作都是在主线程中</li>
+<li>③ subscribeOn规定动作一开始不是发生在默认线程了，而是在OtherScheduler了</li>
+<li>④ 如果我们之前没有调用observeOn，那么这边会在OtherScheduler发生，但是我们前面调用了observeOn，所以这个动作会在主线程中调用</li>
 <li>subscribeOn只是影响事件链开始默认的线程，而observeOn规定了下一步动作发生在哪个线程中</li>
 </ul>
-<h1 id="shareReplay"><a href="#shareReplay" class="headerlink" title="shareReplay"></a>shareReplay</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> testReplay = <span class="type">Observable</span>.just(<span class="string">"😂"</span>)</div><div class="line">    .<span class="built_in">map</span> &#123;  <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    </div><div class="line">testReplay</div><div class="line">    .subscribe &#123; event <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(event)</div><div class="line">&#125;.addDisposableTo(disposeBag)</div><div class="line">    </div><div class="line">testReplay</div><div class="line">    .subscribe &#123; event <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(event)</div><div class="line">&#125;.addDisposableTo(disposeBag)</div><div class="line"></div><div class="line"><span class="comment">///</span></div><div class="line">   😂</div><div class="line">	next(())</div><div class="line">	completed</div><div class="line">	😂</div><div class="line">	next(())</div><div class="line">	completed</div></pre></td></tr></table></figure>
-<p>大家发现没，map函数执行了两遍，但是有些时候我不需要map函数里的东西执行两遍，比如map函数里面如果执行的是网络请求，我只需要一次请求结果供大家使用就行了，多余的请求没啥用，浪费时间。所以这时候就需要shareReplay(1)了。这里面的数字一般都是1，只执行一次。你可以改为2，3看看结果有啥不同哦。</p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">let</span> testReplay = <span class="type">Observable</span>.just(<span class="string">"😂"</span>)</div><div class="line">    .<span class="built_in">map</span> &#123;  <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .shareReplay(<span class="number">1</span>)</div><div class="line">    </div><div class="line">testReplay</div><div class="line">    .subscribe &#123; event <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(event)</div><div class="line">&#125;.addDisposableTo(disposeBag)</div><div class="line">    </div><div class="line">testReplay</div><div class="line">    .subscribe &#123; event <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(event)</div><div class="line">&#125;.addDisposableTo(disposeBag)</div><div class="line"></div><div class="line"><span class="comment">///</span></div><div class="line">  😂 <span class="comment">//只执行了一次</span></div><div class="line">  next(())</div><div class="line">  completed</div><div class="line">  next(())</div><div class="line">  completed</div></pre></td></tr></table></figure>
-<h1 id="自定义operator"><a href="#自定义operator" class="headerlink" title="自定义operator"></a>自定义operator</h1><p>   自定义操作符很简单，官方推荐尽量用标准的操作符，但是你也可以自定义自己的操作符，文档上说有两种方法，这里我们只说一下最常用的一种方法</p>
+<h1 id="shareReplay"><a href="#shareReplay" class="headerlink" title="shareReplay"></a>shareReplay</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> testReplay = <span class="type">Observable</span>.just(<span class="string">"😂"</span>)</div><div class="line">                           .<span class="built_in">map</span> &#123; </div><div class="line">                               <span class="built_in">print</span>($<span class="number">0</span>) </div><div class="line">                            &#125;</div><div class="line">    </div><div class="line">testReplay.subscribe &#123; </div><div class="line">                      event <span class="keyword">in</span></div><div class="line">                        <span class="built_in">print</span>(event)</div><div class="line">                   &#125;</div><div class="line">          .addDisposableTo(disposeBag)</div><div class="line">    </div><div class="line">testReplay.subscribe &#123; </div><div class="line">                      event <span class="keyword">in</span></div><div class="line">                       <span class="built_in">print</span>(event)</div><div class="line">                      &#125;</div><div class="line">         .addDisposableTo(disposeBag)</div><div class="line"></div><div class="line"><span class="comment">///---</span></div><div class="line">   😂</div><div class="line">	next(())</div><div class="line">	completed</div><div class="line">	😂</div><div class="line">	next(())</div><div class="line">	completed</div></pre></td></tr></table></figure>
 <blockquote>
+<p>map函数执行了两遍，但是有些时候不需要map函数里的东西执行两遍<br>比如map函数里面如果执行的是网络请求，只需要一次请求结果供大家使用就行了，多余的请求没啥用，浪费时间<br>所以这时候就需要shareReplay(1)了。这里面的数字一般都是1，只执行一次。你可以改为2，3看看结果有啥不同哦</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> testReplay = <span class="type">Observable</span>.just(<span class="string">"😂"</span>)</div><div class="line">                           .<span class="built_in">map</span> &#123;  <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">                           .shareReplay(<span class="number">1</span>)</div><div class="line">    </div><div class="line">testReplay.subscribe &#123; </div><div class="line">                       event <span class="keyword">in</span></div><div class="line">                          <span class="built_in">print</span>(event)</div><div class="line">                     &#125;</div><div class="line">          .addDisposableTo(disposeBag)</div><div class="line">    </div><div class="line">testReplay.subscribe &#123;</div><div class="line">                        event <span class="keyword">in</span></div><div class="line">                         <span class="built_in">print</span>(event)</div><div class="line">                     &#125;</div><div class="line">         .addDisposableTo(disposeBag)</div><div class="line"></div><div class="line"><span class="comment">///--</span></div><div class="line">  😂 <span class="comment">//只执行了一次</span></div><div class="line">  next(())</div><div class="line">  completed</div><div class="line">  next(())</div><div class="line">  completed</div></pre></td></tr></table></figure>
+<h1 id="自定义operator"><a href="#自定义operator" class="headerlink" title="自定义operator"></a>自定义operator</h1><blockquote>
+<p>自定义操作符很简单，官方推荐尽量用标准的操作符，但是你也可以自定义自己的操作符，文档上说有两种方法，这里我们只说一下最常用的一种方法</p>
 <p>自定义一个map操作符</p>
 </blockquote>
 <figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="class"><span class="keyword">extension</span> <span class="title">ObservableType</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">myMap</span>&lt;R&gt;<span class="params">(transform: E -&gt; R)</span></span> -&gt; <span class="type">Observable</span>&lt;<span class="type">R</span>&gt; &#123;</div><div class="line">        <span class="keyword">return</span> <span class="type">Observable</span>.create &#123; observer <span class="keyword">in</span></div><div class="line">            <span class="keyword">let</span> subscription = <span class="keyword">self</span>.subscribe &#123; e <span class="keyword">in</span></div><div class="line">                    <span class="keyword">switch</span> e &#123;</div><div class="line">                    <span class="keyword">case</span> .next(<span class="keyword">let</span> value):</div><div class="line">                        <span class="keyword">let</span> result = transform(value)</div><div class="line">                        observer.on(.next(result))</div><div class="line">                    <span class="keyword">case</span> .error(<span class="keyword">let</span> error):</div><div class="line">                        observer.on(.error(error))</div><div class="line">                    <span class="keyword">case</span> .completed:</div><div class="line">                        observer.on(.completed)</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            <span class="keyword">return</span> subscription</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>参数是一个闭包，其中闭包参数是E类型返回值是R类型，map函数的返回值是一个Observable类型</p>
 </blockquote>
-<h1 id="Driver"><a href="#Driver" class="headerlink" title="Driver"></a>Driver</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> results = query.rx.text</div><div class="line">    .throttle(<span class="number">0.3</span>, scheduler: <span class="type">MainScheduler</span>.instance)</div><div class="line">    .flatMapLatest &#123; query <span class="keyword">in</span></div><div class="line">        fetchAutoCompleteItems(query)</div><div class="line">    &#125;</div><div class="line">results</div><div class="line">    .<span class="built_in">map</span> &#123; <span class="string">"\($0.count)"</span> &#125;</div><div class="line">    .bindTo(resultCount.rx.text)</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line">results</div><div class="line">    .bindTo(resultsTableView.rx.items(cellIdentifier: <span class="string">"Cell"</span>)) &#123; (<span class="number">_</span>, result, cell) <span class="keyword">in</span></div><div class="line">        cell.textLabel?.text = <span class="string">"\(result)"</span></div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<h1 id="Driver"><a href="#Driver" class="headerlink" title="Driver"></a>Driver</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> results = query.rx</div><div class="line">                   .text</div><div class="line">                   .throttle(<span class="number">0.3</span>, scheduler: <span class="type">MainScheduler</span>.instance)</div><div class="line">                   .flatMapLatest &#123; </div><div class="line">                      query <span class="keyword">in</span></div><div class="line">                        fetchAutoCompleteItems(query)</div><div class="line">                    &#125;</div><div class="line">results.<span class="built_in">map</span> &#123; <span class="string">"<span class="subst">\($<span class="number">0</span>.<span class="built_in">count</span>)</span>"</span> &#125;</div><div class="line">       .bindTo(resultCount.rx.text)</div><div class="line">       .addDisposableTo(disposeBag)</div><div class="line">results.bindTo(resultsTableView.rx</div><div class="line">                               .items(cellIdentifier: <span class="string">"Cell"</span>)) &#123; (<span class="number">_</span>, result, cell) <span class="keyword">in</span></div><div class="line">        cell.textLabel?.text = <span class="string">"<span class="subst">\(result)</span>"</span></div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
 <ul>
 <li>首先创建一个可监听序列results，其中flatMapLatest怎么用我们下面讲</li>
 <li>然后将results绑定到resultCount.rx.text上</li>
@@ -418,12 +465,14 @@
 <li>如果上面fetchAutoCompleteItems是在后台某个线程中运行的，那么事件绑定也是发生在后台某个线程，这样更新UI的时候会造成crash</li>
 <li>有两次绑定fetchAutoCompleteItems会执行两次</li>
 </ul>
+<blockquote>
 <p>当然针对上面问题我们也有解决方案，我们可以使用神器shareReplay(1)保证不会执行两次，可以使用observeOn()保证后面所有操作在主线程完成</p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> results = query.rx.text</div><div class="line">    .throttle(<span class="number">0.3</span>, scheduler: <span class="type">MainScheduler</span>.instance)</div><div class="line">    .flatMapLatest &#123; query <span class="keyword">in</span></div><div class="line">        fetchAutoCompleteItems(query)</div><div class="line">            .observeOn(<span class="type">MainScheduler</span>.instance)</div><div class="line">            .catchErrorJustReturn([])           </div><div class="line">    &#125;</div><div class="line">    .shareReplay(<span class="number">1</span>)                             </div><div class="line">results</div><div class="line">    .<span class="built_in">map</span> &#123; <span class="string">"\($0.count)"</span> &#125;</div><div class="line">    .bindTo(resultCount.rx.text)</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line">results</div><div class="line">    .bindTo(resultTableView.rx.items(cellIdentifier: <span class="string">"Cell"</span>)) &#123; (<span class="number">_</span>, result, cell) <span class="keyword">in</span></div><div class="line">        cell.textLabel?.text = <span class="string">"\(result)"</span></div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> results = query.rx.text</div><div class="line">    .throttle(<span class="number">0.3</span>, scheduler: <span class="type">MainScheduler</span>.instance)</div><div class="line">    .flatMapLatest &#123; query <span class="keyword">in</span></div><div class="line">        fetchAutoCompleteItems(query)</div><div class="line">            .observeOn(<span class="type">MainScheduler</span>.instance)</div><div class="line">            .catchErrorJustReturn([])           </div><div class="line">    &#125;</div><div class="line">    .shareReplay(<span class="number">1</span>)                             </div><div class="line">results</div><div class="line">    .<span class="built_in">map</span> &#123; <span class="string">"<span class="subst">\($<span class="number">0</span>.<span class="built_in">count</span>)</span>"</span> &#125;</div><div class="line">    .bindTo(resultCount.rx.text)</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line">results</div><div class="line">    .bindTo(resultTableView.rx.items(cellIdentifier: <span class="string">"Cell"</span>)) &#123; (<span class="number">_</span>, result, cell) <span class="keyword">in</span></div><div class="line">        cell.textLabel?.text = <span class="string">"<span class="subst">\(result)</span>"</span></div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
 <blockquote>
 <p>但是,也可以使用Driver</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> results = query.rx.text.asDriver()	<span class="comment">//转换成一个Driver序列</span></div><div class="line">    .throttle(<span class="number">0.3</span>, scheduler: <span class="type">MainScheduler</span>.instance)</div><div class="line">    .flatMapLatest &#123; query <span class="keyword">in</span></div><div class="line">        fetchAutoCompleteItems(query)</div><div class="line">            .asDriver(onErrorJustReturn: [])  <span class="comment">//当遇见错误需要返回什么</span></div><div class="line">    &#125;	<span class="comment">//不需要添加shareReplay(1)</span></div><div class="line">results</div><div class="line">    .<span class="built_in">map</span> &#123; <span class="string">"\($0.count)"</span> &#125;</div><div class="line">    .drive(resultCount.rx.text)	<span class="comment">//和bingTo()功能一样</span></div><div class="line">    .addDisposableTo(disposeBag) </div><div class="line">                                             </div><div class="line">results</div><div class="line">    .drive(resultTableView.rx.items(cellIdentifier: <span class="string">"Cell"</span>)) &#123; (<span class="number">_</span>, result, cell) <span class="keyword">in</span></div><div class="line">        cell.textLabel?.text = <span class="string">"\(result)"</span></div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> results = query.rx.text.asDriver()	<span class="comment">//转换成一个Driver序列</span></div><div class="line">    .throttle(<span class="number">0.3</span>, scheduler: <span class="type">MainScheduler</span>.instance)</div><div class="line">    .flatMapLatest &#123; query <span class="keyword">in</span></div><div class="line">        fetchAutoCompleteItems(query)</div><div class="line">            .asDriver(onErrorJustReturn: [])  <span class="comment">//当遇见错误需要返回什么</span></div><div class="line">    &#125;	<span class="comment">//不需要添加shareReplay(1)</span></div><div class="line">results</div><div class="line">    .<span class="built_in">map</span> &#123; <span class="string">"<span class="subst">\($<span class="number">0</span>.<span class="built_in">count</span>)</span>"</span> &#125;</div><div class="line">    .drive(resultCount.rx.text)	<span class="comment">//和bingTo()功能一样</span></div><div class="line">    .addDisposableTo(disposeBag) </div><div class="line">                                             </div><div class="line">results</div><div class="line">    .drive(resultTableView.rx.items(cellIdentifier: <span class="string">"Cell"</span>)) &#123; (<span class="number">_</span>, result, cell) <span class="keyword">in</span></div><div class="line">        cell.textLabel?.text = <span class="string">"<span class="subst">\(result)</span>"</span></div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
 <blockquote>
 <p>drive方法只能在Driver序列中使用，Driver有以下特点：<br>① Driver序列不允许发出error<br>② Driver序列的监听只会在主线程中<br>所以Driver是转为UI绑定量身打造的东西。以下情况你可以使用Driver替换BindTo:</p>
 </blockquote>
@@ -507,6 +556,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
+          
+            <a href="/tags/Grammar/" rel="tag"># Grammar</a>
+          
+        </div>
       
 
       
@@ -606,7 +663,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">213</span>
+                  <span class="site-state-item-count">239</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

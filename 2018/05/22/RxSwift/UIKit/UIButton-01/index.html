@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<meta name="theme-color" content="#222">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="RxSwift,UIKit," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="btn响应 创建btn  let disposeBag = DisposeBag()fileprivate lazy var myBtn: UIButton = &amp;#123;    let myBtn = UIButton(frame: CGRect(x: 100,						         y: 100, 						        width: 200, 						        heig">
+<meta name="keywords" content="RxSwift,UIKit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RxSwift-UIKit-UIButton-响应式扩展-01">
+<meta property="og:url" content="http://yoursite.com/2018/05/22/RxSwift/UIKit/UIButton-01/index.html">
+<meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
+<meta property="og:description" content="btn响应 创建btn  let disposeBag = DisposeBag()fileprivate lazy var myBtn: UIButton = &amp;#123;    let myBtn = UIButton(frame: CGRect(x: 100,						         y: 100, 						        width: 200, 						        heig">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-12T02:19:38.951Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RxSwift-UIKit-UIButton-响应式扩展-01">
+<meta name="twitter:description" content="btn响应 创建btn  let disposeBag = DisposeBag()fileprivate lazy var myBtn: UIButton = &amp;#123;    let myBtn = UIButton(frame: CGRect(x: 100,						         y: 100, 						        width: 200, 						        heig">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/22/RxSwift/UIKit/UIButton-01/"/>
+
+
+
+
+
+  <title>RxSwift-UIKit-UIButton-响应式扩展-01 | 千夜、おれはおまえをずっと爱している</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">千夜、おれはおまえをずっと爱している</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/22/RxSwift/UIKit/UIButton-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">RxSwift-UIKit-UIButton-响应式扩展-01</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-22T09:20:28+08:00">
+                2018-05-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RxSwift/UIKit/" itemprop="url" rel="index">
+                    <span itemprop="name">UIKit</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="btn响应"><a href="#btn响应" class="headerlink" title="btn响应"></a>btn响应</h1><blockquote>
+<p>创建btn</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> myBtn: <span class="type">UIButton</span> = &#123;</div><div class="line">    <span class="keyword">let</span> myBtn = <span class="type">UIButton</span>(frame: <span class="type">CGRect</span>(x: <span class="number">100</span>,</div><div class="line">						         y: <span class="number">100</span>, </div><div class="line">						        width: <span class="number">200</span>, </div><div class="line">						        height: <span class="number">60</span>))</div><div class="line">    myBtn.backgroundColor = <span class="type">UIColor</span>.red</div><div class="line">    <span class="keyword">return</span> myBtn</div><div class="line">&#125;()</div></pre></td></tr></table></figure>
+<blockquote>
+<p>添加btn</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">self</span>.view.addSubview(<span class="keyword">self</span>.myBtn)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>写法1</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">myBtn.rx</div><div class="line">     .tap</div><div class="line">     .subscribe(onNext:&#123;</div><div class="line">          [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">in</span></div><div class="line">            <span class="keyword">self</span>?.showMsg(<span class="string">"click one btn"</span>)</div><div class="line">       &#125;)</div><div class="line">     .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>写法2</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">myBtn.rx</div><div class="line">    .tap</div><div class="line">    .bind&#123;</div><div class="line">        [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">in</span></div><div class="line">        <span class="keyword">self</span>?.showMsg(<span class="string">"click one btn"</span>)</div><div class="line">    &#125;</div><div class="line">    .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>点击btn后的提示 alertCtl</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">showMsg</span><span class="params">(<span class="number">_</span> titleStr: String)</span></span>&#123;</div><div class="line">    <span class="keyword">let</span> alertCtl = <span class="type">UIAlertController</span>(title: titleStr,</div><div class="line">                                     message: <span class="literal">nil</span>,</div><div class="line">                                     preferredStyle: <span class="type">UIAlertControllerStyle</span>.alert)</div><div class="line">    <span class="keyword">let</span> cancelAction = <span class="type">UIAlertAction</span>(title: <span class="string">"YES"</span>,</div><div class="line">                                     style: <span class="type">UIAlertActionStyle</span>.cancel,</div><div class="line">                                     handler: <span class="literal">nil</span>)</div><div class="line">    alertCtl.addAction(cancelAction)</div><div class="line">    <span class="keyword">self</span>.present(alertCtl, animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="按钮标题（title）的绑定"><a href="#按钮标题（title）的绑定" class="headerlink" title="按钮标题（title）的绑定"></a>按钮标题（title）的绑定</h1><blockquote>
+<p>创建一个计时器（每1秒发送一个索引数）</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> timerSquence = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.interval(<span class="number">1</span>, scheduler: <span class="type">MainScheduler</span>.instance)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>根据索引数拼接最新的标题，并绑定到button上</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">timerSquence.<span class="built_in">map</span>&#123;</div><div class="line">        <span class="string">"count:<span class="subst">\($<span class="number">0</span>)</span>"</span></div><div class="line">        &#125;</div><div class="line">        .bind(to: myBtn.rx.title(<span class="keyword">for</span>: <span class="type">UIControlState</span>.normal))</div><div class="line">        .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<h1 id="按钮富文本标题（attributedTitle）的绑定"><a href="#按钮富文本标题（attributedTitle）的绑定" class="headerlink" title="按钮富文本标题（attributedTitle）的绑定"></a>按钮富文本标题（attributedTitle）的绑定</h1><blockquote>
+<p>创建btn</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> attributedBtn: <span class="type">UIButton</span> = &#123;</div><div class="line">    <span class="keyword">let</span> attributedBtn = <span class="type">UIButton</span>(frame: <span class="type">CGRect</span>(x: <span class="number">100</span>, </div><div class="line">								           y: <span class="number">200</span>, </div><div class="line">								       width: <span class="number">200</span>, </div><div class="line">								      height: <span class="number">60</span>))</div><div class="line">    attributedBtn.backgroundColor = <span class="type">UIColor</span>.gray</div><div class="line">    <span class="keyword">return</span> attributedBtn</div><div class="line">&#125;()</div></pre></td></tr></table></figure>
+<blockquote>
+<p>添加btn</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">self</span>.view.addSubview(<span class="keyword">self</span>.attributedBtn)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>按钮富文本标题（attributedTitle）的绑定</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">timerSquence.<span class="built_in">map</span>(formatTimeInterval)</div><div class="line">    .bind(to: attributedBtn.rx.attributedTitle())</div><div class="line">    .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>将数字转成对应的富文本</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">formatTimeInterval</span><span class="params">(ms: NSInteger)</span></span> -&gt; <span class="type">NSMutableAttributedString</span> &#123;</div><div class="line">    <span class="keyword">let</span> str = <span class="type">String</span>(format: <span class="string">"%0.2d:%0.2d:%0.2d"</span>,</div><div class="line">                     arguments:[(ms / <span class="number">600</span>) % <span class="number">600</span>, (ms % <span class="number">600</span> ) / <span class="number">10</span>, ms % <span class="number">10</span>] )</div><div class="line">    <span class="comment">//富文本设置</span></div><div class="line">    <span class="keyword">let</span> attributeStr = <span class="type">NSMutableAttributedString</span>(string: str)</div><div class="line">    <span class="comment">////从文本0开始6个字符字体HelveticaNeue-Bold,16号</span></div><div class="line">    attributeStr.addAttribute(<span class="type">NSAttributedStringKey</span>.font,</div><div class="line">                              value: <span class="type">UIFont</span>(name: <span class="string">"HelveticaNeue-Bold"</span>, size: <span class="number">16</span>)!,</div><div class="line">                              range: <span class="type">NSMakeRange</span>(<span class="number">0</span>, <span class="number">5</span>))</div><div class="line">    <span class="comment">//设置字体颜色</span></div><div class="line">    attributeStr.addAttribute(<span class="type">NSAttributedStringKey</span>.foregroundColor,</div><div class="line">                              value: <span class="type">UIColor</span>.white,</div><div class="line">                              range: <span class="type">NSMakeRange</span>(<span class="number">0</span>, <span class="number">5</span>))</div><div class="line">    <span class="comment">//设置文字背景颜色</span></div><div class="line">    attributeStr.addAttribute(<span class="type">NSAttributedStringKey</span>.backgroundColor,</div><div class="line">                              value: <span class="type">UIColor</span>.orange,</div><div class="line">                              range: <span class="type">NSMakeRange</span>(<span class="number">0</span>, <span class="number">5</span>))</div><div class="line">    <span class="keyword">return</span> attributeStr</div><div class="line">&#125;</div><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">didReceiveMemoryWarning</span><span class="params">()</span></span> &#123;</div><div class="line">    <span class="keyword">super</span>.didReceiveMemoryWarning()</div><div class="line">    <span class="comment">// Dispose of any resources that can be recreated.</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="图标（image）的绑定"><a href="#图标（image）的绑定" class="headerlink" title="图标（image）的绑定"></a>图标（image）的绑定</h1><h2 id="按钮图标（image）的绑定"><a href="#按钮图标（image）的绑定" class="headerlink" title="按钮图标（image）的绑定"></a>按钮图标（image）的绑定</h2><blockquote>
+<p>rx.image 为 setImage(_:for:) 的封装<br>根据索引数选择对应的按钮图标，并绑定到button上</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">timerSquence.<span class="built_in">map</span>(&#123;</div><div class="line">                <span class="keyword">let</span> nameStr = $<span class="number">0</span>%<span class="number">2</span> == <span class="number">0</span> ? <span class="string">"back"</span> : <span class="string">"forward"</span></div><div class="line">                <span class="keyword">return</span>  <span class="type">UIImage</span>(named: nameStr)!</div><div class="line">               &#125;)</div><div class="line">      .bind(to: myBtn.rx.image())</div><div class="line">      .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<h2 id="按钮背景图片（backgroundImage）的绑定"><a href="#按钮背景图片（backgroundImage）的绑定" class="headerlink" title="按钮背景图片（backgroundImage）的绑定"></a>按钮背景图片（backgroundImage）的绑定</h2><blockquote>
+<p>当程序启动时就开始计数，根据奇偶数选择相应的图片作为 button 的背景<br>其中 rx.backgroundImage 为 setBackgroundImage(_:for:) 的封装<br>根据索引数选择对应的按钮背景图，并绑定到button上</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">timerSquence.<span class="built_in">map</span>&#123;</div><div class="line">               <span class="type">UIImage</span>(named: <span class="string">"<span class="subst">\($<span class="number">0</span>%<span class="number">2</span>)</span>"</span>)!</div><div class="line">               &#125;</div><div class="line">           .bind(to: myBtn.rx.backgroundImage())</div><div class="line">           .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<h1 id="按钮是否可用（isEnabled）的绑定"><a href="#按钮是否可用（isEnabled）的绑定" class="headerlink" title="按钮是否可用（isEnabled）的绑定"></a>按钮是否可用（isEnabled）的绑定</h1><blockquote>
+<p>创建 switch</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> mySwitch: <span class="type">UISwitch</span> = &#123;</div><div class="line">    <span class="keyword">let</span> mySwitch = <span class="type">UISwitch</span>(frame: <span class="type">CGRect</span>(x: <span class="number">100</span>, y: <span class="number">300</span>, width: <span class="number">60</span>, height: <span class="number">60</span>))</div><div class="line">    <span class="keyword">return</span> mySwitch</div><div class="line">&#125;()</div></pre></td></tr></table></figure>
+<blockquote>
+<p>switch控制btn交互性</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">mySwitch.rx</div><div class="line">    .isOn</div><div class="line">    .bind(to: myBtn.rx.isEnabled)</div><div class="line">    .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<h1 id="按钮是否选中（isSelected）的绑定"><a href="#按钮是否选中（isSelected）的绑定" class="headerlink" title="按钮是否选中（isSelected）的绑定"></a>按钮是否选中（isSelected）的绑定</h1><blockquote>
+<p>创建btn</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> selectOneBtn: <span class="type">UIButton</span> = &#123;</div><div class="line">    <span class="keyword">let</span> selectOneBtn = <span class="type">UIButton</span>(frame: <span class="type">CGRect</span>(x: <span class="number">100</span>, y: <span class="number">400</span>, width: <span class="number">200</span>, height: <span class="number">60</span>))</div><div class="line">    selectOneBtn.setTitle(<span class="string">"one"</span>, <span class="keyword">for</span>: <span class="type">UIControlState</span>.normal)</div><div class="line">    selectOneBtn.setTitleColor(<span class="type">UIColor</span>.gray, <span class="keyword">for</span>: <span class="type">UIControlState</span>.normal)</div><div class="line">    selectOneBtn.setTitleColor(<span class="type">UIColor</span>.green, <span class="keyword">for</span>: <span class="type">UIControlState</span>.selected)</div><div class="line">    <span class="keyword">return</span> selectOneBtn</div><div class="line">&#125;()</div><div class="line"></div><div class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> selectSecondBtn: <span class="type">UIButton</span> = &#123;</div><div class="line">    <span class="keyword">let</span> selectSecondBtn = <span class="type">UIButton</span>(frame: <span class="type">CGRect</span>(x: <span class="number">100</span>, y: <span class="number">500</span>, width: <span class="number">200</span>, height: <span class="number">60</span>))</div><div class="line">    selectSecondBtn.setTitle(<span class="string">"second"</span>, <span class="keyword">for</span>: <span class="type">UIControlState</span>.normal)</div><div class="line">    selectSecondBtn.setTitleColor(<span class="type">UIColor</span>.gray, <span class="keyword">for</span>: <span class="type">UIControlState</span>.normal)</div><div class="line">    selectSecondBtn.setTitleColor(<span class="type">UIColor</span>.green, <span class="keyword">for</span>: <span class="type">UIControlState</span>.selected)</div><div class="line">    <span class="keyword">return</span> selectSecondBtn</div><div class="line">&#125;()</div></pre></td></tr></table></figure>
+<blockquote>
+<p>add </p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">self</span>.view.addSubview(selectOneBtn)</div><div class="line"><span class="keyword">self</span>.view.addSubview(selectSecondBtn)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>默认选择第一个按钮</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">selectOneBtn.isSelected = <span class="literal">true</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>强制解包，避免后面还需要处理可选类型</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> btnArray = [selectOneBtn,selectSecondBtn].<span class="built_in">map</span>&#123;$<span class="number">0</span>&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>创建一个可观察序列，它可以发送最后一次点击的按钮（也就是我们需要选中的按钮）</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> selectSquence = <span class="type">Observable</span>.from(btnArray.<span class="built_in">map</span>&#123;</div><div class="line">							         btn <span class="keyword">in</span></div><div class="line">							         btn.rx.tap.<span class="built_in">map</span> &#123;btn&#125;</div><div class="line">							       &#125;)</div><div class="line">							    .merge()</div></pre></td></tr></table></figure>
+<blockquote>
+<p>对于每一个按钮都对selectedButton进行订阅，根据它是否是当前选中的按钮绑定isSelected属性</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">for</span> oneBtn <span class="keyword">in</span> btnArray&#123;</div><div class="line">    selectSquence.<span class="built_in">map</span> &#123;</div><div class="line">			            $<span class="number">0</span> == oneBtn</div><div class="line">			           &#125;</div><div class="line">			       .bind(to: oneBtn.rx.isSelected)</div><div class="line">			       .disposed(by: disposeBag)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
+          
+            <a href="/tags/UIKit/" rel="tag"># UIKit</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/20/RxSwift/Grammar/Traits-ControlEvent/" rel="next" title="RxSwift-Grammar-特征序列Traits-ControlEvent">
+                <i class="fa fa-chevron-left"></i> RxSwift-Grammar-特征序列Traits-ControlEvent
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/22/RxSwift/UIKit/UISlider-01/" rel="prev" title="RxSwift-UIKit-UISlider-01">
+                RxSwift-UIKit-UISlider-01 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">千夜 QQ:738816656</p>
+              <p class="site-description motion-element" itemprop="description">ReactNative</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">239</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">107</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">77</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#btn响应"><span class="nav-number">1.</span> <span class="nav-text">btn响应</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#按钮标题（title）的绑定"><span class="nav-number">2.</span> <span class="nav-text">按钮标题（title）的绑定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#按钮富文本标题（attributedTitle）的绑定"><span class="nav-number">3.</span> <span class="nav-text">按钮富文本标题（attributedTitle）的绑定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图标（image）的绑定"><span class="nav-number">4.</span> <span class="nav-text">图标（image）的绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#按钮图标（image）的绑定"><span class="nav-number">4.1.</span> <span class="nav-text">按钮图标（image）的绑定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按钮背景图片（backgroundImage）的绑定"><span class="nav-number">4.2.</span> <span class="nav-text">按钮背景图片（backgroundImage）的绑定</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#按钮是否可用（isEnabled）的绑定"><span class="nav-number">5.</span> <span class="nav-text">按钮是否可用（isEnabled）的绑定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#按钮是否选中（isSelected）的绑定"><span class="nav-number">6.</span> <span class="nav-text">按钮是否选中（isSelected）的绑定</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">千夜 QQ:738816656</span>
+
+  
+</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

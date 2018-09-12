@@ -311,7 +311,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/20/RxSwift/Grammar/07-06-Operators-实用的操作符/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/19/SceneKit/Grammar/RenderLoop渲染循环/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -330,7 +330,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/20/RxSwift/Grammar/07-06-Operators-实用的操作符/" itemprop="url">RxSwift-Grammar-实用的操作符-07-06</a></h1>
+                <a class="post-title-link" href="/2018/01/19/SceneKit/Grammar/RenderLoop渲染循环/" itemprop="url">SceneKit-RenderLoop渲染循环</a></h1>
         
 
         <div class="post-meta">
@@ -342,8 +342,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-20T15:06:59+08:00">
-                2017-12-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-19T13:34:54+08:00">
+                2018-01-19
               </time>
             
 
@@ -365,8 +365,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
+                  <a href="/categories/SceneKit/" itemprop="url" rel="index">
+                    <span itemprop="name">SceneKit</span>
                   </a>
                 </span>
 
@@ -376,7 +376,7 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RxSwift/Grammar/" itemprop="url" rel="index">
+                  <a href="/categories/SceneKit/Grammar/" itemprop="url" rel="index">
                     <span itemprop="name">Grammar</span>
                   </a>
                 </span>
@@ -415,23 +415,17 @@
       
         
           
-          
-①delay
-②delaySubscription
-③materialize 
-⑤timeout
-④dematerialize
-⑥using
+          SCNSceneRendererDelegate协议
+SCNView有一个delegate属性,需要遵守SCNSceneRendererDelegate协议,可以在每帧画面的动画和渲染过程中收到代理方法的调用
 
-①delay
-①delay基本介绍
-该操作符会将 Observable 的所有元素都先拖延一段设定好的时间，然后才将它们发送出来
 
-使用样例import 
+##Update
+
+会调用renderer(_:updateAtTime:)代理方法,
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/20/RxSwift/Grammar/07-06-Operators-实用的操作符/#more" rel="contents">
+            <a class="btn" href="/2018/01/19/SceneKit/Grammar/RenderLoop渲染循环/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -484,7 +478,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/20/RxSwift/Grammar/07-05-Operators-数学和集合操作符/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/18/SceneKit/Grammar/SceneKit-Grammar-Physics物理效果/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -503,7 +497,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/20/RxSwift/Grammar/07-05-Operators-数学和集合操作符/" itemprop="url">RxSwift-算数&聚合操作符-07-05</a></h1>
+                <a class="post-title-link" href="/2018/01/18/SceneKit/Grammar/SceneKit-Grammar-Physics物理效果/" itemprop="url">SceneKit-Grammar-Physics物理效果</a></h1>
         
 
         <div class="post-meta">
@@ -515,8 +509,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-20T11:06:59+08:00">
-                2017-12-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-18T23:34:44+08:00">
+                2018-01-18
               </time>
             
 
@@ -538,8 +532,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
+                  <a href="/categories/SceneKit/" itemprop="url" rel="index">
+                    <span itemprop="name">SceneKit</span>
                   </a>
                 </span>
 
@@ -549,7 +543,7 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RxSwift/Grammar/" itemprop="url" rel="index">
+                  <a href="/categories/SceneKit/Grammar/" itemprop="url" rel="index">
                     <span itemprop="name">Grammar</span>
                   </a>
                 </span>
@@ -588,20 +582,14 @@
       
         
           
-          
-①toArray
-①②reduce
-②concat
+          物理仿真模拟实质
+物理仿真中的type就是为了定义当一个物体受到力的作用时该如何去响应.
 
-①toArray
-①toArray
-将sequence转换成一个array，并转换成单一事件信号，然后结束
-
-使用样例let disposeBag = DisposeBag()Observable.range(start: 1, count: 
+首先, 力的作用的相互的, 当两个物体之间进行力的作用时情况是多样的, 可能两者都有运动, 也可能只有其中的一个会运动, 试想, 如果拿一个鸡蛋去碰撞一块很大的石头, 很显然, 鸡蛋碎了, 石头不会有任何变化
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/20/RxSwift/Grammar/07-05-Operators-数学和集合操作符/#more" rel="contents">
+            <a class="btn" href="/2018/01/18/SceneKit/Grammar/SceneKit-Grammar-Physics物理效果/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -654,7 +642,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/19/RxSwift/Grammar/07-04-Operators-联合操作Observable流/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/18/SceneKit/Grammar/SceneKit-几何物体-正方体(Swift)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -673,7 +661,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/19/RxSwift/Grammar/07-04-Operators-联合操作Observable流/" itemprop="url">Swift-RxSwift-Combination Operators-联合操作Observable流-07-04</a></h1>
+                <a class="post-title-link" href="/2018/01/18/SceneKit/Grammar/SceneKit-几何物体-正方体(Swift)/" itemprop="url">SceneKit-几何物体-正方体</a></h1>
         
 
         <div class="post-meta">
@@ -685,8 +673,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-19T21:13:56+08:00">
-                2017-12-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-18T22:41:41+08:00">
+                2018-01-18
               </time>
             
 
@@ -708,8 +696,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
+                  <a href="/categories/SceneKit/" itemprop="url" rel="index">
+                    <span itemprop="name">SceneKit</span>
                   </a>
                 </span>
 
@@ -719,7 +707,7 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RxSwift/Grammar/" itemprop="url" rel="index">
+                  <a href="/categories/SceneKit/Grammar/" itemprop="url" rel="index">
                     <span itemprop="name">Grammar</span>
                   </a>
                 </span>
@@ -758,16 +746,12 @@
       
         
           
-          联合操作Observable流
-联合操作Observable流
-结合操作（或者称合并操作）指的是将多个 Observable 序列进行组合，拼装成一个新的 Observable 序列联合操作就是把多个Observable流合成单个Observable流
-
-
-①startWith (优先插入特定的事件
+          ////  ViewController.swift//  SceneKit-几何物体-正方体(Swift)////  Created by RN on 2018/1/18.//  Copyright © 2018年 YKK. All rights reserved.//
+import UIKiti
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/19/RxSwift/Grammar/07-04-Operators-联合操作Observable流/#more" rel="contents">
+            <a class="btn" href="/2018/01/18/SceneKit/Grammar/SceneKit-几何物体-正方体(Swift)/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -820,7 +804,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/19/RxSwift/Grammar/07-03-操作符-条件和布尔/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/17/SceneKit/Grammar/SceneKit-构建简单几何模型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -839,7 +823,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/19/RxSwift/Grammar/07-03-操作符-条件和布尔/" itemprop="url">RxSwift-Conditional  Boolean Operators过滤操作符-07-03</a></h1>
+                <a class="post-title-link" href="/2018/01/17/SceneKit/Grammar/SceneKit-构建简单几何模型/" itemprop="url">SceneKit-构建简单几何模型</a></h1>
         
 
         <div class="post-meta">
@@ -851,8 +835,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-19T18:16:33+08:00">
-                2017-12-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T21:36:05+08:00">
+                2018-01-17
               </time>
             
 
@@ -874,19 +858,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RxSwift/Grammar/" itemprop="url" rel="index">
-                    <span itemprop="name">Grammar</span>
+                  <a href="/categories/SceneKit/" itemprop="url" rel="index">
+                    <span itemprop="name">SceneKit</span>
                   </a>
                 </span>
 
@@ -924,23 +897,11 @@
       
         
           
-          
-条件和布尔操作会根据条件发射或变换 Observables，或者对他们做布尔运算
-
-
-①amb
-②takeWhile
-③takeUntil
-④skipWhile
-⑤skipUntil
-
-①amb
-①amb基本介绍
-当传入多个 Observables 到 amb 操作符时，它将取第一个发出元素或产生
+          属性构建3D节点@property (nonatomic,strong) SCNScene    *scene;           //场景，存放元素节点@property (nonatomic,strong) SCNView     *sceneView;       //用来展示3D图形的控件
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/19/RxSwift/Grammar/07-03-操作符-条件和布尔/#more" rel="contents">
+            <a class="btn" href="/2018/01/17/SceneKit/Grammar/SceneKit-构建简单几何模型/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -993,7 +954,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/19/RxSwift/Grammar/Operators-连接性操作/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/17/SceneKit/Grammar/SceneKit-SCNNode/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -1012,7 +973,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/19/RxSwift/Grammar/Operators-连接性操作/" itemprop="url">Swift-RxSwift-连接性操作</a></h1>
+                <a class="post-title-link" href="/2018/01/17/SceneKit/Grammar/SceneKit-SCNNode/" itemprop="url">SceneKit-SCNNode</a></h1>
         
 
         <div class="post-meta">
@@ -1024,8 +985,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-19T16:07:59+08:00">
-                2017-12-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T11:41:48+08:00">
+                2018-01-17
               </time>
             
 
@@ -1047,19 +1008,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
+                  <a href="/categories/SceneKit/" itemprop="url" rel="index">
+                    <span itemprop="name">SceneKit</span>
                   </a>
                 </span>
 
@@ -1097,17 +1047,38 @@
       
         
           
-          连接性操作
-①publish
-②replay
-③multicast
+          SCNNode
+SCNNode : NSObjectabstract SCNNode is the model class for node-tree object
+
+属性
 
 
-Connectable Observable有订阅时不开始发射事件消息，而是仅当调用它们的connect（）方法时。这样就可以等待所有我们想要的订阅者都已经订阅了以后，再开始发出事件消息，这样能保证我们想要的所有订阅者都能接收到
+
+
+
+
+
+
+
+
+name
+NSString
+
+
+
+
+light
+SCNLight
+
+
+
+
+camera
+SCNGeomet
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/19/RxSwift/Grammar/Operators-连接性操作/#more" rel="contents">
+            <a class="btn" href="/2018/01/17/SceneKit/Grammar/SceneKit-SCNNode/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1160,7 +1131,7 @@ Connectable Observable有订阅时不开始发射事件消息，而是仅当调�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/19/RxSwift/Grammar/Operators-错误处理操作/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/17/SceneKit/Grammar/SceneKit-SCNMaterial/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -1179,7 +1150,7 @@ Connectable Observable有订阅时不开始发射事件消息，而是仅当调�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/19/RxSwift/Grammar/Operators-错误处理操作/" itemprop="url">Swift-RxSwift-错误处理操作</a></h1>
+                <a class="post-title-link" href="/2018/01/17/SceneKit/Grammar/SceneKit-SCNMaterial/" itemprop="url">SceneKit-SCNMaterial- 材质</a></h1>
         
 
         <div class="post-meta">
@@ -1191,8 +1162,8 @@ Connectable Observable有订阅时不开始发射事件消息，而是仅当调�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-19T16:07:59+08:00">
-                2017-12-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T11:11:35+08:00">
+                2018-01-17
               </time>
             
 
@@ -1214,19 +1185,8 @@ Connectable Observable有订阅时不开始发射事件消息，而是仅当调�
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
+                  <a href="/categories/SceneKit/" itemprop="url" rel="index">
+                    <span itemprop="name">SceneKit</span>
                   </a>
                 </span>
 
@@ -1264,21 +1224,35 @@ Connectable Observable有订阅时不开始发射事件消息，而是仅当调�
       
         
           
-          错误处理操作
-①catchErrorJustReturn
-②catchError
-③retry
-④debug
+          SCNMaterial- 材质
+SCNMaterial : NSObject
 
-①catchErrorJustReturn
-①catchErrorJustReturn
-遇到error事件的时候，就return一个值，然后结束
+初始化+ (instancetype)material;
+属性
 
-let disposeBag = Dis
+
+Properties
+
+
+
+
+
+
+
+name
+NSString
+
+
+
+
+diffuse
+SCNMaterialProperty
+扩散
+漫射属性指定从表面
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/19/RxSwift/Grammar/Operators-错误处理操作/#more" rel="contents">
+            <a class="btn" href="/2018/01/17/SceneKit/Grammar/SceneKit-SCNMaterial/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1331,7 +1305,7 @@ let disposeBag = Dis
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/19/RxSwift/Grammar/Operators-过滤和条件操作符/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/17/SceneKit/Grammar/SCNGeometry/SCNGeometry-SCNSphere-几何-球/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -1350,7 +1324,7 @@ let disposeBag = Dis
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/19/RxSwift/Grammar/Operators-过滤和条件操作符/" itemprop="url">Swift-RxSwift-过滤和条件操作符</a></h1>
+                <a class="post-title-link" href="/2018/01/17/SceneKit/Grammar/SCNGeometry/SCNGeometry-SCNSphere-几何-球/" itemprop="url">SceneKit-SCNGeometry-SCNSphere-几何-球</a></h1>
         
 
         <div class="post-meta">
@@ -1362,8 +1336,8 @@ let disposeBag = Dis
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-19T16:06:59+08:00">
-                2017-12-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T10:45:55+08:00">
+                2018-01-17
               </time>
             
 
@@ -1385,8 +1359,8 @@ let disposeBag = Dis
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
+                  <a href="/categories/SceneKit/" itemprop="url" rel="index">
+                    <span itemprop="name">SceneKit</span>
                   </a>
                 </span>
 
@@ -1396,8 +1370,19 @@ let disposeBag = Dis
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
+                  <a href="/categories/SceneKit/SCNGeometry/" itemprop="url" rel="index">
+                    <span itemprop="name">SCNGeometry</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SceneKit/SCNGeometry/SCNSphere/" itemprop="url" rel="index">
+                    <span itemprop="name">SCNSphere</span>
                   </a>
                 </span>
 
@@ -1435,13 +1420,35 @@ let disposeBag = Dis
       
         
           
-          过滤和条件操作符①filter②distinctUntilChanged③elementAt④single⑤take⑥takeLast⑦takeWhile⑧takeUntil⑨skip⑩ skipWhile⑪skipWhileWithIndex⑫skipUntil 
-①filter 
-①filter
+          Sphere 几何-球
+SCNPlane : SCNGeometry
+
+初始化
+radius:球的半径
+
++ (instancetype)sphereWithRadius:(CGFloat)radius;
+属性
+
+
+
+
+
+
+
+
+
+
+radius
+CGFloat
+球的半径
+默认值是0.5
+
+
+geod
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/19/RxSwift/Grammar/Operators-过滤和条件操作符/#more" rel="contents">
+            <a class="btn" href="/2018/01/17/SceneKit/Grammar/SCNGeometry/SCNGeometry-SCNSphere-几何-球/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1494,7 +1501,7 @@ let disposeBag = Dis
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/19/RxSwift/Demo/Swift-RxSwift-转换操作符/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/17/SceneKit/Grammar/SceneKit-SCNGeometry/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -1513,7 +1520,7 @@ let disposeBag = Dis
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/19/RxSwift/Demo/Swift-RxSwift-转换操作符/" itemprop="url">Swift-RxSwift-转换操作符</a></h1>
+                <a class="post-title-link" href="/2018/01/17/SceneKit/Grammar/SceneKit-SCNGeometry/" itemprop="url">SceneKit-SCNGeometry</a></h1>
         
 
         <div class="post-meta">
@@ -1525,8 +1532,8 @@ let disposeBag = Dis
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-19T16:02:50+08:00">
-                2017-12-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T10:36:40+08:00">
+                2018-01-17
               </time>
             
 
@@ -1548,19 +1555,8 @@ let disposeBag = Dis
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
+                  <a href="/categories/SceneKit/" itemprop="url" rel="index">
+                    <span itemprop="name">SceneKit</span>
                   </a>
                 </span>
 
@@ -1598,12 +1594,37 @@ let disposeBag = Dis
       
         
           
-          这是javaBuffer():2.map() flatMap()3.concatMap()4.switchMap():5.cast():6.groupBy():7.scan():8.window():
+          SCNGeometry 几何创建
+创建并返回一个空的几何对象
 
-          
++ (instancetype)geometry;
+属性
+
+
+
+
+
+
+
+
+
+name
+NSString
+
+
+
+materials
+NSArray
+材料数组
+
+
+firstMaterial
+SCNMaterial
+决定几何的第一个材料如果
+          ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/19/RxSwift/Demo/Swift-RxSwift-转换操作符/#more" rel="contents">
+            <a class="btn" href="/2018/01/17/SceneKit/Grammar/SceneKit-SCNGeometry/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1656,7 +1677,7 @@ let disposeBag = Dis
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/19/RxSwift/Grammar/07-02-操作符-过滤操/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/17/SceneKit/Grammar/SCNScene-场景/SCNScene/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -1675,7 +1696,7 @@ let disposeBag = Dis
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/19/RxSwift/Grammar/07-02-操作符-过滤操/" itemprop="url">RxSwift-Filtering Observables过滤操作符-07-02</a></h1>
+                <a class="post-title-link" href="/2018/01/17/SceneKit/Grammar/SCNScene-场景/SCNScene/" itemprop="url">SceneKit-SCNScene-场景</a></h1>
         
 
         <div class="post-meta">
@@ -1687,8 +1708,8 @@ let disposeBag = Dis
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-19T14:16:33+08:00">
-                2017-12-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T10:13:44+08:00">
+                2018-01-17
               </time>
             
 
@@ -1710,19 +1731,8 @@ let disposeBag = Dis
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RxSwift/Grammar/" itemprop="url" rel="index">
-                    <span itemprop="name">Grammar</span>
+                  <a href="/categories/SceneKit/" itemprop="url" rel="index">
+                    <span itemprop="name">SceneKit</span>
                   </a>
                 </span>
 
@@ -1760,26 +1770,23 @@ let disposeBag = Dis
       
         
           
-          
-①filter
-②distinctUntilChanged
-③elementAt
-④single
-⑤take
-⑥takeLast
-⑦ignoreElements
-⑧skip
-⑨Sample
-⑩Sample
+          SCNScene-场景初始化
+SCNScene : NSObject
 
-变换操作
-过滤操作指的是从源 Observable 中选择特定的数据发送
++ (instancetype)scene;
+属性
+根节点
 
-①filter
+@property(nonatomic, readonly) SCNNode *rootNode;
+
+物理世界
+
+
+每个场景自动创建一个物理世界对象来模拟场景中的节点
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/19/RxSwift/Grammar/07-02-操作符-过滤操/#more" rel="contents">
+            <a class="btn" href="/2018/01/17/SceneKit/Grammar/SCNScene-场景/SCNScene/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1832,7 +1839,7 @@ let disposeBag = Dis
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/19/RxSwift/Grammar/线程/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/17/SceneKit/Grammar/SceneKit-SCNLight/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -1851,7 +1858,7 @@ let disposeBag = Dis
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/19/RxSwift/Grammar/线程/" itemprop="url">Swift-RxSwift-线程</a></h1>
+                <a class="post-title-link" href="/2018/01/17/SceneKit/Grammar/SceneKit-SCNLight/" itemprop="url">SceneKit-SCNLight</a></h1>
         
 
         <div class="post-meta">
@@ -1863,8 +1870,8 @@ let disposeBag = Dis
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-19T14:04:51+08:00">
-                2017-12-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T09:57:35+08:00">
+                2018-01-17
               </time>
             
 
@@ -1886,19 +1893,8 @@ let disposeBag = Dis
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
+                  <a href="/categories/SceneKit/" itemprop="url" rel="index">
+                    <span itemprop="name">SceneKit</span>
                   </a>
                 </span>
 
@@ -1936,15 +1932,31 @@ let disposeBag = Dis
       
         
           
-          #线程
-线程切换
-RxSwift 中切换线程
+          SCNLight 光源
+光源可以附加到节点上，在渲染场景中提供着色
 
-sequence1.observeOn(backgroundScheduler) // 切换到后台线程.map &#123; n in    print("在 background scheduler 执行")&#125;.observeOn(Main
+初始化
+初始化
+
++ (instancetype)light;
+属性
+type
+
+@property(nonatomic, copy) SCNLightType type;
+
+
+
+SCNLightType
+
+
+
+
+
+SCNLigh
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/19/RxSwift/Grammar/线程/#more" rel="contents">
+            <a class="btn" href="/2018/01/17/SceneKit/Grammar/SceneKit-SCNLight/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1988,7 +2000,7 @@ sequence1.observeOn(backgroundScheduler) // 切换到后台线程.map &#123; n i
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2034,7 +2046,7 @@ sequence1.observeOn(backgroundScheduler) // 切换到后台线程.map &#123; n i
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">213</span>
+                  <span class="site-state-item-count">239</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -311,7 +311,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/19/RxSwift/Grammar/07-01-操作符-转换/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/17/SceneKit/Grammar/SceneKit-SCNView/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -330,7 +330,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/19/RxSwift/Grammar/07-01-操作符-转换/" itemprop="url">Swift-RxSwift-Transforming Observables</a></h1>
+                <a class="post-title-link" href="/2018/01/17/SceneKit/Grammar/SceneKit-SCNView/" itemprop="url">SceneKit-SCNView</a></h1>
         
 
         <div class="post-meta">
@@ -342,8 +342,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-19T13:16:33+08:00">
-                2017-12-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T09:34:40+08:00">
+                2018-01-17
               </time>
             
 
@@ -365,19 +365,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
+                  <a href="/categories/SceneKit/" itemprop="url" rel="index">
+                    <span itemprop="name">SceneKit</span>
                   </a>
                 </span>
 
@@ -415,23 +404,15 @@
       
         
           
-          
-①map
-②flatMap
-③flatMapLatest
-④scan
-⑤groupBy
+          SCNViewSCNView : UIView &lt;SCNSceneRenderer, SCNTechniqueSupport&gt;
+初始化
+options 视图初始化选项
 
-变换操作①map 
-①map基本介绍
-通过使用一个闭包函数将原来的Observable序列sequence转换为一个新的Observable序列sequence
-
-
-let disposeBag = Disp
+- (instancetype)initWithFrame:(CGRect)frame options:(nullab
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/19/RxSwift/Grammar/07-01-操作符-转换/#more" rel="contents">
+            <a class="btn" href="/2018/01/17/SceneKit/Grammar/SceneKit-SCNView/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -484,7 +465,7 @@ let disposeBag = Disp
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/18/RxSwift/Grammar/进阶理解/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/17/SceneKit/Grammar/SceneKit-SCNAction/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -503,7 +484,7 @@ let disposeBag = Disp
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/18/RxSwift/Grammar/进阶理解/" itemprop="url">Swift-RxSwift-进阶理解</a></h1>
+                <a class="post-title-link" href="/2018/01/17/SceneKit/Grammar/SceneKit-SCNAction/" itemprop="url">SceneKit-SCNAction</a></h1>
         
 
         <div class="post-meta">
@@ -515,8 +496,8 @@ let disposeBag = Disp
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-18T13:32:21+08:00">
-                2017-12-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T09:03:21+08:00">
+                2018-01-17
               </time>
             
 
@@ -525,6 +506,28 @@ let disposeBag = Disp
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SceneKit/" itemprop="url" rel="index">
+                    <span itemprop="name">SceneKit</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -555,11 +558,14 @@ let disposeBag = Disp
       
         
           
-          Disposing   当监听一个事件序列的时候，有消息事件来了，我们做某些事情   但是这个事件序列不再发出消息了，我们的监听也就没有什么存在价值了，所以我们需要释放我们这些监听资源，其实也就是每种编程语言中的内存资源释放   OC和Swift中也一样，在你不需要用某些变量的时候，你需要把这些变量
+          使用
+节点（Node） 动画移动到(19,18,17)这个位置，时间=5s
+
+ SCNAction *action = [SCNAction moveTo:SCNVector3Make(19,18,17)                                       duration:
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/18/RxSwift/Grammar/进阶理解/#more" rel="contents">
+            <a class="btn" href="/2018/01/17/SceneKit/Grammar/SceneKit-SCNAction/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -612,7 +618,7 @@ let disposeBag = Disp
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/16/RxSwift/Grammar/06-Subject/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/16/SceneKit/Grammar/Scenekit-Roation-旋转/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -631,7 +637,7 @@ let disposeBag = Disp
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/16/RxSwift/Grammar/06-Subject/" itemprop="url">Swift-RxSwift-Subject</a></h1>
+                <a class="post-title-link" href="/2018/01/16/SceneKit/Grammar/Scenekit-Roation-旋转/" itemprop="url">Scenekit-Roation-旋转</a></h1>
         
 
         <div class="post-meta">
@@ -643,8 +649,8 @@ let disposeBag = Disp
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-16T23:28:28+08:00">
-                2017-12-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-16T22:11:20+08:00">
+                2018-01-16
               </time>
             
 
@@ -666,19 +672,8 @@ let disposeBag = Disp
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RxSwift/Grammar/" itemprop="url" rel="index">
-                    <span itemprop="name">Grammar</span>
+                  <a href="/categories/SceneKit/" itemprop="url" rel="index">
+                    <span itemprop="name">SceneKit</span>
                   </a>
                 </span>
 
@@ -716,12 +711,12 @@ let disposeBag = Disp
       
         
           
-          SubjectSubjects 既是订阅者，也是Observable
-Subject是observable和Observer之间的桥梁说它是订阅者，是因为它能够动态地接收新的值。作为一个 Observer ，它可以订阅序列说它又是一个 Observable，是因为当 Subjects 有了新的值之后
+          旋转
+每个SCNNode 都有自身的三维坐标系，用CABasicAnimation让SCNNode绕自身的三维坐标轴旋转，所以要特别注意是坐标轴，不是这个SCNNode的几何中心。一般SceneKit 的自带的几个几何体的坐标系原点(0,0,0)就是这个它的几何中心，比如说SCNBox；SCNSph
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/16/RxSwift/Grammar/06-Subject/#more" rel="contents">
+            <a class="btn" href="/2018/01/16/SceneKit/Grammar/Scenekit-Roation-旋转/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -774,7 +769,7 @@ Subject是observable和Observer之间的桥梁说它是订阅者，是因为它�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/16/RxSwift/Grammar/05-Observer观察者/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/OC/Lib/WCDB/OC-Lib-WCDB -简单使用参考/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -793,7 +788,7 @@ Subject是observable和Observer之间的桥梁说它是订阅者，是因为它�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/16/RxSwift/Grammar/05-Observer观察者/" itemprop="url">Swift-RxSwift-Observable订阅&事件监听&订阅销毁-05</a></h1>
+                <a class="post-title-link" href="/2018/01/12/OC/Lib/WCDB/OC-Lib-WCDB -简单使用参考/" itemprop="url">OC-Lib-WCDB -简单使用参考</a></h1>
         
 
         <div class="post-meta">
@@ -805,8 +800,8 @@ Subject是observable和Observer之间的桥梁说它是订阅者，是因为它�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-16T22:28:28+08:00">
-                2017-12-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T10:34:13+08:00">
+                2018-01-12
               </time>
             
 
@@ -828,8 +823,8 @@ Subject是observable和Observer之间的桥梁说它是订阅者，是因为它�
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
+                  <a href="/categories/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
                   </a>
                 </span>
 
@@ -839,8 +834,19 @@ Subject是observable和Observer之间的桥梁说它是订阅者，是因为它�
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RxSwift/Grammar/" itemprop="url" rel="index">
-                    <span itemprop="name">Grammar</span>
+                  <a href="/categories/OC/Lib/" itemprop="url" rel="index">
+                    <span itemprop="name">Lib</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OC/Lib/WCDB/" itemprop="url" rel="index">
+                    <span itemprop="name">WCDB</span>
                   </a>
                 </span>
 
@@ -878,21 +884,14 @@ Subject是observable和Observer之间的桥梁说它是订阅者，是因为它�
       
         
           
-          
-①Observer观察者
-②直接在 subscribe、bind 方法中创建观察者
-③使用 AnyObserver 创建观察者
-④使用 Binder 创建观察者
-⑤自定义可绑定属性
-⑥RxSwift 自带的可绑定属性（UI 观察者）
+          创建model
+Message.h
 
-①1
-①Observer观察者
-观察者（Observer）的作
+@interface Message : NSObject@property         int      localID;@property(retain) NSString *content;@property(retain) NSDate   *cre
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/16/RxSwift/Grammar/05-Observer观察者/#more" rel="contents">
+            <a class="btn" href="/2018/01/12/OC/Lib/WCDB/OC-Lib-WCDB -简单使用参考/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -945,7 +944,7 @@ Subject是observable和Observer之间的桥梁说它是订阅者，是因为它�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/16/RxSwift/Grammar/响应式编程对比/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/OC/Lib/WCDB/OC-Lib-WCDB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -964,7 +963,7 @@ Subject是observable和Observer之间的桥梁说它是订阅者，是因为它�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/16/RxSwift/Grammar/响应式编程对比/" itemprop="url">RxSwift-响应式编程对比</a></h1>
+                <a class="post-title-link" href="/2018/01/12/OC/Lib/WCDB/OC-Lib-WCDB/" itemprop="url">OC-Lib-WCDB</a></h1>
         
 
         <div class="post-meta">
@@ -976,8 +975,8 @@ Subject是observable和Observer之间的桥梁说它是订阅者，是因为它�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-16T15:18:21+08:00">
-                2017-12-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T10:27:48+08:00">
+                2018-01-12
               </time>
             
 
@@ -999,8 +998,8 @@ Subject是observable和Observer之间的桥梁说它是订阅者，是因为它�
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
+                  <a href="/categories/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
                   </a>
                 </span>
 
@@ -1010,8 +1009,19 @@ Subject是observable和Observer之间的桥梁说它是订阅者，是因为它�
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RxSwift/Grammar/" itemprop="url" rel="index">
-                    <span itemprop="name">Grammar</span>
+                  <a href="/categories/OC/Lib/" itemprop="url" rel="index">
+                    <span itemprop="name">Lib</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OC/Lib/WCDB/" itemprop="url" rel="index">
+                    <span itemprop="name">WCDB</span>
                   </a>
                 </span>
 
@@ -1049,17 +1059,28 @@ Subject是observable和Observer之间的桥梁说它是订阅者，是因为它�
       
         
           
-          #Rx 介绍
-Rx
-Rx 是 ReactiveX 的缩写，简单来说就是基于异步 Event（事件）序列的响应式编程
-Rx 可以简化异步编程方法，并提供更优雅的数据绑定。让我们可以时刻响应新的数据同时顺序地处理它们
+          WCDB
+文档
 
-Rx 库
-Rx 本身可以说是一种跨平台的标准，它有自己的社区论坛，不管是 web 还
+WCDB 使用 官方iOS文档
+
+CocoaPods
+
+pod &apos;WCDB&apos;
+
+引入
+
+#import &lt;WCDB/WCDB.h&gt;
+
+⚠️引用注意
+
+WCDB是基于Objective-C++，需要将引用WCDB的源文件后缀.m改为.mm。
+
+iOS 
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/16/RxSwift/Grammar/响应式编程对比/#more" rel="contents">
+            <a class="btn" href="/2018/01/12/OC/Lib/WCDB/OC-Lib-WCDB/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1112,7 +1133,7 @@ Rx 本身可以说是一种跨平台的标准，它有自己的社区论坛，�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/16/RxSwift/Grammar/04-Observable订阅&事件监听&订阅销毁/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/OC/Lib/QMUIKit/OC-QMUIKit/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -1131,7 +1152,7 @@ Rx 本身可以说是一种跨平台的标准，它有自己的社区论坛，�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/16/RxSwift/Grammar/04-Observable订阅&事件监听&订阅销毁/" itemprop="url">Swift-RxSwift-Observable订阅&事件监听&订阅销毁-04</a></h1>
+                <a class="post-title-link" href="/2018/01/12/OC/Lib/QMUIKit/OC-QMUIKit/" itemprop="url">OC-QMUIKit</a></h1>
         
 
         <div class="post-meta">
@@ -1143,8 +1164,8 @@ Rx 本身可以说是一种跨平台的标准，它有自己的社区论坛，�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-16T10:28:28+08:00">
-                2017-12-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T09:35:38+08:00">
+                2018-01-12
               </time>
             
 
@@ -1166,8 +1187,8 @@ Rx 本身可以说是一种跨平台的标准，它有自己的社区论坛，�
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
+                  <a href="/categories/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
                   </a>
                 </span>
 
@@ -1177,8 +1198,19 @@ Rx 本身可以说是一种跨平台的标准，它有自己的社区论坛，�
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RxSwift/Grammar/" itemprop="url" rel="index">
-                    <span itemprop="name">Grammar</span>
+                  <a href="/categories/OC/Lib/" itemprop="url" rel="index">
+                    <span itemprop="name">Lib</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OC/Lib/QMUIKit/" itemprop="url" rel="index">
+                    <span itemprop="name">QMUIKit</span>
                   </a>
                 </span>
 
@@ -1216,21 +1248,15 @@ Rx 本身可以说是一种跨平台的标准，它有自己的社区论坛，�
       
         
           
-          ❶❷❸❹❺❼❽❾①②③④⑤⑥⑦⑧⑨⑩⑪⑫
+          QMUIKitQMUIKit 使用 官方文档
+CocoaPodspod &apos;QMUIKit&apos;#import &lt;QMUIKit/QMUIKit.h&gt;
+QMUI iOS 主要由 5 大部分组成：QMUICore
+配置表、全局的宏、工具方法等，是所有 QMUI 类的基础代码
 
-①just
-②of
-
-①just
-订阅 Observable
-有了 Observable，我们还要使用 subscribe() 方法来订阅它，接收它发出的 Event
-
-第一种用法
-❶使用 subscribe() 订阅了一个 Observable 对象，该
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/16/RxSwift/Grammar/04-Observable订阅&事件监听&订阅销毁/#more" rel="contents">
+            <a class="btn" href="/2018/01/12/OC/Lib/QMUIKit/OC-QMUIKit/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1283,7 +1309,7 @@ Rx 本身可以说是一种跨平台的标准，它有自己的社区论坛，�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/15/RxSwift/Grammar/简单基础项目/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/10/OC/Lib/CYLTabBarCtl/OC-Lib-CYLTabBarCtl/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -1302,7 +1328,7 @@ Rx 本身可以说是一种跨平台的标准，它有自己的社区论坛，�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/15/RxSwift/Grammar/简单基础项目/" itemprop="url">Swift-RxSwift-简单基础项目</a></h1>
+                <a class="post-title-link" href="/2018/01/10/OC/Lib/CYLTabBarCtl/OC-Lib-CYLTabBarCtl/" itemprop="url">iOS-Lib-CYLTabBarCtl</a></h1>
         
 
         <div class="post-meta">
@@ -1314,8 +1340,8 @@ Rx 本身可以说是一种跨平台的标准，它有自己的社区论坛，�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T23:40:29+08:00">
-                2017-12-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T18:20:53+08:00">
+                2018-01-10
               </time>
             
 
@@ -1337,8 +1363,8 @@ Rx 本身可以说是一种跨平台的标准，它有自己的社区论坛，�
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
+                  <a href="/categories/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
                   </a>
                 </span>
 
@@ -1348,8 +1374,19 @@ Rx 本身可以说是一种跨平台的标准，它有自己的社区论坛，�
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
+                  <a href="/categories/OC/Lib/" itemprop="url" rel="index">
+                    <span itemprop="name">Lib</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OC/Lib/CYLTabBarCtl/" itemprop="url" rel="index">
+                    <span itemprop="name">CYLTabBarCtl</span>
                   </a>
                 </span>
 
@@ -1387,11 +1424,12 @@ Rx 本身可以说是一种跨平台的标准，它有自己的社区论坛，�
       
         
           
-          结构├── Controller│   └── LXFViewController.swift     // 主视图控制器│├── Extension│   └── Response+ObjectMapper.swift // Response分类，Moya请求完进行Json转模型或模型数组│├──
-          ...
+          Github Adress
+
+          
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/15/RxSwift/Grammar/简单基础项目/#more" rel="contents">
+            <a class="btn" href="/2018/01/10/OC/Lib/CYLTabBarCtl/OC-Lib-CYLTabBarCtl/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1444,7 +1482,7 @@ Rx 本身可以说是一种跨平台的标准，它有自己的社区论坛，�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/15/RxSwift/Grammar/RxSwift-资料/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/10/SceneKit/Grammar/SceneKit-Panorama-全景图/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -1463,7 +1501,7 @@ Rx 本身可以说是一种跨平台的标准，它有自己的社区论坛，�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/15/RxSwift/Grammar/RxSwift-资料/" itemprop="url">Swift-RxSwift-Grammar- 资料</a></h1>
+                <a class="post-title-link" href="/2018/01/10/SceneKit/Grammar/SceneKit-Panorama-全景图/" itemprop="url">SceneKit-Panorama-全景图</a></h1>
         
 
         <div class="post-meta">
@@ -1475,8 +1513,8 @@ Rx 本身可以说是一种跨平台的标准，它有自己的社区论坛，�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T17:18:21+08:00">
-                2017-12-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T16:35:01+08:00">
+                2018-01-10
               </time>
             
 
@@ -1498,19 +1536,8 @@ Rx 本身可以说是一种跨平台的标准，它有自己的社区论坛，�
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
+                  <a href="/categories/SceneKit/" itemprop="url" rel="index">
+                    <span itemprop="name">SceneKit</span>
                   </a>
                 </span>
 
@@ -1548,16 +1575,11 @@ Rx 本身可以说是一种跨平台的标准，它有自己的社区论坛，�
       
         
           
-          Driver
-RxSwift在UITableViewCell或者UICollectionViewCell中绑定数据遇到的UI混乱的问题
-【RxSwift系列】用RxSwift实现一个UITableView（一）
-MVVM模式仿写斗鱼APP首页
-RxSwift进阶与实战
-
+          
           
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/15/RxSwift/Grammar/RxSwift-资料/#more" rel="contents">
+            <a class="btn" href="/2018/01/10/SceneKit/Grammar/SceneKit-Panorama-全景图/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1610,7 +1632,7 @@ RxSwift进阶与实战
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/15/RxSwift/Grammar/基本UI控件的扩展/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/09/Git/Git-Gitlab代码托管配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -1629,7 +1651,7 @@ RxSwift进阶与实战
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/15/RxSwift/Grammar/基本UI控件的扩展/" itemprop="url">Swift-RxSwift-UI控件的扩展</a></h1>
+                <a class="post-title-link" href="/2018/01/09/Git/Git-Gitlab代码托管配置/" itemprop="url">Git-Gitlab代码托管配置</a></h1>
         
 
         <div class="post-meta">
@@ -1641,8 +1663,8 @@ RxSwift进阶与实战
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T15:49:44+08:00">
-                2017-12-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-09T18:50:53+08:00">
+                2018-01-09
               </time>
             
 
@@ -1664,19 +1686,8 @@ RxSwift进阶与实战
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
+                  <a href="/categories/Git/" itemprop="url" rel="index">
+                    <span itemprop="name">Git</span>
                   </a>
                 </span>
 
@@ -1714,14 +1725,13 @@ RxSwift进阶与实战
       
         
           
-          UITextField / UITextView监听多个UITextField
-监听三个UITextField随便哪个的text变化了，都会引起代码执行，并且结果赋值到result的text
-
-   @IBOutlet weak var number1: UITextField!@IBOutlet 
+          Gitlab平台设置为Project添加Gitcd “本地项目的路径”
+ git init //初始化
+ git remote add origin git@gitlab.com:USERNAME/PROJECTNAME.git //将”USERNAME”和”PROJECTNAME”替换为自己的用户
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/15/RxSwift/Grammar/基本UI控件的扩展/#more" rel="contents">
+            <a class="btn" href="/2018/01/09/Git/Git-Gitlab代码托管配置/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1774,7 +1784,7 @@ RxSwift进阶与实战
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/15/RxSwift/Grammar/简介以及简单学习使用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/09/SceneKit/Grammar/SceneKit-Reference/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -1793,7 +1803,7 @@ RxSwift进阶与实战
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/15/RxSwift/Grammar/简介以及简单学习使用/" itemprop="url">Swift-RxSwift-简介以及简单学习使用</a></h1>
+                <a class="post-title-link" href="/2018/01/09/SceneKit/Grammar/SceneKit-Reference/" itemprop="url">iOS-SceneKit-Reference</a></h1>
         
 
         <div class="post-meta">
@@ -1805,8 +1815,8 @@ RxSwift进阶与实战
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T10:28:28+08:00">
-                2017-12-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-09T11:07:40+08:00">
+                2018-01-09
               </time>
             
 
@@ -1828,19 +1838,8 @@ RxSwift进阶与实战
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
+                  <a href="/categories/SceneKit/" itemprop="url" rel="index">
+                    <span itemprop="name">SceneKit</span>
                   </a>
                 </span>
 
@@ -1878,17 +1877,14 @@ RxSwift进阶与实战
       
         
           
-          Swift-RxSwift-简介以及简单学习使用
-RxSwift 项目文档中 Why 已有详细介绍
+          资料 参考学习1 参考学习2
+只能学习而已，太难
+没找到博客
 
-Bindings
-[RxWhy] -&gt; [Bindings] -&gt; [BindingsViewController.swift]
-
-Observable.combineLatest(fi
-          ...
+          
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/15/RxSwift/Grammar/简介以及简单学习使用/#more" rel="contents">
+            <a class="btn" href="/2018/01/09/SceneKit/Grammar/SceneKit-Reference/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1932,7 +1928,7 @@ Observable.combineLatest(fi
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1978,7 +1974,7 @@ Observable.combineLatest(fi
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">213</span>
+                  <span class="site-state-item-count">239</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

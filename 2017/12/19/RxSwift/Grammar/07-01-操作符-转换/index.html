@@ -103,7 +103,7 @@
 <meta property="og:description" content="①map ②flatMap ③flatMapLatest ④scan ⑤groupBy  变换操作①map  ①map基本介绍 通过使用一个闭包函数将原来的Observable序列sequence转换为一个新的Observable序列sequence   let disposeBag = DisposeBag()Observable.of(1,2,3)			.map(&amp;#123;">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ot0mms4k8.bkt.clouddn.com/map-001.png">
-<meta property="og:updated_time" content="2018-04-29T03:05:10.191Z">
+<meta property="og:updated_time" content="2018-09-12T02:19:39.025Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift-RxSwift-Transforming Observables">
 <meta name="twitter:description" content="①map ②flatMap ③flatMapLatest ④scan ⑤groupBy  变换操作①map  ①map基本介绍 通过使用一个闭包函数将原来的Observable序列sequence转换为一个新的Observable序列sequence   let disposeBag = DisposeBag()Observable.of(1,2,3)			.map(&amp;#123;">
@@ -366,8 +366,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
+                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
                   </a>
                 </span>
 
@@ -377,8 +377,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
+                  <a href="/categories/RxSwift/Grammar/" itemprop="url" rel="index">
+                    <span itemprop="name">Grammar</span>
                   </a>
                 </span>
 
@@ -455,7 +455,7 @@
 <h1 id="⑤groupBy"><a href="#⑤groupBy" class="headerlink" title="⑤groupBy"></a>⑤groupBy</h1><h2 id="基本介绍-4"><a href="#基本介绍-4" class="headerlink" title="基本介绍"></a>基本介绍</h2><blockquote>
 <p>groupBy 操作符将源 Observable 分解为多个子 Observable，然后将这些子 Observable 发送出来<br>也就是说该操作符会将元素通过某个键进行分组，然后将分组后的元素序列以 Observable 的形态发送出来</p>
 </blockquote>
-<h2 id="使用样例"><a href="#使用样例" class="headerlink" title="使用样例"></a>使用样例</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"> </div><div class="line"><span class="comment">//将奇数偶数分成两组</span></div><div class="line"><span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.of(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</div><div class="line">    .groupBy(keySelector: &#123; (element) -&gt; <span class="type">String</span> <span class="keyword">in</span></div><div class="line">        <span class="keyword">return</span> element % <span class="number">2</span> == <span class="number">0</span> ? <span class="string">"偶数"</span> : <span class="string">"基数"</span></div><div class="line">    &#125;)</div><div class="line">    .subscribe &#123; (event) <span class="keyword">in</span></div><div class="line">        <span class="keyword">switch</span> event &#123;</div><div class="line">        <span class="keyword">case</span> .next(<span class="keyword">let</span> group):</div><div class="line">            group.asObservable().subscribe(&#123; (event) <span class="keyword">in</span></div><div class="line">                <span class="built_in">print</span>(<span class="string">"key：\(group.key)    event：\(event)"</span>)</div><div class="line">            &#125;)</div><div class="line">            .disposed(by: disposeBag)</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            <span class="built_in">print</span>(<span class="string">""</span>)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">.disposed(by: disposeBag)</div><div class="line"></div><div class="line"><span class="comment">//print</span></div><div class="line">key: 偶数 event: next(<span class="number">0</span>)</div><div class="line">key: 奇数 event: next(<span class="number">1</span>)</div><div class="line">key: 偶数 event: next(<span class="number">2</span>)</div><div class="line">key: 奇数 event: next(<span class="number">3</span>)</div><div class="line">key: 偶数 event: next(<span class="number">4</span>)</div><div class="line">key: 奇数 event: next(<span class="number">5</span>)</div><div class="line">key: 偶数 event: completed</div><div class="line">key: 奇数 event: completed</div></pre></td></tr></table></figure>
+<h2 id="使用样例"><a href="#使用样例" class="headerlink" title="使用样例"></a>使用样例</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"> </div><div class="line"><span class="comment">//将奇数偶数分成两组</span></div><div class="line"><span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.of(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</div><div class="line">    .groupBy(keySelector: &#123; (element) -&gt; <span class="type">String</span> <span class="keyword">in</span></div><div class="line">        <span class="keyword">return</span> element % <span class="number">2</span> == <span class="number">0</span> ? <span class="string">"偶数"</span> : <span class="string">"基数"</span></div><div class="line">    &#125;)</div><div class="line">    .subscribe &#123; (event) <span class="keyword">in</span></div><div class="line">        <span class="keyword">switch</span> event &#123;</div><div class="line">        <span class="keyword">case</span> .next(<span class="keyword">let</span> group):</div><div class="line">            group.asObservable().subscribe(&#123; (event) <span class="keyword">in</span></div><div class="line">                <span class="built_in">print</span>(<span class="string">"key：<span class="subst">\(group.key)</span>    event：<span class="subst">\(event)</span>"</span>)</div><div class="line">            &#125;)</div><div class="line">            .disposed(by: disposeBag)</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            <span class="built_in">print</span>(<span class="string">""</span>)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">.disposed(by: disposeBag)</div><div class="line"></div><div class="line"><span class="comment">//print</span></div><div class="line">key: 偶数 event: next(<span class="number">0</span>)</div><div class="line">key: 奇数 event: next(<span class="number">1</span>)</div><div class="line">key: 偶数 event: next(<span class="number">2</span>)</div><div class="line">key: 奇数 event: next(<span class="number">3</span>)</div><div class="line">key: 偶数 event: next(<span class="number">4</span>)</div><div class="line">key: 奇数 event: next(<span class="number">5</span>)</div><div class="line">key: 偶数 event: completed</div><div class="line">key: 奇数 event: completed</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -579,7 +579,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">213</span>
+                  <span class="site-state-item-count">239</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
