@@ -1140,7 +1140,7 @@ Completable 是 Observable 的另外一个版本不像 Observable 可以发出�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/Driver/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/Subscribe/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -1159,7 +1159,7 @@ Completable 是 Observable 的另外一个版本不像 Observable 可以发出�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/Driver/" itemprop="url">RxSwift-Grammar-Driver</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/Subscribe/" itemprop="url">RxSwift-Grammar-Subscribe</a></h1>
         
 
         <div class="post-meta">
@@ -1244,14 +1244,16 @@ Completable 是 Observable 的另外一个版本不像 Observable 可以发出�
       
         
           
-          Driver
-官方的例子的场景大概就是，根据一个输入框的关键字，来请求数据，然后接结果绑定到另一个Label,和TableView中首先创建一个可监听序列results;将results绑定到resultCount.rx.text上;将results绑定到resultsTableView上.
+          subscribe 和 subscribe(onNext:)
+Subscribe
 
-//
+
+subscribe是订阅sequence发出的事件，比如next事件，error事件等
+而subscribe(onNext:)是监听sequence发出的next事件中的element进行处理，他会忽略error和
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Grammar/Driver/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Grammar/Subscribe/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1472,7 +1474,7 @@ Button 的点击这个情景
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/Subscribe/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/自定义operator/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -1491,7 +1493,7 @@ Button 的点击这个情景
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/Subscribe/" itemprop="url">RxSwift-Grammar-Subscribe</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/自定义operator/" itemprop="url">RxSwift-Grammar-自定义operator</a></h1>
         
 
         <div class="post-meta">
@@ -1576,16 +1578,14 @@ Button 的点击这个情景
       
         
           
-          subscribe 和 subscribe(onNext:)
-Subscribe
+          自定义operator
+自定义操作符很简单，官方推荐尽量使用标准的操作符，但是你也可以定义自己的操作符，文档上说有两种方法，这里介绍一下常用的一种方法吧自定义一个map操作符
 
-
-subscribe是订阅sequence发出的事件，比如next事件，error事件等
-而subscribe(onNext:)是监听sequence发出的next事件中的element进行处理，他会忽略error和
+ extension ObserverType &#123;    func myMap&lt;R&gt;(transfo
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Grammar/Subscribe/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Grammar/自定义operator/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1807,7 +1807,7 @@ Single 比较常见的例子就是执行 HTT
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/map和flatMap/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/Driver/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -1826,7 +1826,7 @@ Single 比较常见的例子就是执行 HTT
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/map和flatMap/" itemprop="url">RxSwift-Grammar-map和flatMap</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/Driver/" itemprop="url">RxSwift-Grammar-Driver</a></h1>
         
 
         <div class="post-meta">
@@ -1911,14 +1911,14 @@ Single 比较常见的例子就是执行 HTT
       
         
           
-          map和flatMap
-map函数，接收一个R类型的序列，返回一个R类型的序列，还是原来的序列。
+          Driver
+官方的例子的场景大概就是，根据一个输入框的关键字，来请求数据，然后接结果绑定到另一个Label,和TableView中首先创建一个可监听序列results;将results绑定到resultCount.rx.text上;将results绑定到resultsTableView上.
 
-public func map&lt;R&gt;(_ transform: @escaping (Self.E) throws -&gt; R) -&gt; RxSwift.Observable&lt
+//
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Grammar/map和flatMap/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Grammar/Driver/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
