@@ -484,7 +484,7 @@
 <blockquote>
 <p>该个方法相当于是创建一个 Observable 工厂，通过传入一个 block 来执行延迟 Observable 序列创建的行为，而这个 block 里就是真正的实例化序列对象的地方</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">//用于标记是奇数、还是偶数</span></div><div class="line"><span class="keyword">var</span> isOdd = <span class="literal">true</span></div><div class="line"> </div><div class="line"><span class="comment">//使用deferred()方法延迟Observable序列的初始化，通过传入的block来实现Observable序列的初始化并且返回。</span></div><div class="line"><span class="keyword">let</span> factory : <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt; = <span class="type">Observable</span>.deferred &#123;</div><div class="line">     </div><div class="line">    <span class="comment">//让每次执行这个block时候都会让奇、偶数进行交替</span></div><div class="line">    isOdd = !isOdd</div><div class="line">     </div><div class="line">    <span class="comment">//根据isOdd参数，决定创建并返回的是奇数Observable、还是偶数Observable</span></div><div class="line">    <span class="keyword">if</span> isOdd &#123;</div><div class="line">        <span class="keyword">return</span> <span class="type">Observable</span>.of(<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span> ,<span class="number">7</span>)</div><div class="line">    &#125;<span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="type">Observable</span>.of(<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">//第1次订阅测试</span></div><div class="line">factory.subscribe &#123; event <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"\(isOdd)"</span>, event)</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">//第2次订阅测试</span></div><div class="line">factory.subscribe &#123; event <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"\(isOdd)"</span>, event)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// print</span></div><div class="line"><span class="literal">false</span> next(<span class="number">2</span>)</div><div class="line"><span class="literal">false</span> next(<span class="number">4</span>)</div><div class="line"><span class="literal">false</span> next(<span class="number">6</span>)</div><div class="line"><span class="literal">false</span> next(<span class="number">8</span>)</div><div class="line"><span class="literal">false</span> completed</div><div class="line"><span class="literal">true</span> next(<span class="number">1</span>)</div><div class="line"><span class="literal">true</span> next(<span class="number">3</span>)</div><div class="line"><span class="literal">true</span> next(<span class="number">5</span>)</div><div class="line"><span class="literal">true</span> next(<span class="number">7</span>)</div><div class="line"><span class="literal">true</span> completed</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">//用于标记是奇数、还是偶数</span></div><div class="line"><span class="keyword">var</span> isOdd = <span class="literal">true</span></div><div class="line"> </div><div class="line"><span class="comment">//使用deferred()方法延迟Observable序列的初始化，通过传入的block来实现Observable序列的初始化并且返回。</span></div><div class="line"><span class="keyword">let</span> factory : <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt; = <span class="type">Observable</span>.deferred &#123;</div><div class="line">     </div><div class="line">    <span class="comment">//让每次执行这个block时候都会让奇、偶数进行交替</span></div><div class="line">    isOdd = !isOdd</div><div class="line">     </div><div class="line">    <span class="comment">//根据isOdd参数，决定创建并返回的是奇数Observable、还是偶数Observable</span></div><div class="line">    <span class="keyword">if</span> isOdd &#123;</div><div class="line">        <span class="keyword">return</span> <span class="type">Observable</span>.of(<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span> ,<span class="number">7</span>)</div><div class="line">    &#125;<span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="type">Observable</span>.of(<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">//第1次订阅测试</span></div><div class="line">factory.subscribe &#123; event <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"<span class="subst">\(isOdd)</span>"</span>, event)</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">//第2次订阅测试</span></div><div class="line">factory.subscribe &#123; event <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"<span class="subst">\(isOdd)</span>"</span>, event)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// print</span></div><div class="line"><span class="literal">false</span> next(<span class="number">2</span>)</div><div class="line"><span class="literal">false</span> next(<span class="number">4</span>)</div><div class="line"><span class="literal">false</span> next(<span class="number">6</span>)</div><div class="line"><span class="literal">false</span> next(<span class="number">8</span>)</div><div class="line"><span class="literal">false</span> completed</div><div class="line"><span class="literal">true</span> next(<span class="number">1</span>)</div><div class="line"><span class="literal">true</span> next(<span class="number">3</span>)</div><div class="line"><span class="literal">true</span> next(<span class="number">5</span>)</div><div class="line"><span class="literal">true</span> next(<span class="number">7</span>)</div><div class="line"><span class="literal">true</span> completed</div></pre></td></tr></table></figure>
 <p><span id="⑫interval"></span></p>
 <p>#⑫interval</p>
 <blockquote>
@@ -534,8 +534,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/15/RxSwift/Grammar/02-Observables/" rel="next" title="RxSwift-Grammar-Observables-02">
-                <i class="fa fa-chevron-left"></i> RxSwift-Grammar-Observables-02
+              <a href="/2017/12/15/RxSwift/Grammar/简介以及简单学习使用/" rel="next" title="Swift-RxSwift-简介以及简单学习使用">
+                <i class="fa fa-chevron-left"></i> Swift-RxSwift-简介以及简单学习使用
               </a>
             
           </div>
@@ -544,8 +544,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/15/RxSwift/Grammar/简介以及简单学习使用/" rel="prev" title="Swift-RxSwift-简介以及简单学习使用">
-                Swift-RxSwift-简介以及简单学习使用 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/15/RxSwift/Grammar/基本UI控件的扩展/" rel="prev" title="Swift-RxSwift-UI控件的扩展">
+                Swift-RxSwift-UI控件的扩展 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -623,7 +623,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">240</span>
+                  <span class="site-state-item-count">241</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
