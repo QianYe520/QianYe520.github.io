@@ -35,8 +35,8 @@
         <category>UIKit</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
         <tag>UIKit</tag>
       </tags>
   </entry>
@@ -49,8 +49,8 @@
         <category>UIKit</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
         <tag>UIKit</tag>
       </tags>
   </entry>
@@ -89,8 +89,8 @@
         <category>UIKit</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
         <tag>UIKit</tag>
       </tags>
   </entry>
@@ -129,8 +129,8 @@
         <category>UIKit</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
         <tag>UIKit</tag>
       </tags>
   </entry>
@@ -156,8 +156,8 @@
         <category>UIKit</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
         <tag>UIKit</tag>
       </tags>
   </entry>
@@ -222,8 +222,8 @@
         <category>UIKit</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
         <tag>UIKit</tag>
       </tags>
   </entry>
@@ -279,6 +279,20 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[RxDataSources-UITableView]]></title>
+    <url>%2F2018%2F04%2F07%2FRxSwift%2FLib%2FRxDataSources-UITableView%2F</url>
+    <content type="text"><![CDATA[自带的Section let items = Observable.just([ SectionModel(model:&quot;&quot;, items: [&quot;UILable的用法&quot;,&quot;UIText的用法&quot;, &quot;UIButton的用法&quot;])])创建数据源 let dataSource = RxTableViewSectionedReloadDataSource&lt;SectionModel&lt;String,String&gt;&gt;( configureCell: &#123; (dataSource,tv,indexPath,element) in let cell = tv.dequeueReusableCell(withIdentifier:&quot;Cell&quot;)! cell.textLabel?.text = &quot;\(indexPath.row):\(element)&quot; return cell &#125; ) //绑定单元格数据 items.bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: disposeBag) 方式2：自定义Section自定义Sectionstruct MySecion &#123; var header:String var items:[Item]&#125;extension MySecion:AnimatableSectionModelType&#123; typealias Item = String var identity : String&#123; return header &#125; init(original: MySecion,items:[Item]) &#123; self = original self.items = items &#125;&#125; 使用自定义Sectionlet sections = Observable.just([ MySecion(header: &quot;&quot;, items: [ &quot;AAAAA&quot;, &quot;BBBB&quot;, &quot;CCCCCC&quot;, ]) ])let datasource = RxTableViewSectionedAnimatedDataSource&lt;MySecion&gt;( //设置cell configureCell: &#123; ds,tv,ip,im in let cell = tv.dequeueReusableCell(withIdentifier: &quot;Cell&quot;) ?? UITableViewCell(style: .default, reuseIdentifier: &quot;Cell&quot;) cell.textLabel?.text = &quot;\(ip.row):\(im)&quot; return cell&#125; )//绑定cell的数据sections.bind(to: tableView.rx.items(dataSource: datasource)).disposed(by: disposeBag)]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Lib</category>
+      </categories>
+      <tags>
+        <tag>RxSwift</tag>
+        <tag>Lib</tag>
+        <tag>RxDataSources</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[RxSwift-Lib-目录]]></title>
     <url>%2F2018%2F04%2F07%2FRxSwift%2FLib%2FRxSwift-Lib-%E7%9B%AE%E5%BD%95%2F</url>
     <content type="text"><![CDATA[Moya-网络封装RxSwift/) Moya]]></content>
@@ -329,19 +343,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[RxSwift-Grammar-特征序列Traits-Completable]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGrammar%2FTraits-Completable%2F</url>
-    <content type="text"><![CDATA[Completable基本介绍 Completable 是 Observable 的另外一个版本不像 Observable 可以发出多个元素，它要么只能产生一个 completed 事件，要么产生一个 error 事件 不会发出任何元素 只会发出一个 completed 事件或者一个 error 事件 不会共享状态变化 应用场景 Completable 和 Observable 有点类似适用于那些只关心任务是否完成，而不需要在意任务返回值的情况比如：在程序退出时将一些数据缓存到本地文件，供下次启动时加载。像这种情况我们只关心缓存是否成功 CompletableEvent 为方便使用，RxSwift 为 Completable 订阅提供了一个枚举（CompletableEvent）： .completed：用于产生完成事件 .error：用于产生一个错误 public enum CompletableEvent &#123; case error(Swift.Error) case completed&#125; 使用样例 创建 Completable 和创建 Observable 非常相似下面代码我们使用 Completable 来模拟一个数据缓存本地的操作 //将数据缓存到本地func cacheLocally() -&gt; Completable &#123; return Completable.create &#123; completable in //将数据缓存到本地（这里掠过具体的业务代码，随机成功或失败） let success = (arc4random() % 2 == 0) guard success else &#123; completable(.error(CacheError.failedCaching)) return Disposables.create &#123;&#125; &#125; completable(.completed) return Disposables.create &#123;&#125; &#125;&#125; //与缓存相关的错误类型enum CacheError: Error &#123; case failedCaching&#125; 接着我们可以使用如下方式使用这个 Completable： cacheLocally() .subscribe &#123; completable in switch completable &#123; case .completed: print("保存成功!") case .error(let error): print("保存失败: \(error.localizedDescription)") &#125; &#125; .disposed(by: disposeBag) 也可以使用 subscribe(onCompleted:onError:) 这种方式： cacheLocally() .subscribe(onCompleted: &#123; print("保存成功!") &#125;, onError: &#123; error in print("保存失败: \(error.localizedDescription)") &#125;) .disposed(by: disposeBag)]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
-        <tag>RxSwift</tag>
-        <tag>Grammar</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[RxSwift-Grammar-shareReplay]]></title>
     <url>%2F2018%2F03%2F27%2FRxSwift%2FGrammar%2FshareReplay%2F</url>
     <content type="text"><![CDATA[⑤shareReplaylet disposeBag = DisposeBag()let observable = Observable.just("🤣") .map&#123; print($0) &#125;observable.subscribe&#123; print("Even:\($0)") &#125; .disposed(by: disposeBag)observable.subscribe&#123; print("Even:\($0)") &#125; .disposed(by: disposeBag)//打印结果：🤣Even:next(())Even:completed🤣Even:next(())Even:completed map()函数执行了两次，但是有些时候，我们并不想让map()函数里面的东西执行两次，比如map()函数里面执行的是网络请求，我只需要执行一次请求，然后把结果提供给大家使用就行了，多余的请求会增加负担。所以这时候就需要使用shareReplay(1)了。这里面的数字一般是1，只执行一次。(ps:我改成 2，3 也只打印一次) let disposeBag = DisposeBag() let observable = Observable.just("🤣").map&#123;print($0)&#125;.shareReplay(1) observable.subscribe&#123;print("Even:\($0)")&#125;.disposed(by: disposeBag)observable.subscribe&#123;print("Even:\($0)")&#125;.disposed(by: disposeBag)//打印结果：🤣Even:next(())Even:completedEven:next(())Even:completed]]></content>
@@ -355,9 +356,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[RxSwift-Grammar-自定义operator]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGrammar%2F%E8%87%AA%E5%AE%9A%E4%B9%89operator%2F</url>
-    <content type="text"><![CDATA[自定义operator 自定义操作符很简单，官方推荐尽量使用标准的操作符，但是你也可以定义自己的操作符，文档上说有两种方法，这里介绍一下常用的一种方法吧自定义一个map操作符 extension ObserverType &#123; func myMap&lt;R&gt;(transform: E -&gt; R) -&gt; Observable&lt;R&gt; &#123; return Observable.create&#123; observer in let subscription = self.subscribe &#123;e in switch e&#123; case .next(let value): let result = transform(value) observer.on(.next(result)) case .error(let error): observer.on(.error(error)) case .completed: observer.on(.completed) &#125; &#125; return subscription &#125; &#125;&#125; 参数是一个闭包，其中闭包参数是E类型返回值是R类型，map函数的返回值是一个Observable类型。]]></content>
+    <title><![CDATA[RxSwift-Grammar-特征序列Traits-Completable]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGrammar%2FTraits-Completable%2F</url>
+    <content type="text"><![CDATA[Completable基本介绍 Completable 是 Observable 的另外一个版本不像 Observable 可以发出多个元素，它要么只能产生一个 completed 事件，要么产生一个 error 事件 不会发出任何元素 只会发出一个 completed 事件或者一个 error 事件 不会共享状态变化 应用场景 Completable 和 Observable 有点类似适用于那些只关心任务是否完成，而不需要在意任务返回值的情况比如：在程序退出时将一些数据缓存到本地文件，供下次启动时加载。像这种情况我们只关心缓存是否成功 CompletableEvent 为方便使用，RxSwift 为 Completable 订阅提供了一个枚举（CompletableEvent）： .completed：用于产生完成事件 .error：用于产生一个错误 public enum CompletableEvent &#123; case error(Swift.Error) case completed&#125; 使用样例 创建 Completable 和创建 Observable 非常相似下面代码我们使用 Completable 来模拟一个数据缓存本地的操作 //将数据缓存到本地func cacheLocally() -&gt; Completable &#123; return Completable.create &#123; completable in //将数据缓存到本地（这里掠过具体的业务代码，随机成功或失败） let success = (arc4random() % 2 == 0) guard success else &#123; completable(.error(CacheError.failedCaching)) return Disposables.create &#123;&#125; &#125; completable(.completed) return Disposables.create &#123;&#125; &#125;&#125; //与缓存相关的错误类型enum CacheError: Error &#123; case failedCaching&#125; 接着我们可以使用如下方式使用这个 Completable： cacheLocally() .subscribe &#123; completable in switch completable &#123; case .completed: print("保存成功!") case .error(let error): print("保存失败: \(error.localizedDescription)") &#125; &#125; .disposed(by: disposeBag) 也可以使用 subscribe(onCompleted:onError:) 这种方式： cacheLocally() .subscribe(onCompleted: &#123; print("保存成功!") &#125;, onError: &#123; error in print("保存失败: \(error.localizedDescription)") &#125;) .disposed(by: disposeBag)]]></content>
       <categories>
         <category>RxSwift</category>
         <category>Grammar</category>
@@ -368,9 +369,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[RxSwift-Grammar-Dispose和DisposeBag]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGrammar%2FDispose%E5%92%8CDisposeBag%2F</url>
-    <content type="text"><![CDATA[Dispose 和 DisposeBag当监听一个sequence的时候，有消息事件来了，做某些事情。但是这个sequence不再发送消息事件了，那么我们的监听也就没有什么存在的价值了，所以我们需要释放我们这些监听资源，其实也就是内存资源释放 ##手动调用释放方式(一般不适用这种方式) 创建一个subscription监听，在两秒以后我们不需要了，手动调用dispose()方法，就能释放监听资源，不再打印信息。上面的subscription不论是在哪个线程中监听，就算在主线程中调用的dispose()方法一样会销毁资源 let subscription = Observable&lt;Int&gt;.interval(0.3, scheduler:SerialDispatchQueueScheduler.init(internalSerialQueueName: "scott")) .observeOn(MainScheduler.instance) .subscribe &#123; event in print (event) &#125;Thread.sleep(forTimeInterval: 2.0)subscription.dispose() //打印结果：next(0)next(1)next(2)next(3)next(4)next(5) 自动方式 创建一个disposeBag来盛放我们需要管理的资源，然后把新建的监听都放进去，会在适当的时候销毁这些资源如果需要立即释放资源只需要新建一个DisposeBag()，那么上一个DisposeBag就会被销毁 let disposeBag = DisposeBag()Observable&lt;Int&gt;.empty() .subscribe&#123; event in print (event) &#125; .addDisponseableTo(disposeBag) DisposeBag DisposeBag其实就相当于iOS中的ARC似得，会在适当的时候销毁观察者，相当于内存管理者吧]]></content>
+    <title><![CDATA[RxSwift-Grammar-UIBindingObserver]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGrammar%2FUIBindingObserver%2F</url>
+    <content type="text"><![CDATA[UIBindingObserver UIBindingObserver这个东西很有用的，创建我们自己的监听者，有时候RxCocoa(RxSwift中对UIKit的一个扩展库)给的扩展不够我们使用，比如一个UITextField有个isEnabled属性，我想把这个isEnabled变为一个observer，我们可以这样做 extension Reactive where Base: UITextField &#123; var inputEnabled: UIBindingObserver&lt;Base, Result&gt; &#123; return UIBindingObserver(UIElement: base) &#123; textFiled, result in textFiled.isEnabled = result.isValid &#125; &#125;&#125; UIBindingObserver是一个类，他的初始化方法中，有两个参数，第一个参数是一个元素本身，第一个参数是一个闭包，闭包参数是元素本身，还有他的一个属性 public init(UIElement: UIElementType, binding: @escaping (UIElementType, Value) -&gt; Swift.Void) 自定义了一个inputEnabled关联了UITextField的isEnabled属性]]></content>
       <categories>
         <category>RxSwift</category>
         <category>Grammar</category>
@@ -381,35 +382,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[RxSwift-Grammar-Observable可观察序列&Observer观察者]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGrammar%2FObservable%26Observer%2F</url>
-    <content type="text"><![CDATA[Observable可观察序列 和 Observer观察者实质 Observer (观察者)订阅一个可观察序列 Observable(事件源)每一个Observable的实例都是一个序列观察者 对 Observable 发射的数据或数据序列作出响应 举例 Button 的点击这个情景 把用户一次又一次的点击 Button 看做是序列(sequence) 通过调用 subscribe 来订阅这个点击事件 每次点击都会发射一个数据 作为订阅者的 subscribe 收到这个这个数据进行某些响应 Rx 的基本概念，有Observer观察者观察一个序列sequence，每当序列发射值的时候，观察者根据序列做一些事情Observable序列相比于Swift序列的关键优势点在于它能够异步地接收元素 Observable(ObservableType)等效于Sequence observableType.subscribe(_:)方法等效于Sequence.makeIterator() ObservableType.subscribe(_:)接收一个观察者ObserverType参数,它将被订阅自动接收由可观察到的序列事件和元素，而不是在返回的生成器上手动调用next() 如果一个Observable发出一个next事件(Event.next(Element)),它还能够继续发出更多的事件但是，如果一个Observable发出一个error事件(Event.error(ErrorType))或者一个completed事件(Event.completed)，那么这个Observable序列就不能给订阅者发送其他的事件 可观察序列 (Observables aka Sequences) 可观察序列 存在三种情况:①发射数据(Next)②遇到问题(Error)③发射完成(Completed) 有限序列 比如，有这样一个序列 --1--2--3--4--5--6--| ，它发送了按顺序发送了 1 2 3 4 5 6 这些值后，就终止了，就是发射完成。这是一个有限序列也有可能因为某些特殊的情况，遇到某些错误（比如数据解析错误），--1--2--3--4--X ，因为解析错误意外终止 无限序列 比如用户点击 Button ，这个就属于无限序列 ---tap-tap-------tap---&gt; 当然这里的无限不是真的无限，是不确定用户什么时候会点击，不确定是否会继续点击。所以这是一个无限序列，每当用户点击，序列就发射一个值 将以上的三种情况统概括为事件 enum Event&lt;Element&gt; &#123; case Next(Element) // 序列的下一个元素 case Error(ErrorType) // 序列因为某些错误终止 case Completed // 正常的序列技术&#125; 观察者 (Observer) 观察者需要一个订阅序列的功能 class Observable&lt;Element&gt; &#123;func subscribe(observer: Observer&lt;Element&gt;) -&gt; Disposable&#125;protocol ObserverType &#123; func on(event: Event&lt;Element&gt;)&#125; 通过序列的这个 subscribe 来订阅序列这里就应该提到序列的“冷”“热”问题 冷：只有当有观察者订阅这个序列时，序列才发射值 热：序列创建时就开始发射值 整体上就是这样的一个关系，序列发射值，观察者订阅序列，收到值，进行处理 Obserable 创建被观察者其实就是创建一个Obserable的sequence，就是创建一个流，然后就可以被订阅subscribe，这样被观察者发出时间消失，就能做相应的处理]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
-        <tag>RxSwift</tag>
-        <tag>Grammar</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RxSwift-Grammar-Driver]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGrammar%2FDriver%2F</url>
-    <content type="text"><![CDATA[Driver 官方的例子的场景大概就是，根据一个输入框的关键字，来请求数据，然后接结果绑定到另一个Label,和TableView中首先创建一个可监听序列results;将results绑定到resultCount.rx.text上;将results绑定到resultsTableView上. //throttle过滤操作let results = query.rx.text.throttle(0.3,scheduler: MainScheduler.instance)//在主线程中操作，如果0.3秒内值发生多次改变，取最后一次的值 .flatMapLatest // flatMapLatest只会接收最新的value事件 &#123; query in //筛选出空值, 拍平序列，并取得最后一个有效的值 fetchAutoCompleteItems(query) &#125; results.map &#123; "\($0.count)" &#125; //得出结果之后，取出结果的数量 .bindTo(resultCount.rx.text) //取出结果的数量，绑定到resultCount上面显示出来 .addDisposableTo(disposeBag) //释放资源 results.bindTo(resultsTableView.rx.items(cellIdentifier: "Cell")) &#123; (_, result, cell) in cell.textLabel?.text = "\(result)" //取出结果，TableView的Cell上面显示出来 &#125; .addDisposableTo(disposeBag) 上面程序会出现下面几个异常： 如果fetchAutoCompleteItems出错，那么它绑定的UI将不再收到任何事件消息； 如果fetchAutoCompleteItems发生在后台线程，那么它绑定的事件也将在后台线程执行，这样更新UI会造成crash； 有两次绑定，fetchAutoCompleteItems就会执行两次 当然针对以上问题，也有解决方案针对第三点，可以使用神器shareReplay(1)保证只执行一次，可以使用observeOn()保证后面所有操作在主线程完成 let results = query.rx.text .throttle(0.3, scheduler: MainScheduler.instance) .flatMapLatest &#123; query in fetchAutoCompleteItems(query).observeOn(MainScheduler.instance) // 将返回结果切换到到主线程上 .catchErrorJustReturn([]) // 如果有问题，错误结果将会得到处理 &#125; .shareReplay(1) // HTTP请求将会得到分享，即两次绑定UI使用同一网络请求 results .map &#123; "\($0.count)" &#125; .bindTo(resultCount.rx.text) .addDisposableTo(disposeBag) results .bindTo(resultTableView.rx.items(cellIdentifier: "Cell")) &#123; (_, result, cell) in cell.textLabel?.text = "\(result)" &#125; .addDisposableTo(disposeBag) 用Driver来解决 let results = query.rx .text .asDriver() .throttle(0.3, scheduler: MainScheduler.instance) .flatMapLatest &#123; query in fetchAutoCompleteItems(query).asDriver(onErrorJustReturn: []) //当遇见错误需要返回什么 &#125; //不需要添加shareReplay(1) results.map &#123; "\($0.count)" &#125; .drive(resultCount.rx.text) //和bingTo()功能一样 .addDisposableTo(disposeBag) results.drive(resultTableView.rx.items(cellIdentifier: "Cell")) &#123; (_, result, cell) in cell.textLabel?.text = "\(result)" &#125; .addDisposableTo(disposeBag) .asDriver 将‘ControlProperty’ 转换成了 ‘Driver’ query.rx_text.asDriver() ‘Driver’拥有’ControlProperty’的所有属性，同时又增加了很多属性 任何 ‘Observable’ 序列都可以被转换为’Driver’, 只要他满足一下三点： 1.不能出错 2.观察主线程 3.共享资源 如何确保这些属性都满足呢？只需要使用 ‘asDriver(onErrorJustReturn: [])’ ,相当于如下代码: let safeSequence = xs .observeOn(MainScheduler.instance) // 切换到主线程 .catchErrorJustReturn(onErrorJustReturn) // 不能出错 .shareReplayLatestWhileConnected // 共享资源 return Driver(raw: safeSequence) // 返回 最后一点要说明的是 ‘driver’ 可以代替’bindTo’,drive 只能在 Driver 中使用 drive方法只能在Driver序列中使用，Driver有以下特点： Driver序列不允许发出error， Driver序列的监听只会在主线程中。 所以Driver是专为UI绑定量身打造的东西。以下情况你可以使用Driver替换BindTo: 不能发出error; 在主线程中监听; 共享事件流;]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
-        <tag>RxSwift</tag>
-        <tag>Grammar</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RxSwift-Grammar-特征序列Traits-Single]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGrammar%2FTraits-Single%2F</url>
-    <content type="text"><![CDATA[Single基本介绍 Single 是 Observable 的另外一个版本但它不像 Observable 可以发出多个元素，它要么只能发出一个元素，要么产生一个 error 事件 发出一个元素，或一个 error 事件 不会共享状态变化 应用场景 Single 比较常见的例子就是执行 HTTP 请求，然后返回一个应答或错误不过我们也可以用 Single 来描述任何只有一个元素的序列 SingleEvent 为方便使用，RxSwift 还为 Single 订阅提供了一个枚举（SingleEvent）： .success：里面包含该 Single 的一个元素值 .error：用于包含错误 public enum SingleEvent&lt;Element&gt; &#123; case success(Element) case error(Swift.Error)&#125; 使用样例 创建 Single 和创建 Observable 非常相似下面代码我们定义一个用于生成网络请求 Single 的函数 //获取豆瓣某频道下的歌曲信息func getPlaylist(_ channel: String) -&gt; Single&lt;[String: Any]&gt; &#123; return Single&lt;[String: Any]&gt;.create &#123; single in let url = "https://douban.fm/j/mine/playlist?" + "type=n&amp;channel=\(channel)&amp;from=mainsite" let task = URLSession.shared.dataTask(with: URL(string: url)!) &#123; data, _, error in if let error = error &#123; single(.error(error)) return &#125; guard let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: .mutableLeaves), let result = json as? [String: Any] else &#123; single(.error(DataError.cantParseJSON)) return &#125; single(.success(result)) &#125; task.resume() return Disposables.create &#123; task.cancel() &#125; &#125;&#125; //与数据相关的错误类型enum DataError: Error &#123; case cantParseJSON&#125; 接着我们可以使用如下方式使用这个 Single： mport UIKitimport RxSwiftimport RxCocoa class ViewController: UIViewController &#123; let disposeBag = DisposeBag() override func viewDidLoad() &#123; //获取第0个频道的歌曲信息 getPlaylist("0") .subscribe &#123; event in switch event &#123; case .success(let json): print("JSON结果: ", json) case .error(let error): print("发生错误: ", error) &#125; &#125; .disposed(by: disposeBag) &#125;&#125; 也可以使用 subscribe(onSuccess:onError:) 这种方式： import UIKitimport RxSwiftimport RxCocoa class ViewController: UIViewController &#123; let disposeBag = DisposeBag() override func viewDidLoad() &#123; //获取第0个频道的歌曲信息 getPlaylist("0") .subscribe(onSuccess: &#123; json in print("JSON结果: ", json) &#125;, onError: &#123; error in print("发生错误: ", error) &#125;) .disposed(by: disposeBag) &#125;&#125; asSingle() 我们可以通过调用 Observable 序列的 .asSingle() 方法，将它转换为 Single let disposeBag = DisposeBag() Observable.of("1") .asSingle() .subscribe(&#123; print($0) &#125;) .disposed(by: disposeBag) //print success("1")]]></content>
+    <title><![CDATA[RxSwift-Grammar-Subscribe]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGrammar%2FSubscribe%2F</url>
+    <content type="text"><![CDATA[subscribe 和 subscribe(onNext:) Subscribe subscribe是订阅sequence发出的事件，比如next事件，error事件等 而subscribe(onNext:)是监听sequence发出的next事件中的element进行处理，他会忽略error和completed事件 相对应的还有subscribe(onError:) 和 subscribe(onCompleted:)]]></content>
       <categories>
         <category>RxSwift</category>
         <category>Grammar</category>
@@ -446,9 +421,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[RxSwift-Grammar-Subscribe]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGrammar%2FSubscribe%2F</url>
-    <content type="text"><![CDATA[subscribe 和 subscribe(onNext:) Subscribe subscribe是订阅sequence发出的事件，比如next事件，error事件等 而subscribe(onNext:)是监听sequence发出的next事件中的element进行处理，他会忽略error和completed事件 相对应的还有subscribe(onError:) 和 subscribe(onCompleted:)]]></content>
+    <title><![CDATA[RxSwift-Grammar-特征序列Traits-Single]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGrammar%2FTraits-Single%2F</url>
+    <content type="text"><![CDATA[Single基本介绍 Single 是 Observable 的另外一个版本但它不像 Observable 可以发出多个元素，它要么只能发出一个元素，要么产生一个 error 事件 发出一个元素，或一个 error 事件 不会共享状态变化 应用场景 Single 比较常见的例子就是执行 HTTP 请求，然后返回一个应答或错误不过我们也可以用 Single 来描述任何只有一个元素的序列 SingleEvent 为方便使用，RxSwift 还为 Single 订阅提供了一个枚举（SingleEvent）： .success：里面包含该 Single 的一个元素值 .error：用于包含错误 public enum SingleEvent&lt;Element&gt; &#123; case success(Element) case error(Swift.Error)&#125; 使用样例 创建 Single 和创建 Observable 非常相似下面代码我们定义一个用于生成网络请求 Single 的函数 //获取豆瓣某频道下的歌曲信息func getPlaylist(_ channel: String) -&gt; Single&lt;[String: Any]&gt; &#123; return Single&lt;[String: Any]&gt;.create &#123; single in let url = "https://douban.fm/j/mine/playlist?" + "type=n&amp;channel=\(channel)&amp;from=mainsite" let task = URLSession.shared.dataTask(with: URL(string: url)!) &#123; data, _, error in if let error = error &#123; single(.error(error)) return &#125; guard let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: .mutableLeaves), let result = json as? [String: Any] else &#123; single(.error(DataError.cantParseJSON)) return &#125; single(.success(result)) &#125; task.resume() return Disposables.create &#123; task.cancel() &#125; &#125;&#125; //与数据相关的错误类型enum DataError: Error &#123; case cantParseJSON&#125; 接着我们可以使用如下方式使用这个 Single： mport UIKitimport RxSwiftimport RxCocoa class ViewController: UIViewController &#123; let disposeBag = DisposeBag() override func viewDidLoad() &#123; //获取第0个频道的歌曲信息 getPlaylist("0") .subscribe &#123; event in switch event &#123; case .success(let json): print("JSON结果: ", json) case .error(let error): print("发生错误: ", error) &#125; &#125; .disposed(by: disposeBag) &#125;&#125; 也可以使用 subscribe(onSuccess:onError:) 这种方式： import UIKitimport RxSwiftimport RxCocoa class ViewController: UIViewController &#123; let disposeBag = DisposeBag() override func viewDidLoad() &#123; //获取第0个频道的歌曲信息 getPlaylist("0") .subscribe(onSuccess: &#123; json in print("JSON结果: ", json) &#125;, onError: &#123; error in print("发生错误: ", error) &#125;) .disposed(by: disposeBag) &#125;&#125; asSingle() 我们可以通过调用 Observable 序列的 .asSingle() 方法，将它转换为 Single let disposeBag = DisposeBag() Observable.of("1") .asSingle() .subscribe(&#123; print($0) &#125;) .disposed(by: disposeBag) //print success("1")]]></content>
       <categories>
         <category>RxSwift</category>
         <category>Grammar</category>
@@ -459,9 +434,48 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[RxSwift-Grammar-UIBindingObserver]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGrammar%2FUIBindingObserver%2F</url>
-    <content type="text"><![CDATA[UIBindingObserver UIBindingObserver这个东西很有用的，创建我们自己的监听者，有时候RxCocoa(RxSwift中对UIKit的一个扩展库)给的扩展不够我们使用，比如一个UITextField有个isEnabled属性，我想把这个isEnabled变为一个observer，我们可以这样做 extension Reactive where Base: UITextField &#123; var inputEnabled: UIBindingObserver&lt;Base, Result&gt; &#123; return UIBindingObserver(UIElement: base) &#123; textFiled, result in textFiled.isEnabled = result.isValid &#125; &#125;&#125; UIBindingObserver是一个类，他的初始化方法中，有两个参数，第一个参数是一个元素本身，第一个参数是一个闭包，闭包参数是元素本身，还有他的一个属性 public init(UIElement: UIElementType, binding: @escaping (UIElementType, Value) -&gt; Swift.Void) 自定义了一个inputEnabled关联了UITextField的isEnabled属性]]></content>
+    <title><![CDATA[RxSwift-Grammar-Driver]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGrammar%2FDriver%2F</url>
+    <content type="text"><![CDATA[Driver 官方的例子的场景大概就是，根据一个输入框的关键字，来请求数据，然后接结果绑定到另一个Label,和TableView中首先创建一个可监听序列results;将results绑定到resultCount.rx.text上;将results绑定到resultsTableView上. //throttle过滤操作let results = query.rx.text.throttle(0.3,scheduler: MainScheduler.instance)//在主线程中操作，如果0.3秒内值发生多次改变，取最后一次的值 .flatMapLatest // flatMapLatest只会接收最新的value事件 &#123; query in //筛选出空值, 拍平序列，并取得最后一个有效的值 fetchAutoCompleteItems(query) &#125; results.map &#123; "\($0.count)" &#125; //得出结果之后，取出结果的数量 .bindTo(resultCount.rx.text) //取出结果的数量，绑定到resultCount上面显示出来 .addDisposableTo(disposeBag) //释放资源 results.bindTo(resultsTableView.rx.items(cellIdentifier: "Cell")) &#123; (_, result, cell) in cell.textLabel?.text = "\(result)" //取出结果，TableView的Cell上面显示出来 &#125; .addDisposableTo(disposeBag) 上面程序会出现下面几个异常： 如果fetchAutoCompleteItems出错，那么它绑定的UI将不再收到任何事件消息； 如果fetchAutoCompleteItems发生在后台线程，那么它绑定的事件也将在后台线程执行，这样更新UI会造成crash； 有两次绑定，fetchAutoCompleteItems就会执行两次 当然针对以上问题，也有解决方案针对第三点，可以使用神器shareReplay(1)保证只执行一次，可以使用observeOn()保证后面所有操作在主线程完成 let results = query.rx.text .throttle(0.3, scheduler: MainScheduler.instance) .flatMapLatest &#123; query in fetchAutoCompleteItems(query).observeOn(MainScheduler.instance) // 将返回结果切换到到主线程上 .catchErrorJustReturn([]) // 如果有问题，错误结果将会得到处理 &#125; .shareReplay(1) // HTTP请求将会得到分享，即两次绑定UI使用同一网络请求 results .map &#123; "\($0.count)" &#125; .bindTo(resultCount.rx.text) .addDisposableTo(disposeBag) results .bindTo(resultTableView.rx.items(cellIdentifier: "Cell")) &#123; (_, result, cell) in cell.textLabel?.text = "\(result)" &#125; .addDisposableTo(disposeBag) 用Driver来解决 let results = query.rx .text .asDriver() .throttle(0.3, scheduler: MainScheduler.instance) .flatMapLatest &#123; query in fetchAutoCompleteItems(query).asDriver(onErrorJustReturn: []) //当遇见错误需要返回什么 &#125; //不需要添加shareReplay(1) results.map &#123; "\($0.count)" &#125; .drive(resultCount.rx.text) //和bingTo()功能一样 .addDisposableTo(disposeBag) results.drive(resultTableView.rx.items(cellIdentifier: "Cell")) &#123; (_, result, cell) in cell.textLabel?.text = "\(result)" &#125; .addDisposableTo(disposeBag) .asDriver 将‘ControlProperty’ 转换成了 ‘Driver’ query.rx_text.asDriver() ‘Driver’拥有’ControlProperty’的所有属性，同时又增加了很多属性 任何 ‘Observable’ 序列都可以被转换为’Driver’, 只要他满足一下三点： 1.不能出错 2.观察主线程 3.共享资源 如何确保这些属性都满足呢？只需要使用 ‘asDriver(onErrorJustReturn: [])’ ,相当于如下代码: let safeSequence = xs .observeOn(MainScheduler.instance) // 切换到主线程 .catchErrorJustReturn(onErrorJustReturn) // 不能出错 .shareReplayLatestWhileConnected // 共享资源 return Driver(raw: safeSequence) // 返回 最后一点要说明的是 ‘driver’ 可以代替’bindTo’,drive 只能在 Driver 中使用 drive方法只能在Driver序列中使用，Driver有以下特点： Driver序列不允许发出error， Driver序列的监听只会在主线程中。 所以Driver是专为UI绑定量身打造的东西。以下情况你可以使用Driver替换BindTo: 不能发出error; 在主线程中监听; 共享事件流;]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>RxSwift</tag>
+        <tag>Grammar</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RxSwift-Grammar-Observable可观察序列&Observer观察者]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGrammar%2FObservable%26Observer%2F</url>
+    <content type="text"><![CDATA[Observable可观察序列 和 Observer观察者实质 Observer (观察者)订阅一个可观察序列 Observable(事件源)每一个Observable的实例都是一个序列观察者 对 Observable 发射的数据或数据序列作出响应 举例 Button 的点击这个情景 把用户一次又一次的点击 Button 看做是序列(sequence) 通过调用 subscribe 来订阅这个点击事件 每次点击都会发射一个数据 作为订阅者的 subscribe 收到这个这个数据进行某些响应 Rx 的基本概念，有Observer观察者观察一个序列sequence，每当序列发射值的时候，观察者根据序列做一些事情Observable序列相比于Swift序列的关键优势点在于它能够异步地接收元素 Observable(ObservableType)等效于Sequence observableType.subscribe(_:)方法等效于Sequence.makeIterator() ObservableType.subscribe(_:)接收一个观察者ObserverType参数,它将被订阅自动接收由可观察到的序列事件和元素，而不是在返回的生成器上手动调用next() 如果一个Observable发出一个next事件(Event.next(Element)),它还能够继续发出更多的事件但是，如果一个Observable发出一个error事件(Event.error(ErrorType))或者一个completed事件(Event.completed)，那么这个Observable序列就不能给订阅者发送其他的事件 可观察序列 (Observables aka Sequences) 可观察序列 存在三种情况:①发射数据(Next)②遇到问题(Error)③发射完成(Completed) 有限序列 比如，有这样一个序列 --1--2--3--4--5--6--| ，它发送了按顺序发送了 1 2 3 4 5 6 这些值后，就终止了，就是发射完成。这是一个有限序列也有可能因为某些特殊的情况，遇到某些错误（比如数据解析错误），--1--2--3--4--X ，因为解析错误意外终止 无限序列 比如用户点击 Button ，这个就属于无限序列 ---tap-tap-------tap---&gt; 当然这里的无限不是真的无限，是不确定用户什么时候会点击，不确定是否会继续点击。所以这是一个无限序列，每当用户点击，序列就发射一个值 将以上的三种情况统概括为事件 enum Event&lt;Element&gt; &#123; case Next(Element) // 序列的下一个元素 case Error(ErrorType) // 序列因为某些错误终止 case Completed // 正常的序列技术&#125; 观察者 (Observer) 观察者需要一个订阅序列的功能 class Observable&lt;Element&gt; &#123;func subscribe(observer: Observer&lt;Element&gt;) -&gt; Disposable&#125;protocol ObserverType &#123; func on(event: Event&lt;Element&gt;)&#125; 通过序列的这个 subscribe 来订阅序列这里就应该提到序列的“冷”“热”问题 冷：只有当有观察者订阅这个序列时，序列才发射值 热：序列创建时就开始发射值 整体上就是这样的一个关系，序列发射值，观察者订阅序列，收到值，进行处理 Obserable 创建被观察者其实就是创建一个Obserable的sequence，就是创建一个流，然后就可以被订阅subscribe，这样被观察者发出时间消失，就能做相应的处理]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>RxSwift</tag>
+        <tag>Grammar</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RxSwift-Grammar-自定义operator]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGrammar%2F%E8%87%AA%E5%AE%9A%E4%B9%89operator%2F</url>
+    <content type="text"><![CDATA[自定义operator 自定义操作符很简单，官方推荐尽量使用标准的操作符，但是你也可以定义自己的操作符，文档上说有两种方法，这里介绍一下常用的一种方法吧自定义一个map操作符 extension ObserverType &#123; func myMap&lt;R&gt;(transform: E -&gt; R) -&gt; Observable&lt;R&gt; &#123; return Observable.create&#123; observer in let subscription = self.subscribe &#123;e in switch e&#123; case .next(let value): let result = transform(value) observer.on(.next(result)) case .error(let error): observer.on(.error(error)) case .completed: observer.on(.completed) &#125; &#125; return subscription &#125; &#125;&#125; 参数是一个闭包，其中闭包参数是E类型返回值是R类型，map函数的返回值是一个Observable类型。]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>RxSwift</tag>
+        <tag>Grammar</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RxSwift-Grammar-Dispose和DisposeBag]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGrammar%2FDispose%E5%92%8CDisposeBag%2F</url>
+    <content type="text"><![CDATA[Dispose 和 DisposeBag当监听一个sequence的时候，有消息事件来了，做某些事情。但是这个sequence不再发送消息事件了，那么我们的监听也就没有什么存在的价值了，所以我们需要释放我们这些监听资源，其实也就是内存资源释放 ##手动调用释放方式(一般不适用这种方式) 创建一个subscription监听，在两秒以后我们不需要了，手动调用dispose()方法，就能释放监听资源，不再打印信息。上面的subscription不论是在哪个线程中监听，就算在主线程中调用的dispose()方法一样会销毁资源 let subscription = Observable&lt;Int&gt;.interval(0.3, scheduler:SerialDispatchQueueScheduler.init(internalSerialQueueName: "scott")) .observeOn(MainScheduler.instance) .subscribe &#123; event in print (event) &#125;Thread.sleep(forTimeInterval: 2.0)subscription.dispose() //打印结果：next(0)next(1)next(2)next(3)next(4)next(5) 自动方式 创建一个disposeBag来盛放我们需要管理的资源，然后把新建的监听都放进去，会在适当的时候销毁这些资源如果需要立即释放资源只需要新建一个DisposeBag()，那么上一个DisposeBag就会被销毁 let disposeBag = DisposeBag()Observable&lt;Int&gt;.empty() .subscribe&#123; event in print (event) &#125; .addDisponseableTo(disposeBag) DisposeBag DisposeBag其实就相当于iOS中的ARC似得，会在适当的时候销毁观察者，相当于内存管理者吧]]></content>
       <categories>
         <category>RxSwift</category>
         <category>Grammar</category>
@@ -520,8 +534,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -552,8 +566,8 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
         <tag>Error</tag>
       </tags>
   </entry>
@@ -566,8 +580,8 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
         <tag>Error</tag>
       </tags>
   </entry>
@@ -668,8 +682,8 @@
         <category>NSSet</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>UIKit</tag>
+        <tag>Grammar</tag>
         <tag>OC</tag>
       </tags>
   </entry>
@@ -742,8 +756,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -941,8 +955,8 @@
         <category>WCDB</category>
       </categories>
       <tags>
-        <tag>OC</tag>
         <tag>Lib</tag>
+        <tag>OC</tag>
         <tag>WCDB</tag>
         <tag>数据库</tag>
       </tags>
@@ -1058,8 +1072,8 @@
         <category>ArcGIS</category>
       </categories>
       <tags>
-        <tag>OC</tag>
         <tag>Lib</tag>
+        <tag>OC</tag>
         <tag>ArcGIS</tag>
         <tag>大图加载</tag>
       </tags>
@@ -1096,8 +1110,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1109,8 +1123,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1122,8 +1136,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1135,8 +1149,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1148,8 +1162,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1161,21 +1175,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Swift-RxSwift-连接性操作]]></title>
-    <url>%2F2017%2F12%2F19%2FRxSwift%2FGrammar%2FOperators-%E8%BF%9E%E6%8E%A5%E6%80%A7%E6%93%8D%E4%BD%9C%2F</url>
-    <content type="text"><![CDATA[连接性操作 ①publish ②replay ③multicast Connectable Observable有订阅时不开始发射事件消息，而是仅当调用它们的connect（）方法时。这样就可以等待所有我们想要的订阅者都已经订阅了以后，再开始发出事件消息，这样能保证我们想要的所有订阅者都能接收到事件消息。其实也就是等大家都就位以后，开始发出消息 ①publish ①publish 将一个正常的sequence转换成一个connectable sequence let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .publish() _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; //相当于把事件消息推迟了两秒 delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(6) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125;//Subscription 1:, Event: 0Subscription 1:, Event: 1Subscription 2:, Event: 1Subscription 1:, Event: 2Subscription 2:, Event: 2Subscription 1:, Event: 3Subscription 3:, Event: 3Subscription 2:, Event: 3Subscription 1:, Event: 4Subscription 3:, Event: 4 ②replay ②replay 将一个正常的sequence转换成一个connectable sequence，然后和replaySubject相似，能接收到订阅之前的事件消息 let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .replay(5) //接收到订阅之前的5条事件消息 _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(8) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125; ③multicast ③multicast 将一个正常的sequence转换成一个connectable sequence，并且通过特性的subject发送出去，比如PublishSubject，或者replaySubject，behaviorSubject等。不同的Subject会有不同的结果 let subject = PublishSubject&lt;Int&gt;() _ = subject .subscribe(onNext: &#123; print("Subject: \($0)") &#125;) let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .multicast(subject) _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 2:, Event: \($0)") &#125;)&#125;]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
         <tag>RxSwift</tag>
-        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1187,8 +1188,21 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Swift-RxSwift-连接性操作]]></title>
+    <url>%2F2017%2F12%2F19%2FRxSwift%2FGrammar%2FOperators-%E8%BF%9E%E6%8E%A5%E6%80%A7%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[连接性操作 ①publish ②replay ③multicast Connectable Observable有订阅时不开始发射事件消息，而是仅当调用它们的connect（）方法时。这样就可以等待所有我们想要的订阅者都已经订阅了以后，再开始发出事件消息，这样能保证我们想要的所有订阅者都能接收到事件消息。其实也就是等大家都就位以后，开始发出消息 ①publish ①publish 将一个正常的sequence转换成一个connectable sequence let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .publish() _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; //相当于把事件消息推迟了两秒 delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(6) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125;//Subscription 1:, Event: 0Subscription 1:, Event: 1Subscription 2:, Event: 1Subscription 1:, Event: 2Subscription 2:, Event: 2Subscription 1:, Event: 3Subscription 3:, Event: 3Subscription 2:, Event: 3Subscription 1:, Event: 4Subscription 3:, Event: 4 ②replay ②replay 将一个正常的sequence转换成一个connectable sequence，然后和replaySubject相似，能接收到订阅之前的事件消息 let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .replay(5) //接收到订阅之前的5条事件消息 _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(8) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125; ③multicast ③multicast 将一个正常的sequence转换成一个connectable sequence，并且通过特性的subject发送出去，比如PublishSubject，或者replaySubject，behaviorSubject等。不同的Subject会有不同的结果 let subject = PublishSubject&lt;Int&gt;() _ = subject .subscribe(onNext: &#123; print("Subject: \($0)") &#125;) let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .multicast(subject) _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 2:, Event: \($0)") &#125;)&#125;]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1200,8 +1214,8 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1213,8 +1227,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1226,8 +1240,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
         <tag>线程</tag>
       </tags>
   </entry>
@@ -1240,8 +1254,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1266,8 +1280,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1279,8 +1293,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1292,8 +1306,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
         <tag>Grammar</tag>
       </tags>
   </entry>
@@ -1306,8 +1320,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1319,8 +1333,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
         <tag>Grammar</tag>
       </tags>
   </entry>
@@ -1333,8 +1347,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1346,8 +1360,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1359,8 +1373,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1373,6 +1387,20 @@
       </categories>
   </entry>
   <entry>
+    <title><![CDATA[RxSwift-UIKit-UILabel-响应式扩展-01]]></title>
+    <url>%2F2017%2F12%2F15%2FRxSwift%2FUIKit%2FUILabel-01%2F</url>
+    <content type="text"><![CDATA[RxSwift RxSwift 是一个用于与 Swift 语言交互的框架，但它只是基础，并不能用来进行用户交互、网络请求等。 而 RxCocoa 是让 Cocoa APIs 更容易使用响应式编程的一个框架。RxCocoa 能够让我们方便地进行响应式网络请求、响应式的用户交互、绑定数据模型到 UI 控件等等。而且大多数的 UIKit 控件都有响应式扩展，它们都是通过 rx 属性进行使用 UILabel disposeBag let disposeBag = DisposeBag() UI- 显示时间lab fileprivate lazy var timeLabel: UILabel = &#123; let timeLabel = UILabel() timeLabel.frame = CGRect(x:30,y:40,width:300,height:111) return timeLabel&#125;() 显示彩色时间lab fileprivate lazy var timeColorLabel: UILabel = &#123; let timeColorLabel = UILabel() timeColorLabel.frame = CGRect(x:30,y:40+150,width:300,height:111) return timeColorLabel&#125;() 功能主要实现 UI- 添加UI view.addSubview(timeLabel) 把时间弄到lab上显示创建一个计时器（每0.1秒发送一个索引数） let timer = Observable&lt;Int&gt;.interval(0.1, scheduler: MainScheduler.instance) ``` &gt;已过去的时间格式化成想要的字符串，并绑定到label上```swift //普通文本 timer.map&#123;(String(format: "过去多少时间:%0.2d:%0.2d.%0.1d", arguments:[($0 / 600) % 600, ($0 % 600) / 10, $0 % 10]))&#125; .bind(to: timeLabel.rx.text) .disposed(by: disposeBag) //MARK:UI-彩色lab view.addSubview(timeColorLabel) timer.map(formatTimeInterval) .bind(to: timeColorLabel.rx.attributedText) .disposed(by: disposeBag) 将数字转成对应的富文本 func formatTimeInterval(ms: NSInteger) -&gt; NSMutableAttributedString &#123; let string = String(format: "过去多少时间%0.2d:%0.2d.%0.1d", arguments: [(ms / 600) % 600, (ms % 600 ) / 10, ms % 10]) //富文本设置 let attibuteString = NSMutableAttributedString(string: string) //从文本0开始6个字符字体HelveticaNeue-Bold,16号 attibuteString.addAttributes([NSAttributedStringKey.font : UIFont(name: "HelveticaNeue-Bold", size: 16)!], range: NSMakeRange(0, 5)) //设置字体颜色 attibuteString.addAttributes([NSAttributedStringKey.foregroundColor : UIColor.white], range: NSMakeRange(0,5)) //设置文字背景颜色 attibuteString.addAttributes([NSAttributedStringKey.backgroundColor : UIColor.orange], range: NSMakeRange(0,5)) return attibuteString&#125; 效果图]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>UIKit</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>RxSwift</tag>
+        <tag>UIKit</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[RxSwift-基本介绍&安装配置-01]]></title>
     <url>%2F2017%2F12%2F15%2FRxSwift%2FGrammar%2F01-%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D%26%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E7%9A%84%E5%89%AF%E6%9C%AC%2F</url>
     <content type="text"><![CDATA[#Rx 介绍 Rx Rx 是 ReactiveX 的缩写，简单来说就是基于异步 Event（事件）序列的响应式编程 Rx 可以简化异步编程方法，并提供更优雅的数据绑定。让我们可以时刻响应新的数据同时顺序地处理它们 Rx 库 Rx 本身可以说是一种跨平台的标准，它有自己的社区论坛，不管是 web 还是移动开发，都能用 Rx 的思维和方法来完成你的工作 作为一种跨平台标准，目前已经有许多基于不同开发语言的 Rx 的库。除了我后面会着重介绍的 RxSwift 之外，还有 RxJava, RxJS, RxKotlin, Rx.NET…等等 这些 Rx 库虽然用的语言不同，但它们之间其实都是相通的，都有相同的 API。所以说如果以后你使用别的语言做其他的方面的开发，同样是可以使用相同的思维甚至相同的方法接口（除了语言不同）来编程 ##Rx 主页 如果想了解整个 Rx 大家庭的成员，可以访问它的主页 RxSwift 介绍RxSwift 的作用 经常需要检测某些值的变化（比如：textFiled 输入值的变化、数据请求完成或失败的变化），然后进行相应的处理 过去针对不同的情况，我们需要采用不同的事件传递方法去处理，比如：delegate、notifinotion、target-action、KVO 等等 而 RectiveX 机制（由 RxSwift 实现）的出现，让程序里的事件传递响应方法做到统一。将之前那些常用的事件传递方法（比如：delegate、notification、target-action 等等），全部替换成 Rx 的“信号链”方式 如果使用的是 MVVM 开发模式的话，通过 RxSwift 可以获得更加方便的数据绑定的方法，使得 MVVM 开发更加如虎添翼 RxSwift 的安装与配置 GitHub 上下载或 cocopods 导入 2 import RxSwiftimport RxCocoa RxSwift 与 RxCocoa RxSwift：它只是基于 Swift 语言的 Rx 标准实现接口库，所以 RxSwift 里不包含任何 Cocoa 或者 UI 方面的类 RxCocoa：是基于 RxSwift 针对于 iOS 开发的一个库，它通过 Extension 的方法给原生的比如 UI 控件添加了 Rx 的特性，使得我们更容易订阅和响应这些控件的事件 两种编程方式的比较样例需求 以最常见的 tableView 数据展示功能为例作为演示。后面分别使用传统写法，以及使用 RxSwift 响应式写法来实现 表格中显示的是歌曲信息（歌名，以及歌手） 点击选中任意一个单元格，在控制台中打印出对应的歌曲信息 实现 首先我们创建一个 Music 的结构体，用来保存歌曲名称、歌手名字。此外它还遵循 CustomStringConvertible 协议，方便我们输出调试 //歌曲结构体struct Music &#123; let name: String //歌名 let singer: String //演唱者 init(name: String, singer: String)&#123; self.name = name self.singer = singer &#125; &#125;extension Music: CustomStringConvertible &#123; var description: String &#123; return "name:\(name) singer:\(singer)" &#125;&#125; 传统式编程 ViewModel import Foundation //歌曲列表数据源struct MusicListViewModel &#123; let data = [ Music(name: "无条件", singer: "陈奕迅"), Music(name: "你曾是少年", singer: "S.H.E"), Music(name: "从前的我", singer: "陈洁仪"), Music(name: "在木星", singer: "朴树"), ]&#125; 视图控制器代码（ViewController.swift 设置 UITableView 的委托，并让视图控制器实现 UITableViewDataSource 和 UITableViewDelegate 协议，及相关的协议方法 import UIKitimport RxSwift class ViewController: UIViewController &#123; //tableView对象 @IBOutlet weak var tableView: UITableView! //歌曲列表数据源 let musicListViewModel = MusicListViewModel() override func viewDidLoad() &#123; super.viewDidLoad() //设置代理 tableView.dataSource = self tableView.delegate = self &#125;&#125; extension ViewController: UITableViewDataSource &#123; //返回单元格数量 func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -&gt; Int &#123; return musicListViewModel.data.count &#125; //返回对应的单元格 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -&gt; UITableViewCell &#123; let cell = tableView.dequeueReusableCell(withIdentifier: "musicCell")! let music = musicListViewModel.data[indexPath.row] cell.textLabel?.text = music.name cell.detailTextLabel?.text = music.singer return cell &#125;&#125; extension ViewController: UITableViewDelegate &#123; //单元格点击 func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) &#123; print("你选中的歌曲信息【\(musicListViewModel.data[indexPath.row])】") &#125;&#125; RxSwift 进行改造（响应式编程） ViewModel data 属性变成一个可观察序列对象（Observable Squence），而对象当中的内容和我们之前在数组当中所包含的内容是完全一样的 import RxSwift //歌曲列表数据源struct MusicListViewModel &#123; let data = Observable.just([ Music(name: "无条件", singer: "陈奕迅"), Music(name: "你曾是少年", singer: "S.H.E"), Music(name: "从前的我", singer: "陈洁仪"), Music(name: "在木星", singer: "朴树"), ])&#125; 视图控制器代码（ViewController.swift） DisposeBag：作用是 Rx 在视图控制器或者其持有者将要销毁的时候，自动释法掉绑定在它上面的资源。它是通过类似“订阅处置机制”方式实现（类似于 NotificationCenter 的 removeObserver）。 rx.items(cellIdentifier:）:这是 Rx 基于 cellForRowAt 数据源方法的一个封装。传统方式中我们还要有个 numberOfRowsInSection 方法，使用 Rx 后就不再需要了（Rx 已经帮我们完成了相关工作）。 rx.modelSelected： 这是 Rx 基于 UITableView 委托回调方法 didSelectRowAt 的一个封装。 import UIKitimport RxSwiftimport RxCocoa class ViewController: UIViewController &#123; //tableView对象 @IBOutlet weak var tableView: UITableView! //歌曲列表数据源 let musicListViewModel = MusicListViewModel() //负责对象销毁 let disposeBag = DisposeBag() override func viewDidLoad() &#123; super.viewDidLoad() //将数据源数据绑定到tableView上 musicListViewModel.data .bind(to: tableView.rx.items(cellIdentifier:"musicCell")) &#123; _, music, cell in cell.textLabel?.text = music.name cell.detailTextLabel?.text = music.singer &#125;.disposed(by: disposeBag) //tableView点击响应 tableView.rx.modelSelected(Music.self).subscribe(onNext: &#123; music in print("你选中的歌曲信息【\(music)】") &#125;).disposed(by: disposeBag) &#125;&#125;]]></content>
@@ -1383,20 +1411,6 @@
       <tags>
         <tag>RxSwift</tag>
         <tag>Grammar</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RxSwift-UIKit-UILabel-响应式扩展-01]]></title>
-    <url>%2F2017%2F12%2F15%2FRxSwift%2FUIKit%2FUILabel-01%2F</url>
-    <content type="text"><![CDATA[RxSwift RxSwift 是一个用于与 Swift 语言交互的框架，但它只是基础，并不能用来进行用户交互、网络请求等。 而 RxCocoa 是让 Cocoa APIs 更容易使用响应式编程的一个框架。RxCocoa 能够让我们方便地进行响应式网络请求、响应式的用户交互、绑定数据模型到 UI 控件等等。而且大多数的 UIKit 控件都有响应式扩展，它们都是通过 rx 属性进行使用 UILabel disposeBag let disposeBag = DisposeBag() UI- 显示时间lab fileprivate lazy var timeLabel: UILabel = &#123; let timeLabel = UILabel() timeLabel.frame = CGRect(x:30,y:40,width:300,height:111) return timeLabel&#125;() 显示彩色时间lab fileprivate lazy var timeColorLabel: UILabel = &#123; let timeColorLabel = UILabel() timeColorLabel.frame = CGRect(x:30,y:40+150,width:300,height:111) return timeColorLabel&#125;() 功能主要实现 UI- 添加UI view.addSubview(timeLabel) 把时间弄到lab上显示创建一个计时器（每0.1秒发送一个索引数） let timer = Observable&lt;Int&gt;.interval(0.1, scheduler: MainScheduler.instance) ``` &gt;已过去的时间格式化成想要的字符串，并绑定到label上```swift //普通文本 timer.map&#123;(String(format: "过去多少时间:%0.2d:%0.2d.%0.1d", arguments:[($0 / 600) % 600, ($0 % 600) / 10, $0 % 10]))&#125; .bind(to: timeLabel.rx.text) .disposed(by: disposeBag) //MARK:UI-彩色lab view.addSubview(timeColorLabel) timer.map(formatTimeInterval) .bind(to: timeColorLabel.rx.attributedText) .disposed(by: disposeBag) 将数字转成对应的富文本 func formatTimeInterval(ms: NSInteger) -&gt; NSMutableAttributedString &#123; let string = String(format: "过去多少时间%0.2d:%0.2d.%0.1d", arguments: [(ms / 600) % 600, (ms % 600 ) / 10, ms % 10]) //富文本设置 let attibuteString = NSMutableAttributedString(string: string) //从文本0开始6个字符字体HelveticaNeue-Bold,16号 attibuteString.addAttributes([NSAttributedStringKey.font : UIFont(name: "HelveticaNeue-Bold", size: 16)!], range: NSMakeRange(0, 5)) //设置字体颜色 attibuteString.addAttributes([NSAttributedStringKey.foregroundColor : UIColor.white], range: NSMakeRange(0,5)) //设置文字背景颜色 attibuteString.addAttributes([NSAttributedStringKey.backgroundColor : UIColor.orange], range: NSMakeRange(0,5)) return attibuteString&#125; 效果图]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>UIKit</category>
-      </categories>
-      <tags>
-        <tag>RxSwift</tag>
-        <tag>Swift</tag>
-        <tag>UIKit</tag>
       </tags>
   </entry>
   <entry>
@@ -1548,9 +1562,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Swift-UIKit-UIWebView-简单使用]]></title>
-    <url>%2F2017%2F12%2F14%2FSwift%2FUIKit%2FSwift-UIKit-UIWebView-%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%2F</url>
-    <content type="text"><![CDATA[UIWebView UIWebView 继承与 UIView, 并且遵守了 UIScrollViewDelegate 协议, 所以它可以使用里面的方法和属性 遵守代理协议 class ViewController: UIViewController, UIWebViewDelegate &#123;&#125; 自定义UIWebVIewfunc myWebView() &#123; // 1.获取 UIWebView 的 UIScrollView 属性 let webScroll = webView.scrollView println("webScroll = \(webScroll)") // 2.获取 UIWebView 的 request 属性 let webRequest = webView.request println("webRequest = \(webRequest)") // 3.获取 UIWebView 是否在接收数据的时候可以退后一步 let webCanBack = webView.canGoBack println("webCanBack = \(webCanBack)") // 4.获取 UIWebView 是否在接收数据的时候可以前进一步 let webCanGo = webView.canGoForward println("webCanGo = \(webCanGo)") // 5.获取 UIWebVIew 是否接受完数据 let webLoading = webView.loading println("webLoading = \(webLoading)") // 6.设置 UIWebView 接收的数据是否可以通过手势来调整页面内容大小 webView.scalesPageToFit = true // 7.设置 UIWebView 接收到得数据是什么类型的 webView.dataDetectorTypes = UIDataDetectorTypes.All // 8.设置 UIWebView 内是否可以回放媒体 webView.allowsInlineMediaPlayback = true // 9.设置 UIWebView 中的 HTML5 视频是否自动播放 webView.mediaPlaybackRequiresUserAction = true // 10.设置 UIWebView 是否可以使用 Air 播放 webView.mediaPlaybackAllowsAirPlay = true // 11.设置 UIWebView 是否使用同步加载(默认是False) webView.suppressesIncrementalRendering = false // 12.设置 UIWebView 在点击视图或者元素时是否显示键盘(默认是True) webView.keyboardDisplayRequiresUserAction = true // 13.设置 UIWebView 的分页模式 webView.paginationMode = UIWebPaginationMode.RightToLeft // 14.设置 UIWebView 的分页打破模式 webView.paginationBreakingMode = UIWebPaginationBreakingMode.Column // 15.设置 UIWebView 的分页长度 webView.pageLength = 400 // 16.设置 UIWebView 每个分页之间的宽度 webView.gapBetweenPages = 100 // 17.获取 UIWebView 的分页数量 let webViewPageCount = webView.pageCount println(webViewPageCount) // 18.设置 UIWebView 的代理对象 webView.delegate = self // 19.发送网络请求 var url:NSURL = NSURL(string:"http://www.baidu.com")! var request:NSURLRequest = NSURLRequest(URL:url) webView.loadRequest(request) &#125; 实现代理方法// 1.该方法是用来设置是否在 UIWebView 加载之前发送一个请求 func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -&gt; Bool &#123; return true &#125; // 2.该方法是在 UIWebView 在开发加载时调用 func webViewDidStartLoad(webView: UIWebView) &#123; println("开始加载") &#125; // 3.该方法是在 UIWebView 加载完之后才调用 func webViewDidFinishLoad(webView: UIWebView) &#123; println("加载完成") &#125; // 4.该方法是在 UIWebView 请求失败的时候调用 func webView(webView: UIWebView, didFailLoadWithError error: NSError) &#123; println("加载失败") &#125; 在 ViewDidLoad 方法中实现override func viewDidLoad() &#123; super.viewDidLoad() self.myWebView() &#125;]]></content>
+    <title><![CDATA[Swift-UIKit-UIWebView-简介]]></title>
+    <url>%2F2017%2F12%2F14%2FSwift%2FUIKit%2FSwift-UIKit-UIWebView-%E7%AE%80%E4%BB%8B%2F</url>
+    <content type="text"><![CDATA[UIWebView的常用属性 1.设置 UIWebView 的代理对象 var delegate: UIWebViewDelegate? 2.获取 UIWebView 的 UIScrollView 属性 var scrollView: UIScrollView &#123; get &#125; 3.获取 UIWebView 的网络请求 var request: NSURLRequest? &#123; get &#125; 4.获取 UIWebView 是否在接收数据的时候可以退后一步 var canGoBack: Bool &#123; get &#125; 5.获取 UIWebView 是否在接收数据的时候可以前进一步 var canGoForward: Bool &#123; get &#125;``` &gt; 6.获取 UIWebView 是否接受完数据```swift var loading: Bool &#123; get &#125; 7.设置 UIWebView 接收的数据是否可以通过手势来调整页面内容大小 var scalesPageToFit: Bool 8.设置 UIWebView 接收的数据是什么类型 var dataDetectorTypes: UIDataDetectorTypes 9.设置 UIWebView 内是否可以回放媒体 var allowsInlineMediaPlayback: Bool 10.设置 UIWebView 中的 HTML5 视频是否自动播放(默认是True) var mediaPlaybackRequiresUserAction: Bool 11.设置 UIWebView 是否可以使用 Air 播放(默认是True) var mediaPlaybackAllowsAirPlay: Bool 12.设置 UIWebView 是否使用同步加载(默认是False) var suppressesIncrementalRendering: Bool 13.设置 UIWebView 在点击视图或者元素时是否显示键盘(默认是True) var keyboardDisplayRequiresUserAction: Bool 14.设置 UIWebView 的分页模式 var paginationMode: UIWebPaginationMode 15.设置 UIWebView 的分页打破模式 var paginationBreakingMode: UIWebPaginationBreakingMode 16.设置 UIWebView 的分页长度 var pageLength: CGFloat 17.设置 UIWebView 之间的页面宽度 var gapBetweenPages: CGFloat 18.获取 UIWebView 的页面数量 var pageCount: Int &#123; get &#125; 常用类型 1.获取 UIWebView 的数据类型 struct UIDataDetectorTypes : RawOptionSetType &#123; init(_ rawValue: UInt) init(rawValue: UInt) static var PhoneNumber: UIDataDetectorTypes &#123; get &#125; static var Link: UIDataDetectorTypes &#123; get &#125; static var Address: UIDataDetectorTypes &#123; get &#125; static var CalendarEvent: UIDataDetectorTypes &#123; get &#125; static var None: UIDataDetectorTypes &#123; get &#125; static var All: UIDataDetectorTypes &#123; get &#125;&#125; 2.设置 UIWebView 的 Navigation 类型 enum UIWebViewNavigationType : Int &#123; case LinkClicked case FormSubmitted case BackForward case Reload case FormResubmitted case Other&#125; 3.设置 UIWebView 的分页样式 enum UIWebPaginationMode : Int &#123; case Unpaginated case LeftToRight case TopToBottom case BottomToTop case RightToLeft&#125; 4.设置 UIWebView 打破分页样式的样式 enum UIWebPaginationBreakingMode : Int &#123; case Page case Column&#125; UIWebView的代理方法 1.该方法是用来设置是否在 UIWebView 加载之前发送一个请求 optional func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -&gt; Bool 2.该方法是在 UIWebView 在开发加载时调用 optional func webViewDidStartLoad(webView: UIWebView) 3.该方法是在 UIWebView 加载完之后才调用 optional func webViewDidFinishLoad(webView: UIWebView) 4.该方法是在 UIWebView 请求失败的时候调用 optional func webView(webView: UIWebView, didFailLoadWithError error: NSError)]]></content>
       <categories>
         <category>Swift</category>
         <category>UIKit</category>
@@ -1563,9 +1577,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Swift-UIKit-UIWebView-简介]]></title>
-    <url>%2F2017%2F12%2F14%2FSwift%2FUIKit%2FSwift-UIKit-UIWebView-%E7%AE%80%E4%BB%8B%2F</url>
-    <content type="text"><![CDATA[UIWebView的常用属性 1.设置 UIWebView 的代理对象 var delegate: UIWebViewDelegate? 2.获取 UIWebView 的 UIScrollView 属性 var scrollView: UIScrollView &#123; get &#125; 3.获取 UIWebView 的网络请求 var request: NSURLRequest? &#123; get &#125; 4.获取 UIWebView 是否在接收数据的时候可以退后一步 var canGoBack: Bool &#123; get &#125; 5.获取 UIWebView 是否在接收数据的时候可以前进一步 var canGoForward: Bool &#123; get &#125;``` &gt; 6.获取 UIWebView 是否接受完数据```swift var loading: Bool &#123; get &#125; 7.设置 UIWebView 接收的数据是否可以通过手势来调整页面内容大小 var scalesPageToFit: Bool 8.设置 UIWebView 接收的数据是什么类型 var dataDetectorTypes: UIDataDetectorTypes 9.设置 UIWebView 内是否可以回放媒体 var allowsInlineMediaPlayback: Bool 10.设置 UIWebView 中的 HTML5 视频是否自动播放(默认是True) var mediaPlaybackRequiresUserAction: Bool 11.设置 UIWebView 是否可以使用 Air 播放(默认是True) var mediaPlaybackAllowsAirPlay: Bool 12.设置 UIWebView 是否使用同步加载(默认是False) var suppressesIncrementalRendering: Bool 13.设置 UIWebView 在点击视图或者元素时是否显示键盘(默认是True) var keyboardDisplayRequiresUserAction: Bool 14.设置 UIWebView 的分页模式 var paginationMode: UIWebPaginationMode 15.设置 UIWebView 的分页打破模式 var paginationBreakingMode: UIWebPaginationBreakingMode 16.设置 UIWebView 的分页长度 var pageLength: CGFloat 17.设置 UIWebView 之间的页面宽度 var gapBetweenPages: CGFloat 18.获取 UIWebView 的页面数量 var pageCount: Int &#123; get &#125; 常用类型 1.获取 UIWebView 的数据类型 struct UIDataDetectorTypes : RawOptionSetType &#123; init(_ rawValue: UInt) init(rawValue: UInt) static var PhoneNumber: UIDataDetectorTypes &#123; get &#125; static var Link: UIDataDetectorTypes &#123; get &#125; static var Address: UIDataDetectorTypes &#123; get &#125; static var CalendarEvent: UIDataDetectorTypes &#123; get &#125; static var None: UIDataDetectorTypes &#123; get &#125; static var All: UIDataDetectorTypes &#123; get &#125;&#125; 2.设置 UIWebView 的 Navigation 类型 enum UIWebViewNavigationType : Int &#123; case LinkClicked case FormSubmitted case BackForward case Reload case FormResubmitted case Other&#125; 3.设置 UIWebView 的分页样式 enum UIWebPaginationMode : Int &#123; case Unpaginated case LeftToRight case TopToBottom case BottomToTop case RightToLeft&#125; 4.设置 UIWebView 打破分页样式的样式 enum UIWebPaginationBreakingMode : Int &#123; case Page case Column&#125; UIWebView的代理方法 1.该方法是用来设置是否在 UIWebView 加载之前发送一个请求 optional func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -&gt; Bool 2.该方法是在 UIWebView 在开发加载时调用 optional func webViewDidStartLoad(webView: UIWebView) 3.该方法是在 UIWebView 加载完之后才调用 optional func webViewDidFinishLoad(webView: UIWebView) 4.该方法是在 UIWebView 请求失败的时候调用 optional func webView(webView: UIWebView, didFailLoadWithError error: NSError)]]></content>
+    <title><![CDATA[Swift-UIKit-UIWebView-简单使用]]></title>
+    <url>%2F2017%2F12%2F14%2FSwift%2FUIKit%2FSwift-UIKit-UIWebView-%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[UIWebView UIWebView 继承与 UIView, 并且遵守了 UIScrollViewDelegate 协议, 所以它可以使用里面的方法和属性 遵守代理协议 class ViewController: UIViewController, UIWebViewDelegate &#123;&#125; 自定义UIWebVIewfunc myWebView() &#123; // 1.获取 UIWebView 的 UIScrollView 属性 let webScroll = webView.scrollView println("webScroll = \(webScroll)") // 2.获取 UIWebView 的 request 属性 let webRequest = webView.request println("webRequest = \(webRequest)") // 3.获取 UIWebView 是否在接收数据的时候可以退后一步 let webCanBack = webView.canGoBack println("webCanBack = \(webCanBack)") // 4.获取 UIWebView 是否在接收数据的时候可以前进一步 let webCanGo = webView.canGoForward println("webCanGo = \(webCanGo)") // 5.获取 UIWebVIew 是否接受完数据 let webLoading = webView.loading println("webLoading = \(webLoading)") // 6.设置 UIWebView 接收的数据是否可以通过手势来调整页面内容大小 webView.scalesPageToFit = true // 7.设置 UIWebView 接收到得数据是什么类型的 webView.dataDetectorTypes = UIDataDetectorTypes.All // 8.设置 UIWebView 内是否可以回放媒体 webView.allowsInlineMediaPlayback = true // 9.设置 UIWebView 中的 HTML5 视频是否自动播放 webView.mediaPlaybackRequiresUserAction = true // 10.设置 UIWebView 是否可以使用 Air 播放 webView.mediaPlaybackAllowsAirPlay = true // 11.设置 UIWebView 是否使用同步加载(默认是False) webView.suppressesIncrementalRendering = false // 12.设置 UIWebView 在点击视图或者元素时是否显示键盘(默认是True) webView.keyboardDisplayRequiresUserAction = true // 13.设置 UIWebView 的分页模式 webView.paginationMode = UIWebPaginationMode.RightToLeft // 14.设置 UIWebView 的分页打破模式 webView.paginationBreakingMode = UIWebPaginationBreakingMode.Column // 15.设置 UIWebView 的分页长度 webView.pageLength = 400 // 16.设置 UIWebView 每个分页之间的宽度 webView.gapBetweenPages = 100 // 17.获取 UIWebView 的分页数量 let webViewPageCount = webView.pageCount println(webViewPageCount) // 18.设置 UIWebView 的代理对象 webView.delegate = self // 19.发送网络请求 var url:NSURL = NSURL(string:"http://www.baidu.com")! var request:NSURLRequest = NSURLRequest(URL:url) webView.loadRequest(request) &#125; 实现代理方法// 1.该方法是用来设置是否在 UIWebView 加载之前发送一个请求 func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -&gt; Bool &#123; return true &#125; // 2.该方法是在 UIWebView 在开发加载时调用 func webViewDidStartLoad(webView: UIWebView) &#123; println("开始加载") &#125; // 3.该方法是在 UIWebView 加载完之后才调用 func webViewDidFinishLoad(webView: UIWebView) &#123; println("加载完成") &#125; // 4.该方法是在 UIWebView 请求失败的时候调用 func webView(webView: UIWebView, didFailLoadWithError error: NSError) &#123; println("加载失败") &#125; 在 ViewDidLoad 方法中实现override func viewDidLoad() &#123; super.viewDidLoad() self.myWebView() &#125;]]></content>
       <categories>
         <category>Swift</category>
         <category>UIKit</category>
@@ -1946,16 +1960,6 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[Swift-Lib-SnapKit-自动布局]]></title>
-    <url>%2F2017%2F12%2F13%2FSwift%2FLib%2FSnapKit-%E8%87%AA%E5%8A%A8%E5%B8%83%E5%B1%80%2F</url>
-    <content type="text"><![CDATA[https://www.jianshu.com/p/2bad53a2a180]]></content>
-      <categories>
-        <category>Swift</category>
-        <category>Lib</category>
-        <category>SnapKit</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[Swift-Lib-Kingfisher-图片加载库]]></title>
     <url>%2F2017%2F12%2F13%2FSwift%2FLib%2FKingfisher-%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%BA%93%2F</url>
     <content type="text"><![CDATA[http://blog.csdn.net/djh996064549/article/details/71085679]]></content>
@@ -1963,6 +1967,16 @@
         <category>Swift</category>
         <category>Lib</category>
         <category>Kingfisher</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Swift-Lib-SnapKit-自动布局]]></title>
+    <url>%2F2017%2F12%2F13%2FSwift%2FLib%2FSnapKit-%E8%87%AA%E5%8A%A8%E5%B8%83%E5%B1%80%2F</url>
+    <content type="text"><![CDATA[https://www.jianshu.com/p/2bad53a2a180]]></content>
+      <categories>
+        <category>Swift</category>
+        <category>Lib</category>
+        <category>SnapKit</category>
       </categories>
   </entry>
   <entry>
@@ -2627,6 +2641,14 @@
   </entry>
   <entry>
     <title><![CDATA[Blog-配置]]></title>
+    <url>%2F2017%2F11%2F23%2FBlog%2FBlog-%E9%85%8D%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[博客配置01博客配置02 RxSwift]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Blog-配置]]></title>
     <url>%2F2017%2F11%2F23%2FBlog%2FABCD%2F</url>
     <content type="text"><![CDATA[#KVO实现原理 1.KVO是基于runtime机制实现的2.某个类的属性对象第一次被观察时，系统就会在运行期动态地创建该类的一个派生类，在这个派生类中重写基类中任何被观察属性的setter 方法。派生类在被重写的setter方法内实现真正的通知机制4如果原类为Person，那么生成的派生类名为NSKVONotifying_Person5.键值观察通知依赖于NSObject 的两个方法: willChangeValueForKey: 和 didChangevlueForKey:；在一个被观察属性发生改变之前， willChangeValueForKey:一定会被调用，这就 会记录旧的值。而当改变发生后，didChangeValueForKey:会被调用，继而 observeValueForKey:ofObject:change:context: 也会被调用 为什么代理要用weak？代理的delegate和dataSource有什么区别？block和代理的区别代理是使用weak来修饰的 1.使用weak是为了避免循环引用2.当使用weak修饰的属性，当对象释放的时候，系统会对属性赋值nil,object-c有个特性就是对nil对象发送消息也就是调用方法，不会cash。 delegate和 dataSource,都是可以使用require和optional来修饰的代理和Block的区别 相同点：代理和Block大多是我们都可以用来做倒序传值的。我们都得注意避免循环引用。不然我们去使用代理还是Block的时候，都需要判断它们是否实现不同点：代理使用weak修饰，代理必须先声明方法。当我们调用代理的时候要判断是否已经实现。block：使用的是copy来修饰，block保存的是一段代码，其实也就是一个函数。并且可以自动捕捉自动变量，如果想修改此自动变量，还必须使用__block修饰。 属性的实质是什么？包括哪几个部分？属性默认的关键字都有哪些？@dynamic关键字和@synthesize关键字是用来做什么的？ 属性是描述类的特征，也就是具备什么特性 三个部分，带下划线的成员变量，get、setter方法 默认关键字： readwrite，assign, atomic; 基本类型NSInteger, BOOL, int, 等 针对引用类型默认:strong, readwrite, atomic （例如：NSString, NSArray, NSDictory等） dynamic修饰的属性，其getter和setter方法编译器是不会自动帮你生成。必须自己是实现的 synthesize 修饰的属性，其getter和setter方法编译器是会自动帮你生成，不必自己实现。且指定与属性相对应的成员变量 默认关键字基本数据： atomic,readwrite,assign OC 对象: atomic,readwrite,strong NSString为什么要用copy关键字strong只是让创建的对象引用计数器+1，并返回当前对象的内容地向的内存地址是相同的,是一份内容因为A指向的内存地址和B指向的内存地址是不相同的，是两份内容 令自己所写的对象具有拷贝功能如果想让自己的类具备copy方法，并返回不可变类型，必须遵循nscopying协议，并且实现 (id)copyWithZone:(NSZone )zone如果让自己的类具备mutableCopy方法，并且放回可变类型，必须遵守NSMutableCopying，并实现- (id)mutableCopyWithZone:(nullable NSZone )zone注意：再此说的copy对应不可边类型和mutableCopy对应不可变类型方法，都是遵从系统规则而已。如果你想实现自己的规则，也是可以的。 nonatomic和atomic nonatomic:表示非原子，不安全，但是效率高。atomic：表示原子行，安全，但是效率低atomic：不能绝对保证线程的安全，当多线程同时访问的时候，会造成线程不安全。可以使用线程锁来保证线程的安全 线程间通信当使用dispath-async函数开辟线程执行任务的完成时，我们需要使用dispatch_async(dispatch_get_main_queue(), ^{ });函数会到主线程内刷新UI。并完成通信 如何使用队列来避免资源抢夺当我们使用多线程来访问同一个数据的时候，就有可能造成数据的不准确性。这个时候我么可以使用线程锁的来来绑定。也是可以使用串行队列来完成。如：fmdb就是使用FMDatabaseQueue，来解决多线程抢夺资源 #数据持久化的几个方案plist,存储字典，数组比较好用preference：偏好设置，实质也是plistNSKeyedArchiver：归档，可以存储对象sqlite：数据库，经常使用第三方来操作，也就是fmdbcoreData:也是数据库储存，苹果官方的 NSCache优于NSDictionary的几点 1.nscache 是可以自动释放内存的。2.nscache是线程安全的，我们可以在不同的线程中添加，删除和查询缓存中的对象。3.一个缓存对象不会拷贝key对象。 Block block：本质就是oc对象代码区，堆区、栈区（ARC情况下会自动拷贝到堆区，因此ARC下只能有两个地方：代码区、堆区）代码区：不访问栈区的变量（如局部变量），且不访问堆区的变量（alloc创建的对象），此时block存放在代码区堆区：访问了处于栈区的变量，或者堆区的变量，此时block存放在堆区。–需要注意实际是放在栈区，在ARC情况下会自动拷贝到堆区，如果不是ARC则存放在栈区，所在函数执行完毕就回释放，想再外面调用需要用copy指向它，这样就拷贝到了堆区，strong属性不会拷贝、会造成野指针错区 为什么在默认情况下无法修改被block捕获的变量？ __block都做了什么？默认情况下，block里面的变量，拷贝进去的是变量的值，而不是指向变量的内存的指针。当使用__block修饰后的变量，拷贝到block里面的就是指向变量的指针，所以我们就可以修改变量的值 Runtimeobjc在向一个对象发送消息,发生了什么 根据对象的isa指针找到类对象id，在查询类对象里面的methodLists方法函数列表，如果没有找到到，在沿着superClass,寻找父类，再在父类methodLists方法列表里面查询，最终找到SEL,根据id和SEL确认IMP（指针函数）,在发送消息 .什么时候会报unrecognized selector错误？iOS有哪些机制来避免走到这一步？能否向编译后得到的类中增加实例变量？能否向运行时创建的类中添加实例变量？为什么1.不能向编译后得到的类增加实例变量2.能向运行时创建的类中添加实例变量 runtime如何实现weak变量的自动置nilruntime 对注册的类， 会进行布局，对于 weak 对象会放入一个 hash 表中。用 weak 指向的对象内存地址作为 key，当此对象的引用计数为0的时候会 dealloc，假如 weak 指向的对象内存地址是a，那么就会以a为键， 在这个 weak 表中搜索，找到所有以a为键的 weak 对象，从而设置为 nil]]></content>
       <categories>
@@ -2641,14 +2663,6 @@
         <category>iOS</category>
         <category>Tool</category>
         <category>FastLane</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[Blog-配置]]></title>
-    <url>%2F2017%2F11%2F23%2FBlog%2FBlog-%E9%85%8D%E7%BD%AE%2F</url>
-    <content type="text"><![CDATA[博客配置01博客配置02 RxSwift]]></content>
-      <categories>
-        <category>Blog</category>
       </categories>
   </entry>
   <entry>
@@ -2735,8 +2749,8 @@
       </categories>
       <tags>
         <tag>UIKit</tag>
-        <tag>OC</tag>
         <tag>UIScrollView</tag>
+        <tag>OC</tag>
       </tags>
   </entry>
   <entry>
@@ -2840,8 +2854,8 @@
         <category>JSBadgeView</category>
       </categories>
       <tags>
-        <tag>OC</tag>
         <tag>Lib</tag>
+        <tag>OC</tag>
         <tag>UI</tag>
       </tags>
   </entry>
