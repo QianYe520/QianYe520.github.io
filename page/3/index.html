@@ -1617,7 +1617,7 @@ Completable 是 Observable 的另外一个版本不像 Observable 可以发出�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/observeOn()和subscribeOn()/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/map和flatMap/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -1636,7 +1636,7 @@ Completable 是 Observable 的另外一个版本不像 Observable 可以发出�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/observeOn()和subscribeOn()/" itemprop="url">RxSwift-Grammar-observeOn()和subscribeOn()</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/map和flatMap/" itemprop="url">RxSwift-Grammar-map和flatMap</a></h1>
         
 
         <div class="post-meta">
@@ -1721,30 +1721,14 @@ Completable 是 Observable 的另外一个版本不像 Observable 可以发出�
       
         
           
-          observeOn()和subscribeOn()
+          map和flatMap
+map函数，接收一个R类型的序列，返回一个R类型的序列，还是原来的序列。
 
-
-
-
-
-
-
-
-subscribeOn()
-设置起点在哪个线程
-
-
-observeOn()
-置了后续工作在哪个线程
-
-
-
-
-1)所有动作都发生在当前的默认线程2)observeOn()转换线程到主线程，下面所有的操作都在主线程3)subscribe
+public func map&lt;R&gt;(_ transform: @escaping (Self.E) throws -&gt; R) -&gt; RxSwift.Observable&lt
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Grammar/observeOn()和subscribeOn()/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Grammar/map和flatMap/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1797,7 +1781,7 @@ observeOn()
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/Traits-Single/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/UIBindingObserver/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -1816,7 +1800,7 @@ observeOn()
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/Traits-Single/" itemprop="url">RxSwift-Grammar-特征序列Traits-Single</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/UIBindingObserver/" itemprop="url">RxSwift-Grammar-UIBindingObserver</a></h1>
         
 
         <div class="post-meta">
@@ -1901,19 +1885,12 @@ observeOn()
       
         
           
-          Single基本介绍
-Single 是 Observable 的另外一个版本但它不像 Observable 可以发出多个元素，它要么只能发出一个元素，要么产生一个 error 事件
-
-
-发出一个元素，或一个 error 事件
-不会共享状态变化
-
-应用场景
-Single 比较常见的例子就是执行 HTT
+          UIBindingObserver
+UIBindingObserver这个东西很有用的，创建我们自己的监听者，有时候RxCocoa(RxSwift中对UIKit的一个扩展库)给的扩展不够我们使用，比如一个UITextField有个isEnabled属性，我想把这个isEnabled变为一个obser
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Grammar/Traits-Single/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Grammar/UIBindingObserver/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
