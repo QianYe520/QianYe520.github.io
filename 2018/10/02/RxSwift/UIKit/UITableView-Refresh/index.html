@@ -83,7 +83,7 @@
 
 
 
-  <meta name="keywords" content="UIKit,Swift,UIWebView," />
+  <meta name="keywords" content="UIKit,RxSwift," />
 
 
 
@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="UIWebView UIWebView 继承与 UIView, 并且遵守了 UIScrollViewDelegate 协议, 所以它可以使用里面的方法和属性  遵守代理协议 class ViewController: UIViewController, UIWebViewDelegate &amp;#123;&amp;#125; 自定义UIWebVIewfunc myWebView() &amp;#123;">
-<meta name="keywords" content="UIKit,Swift,UIWebView">
+<meta name="description" content="课件参考 防止表格多次刷新的说明 1.flatMapLatest 的作用是当在短时间内（上一个请求还没回来）连续点击多次“刷新”按钮，虽然仍会发起多次请求，但表格只会接收并显示最后一次请求。避免表格出现连续刷新的现象  //随机的表格数据let randomResult = refreshButton.rx.tap.asObservable()    .startWith(()) //加这个为了让">
+<meta name="keywords" content="UIKit,RxSwift">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift-UIKit-UIWebView-简单使用">
-<meta property="og:url" content="http://yoursite.com/2017/12/14/Swift/UIKit/Swift-UIKit-UIWebView-简单使用/index.html">
+<meta property="og:title" content="UITableView-Refresh-刷新简单用法">
+<meta property="og:url" content="http://yoursite.com/2018/10/02/RxSwift/UIKit/UITableView-Refresh/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="UIWebView UIWebView 继承与 UIView, 并且遵守了 UIScrollViewDelegate 协议, 所以它可以使用里面的方法和属性  遵守代理协议 class ViewController: UIViewController, UIWebViewDelegate &amp;#123;&amp;#125; 自定义UIWebVIewfunc myWebView() &amp;#123;">
+<meta property="og:description" content="课件参考 防止表格多次刷新的说明 1.flatMapLatest 的作用是当在短时间内（上一个请求还没回来）连续点击多次“刷新”按钮，虽然仍会发起多次请求，但表格只会接收并显示最后一次请求。避免表格出现连续刷新的现象  //随机的表格数据let randomResult = refreshButton.rx.tap.asObservable()    .startWith(()) //加这个为了让">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-14T05:22:57.000Z">
+<meta property="og:updated_time" content="2018-10-02T06:58:58.215Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift-UIKit-UIWebView-简单使用">
-<meta name="twitter:description" content="UIWebView UIWebView 继承与 UIView, 并且遵守了 UIScrollViewDelegate 协议, 所以它可以使用里面的方法和属性  遵守代理协议 class ViewController: UIViewController, UIWebViewDelegate &amp;#123;&amp;#125; 自定义UIWebVIewfunc myWebView() &amp;#123;">
+<meta name="twitter:title" content="UITableView-Refresh-刷新简单用法">
+<meta name="twitter:description" content="课件参考 防止表格多次刷新的说明 1.flatMapLatest 的作用是当在短时间内（上一个请求还没回来）连续点击多次“刷新”按钮，虽然仍会发起多次请求，但表格只会接收并显示最后一次请求。避免表格出现连续刷新的现象  //随机的表格数据let randomResult = refreshButton.rx.tap.asObservable()    .startWith(()) //加这个为了让">
 
 
 
@@ -135,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/14/Swift/UIKit/Swift-UIKit-UIWebView-简单使用/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/02/RxSwift/UIKit/UITableView-Refresh/"/>
 
 
 
 
 
-  <title>Swift-UIKit-UIWebView-简单使用 | 千夜、おれはおまえをずっと爱している</title>
+  <title>UITableView-Refresh-刷新简单用法 | 千夜、おれはおまえをずっと爱している</title>
   
 
 
@@ -312,7 +312,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/14/Swift/UIKit/Swift-UIKit-UIWebView-简单使用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/02/RxSwift/UIKit/UITableView-Refresh/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -329,7 +329,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Swift-UIKit-UIWebView-简单使用</h1>
+          <h1 class="post-title" itemprop="name headline">UITableView-Refresh-刷新简单用法</h1>
         
 
         <div class="post-meta">
@@ -341,8 +341,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-14T12:45:06+08:00">
-                2017-12-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-02T09:20:28+08:00">
+                2018-10-02
               </time>
             
 
@@ -364,8 +364,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
+                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
                   </a>
                 </span>
 
@@ -375,19 +375,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/UIKit/" itemprop="url" rel="index">
+                  <a href="/categories/RxSwift/UIKit/" itemprop="url" rel="index">
                     <span itemprop="name">UIKit</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/UIKit/UIWebView/" itemprop="url" rel="index">
-                    <span itemprop="name">UIWebView</span>
                   </a>
                 </span>
 
@@ -423,13 +412,21 @@
       
 
       
-        <h1 id="UIWebView"><a href="#UIWebView" class="headerlink" title="UIWebView"></a>UIWebView</h1><blockquote>
-<p>UIWebView 继承与 UIView, 并且遵守了 UIScrollViewDelegate 协议, 所以它可以使用里面的方法和属性</p>
+        <p><a href="https://www.hangge.com/blog/cache/detail_1987.html" target="_blank" rel="external">课件参考</a></p>
+<h1 id="防止表格多次刷新的说明"><a href="#防止表格多次刷新的说明" class="headerlink" title="防止表格多次刷新的说明"></a>防止表格多次刷新的说明</h1><blockquote>
+<p>1.flatMapLatest 的作用是当在短时间内（上一个请求还没回来）连续点击多次“刷新”按钮，虽然仍会发起多次请求，但表格只会接收并显示最后一次请求。避免表格出现连续刷新的现象</p>
 </blockquote>
-<h1 id="遵守代理协议"><a href="#遵守代理协议" class="headerlink" title="遵守代理协议"></a>遵守代理协议</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span>, <span class="title">UIWebViewDelegate</span> </span>&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="自定义UIWebVIew"><a href="#自定义UIWebVIew" class="headerlink" title="自定义UIWebVIew"></a>自定义UIWebVIew</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">myWebView</span><span class="params">()</span></span> &#123;</div><div class="line"></div><div class="line">       <span class="comment">// 1.获取 UIWebView 的 UIScrollView 属性</span></div><div class="line">       <span class="keyword">let</span> webScroll = webView.scrollView</div><div class="line">       <span class="built_in">println</span>(<span class="string">"webScroll = \(webScroll)"</span>)</div><div class="line"></div><div class="line">       <span class="comment">// 2.获取 UIWebView 的 request 属性</span></div><div class="line">       <span class="keyword">let</span> webRequest = webView.request</div><div class="line">       <span class="built_in">println</span>(<span class="string">"webRequest = \(webRequest)"</span>)</div><div class="line"></div><div class="line">       <span class="comment">// 3.获取 UIWebView 是否在接收数据的时候可以退后一步</span></div><div class="line">       <span class="keyword">let</span> webCanBack = webView.canGoBack</div><div class="line">       <span class="built_in">println</span>(<span class="string">"webCanBack = \(webCanBack)"</span>)</div><div class="line"></div><div class="line">       <span class="comment">// 4.获取 UIWebView 是否在接收数据的时候可以前进一步</span></div><div class="line">       <span class="keyword">let</span> webCanGo = webView.canGoForward</div><div class="line">       <span class="built_in">println</span>(<span class="string">"webCanGo = \(webCanGo)"</span>)</div><div class="line"></div><div class="line">       <span class="comment">// 5.获取 UIWebVIew 是否接受完数据</span></div><div class="line">       <span class="keyword">let</span> webLoading = webView.loading</div><div class="line">       <span class="built_in">println</span>(<span class="string">"webLoading = \(webLoading)"</span>)</div><div class="line"></div><div class="line">       <span class="comment">// 6.设置 UIWebView 接收的数据是否可以通过手势来调整页面内容大小</span></div><div class="line">       webView.scalesPageToFit = <span class="literal">true</span></div><div class="line"></div><div class="line">       <span class="comment">// 7.设置 UIWebView 接收到得数据是什么类型的</span></div><div class="line">       webView.dataDetectorTypes = <span class="type">UIDataDetectorTypes</span>.<span class="type">All</span></div><div class="line"></div><div class="line">       <span class="comment">// 8.设置 UIWebView 内是否可以回放媒体</span></div><div class="line">       webView.allowsInlineMediaPlayback = <span class="literal">true</span></div><div class="line"></div><div class="line">       <span class="comment">// 9.设置 UIWebView 中的 HTML5 视频是否自动播放</span></div><div class="line">       webView.mediaPlaybackRequiresUserAction = <span class="literal">true</span></div><div class="line"></div><div class="line">       <span class="comment">// 10.设置 UIWebView 是否可以使用 Air 播放</span></div><div class="line">       webView.mediaPlaybackAllowsAirPlay = <span class="literal">true</span></div><div class="line"></div><div class="line">       <span class="comment">// 11.设置 UIWebView 是否使用同步加载(默认是False)</span></div><div class="line">       webView.suppressesIncrementalRendering = <span class="literal">false</span></div><div class="line"></div><div class="line">       <span class="comment">// 12.设置 UIWebView 在点击视图或者元素时是否显示键盘(默认是True)</span></div><div class="line">       webView.keyboardDisplayRequiresUserAction = <span class="literal">true</span></div><div class="line"></div><div class="line">       <span class="comment">// 13.设置 UIWebView 的分页模式</span></div><div class="line">       webView.paginationMode = <span class="type">UIWebPaginationMode</span>.<span class="type">RightToLeft</span></div><div class="line"></div><div class="line">       <span class="comment">// 14.设置 UIWebView 的分页打破模式</span></div><div class="line">       webView.paginationBreakingMode = <span class="type">UIWebPaginationBreakingMode</span>.<span class="type">Column</span></div><div class="line"></div><div class="line">       <span class="comment">// 15.设置 UIWebView 的分页长度</span></div><div class="line">       webView.pageLength = <span class="number">400</span></div><div class="line"></div><div class="line">       <span class="comment">// 16.设置 UIWebView 每个分页之间的宽度</span></div><div class="line">       webView.gapBetweenPages = <span class="number">100</span></div><div class="line"></div><div class="line">       <span class="comment">// 17.获取 UIWebView 的分页数量</span></div><div class="line">       <span class="keyword">let</span> webViewPageCount = webView.pageCount</div><div class="line">       <span class="built_in">println</span>(webViewPageCount)</div><div class="line"></div><div class="line">       <span class="comment">// 18.设置 UIWebView 的代理对象</span></div><div class="line">       webView.delegate = <span class="keyword">self</span></div><div class="line"></div><div class="line">       <span class="comment">// 19.发送网络请求</span></div><div class="line">       <span class="keyword">var</span> url:<span class="type">NSURL</span> = <span class="type">NSURL</span>(string:<span class="string">"http://www.baidu.com"</span>)!</div><div class="line">       <span class="keyword">var</span> request:<span class="type">NSURLRequest</span> = <span class="type">NSURLRequest</span>(<span class="type">URL</span>:url)</div><div class="line">       webView.loadRequest(request)</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<h1 id="实现代理方法"><a href="#实现代理方法" class="headerlink" title="实现代理方法"></a>实现代理方法</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 1.该方法是用来设置是否在 UIWebView 加载之前发送一个请求</span></div><div class="line">   <span class="function"><span class="keyword">func</span> <span class="title">webView</span><span class="params">(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType)</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">       <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="comment">// 2.该方法是在 UIWebView 在开发加载时调用</span></div><div class="line">   <span class="function"><span class="keyword">func</span> <span class="title">webViewDidStartLoad</span><span class="params">(webView: UIWebView)</span></span> &#123;</div><div class="line">       <span class="built_in">println</span>(<span class="string">"开始加载"</span>)</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="comment">// 3.该方法是在 UIWebView 加载完之后才调用</span></div><div class="line">   <span class="function"><span class="keyword">func</span> <span class="title">webViewDidFinishLoad</span><span class="params">(webView: UIWebView)</span></span> &#123;</div><div class="line">       <span class="built_in">println</span>(<span class="string">"加载完成"</span>)</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="comment">// 4.该方法是在 UIWebView 请求失败的时候调用</span></div><div class="line">   <span class="function"><span class="keyword">func</span> <span class="title">webView</span><span class="params">(webView: UIWebView, didFailLoadWithError error: NSError)</span></span> &#123;</div><div class="line">       <span class="built_in">println</span>(<span class="string">"加载失败"</span>)</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<h1 id="在-ViewDidLoad-方法中实现"><a href="#在-ViewDidLoad-方法中实现" class="headerlink" title="在 ViewDidLoad 方法中实现"></a>在 ViewDidLoad 方法中实现</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">       <span class="keyword">super</span>.viewDidLoad()</div><div class="line">       <span class="keyword">self</span>.myWebView()</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">//随机的表格数据</div><div class="line">let randomResult = refreshButton.rx.tap.asObservable()</div><div class="line">    .startWith(()) //加这个为了让一开始就能自动请求一次数据</div><div class="line">    .flatMapLatest(getRandomResult)  //连续请求时只取最后一次数据</div><div class="line">    .share(replay: 1)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>2.也可以改用 flatMapFirst 来防止表格多次刷新，它与 flatMapLatest 刚好相反，如果连续发起多次请求，表格只会接收并显示第一次请求</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">//随机的表格数据</div><div class="line">let randomResult = refreshButton.rx.tap.asObservable()</div><div class="line">    .startWith(()) //加这个为了让一开始就能自动请求一次数据</div><div class="line">    .flatMapFirst(getRandomResult)  //连续请求时只取第一次数据</div><div class="line">    .share(replay: 1)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>3.还可以在源头进行限制下。即通过 throttle 设置个阀值（比如 1 秒），如果在1秒内有多次点击则只取最后一次，那么自然也就只发送一次数据请求</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">//随机的表格数据</div><div class="line">let randomResult = refreshButton.rx.tap.asObservable()</div><div class="line">    .throttle(1, scheduler: MainScheduler.instance) //在主线程中操作，1秒内值若多次改变，取最后一次</div><div class="line">    .startWith(()) //加这个为了让一开始就能自动请求一次数据</div><div class="line">    .flatMapLatest(getRandomResult)</div><div class="line">    .share(replay: 1)</div></pre></td></tr></table></figure>
+<p>#开始刷新与暂停刷新</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">import UIKit</div><div class="line">import RxSwift</div><div class="line">import RxCocoa</div><div class="line"></div><div class="line">class ViewController: UIViewController &#123;</div><div class="line">    let disposeBag = DisposeBag()</div><div class="line">    override func viewDidLoad() &#123;</div><div class="line">        super.viewDidLoad()</div><div class="line">        initUI()</div><div class="line">        initData()//数据延迟1s加载</div><div class="line">    &#125;</div><div class="line">    //MARK:UI</div><div class="line">    func initUI()&#123;</div><div class="line">        view.addSubview(refreshBtn)</div><div class="line">        view.addSubview(stopRefreshBtn)</div><div class="line">        view.addSubview(tableView)</div><div class="line">    &#125;</div><div class="line">    //UI-刷新按钮</div><div class="line">    fileprivate lazy var refreshBtn: UIButton = &#123;</div><div class="line">        let refreshBtn = UIButton()</div><div class="line">        refreshBtn.frame = CGRect(x:0,</div><div class="line">                                  y:0,</div><div class="line">                                  width:view.frame.width/2.0,</div><div class="line">                                  height:100)</div><div class="line">        refreshBtn.backgroundColor = UIColor.red</div><div class="line">        return refreshBtn</div><div class="line">    &#125;()</div><div class="line">    //停止刷新</div><div class="line">    fileprivate lazy var stopRefreshBtn: UIButton = &#123;</div><div class="line">        let stopRefreshBtn = UIButton()</div><div class="line">        stopRefreshBtn.frame =  CGRect(x:view.frame.width/2.0,</div><div class="line">                                       y:0,</div><div class="line">                                       width:view.frame.width/2.0,</div><div class="line">                                       height:100)</div><div class="line">        stopRefreshBtn.backgroundColor = UIColor.green</div><div class="line">      return  stopRefreshBtn</div><div class="line">    &#125;()</div><div class="line">    //UI-表</div><div class="line">    fileprivate lazy var tableView:UITableView = &#123;</div><div class="line">        let tableView = UITableView()</div><div class="line">        //frme</div><div class="line">        tableView.frame = CGRect(x:0,</div><div class="line">                                 y:100,</div><div class="line">                                 width:view.frame.width,</div><div class="line">                                 height:view.frame.height-100)</div><div class="line">        //Cell</div><div class="line">        tableView.register(UITableViewCell.self, forCellReuseIdentifier: &quot;Cell&quot;)</div><div class="line">        return tableView</div><div class="line">    &#125;()</div><div class="line">    //MARK:Data</div><div class="line">    func   initData()&#123;</div><div class="line">        //随机的表格数据</div><div class="line">        let randomResult = refreshBtn.rx</div><div class="line">            .tap</div><div class="line">            .asObservable()</div><div class="line">            .startWith(()) //加这个为了让一开始就能自动请求一次数据</div><div class="line">           // .flatMapLatest(getRandomResult)</div><div class="line">            .flatMapLatest&#123;</div><div class="line">                self.getRandomResult().takeUntil(self.stopRefreshBtn.rx.tap)</div><div class="line">            &#125;</div><div class="line">            .share(replay: 1)</div><div class="line">        </div><div class="line">        //创建数据源</div><div class="line">        let dataSource = RxTableViewSectionedReloadDataSource</div><div class="line">            &lt;SectionModel&lt;String, Int&gt;&gt;(configureCell: &#123;</div><div class="line">                (dataSource, tv, indexPath, element) in</div><div class="line">                let cell = tv.dequeueReusableCell(withIdentifier: &quot;Cell&quot;)!</div><div class="line">                cell.textLabel?.text = &quot;条目\(indexPath.row)：\(element)&quot;</div><div class="line">                return cell</div><div class="line">            &#125;)</div><div class="line">        //绑定单元格数据</div><div class="line">        randomResult</div><div class="line">            .bind(to: tableView.rx.items(dataSource: dataSource))</div><div class="line">            .disposed(by: disposeBag)</div><div class="line">    &#125;</div><div class="line">    //获取随机数据</div><div class="line">    func getRandomResult() -&gt; Observable&lt;[SectionModel&lt;String, Int&gt;]&gt; &#123;</div><div class="line">        print(&quot;正在请求数据......&quot;)</div><div class="line">        let items = (0 ..&lt; 5).map &#123;_ in</div><div class="line">            Int(arc4random())</div><div class="line">        &#125;</div><div class="line">        let observable = Observable.just([SectionModel(model: &quot;S&quot;, items: items)])</div><div class="line">        return observable.delay(2, scheduler: MainScheduler.instance)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -450,9 +447,7 @@
           
             <a href="/tags/UIKit/" rel="tag"># UIKit</a>
           
-            <a href="/tags/Swift/" rel="tag"># Swift</a>
-          
-            <a href="/tags/UIWebView/" rel="tag"># UIWebView</a>
+            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
           
         </div>
       
@@ -465,8 +460,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/14/Swift/UIKit/Swift-UIKit-UIWebView-简介/" rel="next" title="Swift-UIKit-UIWebView-简介">
-                <i class="fa fa-chevron-left"></i> Swift-UIKit-UIWebView-简介
+              <a href="/2018/09/22/RxSwift/UIKit/UITableView-Base/" rel="next" title="RxSwift-UIKit-UITableView-Base基本用法">
+                <i class="fa fa-chevron-left"></i> RxSwift-UIKit-UITableView-Base基本用法
               </a>
             
           </div>
@@ -474,10 +469,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/14/Swift/Error/Swift-Error-开发错误锦集/" rel="prev" title="Swift-Error-开发错误锦集">
-                Swift-Error-开发错误锦集 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -609,7 +600,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UIWebView"><span class="nav-number">1.</span> <span class="nav-text">UIWebView</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#遵守代理协议"><span class="nav-number">2.</span> <span class="nav-text">遵守代理协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义UIWebVIew"><span class="nav-number">3.</span> <span class="nav-text">自定义UIWebVIew</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现代理方法"><span class="nav-number">4.</span> <span class="nav-text">实现代理方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在-ViewDidLoad-方法中实现"><span class="nav-number">5.</span> <span class="nav-text">在 ViewDidLoad 方法中实现</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#防止表格多次刷新的说明"><span class="nav-number">1.</span> <span class="nav-text">防止表格多次刷新的说明</span></a></li></ol></div>
             
 
           </div>
