@@ -83,7 +83,7 @@
 
 
 
-  <meta name="keywords" content="UIKit,RxSwift,Swift," />
+  <meta name="keywords" content="Swift,RxSwift,UIKit," />
 
 
 
@@ -95,7 +95,7 @@
 
 
 <meta name="description" content="UISlider disposeBag  let disposeBag = DisposeBag()  清扫手势mySwipeGes  fileprivate lazy var mySwipeGes:UISwipeGestureRecognizer = &amp;#123;    let  mySwipeGes =  UISwipeGestureRecognizer ()    mySwipeGes.di">
-<meta name="keywords" content="UIKit,RxSwift,Swift">
+<meta name="keywords" content="Swift,RxSwift,UIKit">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RxSwift-UIKit-UIGestureRecognizer-01">
 <meta property="og:url" content="http://yoursite.com/2018/05/23/RxSwift/UIKit/UIGestureRecognizer-01/index.html">
@@ -431,15 +431,15 @@
 <blockquote>
 <p>清扫手势响应- 写法1</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">mySwipeGes.rx</div><div class="line">          .event</div><div class="line">          .subscribe(onNext: &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>]  ges <span class="keyword">in</span></div><div class="line">            <span class="comment">//这个点是滑动的起点</span></div><div class="line">            <span class="keyword">let</span> point = ges.location(<span class="keyword">in</span>: ges.view)</div><div class="line">            <span class="keyword">self</span>?.showMyAlertCtl(title: <span class="string">"向上划动1"</span>,msg: <span class="string">"\(point.x) \(point.y)"</span>)</div><div class="line">            &#125;)</div><div class="line">         .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">mySwipeGes.rx</div><div class="line">          .event</div><div class="line">          .subscribe(onNext: &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>]  ges <span class="keyword">in</span></div><div class="line">            <span class="comment">//这个点是滑动的起点</span></div><div class="line">            <span class="keyword">let</span> point = ges.location(<span class="keyword">in</span>: ges.view)</div><div class="line">            <span class="keyword">self</span>?.showMyAlertCtl(title: <span class="string">"向上划动1"</span>,msg: <span class="string">"<span class="subst">\(point.x)</span> <span class="subst">\(point.y)</span>"</span>)</div><div class="line">            &#125;)</div><div class="line">         .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
 <blockquote>
 <p>清扫手势响应- 写法2</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">mySwipeGes.rx</div><div class="line">    .event</div><div class="line">    .bind(onNext: &#123;</div><div class="line">                    [<span class="keyword">weak</span> <span class="keyword">self</span>] ges <span class="keyword">in</span></div><div class="line">                       <span class="keyword">let</span> point = ges.location(<span class="keyword">in</span>: ges.view)</div><div class="line">                       <span class="keyword">self</span>?.showMyAlertCtl(title: <span class="string">"向上划动2"</span>,msg: <span class="string">"\(point.x) \(point.y)"</span>)</div><div class="line">                   &#125;</div><div class="line">        )</div><div class="line">    .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">mySwipeGes.rx</div><div class="line">    .event</div><div class="line">    .bind(onNext: &#123;</div><div class="line">                    [<span class="keyword">weak</span> <span class="keyword">self</span>] ges <span class="keyword">in</span></div><div class="line">                       <span class="keyword">let</span> point = ges.location(<span class="keyword">in</span>: ges.view)</div><div class="line">                       <span class="keyword">self</span>?.showMyAlertCtl(title: <span class="string">"向上划动2"</span>,msg: <span class="string">"<span class="subst">\(point.x)</span> <span class="subst">\(point.y)</span>"</span>)</div><div class="line">                   &#125;</div><div class="line">        )</div><div class="line">    .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
 <blockquote>
 <p>实现点击页面任意位置</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">myTapGes.rx</div><div class="line">     .event</div><div class="line">     .subscribe(onNext:&#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] ges <span class="keyword">in</span></div><div class="line">                                 <span class="keyword">let</span> point = ges.location(<span class="keyword">in</span>: ges.view)</div><div class="line">                                 <span class="keyword">self</span>?.showMyAlertCtl(title: <span class="string">"点击"</span>,msg: <span class="string">"\(point.x) \(point.y)"</span>)</div><div class="line">                       &#125;</div><div class="line">               )</div><div class="line">     .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">myTapGes.rx</div><div class="line">     .event</div><div class="line">     .subscribe(onNext:&#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] ges <span class="keyword">in</span></div><div class="line">                                 <span class="keyword">let</span> point = ges.location(<span class="keyword">in</span>: ges.view)</div><div class="line">                                 <span class="keyword">self</span>?.showMyAlertCtl(title: <span class="string">"点击"</span>,msg: <span class="string">"<span class="subst">\(point.x)</span> <span class="subst">\(point.y)</span>"</span>)</div><div class="line">                       &#125;</div><div class="line">               )</div><div class="line">     .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -458,11 +458,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/UIKit/" rel="tag"># UIKit</a>
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
           
             <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
           
-            <a href="/tags/Swift/" rel="tag"># Swift</a>
+            <a href="/tags/UIKit/" rel="tag"># UIKit</a>
           
         </div>
       
