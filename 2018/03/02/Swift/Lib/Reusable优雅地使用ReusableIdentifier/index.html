@@ -455,7 +455,7 @@
 <blockquote>
 <p>同样的，可以为UITableView实现一个dequeue方法</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="meta">@warn_unused_result</span></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">dequeue</span>&lt;T: UICollectionViewCell&gt;<span class="params">(indexPath: NSIndexPath)</span></span> -&gt; <span class="type">T</span> &#123;</div><div class="line">    <span class="keyword">let</span> rid = <span class="type">ReusableIdentifier</span>&lt;<span class="type">T</span>&gt;()</div><div class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> cell = dequeueReusableCellWithReuseIdentifier(rid.identifier, forIndexPath: indexPath) <span class="keyword">as</span>? <span class="type">T</span> <span class="keyword">else</span> &#123; </div><div class="line">    <span class="built_in">assertionFailure</span>(<span class="string">"No identifier(\(rid.identifier)) found for \(T.self)"</span>)</div><div class="line">    <span class="keyword">return</span> <span class="type">T</span>.<span class="keyword">init</span>()</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> cell</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"> <span class="meta">@warn_unused_result</span></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">dequeue</span>&lt;T: UICollectionViewCell&gt;<span class="params">(indexPath: NSIndexPath)</span></span> -&gt; <span class="type">T</span> &#123;</div><div class="line">    <span class="keyword">let</span> rid = <span class="type">ReusableIdentifier</span>&lt;<span class="type">T</span>&gt;()</div><div class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> cell = dequeueReusableCellWithReuseIdentifier(rid.identifier, forIndexPath: indexPath) <span class="keyword">as</span>? <span class="type">T</span> <span class="keyword">else</span> &#123; </div><div class="line">    <span class="built_in">assertionFailure</span>(<span class="string">"No identifier(<span class="subst">\(rid.identifier)</span>) found for <span class="subst">\(T.<span class="keyword">self</span>)</span>"</span>)</div><div class="line">    <span class="keyword">return</span> <span class="type">T</span>.<span class="keyword">init</span>()</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> cell</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>使用的时候只需要指定cell的类型，传入indexPath即可</p>
 </blockquote>
@@ -591,7 +591,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">245</span>
+                  <span class="site-state-item-count">246</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
