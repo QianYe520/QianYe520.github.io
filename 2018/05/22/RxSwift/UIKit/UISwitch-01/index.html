@@ -423,7 +423,7 @@
 <blockquote>
 <p>当 switch 开关状态改变时，输出当前值</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">mySwitch.rx</div><div class="line">        .isOn.asObservable()</div><div class="line">        .subscribe(onNext: &#123;</div><div class="line">                <span class="built_in">print</span>(<span class="string">"当前开关状态：\($0)"</span>)</div><div class="line">           &#125;)</div><div class="line">        .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">mySwitch.rx</div><div class="line">        .isOn.asObservable()</div><div class="line">        .subscribe(onNext: &#123;</div><div class="line">                <span class="built_in">print</span>(<span class="string">"当前开关状态：<span class="subst">\($<span class="number">0</span>)</span>"</span>)</div><div class="line">           &#125;)</div><div class="line">        .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
 <blockquote>
 <p>切换 switch 开关时，button 会在可用和不可用的状态间切换</p>
 </blockquote>

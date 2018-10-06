@@ -439,7 +439,7 @@
 <blockquote>
 <p>根据索引数拼接最新的标题，并绑定到button上</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">timerSquence.<span class="built_in">map</span>&#123;</div><div class="line">        <span class="string">"count:\($0)"</span></div><div class="line">        &#125;</div><div class="line">        .bind(to: myBtn.rx.title(<span class="keyword">for</span>: <span class="type">UIControlState</span>.normal))</div><div class="line">        .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">timerSquence.<span class="built_in">map</span>&#123;</div><div class="line">        <span class="string">"count:<span class="subst">\($<span class="number">0</span>)</span>"</span></div><div class="line">        &#125;</div><div class="line">        .bind(to: myBtn.rx.title(<span class="keyword">for</span>: <span class="type">UIControlState</span>.normal))</div><div class="line">        .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
 <h1 id="按钮富文本标题（attributedTitle）的绑定"><a href="#按钮富文本标题（attributedTitle）的绑定" class="headerlink" title="按钮富文本标题（attributedTitle）的绑定"></a>按钮富文本标题（attributedTitle）的绑定</h1><blockquote>
 <p>创建btn</p>
 </blockquote>
@@ -463,7 +463,7 @@
 <h2 id="按钮背景图片（backgroundImage）的绑定"><a href="#按钮背景图片（backgroundImage）的绑定" class="headerlink" title="按钮背景图片（backgroundImage）的绑定"></a>按钮背景图片（backgroundImage）的绑定</h2><blockquote>
 <p>当程序启动时就开始计数，根据奇偶数选择相应的图片作为 button 的背景<br>其中 rx.backgroundImage 为 setBackgroundImage(_:for:) 的封装<br>根据索引数选择对应的按钮背景图，并绑定到button上</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">timerSquence.<span class="built_in">map</span>&#123;</div><div class="line">               <span class="type">UIImage</span>(named: <span class="string">"\($0%2)"</span>)!</div><div class="line">               &#125;</div><div class="line">           .bind(to: myBtn.rx.backgroundImage())</div><div class="line">           .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">timerSquence.<span class="built_in">map</span>&#123;</div><div class="line">               <span class="type">UIImage</span>(named: <span class="string">"<span class="subst">\($<span class="number">0</span>%<span class="number">2</span>)</span>"</span>)!</div><div class="line">               &#125;</div><div class="line">           .bind(to: myBtn.rx.backgroundImage())</div><div class="line">           .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
 <h1 id="按钮是否可用（isEnabled）的绑定"><a href="#按钮是否可用（isEnabled）的绑定" class="headerlink" title="按钮是否可用（isEnabled）的绑定"></a>按钮是否可用（isEnabled）的绑定</h1><blockquote>
 <p>创建 switch</p>
 </blockquote>
