@@ -311,7 +311,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/Traits-Single/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/Subscribe/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -330,7 +330,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/Traits-Single/" itemprop="url">RxSwift-Grammar-特征序列Traits-Single</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/Subscribe/" itemprop="url">RxSwift-Grammar-Subscribe</a></h1>
         
 
         <div class="post-meta">
@@ -415,19 +415,16 @@
       
         
           
-          Single基本介绍
-Single 是 Observable 的另外一个版本但它不像 Observable 可以发出多个元素，它要么只能发出一个元素，要么产生一个 error 事件
+          subscribe 和 subscribe(onNext:)
+Subscribe
 
 
-发出一个元素，或一个 error 事件
-不会共享状态变化
-
-应用场景
-Single 比较常见的例子就是执行 HTT
+subscribe是订阅sequence发出的事件，比如next事件，error事件等
+而subscribe(onNext:)是监听sequence发出的next事件中的element进行处理，他会忽略error和
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Grammar/Traits-Single/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Grammar/Subscribe/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -644,6 +641,175 @@ public func map&lt;R&gt;(_ transform: @escaping (Self.E) throws -&gt; R) -&gt; R
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/Traits-Single/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/Traits-Single/" itemprop="url">RxSwift-Grammar-特征序列Traits-Single</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-27T20:49:46+08:00">
+                2018-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RxSwift/Grammar/" itemprop="url" rel="index">
+                    <span itemprop="name">Grammar</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          Single基本介绍
+Single 是 Observable 的另外一个版本但它不像 Observable 可以发出多个元素，它要么只能发出一个元素，要么产生一个 error 事件
+
+
+发出一个元素，或一个 error 事件
+不会共享状态变化
+
+应用场景
+Single 比较常见的例子就是执行 HTT
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/27/RxSwift/Grammar/Traits-Single/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/Dispose和DisposeBag/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -808,7 +974,7 @@ public func map&lt;R&gt;(_ transform: @escaping (Self.E) throws -&gt; R) -&gt; R
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/Subscribe/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/UIBindingObserver/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -827,7 +993,7 @@ public func map&lt;R&gt;(_ transform: @escaping (Self.E) throws -&gt; R) -&gt; R
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/Subscribe/" itemprop="url">RxSwift-Grammar-Subscribe</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/UIBindingObserver/" itemprop="url">RxSwift-Grammar-UIBindingObserver</a></h1>
         
 
         <div class="post-meta">
@@ -912,16 +1078,12 @@ public func map&lt;R&gt;(_ transform: @escaping (Self.E) throws -&gt; R) -&gt; R
       
         
           
-          subscribe 和 subscribe(onNext:)
-Subscribe
-
-
-subscribe是订阅sequence发出的事件，比如next事件，error事件等
-而subscribe(onNext:)是监听sequence发出的next事件中的element进行处理，他会忽略error和
+          UIBindingObserver
+UIBindingObserver这个东西很有用的，创建我们自己的监听者，有时候RxCocoa(RxSwift中对UIKit的一个扩展库)给的扩展不够我们使用，比如一个UITextField有个isEnabled属性，我想把这个isEnabled变为一个obser
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Grammar/Subscribe/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Grammar/UIBindingObserver/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1138,336 +1300,6 @@ subscribe是订阅sequence发出的事件，比如next事件，error事件等
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/Observable&Observer/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="千夜 QQ:738816656">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/Observable&Observer/" itemprop="url">RxSwift-Grammar-Observable可观察序列&Observer观察者</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-27T20:49:46+08:00">
-                2018-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RxSwift/Grammar/" itemprop="url" rel="index">
-                    <span itemprop="name">Grammar</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Observable可观察序列  和 Observer观察者实质
-Observer (观察者)订阅一个可观察序列 Observable(事件源)每一个Observable的实例都是一个序列观察者 对 Observable 发射的数据或数据序列作出响应
-
-举例
-Button 的点击这个情景
-
-
-把用户
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Grammar/Observable&Observer/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/UIBindingObserver/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="千夜 QQ:738816656">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/UIBindingObserver/" itemprop="url">RxSwift-Grammar-UIBindingObserver</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-27T20:49:46+08:00">
-                2018-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RxSwift/Grammar/" itemprop="url" rel="index">
-                    <span itemprop="name">Grammar</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          UIBindingObserver
-UIBindingObserver这个东西很有用的，创建我们自己的监听者，有时候RxCocoa(RxSwift中对UIKit的一个扩展库)给的扩展不够我们使用，比如一个UITextField有个isEnabled属性，我想把这个isEnabled变为一个obser
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Grammar/UIBindingObserver/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/observeOn()和subscribeOn()/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1596,6 +1428,174 @@ observeOn()
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/03/27/RxSwift/Grammar/observeOn()和subscribeOn()/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/Observable&Observer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/Observable&Observer/" itemprop="url">RxSwift-Grammar-Observable可观察序列&Observer观察者</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-27T20:49:46+08:00">
+                2018-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RxSwift/Grammar/" itemprop="url" rel="index">
+                    <span itemprop="name">Grammar</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          Observable可观察序列  和 Observer观察者实质
+Observer (观察者)订阅一个可观察序列 Observable(事件源)每一个Observable的实例都是一个序列观察者 对 Observable 发射的数据或数据序列作出响应
+
+举例
+Button 的点击这个情景
+
+
+把用户
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/27/RxSwift/Grammar/Observable&Observer/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2019,7 +2019,7 @@ Xcode自带了一个简单好用的3D场景编辑器,当选中或创建一个xxx
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">243</span>
+                  <span class="site-state-item-count">245</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

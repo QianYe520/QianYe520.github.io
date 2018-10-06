@@ -83,7 +83,7 @@
 
 
 
-  <meta name="keywords" content="RxSwift,UIKit," />
+  <meta name="keywords" content="UIKit,RxSwift," />
 
 
 
@@ -95,7 +95,7 @@
 
 
 <meta name="description" content="btn响应 disposeBag  let disposeBag = DisposeBag()  UI  fileprivate lazy var mySwitch: UISwitch = &amp;#123;    let mySwitch = UISwitch()    mySwitch.frame = CGRect(x: 20, y: 80, width: 80, height: 30)    re">
-<meta name="keywords" content="RxSwift,UIKit">
+<meta name="keywords" content="UIKit,RxSwift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RxSwift-UIKit-UISwitch-响应式扩展-01">
 <meta property="og:url" content="http://yoursite.com/2018/05/22/RxSwift/UIKit/UISwitch-01/index.html">
@@ -423,7 +423,7 @@
 <blockquote>
 <p>当 switch 开关状态改变时，输出当前值</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">mySwitch.rx</div><div class="line">        .isOn.asObservable()</div><div class="line">        .subscribe(onNext: &#123;</div><div class="line">                <span class="built_in">print</span>(<span class="string">"当前开关状态：<span class="subst">\($<span class="number">0</span>)</span>"</span>)</div><div class="line">           &#125;)</div><div class="line">        .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">mySwitch.rx</div><div class="line">        .isOn.asObservable()</div><div class="line">        .subscribe(onNext: &#123;</div><div class="line">                <span class="built_in">print</span>(<span class="string">"当前开关状态：\($0)"</span>)</div><div class="line">           &#125;)</div><div class="line">        .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
 <blockquote>
 <p>切换 switch 开关时，button 会在可用和不可用的状态间切换</p>
 </blockquote>
@@ -447,9 +447,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
-          
             <a href="/tags/UIKit/" rel="tag"># UIKit</a>
+          
+            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
           
         </div>
       
@@ -551,7 +551,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">243</span>
+                  <span class="site-state-item-count">245</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
