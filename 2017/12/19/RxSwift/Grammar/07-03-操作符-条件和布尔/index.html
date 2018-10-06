@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="条件和布尔操作会根据条件发射或变换 Observables，或者对他们做布尔运算   ①amb ②takeWhile ③takeUntil ④skipWhile ⑤skipUntil  ①amb ①amb基本介绍 当传入多个 Observables 到 amb 操作符时，它将取第一个发出元素或产生事件的 Observable，然后只发出它的元素。并忽略掉其他的 Observables  使用样例">
+<meta name="description" content="条件和布尔操作会根据条件发射或变换 Observables，或者对他们做布尔运算   ①amb ②takeWhile ③takeUntil ④skipWhile ⑤skipUntil   ①amb基本介绍 当传入多个 Observables 到 amb 操作符时，它将取第一个发出元素或产生事件的 Observable，然后只发出它的元素。并忽略掉其他的 Observables  使用样例let">
 <meta name="keywords" content="RxSwift,Swift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RxSwift-Conditional  Boolean Operators过滤操作符-07-03">
 <meta property="og:url" content="http://yoursite.com/2017/12/19/RxSwift/Grammar/07-03-操作符-条件和布尔/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="条件和布尔操作会根据条件发射或变换 Observables，或者对他们做布尔运算   ①amb ②takeWhile ③takeUntil ④skipWhile ⑤skipUntil  ①amb ①amb基本介绍 当传入多个 Observables 到 amb 操作符时，它将取第一个发出元素或产生事件的 Observable，然后只发出它的元素。并忽略掉其他的 Observables  使用样例">
+<meta property="og:description" content="条件和布尔操作会根据条件发射或变换 Observables，或者对他们做布尔运算   ①amb ②takeWhile ③takeUntil ④skipWhile ⑤skipUntil   ①amb基本介绍 当传入多个 Observables 到 amb 操作符时，它将取第一个发出元素或产生事件的 Observable，然后只发出它的元素。并忽略掉其他的 Observables  使用样例let">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-12T02:19:39.019Z">
+<meta property="og:updated_time" content="2018-10-06T07:26:55.369Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RxSwift-Conditional  Boolean Operators过滤操作符-07-03">
-<meta name="twitter:description" content="条件和布尔操作会根据条件发射或变换 Observables，或者对他们做布尔运算   ①amb ②takeWhile ③takeUntil ④skipWhile ⑤skipUntil  ①amb ①amb基本介绍 当传入多个 Observables 到 amb 操作符时，它将取第一个发出元素或产生事件的 Observable，然后只发出它的元素。并忽略掉其他的 Observables  使用样例">
+<meta name="twitter:description" content="条件和布尔操作会根据条件发射或变换 Observables，或者对他们做布尔运算   ①amb ②takeWhile ③takeUntil ④skipWhile ⑤skipUntil   ①amb基本介绍 当传入多个 Observables 到 amb 操作符时，它将取第一个发出元素或产生事件的 Observable，然后只发出它的元素。并忽略掉其他的 Observables  使用样例let">
 
 
 
@@ -422,27 +422,27 @@
 <li><a href="#④skipWhile]">④skipWhile</a></li>
 <li><a href="#⑤skipUntil">⑤skipUntil</a></li>
 </ul>
-<p><span id="①amb">①amb</span></p>
+<p><span id="①amb"></span></p>
 <h1 id="①amb"><a href="#①amb" class="headerlink" title="①amb"></a>①amb</h1><h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><blockquote>
 <p>当传入多个 Observables 到 amb 操作符时，它将取第一个发出元素或产生事件的 Observable，然后只发出它的元素。并忽略掉其他的 Observables</p>
 </blockquote>
 <h2 id="使用样例"><a href="#使用样例" class="headerlink" title="使用样例"></a>使用样例</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"> </div><div class="line"><span class="keyword">let</span> subject1 = <span class="type">PublishSubject</span>&lt;<span class="type">Int</span>&gt;()</div><div class="line"><span class="keyword">let</span> subject2 = <span class="type">PublishSubject</span>&lt;<span class="type">Int</span>&gt;()</div><div class="line"><span class="keyword">let</span> subject3 = <span class="type">PublishSubject</span>&lt;<span class="type">Int</span>&gt;()</div><div class="line"> </div><div class="line">subject1</div><div class="line">    .amb(subject2)</div><div class="line">    .amb(subject3)</div><div class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</div><div class="line">    .disposed(by: disposeBag)</div><div class="line"> </div><div class="line">subject2.onNext(<span class="number">1</span>)</div><div class="line">subject1.onNext(<span class="number">20</span>)</div><div class="line">subject2.onNext(<span class="number">2</span>)</div><div class="line">subject1.onNext(<span class="number">40</span>)</div><div class="line">subject3.onNext(<span class="number">0</span>)</div><div class="line">subject2.onNext(<span class="number">3</span>)</div><div class="line">subject1.onNext(<span class="number">60</span>)</div><div class="line">subject3.onNext(<span class="number">0</span>)</div><div class="line">subject3.onNext(<span class="number">0</span>)</div><div class="line"></div><div class="line"><span class="comment">//print</span></div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">2</span></div><div class="line"><span class="number">3</span></div></pre></td></tr></table></figure>
-<p><span id="②takeWhile">②takeWhile</span></p>
+<p><span id="②takeWhile"></span></p>
 <h1 id="②takeWhile"><a href="#②takeWhile" class="headerlink" title="②takeWhile"></a>②takeWhile</h1><blockquote>
 <p>该方法依次判断 Observable 序列的每一个值是否满足给定的条件。 当第一个不满足条件的值出现时，它便自动完成</p>
 </blockquote>
 <h2 id="使用样例-1"><a href="#使用样例-1" class="headerlink" title="使用样例"></a>使用样例</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"> </div><div class="line"><span class="type">Observable</span>.of(<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)</div><div class="line">    .takeWhile &#123; $<span class="number">0</span> &lt; <span class="number">4</span> &#125;</div><div class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</div><div class="line">    .disposed(by: disposeBag)</div><div class="line"><span class="comment">//print</span></div><div class="line"><span class="number">2</span></div><div class="line"><span class="number">3</span></div></pre></td></tr></table></figure>
-<p><span id="③takeUntil">③takeUntil</span></p>
+<p><span id="③takeUntil"></span></p>
 <h1 id="③takeUntil"><a href="#③takeUntil" class="headerlink" title="③takeUntil"></a>③takeUntil</h1><blockquote>
 <p>除了订阅源 Observable 外，通过 takeUntil 方法我们还可以监视另外一个 Observable， 即 notifier。<br>如果 notifier 发出值或 complete 通知，那么源 Observable 便自动完成，停止发送事件</p>
 <h2 id="基本介绍-1"><a href="#基本介绍-1" class="headerlink" title="基本介绍"></a>基本介绍</h2></blockquote>
 <h2 id="使用样例-2"><a href="#使用样例-2" class="headerlink" title="使用样例"></a>使用样例</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"> </div><div class="line"><span class="keyword">let</span> source = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"><span class="keyword">let</span> notifier = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"> </div><div class="line">source</div><div class="line">    .takeUntil(notifier)</div><div class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</div><div class="line">    .disposed(by: disposeBag)</div><div class="line"> </div><div class="line">source.onNext(<span class="string">"a"</span>)</div><div class="line">source.onNext(<span class="string">"b"</span>)</div><div class="line">source.onNext(<span class="string">"c"</span>)</div><div class="line">source.onNext(<span class="string">"d"</span>)</div><div class="line"> </div><div class="line"><span class="comment">//停止接收消息</span></div><div class="line">notifier.onNext(<span class="string">"z"</span>)</div><div class="line"> </div><div class="line">source.onNext(<span class="string">"e"</span>)</div><div class="line">source.onNext(<span class="string">"f"</span>)</div><div class="line">source.onNext(<span class="string">"g"</span>)</div><div class="line"></div><div class="line"><span class="comment">//print</span></div><div class="line">a</div><div class="line">b</div><div class="line"><span class="built_in">c</span></div><div class="line">d</div></pre></td></tr></table></figure>
-<p><span id="④skipWhile">④skipWhile</span></p>
+<p><span id="④skipWhile"></span></p>
 <h1 id="④skipWhile"><a href="#④skipWhile" class="headerlink" title="④skipWhile"></a>④skipWhile</h1><h2 id="基本介绍-2"><a href="#基本介绍-2" class="headerlink" title="基本介绍"></a>基本介绍</h2><blockquote>
 <p>该方法用于跳过前面所有满足条件的事件。<br>一旦遇到不满足条件的事件，之后就不会再跳过了</p>
 </blockquote>
 <h2 id="使用样例-3"><a href="#使用样例-3" class="headerlink" title="使用样例"></a>使用样例</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"> </div><div class="line"><span class="type">Observable</span>.of(<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)</div><div class="line">    .skipWhile &#123; $<span class="number">0</span> &lt; <span class="number">4</span> &#125;</div><div class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</div><div class="line">    .disposed(by: disposeBag)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//print</span></div><div class="line"><span class="number">4</span></div><div class="line"><span class="number">5</span></div><div class="line"><span class="number">6</span></div></pre></td></tr></table></figure>
-<p><span id="⑤skipUntil">⑤skipUntil</span></p>
+<p><span id="⑤skipUntil"></span></p>
 <h1 id="⑤skipUntil"><a href="#⑤skipUntil" class="headerlink" title="⑤skipUntil"></a>⑤skipUntil</h1><h2 id="基本介绍-3"><a href="#基本介绍-3" class="headerlink" title="基本介绍"></a>基本介绍</h2><blockquote>
 <p>同上面的 takeUntil 一样，skipUntil 除了订阅源 Observable 外，通过 skipUntil 方法我们还可以监视另外一个 Observable， 即 notifier 。<br>与 takeUntil 相反的是。源 Observable 序列事件默认会一直跳过，直到 notifier 发出值或 complete 通知。</p>
 </blockquote>
@@ -481,8 +481,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/19/RxSwift/Grammar/Operators-连接性操作/" rel="next" title="Swift-RxSwift-连接性操作">
-                <i class="fa fa-chevron-left"></i> Swift-RxSwift-连接性操作
+              <a href="/2017/12/19/RxSwift/Grammar/Operators-错误处理操作/" rel="next" title="Swift-RxSwift-错误处理操作">
+                <i class="fa fa-chevron-left"></i> Swift-RxSwift-错误处理操作
               </a>
             
           </div>
