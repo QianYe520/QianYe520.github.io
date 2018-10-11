@@ -83,7 +83,7 @@
 
 
 
-  <meta name="keywords" content="RxSwift,Grammar," />
+  <meta name="keywords" content="Grammar,RxSwift," />
 
 
 
@@ -95,7 +95,7 @@
 
 
 <meta name="description" content="Completable基本介绍 Completable 是 Observable 的另外一个版本不像 Observable 可以发出多个元素，它要么只能产生一个 completed 事件，要么产生一个 error 事件   不会发出任何元素 只会发出一个 completed 事件或者一个 error 事件 不会共享状态变化  应用场景 Completable 和 Observable 有点类似适用">
-<meta name="keywords" content="RxSwift,Grammar">
+<meta name="keywords" content="Grammar,RxSwift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RxSwift-Grammar-特征序列Traits-Completable">
 <meta property="og:url" content="http://yoursite.com/2018/03/27/RxSwift/Grammar/Traits-Completable/index.html">
@@ -438,11 +438,11 @@
 <blockquote>
 <p>接着我们可以使用如下方式使用这个 Completable： </p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">cacheLocally()</div><div class="line">    .subscribe &#123; completable <span class="keyword">in</span></div><div class="line">        <span class="keyword">switch</span> completable &#123;</div><div class="line">        <span class="keyword">case</span> .completed:</div><div class="line">            <span class="built_in">print</span>(<span class="string">"保存成功!"</span>)</div><div class="line">        <span class="keyword">case</span> .error(<span class="keyword">let</span> error):</div><div class="line">            <span class="built_in">print</span>(<span class="string">"保存失败: <span class="subst">\(error.localizedDescription)</span>"</span>)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">cacheLocally()</div><div class="line">    .subscribe &#123; completable <span class="keyword">in</span></div><div class="line">        <span class="keyword">switch</span> completable &#123;</div><div class="line">        <span class="keyword">case</span> .completed:</div><div class="line">            <span class="built_in">print</span>(<span class="string">"保存成功!"</span>)</div><div class="line">        <span class="keyword">case</span> .error(<span class="keyword">let</span> error):</div><div class="line">            <span class="built_in">print</span>(<span class="string">"保存失败: \(error.localizedDescription)"</span>)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
 <blockquote>
 <p>也可以使用 subscribe(onCompleted:onError:) 这种方式：</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">cacheLocally()</div><div class="line">    .subscribe(onCompleted: &#123;</div><div class="line">         <span class="built_in">print</span>(<span class="string">"保存成功!"</span>)</div><div class="line">    &#125;, onError: &#123; error <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(<span class="string">"保存失败: <span class="subst">\(error.localizedDescription)</span>"</span>)</div><div class="line">    &#125;)</div><div class="line">    .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">cacheLocally()</div><div class="line">    .subscribe(onCompleted: &#123;</div><div class="line">         <span class="built_in">print</span>(<span class="string">"保存成功!"</span>)</div><div class="line">    &#125;, onError: &#123; error <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(<span class="string">"保存失败: \(error.localizedDescription)"</span>)</div><div class="line">    &#125;)</div><div class="line">    .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -462,9 +462,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
-          
             <a href="/tags/Grammar/" rel="tag"># Grammar</a>
+          
+            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
           
         </div>
       
@@ -477,8 +477,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/27/RxSwift/Grammar/UIBindingObserver/" rel="next" title="RxSwift-Grammar-UIBindingObserver">
-                <i class="fa fa-chevron-left"></i> RxSwift-Grammar-UIBindingObserver
+              <a href="/2018/03/27/RxSwift/Grammar/shareReplay/" rel="next" title="RxSwift-Grammar-shareReplay">
+                <i class="fa fa-chevron-left"></i> RxSwift-Grammar-shareReplay
               </a>
             
           </div>
@@ -487,8 +487,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/27/RxSwift/Grammar/shareReplay/" rel="prev" title="RxSwift-Grammar-shareReplay">
-                RxSwift-Grammar-shareReplay <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/27/RxSwift/Grammar/Traits-Maybe/" rel="prev" title="RxSwift-Grammar-特征序列Traits-Maybe">
+                RxSwift-Grammar-特征序列Traits-Maybe <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -566,7 +566,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">245</span>
+                  <span class="site-state-item-count">246</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -577,7 +577,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">108</span>
+                  <span class="site-state-item-count">109</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
