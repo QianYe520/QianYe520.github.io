@@ -1418,13 +1418,12 @@ Rx 本身可以说是一种跨平台的标准，它有自己的社区论坛，�
       
         
           
-          订阅 Observable
-有了Observable，还要使用 subscribe() 方法来订阅它，接收它发出的 Event
+          监听事件的生命周期doOn 介绍
+可以使用 doOn 方法来监听事件的生命周期，它会在每一次事件发送前被调用同时它和 subscribe 一样，可以通过不同的 block 回调处理不同类型的 event。比如
 
-方法1
-❶使用 subscribe() 订阅一个 Observable 对象该方法的 block 的回调参数就是被发出的 event 事件，将其直接打印出来
 
-let o
+do(onNext:) 方法就是在 subscribe(onNext:) 前调用
+而 
           ...
           <!--noindex-->
           <div class="post-button text-center">
