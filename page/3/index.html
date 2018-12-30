@@ -1800,7 +1800,7 @@ Single 是 Observable 的另外一个版本它介于 Single 和 Completable 之�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/shareReplay/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/Traits-Completable/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -1819,7 +1819,7 @@ Single 是 Observable 的另外一个版本它介于 Single 和 Completable 之�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/shareReplay/" itemprop="url">RxSwift-Grammar-shareReplay</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/Traits-Completable/" itemprop="url">RxSwift-Grammar-特征序列Traits-Completable</a></h1>
         
 
         <div class="post-meta">
@@ -1904,11 +1904,16 @@ Single 是 Observable 的另外一个版本它介于 Single 和 Completable 之�
       
         
           
-          ⑤shareReplaylet disposeBag = DisposeBag()let observable = Observable.just("🤣")                           .map&#123;                                 p
+          Completable基本介绍
+Completable 是 Observable 的另外一个版本不像 Observable 可以发出多个元素，它要么只能产生一个 completed 事件，要么产生一个 error 事件
+
+
+不会发出任何元素
+只会发出一个 completed 事件或者一个 error
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Grammar/shareReplay/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Grammar/Traits-Completable/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
