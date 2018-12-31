@@ -83,7 +83,7 @@
 
 
 
-  <meta name="keywords" content="Swift,RxSwift," />
+  <meta name="keywords" content="RxSwift,Swift," />
 
 
 
@@ -95,7 +95,7 @@
 
 
 <meta name="description" content="①map ②flatMap ③flatMapLatest ④scan ⑤groupBy ⑥buffer ⑦window ⑧concatMap  变换操作 ①map基本介绍 通过使用一个闭包函数将原来的Observable序列sequence转换为一个新的Observable序列sequence   let disposeBag = DisposeBag()Observable.of(1,2,3)">
-<meta name="keywords" content="Swift,RxSwift">
+<meta name="keywords" content="RxSwift,Swift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift-RxSwift-Transforming Observables-变换操作">
 <meta property="og:url" content="http://yoursite.com/2017/12/19/RxSwift/Grammar/07-01-操作符-转换/index.html">
@@ -458,7 +458,7 @@
 <h1 id="⑤groupBy"><a href="#⑤groupBy" class="headerlink" title="⑤groupBy"></a>⑤groupBy</h1><h2 id="基本介绍-4"><a href="#基本介绍-4" class="headerlink" title="基本介绍"></a>基本介绍</h2><blockquote>
 <p>groupBy 操作符将源 Observable 分解为多个子 Observable，然后将这些子 Observable 发送出来<br>也就是说该操作符会将元素通过某个键进行分组，然后将分组后的元素序列以 Observable 的形态发送出来</p>
 </blockquote>
-<h2 id="使用样例"><a href="#使用样例" class="headerlink" title="使用样例"></a>使用样例</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"> </div><div class="line"><span class="comment">//将奇数偶数分成两组</span></div><div class="line"><span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.of(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</div><div class="line">    .groupBy(keySelector: &#123; (element) -&gt; <span class="type">String</span> <span class="keyword">in</span></div><div class="line">        <span class="keyword">return</span> element % <span class="number">2</span> == <span class="number">0</span> ? <span class="string">"偶数"</span> : <span class="string">"基数"</span></div><div class="line">    &#125;)</div><div class="line">    .subscribe &#123; (event) <span class="keyword">in</span></div><div class="line">        <span class="keyword">switch</span> event &#123;</div><div class="line">        <span class="keyword">case</span> .next(<span class="keyword">let</span> group):</div><div class="line">            group.asObservable().subscribe(&#123; (event) <span class="keyword">in</span></div><div class="line">                <span class="built_in">print</span>(<span class="string">"key：<span class="subst">\(group.key)</span>    event：<span class="subst">\(event)</span>"</span>)</div><div class="line">            &#125;)</div><div class="line">            .disposed(by: disposeBag)</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            <span class="built_in">print</span>(<span class="string">""</span>)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">.disposed(by: disposeBag)</div><div class="line"></div><div class="line"><span class="comment">//print</span></div><div class="line">key: 偶数 event: next(<span class="number">0</span>)</div><div class="line">key: 奇数 event: next(<span class="number">1</span>)</div><div class="line">key: 偶数 event: next(<span class="number">2</span>)</div><div class="line">key: 奇数 event: next(<span class="number">3</span>)</div><div class="line">key: 偶数 event: next(<span class="number">4</span>)</div><div class="line">key: 奇数 event: next(<span class="number">5</span>)</div><div class="line">key: 偶数 event: completed</div><div class="line">key: 奇数 event: completed</div></pre></td></tr></table></figure>
+<h2 id="使用样例"><a href="#使用样例" class="headerlink" title="使用样例"></a>使用样例</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"> </div><div class="line"><span class="comment">//将奇数偶数分成两组</span></div><div class="line"><span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.of(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</div><div class="line">    .groupBy(keySelector: &#123; (element) -&gt; <span class="type">String</span> <span class="keyword">in</span></div><div class="line">        <span class="keyword">return</span> element % <span class="number">2</span> == <span class="number">0</span> ? <span class="string">"偶数"</span> : <span class="string">"基数"</span></div><div class="line">    &#125;)</div><div class="line">    .subscribe &#123; (event) <span class="keyword">in</span></div><div class="line">        <span class="keyword">switch</span> event &#123;</div><div class="line">        <span class="keyword">case</span> .next(<span class="keyword">let</span> group):</div><div class="line">            group.asObservable().subscribe(&#123; (event) <span class="keyword">in</span></div><div class="line">                <span class="built_in">print</span>(<span class="string">"key：\(group.key)    event：\(event)"</span>)</div><div class="line">            &#125;)</div><div class="line">            .disposed(by: disposeBag)</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            <span class="built_in">print</span>(<span class="string">""</span>)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">.disposed(by: disposeBag)</div><div class="line"></div><div class="line"><span class="comment">//print</span></div><div class="line">key: 偶数 event: next(<span class="number">0</span>)</div><div class="line">key: 奇数 event: next(<span class="number">1</span>)</div><div class="line">key: 偶数 event: next(<span class="number">2</span>)</div><div class="line">key: 奇数 event: next(<span class="number">3</span>)</div><div class="line">key: 偶数 event: next(<span class="number">4</span>)</div><div class="line">key: 奇数 event: next(<span class="number">5</span>)</div><div class="line">key: 偶数 event: completed</div><div class="line">key: 奇数 event: completed</div></pre></td></tr></table></figure>
 <h1 id="⑥buffer"><a href="#⑥buffer" class="headerlink" title="⑥buffer"></a>⑥buffer</h1><h2 id="❶基本介绍"><a href="#❶基本介绍" class="headerlink" title="❶基本介绍"></a>❶基本介绍</h2><ul>
 <li>buffer 方法作用是缓冲组合，第一个参数是缓冲时间，第二个参数是缓冲个数，第三个参数是线程</li>
 <li>该方法简单来说就是缓存 Observable 中发出的新元素，当元素达到某个数量，或者经过了特定的时间，它就会将这个元素集合发送出来</li>
@@ -494,9 +494,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Swift/" rel="tag"># Swift</a>
-          
             <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
           
         </div>
       

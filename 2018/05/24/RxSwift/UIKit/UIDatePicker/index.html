@@ -83,7 +83,7 @@
 
 
 
-  <meta name="keywords" content="Swift,UIKit,RxSwift," />
+  <meta name="keywords" content="UIKit,RxSwift,Swift," />
 
 
 
@@ -95,7 +95,7 @@
 
 
 <meta name="description" content="UIDatePicker disposeBag  let disposeBag = DisposeBag()  myDatePicker日期选择器  fileprivate lazy var myDatePicker:UIDatePicker = &amp;#123;    let myDatePicker = UIDatePicker()    myDatePicker.frame = CGRect(x">
-<meta name="keywords" content="Swift,UIKit,RxSwift">
+<meta name="keywords" content="UIKit,RxSwift,Swift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RxSwift-UIKit-UIDatePicker-日期选择器">
 <meta property="og:url" content="http://yoursite.com/2018/05/24/RxSwift/UIKit/UIDatePicker/index.html">
@@ -459,7 +459,7 @@
 <blockquote>
 <p>绑定button标题</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">Observable</span>.combineLatest(leftTimeVariable.asObservable(),countDownStoppedVariable.asObservable())&#123;</div><div class="line">             leftTimeValue, countDownStoppedValue <span class="keyword">in</span></div><div class="line">            <span class="keyword">if</span> countDownStoppedValue &#123;</div><div class="line">                <span class="keyword">return</span> <span class="string">"开始"</span></div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                 <span class="keyword">return</span> <span class="string">"倒计时开始，还有 <span class="subst">\(Int(leftTimeValue)</span>) 秒..."</span></div><div class="line">            &#125;</div><div class="line">        &#125;.bind(to: timeStartBtn.rx.title())</div><div class="line">        .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">Observable</span>.combineLatest(leftTimeVariable.asObservable(),countDownStoppedVariable.asObservable())&#123;</div><div class="line">             leftTimeValue, countDownStoppedValue <span class="keyword">in</span></div><div class="line">            <span class="keyword">if</span> countDownStoppedValue &#123;</div><div class="line">                <span class="keyword">return</span> <span class="string">"开始"</span></div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                 <span class="keyword">return</span> <span class="string">"倒计时开始，还有 \(Int(leftTimeValue)) 秒..."</span></div><div class="line">            &#125;</div><div class="line">        &#125;.bind(to: timeStartBtn.rx.title())</div><div class="line">        .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
 <blockquote>
 <p>绑定button和datepicker状态（在倒计过程中，按钮和时间选择组件不可用）</p>
 </blockquote>
@@ -491,11 +491,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Swift/" rel="tag"># Swift</a>
-          
             <a href="/tags/UIKit/" rel="tag"># UIKit</a>
           
             <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
           
         </div>
       
