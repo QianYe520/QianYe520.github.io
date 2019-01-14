@@ -83,7 +83,7 @@
 
 
 
-  <meta name="keywords" content="Swift,UIKit,RxSwift," />
+  <meta name="keywords" content="UIKit,RxSwift,Swift," />
 
 
 
@@ -95,7 +95,7 @@
 
 
 <meta name="description" content="UISlider disposeBag  let disposeBag = DisposeBag()  滑块mySlider  fileprivate lazy var mySlider: UISlider = &amp;#123;    let mySlider = UISlider()    mySlider.frame = CGRect(x: 60, y: 100, width: 300, heig">
-<meta name="keywords" content="Swift,UIKit,RxSwift">
+<meta name="keywords" content="UIKit,RxSwift,Swift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RxSwift-UIKit-UISlider-01">
 <meta property="og:url" content="http://yoursite.com/2018/05/22/RxSwift/UIKit/UISlider-01/index.html">
@@ -427,7 +427,7 @@
 <blockquote>
 <p>输出滑动值</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">mySlider.rx</div><div class="line">        .value</div><div class="line">        .asObservable()</div><div class="line">        .subscribe(&#123;</div><div class="line">                   <span class="built_in">print</span>(<span class="string">"当前值为：<span class="subst">\($<span class="number">0</span>)</span>"</span>)</div><div class="line">                &#125;)</div><div class="line">        .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">mySlider.rx</div><div class="line">        .value</div><div class="line">        .asObservable()</div><div class="line">        .subscribe(&#123;</div><div class="line">                   <span class="built_in">print</span>(<span class="string">"当前值为：\($0)"</span>)</div><div class="line">                &#125;)</div><div class="line">        .disposed(by: disposeBag)</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -446,11 +446,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Swift/" rel="tag"># Swift</a>
-          
             <a href="/tags/UIKit/" rel="tag"># UIKit</a>
           
             <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
           
         </div>
       
@@ -463,8 +463,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/20/RxSwift/Grammar/Traits-ControlEvent/" rel="next" title="RxSwift-Grammar-特征序列Traits-ControlEvent">
-                <i class="fa fa-chevron-left"></i> RxSwift-Grammar-特征序列Traits-ControlEvent
+              <a href="/2018/05/22/RxSwift/UIKit/UIButton-01/" rel="next" title="RxSwift-UIKit-UIButton-响应式扩展-01">
+                <i class="fa fa-chevron-left"></i> RxSwift-UIKit-UIButton-响应式扩展-01
               </a>
             
           </div>
@@ -473,8 +473,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/05/22/RxSwift/UIKit/UIButton-01/" rel="prev" title="RxSwift-UIKit-UIButton-响应式扩展-01">
-                RxSwift-UIKit-UIButton-响应式扩展-01 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/22/RxSwift/UIKit/UISwitch-01/" rel="prev" title="RxSwift-UIKit-UISwitch-响应式扩展-01">
+                RxSwift-UIKit-UISwitch-响应式扩展-01 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
