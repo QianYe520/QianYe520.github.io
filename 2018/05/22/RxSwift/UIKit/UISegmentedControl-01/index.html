@@ -431,7 +431,7 @@
 <blockquote>
 <p>实现当 UISegmentedControl 选中项改变时，输出当前选中项索引值</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">segmentedCtl.rx.selectedSegmentIndex.asObservable().subscribe(onNext:&#123;</div><div class="line">           <span class="built_in">print</span>(<span class="string">"当前项：\($0)"</span>)</div><div class="line">       &#125;).disposed(by: disposeBag)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">segmentedCtl.rx.selectedSegmentIndex.asObservable().subscribe(onNext:&#123;</div><div class="line">           <span class="built_in">print</span>(<span class="string">"当前项：<span class="subst">\($<span class="number">0</span>)</span>"</span>)</div><div class="line">       &#125;).disposed(by: disposeBag)</div></pre></td></tr></table></figure>
 <blockquote>
 <p>创建一个当前需要显示的图片的可观察序列</p>
 </blockquote>
@@ -562,7 +562,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">247</span>
+                  <span class="site-state-item-count">248</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -573,7 +573,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">109</span>
+                  <span class="site-state-item-count">110</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -637,7 +637,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
