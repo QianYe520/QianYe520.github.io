@@ -433,7 +433,7 @@
 <h2 id="使用样例"><a href="#使用样例" class="headerlink" title="使用样例"></a>使用样例</h2><blockquote>
 <p>创建 Single 和创建 Observable 非常相似<br>下面代码我们定义一个用于生成网络请求 Single 的函数</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">//获取豆瓣某频道下的歌曲信息</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">getPlaylist</span><span class="params">(<span class="number">_</span> channel: String)</span></span> -&gt; <span class="type">Single</span>&lt;[<span class="type">String</span>: <span class="type">Any</span>]&gt; &#123;</div><div class="line">    <span class="keyword">return</span> <span class="type">Single</span>&lt;[<span class="type">String</span>: <span class="type">Any</span>]&gt;.create &#123; single <span class="keyword">in</span></div><div class="line">        <span class="keyword">let</span> url = <span class="string">"https://douban.fm/j/mine/playlist?"</span></div><div class="line">            + <span class="string">"type=n&amp;channel=<span class="subst">\(channel)</span>&amp;from=mainsite"</span></div><div class="line">        <span class="keyword">let</span> task = <span class="type">URLSession</span>.shared.dataTask(with: <span class="type">URL</span>(string: url)!) &#123; data, <span class="number">_</span>, error <span class="keyword">in</span></div><div class="line">            <span class="keyword">if</span> <span class="keyword">let</span> error = error &#123;</div><div class="line">                single(.error(error))</div><div class="line">                <span class="keyword">return</span></div><div class="line">            &#125;</div><div class="line">             </div><div class="line">            <span class="keyword">guard</span> <span class="keyword">let</span> data = data,</div><div class="line">                <span class="keyword">let</span> json = <span class="keyword">try</span>? <span class="type">JSONSerialization</span>.jsonObject(with: data,</div><div class="line">                                                             options: .mutableLeaves),</div><div class="line">                <span class="keyword">let</span> result = json <span class="keyword">as</span>? [<span class="type">String</span>: <span class="type">Any</span>] <span class="keyword">else</span> &#123;</div><div class="line">                    single(.error(<span class="type">DataError</span>.cantParseJSON))</div><div class="line">                    <span class="keyword">return</span></div><div class="line">            &#125;</div><div class="line">             </div><div class="line">            single(.success(result))</div><div class="line">        &#125;</div><div class="line">         </div><div class="line">        task.resume()</div><div class="line">         </div><div class="line">        <span class="keyword">return</span> <span class="type">Disposables</span>.create &#123; task.cancel() &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">//与数据相关的错误类型</span></div><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">DataError</span>: <span class="title">Error</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> cantParseJSON</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">//获取豆瓣某频道下的歌曲信息</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">getPlaylist</span><span class="params">(<span class="number">_</span> channel: String)</span></span> -&gt; <span class="type">Single</span>&lt;[<span class="type">String</span>: <span class="type">Any</span>]&gt; &#123;</div><div class="line">    <span class="keyword">return</span> <span class="type">Single</span>&lt;[<span class="type">String</span>: <span class="type">Any</span>]&gt;.create &#123; single <span class="keyword">in</span></div><div class="line">        <span class="keyword">let</span> url = <span class="string">"https://douban.fm/j/mine/playlist?"</span></div><div class="line">            + <span class="string">"type=n&amp;channel=\(channel)&amp;from=mainsite"</span></div><div class="line">        <span class="keyword">let</span> task = <span class="type">URLSession</span>.shared.dataTask(with: <span class="type">URL</span>(string: url)!) &#123; data, <span class="number">_</span>, error <span class="keyword">in</span></div><div class="line">            <span class="keyword">if</span> <span class="keyword">let</span> error = error &#123;</div><div class="line">                single(.error(error))</div><div class="line">                <span class="keyword">return</span></div><div class="line">            &#125;</div><div class="line">             </div><div class="line">            <span class="keyword">guard</span> <span class="keyword">let</span> data = data,</div><div class="line">                <span class="keyword">let</span> json = <span class="keyword">try</span>? <span class="type">JSONSerialization</span>.jsonObject(with: data,</div><div class="line">                                                             options: .mutableLeaves),</div><div class="line">                <span class="keyword">let</span> result = json <span class="keyword">as</span>? [<span class="type">String</span>: <span class="type">Any</span>] <span class="keyword">else</span> &#123;</div><div class="line">                    single(.error(<span class="type">DataError</span>.cantParseJSON))</div><div class="line">                    <span class="keyword">return</span></div><div class="line">            &#125;</div><div class="line">             </div><div class="line">            single(.success(result))</div><div class="line">        &#125;</div><div class="line">         </div><div class="line">        task.resume()</div><div class="line">         </div><div class="line">        <span class="keyword">return</span> <span class="type">Disposables</span>.create &#123; task.cancel() &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">//与数据相关的错误类型</span></div><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">DataError</span>: <span class="title">Error</span> </span>&#123;</div><div class="line">    <span class="keyword">case</span> cantParseJSON</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>接着我们可以使用如下方式使用这个 Single： </p>
 </blockquote>
@@ -480,8 +480,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/27/RxSwift/Grammar/Dispose和DisposeBag/" rel="next" title="RxSwift-Grammar-Dispose和DisposeBag">
-                <i class="fa fa-chevron-left"></i> RxSwift-Grammar-Dispose和DisposeBag
+              <a href="/2018/03/27/RxSwift/Grammar/observeOn()和subscribeOn()/" rel="next" title="RxSwift-Grammar-observeOn()和subscribeOn()">
+                <i class="fa fa-chevron-left"></i> RxSwift-Grammar-observeOn()和subscribeOn()
               </a>
             
           </div>
@@ -490,8 +490,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/27/RxSwift/Grammar/observeOn()和subscribeOn()/" rel="prev" title="RxSwift-Grammar-observeOn()和subscribeOn()">
-                RxSwift-Grammar-observeOn()和subscribeOn() <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/27/RxSwift/Grammar/Driver/" rel="prev" title="RxSwift-Grammar-Driver">
+                RxSwift-Grammar-Driver <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -569,7 +569,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">247</span>
+                  <span class="site-state-item-count">248</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -580,7 +580,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">109</span>
+                  <span class="site-state-item-count">110</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
