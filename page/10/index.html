@@ -1812,7 +1812,7 @@ enum MyError: Error &#123;    case A    case B&#125;
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/19/RxSwift/Grammar/Operators-错误处理操作/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/19/RxSwift/Grammar/Operators-连接性操作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -1831,7 +1831,7 @@ enum MyError: Error &#123;    case A    case B&#125;
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/19/RxSwift/Grammar/Operators-错误处理操作/" itemprop="url">Swift-RxSwift-错误处理操作</a></h1>
+                <a class="post-title-link" href="/2017/12/19/RxSwift/Grammar/Operators-连接性操作/" itemprop="url">Swift-RxSwift-连接性操作</a></h1>
         
 
         <div class="post-meta">
@@ -1916,21 +1916,17 @@ enum MyError: Error &#123;    case A    case B&#125;
       
         
           
-          错误处理操作
-①catchErrorJustReturn
-②catchError
-③retry
-④debug
+          连接性操作
+①publish
+②replay
+③multicast
 
-①catchErrorJustReturn
-①catchErrorJustReturn
-遇到error事件的时候，就return一个值，然后结束
 
-let disposeBag = Dis
+Connectable Observable有订阅时不开始发射事件消息，而是仅当调用它们的connect（）方法时。这样就可以等待所有我们想要的订阅者都已经订阅了以后，再开始发出事件消息，这样能保证我们想要的所有订阅者都能接收到
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/19/RxSwift/Grammar/Operators-错误处理操作/#more" rel="contents">
+            <a class="btn" href="/2017/12/19/RxSwift/Grammar/Operators-连接性操作/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
