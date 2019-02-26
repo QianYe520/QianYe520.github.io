@@ -311,7 +311,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/Subscribe/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/07-09-Operator-自定义操作符/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -330,7 +330,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/Subscribe/" itemprop="url">RxSwift-Grammar-Subscribe</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/07-09-Operator-自定义操作符/" itemprop="url">RxSwift-Grammar-自定义operator</a></h1>
         
 
         <div class="post-meta">
@@ -415,16 +415,14 @@
       
         
           
-          subscribe 和 subscribe(onNext:)
-Subscribe
+          自定义operator
+自定义操作符很简单，官方推荐尽量使用标准的操作符，但是你也可以定义自己的操作符，文档上说有两种方法，这里介绍一下常用的一种方法吧自定义一个map操作符
 
-
-subscribe是订阅sequence发出的事件，比如next事件，error事件等
-而subscribe(onNext:)是监听sequence发出的next事件中的element进行处理，他会忽略error和
+ extension ObserverType &#123;    func myMap&lt;R&gt;(transfo
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Grammar/Subscribe/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Grammar/07-09-Operator-自定义操作符/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
