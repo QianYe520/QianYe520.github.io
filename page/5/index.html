@@ -639,7 +639,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/observeOn()和subscribeOn()/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/07-09-Operator-自定义操作符/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -658,7 +658,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/observeOn()和subscribeOn()/" itemprop="url">RxSwift-Grammar-observeOn()和subscribeOn()</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/07-09-Operator-自定义操作符/" itemprop="url">RxSwift-Grammar-自定义operator</a></h1>
         
 
         <div class="post-meta">
@@ -743,30 +743,14 @@
       
         
           
-          observeOn()和subscribeOn()
+          自定义operator
+自定义操作符很简单，官方推荐尽量使用标准的操作符，但是你也可以定义自己的操作符，文档上说有两种方法，这里介绍一下常用的一种方法吧自定义一个map操作符
 
-
-
-
-
-
-
-
-subscribeOn()
-设置起点在哪个线程
-
-
-observeOn()
-置了后续工作在哪个线程
-
-
-
-
-1)所有动作都发生在当前的默认线程2)observeOn()转换线程到主线程，下面所有的操作都在主线程3)subscribe
+ extension ObserverType &#123;    func myMap&lt;R&gt;(transfo
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Grammar/observeOn()和subscribeOn()/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Grammar/07-09-Operator-自定义操作符/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
