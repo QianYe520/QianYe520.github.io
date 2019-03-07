@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<meta name="theme-color" content="#222">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="起点掘金站长发布一篇文章《如何建立一个可持续激励优质内容的社区》 感觉与YoBook很多相同处，就认真看下，提取部分段落，谈下自己见解。 思考清楚 原文  自公司调整之后，我一直告诉自己，即使慢一点，再慢一点，都没有关系，但一定要尽可能思考清楚。但同时，思考清楚的意思并不是所谓的考虑的“面面俱到”进而不会犯错，而是把目标定清楚，哪怕难也有尝试的动力  YoBook- 思考  1.思考清楚YoBoo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="YoBook产品2期-功能分析">
+<meta property="og:url" content="http://yoursite.com/2019/03/07/YoBook/YoBook产品未来思考：基于掘金老大思考/index.html">
+<meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
+<meta property="og:description" content="起点掘金站长发布一篇文章《如何建立一个可持续激励优质内容的社区》 感觉与YoBook很多相同处，就认真看下，提取部分段落，谈下自己见解。 思考清楚 原文  自公司调整之后，我一直告诉自己，即使慢一点，再慢一点，都没有关系，但一定要尽可能思考清楚。但同时，思考清楚的意思并不是所谓的考虑的“面面俱到”进而不会犯错，而是把目标定清楚，哪怕难也有尝试的动力  YoBook- 思考  1.思考清楚YoBoo">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-07T05:33:20.786Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="YoBook产品2期-功能分析">
+<meta name="twitter:description" content="起点掘金站长发布一篇文章《如何建立一个可持续激励优质内容的社区》 感觉与YoBook很多相同处，就认真看下，提取部分段落，谈下自己见解。 思考清楚 原文  自公司调整之后，我一直告诉自己，即使慢一点，再慢一点，都没有关系，但一定要尽可能思考清楚。但同时，思考清楚的意思并不是所谓的考虑的“面面俱到”进而不会犯错，而是把目标定清楚，哪怕难也有尝试的动力  YoBook- 思考  1.思考清楚YoBoo">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/07/YoBook/YoBook产品未来思考：基于掘金老大思考/"/>
+
+
+
+
+
+  <title>YoBook产品2期-功能分析 | 千夜、おれはおまえをずっと爱している</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">千夜、おれはおまえをずっと爱している</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/07/YoBook/YoBook产品未来思考：基于掘金老大思考/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">YoBook产品2期-功能分析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-07T11:24:17+08:00">
+                2019-03-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/A-YoBook/" itemprop="url" rel="index">
+                    <span itemprop="name">A-YoBook</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="起点"><a href="#起点" class="headerlink" title="起点"></a>起点</h1><p>掘金站长发布一篇文章<a href="https://juejin.im/post/5c7b4f6051882540c9671192" target="_blank" rel="external">《如何建立一个可持续激励优质内容的社区》</a></p>
+<p>感觉与YoBook很多相同处，就认真看下，提取部分段落，谈下自己见解。</p>
+<h2 id="思考清楚"><a href="#思考清楚" class="headerlink" title="思考清楚"></a>思考清楚</h2><blockquote>
+<p>原文</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">自公司调整之后，我一直告诉自己，即使慢一点，再慢一点，都没有关系，但一定要尽可能思考清楚。但同时，思考清楚的意思并不是所谓的考虑的“面面俱到”进而不会犯错，而是把目标定清楚，哪怕难也有尝试的动力</div></pre></td></tr></table></figure>
+<blockquote>
+<p>YoBook- 思考</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">1.思考清楚</div><div class="line">YoBook范围: 简书(偏写作)&gt;掘金（IT）&gt;YoBook(iOS)</div><div class="line">YoBook功能: </div><div class="line">       1.文章 增删改</div><div class="line">       2.小册子形成合集</div><div class="line">       3.本地搜索  </div><div class="line">       4.提供开发指南   </div><div class="line">       5.Demo分析指南  </div><div class="line">       6.推送  </div><div class="line">       7.分享(有些东西还是网页展开看，比较好)</div><div class="line">       8.Xcode4app网站App化+抖音模式化</div></pre></td></tr></table></figure>
+<h2 id="社区的根本价值"><a href="#社区的根本价值" class="headerlink" title="社区的根本价值"></a>社区的根本价值</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">就是如何有效地制定一个规则来让掘金有一个更好的内容环境，说白了就是有更多好的原创技术内容。再拆解下来，就是：</div><div class="line">    如何「引导」用户生产好内容？（注意，这里的好是掘金团队认定的好）</div><div class="line">    如何「奖励」生产了好内容的人？</div><div class="line">    如何「惩罚」不生产好内容的人？</div></pre></td></tr></table></figure>
+<blockquote>
+<p>YoBook-价值体现在模式</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">YoBook: 1.文章  定位iOS，范围小,可控性质强</div><div class="line">        2.合集  申请制度/押金制度 筛选出想写博客的程序员，可持续注入优质文章</div><div class="line"> 有条件开放写作权限, 内容原创知识产权登记，一次250费用，目前还不清楚具体流程是什么。</div></pre></td></tr></table></figure>
+<h2 id="社区与社交"><a href="#社区与社交" class="headerlink" title="社区与社交"></a>社区与社交</h2><blockquote>
+<p>原文</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">社交 = 因人而关注内容</div><div class="line">社区 = 因内容而关注人</div></pre></td></tr></table></figure>
+<blockquote>
+<p>YoBook-选择  内容平台的社区</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">用YoBook是来解决开发/学习iOS相关的问题</div><div class="line">YoBook提供解决方案</div></pre></td></tr></table></figure>
+<h2 id="社区三要素"><a href="#社区三要素" class="headerlink" title="社区三要素"></a>社区三要素</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">定位：用户是谁，来社区要看什么内容</div><div class="line">文化：社区推崇怎样的内容和用户</div><div class="line">规则：社区如何激励和惩罚用户</div></pre></td></tr></table></figure>
+<blockquote>
+<p>YoBook-三要素</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">定位： iOS开发工程师</div><div class="line">文化： OC+Swift文章/解决方案</div><div class="line">规则： 开发问题/瓶颈 &lt;----&gt;知识付费</div></pre></td></tr></table></figure>
+<h1 id="评论区1"><a href="#评论区1" class="headerlink" title="评论区1"></a>评论区1</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">站长啊，顺便提个意见，掘金的搜索模式能改下么，每次修改关键字都得不到自己想要的，而且能不能加个搜索结果的时间排序，有时候搜到的东西排序很乱，</div></pre></td></tr></table></figure>
+<blockquote>
+<p>个人理解</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">搜索领域 谷歌 百度不比你强大？为什么要用你的搜索？</div><div class="line">首先，我们看到 作者明确一个基础问题：《如何建立一个可持续激励优质内容的社区》</div><div class="line">如果谷歌百度都能解决问题，要内容的社区有什么用？搜索解决不了问题，下次不会再来了啦！</div><div class="line">内容的社区应该分析思路是什么？分析下平台目的是什么？你这平台你想干什么？</div><div class="line"></div><div class="line">方式1：遇到问题   选择-百度</div><div class="line">  搜索到解决方案  解决后，顶多链接添加到收藏夹，估计一万年都不会在记得这个收藏</div><div class="line"></div><div class="line">方式2： 只用 本地搜索</div><div class="line">如果搜索不到 - 还不如去用百度  果断放弃你这个平台</div><div class="line"></div><div class="line">既然是内容平台，引导用用户解决这个问题，让用户变为作者，为其他用户服务</div><div class="line"></div><div class="line">遇到问题--  搜索不到  ---百度搜索 ---问题总结发布文章到平台---其他用户 --搜索相同问题 ---出现搜索结果 --付费解决问题---促进作者持续写文章</div><div class="line"></div><div class="line"></div><div class="line">掘金遇到搜索问题，跟xcode4app网站遇到搜索问题一样的，我之前总说xcode4app网站我很喜欢，但是他里面搜索稀巴烂。为什么？里面那么多好demo，当我有开发需求时候，在xcode4app能及时帮到我么？答案是基本不可能！</div><div class="line"></div><div class="line">本地搜索+促进写作 这种模式可持续发展之路，不仅解决客户需求，还要想下平台需求得到解决了么？平台需要 可持续激励优质内容持续输入，然后粘粘用户。</div></pre></td></tr></table></figure>
+<h1 id="评论区2"><a href="#评论区2" class="headerlink" title="评论区2"></a>评论区2</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">不知道阴明兄是否看过《认知盈余》这本书，里面有个观点： “要么拥有大量用户，要么拥有活跃的用户群，要么拥有志同道合的用户群。只能三选二” 阴明兄认同吗？认同的话未来掘金如何做选择题呢？</div></pre></td></tr></table></figure>
+<blockquote>
+<p>个人观点</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">总想用户千千万，关键问题你能向那些用户真正传递你所谓的内容价值？</div><div class="line">所以，YoBook目前只做iOS，面对iOS工程师</div><div class="line">免费+付费  就决定你为什么样用户服务</div></pre></td></tr></table></figure>
+<h1 id="评论区3"><a href="#评论区3" class="headerlink" title="评论区3"></a>评论区3</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">我觉得可能有两点需要注意吧。一个是对于写作者来说可以获取什么？我前几年一直在简书写作，看到阅读量和点赞数增长激励了我写作下去，补充一下，掘金的通知文章点赞和用户关注混合在一起感觉不太舒服。第二个是对于读者来说可以获得什么？如果是因为搜索引擎搜索问题而不小心进入掘金网站，他为什么会停留在这个网站。如果已经关注了掘金，后续为什么要每天来看掘金。一个不会运营的渣渣的一点想法</div></pre></td></tr></table></figure>
+<blockquote>
+<p>个人感受</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">掘金 和 xcode4app  很多iOS开发工程师都一个字形容他们，好！</div><div class="line">但是实际使用，掘金内容价值真正传输到用户 又有多少</div><div class="line">目前使用这2个网站前提是，工作上没安排了，会来浏览下这个2个网站，看到标题能看懂的，就看看，偶尔看下评论，偶尔收藏一下。</div><div class="line">说明一个问题，我不去望都，直接来这2个网站，说2个网站很优秀，是我所需要，但是他们优秀资源依然不能成为我开发增长动力，不能成为我必须访问网站。百度能解决开发问题，他们几乎不能！</div></pre></td></tr></table></figure>
+<h1 id="评论区4"><a href="#评论区4" class="headerlink" title="评论区4"></a>评论区4</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">回复 amu301</div><div class="line">: 还原了timeline，我来掘金，就是想获取高质量知识:</div><div class="line">1资讯，新技术</div><div class="line">2经验，分享心得</div><div class="line">3教程，一小系列的教程，如掘金册子，或者性能优化之类的话题，一个话题多篇文章的比较靠谱质量高些，比较全面点，这也许就是掘金册子的初衷吧，又能获取回报，出册子门槛还是有点</div><div class="line">4轮子，一些模块组件之类的推广，工具链</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">这用户评论，就是YoBook正在一步步解决的。头条浏览新闻，如果没太多新报道，我也会关闭app的。。抖音刷着刷着，人生就自闭了，没一点意思。。如果产品内容给用户不断创造有形（文章）和无形价值（解决问题），天天我的群里总有大学同学问这个怎么做的，这个问题如何结局？顶多帮忙百度一下，发个链接。。如果YoBook解决这些问题，为什么不用呢？给我一个理由。</div></pre></td></tr></table></figure>
+<blockquote>
+<p>我开发遇到情形</p>
+</blockquote>
+<p>A 磊子在群里问  一个报错</p>
+<p>我就百度下，发了个链接，想着应该记录下来，想想又算了</p>
+<p>B 刘艳杰之前问我们区块链K线图怎么做？他们马上也要做<br>我发了第三方连接给他，告诉他，自己好好研究去吧。</p>
+<p>C 秦广义问我这几年小视频怎么做的？<br>我做过2次小视频，但是都没总结，没法回答他怎么的<br>当我发现<a href="https://sshiqiao.github.io/document/douyin-objectc.html" target="_blank" rel="external">这个文章点击查看</a>我经常对着这个文章发呆，这个文章是真心的厉害！我总想，我应该做点什么</p>
+<p>D:唐吉吉 基本每周问我问题<br> 要么敷衍过去 要么发百度文章连接。不是我不想回答他，我拿什么回答他的问题</p>
+<h1 id="YoBook前期做成什么样子"><a href="#YoBook前期做成什么样子" class="headerlink" title="YoBook前期做成什么样子"></a>YoBook前期做成什么样子</h1><p>内容范围：  iOS<br>文章+集合  仿掘金小册子<br>网页      仿我自己博客网站  增加展示图片展示分类+本地搜索功能 <a href="http://qianye520.github.io/" target="_blank" rel="external">参考地址点击访问</a><br>案例      xcode4app网站  app化  抖音模式刷<br>文档：    iOS开发文档<br>         swift开发文档<br>         RxsWfit开发文档<br>         联系丁总搞大疆飞机SDK开发指南（这个搞出来，工资收入以后真的不用愁）</p>
+<h1 id="YoBook未来做成什么样子"><a href="#YoBook未来做成什么样子" class="headerlink" title="YoBook未来做成什么样子"></a>YoBook未来做成什么样子</h1><p>区块链+版权，了解西2月20号当当网的李国庆的新闻，他完全是1-2年内要搞很大事情节奏。<br>苹果内购转区块链交易</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/18/YoBook/YoBook产品2期-功能/" rel="next" title="YoBook产品2期-功能分析">
+                <i class="fa fa-chevron-left"></i> YoBook产品2期-功能分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">千夜 QQ:738816656</p>
+              <p class="site-description motion-element" itemprop="description">ReactNative</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">250</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">110</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">78</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#起点"><span class="nav-number">1.</span> <span class="nav-text">起点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#思考清楚"><span class="nav-number">1.1.</span> <span class="nav-text">思考清楚</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#社区的根本价值"><span class="nav-number">1.2.</span> <span class="nav-text">社区的根本价值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#社区与社交"><span class="nav-number">1.3.</span> <span class="nav-text">社区与社交</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#社区三要素"><span class="nav-number">1.4.</span> <span class="nav-text">社区三要素</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#评论区1"><span class="nav-number">2.</span> <span class="nav-text">评论区1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#评论区2"><span class="nav-number">3.</span> <span class="nav-text">评论区2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#评论区3"><span class="nav-number">4.</span> <span class="nav-text">评论区3</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#评论区4"><span class="nav-number">5.</span> <span class="nav-text">评论区4</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#YoBook前期做成什么样子"><span class="nav-number">6.</span> <span class="nav-text">YoBook前期做成什么样子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#YoBook未来做成什么样子"><span class="nav-number">7.</span> <span class="nav-text">YoBook未来做成什么样子</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">千夜 QQ:738816656</span>
+
+  
+</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
