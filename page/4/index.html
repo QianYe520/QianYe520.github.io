@@ -970,7 +970,7 @@ Completable 是 Observable 的另外一个版本不像 Observable 可以发出�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/observeOn()和subscribeOn()/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/UIBindingObserver/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -989,7 +989,7 @@ Completable 是 Observable 的另外一个版本不像 Observable 可以发出�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/observeOn()和subscribeOn()/" itemprop="url">RxSwift-Grammar-observeOn()和subscribeOn()</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/UIBindingObserver/" itemprop="url">RxSwift-Grammar-UIBindingObserver</a></h1>
         
 
         <div class="post-meta">
@@ -1074,30 +1074,12 @@ Completable 是 Observable 的另外一个版本不像 Observable 可以发出�
       
         
           
-          observeOn()和subscribeOn()
-
-
-
-
-
-
-
-
-subscribeOn()
-设置起点在哪个线程
-
-
-observeOn()
-置了后续工作在哪个线程
-
-
-
-
-1)所有动作都发生在当前的默认线程2)observeOn()转换线程到主线程，下面所有的操作都在主线程3)subscribe
+          UIBindingObserver
+UIBindingObserver这个东西很有用的，创建我们自己的监听者，有时候RxCocoa(RxSwift中对UIKit的一个扩展库)给的扩展不够我们使用，比如一个UITextField有个isEnabled属性，我想把这个isEnabled变为一个obser
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Grammar/observeOn()和subscribeOn()/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Grammar/UIBindingObserver/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1150,7 +1132,7 @@ observeOn()
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/map和flatMap/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/Driver/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -1169,7 +1151,7 @@ observeOn()
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/map和flatMap/" itemprop="url">RxSwift-Grammar-map和flatMap</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/Driver/" itemprop="url">RxSwift-Grammar-Driver</a></h1>
         
 
         <div class="post-meta">
@@ -1254,14 +1236,14 @@ observeOn()
       
         
           
-          map和flatMap
-map函数，接收一个R类型的序列，返回一个R类型的序列，还是原来的序列。
+          Driver
+官方的例子的场景大概就是，根据一个输入框的关键字，来请求数据，然后接结果绑定到另一个Label,和TableView中首先创建一个可监听序列results;将results绑定到resultCount.rx.text上;将results绑定到resultsTableView上.
 
-public func map&lt;R&gt;(_ transform: @escaping (Self.E) throws -&gt; R) -&gt; RxSwift.Observable&lt
+//
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Grammar/map和flatMap/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Grammar/Driver/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1314,7 +1296,7 @@ public func map&lt;R&gt;(_ transform: @escaping (Self.E) throws -&gt; R) -&gt; R
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/Subscribe/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/Traits-Single/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -1333,7 +1315,7 @@ public func map&lt;R&gt;(_ transform: @escaping (Self.E) throws -&gt; R) -&gt; R
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/Subscribe/" itemprop="url">RxSwift-Grammar-Subscribe</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/Traits-Single/" itemprop="url">RxSwift-Grammar-特征序列Traits-Single</a></h1>
         
 
         <div class="post-meta">
@@ -1418,16 +1400,19 @@ public func map&lt;R&gt;(_ transform: @escaping (Self.E) throws -&gt; R) -&gt; R
       
         
           
-          subscribe 和 subscribe(onNext:)
-Subscribe
+          Single基本介绍
+Single 是 Observable 的另外一个版本但它不像 Observable 可以发出多个元素，它要么只能发出一个元素，要么产生一个 error 事件
 
 
-subscribe是订阅sequence发出的事件，比如next事件，error事件等
-而subscribe(onNext:)是监听sequence发出的next事件中的element进行处理，他会忽略error和
+发出一个元素，或一个 error 事件
+不会共享状态变化
+
+应用场景
+Single 比较常见的例子就是执行 HTT
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Grammar/Subscribe/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Grammar/Traits-Single/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1648,7 +1633,7 @@ Button 的点击这个情景
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/UIBindingObserver/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/Subscribe/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -1667,7 +1652,7 @@ Button 的点击这个情景
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/UIBindingObserver/" itemprop="url">RxSwift-Grammar-UIBindingObserver</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/Subscribe/" itemprop="url">RxSwift-Grammar-Subscribe</a></h1>
         
 
         <div class="post-meta">
@@ -1752,12 +1737,16 @@ Button 的点击这个情景
       
         
           
-          UIBindingObserver
-UIBindingObserver这个东西很有用的，创建我们自己的监听者，有时候RxCocoa(RxSwift中对UIKit的一个扩展库)给的扩展不够我们使用，比如一个UITextField有个isEnabled属性，我想把这个isEnabled变为一个obser
+          subscribe 和 subscribe(onNext:)
+Subscribe
+
+
+subscribe是订阅sequence发出的事件，比如next事件，error事件等
+而subscribe(onNext:)是监听sequence发出的next事件中的element进行处理，他会忽略error和
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Grammar/UIBindingObserver/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Grammar/Subscribe/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1810,7 +1799,7 @@ UIBindingObserver这个东西很有用的，创建我们自己的监听者，有
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/Traits-Single/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/map和flatMap/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -1829,7 +1818,7 @@ UIBindingObserver这个东西很有用的，创建我们自己的监听者，有
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/Traits-Single/" itemprop="url">RxSwift-Grammar-特征序列Traits-Single</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/map和flatMap/" itemprop="url">RxSwift-Grammar-map和flatMap</a></h1>
         
 
         <div class="post-meta">
@@ -1914,19 +1903,14 @@ UIBindingObserver这个东西很有用的，创建我们自己的监听者，有
       
         
           
-          Single基本介绍
-Single 是 Observable 的另外一个版本但它不像 Observable 可以发出多个元素，它要么只能发出一个元素，要么产生一个 error 事件
+          map和flatMap
+map函数，接收一个R类型的序列，返回一个R类型的序列，还是原来的序列。
 
-
-发出一个元素，或一个 error 事件
-不会共享状态变化
-
-应用场景
-Single 比较常见的例子就是执行 HTT
+public func map&lt;R&gt;(_ transform: @escaping (Self.E) throws -&gt; R) -&gt; RxSwift.Observable&lt
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Grammar/Traits-Single/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Grammar/map和flatMap/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
