@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<meta name="theme-color" content="#222">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="RxSwift,Demo," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="项目 根据网上demo仿写原文  结构          Controller      LXFViewController.swift 主视图控制器   Extension      Response+ObjectMapper.swift Response分类，Moya请求完进行Json转模型或模型数组   Model      LXFModel.swift 模型   Protocol">
+<meta name="keywords" content="RxSwift,Demo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RxSwift+Moya+列表展示">
+<meta property="og:url" content="http://yoursite.com/2018/03/01/RxSwift/Function功能类/Demo/RxSwift+Moya+列表展示/index.html">
+<meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
+<meta property="og:description" content="项目 根据网上demo仿写原文  结构          Controller      LXFViewController.swift 主视图控制器   Extension      Response+ObjectMapper.swift Response分类，Moya请求完进行Json转模型或模型数组   Model      LXFModel.swift 模型   Protocol">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-12T02:34:26.570Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RxSwift+Moya+列表展示">
+<meta name="twitter:description" content="项目 根据网上demo仿写原文  结构          Controller      LXFViewController.swift 主视图控制器   Extension      Response+ObjectMapper.swift Response分类，Moya请求完进行Json转模型或模型数组   Model      LXFModel.swift 模型   Protocol">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/01/RxSwift/Function功能类/Demo/RxSwift+Moya+列表展示/"/>
+
+
+
+
+
+  <title>RxSwift+Moya+列表展示 | 千夜、おれはおまえをずっと爱している</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">千夜、おれはおまえをずっと爱している</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/01/RxSwift/Function功能类/Demo/RxSwift+Moya+列表展示/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">RxSwift+Moya+列表展示</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-01T19:32:50+08:00">
+                2018-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/RxSwift/Demo/" itemprop="url" rel="index">
+                    <span itemprop="name">Demo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h1><blockquote>
+<p>根据网上demo仿写<a href="https://mp.weixin.qq.com/s/B-AdatKDkjknKCYorqSfEw" target="_blank" rel="external">原文</a></p>
+</blockquote>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Controller</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>LXFViewController.swift</td>
+<td>主视图控制器</td>
+</tr>
+<tr>
+<td>Extension</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Response+ObjectMapper.swift</td>
+<td>Response分类，Moya请求完进行Json转模型或模型数组</td>
+</tr>
+<tr>
+<td>Model</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>LXFModel.swift</td>
+<td>模型</td>
+</tr>
+<tr>
+<td>Protocol</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>LXFViewModelType.swift</td>
+<td>定义了模型协议</td>
+</tr>
+<tr>
+<td>Tool</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>LXFNetworkTool.swift</td>
+<td>封装Moya请求</td>
+</tr>
+<tr>
+<td></td>
+<td>LXFProgressHUD.swift</td>
+<td>封装的HUD</td>
+</tr>
+<tr>
+<td>View</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>LXFViewCell.swift</td>
+<td>自定义cell</td>
+</tr>
+<tr>
+<td></td>
+<td>LXFViewCell.xib</td>
+<td>cell的xib文件</td>
+</tr>
+<tr>
+<td>ViewModel</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>LXFViewModel.swift</td>
+<td>视图模型</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="第三方库"><a href="#第三方库" class="headerlink" title="第三方库"></a>第三方库</h2><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RxSwift</td>
+<td>想玩RxSwift的必备库</td>
+</tr>
+<tr>
+<td>RxCocoa</td>
+<td>对 UIKit Foundation 进行 Rx 化</td>
+</tr>
+<tr>
+<td>NSObject+Rx</td>
+<td>为我们提供 rx_disposeBag</td>
+</tr>
+<tr>
+<td>Moya/RxSwift</td>
+<td>为RxSwift专用提供，对Alamofire进行封装的一个网络请求库</td>
+</tr>
+<tr>
+<td>ObjectMapper</td>
+<td>Json转模型之必备良品</td>
+</tr>
+<tr>
+<td>RxDataSources</td>
+<td>帮助我们优雅的使用tableView的数据源方法</td>
+</tr>
+<tr>
+<td>Then</td>
+<td>提供快速初始化的语法糖</td>
+</tr>
+<tr>
+<td>Kingfisher</td>
+<td>图片加载库</td>
+</tr>
+<tr>
+<td>SnapKit</td>
+<td>视图约束库</td>
+</tr>
+<tr>
+<td>Reusable</td>
+<td>帮助我们优雅的使用自定义cell和view,不再出现Optional</td>
+</tr>
+<tr>
+<td>MJRefresh</td>
+<td>上拉加载、下拉刷新的库</td>
+</tr>
+<tr>
+<td>SVProgressHUD</td>
+<td>简单易用的HUD</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Moya"><a href="#Moya" class="headerlink" title="Moya"></a>Moya</h3><ul>
+<li>Moya是基于Alamofire的网络请求库</li>
+<li>Moya的基础上添加了对RxSwift的接口支持</li>
+</ul>
+<blockquote>
+<p>❶ 创建网络类型枚举，用来存放请求类型</p>
+<ul>
+<li>顺便设置相应的路径，等下统一取出来直接赋值即可</li>
+</ul>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">LXFNetworkCategory</span> : <span class="title">String</span> </span>&#123;</div><div class="line"> <span class="keyword">case</span> all = <span class="string">"all"</span></div><div class="line"> <span class="keyword">case</span> android = <span class="string">"Android"</span></div><div class="line"> <span class="keyword">case</span> ios = <span class="string">"iOS"</span></div><div class="line"> <span class="keyword">case</span> welfare = <span class="string">"福利"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>❷枚举写一个扩展，并遵循塄 TargetType，这个协议的Moya这个库规定的协议</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">LXFNetworkTool</span> : <span class="title">TargetType</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">//baseURL 统一基本的URL</span></div><div class="line">    <span class="keyword">var</span> baseURL : <span class="type">URL</span> &#123;</div><div class="line">       <span class="keyword">return</span> <span class="type">URL</span> (string : <span class="string">"http://xxxx/xx/"</span>)</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//path字段会追加至baseURL后面</span></div><div class="line">    <span class="keyword">var</span> path : <span class="type">String</span> &#123;</div><div class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</div><div class="line">        <span class="keyword">case</span>.data(<span class="keyword">let</span> type, <span class="keyword">let</span> size , <span class="keyword">let</span> index):</div><div class="line">             <span class="keyword">return</span> <span class="string">"(type.rawValue)/(size)/(index)"</span></div><div class="line">         &#125;</div><div class="line">     &#125;</div><div class="line">     </div><div class="line">     <span class="comment">// HTTP的请求方式</span></div><div class="line">     <span class="keyword">var</span> method : <span class="type">Moya</span>.<span class="type">Method</span> &#123;</div><div class="line">       <span class="keyword">return</span> .<span class="keyword">get</span></div><div class="line">     &#125;</div><div class="line">     </div><div class="line">      <span class="comment">//请求参数(会在请求时进行编码)</span></div><div class="line">      <span class="keyword">var</span> parameters : [<span class="type">String</span> : <span class="type">Any</span>]?&#123;</div><div class="line">          <span class="keyword">return</span> <span class="literal">nil</span></div><div class="line">      &#125;</div><div class="line">      </div><div class="line">       <span class="comment">//参数编码方式(这里使用URL的默认方式)</span></div><div class="line">       <span class="keyword">var</span> parameterEncoding : <span class="type">ParameterEncoding</span> &#123;</div><div class="line">           <span class="keyword">return</span> <span class="type">URLEncoding</span>.<span class="keyword">default</span></div><div class="line">       &#125;</div><div class="line">       </div><div class="line">       <span class="comment">//用于单元测试，不需要的就像我一样随便写写</span></div><div class="line">       <span class="keyword">var</span> sampleData : <span class="type">Data</span> &#123;</div><div class="line">           <span class="keyword">return</span> <span class="string">"AAAA"</span>.data(using : .utf8)</div><div class="line">       &#125;</div><div class="line">       </div><div class="line">      <span class="comment">//将要被执行的任务(请求：request 下载：upload 上传：download)</span></div><div class="line">      </div><div class="line">      <span class="keyword">var</span> task : <span class="type">Task</span> &#123;</div><div class="line">          <span class="keyword">return</span> .reuqest</div><div class="line">      &#125;</div><div class="line">      </div><div class="line">      <span class="comment">//是否执行Alamofire验证，默认值为false</span></div><div class="line">        <span class="keyword">var</span> validate : <span class="type">Bool</span> &#123;</div><div class="line">            <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">      &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>❸ 定义一个全局变量用于整个项目的网络请求<br>以使用这个全局变量来请求数据</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> lxfNetTool = <span class="type">RxMoyaProvider</span>&lt;<span class="type">LXFNetworkTool</span>&gt;</div></pre></td></tr></table></figure>
+<h3 id="RxDataSources"><a href="#RxDataSources" class="headerlink" title="RxDataSources"></a>RxDataSources</h3><ul>
+<li>RxDataSources是以section来做为数据结构来传输</li>
+</ul>
+<blockquote>
+<p>自定义Section<br>Model中创建一个Section的结构体，并且创建一个扩展，遵循SectionModelType协议，实现相应的协议方法</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">LXFModel</span>.swift</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">LXFSection</span> </span>&#123;</div><div class="line">  <span class="comment">// items就是rows</span></div><div class="line">  <span class="keyword">var</span> items : [<span class="type">Item</span>]</div><div class="line">  <span class="comment">//这里加你需要的东西，比如 headerView 的 title</span></div><div class="line">  </div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">LXFSection</span> : <span class="title">SectionModelType</span> </span>&#123;</div><div class="line">  <span class="comment">// 重定义 Item 的类型为 LXFModel</span></div><div class="line">  <span class="keyword">typealias</span> <span class="type">Item</span> = <span class="type">LXFModel</span></div><div class="line">  </div><div class="line">  <span class="comment">// 实现协议中的方式</span></div><div class="line">    <span class="keyword">init</span>(original: <span class="type">LXFSection</span>, items: [<span class="type">LXFSection</span>.<span class="type">Item</span>]) &#123;</div><div class="line">        <span class="keyword">self</span> = original</div><div class="line">        <span class="keyword">self</span>.items = items</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>❷ 控制器下创建数据源属性<br>LXFViewController.swift</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="comment">//创建一个数据源属性，类型为自定义的Section类型</span></div><div class="line">   <span class="keyword">let</span> dataSource = <span class="type">RxTableViewSectionedReloadDataSource</span>&lt;<span class="type">LXFSection</span>&gt;()</div><div class="line">   </div><div class="line"> <span class="comment">//使用数据源属性绑定cell</span></div><div class="line"> dataSource.configureCell = &#123; ds,tv,ip,iteam <span class="keyword">in</span></div><div class="line">   <span class="comment">// 这个地方使用了Reusable这个库，在LXFViewCell中遵守了相应的协议</span></div><div class="line">   <span class="comment">// 使其方便转换cell为非可选型的相应的cell类型</span></div><div class="line">   <span class="keyword">let</span> cell = tv.dequeueReusableCell(<span class="keyword">for</span> : ip) <span class="keyword">as</span> <span class="type">LXFViewCell</span></div><div class="line">   cell.picView.kf.setImgage(with : <span class="type">URL</span>(string: item.url))</div><div class="line">   cell.descLabel.text = <span class="string">"描述 : (item.desc)"</span></div><div class="line">   cell.sourceLabel.text = <span class="string">"来源 : (item.source)"</span></div><div class="line">   <span class="keyword">return</span> cell;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>❸ sections序列绑定给我们的rows</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">output.sections</div><div class="line">      .asDriver()</div><div class="line">      .drive(tableView.rx</div><div class="line">                      .items(dataSource : dataSource))</div><div class="line">       .addDisposable(rx_disposeBag)</div></pre></td></tr></table></figure>
+<h3 id="ViewModel的规范"><a href="#ViewModel的规范" class="headerlink" title="ViewModel的规范"></a>ViewModel的规范</h3><ul>
+<li>MVVM思想是将原本在ViewController的视图显示逻辑、验证逻辑、网络请求等代码存放于ViewModel中，达到ViewController瘦身-</li>
+<li>逻辑由ViewModel负责，外界不需要关心，外界只需要结果，ViewModel也只需要将结果给到外界</li>
+<li>基于此，我们定义了一个协议LXFViewModelType</li>
+</ul>
+<blockquote>
+<p>❶创建LXFViewModelType.swift</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">LXFViewModelType</span>.swift</div><div class="line"></div><div class="line"><span class="comment">// associatedtype 关键字 用来声明一个类型的占位符作为协议定义的一部分</span></div><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">LXFViewModelType</span> </span>&#123;</div><div class="line"></div><div class="line">  associatedtype <span class="type">Input</span></div><div class="line">  associatedtype <span class="type">Output</span></div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">transform</span><span class="params">(input : Input )</span></span> - &gt; <span class="type">Output</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>❷viewModel遵守LXFViewModelType协议</p>
+</blockquote>
+<ul>
+<li>可以为XFViewModelType的Input和Output定义别名，以示区分,如：这个viewModel的用于请求首页模块相关联的，则可以命名为：HomeInput 和 HomeOutput</li>
+<li>可以丰富我们的 Input 和 Output 。可以看到为Output添加了一个序列，类型为自定义的LXFSection数组，在Input里面添加了一个请求类型(即要请求什么数据，比如首页的数据)</li>
+<li>通过 transform 方法将input携带的数据进行处理，生成了一个Output</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">LXFViewModel</span>.swift</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">LXFViewModel</span> :<span class="title">LXFViewModelType</span> </span>&#123;</div><div class="line">        <span class="comment">// 存放着解析完成的模型数组</span></div><div class="line">        <span class="keyword">let</span> models = <span class="type">Variable</span> &lt;[<span class="type">LXFModel</span>]&gt;([])</div><div class="line">        </div><div class="line">        <span class="comment">// 为LXFViewModelType的Input和Output定义别名</span></div><div class="line">        <span class="keyword">typealias</span> <span class="type">Input</span> = <span class="type">LXFInput</span></div><div class="line">        <span class="keyword">typealias</span> <span class="type">Output</span> = <span class="type">LXFOutput</span></div><div class="line">        </div><div class="line">        <span class="comment">// 丰富Input和Output</span></div><div class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">LXFInput</span> </span>&#123;</div><div class="line">           <span class="comment">//网络请求类型</span></div><div class="line">           <span class="keyword">let</span> category : <span class="type">LXFNetworkTool</span>.<span class="type">LXFNetworkCategory</span></div><div class="line">           int(category : <span class="type">LXFNetworkTool</span>.<span class="type">LXFNetworkCategory</span>)&#123;</div><div class="line">              <span class="keyword">self</span>.category = category</div><div class="line">        &#125;</div><div class="line">     &#125;</div><div class="line">     </div><div class="line">     <span class="class"><span class="keyword">struct</span> <span class="title">LXFOutput</span> </span>&#123;</div><div class="line">            <span class="comment">//tableView的sections数据</span></div><div class="line">            <span class="keyword">let</span> sections : <span class="type">Driver</span> &lt;<span class="type">LXFsection</span>&gt;</div><div class="line">            </div><div class="line">            <span class="keyword">init</span>(sections : <span class="type">Driver</span> &lt;[<span class="type">LXFSection</span>]&gt;)&#123;</div><div class="line">               <span class="keyword">self</span>.sections = sections</div><div class="line">             &#125;</div><div class="line">      &#125;</div><div class="line">      </div><div class="line">      <span class="function"><span class="keyword">func</span> <span class="title">transform</span><span class="params">(input : LXFViewModel.LXFInput)</span></span> -&gt; <span class="type">LXFViewModel</span>.<span class="type">LXFOutput</span>&#123;</div><div class="line">           <span class="keyword">let</span> sections = models.asObservable()</div><div class="line">                                .<span class="built_in">map</span>&#123; (models) -&gt; [<span class="type">LXFSection</span>] <span class="keyword">in</span> </div><div class="line">                                 <span class="comment">// 当models的值被改变时会调用，这是Variable的特性</span></div><div class="line">                                 <span class="comment">// 返回section数组</span></div><div class="line">                                 <span class="keyword">return</span> [<span class="type">LXFSection</span>(item : models)]</div><div class="line">                                 &#125;</div><div class="line">                                 .asDriver(onErrorJustReturn : [])</div><div class="line">           <span class="keyword">let</span> output = <span class="type">LXFOutput</span>(sections : sections)</div><div class="line">       <span class="comment">// 接下来的代码是网络请求</span></div><div class="line">      &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>❸在ViewController中初始化我们的input，通过transform得到output，<br>然后将output中的sections序列绑定tableView的items</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="type">LXFViewController</span>.swift</div><div class="line"></div><div class="line"><span class="comment">// 初始化input</span></div><div class="line"><span class="keyword">let</span> vmInput = <span class="type">LXFViewModel</span>.<span class="type">LXFInput</span>(category : welfare)</div><div class="line"><span class="comment">// 通过transform得到output</span></div><div class="line"><span class="keyword">let</span> vmOutput = viewModel.transform(input : vmInput)</div><div class="line">vmOutput.sections</div><div class="line">        .asDriver()</div><div class="line">        .drive(tableView.rx</div><div class="line">                        .items(dataSource : dataSource))</div><div class="line">        .addDisposableTo(rx_disposeBag)</div></pre></td></tr></table></figure>
+<h3 id="MJRefresh"><a href="#MJRefresh" class="headerlink" title="MJRefresh"></a>MJRefresh</h3><blockquote>
+<p>❶定义枚举LXFRefreshStatus，用于标志当前刷新状态</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">LXFRefreshStatus</span> </span>&#123;</div><div class="line">     <span class="keyword">case</span> <span class="keyword">none</span></div><div class="line">     <span class="keyword">case</span> beingHeaderRefresh</div><div class="line">     <span class="keyword">case</span> endHeaderRefresh</div><div class="line">     <span class="keyword">case</span> beingFooterRefresh</div><div class="line">     <span class="keyword">case</span> endFooterRefresh</div><div class="line">     <span class="keyword">case</span> noMoreData</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>❷LXFOutput添加一个refreshStatus序列，类型为LXFRefreshStatus<br>给外界订阅，告诉外界的tableView当前的刷新状态</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> refreshStatus = <span class="type">Variable</span>&lt;<span class="type">LXFRefreshStatus</span>&gt;(.<span class="keyword">none</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>进行网络请求并得到结果之后，修改refreshStatus的value为相应的LXFRefreshStatus项</li>
+</ul>
+<blockquote>
+<p>❸外界订阅output的refreshStatus,并且根据接收到的值进行相应的操作</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">vmOutput.refreshStatus</div><div class="line">        .asObservable()</div><div class="line">        .subscribe(onNext : &#123;[<span class="keyword">weak</span> <span class="keyword">self</span>] status <span class="keyword">in</span> </div><div class="line">          <span class="keyword">switch</span> status &#123;</div><div class="line">           <span class="keyword">case</span> .beingHeaderRefresh:</div><div class="line">                <span class="keyword">self</span>?.tableView.mj_header</div><div class="line">                     .beginRefreshing()</div><div class="line">           <span class="keyword">case</span> .endHeaderRefresh:</div><div class="line">                <span class="keyword">self</span>?.tableView</div><div class="line">                     .mj_header</div><div class="line">                     .endRefreshing()</div><div class="line">           <span class="keyword">case</span> .beingFooterRefresh:</div><div class="line">                <span class="keyword">self</span>?.tableView</div><div class="line">                     .mj_footer</div><div class="line">                     .beginRefreshing()</div><div class="line">           <span class="keyword">case</span> .endFooterRefresh:</div><div class="line">                <span class="keyword">self</span>?.tableView</div><div class="line">                     .mj_footer</div><div class="line">                     .endRefreshing</div><div class="line">           <span class="keyword">case</span> .noMoreData :</div><div class="line">                 <span class="keyword">self</span>?.tableView</div><div class="line">                       .endRefreshingWithNoMoreData()</div><div class="line">            <span class="keyword">default</span> :</div><div class="line">             <span class="keyword">break</span></div><div class="line">        &#125;</div><div class="line">  &#125;).addDisposable(rx_disposeBag)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>❹output提供一个requestCommond用于请求数据<br>PublishSubject 的特点：即可以作为Observable，也可以作为Observer，就是可以发送信号，也可以订阅信号<br>外界通过该属性告诉viewModel加载数据（传入的值是为了标志是否重新加载）</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> requestCommond = <span class="type">PublishSubject</span>&lt;<span class="type">Bool</span>&gt;()</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在transform中，对生成的output的requestCommond进行订阅</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">output.requestCommond</div><div class="line">      .subscribe(onNext : &#123; [<span class="keyword">unowned</span> <span class="keyword">self</span>] isReloadData <span class="keyword">in</span></div><div class="line">      <span class="keyword">self</span>.index = isReload ?<span class="number">1</span>:<span class="keyword">self</span>.index+<span class="number">1</span></div><div class="line">      lxfNetTool.request(.data(type:input.category,</div><div class="line">                               size:<span class="number">10</span>,</div><div class="line">                               index:<span class="keyword">self</span>.index</div><div class="line">                               )</div><div class="line">                         )</div><div class="line">                 .mapArray(<span class="type">LXFModel</span>.<span class="keyword">self</span>)</div><div class="line">                 .subscribe(&#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] (event) <span class="keyword">in</span></div><div class="line">                     <span class="keyword">switch</span> event &#123;</div><div class="line">                        <span class="keyword">case</span> <span class="keyword">let</span>.next(modelArr):</div><div class="line">                           <span class="keyword">self</span>?.models.value = isReloadData?modelArr:(<span class="keyword">self</span>?.models.value??[])+modelArr</div><div class="line">                           <span class="type">LXFProgressHUD</span>.showSuccess(<span class="string">"加载成功"</span>)</div><div class="line">                        <span class="keyword">case</span> <span class="keyword">let</span>.error(error):</div><div class="line">                           <span class="type">LXFProgressHUD</span>.showError(error.localizedDescription)</div><div class="line">                        <span class="keyword">case</span> .completed:</div><div class="line">                           output.refreshStatus.value = isReloadData?.endHeaderRefresh:.endFooterRefresh</div><div class="line">                     &#125;</div><div class="line">                  &#125;)</div><div class="line">                  .addDisposableTo(slf.rx_disposeBag)</div><div class="line">     &#125;)</div><div class="line">     .addDisposableTo(rx_disposeBag)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>❺在ViewController中初始化刷新控件<br>为tableView设置刷新控件，并且在创建刷新控件的回调中使用output的requestCommond发射信号</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">tableView.mj_header = <span class="type">MJRefreshNormalHeader</span>(refreshingBlock:&#123;</div><div class="line">  vmOutput.requestCommond</div><div class="line">          .onNext(<span class="literal">true</span>)</div><div class="line"> &#125;)</div><div class="line"></div><div class="line">tableView.mj_footer = <span class="type">MJRefreshAutoNormalFooter</span>(refreshingBlock:&#123;</div><div class="line">  vmOutput.requestCommond</div><div class="line">          .onNext(<span class="literal">false</span>)</div></pre></td></tr></table></figure>
+<h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><ul>
+<li>ViewController已经拿到output，当下拉加载数据的时候，使用output的requestCommond发射信息，告诉viewModel我们要加载数据</li>
+<li>viewModel请求数据，在处理完json转模型或模型数组后修改models，当models的值被修改的时候会发信号给sections，sections在ViewController已经绑定到tableView的items了，所以此时tableView的数据会被更新。接着我们根据请求结果，修改output的refreshStatus属性的值</li>
+<li>当output的refreshStatus属性的值改变后，会发射信号，由于外界之前已经订阅了output的refreshStatus，此时就会根据refreshStatus的新值来处理刷新控件的状态</li>
+</ul>
+<p><a href="https://github.com/LinXunFeng/RxSwiftDemo" target="_blank" rel="external">原文Demo</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
+          
+            <a href="/tags/Demo/" rel="tag"># Demo</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/01/RxSwift/Function功能类/Demo/RxSwift+Moya+登录+搜索/" rel="next" title="RxSwift+Moya+登录+搜索">
+                <i class="fa fa-chevron-left"></i> RxSwift+Moya+登录+搜索
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/02/Swift/Lib/Then协议库-初始化方式/" rel="prev" title="Swift-Lib-Then协议库-初始化方式">
+                Swift-Lib-Then协议库-初始化方式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">千夜 QQ:738816656</p>
+              <p class="site-description motion-element" itemprop="description">ReactNative</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">261</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">79</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#项目"><span class="nav-number">1.</span> <span class="nav-text">项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#结构"><span class="nav-number">1.1.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三方库"><span class="nav-number">1.2.</span> <span class="nav-text">第三方库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Moya"><span class="nav-number">1.2.1.</span> <span class="nav-text">Moya</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RxDataSources"><span class="nav-number">1.2.2.</span> <span class="nav-text">RxDataSources</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ViewModel的规范"><span class="nav-number">1.2.3.</span> <span class="nav-text">ViewModel的规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MJRefresh"><span class="nav-number">1.2.4.</span> <span class="nav-text">MJRefresh</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#流程"><span class="nav-number">2.</span> <span class="nav-text">流程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">千夜 QQ:738816656</span>
+
+  
+</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

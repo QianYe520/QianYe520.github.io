@@ -311,7 +311,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/Observable&Observer/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/observeOn()和subscribeOn()/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -330,7 +330,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/Observable&Observer/" itemprop="url">RxSwift-Grammar-Observable可观察序列&Observer观察者</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/observeOn()和subscribeOn()/" itemprop="url">RxSwift-Grammar-observeOn()和subscribeOn()</a></h1>
         
 
         <div class="post-meta">
@@ -415,18 +415,30 @@
       
         
           
-          Observable可观察序列  和 Observer观察者实质
-Observer (观察者)订阅一个可观察序列 Observable(事件源)每一个Observable的实例都是一个序列观察者 对 Observable 发射的数据或数据序列作出响应
-
-举例
-Button 的点击这个情景
+          observeOn()和subscribeOn()
 
 
-把用户
+
+
+
+
+
+
+subscribeOn()
+设置起点在哪个线程
+
+
+observeOn()
+置了后续工作在哪个线程
+
+
+
+
+1)所有动作都发生在当前的默认线程2)observeOn()转换线程到主线程，下面所有的操作都在主线程3)subscribe
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Grammar/Observable&Observer/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/observeOn()和subscribeOn()/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -479,7 +491,7 @@ Button 的点击这个情景
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/Traits-Single/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/UIBindingObserver/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -498,7 +510,169 @@ Button 的点击这个情景
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/Traits-Single/" itemprop="url">RxSwift-Grammar-特征序列Traits-Single</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/UIBindingObserver/" itemprop="url">RxSwift-Grammar-UIBindingObserver</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-27T20:49:46+08:00">
+                2018-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RxSwift/Grammar/" itemprop="url" rel="index">
+                    <span itemprop="name">Grammar</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          UIBindingObserver
+UIBindingObserver这个东西很有用的，创建我们自己的监听者，有时候RxCocoa(RxSwift中对UIKit的一个扩展库)给的扩展不够我们使用，比如一个UITextField有个isEnabled属性，我想把这个isEnabled变为一个obser
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/UIBindingObserver/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Traits-Single/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Traits-Single/" itemprop="url">RxSwift-Grammar-特征序列Traits-Single</a></h1>
         
 
         <div class="post-meta">
@@ -595,7 +769,7 @@ Single 比较常见的例子就是执行 HTT
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Grammar/Traits-Single/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Traits-Single/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -648,7 +822,7 @@ Single 比较常见的例子就是执行 HTT
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/UIBindingObserver/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/07-09-Operator-自定义操作符/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -667,7 +841,7 @@ Single 比较常见的例子就是执行 HTT
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/UIBindingObserver/" itemprop="url">RxSwift-Grammar-UIBindingObserver</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/07-09-Operator-自定义操作符/" itemprop="url">RxSwift-Grammar-自定义operator</a></h1>
         
 
         <div class="post-meta">
@@ -752,12 +926,14 @@ Single 比较常见的例子就是执行 HTT
       
         
           
-          UIBindingObserver
-UIBindingObserver这个东西很有用的，创建我们自己的监听者，有时候RxCocoa(RxSwift中对UIKit的一个扩展库)给的扩展不够我们使用，比如一个UITextField有个isEnabled属性，我想把这个isEnabled变为一个obser
+          自定义operator
+自定义操作符很简单，官方推荐尽量使用标准的操作符，但是你也可以定义自己的操作符，文档上说有两种方法，这里介绍一下常用的一种方法吧自定义一个map操作符
+
+ extension ObserverType &#123;    func myMap&lt;R&gt;(transfo
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Grammar/UIBindingObserver/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/07-09-Operator-自定义操作符/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -810,7 +986,7 @@ UIBindingObserver这个东西很有用的，创建我们自己的监听者，有
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/Driver/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/22/OC/Guide文档指南/SceneKit/Grammar/Editor-3D场景编辑器/SceneKit- Base/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -829,171 +1005,7 @@ UIBindingObserver这个东西很有用的，创建我们自己的监听者，有
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/Driver/" itemprop="url">RxSwift-Grammar-Driver</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-27T20:49:46+08:00">
-                2018-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RxSwift/Grammar/" itemprop="url" rel="index">
-                    <span itemprop="name">Grammar</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Driver
-官方的例子的场景大概就是，根据一个输入框的关键字，来请求数据，然后接结果绑定到另一个Label,和TableView中首先创建一个可监听序列results;将results绑定到resultCount.rx.text上;将results绑定到resultsTableView上.
-
-//
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Grammar/Driver/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/22/SceneKit/Grammar/Editor-3D场景编辑器/SceneKit- Base/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="千夜 QQ:738816656">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/22/SceneKit/Grammar/Editor-3D场景编辑器/SceneKit- Base/" itemprop="url">SceneKit-Editor-3D场景编辑器</a></h1>
+                <a class="post-title-link" href="/2018/03/22/OC/Guide文档指南/SceneKit/Grammar/Editor-3D场景编辑器/SceneKit- Base/" itemprop="url">SceneKit-Editor-3D场景编辑器</a></h1>
         
 
         <div class="post-meta">
@@ -1093,7 +1105,7 @@ Xcode自带了一个简单好用的3D场景编辑器,当选中或创建一个xxx
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/22/SceneKit/Grammar/Editor-3D场景编辑器/SceneKit- Base/#more" rel="contents">
+            <a class="btn" href="/2018/03/22/OC/Guide文档指南/SceneKit/Grammar/Editor-3D场景编辑器/SceneKit- Base/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1469,7 +1481,7 @@ Xcode自带了一个简单好用的3D场景编辑器,当选中或创建一个xxx
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/20/RxSwift/Grammar/Operators-debug-调试操作/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/20/RxSwift/Guide文档指南/RxSwift文档/Operators-debug-调试操作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -1488,7 +1500,7 @@ Xcode自带了一个简单好用的3D场景编辑器,当选中或创建一个xxx
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/20/RxSwift/Grammar/Operators-debug-调试操作/" itemprop="url">RxSwift-Grammar-debug调试操作</a></h1>
+                <a class="post-title-link" href="/2018/03/20/RxSwift/Guide文档指南/RxSwift文档/Operators-debug-调试操作/" itemprop="url">RxSwift-Grammar-debug调试操作</a></h1>
         
 
         <div class="post-meta">
@@ -1580,7 +1592,7 @@ Xcode自带了一个简单好用的3D场景编辑器,当选中或创建一个xxx
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/20/RxSwift/Grammar/Operators-debug-调试操作/#more" rel="contents">
+            <a class="btn" href="/2018/03/20/RxSwift/Guide文档指南/RxSwift文档/Operators-debug-调试操作/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1795,7 +1807,7 @@ Xcode自带了一个简单好用的3D场景编辑器,当选中或创建一个xxx
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/07/RxSwift/Lib/Moya -网络封装(RxSwift)/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/07/RxSwift/Guide文档指南/Lib/Moya -网络封装(RxSwift)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -1814,7 +1826,7 @@ Xcode自带了一个简单好用的3D场景编辑器,当选中或创建一个xxx
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/07/RxSwift/Lib/Moya -网络封装(RxSwift)/" itemprop="url">Swift-Lib-Moya-网络封装(RxSwift)</a></h1>
+                <a class="post-title-link" href="/2018/03/07/RxSwift/Guide文档指南/Lib/Moya -网络封装(RxSwift)/" itemprop="url">Swift-Lib-Moya-网络封装(RxSwift)</a></h1>
         
 
         <div class="post-meta">
@@ -1924,7 +1936,7 @@ Swift我们用Alamofire来做网络库.而Moya在Alamofire的基础上又封装�
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/07/RxSwift/Lib/Moya -网络封装(RxSwift)/#more" rel="contents">
+            <a class="btn" href="/2018/03/07/RxSwift/Guide文档指南/Lib/Moya -网络封装(RxSwift)/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2025,7 +2037,7 @@ Swift我们用Alamofire来做网络库.而Moya在Alamofire的基础上又封装�
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">116</span>
+                  <span class="site-state-item-count">113</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2036,7 +2048,7 @@ Swift我们用Alamofire来做网络库.而Moya在Alamofire的基础上又封装�
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">80</span>
+                  <span class="site-state-item-count">79</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

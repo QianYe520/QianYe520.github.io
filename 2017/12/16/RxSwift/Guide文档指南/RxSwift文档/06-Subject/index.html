@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<meta name="theme-color" content="#222">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="RxSwift,Swift," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="SubjectSubjects 既是订阅者，也是Observable Subject是observable和Observer之间的桥梁说它是订阅者，是因为它能够动态地接收新的值。作为一个 Observer ，它可以订阅序列说它又是一个 Observable，是因为当 Subjects 有了新的值之后，就会通过 Event 将新值发出给他的所有订阅者同时作为一个 Observable ，它可以转发或">
+<meta name="keywords" content="RxSwift,Swift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift-RxSwift-Subject">
+<meta property="og:url" content="http://yoursite.com/2017/12/16/RxSwift/Guide文档指南/RxSwift文档/06-Subject/index.html">
+<meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
+<meta property="og:description" content="SubjectSubjects 既是订阅者，也是Observable Subject是observable和Observer之间的桥梁说它是订阅者，是因为它能够动态地接收新的值。作为一个 Observer ，它可以订阅序列说它又是一个 Observable，是因为当 Subjects 有了新的值之后，就会通过 Event 将新值发出给他的所有订阅者同时作为一个 Observable ，它可以转发或">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/Swift-RxSwift-Subject-001.png">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/Swift-RxSwift-Subject-003.png">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/Swift-RxSwift-Subject-004.png">
+<meta property="og:updated_time" content="2018-10-09T14:48:53.031Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift-RxSwift-Subject">
+<meta name="twitter:description" content="SubjectSubjects 既是订阅者，也是Observable Subject是observable和Observer之间的桥梁说它是订阅者，是因为它能够动态地接收新的值。作为一个 Observer ，它可以订阅序列说它又是一个 Observable，是因为当 Subjects 有了新的值之后，就会通过 Event 将新值发出给他的所有订阅者同时作为一个 Observable ，它可以转发或">
+<meta name="twitter:image" content="http://ozr735s7e.bkt.clouddn.com/Swift-RxSwift-Subject-001.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/16/RxSwift/Guide文档指南/RxSwift文档/06-Subject/"/>
+
+
+
+
+
+  <title>Swift-RxSwift-Subject | 千夜、おれはおまえをずっと爱している</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">千夜、おれはおまえをずっと爱している</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/16/RxSwift/Guide文档指南/RxSwift文档/06-Subject/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swift-RxSwift-Subject</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-16T23:28:28+08:00">
+                2017-12-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RxSwift/Grammar/" itemprop="url" rel="index">
+                    <span itemprop="name">Grammar</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Subject"><a href="#Subject" class="headerlink" title="Subject"></a>Subject</h1><h2 id="Subjects-既是订阅者，也是Observable"><a href="#Subjects-既是订阅者，也是Observable" class="headerlink" title="Subjects 既是订阅者，也是Observable"></a>Subjects 既是订阅者，也是Observable</h2><blockquote>
+<p>Subject是observable和Observer之间的桥梁<br>说它是订阅者，是因为它能够动态地接收新的值。<br>作为一个 Observer ，它可以订阅序列<br>说它又是一个 Observable，是因为当 Subjects 有了新的值之后，就会通过 Event 将新值发出给他的所有订阅者<br>同时作为一个 Observable ，它可以转发或者发射数据</p>
+</blockquote>
+<h2 id="Subject-有以下几种"><a href="#Subject-有以下几种" class="headerlink" title="Subject 有以下几种"></a>Subject 有以下几种</h2><ul>
+<li>①PublishSubject 只发射给观察者订阅后的数据</li>
+<li>②ReplaySubject</li>
+<li>③BehaviorSubject</li>
+<li>④Variable</li>
+<li>⑤BehaviorRelay</li>
+</ul>
+<blockquote>
+<p>1.区别</p>
+</blockquote>
+<ul>
+<li>PublishSubject, ReplaySubject和BehaviorSubject是不会自动发出completed事件的</li>
+</ul>
+<blockquote>
+<p>2.相同之处：</p>
+</blockquote>
+<ul>
+<li>首先他们都是 Observable，他们的订阅者都能收到他们发出的新的 Event</li>
+<li>直到 Subject 发出 .complete 或者 .error 的 Event 后，该 Subject 便终结了，同时它也就不会再发出 .next 事件</li>
+<li>对于那些在 Subject 终结后再订阅他的订阅者，也能收到 subject 发出的一条 .complete 或 .error 的 event，告诉这个新的订阅者它已经终结了。</li>
+<li>他们之间最大的区别只是在于：当一个新的订阅者刚订阅它的时候，能不能收到 Subject 以前发出过的旧 Event，如果能的话又能收到多少个</li>
+</ul>
+<h2 id="Subject-常用的几个方法"><a href="#Subject-常用的几个方法" class="headerlink" title="Subject 常用的几个方法"></a>Subject 常用的几个方法</h2><ul>
+<li>onNext(:)：是 on(.next(:)) 的简便写法。该方法相当于 subject 接收到一个 .next 事件</li>
+<li>onError(:)：是 on(.error(:)) 的简便写法。该方法相当于 subject 接收到一个 .error 事件</li>
+<li>onCompleted()：是 on(.completed) 的简便写法。该方法相当于 subject 接收到一个 .completed 事件</li>
+</ul>
+<h1 id="①PublishSubject"><a href="#①PublishSubject" class="headerlink" title="①PublishSubject"></a>①PublishSubject</h1><h2 id="❶基本介绍"><a href="#❶基本介绍" class="headerlink" title="❶基本介绍"></a>❶基本介绍</h2><blockquote>
+<p>PublishSubject 是最普通的 Subject，它不需要初始值就能创建<br>当有观察者订阅 PublishSubject 时，PublishSubject 会发射订阅之后的数据给这个观察者,<strong><em>只能接收到订阅他之后发生的事件</em></strong><br>PublishSubject 的订阅者从他们开始订阅的时间点起，可以收到订阅后 Subject 发出的新 Event，而不会收到他们在订阅前已发出的 Even<br>于是这里存在丢失数据的问题，如需全部数据，推荐改用 ReplaySubject<br>subject.onNext()发出onNext事件<br>对应的还有onError()和onCompleted()事件</p>
+</blockquote>
+<h2 id="❷时序图"><a href="#❷时序图" class="headerlink" title="❷时序图"></a>❷时序图</h2><blockquote>
+<p>最上面一条是<strong>PublishSubject</strong><br>下面两条分别表示两个新的订阅，它们订阅的时间点不同，可以发现 PublishSubject 的订阅者只能收到他们订阅后的 Even<br>如果序列因为错误终止发射序列，此时 PublishSubject 就不会发射数据，只是传递这次错误事件</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/Swift-RxSwift-Subject-001.png" alt="001"></p>
+<h2 id="❸使用样例"><a href="#❸使用样例" class="headerlink" title="❸使用样例"></a>❸使用样例</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"> </div><div class="line"><span class="comment">//创建一个PublishSubject</span></div><div class="line"><span class="keyword">let</span> subject = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"> </div><div class="line"><span class="comment">//由于当前没有任何订阅者，所以这条信息不会输出到控制台</span></div><div class="line">subject.onNext(<span class="string">"111"</span>)</div><div class="line"> </div><div class="line"><span class="comment">//第1次订阅subject</span></div><div class="line">subject.subscribe(onNext: &#123; string <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"第1次订阅："</span>, string)</div><div class="line">&#125;, onCompleted:&#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"第1次订阅：onCompleted"</span>)</div><div class="line">&#125;).disposed(by: disposeBag)</div><div class="line"> </div><div class="line"><span class="comment">//当前有1个订阅，则该信息会输出到控制台</span></div><div class="line">subject.onNext(<span class="string">"222"</span>)</div><div class="line"> </div><div class="line"><span class="comment">//第2次订阅subject</span></div><div class="line">subject.subscribe(onNext: &#123; string <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"第2次订阅："</span>, string)</div><div class="line">&#125;, onCompleted:&#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"第2次订阅：onCompleted"</span>)</div><div class="line">&#125;).disposed(by: disposeBag)</div><div class="line"> </div><div class="line"><span class="comment">//当前有2个订阅，则该信息会输出到控制台</span></div><div class="line">subject.onNext(<span class="string">"333"</span>)</div><div class="line"> </div><div class="line"><span class="comment">//让subject结束</span></div><div class="line">subject.onCompleted()</div><div class="line"> </div><div class="line"><span class="comment">//subject完成后会发出.next事件了。</span></div><div class="line">subject.onNext(<span class="string">"444"</span>)</div><div class="line"> </div><div class="line"><span class="comment">//subject完成后它的所有订阅（包括结束后的订阅），都能收到subject的.completed事件，</span></div><div class="line">subject.subscribe(onNext: &#123; string <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"第3次订阅："</span>, string)</div><div class="line">&#125;, onCompleted:&#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"第3次订阅：onCompleted"</span>)</div><div class="line">&#125;).disposed(by: disposeBag)</div><div class="line"></div><div class="line"><span class="comment">//print</span></div><div class="line">  第<span class="number">1</span>次订阅： <span class="number">222</span></div><div class="line">  第<span class="number">1</span>次订阅： <span class="number">333</span></div><div class="line">  第<span class="number">2</span>次订阅： <span class="number">333</span></div><div class="line">  第<span class="number">1</span>次订阅： onCompleted</div><div class="line">  第<span class="number">2</span>次订阅： onCompleted</div><div class="line">  第<span class="number">3</span>次订阅： onCompleted</div></pre></td></tr></table></figure>
+<h2 id="②ReplaySubject"><a href="#②ReplaySubject" class="headerlink" title="②ReplaySubject"></a>②ReplaySubject</h2><h2 id="❶基本介绍-1"><a href="#❶基本介绍-1" class="headerlink" title="❶基本介绍"></a>❶基本介绍</h2><ul>
+<li>和 PushblishSubject 不同，不论观察者什么时候订阅， ReplaySubject 都会发射完整的数据给观察者</li>
+<li>ReplaySubject和PublishSubject不同的是，Observer有可能接收到订阅之前的值</li>
+<li>ReplaySubject 在创建时候需要设置一个 bufferSize，表示它对于它发送过的 event 的缓存个数</li>
+<li>比如一个 ReplaySubject 的 bufferSize 设置为 2，它发出了 3 个 .next 的 event，那么它会将后两个（最近的两个）event 给缓存起来。此时如果有一个 subscriber 订阅了这个 ReplaySubject，那么这个 subscriber 就会立即收到前面缓存的两个 .next 的 event</li>
+<li>如果一个 subscriber 订阅已经结束的 ReplaySubject，除了会收到缓存的 .next 的 event 外，还会收到那个终结的 .error 或者 .complete 的 event</li>
+</ul>
+<h2 id="❷时序图-1"><a href="#❷时序图-1" class="headerlink" title="❷时序图"></a>❷时序图</h2><ul>
+<li>最上面一条是 ReplaySubject（bufferSize 设为为 2）<ul>
+<li>下面两条分别表示两个新的订阅，它们订阅的时间点不同。可以发现 ReplaySubject 的订阅者一开始就能收到 ReplaySubject 之前发出的两个 Event（如果有的话）</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/Swift-RxSwift-Subject-003.png" alt="003"></p>
+<h2 id="❷使用样例"><a href="#❷使用样例" class="headerlink" title="❷使用样例"></a>❷使用样例</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">   <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"> </div><div class="line"><span class="comment">//创建一个bufferSize为2的ReplaySubject</span></div><div class="line"><span class="keyword">let</span> subject = <span class="type">ReplaySubject</span>&lt;<span class="type">String</span>&gt;.create(bufferSize: <span class="number">2</span>)</div><div class="line"> </div><div class="line"><span class="comment">//连续发送3个next事件</span></div><div class="line">subject.onNext(<span class="string">"111"</span>)</div><div class="line">subject.onNext(<span class="string">"222"</span>)</div><div class="line">subject.onNext(<span class="string">"333"</span>)</div><div class="line"> </div><div class="line"><span class="comment">//第1次订阅subject</span></div><div class="line">subject.subscribe &#123; event <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"第1次订阅："</span>, event)</div><div class="line">&#125;.disposed(by: disposeBag)</div><div class="line"> </div><div class="line"><span class="comment">//再发送1个next事件</span></div><div class="line">subject.onNext(<span class="string">"444"</span>)</div><div class="line"> </div><div class="line"><span class="comment">//第2次订阅subject</span></div><div class="line">subject.subscribe &#123; event <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"第2次订阅："</span>, event)</div><div class="line">&#125;.disposed(by: disposeBag)</div><div class="line"> </div><div class="line"><span class="comment">//让subject结束</span></div><div class="line">subject.onCompleted()</div><div class="line"> </div><div class="line"><span class="comment">//第3次订阅subject</span></div><div class="line">subject.subscribe &#123; event <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"第3次订阅："</span>, event)</div><div class="line">&#125;.disposed(by: disposeBag)</div><div class="line"></div><div class="line"><span class="comment">//print </span></div><div class="line">第<span class="number">1</span>次订阅: next(<span class="number">222</span>)</div><div class="line">第<span class="number">1</span>次订阅: next(<span class="number">333</span>)</div><div class="line">第<span class="number">1</span>次订阅: next(<span class="number">444</span>)</div><div class="line">第<span class="number">2</span>次订阅: next(<span class="number">333</span>)</div><div class="line">第<span class="number">2</span>次订阅: next(<span class="number">444</span>)</div><div class="line">第<span class="number">1</span>次订阅: completed</div><div class="line">第<span class="number">2</span>次订阅: completed</div><div class="line">第<span class="number">3</span>次订阅: next(<span class="number">333</span>)</div><div class="line">第<span class="number">3</span>次订阅: next(<span class="number">444</span>)</div><div class="line">第<span class="number">3</span>次订阅: completed</div></pre></td></tr></table></figure>
+<h1 id="③BehaviorSubject"><a href="#③BehaviorSubject" class="headerlink" title="③BehaviorSubject"></a>③BehaviorSubject</h1><h2 id="❶基本介绍-2"><a href="#❶基本介绍-2" class="headerlink" title="❶基本介绍"></a>❶基本介绍</h2><blockquote>
+<p>BehaviorSubject 需要通过一个默认初始值来创建<br>当一个订阅者来订阅它的时候，这个订阅者会立即收到 BehaviorSubjects 上一个发出的 event。之后就跟正常的情况一样，它也会接收到 BehaviorSubject 之后发出的新的 event。</p>
+</blockquote>
+<h2 id="❷时序图-2"><a href="#❷时序图-2" class="headerlink" title="❷时序图"></a>❷时序图</h2><blockquote>
+<p>最上面一条是<strong>BehaviorSubject</strong><br>下面两条分别表示两个新的订阅，它们订阅的时间点不同，可以发现 <strong>BehaviorSubject</strong>的订阅者一开始就能收到<strong>BehaviorSubjects </strong>之前发出的一个 <strong>Event</strong></p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/Swift-RxSwift-Subject-004.png" alt="002"></p>
+<h2 id="❸使用样例-1"><a href="#❸使用样例-1" class="headerlink" title="❸使用样例"></a>❸使用样例</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"> </div><div class="line"><span class="comment">//创建一个BehaviorSubject</span></div><div class="line"><span class="keyword">let</span> subject = <span class="type">BehaviorSubject</span>(value: <span class="string">"111"</span>)</div><div class="line"> </div><div class="line"><span class="comment">//第1次订阅subject</span></div><div class="line">subject.subscribe &#123; event <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"第1次订阅："</span>, event)</div><div class="line">&#125;.disposed(by: disposeBag)</div><div class="line"> </div><div class="line"><span class="comment">//发送next事件</span></div><div class="line">subject.onNext(<span class="string">"222"</span>)</div><div class="line"> </div><div class="line"><span class="comment">//发送error事件</span></div><div class="line">subject.onError(<span class="type">NSError</span>(domain: <span class="string">"local"</span>, code: <span class="number">0</span>, userInfo: <span class="literal">nil</span>))</div><div class="line"> </div><div class="line"><span class="comment">//第2次订阅subject</span></div><div class="line">subject.subscribe &#123; event <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"第2次订阅："</span>, event)</div><div class="line">&#125;.disposed(by: disposeBag)</div><div class="line"></div><div class="line"><span class="comment">//print==========</span></div><div class="line">第<span class="number">1</span>次订阅: next(<span class="number">111</span>)</div><div class="line">第<span class="number">1</span>次订阅: next(<span class="number">222</span>)</div><div class="line">第<span class="number">1</span>次订阅: next(<span class="type">Error</span> <span class="type">Domain</span>=local <span class="type">Code</span>=<span class="number">0</span> <span class="string">"null"</span>)</div><div class="line">第<span class="number">2</span>次订阅: next(<span class="type">Error</span> <span class="type">Domain</span>=local <span class="type">Code</span>=<span class="number">0</span> <span class="string">"null"</span>)</div></pre></td></tr></table></figure>
+<h1 id="④Variable"><a href="#④Variable" class="headerlink" title="④Variable"></a>④Variable</h1><h2 id="❶基本介绍-3"><a href="#❶基本介绍-3" class="headerlink" title="❶基本介绍"></a>❶基本介绍</h2><ul>
+<li>Variable 是 BehaviorSubject 的一个封装</li>
+<li>相比 BehaviorSubject ，它不会因为错误终止也不会正常终止，是一个无限序列</li>
+<li>Variable是BehaviorSubject一个包装箱，就像是一个箱子一样，使用的时候需要调用asObservable()拆箱，里面的value是一个BehaviorSubject，他不会发出error事件，但是会自动发出completed事件</li>
+<li>Variable 其实就是对 BehaviorSubject 的封装，所以它也必须要通过一个默认的初始值进行创建。<br>Variable 具有 BehaviorSubject 的功能，能够向它的订阅者发出上一个 event 以及之后新创建的 event。<br>不同的是，Variable 还把会把当前发出的值保存为自己的状态。同时它会在销毁时自动发送 .complete 的 event，不需要也不能手动给 Variables 发送 completed 或者 error 事件来结束它。<br>简单地说就是 Variable 有一个 value 属性，我们改变这个 value 属性的值就相当于调用一般 Subjects 的 onNext() 方法，而这个最新的 onNext() 的值就被保存在 value 属性里了，直到我们再次修改它</li>
+</ul>
+<blockquote>
+<p>注意：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Variables 本身没有 subscribe() 方法，但是所有 Subjects 都有一个 asObservable() 方法。我们可以使用这个方法返回这个 Variable 的 Observable 类型，拿到这个 Observable 类型我们就能订阅它了。</div></pre></td></tr></table></figure>
+<h2 id="使用样例"><a href="#使用样例" class="headerlink" title="使用样例"></a>使用样例</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> UIKit</div><div class="line"><span class="keyword">import</span> RxSwift</div><div class="line"><span class="keyword">import</span> RxCocoa</div><div class="line"> </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span> </span>&#123;</div><div class="line">     </div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.viewDidLoad()</div><div class="line"> </div><div class="line">        <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">         </div><div class="line">        <span class="comment">//创建一个初始值为111的Variable</span></div><div class="line">        <span class="keyword">let</span> variable = <span class="type">Variable</span>(<span class="string">"111"</span>)</div><div class="line">         </div><div class="line">        <span class="comment">//修改value值</span></div><div class="line">        variable.value = <span class="string">"222"</span></div><div class="line">         </div><div class="line">        <span class="comment">//第1次订阅</span></div><div class="line">        variable.asObservable().subscribe &#123;</div><div class="line">            <span class="built_in">print</span>(<span class="string">"第1次订阅："</span>, $<span class="number">0</span>)</div><div class="line">        &#125;.disposed(by: disposeBag)</div><div class="line">         </div><div class="line">        <span class="comment">//修改value值</span></div><div class="line">        variable.value = <span class="string">"333"</span></div><div class="line">         </div><div class="line">        <span class="comment">//第2次订阅</span></div><div class="line">        variable.asObservable().subscribe &#123;</div><div class="line">            <span class="built_in">print</span>(<span class="string">"第2次订阅："</span>, $<span class="number">0</span>)</div><div class="line">        &#125;.disposed(by: disposeBag)</div><div class="line">         </div><div class="line">        <span class="comment">//修改value值</span></div><div class="line">        variable.value = <span class="string">"444"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>运行结果如下：<br>注意：由于 Variable 对象在 viewDidLoad() 方法内初始化，所以它的生命周期就被限制在该方法内。当这个方法执行完毕后，这个 Variable 对象就会被销毁，同时它也就自动地向它的所有订阅者发出 .completed 事件</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">第<span class="number">1</span>次订阅: next(<span class="number">222</span>)</div><div class="line">第<span class="number">1</span>次订阅: next(<span class="number">333</span>)</div><div class="line">第<span class="number">2</span>次订阅: next(<span class="number">333</span>)</div><div class="line">第<span class="number">1</span>次订阅: next(<span class="number">444</span>)</div><div class="line">第<span class="number">2</span>次订阅: next(<span class="number">444</span>)</div><div class="line">第<span class="number">1</span>次订阅: completed</div><div class="line">第<span class="number">1</span>次订阅: completed</div></pre></td></tr></table></figure>
+<h1 id="⑤BehaviorRelay"><a href="#⑤BehaviorRelay" class="headerlink" title="⑤BehaviorRelay"></a>⑤BehaviorRelay</h1><h2 id="❶基本介绍-4"><a href="#❶基本介绍-4" class="headerlink" title="❶基本介绍"></a>❶基本介绍</h2><ul>
+<li>BehaviorRelay 是作为 Variable 的替代者出现的。它的本质其实也是对 BehaviorSubject 的封装，所以它也必须要通过一个默认的初始值进行创建</li>
+<li>BehaviorRelay 具有 BehaviorSubject 的功能，能够向它的订阅者发出上一个 event 以及之后新创建的 event。<br>与 BehaviorSubject 不同的是，不需要也不能手动给 BehaviorReply 发送 completed 或者 error 事件来结束它（BehaviorRelay 会在销毁时也不会自动发送 .complete 的 event）</li>
+<li>BehaviorRelay 有一个 value 属性，我们通过这个属性可以获取最新值。而通过它的 accept() 方法可以对值进行修改</li>
+</ul>
+<h2 id="❷上面的-Variable-样例我们可以改用成-BehaviorRelay，代码如下"><a href="#❷上面的-Variable-样例我们可以改用成-BehaviorRelay，代码如下" class="headerlink" title="❷上面的 Variable 样例我们可以改用成 BehaviorRelay，代码如下"></a>❷上面的 Variable 样例我们可以改用成 BehaviorRelay，代码如下</h2><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> UIKit</div><div class="line"><span class="keyword">import</span> RxSwift</div><div class="line"><span class="keyword">import</span> RxCocoa</div><div class="line"> </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span> </span>&#123;</div><div class="line">     </div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.viewDidLoad()</div><div class="line">         </div><div class="line">        <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">         </div><div class="line">        <span class="comment">//创建一个初始值为111的BehaviorRelay</span></div><div class="line">        <span class="keyword">let</span> subject = <span class="type">BehaviorRelay</span>&lt;<span class="type">String</span>&gt;(value: <span class="string">"111"</span>)</div><div class="line">         </div><div class="line">        <span class="comment">//修改value值</span></div><div class="line">        subject.accept(<span class="string">"222"</span>)</div><div class="line">         </div><div class="line">        <span class="comment">//第1次订阅</span></div><div class="line">        subject.asObservable().subscribe &#123;</div><div class="line">            <span class="built_in">print</span>(<span class="string">"第1次订阅："</span>, $<span class="number">0</span>)</div><div class="line">            &#125;.disposed(by: disposeBag)</div><div class="line">         </div><div class="line">        <span class="comment">//修改value值</span></div><div class="line">        subject.accept(<span class="string">"333"</span>)</div><div class="line">         </div><div class="line">        <span class="comment">//第2次订阅</span></div><div class="line">        subject.asObservable().subscribe &#123;</div><div class="line">            <span class="built_in">print</span>(<span class="string">"第2次订阅："</span>, $<span class="number">0</span>)</div><div class="line">            &#125;.disposed(by: disposeBag)</div><div class="line">         </div><div class="line">        <span class="comment">//修改value值</span></div><div class="line">        subject.accept(<span class="string">"444"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//print =====</span></div><div class="line"> 第<span class="number">1</span>次订阅： next(<span class="number">222</span>)</div><div class="line"> 第<span class="number">1</span>次订阅： next(<span class="number">333</span>)</div><div class="line"> 第<span class="number">2</span>次订阅： next(<span class="number">333</span>)</div><div class="line"> 第<span class="number">1</span>次订阅： next(<span class="number">444</span>)</div><div class="line"> 第<span class="number">2</span>次订阅： next(<span class="number">444</span>)</div></pre></td></tr></table></figure>
+<h2 id="❸如果想将新值合并到原值上，可以通过-accept-方法与-value-属性配合来实现"><a href="#❸如果想将新值合并到原值上，可以通过-accept-方法与-value-属性配合来实现" class="headerlink" title="❸如果想将新值合并到原值上，可以通过 accept() 方法与 value 属性配合来实现"></a>❸如果想将新值合并到原值上，可以通过 accept() 方法与 value 属性配合来实现</h2><blockquote>
+<p>这个常用在表格上拉加载功能上，BehaviorRelay 用来保存所有加载到的数据</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span> </span>&#123;</div><div class="line">     </div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.viewDidLoad()</div><div class="line">         </div><div class="line">        <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">         </div><div class="line">        <span class="comment">//创建一个初始值为包含一个元素的数组的BehaviorRelay</span></div><div class="line">        <span class="keyword">let</span> subject = <span class="type">BehaviorRelay</span>&lt;[<span class="type">String</span>]&gt;(value: [<span class="string">"1"</span>])</div><div class="line">         </div><div class="line">        <span class="comment">//修改value值</span></div><div class="line">        subject.accept(subject.value + [<span class="string">"2"</span>, <span class="string">"3"</span>])</div><div class="line">         </div><div class="line">        <span class="comment">//第1次订阅</span></div><div class="line">        subject.asObservable().subscribe &#123;</div><div class="line">            <span class="built_in">print</span>(<span class="string">"第1次订阅："</span>, $<span class="number">0</span>)</div><div class="line">            &#125;.disposed(by: disposeBag)</div><div class="line">         </div><div class="line">        <span class="comment">//修改value值</span></div><div class="line">        subject.accept(subject.value + [<span class="string">"4"</span>, <span class="string">"5"</span>])</div><div class="line">         </div><div class="line">        <span class="comment">//第2次订阅</span></div><div class="line">        subject.asObservable().subscribe &#123;</div><div class="line">            <span class="built_in">print</span>(<span class="string">"第2次订阅："</span>, $<span class="number">0</span>)</div><div class="line">            &#125;.disposed(by: disposeBag)</div><div class="line">         </div><div class="line">        <span class="comment">//修改value值</span></div><div class="line">        subject.accept(subject.value + [<span class="string">"6"</span>, <span class="string">"7"</span>])</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//print =====</span></div><div class="line">第<span class="number">1</span>次订阅： next([<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>])</div><div class="line">第<span class="number">1</span>次订阅： next([<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>])</div><div class="line">第<span class="number">2</span>次订阅： next([<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>])</div><div class="line">第<span class="number">1</span>次订阅： next([<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>, <span class="string">"6"</span>, <span class="string">"7"</span>])</div><div class="line">第<span class="number">2</span>次订阅： next([<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>, <span class="string">"6"</span>, <span class="string">"7"</span>])</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/16/RxSwift/Guide文档指南/RxSwift文档/05-Observer-观察者/" rel="next" title="Swift-RxSwift-Observer-观察者">
+                <i class="fa fa-chevron-left"></i> Swift-RxSwift-Observer-观察者
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/18/RxSwift/Guide文档指南/RxSwift文档/进阶理解/" rel="prev" title="Swift-RxSwift-进阶理解">
+                Swift-RxSwift-进阶理解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">千夜 QQ:738816656</p>
+              <p class="site-description motion-element" itemprop="description">ReactNative</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">261</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">79</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Subject"><span class="nav-number">1.</span> <span class="nav-text">Subject</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Subjects-既是订阅者，也是Observable"><span class="nav-number">1.1.</span> <span class="nav-text">Subjects 既是订阅者，也是Observable</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Subject-有以下几种"><span class="nav-number">1.2.</span> <span class="nav-text">Subject 有以下几种</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Subject-常用的几个方法"><span class="nav-number">1.3.</span> <span class="nav-text">Subject 常用的几个方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#①PublishSubject"><span class="nav-number">2.</span> <span class="nav-text">①PublishSubject</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#❶基本介绍"><span class="nav-number">2.1.</span> <span class="nav-text">❶基本介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#❷时序图"><span class="nav-number">2.2.</span> <span class="nav-text">❷时序图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#❸使用样例"><span class="nav-number">2.3.</span> <span class="nav-text">❸使用样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#②ReplaySubject"><span class="nav-number">2.4.</span> <span class="nav-text">②ReplaySubject</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#❶基本介绍-1"><span class="nav-number">2.5.</span> <span class="nav-text">❶基本介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#❷时序图-1"><span class="nav-number">2.6.</span> <span class="nav-text">❷时序图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#❷使用样例"><span class="nav-number">2.7.</span> <span class="nav-text">❷使用样例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#③BehaviorSubject"><span class="nav-number">3.</span> <span class="nav-text">③BehaviorSubject</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#❶基本介绍-2"><span class="nav-number">3.1.</span> <span class="nav-text">❶基本介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#❷时序图-2"><span class="nav-number">3.2.</span> <span class="nav-text">❷时序图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#❸使用样例-1"><span class="nav-number">3.3.</span> <span class="nav-text">❸使用样例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#④Variable"><span class="nav-number">4.</span> <span class="nav-text">④Variable</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#❶基本介绍-3"><span class="nav-number">4.1.</span> <span class="nav-text">❶基本介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用样例"><span class="nav-number">4.2.</span> <span class="nav-text">使用样例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#⑤BehaviorRelay"><span class="nav-number">5.</span> <span class="nav-text">⑤BehaviorRelay</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#❶基本介绍-4"><span class="nav-number">5.1.</span> <span class="nav-text">❶基本介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#❷上面的-Variable-样例我们可以改用成-BehaviorRelay，代码如下"><span class="nav-number">5.2.</span> <span class="nav-text">❷上面的 Variable 样例我们可以改用成 BehaviorRelay，代码如下</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#❸如果想将新值合并到原值上，可以通过-accept-方法与-value-属性配合来实现"><span class="nav-number">5.3.</span> <span class="nav-text">❸如果想将新值合并到原值上，可以通过 accept() 方法与 value 属性配合来实现</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">千夜 QQ:738816656</span>
+
+  
+</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

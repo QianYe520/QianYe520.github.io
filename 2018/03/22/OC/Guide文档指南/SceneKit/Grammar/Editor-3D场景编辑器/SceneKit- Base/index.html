@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<meta name="theme-color" content="#222">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="SceneKit,Editor," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="SceneKit-Editor Xcode自带了一个简单好用的3D场景编辑器,当选中或创建一个xxx.scn文件时就会出现    1.Scene graph(场景节点树)  场景中每一个元素都显示在这里,可以拖拽树状结构的元素来控制父子关系  2.Design area(设计区)  效果呈现区,可以拖拽,旋转和缩放,也可以从对象库中拖放原始节点到这里  3.Inspectors(检查器)  和场景">
+<meta name="keywords" content="SceneKit,Editor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SceneKit-Editor-3D场景编辑器">
+<meta property="og:url" content="http://yoursite.com/2018/03/22/OC/Guide文档指南/SceneKit/Grammar/Editor-3D场景编辑器/SceneKit- Base/index.html">
+<meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
+<meta property="og:description" content="SceneKit-Editor Xcode自带了一个简单好用的3D场景编辑器,当选中或创建一个xxx.scn文件时就会出现    1.Scene graph(场景节点树)  场景中每一个元素都显示在这里,可以拖拽树状结构的元素来控制父子关系  2.Design area(设计区)  效果呈现区,可以拖拽,旋转和缩放,也可以从对象库中拖放原始节点到这里  3.Inspectors(检查器)  和场景">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/3D%E5%9C%BA%E6%99%AF%E7%BC%96%E8%BE%91%E5%99%A8.png">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/%E4%BB%A5Box%E8%8A%82%E7%82%B9%E4%B8%BA%E4%BE%8B01.png">
+<meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/%E4%BB%A5Box%E8%8A%82%E7%82%B9%E4%B8%BA%E4%BE%8B02.png">
+<meta property="og:updated_time" content="2018-03-22T09:07:44.753Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SceneKit-Editor-3D场景编辑器">
+<meta name="twitter:description" content="SceneKit-Editor Xcode自带了一个简单好用的3D场景编辑器,当选中或创建一个xxx.scn文件时就会出现    1.Scene graph(场景节点树)  场景中每一个元素都显示在这里,可以拖拽树状结构的元素来控制父子关系  2.Design area(设计区)  效果呈现区,可以拖拽,旋转和缩放,也可以从对象库中拖放原始节点到这里  3.Inspectors(检查器)  和场景">
+<meta name="twitter:image" content="http://ozr735s7e.bkt.clouddn.com/3D%E5%9C%BA%E6%99%AF%E7%BC%96%E8%BE%91%E5%99%A8.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/22/OC/Guide文档指南/SceneKit/Grammar/Editor-3D场景编辑器/SceneKit- Base/"/>
+
+
+
+
+
+  <title>SceneKit-Editor-3D场景编辑器 | 千夜、おれはおまえをずっと爱している</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">千夜、おれはおまえをずっと爱している</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/22/OC/Guide文档指南/SceneKit/Grammar/Editor-3D场景编辑器/SceneKit- Base/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SceneKit-Editor-3D场景编辑器</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-22T14:55:20+08:00">
+                2018-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SceneKit/" itemprop="url" rel="index">
+                    <span itemprop="name">SceneKit</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SceneKit/Editor/" itemprop="url" rel="index">
+                    <span itemprop="name">Editor</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="SceneKit-Editor"><a href="#SceneKit-Editor" class="headerlink" title="SceneKit-Editor"></a>SceneKit-Editor</h1><blockquote>
+<p>Xcode自带了一个简单好用的3D场景编辑器,当选中或创建一个xxx.scn文件时就会出现</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/3D%E5%9C%BA%E6%99%AF%E7%BC%96%E8%BE%91%E5%99%A8.png" alt=""></p>
+<blockquote>
+<p>1.Scene graph(场景节点树)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">场景中每一个元素都显示在这里,可以拖拽树状结构的元素来控制父子关系</div></pre></td></tr></table></figure>
+<blockquote>
+<p>2.Design area(设计区)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">效果呈现区,可以拖拽,旋转和缩放,也可以从对象库中拖放原始节点到这里</div></pre></td></tr></table></figure>
+<blockquote>
+<p>3.Inspectors(检查器)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">和场景类型有关的检查器,检查器中的内容将根据你选中的节点不同而改变,最上方横放的有五个新的检查器</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>检查器</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Node Inspector(节点检查器)</td>
+<td>SCNNode对象有关的属性</td>
+</tr>
+<tr>
+<td>Attributes Inspector(属性检查器):和选中节点类型有头的检查器,如果选中的是Box,可以设置长宽高,如果是Sphere,可以设置半径</td>
+</tr>
+<tr>
+<td>Material Inspector(材料检查器):设置节点的颜色和纹理</td>
+</tr>
+<tr>
+<td>Physics Inspector(物理检查器):设置物理行为的配置</td>
+</tr>
+<tr>
+<td>Scene Inspector(场景检查器):场景中所有节点都有的全局检查器,可以设置场景中的一些属性</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>4.Properties(属性)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">检查器的内部属性</div></pre></td></tr></table></figure>
+<blockquote>
+<p>5.Object Library(对象库)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">所有可用的SCNNode对象,从系统自带到用户自定义的节点都有.SCNAction对象也在这里</div></pre></td></tr></table></figure>
+<blockquote>
+<p>6.Toolbar(工具条):</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">包含一些重要元素,从左到右,按钮功能</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>按钮功能</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Add/delete node(添加/删除节点)</td>
+<td>选中节点树中的节点,添加一个子元素或者删除选中节点</td>
+</tr>
+<tr>
+<td>Search filter(搜索过滤器)</td>
+<td>复杂场景下用来快速搜索</td>
+</tr>
+<tr>
+<td>Expand/collapse scene graph area(可收缩场景图表区)</td>
+<td>打开/关闭左侧的场景图表区</td>
+</tr>
+<tr>
+<td>Coordinate system(坐标系)</td>
+<td>选择一个活跃坐标系来编辑你的节点,可选local,parent,world或者screen</td>
+</tr>
+<tr>
+<td>View/camera select(视点/相机选择)</td>
+<td>当有多个相机时,可以选择相机列表中任一个活跃视点</td>
+</tr>
+<tr>
+<td>Play/stop scene(播放/暂停场景)</td>
+<td>播放/暂停物理和动作模拟</td>
+</tr>
+<tr>
+<td>Expand/collapse actions(收缩动作区)</td>
+<td>打开/关闭下面的动作区</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>7.Actions area(动作区)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">给节点添加动作时,可以从对象库中拖放一个action到这里,就会影响被选中的节点</div></pre></td></tr></table></figure>
+<h1 id="Basic-scene-navigation基础场景导航"><a href="#Basic-scene-navigation基础场景导航" class="headerlink" title="Basic scene navigation基础场景导航"></a>Basic scene navigation基础场景导航</h1><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pan(拖动)</td>
+<td>Magic鼠标直接在滚轮处上下左右移动,触摸板用双指移动,普通鼠标按住option键拖动</td>
+</tr>
+<tr>
+<td>Rotate(旋转)</td>
+<td>按下左键并移动鼠标</td>
+</tr>
+<tr>
+<td>Zoom(缩放)</td>
+<td>按住option键使用滚轮缩放,触摸板用捏合手势</td>
+</tr>
+<tr>
+<td>Multi-selection(多选)</td>
+<td>按住Command单击多选</td>
+</tr>
+</tbody>
+</table>
+<h1 id="Basic-node-manipulation基础节点操作"><a href="#Basic-node-manipulation基础节点操作" class="headerlink" title="Basic node manipulation基础节点操作"></a>Basic node manipulation基础节点操作</h1><blockquote>
+<p>以Box节点为例</p>
+</blockquote>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/%E4%BB%A5Box%E8%8A%82%E7%82%B9%E4%B8%BA%E4%BE%8B01.png" alt=""></p>
+<p><img src="http://ozr735s7e.bkt.clouddn.com/%E4%BB%A5Box%E8%8A%82%E7%82%B9%E4%B8%BA%E4%BE%8B02.png" alt=""></p>
+<p>Positioning(定位):拖动高亮的坐标轴,可以在坐标轴方向上移动.拖动灰色扇形区,可以沿所有平面移动<br>Rotatation(旋转):拖动高亮的坐标轴曲线,可以旋转节点</p>
+<ul>
+<li>附加操作:移动节点时,按住Command键,可放大并仔细检查位置.</li>
+<li>旋转节点时,按住Command键,可放大并仔细检查角度.</li>
+<li>按住Option键并拖动,可复制一个共享属性的副本,就是说对原本做的属性更改操作将影响副本.如果想取消共享属性,取消按钮在属性检查器中几何体共享分类下面.</li>
+</ul>
+<h1 id="xxx-scn文件的加载"><a href="#xxx-scn文件的加载" class="headerlink" title="xxx.scn文件的加载"></a>xxx.scn文件的加载</h1><figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  scnScene = <span class="type">SCNScene</span>(named: <span class="string">"B.scnassets/Scenes/Game.scn"</span>)</div><div class="line">scnView.scene = scnScene</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SceneKit/" rel="tag"># SceneKit</a>
+          
+            <a href="/tags/Editor/" rel="tag"># Editor</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/21/Swift/Grammar/Protocol协议-Base/" rel="next" title="Swift-Grammar-Protocol协议-基础">
+                <i class="fa fa-chevron-left"></i> Swift-Grammar-Protocol协议-基础
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/07-09-Operator-自定义操作符/" rel="prev" title="RxSwift-Grammar-自定义operator">
+                RxSwift-Grammar-自定义operator <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">千夜 QQ:738816656</p>
+              <p class="site-description motion-element" itemprop="description">ReactNative</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">261</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">79</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SceneKit-Editor"><span class="nav-number">1.</span> <span class="nav-text">SceneKit-Editor</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Basic-scene-navigation基础场景导航"><span class="nav-number">2.</span> <span class="nav-text">Basic scene navigation基础场景导航</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Basic-node-manipulation基础节点操作"><span class="nav-number">3.</span> <span class="nav-text">Basic node manipulation基础节点操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xxx-scn文件的加载"><span class="nav-number">4.</span> <span class="nav-text">xxx.scn文件的加载</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">千夜 QQ:738816656</span>
+
+  
+</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
