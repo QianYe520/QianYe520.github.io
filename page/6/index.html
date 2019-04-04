@@ -311,7 +311,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/Dispose和DisposeBag/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/map和flatMap/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -330,7 +330,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/Dispose和DisposeBag/" itemprop="url">RxSwift-Grammar-Dispose和DisposeBag</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/map和flatMap/" itemprop="url">RxSwift-Grammar-map和flatMap</a></h1>
         
 
         <div class="post-meta">
@@ -415,14 +415,14 @@
       
         
           
-          Dispose 和 DisposeBag当监听一个sequence的时候，有消息事件来了，做某些事情。但是这个sequence不再发送消息事件了，那么我们的监听也就没有什么存在的价值了，所以我们需要释放我们这些监听资源，其实也就是内存资源释放
-##手动调用释放方式(一般不适用这种方式)
+          map和flatMap
+map函数，接收一个R类型的序列，返回一个R类型的序列，还是原来的序列。
 
-创建一个s
+public func map&lt;R&gt;(_ transform: @escaping (Self.E) throws -&gt; R) -&gt; RxSwift.Observable&lt
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Grammar/Dispose和DisposeBag/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Grammar/map和flatMap/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -639,7 +639,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/Traits-Single/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/observeOn()和subscribeOn()/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -658,7 +658,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/Traits-Single/" itemprop="url">RxSwift-Grammar-特征序列Traits-Single</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/observeOn()和subscribeOn()/" itemprop="url">RxSwift-Grammar-observeOn()和subscribeOn()</a></h1>
         
 
         <div class="post-meta">
@@ -743,19 +743,30 @@
       
         
           
-          Single基本介绍
-Single 是 Observable 的另外一个版本但它不像 Observable 可以发出多个元素，它要么只能发出一个元素，要么产生一个 error 事件
+          observeOn()和subscribeOn()
 
 
-发出一个元素，或一个 error 事件
-不会共享状态变化
 
-应用场景
-Single 比较常见的例子就是执行 HTT
+
+
+
+
+
+subscribeOn()
+设置起点在哪个线程
+
+
+observeOn()
+置了后续工作在哪个线程
+
+
+
+
+1)所有动作都发生在当前的默认线程2)observeOn()转换线程到主线程，下面所有的操作都在主线程3)subscribe
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Grammar/Traits-Single/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Grammar/observeOn()和subscribeOn()/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1968,7 +1979,7 @@ Swift我们用Alamofire来做网络库.而Moya在Alamofire的基础上又封装�
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2014,7 +2025,7 @@ Swift我们用Alamofire来做网络库.而Moya在Alamofire的基础上又封装�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">260</span>
+                  <span class="site-state-item-count">261</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2025,7 +2036,7 @@ Swift我们用Alamofire来做网络库.而Moya在Alamofire的基础上又封装�
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">115</span>
+                  <span class="site-state-item-count">116</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2036,7 +2047,7 @@ Swift我们用Alamofire来做网络库.而Moya在Alamofire的基础上又封装�
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">79</span>
+                  <span class="site-state-item-count">80</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
