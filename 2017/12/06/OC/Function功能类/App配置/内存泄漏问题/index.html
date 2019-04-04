@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<meta name="theme-color" content="#222">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="AFHTTP 内存泄漏问题 AFHTTP 框架的通病。这个问题很常见，也最好解决，网上也有不少的解决方案主流的解决方案就是使用单例。定义一个单例对象 SessionManager：   @interface SessionManager : NSObject@property(nonatomic,strong)AFHTTPSessionManager *manager;+(SessionManag">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OC&#x2F;Function功能类&#x2F;App配置&#x2F;内存泄漏问题">
+<meta property="og:url" content="http://yoursite.com/2017/12/06/OC/Function功能类/App配置/内存泄漏问题/index.html">
+<meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
+<meta property="og:description" content="AFHTTP 内存泄漏问题 AFHTTP 框架的通病。这个问题很常见，也最好解决，网上也有不少的解决方案主流的解决方案就是使用单例。定义一个单例对象 SessionManager：   @interface SessionManager : NSObject@property(nonatomic,strong)AFHTTPSessionManager *manager;+(SessionManag">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-04T01:29:51.300Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OC&#x2F;Function功能类&#x2F;App配置&#x2F;内存泄漏问题">
+<meta name="twitter:description" content="AFHTTP 内存泄漏问题 AFHTTP 框架的通病。这个问题很常见，也最好解决，网上也有不少的解决方案主流的解决方案就是使用单例。定义一个单例对象 SessionManager：   @interface SessionManager : NSObject@property(nonatomic,strong)AFHTTPSessionManager *manager;+(SessionManag">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/06/OC/Function功能类/App配置/内存泄漏问题/"/>
+
+
+
+
+
+  <title>OC/Function功能类/App配置/内存泄漏问题 | 千夜、おれはおまえをずっと爱している</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">千夜、おれはおまえをずっと爱している</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/06/OC/Function功能类/App配置/内存泄漏问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千夜 QQ:738816656">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千夜、おれはおまえをずっと爱している">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">OC/Function功能类/App配置/内存泄漏问题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-06T14:09:22+08:00">
+                2017-12-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OC/" itemprop="url" rel="index">
+                    <span itemprop="name">OC</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OC/Function功能类/" itemprop="url" rel="index">
+                    <span itemprop="name">Function功能类</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OC/Function功能类/App配置/" itemprop="url" rel="index">
+                    <span itemprop="name">App配置</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="AFHTTP-内存泄漏问题"><a href="#AFHTTP-内存泄漏问题" class="headerlink" title="AFHTTP 内存泄漏问题"></a>AFHTTP 内存泄漏问题</h1><blockquote>
+<p>AFHTTP 框架的通病。这个问题很常见，也最好解决，网上也有不少的解决方案<br>主流的解决方案就是使用单例。定义一个单例对象 SessionManager：</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">@interface</span> <span class="title">SessionManager</span> : <span class="title">NSObject</span></span></div><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>)AFHTTPSessionManager *manager;</div><div class="line">+(SessionManager *)share;</div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">SessionManager</span></span></div><div class="line"></div><div class="line"></div><div class="line">+(SessionManager *)share&#123;</div><div class="line">    <span class="keyword">static</span> SessionManager *shareObj = <span class="literal">nil</span>;</div><div class="line">    <span class="keyword">static</span> <span class="built_in">dispatch_once_t</span> onceToken;</div><div class="line">    <span class="built_in">dispatch_once</span>(&amp;onceToken, ^&#123;</div><div class="line">        shareObj = [[SessionManager alloc] init];</div><div class="line"></div><div class="line">        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];</div><div class="line">        <span class="comment">/** 设置超时*/</span></div><div class="line">        [manager.requestSerializer willChangeValueForKey:<span class="string">@"timeoutInterval"</span>];</div><div class="line">        manager.requestSerializer.timeoutInterval = <span class="number">10</span>;</div><div class="line">        [manager.requestSerializer didChangeValueForKey:<span class="string">@"timeoutInterval"</span>];</div><div class="line">        shareObj.manager = manager;</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> shareObj;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>使用SessionManager</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"> AFHTTPSessionManager* manager = [SessionManager share].manager;</div><div class="line">manager.requestSerializer = [AFHTTPRequestSerializer new];</div><div class="line">……</div></pre></td></tr></table></figure>
+<h1 id="环信-UI-框架中的内存泄漏问题"><a href="#环信-UI-框架中的内存泄漏问题" class="headerlink" title="环信 UI 框架中的内存泄漏问题"></a>环信 UI 框架中的内存泄漏问题</h1><blockquote>
+<p>环信框架中，有一个对 UIViewController 的扩展（Category） :UIViewController+HUD，它对 MBHUD 进行了二次封装，通过它可以使你的 MBHUD 的调用变得更简单，比如显示一个 HUD 你可以这样：</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">[<span class="keyword">self</span> showHudInView:<span class="keyword">self</span>.view hint:<span class="string">@""</span>];</div></pre></td></tr></table></figure>
+<blockquote>
+<p>但是这个方法中有一个严重的内存泄漏问题。当你在一个 View Controller 中多次显示 HUD 之后（比如反复下拉刷新表格），用视图调试器查看 UIView，你会发现视图树中显示了多个 HUD 对象。也就是说每次 showHudInView 之后都会重新生成一个新的 HUD，而原来的 HUD 虽然被隐藏了，但它们在内存中仍然是持续存在的。每次 showHudInView 调用大概会导致 400-500 k 的内存泄漏。如果你反复刷新表格（比如 5 分钟或更长）直到内存撑爆，app 崩溃<br>解决的方法很简单，在 showHudInView 方法中加入一句：</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">HUD.removeFromSuperViewOnHide = <span class="literal">YES</span>;</div></pre></td></tr></table></figure>
+<h1 id="O-C-块中对-self-强引用导致的内存泄漏问题"><a href="#O-C-块中对-self-强引用导致的内存泄漏问题" class="headerlink" title="O-C 块中对 self 强引用导致的内存泄漏问题"></a>O-C 块中对 self 强引用导致的内存泄漏问题</h1><blockquote>
+<p>在 View Controller 类的 O-C 块中，如果你直接引用了 self，则会导致 View Controller 被强引用（因为块的参数都是以 copy 引用的，会导致 retained count 加 1）。这样，当 View Controller 被 pop 出导航控制器栈后不会被释放，导致内存泄漏。这个泄漏就比较严重了，少则几百 K,多则几兆</p>
+<p>一个比较明显的例子就是 MJRefresh。在 View Controller 中，如果我们想支持下拉刷新，通常会这样使用 MJRefresh：</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">self</span>.tableView.mj_header=[MJRefreshNormalHeader headerWithRefreshingBlock:^&#123;</div><div class="line">       [<span class="keyword">self</span>.tableView.mj_header endRefreshing];</div><div class="line">       currentPage = <span class="number">1</span>;</div><div class="line">       [<span class="keyword">self</span> loadNoticeList:<span class="number">1</span> success:^(<span class="built_in">NSArray</span>&lt;CampusNoticeModel *&gt; *data) &#123;</div><div class="line">           [<span class="keyword">self</span>.models removeAllObjects];</div><div class="line">           [<span class="keyword">self</span>.models addObjectsFromArray:data];</div><div class="line">           [<span class="keyword">self</span>.tableView reloadData];</div><div class="line">       &#125; failure:^(<span class="built_in">NSString</span> *msg) &#123;</div><div class="line">       &#125;];        </div><div class="line">   &#125;];</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意，O-C 块中对 View Controller 进行了强引用，比如：self.tableView 和 self.models。<br>原则上，当我们在 O-C 块中引用 self 时，应当使用弱引用，比如上面的代码应当改为：</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">__<span class="keyword">weak</span> __<span class="keyword">typeof</span>(<span class="keyword">self</span>) weakSelf=<span class="keyword">self</span>;</div><div class="line">  <span class="keyword">self</span>.tableView.mj_header=[MJRefreshNormalHeader headerWithRefreshingBlock:^&#123;</div><div class="line">      [weakSelf.tableView.mj_header endRefreshing];</div><div class="line">      currentPage = <span class="number">1</span>;</div><div class="line">      [weakSelf loadNoticeList:<span class="number">1</span> success:^(<span class="built_in">NSArray</span>&lt;CampusNoticeModel *&gt; *data) &#123;</div><div class="line">          [weakSelf.models removeAllObjects];</div><div class="line">          [weakSelf.models addObjectsFromArray:data];</div><div class="line">          [weakSelf.tableView reloadData];</div><div class="line">      &#125; failure:^(<span class="built_in">NSString</span> *msg) &#123;</div><div class="line">      &#125;];</div><div class="line">  &#125;];</div></pre></td></tr></table></figure>
+<blockquote>
+<p>也就是将 OC 块中所有的 self 改成 weakSelf。这里有一个例外，如果引用的是实例变量而不是属性，原则上是不需要 weakSelf 的。比如 currentPage 在 View Controller 中是以实例变量形式定义的（也就是说没有用 @property 进行声明），那么我们不需要通过 weakSelf 来进行引用<br>但是，如果你在项目中使用 MLeaksFinder 来检测内存泄漏时，MLeaksFinder 仍然会认为 O-C 块中对 currentPage 的引用存在问题。因此，为了让 MLeaksFinder 彻底“闭上嘴”，我们最好也将 currentPage 修改为属性（使用 @property 声明），然后将 O-C 块中的引用方式修改为：weakSelf.currentPage</p>
+</blockquote>
+<h1 id="CADisplayLink-导致的内存泄漏"><a href="#CADisplayLink-导致的内存泄漏" class="headerlink" title="CADisplayLink 导致的内存泄漏"></a>CADisplayLink 导致的内存泄漏</h1><blockquote>
+<p>在使用 CADisplayLink 时，如果不释放 CADisplayLink，很容易出现内存泄漏。以自定义 UIView 为例，我们会使用定时器进行某些自定义的绘图和动画操作。这时我们会用到 CADisplayLink </p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">displayLink = [<span class="built_in">CADisplayLink</span> displayLinkWithTarget:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(animateDashboard:)];</div></pre></td></tr></table></figure>
+<blockquote>
+<p>当我们需要开启定时器时，可以将它添加到 runloop：</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">[displayLink addToRunLoop:[<span class="built_in">NSRunLoop</span> currentRunLoop] forMode:<span class="built_in">NSRunLoopCommonModes</span>];</div></pre></td></tr></table></figure>
+<blockquote>
+<p>但是 displayLink 会持有 UIView 对象，导致 UIView 永远不会被释放。因此我们需要在一个适当的时机释放 displayLink，比如在 CADisplayLink 的 action 方法中根据一定的条件来 invalidate 它：</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"> -(<span class="keyword">void</span>)animateDashboard:(<span class="built_in">CADisplayLink</span> *)sender&#123;</div><div class="line">    <span class="keyword">if</span>( endValue &lt;= <span class="keyword">self</span>.value)&#123;<span class="comment">// 到达终点值，停止动画</span></div><div class="line">        ......</div><div class="line">        [displayLink invalidate];</div><div class="line">        ......</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        ......</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>另外，CADisplayLink 最好不要复用。也就是说，每次启动 CADisplayLink 时都重新初始化并将它添加到 runloop，而每次停止动画时都 invalidate：</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"> -(<span class="keyword">void</span>)animating&#123;</div><div class="line">    <span class="keyword">if</span>(_stopped == <span class="literal">YES</span>)&#123;</div><div class="line">        displayLink = [<span class="built_in">CADisplayLink</span> displayLinkWithTarget:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(blink:)];</div><div class="line">        [displayLink addToRunLoop:[<span class="built_in">NSRunLoop</span> currentRunLoop] forMode:<span class="built_in">NSRunLoopCommonModes</span>];</div><div class="line"></div><div class="line">        _stopped = <span class="literal">NO</span>;</div><div class="line">        [<span class="keyword">self</span> setNeedsDisplay];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">-(<span class="keyword">void</span>)stopAnimating&#123;</div><div class="line">    <span class="keyword">if</span>(_stopped == <span class="literal">NO</span>)&#123;</div><div class="line">        [displayLink invalidate];</div><div class="line">        _stopped = <span class="literal">YES</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="reloadRowsAtIndexPaths-导致的内存泄漏"><a href="#reloadRowsAtIndexPaths-导致的内存泄漏" class="headerlink" title="reloadRowsAtIndexPaths 导致的内存泄漏"></a>reloadRowsAtIndexPaths 导致的内存泄漏</h1><blockquote>
+<p>UITableView 的 reloadRowsAtIndexPaths 的行为非常奇怪，在刷新 cell 时，它并不会重用原有的 cell，而是重新创建新的 cell 覆盖在原来的 cell 上，这会导致额外的内存开销。当重复多次调用 reloadRowsAtIndexPaths 之后，你可以在视图调试器中看下效果：<br>无论你用不用 beginUpdates/endUpdates，结果都是一样。<br>解决的办法目前只有一个，不要用 reloadRowsAtIndexPaths，而是使用 reloadData，当然会有一点性能上的代价，但也是没有办法的事情</p>
+</blockquote>
+<h1 id="定时器导致的内存泄漏问题"><a href="#定时器导致的内存泄漏问题" class="headerlink" title="定时器导致的内存泄漏问题"></a>定时器导致的内存泄漏问题</h1><blockquote>
+<p>有时候 NSTimer （尤其是 repeated 为 YES 时）会导致内存泄漏问题。因为定时器是在另外一个线程中运行的，当界面消失后，定时器仍然还在运行，如果在定时器任务中引用了 UI 元素，则这些视图都会被强引用，从而导致界面消失后 view 无法释放，导致内存泄漏。<br>因此，如果在你的 UIViewController 中使用了定时器，一定要记得在 viewWillDisappear 方法中 invalidate 它</p>
+</blockquote>
+<h1 id="addScriptMessageHandler-导致的内存泄漏"><a href="#addScriptMessageHandler-导致的内存泄漏" class="headerlink" title="addScriptMessageHandler 导致的内存泄漏"></a>addScriptMessageHandler 导致的内存泄漏</h1><blockquote>
+<p>WKUserContentController 的 addScriptMessageHandler 方法会导致一个对 handler 对象的强引用，从而导致 handler （通常是 webView 所在的 ViewController）不会被释放，于是内存泄漏。<br>解决的办法是 removeScriptMessageHandlerForName。根据官方文档，当你 addScriptMessageHandler 之后，需要在不再需要 handler 时，需要调用 removeScriptMessageHandlerForName 解除 handler 的强引用。<br>问题在于，“当你不在需要它的时候”到底是什么时候？我们一般会在 viewDidLoad 中 addScriptMessageHandler，按道理应该在 dealloc 中 removeScriptMessageHandlerForName。但由于内存都已经泄漏了，ViewContoller 的 dealloc 根本不会调用，这个方法是无效的。<br>解决的办法有两个，一个是将 addScriptMessageHandler 放到 viewDidAppear 中执行，那么我们就可以在 viewDidDisappler 中 removeScriptMessageHandlerForName 了。<br>另一个方法是将 handler 弱引用。这需要新建一个类，创建一个弱引用的属性，用这个属性来包装 handler 对象：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">  @interface <span class="type">WeakScriptMessageDelegate</span> : <span class="type">NSObject</span>&lt;<span class="type">WKScriptMessageHandler</span>&gt;</div><div class="line"><span class="comment">// 1</span></div><div class="line">@property (nonatomic, <span class="keyword">weak</span>) id&lt;<span class="type">WKScriptMessageHandler</span>&gt; scriptDelegate;</div><div class="line"></div><div class="line">- (instancetype)initWithDelegate:(id&lt;<span class="type">WKScriptMessageHandler</span>&gt;)scriptDelegate;</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line">@implementation <span class="type">WeakScriptMessageDelegate</span></div><div class="line"></div><div class="line">- (instancetype)initWithDelegate:(id&lt;<span class="type">WKScriptMessageHandler</span>&gt;)scriptDelegate</div><div class="line">&#123;</div><div class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> <span class="keyword">init</span>];</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>) &#123;</div><div class="line">        _scriptDelegate = scriptDelegate;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 2</span></div><div class="line">- (void)userContentController:(<span class="type">WKUserContentController</span> *)userContentController didReceiveScriptMessage:(<span class="type">WKScriptMessage</span> *)message</div><div class="line">&#123;</div><div class="line">    [<span class="keyword">self</span>.scriptDelegate userContentController:userContentController didReceiveScriptMessage:message];</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<ul>
+<li><p>这个属性就是用来弱引用 handler 的属性，它保存了一个对 handler 的弱引用。类型是 id，因为 addScriptMessageHandler 方法需要一个 WKScriptMessageHandler 对象作为参数</p>
+</li>
+<li><p>这个对象对 WKScriptMessageHandler 进行了封装，它同样实现了 WKScriptMessageHandler 协议，这个协议中有一个唯一的方法需要实现，即 userContentController 方法。在方法内部，我们可以直接调用 handler 的同名方法实现（因为二者的行为是一致的）</p>
+</li>
+</ul>
+<blockquote>
+<p>使用</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"> / 将 handler 转换成一个若引用的 handler,从而避免内存泄漏</div><div class="line">WeakScriptMessageDelegate* weakHandler = [[WeakScriptMessageDelegate alloc] initWithDelegate:handler];</div><div class="line"></div><div class="line">[webView.configuration.userContentController addScriptMessageHandler:weakHandler name:methodName];</div></pre></td></tr></table></figure>
+<blockquote>
+<p>MLeaksFinder</p>
+<p>内存泄漏问题多种多样，它们经常以出乎人意料的形式存在，我们无法以一种固定的模式来判断 app 中存在的内存泄漏问题。我们常常需要使用多个工具和手段来检查 app 中的内存问题，比如可以用 Xcode 的 Analyze 工具对代码进行静态语法分析，用 Instrument 的 Leaks/Allocations 工具进行动态内存检查分析，用视图调试器查看 UI 问题等等。</p>
+<p>但我们还可以用许多第三方内存泄漏检测框架，比如：MLeaksFinder 和 HeapInspector-for-iOS，尤其是前者（后者目前会导致 App “冻死”的问题，作者还在解决这个问题）。</p>
+<p>MLeaksFinder 是一个专门用于检测 UI 类内存泄漏的工具，我们可以利用它来检测 UIViewController 和 UIView 中未 dealloc 的 subview。</p>
+<p>它的使用非常简单，直接 pod MLeaksFinder，然后找到 MLeaksFinder.h 头文件，将其中的 MEMORY_LEAKS_FINDER_ENABLED 宏和 MEMORY_LEAKS_FINDER_RETAIN_CYCLE_ENABLED 宏打开（设置为 1）就可以了。</p>
+<p>编译运行 app，测试各种操作，切换到不同的 view controller，当 MLeaksFinder 发现内存泄漏会弹出一个 alert（同时控制台会有输出），告诉你哪个类和 UIView 中存在内存泄漏（以及循环持有）</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/06/OC/Grammar/iOS-NSSet/" rel="next" title="iOS-NSSet">
+                <i class="fa fa-chevron-left"></i> iOS-NSSet
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/06/OC/Function功能类/App配置/网速实时显示/" rel="prev" title="OC/Function功能类/App配置/网速实时显示">
+                OC/Function功能类/App配置/网速实时显示 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">千夜 QQ:738816656</p>
+              <p class="site-description motion-element" itemprop="description">ReactNative</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">255</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">116</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">80</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#AFHTTP-内存泄漏问题"><span class="nav-number">1.</span> <span class="nav-text">AFHTTP 内存泄漏问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环信-UI-框架中的内存泄漏问题"><span class="nav-number">2.</span> <span class="nav-text">环信 UI 框架中的内存泄漏问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#O-C-块中对-self-强引用导致的内存泄漏问题"><span class="nav-number">3.</span> <span class="nav-text">O-C 块中对 self 强引用导致的内存泄漏问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CADisplayLink-导致的内存泄漏"><span class="nav-number">4.</span> <span class="nav-text">CADisplayLink 导致的内存泄漏</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reloadRowsAtIndexPaths-导致的内存泄漏"><span class="nav-number">5.</span> <span class="nav-text">reloadRowsAtIndexPaths 导致的内存泄漏</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定时器导致的内存泄漏问题"><span class="nav-number">6.</span> <span class="nav-text">定时器导致的内存泄漏问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#addScriptMessageHandler-导致的内存泄漏"><span class="nav-number">7.</span> <span class="nav-text">addScriptMessageHandler 导致的内存泄漏</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">千夜 QQ:738816656</span>
+
+  
+</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
