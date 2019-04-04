@@ -311,7 +311,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/Dispose和DisposeBag/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/Observable&Observer/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -330,7 +330,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/Dispose和DisposeBag/" itemprop="url">RxSwift-Grammar-Dispose和DisposeBag</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/Observable&Observer/" itemprop="url">RxSwift-Grammar-Observable可观察序列&Observer观察者</a></h1>
         
 
         <div class="post-meta">
@@ -415,14 +415,18 @@
       
         
           
-          Dispose 和 DisposeBag当监听一个sequence的时候，有消息事件来了，做某些事情。但是这个sequence不再发送消息事件了，那么我们的监听也就没有什么存在的价值了，所以我们需要释放我们这些监听资源，其实也就是内存资源释放
-##手动调用释放方式(一般不适用这种方式)
+          Observable可观察序列  和 Observer观察者实质
+Observer (观察者)订阅一个可观察序列 Observable(事件源)每一个Observable的实例都是一个序列观察者 对 Observable 发射的数据或数据序列作出响应
 
-创建一个s
+举例
+Button 的点击这个情景
+
+
+把用户
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Grammar/Dispose和DisposeBag/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Grammar/Observable&Observer/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -475,7 +479,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/07-09-Operator-自定义操作符/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Grammar/UIBindingObserver/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -494,7 +498,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/07-09-Operator-自定义操作符/" itemprop="url">RxSwift-Grammar-自定义operator</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Grammar/UIBindingObserver/" itemprop="url">RxSwift-Grammar-UIBindingObserver</a></h1>
         
 
         <div class="post-meta">
@@ -579,14 +583,12 @@
       
         
           
-          自定义operator
-自定义操作符很简单，官方推荐尽量使用标准的操作符，但是你也可以定义自己的操作符，文档上说有两种方法，这里介绍一下常用的一种方法吧自定义一个map操作符
-
- extension ObserverType &#123;    func myMap&lt;R&gt;(transfo
+          UIBindingObserver
+UIBindingObserver这个东西很有用的，创建我们自己的监听者，有时候RxCocoa(RxSwift中对UIKit的一个扩展库)给的扩展不够我们使用，比如一个UITextField有个isEnabled属性，我想把这个isEnabled变为一个obser
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Grammar/07-09-Operator-自定义操作符/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Grammar/UIBindingObserver/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2031,7 +2033,7 @@ moya有以下特性
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">82</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
