@@ -83,7 +83,7 @@
 
 
 
-  <meta name="keywords" content="OC,Error,AFN," />
+  <meta name="keywords" content="OC,Function功能类,AppError错误," />
 
 
 
@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="不接受返回类型 解决方案：  AFURLResponseSerialization.m中，228行左右把 这句： self.acceptableContentTypes = [NSSet setWithObjects:@&amp;quot;application/json&amp;quot;, @&amp;quot;text/json&amp;quot;, @&amp;quot;text/javascript&amp;quot;, nil];修">
-<meta name="keywords" content="OC,Error,AFN">
+<meta name="description" content="Xcode10(iOS12)found for -lstdc++和libstdc++.6.0.9和clang 错误显示  library not found for -lstdc++.6.0.9library not found for -lstdc++.6library not found for -lstdc++clang  问题原因：  这是因为Xcode10彻底废弃了libstdc++，相">
+<meta name="keywords" content="OC,Function功能类,AppError错误">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OC-Error-AFN">
+<meta property="og:title" content="OC&#x2F;Function功能类&#x2F;AppError错误&#x2F;AFN">
 <meta property="og:url" content="http://yoursite.com/2017/12/07/OC/Function功能类/AppError错误/Xcode版本错误/index.html">
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
-<meta property="og:description" content="不接受返回类型 解决方案：  AFURLResponseSerialization.m中，228行左右把 这句： self.acceptableContentTypes = [NSSet setWithObjects:@&amp;quot;application/json&amp;quot;, @&amp;quot;text/json&amp;quot;, @&amp;quot;text/javascript&amp;quot;, nil];修">
+<meta property="og:description" content="Xcode10(iOS12)found for -lstdc++和libstdc++.6.0.9和clang 错误显示  library not found for -lstdc++.6.0.9library not found for -lstdc++.6library not found for -lstdc++clang  问题原因：  这是因为Xcode10彻底废弃了libstdc++，相">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-21T00:50:45.776Z">
+<meta property="og:updated_time" content="2019-04-04T01:48:02.132Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OC-Error-AFN">
-<meta name="twitter:description" content="不接受返回类型 解决方案：  AFURLResponseSerialization.m中，228行左右把 这句： self.acceptableContentTypes = [NSSet setWithObjects:@&amp;quot;application/json&amp;quot;, @&amp;quot;text/json&amp;quot;, @&amp;quot;text/javascript&amp;quot;, nil];修">
+<meta name="twitter:title" content="OC&#x2F;Function功能类&#x2F;AppError错误&#x2F;AFN">
+<meta name="twitter:description" content="Xcode10(iOS12)found for -lstdc++和libstdc++.6.0.9和clang 错误显示  library not found for -lstdc++.6.0.9library not found for -lstdc++.6library not found for -lstdc++clang  问题原因：  这是因为Xcode10彻底废弃了libstdc++，相">
 
 
 
@@ -141,7 +141,7 @@
 
 
 
-  <title>OC-Error-AFN | 千夜、おれはおまえをずっと爱している</title>
+  <title>OC/Function功能类/AppError错误/AFN | 千夜、おれはおまえをずっと爱している</title>
   
 
 
@@ -329,7 +329,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">OC-Error-AFN</h1>
+          <h1 class="post-title" itemprop="name headline">OC/Function功能类/AppError错误/AFN</h1>
         
 
         <div class="post-meta">
@@ -375,8 +375,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OC/Error/" itemprop="url" rel="index">
-                    <span itemprop="name">Error</span>
+                  <a href="/categories/OC/Function功能类/" itemprop="url" rel="index">
+                    <span itemprop="name">Function功能类</span>
                   </a>
                 </span>
 
@@ -386,8 +386,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OC/Error/AFN/" itemprop="url" rel="index">
-                    <span itemprop="name">AFN</span>
+                  <a href="/categories/OC/Function功能类/AppError错误/" itemprop="url" rel="index">
+                    <span itemprop="name">AppError错误</span>
                   </a>
                 </span>
 
@@ -423,11 +423,22 @@
       
 
       
-        <h1 id="不接受返回类型"><a href="#不接受返回类型" class="headerlink" title="不接受返回类型"></a>不接受返回类型</h1><blockquote>
-<p>解决方案：</p>
+        <h1 id="Xcode10-iOS12-found-for-lstdc-和libstdc-6-0-9和clang"><a href="#Xcode10-iOS12-found-for-lstdc-和libstdc-6-0-9和clang" class="headerlink" title="Xcode10(iOS12)found for -lstdc++和libstdc++.6.0.9和clang"></a>Xcode10(iOS12)found for -lstdc++和libstdc++.6.0.9和clang</h1><blockquote>
+<p>错误显示</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">AFURLResponseSerialization.m中，228行左右</div><div class="line">把 这句： self.acceptableContentTypes = [NSSet setWithObjects:@&quot;application/json&quot;, @&quot;text/json&quot;, @&quot;text/javascript&quot;, nil];</div><div class="line"></div><div class="line">修改为：</div><div class="line"></div><div class="line">self.acceptableContentTypes = [NSSet setWithObjects:@&quot;application/json&quot;, @&quot;text/json&quot;, @&quot;text/javascript&quot;,@&quot;text/html&quot;, nil];</div><div class="line">在进行网络请求时出现-1016 是因为只支持text/json，application/json，text/javascript</div></pre></td></tr></table></figure>
-<h1 id="3840错误"><a href="#3840错误" class="headerlink" title="3840错误"></a>3840错误</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"> Error Domain=NSCocoaErrorDomain Code=3840 &quot;Invalid value around character 64.&quot; UserInfo=&#123;NSDebugDescription=Invalid value around character 64.&#125;</div><div class="line">服务器没有返回json数据</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><div class="line">library not found <span class="keyword">for</span> -lstdc++.<span class="number">6.0</span>.<span class="number">9</span></div><div class="line">library not found <span class="keyword">for</span> -lstdc++.<span class="number">6</span></div><div class="line">library not found <span class="keyword">for</span> -lstdc++</div><div class="line">clang</div></pre></td></tr></table></figure>
+<blockquote>
+<p>问题原因：</p>
+</blockquote>
+<p>这是因为Xcode10彻底废弃了libstdc++，相关的库文件libstdc++.6.0.9.dylib、libstdc++.6.dylib、libstdc++.dylib、libstdc++.6.0.9.tbd、libstdc++.6.tbd、libstdc++.tbd也从Xcode10中删除了。</p>
+<blockquote>
+<p>解决方案</p>
+</blockquote>
+<ul>
+<li>查找说需要尽快libc++开发，由于使用的第三方中里边依赖libstdc++的库，所以说只能暂时规避解决。<br>要在Xcode10上使用libstdc++，需要把Xcode9的相关库复制到Xcode的路径下。<br>在Xcode9的路径下查找libstdc++.6.0.9.tbd、libstdc++.6.tbd、libstdc++.tbd，复制到Xcode10的下方路径下即可</li>
+</ul>
+<p><a href="https://github.com/miaozhang9/libstdc" target="_blank" rel="external">libstd下载地址</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">1.</div><div class="line">/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/usr/lib/</div><div class="line"></div><div class="line">2.</div><div class="line">/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/</div><div class="line"></div><div class="line">3.</div><div class="line">/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/</div><div class="line"></div><div class="line">4.</div><div class="line">/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/lib/</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -449,9 +460,9 @@
           
             <a href="/tags/OC/" rel="tag"># OC</a>
           
-            <a href="/tags/Error/" rel="tag"># Error</a>
+            <a href="/tags/Function功能类/" rel="tag"># Function功能类</a>
           
-            <a href="/tags/AFN/" rel="tag"># AFN</a>
+            <a href="/tags/AppError错误/" rel="tag"># AppError错误</a>
           
         </div>
       
@@ -464,8 +475,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/07/OC/Function功能类/App配置/网络状况侦测/" rel="next" title="OC/Function功能类/App配置/网络状况侦测">
-                <i class="fa fa-chevron-left"></i> OC/Function功能类/App配置/网络状况侦测
+              <a href="/2017/12/07/OC/Function功能类/AppError错误/网络报错/" rel="next" title="OC/Function功能类/AppError错误/网络报错">
+                <i class="fa fa-chevron-left"></i> OC/Function功能类/AppError错误/网络报错
               </a>
             
           </div>
@@ -474,8 +485,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/07/OC/Function功能类/AppError错误/网络报错/" rel="prev" title="OC/Function功能类/App配置/AppError错误/网络报错">
-                OC/Function功能类/App配置/AppError错误/网络报错 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/07/Swift/UIKit/UITableView/" rel="prev" title="Swift-UIKit-UITableView">
+                Swift-UIKit-UITableView <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -564,7 +575,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">116</span>
+                  <span class="site-state-item-count">115</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -575,7 +586,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">80</span>
+                  <span class="site-state-item-count">81</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -608,7 +619,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#不接受返回类型"><span class="nav-number">1.</span> <span class="nav-text">不接受返回类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3840错误"><span class="nav-number">2.</span> <span class="nav-text">3840错误</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Xcode10-iOS12-found-for-lstdc-和libstdc-6-0-9和clang"><span class="nav-number">1.</span> <span class="nav-text">Xcode10(iOS12)found for -lstdc++和libstdc++.6.0.9和clang</span></a></li></ol></div>
             
 
           </div>
