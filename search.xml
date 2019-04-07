@@ -51,16 +51,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[OC/Foundation功能类/App跳转相关/APP升级跳AppStore的评分]]></title>
-    <url>%2F2019%2F04%2F02%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E8%B7%B3%E8%BD%AC%E7%9B%B8%E5%85%B3%2FAPP%E5%8D%87%E7%BA%A7%E8%B7%B3AppStore%E7%9A%84%E8%AF%84%E5%88%86%2F</url>
-    <content type="text"><![CDATA[①②③④⑤⑥⑦⑧ #URL方式跳转评分 NSString *urlStr = [NSStringstringWithFormat:@"https://itunes.apple.com/cn/app/itunes-u/id%@?action=write-review&amp;mt=8",@"387682726"]; #APPID方式跳转评分 NSString *urlStr = [NSStringstringWithFormat:@"itms-apps://itunes.apple.com/cn/app/id%@?mt=8",@"387682726"];]]></content>
-      <categories>
-        <category>OC</category>
-        <category>Function功能类</category>
-        <category>App跳转相关</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[OC/Foundation功能类/App跳转相关/App跳转设置]]></title>
     <url>%2F2019%2F04%2F02%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E8%B7%B3%E8%BD%AC%E7%9B%B8%E5%85%B3%2FApp%E8%B7%B3%E8%BD%AC%E8%AE%BE%E7%BD%AE%2F</url>
     <content type="text"><![CDATA[①②③④⑤⑥⑦⑧ iOS10之后不支持，在网上看见一个方法跳到设置里-本应用开启蜂窝数据或WiFi的方法 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];iOS10之前，请添加一个URL schemes参数，为：prefs。NSString *str;str = @"https://www.baidu.com";//App跳转到Safari浏览此网页//str = @"https://itunes.apple.com/cn/app/...";//这个是App在iTunes的地址，能够跳转到App在AppStore的界面//str = @"taboo://";跳转到淘宝//str = @"prefs:root=Bluetooth";//跳转到蓝牙设置界面//str = @"prefs:root=CASTLE";//跳转到iCloud设置界面[[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]]; 跳到系统设置里的各种设置界面 跳到这些界面的参数配置：About — prefs:root=General&amp;path=AboutAccessibility — prefs:root=General&amp;path=ACCESSIBILITYAirplane Mode On — prefs:root=AIRPLANE_MODEAuto-Lock — prefs:root=General&amp;path=AUTOLOCKBrightness — prefs:root=BrightnessBluetooth — prefs:root=General&amp;path=BluetoothDate &amp; Time — prefs:root=General&amp;path=DATE_AND_TIMEFaceTime — prefs:root=FACETIMEGeneral — prefs:root=GeneralKeyboard — prefs:root=General&amp;path=KeyboardiCloud — prefs:root=CASTLEiCloud Storage &amp; Backup — prefs:root=CASTLE&amp;path=STORAGE_AND_BACKUPInternational — prefs:root=General&amp;path=INTERNATIONALLocation Services — prefs:root=LOCATION_SERVICESMusic — prefs:root=MUSICMusic Equalizer — prefs:root=MUSIC&amp;path=EQMusic Volume Limit — prefs:root=MUSIC&amp;path=VolumeLimitNetwork — prefs:root=General&amp;path=NetworkNike + iPod — prefs:root=NIKE_PLUS_IPODNotes — prefs:root=NOTESNotification — prefs:root=NOTIFICATIONS_IDPhone — prefs:root=PhonePhotos — prefs:root=PhotosProfile — prefs:root=General&amp;path=ManagedConfigurationListReset — prefs:root=General&amp;path=ResetSafari — prefs:root=SafariSiri — prefs:root=General&amp;path=AssistantSounds — prefs:root=SoundsSoftware Update — prefs:root=General&amp;path=SOFTWARE_UPDATE_LINKStore — prefs:root=STORETwitter — prefs:root=TWITTERUsage — prefs:root=General&amp;path=USAGEVPN — prefs:root=General&amp;path=Network/VPNWallpaper — prefs:root=WallpaperWi-Fi — prefs:root=WIFI]]></content>
@@ -71,18 +61,28 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[OC/Foundation功能类/App跳转相关/App升级跳转]]></title>
-    <url>%2F2019%2F04%2F02%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E8%B7%B3%E8%BD%AC%E7%9B%B8%E5%85%B3%2FAPP%E5%8D%87%E7%BA%A7%E8%B7%B3%E8%BD%AC%2F</url>
-    <content type="text"><![CDATA[①②③④⑤⑥⑦⑧ 从app跳转到AppStore方法：- (void)gotoAppStore &#123; NSString * urlStr = [NSString stringWithFormat: @"itms-apps://itunes.apple.com/app/id%@?mt=8",@"1205952707"]; [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];&#125; 获取iOS当前版本号//此获取的版本号对应bundle，打印出来对应为12345这样的数字NSNumber *number = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey];//此获取的版本号对应version，打印出来对应为1.2.3.4.5这样的字符串NSString *string = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]; 获取app在AppStore上的版本号- (void)getVersionForAppStore &#123; AFHTTPSessionManager *manager = [AFHTTPSessionManager manager]; manager.requestSerializer =[AFHTTPRequestSerializer serializer]; manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain",@"application/json",@"text/javascript",nil]; NSString *urlStr = [NSString stringWithFormat:@"http://itunes.apple.com/lookup?id=%@",@"1205952707"]; [manager POST:urlStr parameters:nil constructingBodyWithBlock:^(id&lt;AFMultipartFormData&gt; _Nonnull formData) &#123; &#125; progress:^(NSProgress * _Nonnull uploadProgress) &#123; &#125; success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) &#123; NSArray *array = responseObject[@"results"]; NSDictionary *dic = array[0]; NSString *appStoreVersion = dic[@"version"]; NSLog(@"AppStore上当前app的版本号：%@",appStoreVersion); &#125; failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) &#123; NSLog(@"%@", error); &#125;];&#125; 跳转到App Store- (void)jumpToAppStroe &#123; SKStoreProductViewController *storeProductVC = [[SKStoreProductViewController alloc] init]; storeProductVC.delegate = self; NSDictionary *dic = [NSDictionary dictionaryWithObject:@"1205952707" forKey:SKStoreProductParameterITunesItemIdentifier]; [storeProductVC loadProductWithParameters:dic completionBlock:^(BOOL result, NSError * _Nullable error) &#123; &#125;]; [self presentViewController:storeProductVC animated:YES completion:nil];&#125;]]></content>
+    <title><![CDATA[OC/Foundation功能类/App跳转相关/APP升级跳AppStore的评分]]></title>
+    <url>%2F2019%2F04%2F02%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E8%B7%B3%E8%BD%AC%E7%9B%B8%E5%85%B3%2FAPP%E5%8D%87%E7%BA%A7%E8%B7%B3AppStore%E7%9A%84%E8%AF%84%E5%88%86%2F</url>
+    <content type="text"><![CDATA[①②③④⑤⑥⑦⑧ #URL方式跳转评分 NSString *urlStr = [NSStringstringWithFormat:@"https://itunes.apple.com/cn/app/itunes-u/id%@?action=write-review&amp;mt=8",@"387682726"]; #APPID方式跳转评分 NSString *urlStr = [NSStringstringWithFormat:@"itms-apps://itunes.apple.com/cn/app/id%@?mt=8",@"387682726"];]]></content>
       <categories>
         <category>OC</category>
         <category>Function功能类</category>
+        <category>App跳转相关</category>
       </categories>
   </entry>
   <entry>
     <title><![CDATA[OC/Foundation功能类/App跳转相关/APP跳转App(AppID)]]></title>
     <url>%2F2019%2F04%2F02%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E8%B7%B3%E8%BD%AC%E7%9B%B8%E5%85%B3%2FAPP%E5%8D%87%E7%BA%A7%E8%B7%B3App%2F</url>
     <content type="text"><![CDATA[OC/Foundation功能类/App跳转相关/APP跳转App(AppID)①②③④⑤⑥⑦⑧ APP跳转App-AppIDif ([[[UIDevice currentDevice] systemVersion] floatValue] &gt;= 10.0) &#123;[[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr] options:@&#123;&#125; completionHandler:nil];&#125; else &#123;[[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];&#125;]]></content>
+      <categories>
+        <category>OC</category>
+        <category>Function功能类</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[OC/Foundation功能类/App跳转相关/App升级跳转]]></title>
+    <url>%2F2019%2F04%2F02%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E8%B7%B3%E8%BD%AC%E7%9B%B8%E5%85%B3%2FAPP%E5%8D%87%E7%BA%A7%E8%B7%B3%E8%BD%AC%2F</url>
+    <content type="text"><![CDATA[①②③④⑤⑥⑦⑧ 从app跳转到AppStore方法：- (void)gotoAppStore &#123; NSString * urlStr = [NSString stringWithFormat: @"itms-apps://itunes.apple.com/app/id%@?mt=8",@"1205952707"]; [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];&#125; 获取iOS当前版本号//此获取的版本号对应bundle，打印出来对应为12345这样的数字NSNumber *number = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey];//此获取的版本号对应version，打印出来对应为1.2.3.4.5这样的字符串NSString *string = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]; 获取app在AppStore上的版本号- (void)getVersionForAppStore &#123; AFHTTPSessionManager *manager = [AFHTTPSessionManager manager]; manager.requestSerializer =[AFHTTPRequestSerializer serializer]; manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain",@"application/json",@"text/javascript",nil]; NSString *urlStr = [NSString stringWithFormat:@"http://itunes.apple.com/lookup?id=%@",@"1205952707"]; [manager POST:urlStr parameters:nil constructingBodyWithBlock:^(id&lt;AFMultipartFormData&gt; _Nonnull formData) &#123; &#125; progress:^(NSProgress * _Nonnull uploadProgress) &#123; &#125; success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) &#123; NSArray *array = responseObject[@"results"]; NSDictionary *dic = array[0]; NSString *appStoreVersion = dic[@"version"]; NSLog(@"AppStore上当前app的版本号：%@",appStoreVersion); &#125; failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) &#123; NSLog(@"%@", error); &#125;];&#125; 跳转到App Store- (void)jumpToAppStroe &#123; SKStoreProductViewController *storeProductVC = [[SKStoreProductViewController alloc] init]; storeProductVC.delegate = self; NSDictionary *dic = [NSDictionary dictionaryWithObject:@"1205952707" forKey:SKStoreProductParameterITunesItemIdentifier]; [storeProductVC loadProductWithParameters:dic completionBlock:^(BOOL result, NSError * _Nullable error) &#123; &#125;]; [self presentViewController:storeProductVC animated:YES completion:nil];&#125;]]></content>
       <categories>
         <category>OC</category>
         <category>Function功能类</category>
@@ -184,8 +184,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -198,8 +198,8 @@
       </categories>
       <tags>
         <tag>UIKit</tag>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -212,8 +212,8 @@
       </categories>
       <tags>
         <tag>UIKit</tag>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -225,8 +225,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -252,8 +252,8 @@
       </categories>
       <tags>
         <tag>UIKit</tag>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -292,8 +292,8 @@
       </categories>
       <tags>
         <tag>UIKit</tag>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -319,8 +319,8 @@
       </categories>
       <tags>
         <tag>UIKit</tag>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -345,8 +345,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -358,8 +358,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -371,8 +371,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -385,8 +385,8 @@
       </categories>
       <tags>
         <tag>UIKit</tag>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -408,8 +408,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Func</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -448,8 +448,8 @@
         <category>Lib</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Lib</tag>
+        <tag>RxSwift</tag>
         <tag>RxDataSources</tag>
       </tags>
   </entry>
@@ -486,8 +486,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -499,8 +499,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -512,8 +512,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -525,34 +525,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RxSwift-Grammar-Subscribe]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FSubscribe%2F</url>
-    <content type="text"><![CDATA[subscribe 和 subscribe(onNext:) Subscribe subscribe是订阅sequence发出的事件，比如next事件，error事件等 而subscribe(onNext:)是监听sequence发出的next事件中的element进行处理，他会忽略error和completed事件 相对应的还有subscribe(onError:) 和 subscribe(onCompleted:)]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
         <tag>RxSwift</tag>
-        <tag>Grammar</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RxSwift-Grammar-Dispose和DisposeBag]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FDispose%E5%92%8CDisposeBag%2F</url>
-    <content type="text"><![CDATA[Dispose 和 DisposeBag当监听一个sequence的时候，有消息事件来了，做某些事情。但是这个sequence不再发送消息事件了，那么我们的监听也就没有什么存在的价值了，所以我们需要释放我们这些监听资源，其实也就是内存资源释放 ##手动调用释放方式(一般不适用这种方式) 创建一个subscription监听，在两秒以后我们不需要了，手动调用dispose()方法，就能释放监听资源，不再打印信息。上面的subscription不论是在哪个线程中监听，就算在主线程中调用的dispose()方法一样会销毁资源 let subscription = Observable&lt;Int&gt;.interval(0.3, scheduler:SerialDispatchQueueScheduler.init(internalSerialQueueName: "scott")) .observeOn(MainScheduler.instance) .subscribe &#123; event in print (event) &#125;Thread.sleep(forTimeInterval: 2.0)subscription.dispose() //打印结果：next(0)next(1)next(2)next(3)next(4)next(5) 自动方式 创建一个disposeBag来盛放我们需要管理的资源，然后把新建的监听都放进去，会在适当的时候销毁这些资源如果需要立即释放资源只需要新建一个DisposeBag()，那么上一个DisposeBag就会被销毁 let disposeBag = DisposeBag()Observable&lt;Int&gt;.empty() .subscribe&#123; event in print (event) &#125; .addDisponseableTo(disposeBag) DisposeBag DisposeBag其实就相当于iOS中的ARC似得，会在适当的时候销毁观察者，相当于内存管理者吧]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
-        <tag>RxSwift</tag>
-        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -564,21 +538,21 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[RxSwift-Grammar-Observable可观察序列&Observer观察者]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FObservable%26Observer%2F</url>
-    <content type="text"><![CDATA[Observable可观察序列 和 Observer观察者实质 Observer (观察者)订阅一个可观察序列 Observable(事件源)每一个Observable的实例都是一个序列观察者 对 Observable 发射的数据或数据序列作出响应 举例 Button 的点击这个情景 把用户一次又一次的点击 Button 看做是序列(sequence) 通过调用 subscribe 来订阅这个点击事件 每次点击都会发射一个数据 作为订阅者的 subscribe 收到这个这个数据进行某些响应 Rx 的基本概念，有Observer观察者观察一个序列sequence，每当序列发射值的时候，观察者根据序列做一些事情Observable序列相比于Swift序列的关键优势点在于它能够异步地接收元素 Observable(ObservableType)等效于Sequence observableType.subscribe(_:)方法等效于Sequence.makeIterator() ObservableType.subscribe(_:)接收一个观察者ObserverType参数,它将被订阅自动接收由可观察到的序列事件和元素，而不是在返回的生成器上手动调用next() 如果一个Observable发出一个next事件(Event.next(Element)),它还能够继续发出更多的事件但是，如果一个Observable发出一个error事件(Event.error(ErrorType))或者一个completed事件(Event.completed)，那么这个Observable序列就不能给订阅者发送其他的事件 可观察序列 (Observables aka Sequences) 可观察序列 存在三种情况:①发射数据(Next)②遇到问题(Error)③发射完成(Completed) 有限序列 比如，有这样一个序列 --1--2--3--4--5--6--| ，它发送了按顺序发送了 1 2 3 4 5 6 这些值后，就终止了，就是发射完成。这是一个有限序列也有可能因为某些特殊的情况，遇到某些错误（比如数据解析错误），--1--2--3--4--X ，因为解析错误意外终止 无限序列 比如用户点击 Button ，这个就属于无限序列 ---tap-tap-------tap---&gt; 当然这里的无限不是真的无限，是不确定用户什么时候会点击，不确定是否会继续点击。所以这是一个无限序列，每当用户点击，序列就发射一个值 将以上的三种情况统概括为事件 enum Event&lt;Element&gt; &#123; case Next(Element) // 序列的下一个元素 case Error(ErrorType) // 序列因为某些错误终止 case Completed // 正常的序列技术&#125; 观察者 (Observer) 观察者需要一个订阅序列的功能 class Observable&lt;Element&gt; &#123;func subscribe(observer: Observer&lt;Element&gt;) -&gt; Disposable&#125;protocol ObserverType &#123; func on(event: Event&lt;Element&gt;)&#125; 通过序列的这个 subscribe 来订阅序列这里就应该提到序列的“冷”“热”问题 冷：只有当有观察者订阅这个序列时，序列才发射值 热：序列创建时就开始发射值 整体上就是这样的一个关系，序列发射值，观察者订阅序列，收到值，进行处理 Obserable 创建被观察者其实就是创建一个Obserable的sequence，就是创建一个流，然后就可以被订阅subscribe，这样被观察者发出时间消失，就能做相应的处理]]></content>
+    <title><![CDATA[RxSwift-Grammar-Subscribe]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FSubscribe%2F</url>
+    <content type="text"><![CDATA[subscribe 和 subscribe(onNext:) Subscribe subscribe是订阅sequence发出的事件，比如next事件，error事件等 而subscribe(onNext:)是监听sequence发出的next事件中的element进行处理，他会忽略error和completed事件 相对应的还有subscribe(onError:) 和 subscribe(onCompleted:)]]></content>
       <categories>
         <category>RxSwift</category>
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -590,8 +564,34 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RxSwift-Grammar-Observable可观察序列&Observer观察者]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FObservable%26Observer%2F</url>
+    <content type="text"><![CDATA[Observable可观察序列 和 Observer观察者实质 Observer (观察者)订阅一个可观察序列 Observable(事件源)每一个Observable的实例都是一个序列观察者 对 Observable 发射的数据或数据序列作出响应 举例 Button 的点击这个情景 把用户一次又一次的点击 Button 看做是序列(sequence) 通过调用 subscribe 来订阅这个点击事件 每次点击都会发射一个数据 作为订阅者的 subscribe 收到这个这个数据进行某些响应 Rx 的基本概念，有Observer观察者观察一个序列sequence，每当序列发射值的时候，观察者根据序列做一些事情Observable序列相比于Swift序列的关键优势点在于它能够异步地接收元素 Observable(ObservableType)等效于Sequence observableType.subscribe(_:)方法等效于Sequence.makeIterator() ObservableType.subscribe(_:)接收一个观察者ObserverType参数,它将被订阅自动接收由可观察到的序列事件和元素，而不是在返回的生成器上手动调用next() 如果一个Observable发出一个next事件(Event.next(Element)),它还能够继续发出更多的事件但是，如果一个Observable发出一个error事件(Event.error(ErrorType))或者一个completed事件(Event.completed)，那么这个Observable序列就不能给订阅者发送其他的事件 可观察序列 (Observables aka Sequences) 可观察序列 存在三种情况:①发射数据(Next)②遇到问题(Error)③发射完成(Completed) 有限序列 比如，有这样一个序列 --1--2--3--4--5--6--| ，它发送了按顺序发送了 1 2 3 4 5 6 这些值后，就终止了，就是发射完成。这是一个有限序列也有可能因为某些特殊的情况，遇到某些错误（比如数据解析错误），--1--2--3--4--X ，因为解析错误意外终止 无限序列 比如用户点击 Button ，这个就属于无限序列 ---tap-tap-------tap---&gt; 当然这里的无限不是真的无限，是不确定用户什么时候会点击，不确定是否会继续点击。所以这是一个无限序列，每当用户点击，序列就发射一个值 将以上的三种情况统概括为事件 enum Event&lt;Element&gt; &#123; case Next(Element) // 序列的下一个元素 case Error(ErrorType) // 序列因为某些错误终止 case Completed // 正常的序列技术&#125; 观察者 (Observer) 观察者需要一个订阅序列的功能 class Observable&lt;Element&gt; &#123;func subscribe(observer: Observer&lt;Element&gt;) -&gt; Disposable&#125;protocol ObserverType &#123; func on(event: Event&lt;Element&gt;)&#125; 通过序列的这个 subscribe 来订阅序列这里就应该提到序列的“冷”“热”问题 冷：只有当有观察者订阅这个序列时，序列才发射值 热：序列创建时就开始发射值 整体上就是这样的一个关系，序列发射值，观察者订阅序列，收到值，进行处理 Obserable 创建被观察者其实就是创建一个Obserable的sequence，就是创建一个流，然后就可以被订阅subscribe，这样被观察者发出时间消失，就能做相应的处理]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>Grammar</tag>
+        <tag>RxSwift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RxSwift-Grammar-Dispose和DisposeBag]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FDispose%E5%92%8CDisposeBag%2F</url>
+    <content type="text"><![CDATA[Dispose 和 DisposeBag当监听一个sequence的时候，有消息事件来了，做某些事情。但是这个sequence不再发送消息事件了，那么我们的监听也就没有什么存在的价值了，所以我们需要释放我们这些监听资源，其实也就是内存资源释放 ##手动调用释放方式(一般不适用这种方式) 创建一个subscription监听，在两秒以后我们不需要了，手动调用dispose()方法，就能释放监听资源，不再打印信息。上面的subscription不论是在哪个线程中监听，就算在主线程中调用的dispose()方法一样会销毁资源 let subscription = Observable&lt;Int&gt;.interval(0.3, scheduler:SerialDispatchQueueScheduler.init(internalSerialQueueName: "scott")) .observeOn(MainScheduler.instance) .subscribe &#123; event in print (event) &#125;Thread.sleep(forTimeInterval: 2.0)subscription.dispose() //打印结果：next(0)next(1)next(2)next(3)next(4)next(5) 自动方式 创建一个disposeBag来盛放我们需要管理的资源，然后把新建的监听都放进去，会在适当的时候销毁这些资源如果需要立即释放资源只需要新建一个DisposeBag()，那么上一个DisposeBag就会被销毁 let disposeBag = DisposeBag()Observable&lt;Int&gt;.empty() .subscribe&#123; event in print (event) &#125; .addDisponseableTo(disposeBag) DisposeBag DisposeBag其实就相当于iOS中的ARC似得，会在适当的时候销毁观察者，相当于内存管理者吧]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -603,34 +603,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RxSwift-Grammar-UIBindingObserver]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FUIBindingObserver%2F</url>
-    <content type="text"><![CDATA[UIBindingObserver UIBindingObserver这个东西很有用的，创建我们自己的监听者，有时候RxCocoa(RxSwift中对UIKit的一个扩展库)给的扩展不够我们使用，比如一个UITextField有个isEnabled属性，我想把这个isEnabled变为一个observer，我们可以这样做 extension Reactive where Base: UITextField &#123; var inputEnabled: UIBindingObserver&lt;Base, Result&gt; &#123; return UIBindingObserver(UIElement: base) &#123; textFiled, result in textFiled.isEnabled = result.isValid &#125; &#125;&#125; UIBindingObserver是一个类，他的初始化方法中，有两个参数，第一个参数是一个元素本身，第一个参数是一个闭包，闭包参数是元素本身，还有他的一个属性 public init(UIElement: UIElementType, binding: @escaping (UIElementType, Value) -&gt; Swift.Void) 自定义了一个inputEnabled关联了UITextField的isEnabled属性]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
         <tag>RxSwift</tag>
-        <tag>Grammar</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RxSwift-Grammar-特征序列Traits-Single]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FTraits-Single%2F</url>
-    <content type="text"><![CDATA[Single基本介绍 Single 是 Observable 的另外一个版本但它不像 Observable 可以发出多个元素，它要么只能发出一个元素，要么产生一个 error 事件 发出一个元素，或一个 error 事件 不会共享状态变化 应用场景 Single 比较常见的例子就是执行 HTTP 请求，然后返回一个应答或错误不过我们也可以用 Single 来描述任何只有一个元素的序列 SingleEvent 为方便使用，RxSwift 还为 Single 订阅提供了一个枚举（SingleEvent）： .success：里面包含该 Single 的一个元素值 .error：用于包含错误 public enum SingleEvent&lt;Element&gt; &#123; case success(Element) case error(Swift.Error)&#125; 使用样例 创建 Single 和创建 Observable 非常相似下面代码我们定义一个用于生成网络请求 Single 的函数 //获取豆瓣某频道下的歌曲信息func getPlaylist(_ channel: String) -&gt; Single&lt;[String: Any]&gt; &#123; return Single&lt;[String: Any]&gt;.create &#123; single in let url = "https://douban.fm/j/mine/playlist?" + "type=n&amp;channel=\(channel)&amp;from=mainsite" let task = URLSession.shared.dataTask(with: URL(string: url)!) &#123; data, _, error in if let error = error &#123; single(.error(error)) return &#125; guard let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: .mutableLeaves), let result = json as? [String: Any] else &#123; single(.error(DataError.cantParseJSON)) return &#125; single(.success(result)) &#125; task.resume() return Disposables.create &#123; task.cancel() &#125; &#125;&#125; //与数据相关的错误类型enum DataError: Error &#123; case cantParseJSON&#125; 接着我们可以使用如下方式使用这个 Single： mport UIKitimport RxSwiftimport RxCocoa class ViewController: UIViewController &#123; let disposeBag = DisposeBag() override func viewDidLoad() &#123; //获取第0个频道的歌曲信息 getPlaylist("0") .subscribe &#123; event in switch event &#123; case .success(let json): print("JSON结果: ", json) case .error(let error): print("发生错误: ", error) &#125; &#125; .disposed(by: disposeBag) &#125;&#125; 也可以使用 subscribe(onSuccess:onError:) 这种方式： import UIKitimport RxSwiftimport RxCocoa class ViewController: UIViewController &#123; let disposeBag = DisposeBag() override func viewDidLoad() &#123; //获取第0个频道的歌曲信息 getPlaylist("0") .subscribe(onSuccess: &#123; json in print("JSON结果: ", json) &#125;, onError: &#123; error in print("发生错误: ", error) &#125;) .disposed(by: disposeBag) &#125;&#125; asSingle() 我们可以通过调用 Observable 序列的 .asSingle() 方法，将它转换为 Single let disposeBag = DisposeBag() Observable.of("1") .asSingle() .subscribe(&#123; print($0) &#125;) .disposed(by: disposeBag) //print success("1")]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
-        <tag>RxSwift</tag>
-        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -642,8 +616,34 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RxSwift-Grammar-UIBindingObserver]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FUIBindingObserver%2F</url>
+    <content type="text"><![CDATA[UIBindingObserver UIBindingObserver这个东西很有用的，创建我们自己的监听者，有时候RxCocoa(RxSwift中对UIKit的一个扩展库)给的扩展不够我们使用，比如一个UITextField有个isEnabled属性，我想把这个isEnabled变为一个observer，我们可以这样做 extension Reactive where Base: UITextField &#123; var inputEnabled: UIBindingObserver&lt;Base, Result&gt; &#123; return UIBindingObserver(UIElement: base) &#123; textFiled, result in textFiled.isEnabled = result.isValid &#125; &#125;&#125; UIBindingObserver是一个类，他的初始化方法中，有两个参数，第一个参数是一个元素本身，第一个参数是一个闭包，闭包参数是元素本身，还有他的一个属性 public init(UIElement: UIElementType, binding: @escaping (UIElementType, Value) -&gt; Swift.Void) 自定义了一个inputEnabled关联了UITextField的isEnabled属性]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>Grammar</tag>
+        <tag>RxSwift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RxSwift-Grammar-特征序列Traits-Single]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FTraits-Single%2F</url>
+    <content type="text"><![CDATA[Single基本介绍 Single 是 Observable 的另外一个版本但它不像 Observable 可以发出多个元素，它要么只能发出一个元素，要么产生一个 error 事件 发出一个元素，或一个 error 事件 不会共享状态变化 应用场景 Single 比较常见的例子就是执行 HTTP 请求，然后返回一个应答或错误不过我们也可以用 Single 来描述任何只有一个元素的序列 SingleEvent 为方便使用，RxSwift 还为 Single 订阅提供了一个枚举（SingleEvent）： .success：里面包含该 Single 的一个元素值 .error：用于包含错误 public enum SingleEvent&lt;Element&gt; &#123; case success(Element) case error(Swift.Error)&#125; 使用样例 创建 Single 和创建 Observable 非常相似下面代码我们定义一个用于生成网络请求 Single 的函数 //获取豆瓣某频道下的歌曲信息func getPlaylist(_ channel: String) -&gt; Single&lt;[String: Any]&gt; &#123; return Single&lt;[String: Any]&gt;.create &#123; single in let url = "https://douban.fm/j/mine/playlist?" + "type=n&amp;channel=\(channel)&amp;from=mainsite" let task = URLSession.shared.dataTask(with: URL(string: url)!) &#123; data, _, error in if let error = error &#123; single(.error(error)) return &#125; guard let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: .mutableLeaves), let result = json as? [String: Any] else &#123; single(.error(DataError.cantParseJSON)) return &#125; single(.success(result)) &#125; task.resume() return Disposables.create &#123; task.cancel() &#125; &#125;&#125; //与数据相关的错误类型enum DataError: Error &#123; case cantParseJSON&#125; 接着我们可以使用如下方式使用这个 Single： mport UIKitimport RxSwiftimport RxCocoa class ViewController: UIViewController &#123; let disposeBag = DisposeBag() override func viewDidLoad() &#123; //获取第0个频道的歌曲信息 getPlaylist("0") .subscribe &#123; event in switch event &#123; case .success(let json): print("JSON结果: ", json) case .error(let error): print("发生错误: ", error) &#125; &#125; .disposed(by: disposeBag) &#125;&#125; 也可以使用 subscribe(onSuccess:onError:) 这种方式： import UIKitimport RxSwiftimport RxCocoa class ViewController: UIViewController &#123; let disposeBag = DisposeBag() override func viewDidLoad() &#123; //获取第0个频道的歌曲信息 getPlaylist("0") .subscribe(onSuccess: &#123; json in print("JSON结果: ", json) &#125;, onError: &#123; error in print("发生错误: ", error) &#125;) .disposed(by: disposeBag) &#125;&#125; asSingle() 我们可以通过调用 Observable 序列的 .asSingle() 方法，将它转换为 Single let disposeBag = DisposeBag() Observable.of("1") .asSingle() .subscribe(&#123; print($0) &#125;) .disposed(by: disposeBag) //print success("1")]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -679,10 +679,12 @@
     <content type="text"><![CDATA[GCD 方式// 创建信号量 dispatch_semaphore_t semaphore = dispatch_semaphore_create(0); // 创建全局并行 dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0); dispatch_group_t group = dispatch_group_create(); dispatch_group_async(group, queue, ^&#123; // 请求一 [loginCode getUserInfoWithNick:nil andUserId:kUserId onSuc:^(id data) &#123; NSLog(@&quot;yue&quot;); dispatch_semaphore_signal(semaphore); &#125; andFail:^(NSError *error) &#123; &#125;]; &#125;); dispatch_group_async(group, queue, ^&#123; // 请求二 [CommodityViewModel getPriceTransformForIntegral:nil onSuccess:^(id data) &#123; NSLog(@&quot;duihuan11&quot;); dispatch_semaphore_signal(semaphore); &#125; onFailure:^(NSError *error) &#123; &#125;]; &#125;); dispatch_group_async(group, queue, ^&#123; // 请求三 [CommodityViewModel getPriceTransformForIntegral:nil onSuccess:^(id data) &#123; NSLog(@&quot;duihuan22&quot;); dispatch_semaphore_signal(semaphore); &#125; onFailure:^(NSError *error) &#123; &#125;]; &#125;); dispatch_group_notify(group, queue, ^&#123; // 三个请求对应三次信号等待 dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER); dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER); dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER); //在这里 进行请求后的方法，回到主线程 dispatch_async(dispatch_get_main_queue(), ^&#123; //更新UI操作 &#125;); &#125;); 通过请求数量计数 定义一个block typedef void(^Complete)(); 将block作为类的属性 @property (copy, nonatomic) Complete complete; 实现方式： NSInteger requestCount = 0; //第一个网络请求 [CommodityViewModel getPriceTransformForIntegral:nil onSuccess:^(id data) &#123; NSLog(@&quot;duihuan11&quot;); requestCount++; if (self.complete) &#123; self.complete(); &#125; &#125; onFailure:^(NSError *error) &#123; &#125;]; //第二个网络请求 [CommodityViewModel getPriceTransformForIntegral:nil onSuccess:^(id data) &#123; NSLog(@&quot;duihuan22&quot;); requestCount++; if (self.complete) &#123; self.complete(); &#125; &#125; onFailure:^(NSError *error) &#123; &#125;]; //第三个网络请求 [CommodityViewModel getPriceTransformForIntegral:nil onSuccess:^(id data) &#123; NSLog(@&quot;duihuan33&quot;); requestCount++; if (self.complete) &#123; self.complete(); &#125; &#125; onFailure:^(NSError *error) &#123; &#125;]; self.complete = ^&#123; //请求网络的数量等于3表示三个网络请求已完成 if (requestCount == 3) &#123; //在这里 进行请求后的方法，回到主线程 dispatch_async(dispatch_get_main_queue(), ^&#123; //更新UI操作 &#125;); &#125; &#125;;]]></content>
       <categories>
         <category>OC</category>
+        <category>Function功能类</category>
         <category>GCD</category>
       </categories>
       <tags>
         <tag>OC</tag>
+        <tag>Function功能类</tag>
         <tag>GCD</tag>
       </tags>
   </entry>
@@ -695,8 +697,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -727,9 +729,9 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
         <tag>Error</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -741,9 +743,9 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
         <tag>Error</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -770,8 +772,8 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Func</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -908,8 +910,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1266,8 +1268,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1279,8 +1281,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1292,8 +1294,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1305,8 +1307,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1318,8 +1320,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1331,8 +1333,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1344,21 +1346,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Swift-RxSwift-连接性操作]]></title>
-    <url>%2F2017%2F12%2F19%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FOperators-%E8%BF%9E%E6%8E%A5%E6%80%A7%E6%93%8D%E4%BD%9C%2F</url>
-    <content type="text"><![CDATA[连接性操作 ①publish ②replay ③multicast Connectable Observable有订阅时不开始发射事件消息，而是仅当调用它们的connect（）方法时。这样就可以等待所有我们想要的订阅者都已经订阅了以后，再开始发出事件消息，这样能保证我们想要的所有订阅者都能接收到事件消息。其实也就是等大家都就位以后，开始发出消息 ①publish ①publish 将一个正常的sequence转换成一个connectable sequence let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .publish() _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; //相当于把事件消息推迟了两秒 delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(6) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125;//Subscription 1:, Event: 0Subscription 1:, Event: 1Subscription 2:, Event: 1Subscription 1:, Event: 2Subscription 2:, Event: 2Subscription 1:, Event: 3Subscription 3:, Event: 3Subscription 2:, Event: 3Subscription 1:, Event: 4Subscription 3:, Event: 4 ②replay ②replay 将一个正常的sequence转换成一个connectable sequence，然后和replaySubject相似，能接收到订阅之前的事件消息 let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .replay(5) //接收到订阅之前的5条事件消息 _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(8) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125; ③multicast ③multicast 将一个正常的sequence转换成一个connectable sequence，并且通过特性的subject发送出去，比如PublishSubject，或者replaySubject，behaviorSubject等。不同的Subject会有不同的结果 let subject = PublishSubject&lt;Int&gt;() _ = subject .subscribe(onNext: &#123; print("Subject: \($0)") &#125;) let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .multicast(subject) _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 2:, Event: \($0)") &#125;)&#125;]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
         <tag>RxSwift</tag>
-        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1370,8 +1359,21 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Swift-RxSwift-连接性操作]]></title>
+    <url>%2F2017%2F12%2F19%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FOperators-%E8%BF%9E%E6%8E%A5%E6%80%A7%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[连接性操作 ①publish ②replay ③multicast Connectable Observable有订阅时不开始发射事件消息，而是仅当调用它们的connect（）方法时。这样就可以等待所有我们想要的订阅者都已经订阅了以后，再开始发出事件消息，这样能保证我们想要的所有订阅者都能接收到事件消息。其实也就是等大家都就位以后，开始发出消息 ①publish ①publish 将一个正常的sequence转换成一个connectable sequence let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .publish() _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; //相当于把事件消息推迟了两秒 delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(6) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125;//Subscription 1:, Event: 0Subscription 1:, Event: 1Subscription 2:, Event: 1Subscription 1:, Event: 2Subscription 2:, Event: 2Subscription 1:, Event: 3Subscription 3:, Event: 3Subscription 2:, Event: 3Subscription 1:, Event: 4Subscription 3:, Event: 4 ②replay ②replay 将一个正常的sequence转换成一个connectable sequence，然后和replaySubject相似，能接收到订阅之前的事件消息 let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .replay(5) //接收到订阅之前的5条事件消息 _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(8) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125; ③multicast ③multicast 将一个正常的sequence转换成一个connectable sequence，并且通过特性的subject发送出去，比如PublishSubject，或者replaySubject，behaviorSubject等。不同的Subject会有不同的结果 let subject = PublishSubject&lt;Int&gt;() _ = subject .subscribe(onNext: &#123; print("Subject: \($0)") &#125;) let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .multicast(subject) _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 2:, Event: \($0)") &#125;)&#125;]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1383,8 +1385,8 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1396,8 +1398,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1409,8 +1411,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
         <tag>线程</tag>
       </tags>
   </entry>
@@ -1423,8 +1425,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1436,8 +1438,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1449,8 +1451,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1462,8 +1464,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1475,9 +1477,9 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1489,8 +1491,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1502,8 +1504,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1515,8 +1517,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1528,9 +1530,9 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1542,8 +1544,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1555,8 +1557,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1568,8 +1570,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1591,8 +1593,8 @@
       </categories>
       <tags>
         <tag>UIKit</tag>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1604,8 +1606,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1647,8 +1649,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Func</tag>
         <tag>Swift</tag>
+        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
@@ -1660,8 +1662,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Func</tag>
         <tag>Swift</tag>
+        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
@@ -1673,8 +1675,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Func</tag>
         <tag>Swift</tag>
+        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
@@ -2096,8 +2098,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Func</tag>
         <tag>Swift</tag>
+        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
@@ -2156,16 +2158,6 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[Swift-Lib-SnapKit-自动布局]]></title>
-    <url>%2F2017%2F12%2F13%2FSwift%2FLib%2FSnapKit-%E8%87%AA%E5%8A%A8%E5%B8%83%E5%B1%80%2F</url>
-    <content type="text"><![CDATA[https://www.jianshu.com/p/2bad53a2a180]]></content>
-      <categories>
-        <category>Swift</category>
-        <category>Lib</category>
-        <category>SnapKit</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[Swift-Lib-Kingfisher-图片加载库]]></title>
     <url>%2F2017%2F12%2F13%2FSwift%2FLib%2FKingfisher-%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%BA%93%2F</url>
     <content type="text"><![CDATA[http://blog.csdn.net/djh996064549/article/details/71085679]]></content>
@@ -2173,6 +2165,16 @@
         <category>Swift</category>
         <category>Lib</category>
         <category>Kingfisher</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Swift-Lib-SnapKit-自动布局]]></title>
+    <url>%2F2017%2F12%2F13%2FSwift%2FLib%2FSnapKit-%E8%87%AA%E5%8A%A8%E5%B8%83%E5%B1%80%2F</url>
+    <content type="text"><![CDATA[https://www.jianshu.com/p/2bad53a2a180]]></content>
+      <categories>
+        <category>Swift</category>
+        <category>Lib</category>
+        <category>SnapKit</category>
       </categories>
   </entry>
   <entry>
@@ -2364,9 +2366,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[OC/Function功能类/AppError错误/AFN]]></title>
-    <url>%2F2017%2F12%2F07%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FAppError%E9%94%99%E8%AF%AF%2FXcode%E7%89%88%E6%9C%AC%E9%94%99%E8%AF%AF%2F</url>
-    <content type="text"><![CDATA[Xcode10(iOS12)found for -lstdc++和libstdc++.6.0.9和clang 错误显示 library not found for -lstdc++.6.0.9library not found for -lstdc++.6library not found for -lstdc++clang 问题原因： 这是因为Xcode10彻底废弃了libstdc++，相关的库文件libstdc++.6.0.9.dylib、libstdc++.6.dylib、libstdc++.dylib、libstdc++.6.0.9.tbd、libstdc++.6.tbd、libstdc++.tbd也从Xcode10中删除了。 解决方案 查找说需要尽快libc++开发，由于使用的第三方中里边依赖libstdc++的库，所以说只能暂时规避解决。要在Xcode10上使用libstdc++，需要把Xcode9的相关库复制到Xcode的路径下。在Xcode9的路径下查找libstdc++.6.0.9.tbd、libstdc++.6.tbd、libstdc++.tbd，复制到Xcode10的下方路径下即可 libstd下载地址 1./Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/usr/lib/2./Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/3./Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/4./Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/lib/]]></content>
+    <title><![CDATA[OC/Function功能类/AppError错误/网络报错]]></title>
+    <url>%2F2017%2F12%2F07%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FAppError%E9%94%99%E8%AF%AF%2F%E7%BD%91%E7%BB%9C%E6%8A%A5%E9%94%99%2F</url>
+    <content type="text"><![CDATA[不接受返回类型 解决方案： AFURLResponseSerialization.m中，228行左右把 这句： self.acceptableContentTypes = [NSSet setWithObjects:@&quot;application/json&quot;, @&quot;text/json&quot;, @&quot;text/javascript&quot;, nil];修改为：self.acceptableContentTypes = [NSSet setWithObjects:@&quot;application/json&quot;, @&quot;text/json&quot;, @&quot;text/javascript&quot;,@&quot;text/html&quot;, nil];在进行网络请求时出现-1016 是因为只支持text/json，application/json，text/javascript 3840错误 Error Domain=NSCocoaErrorDomain Code=3840 &quot;Invalid value around character 64.&quot; UserInfo=&#123;NSDebugDescription=Invalid value around character 64.&#125;服务器没有返回json数据]]></content>
       <categories>
         <category>OC</category>
         <category>Function功能类</category>
@@ -2379,9 +2381,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[OC/Function功能类/AppError错误/网络报错]]></title>
-    <url>%2F2017%2F12%2F07%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FAppError%E9%94%99%E8%AF%AF%2F%E7%BD%91%E7%BB%9C%E6%8A%A5%E9%94%99%2F</url>
-    <content type="text"><![CDATA[不接受返回类型 解决方案： AFURLResponseSerialization.m中，228行左右把 这句： self.acceptableContentTypes = [NSSet setWithObjects:@&quot;application/json&quot;, @&quot;text/json&quot;, @&quot;text/javascript&quot;, nil];修改为：self.acceptableContentTypes = [NSSet setWithObjects:@&quot;application/json&quot;, @&quot;text/json&quot;, @&quot;text/javascript&quot;,@&quot;text/html&quot;, nil];在进行网络请求时出现-1016 是因为只支持text/json，application/json，text/javascript 3840错误 Error Domain=NSCocoaErrorDomain Code=3840 &quot;Invalid value around character 64.&quot; UserInfo=&#123;NSDebugDescription=Invalid value around character 64.&#125;服务器没有返回json数据]]></content>
+    <title><![CDATA[OC/Function功能类/AppError错误/AFN]]></title>
+    <url>%2F2017%2F12%2F07%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FAppError%E9%94%99%E8%AF%AF%2FXcode%E7%89%88%E6%9C%AC%E9%94%99%E8%AF%AF%2F</url>
+    <content type="text"><![CDATA[Xcode10(iOS12)found for -lstdc++和libstdc++.6.0.9和clang 错误显示 library not found for -lstdc++.6.0.9library not found for -lstdc++.6library not found for -lstdc++clang 问题原因： 这是因为Xcode10彻底废弃了libstdc++，相关的库文件libstdc++.6.0.9.dylib、libstdc++.6.dylib、libstdc++.dylib、libstdc++.6.0.9.tbd、libstdc++.6.tbd、libstdc++.tbd也从Xcode10中删除了。 解决方案 查找说需要尽快libc++开发，由于使用的第三方中里边依赖libstdc++的库，所以说只能暂时规避解决。要在Xcode10上使用libstdc++，需要把Xcode9的相关库复制到Xcode的路径下。在Xcode9的路径下查找libstdc++.6.0.9.tbd、libstdc++.6.tbd、libstdc++.tbd，复制到Xcode10的下方路径下即可 libstd下载地址 1./Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/usr/lib/2./Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/3./Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/4./Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/lib/]]></content>
       <categories>
         <category>OC</category>
         <category>Function功能类</category>
@@ -2504,20 +2506,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Swift-UIKit-UIButton]]></title>
-    <url>%2F2017%2F12%2F06%2FSwift%2FUIKit%2FUIButton%2F</url>
-    <content type="text"><![CDATA[UIButton UIButton继承自UIControl 创建btnlet btn: UIButton = UIButton() //没有样式//let btns:UIButton =UIButton(type: UIButtonType)//有样式//let button = UIButton(frame:CGRect(x:10, y:150, width:100, height:30))//简化创建方式self.view.addSubview(button) UIButtonType有以下类型public enum UIButtonType : Int &#123; case custom // no button type @available(iOS 7.0, *) case system // standard system button case detailDisclosure case infoLight case infoDark case contactAdd public static var roundedRect: UIButtonType &#123; get &#125; // Deprecated, use UIButtonTypeSystem instead&#125;//使用let btn: UIButton = UIButton(type: .Custom) UIButton设置字内容和颜色 UIButton所对应的状态有几种 /** Normal (默认状态) Highlighted （高亮状态）点击按钮不放 Disabled （使能状态）就是是否可用状态--&gt;禁用的状态才会显现 Selected （选中状态）通过selected属性设置 */ /显示文字button1.setTitle("普通状态", for: .normal)button1.setTitle("高粱状态", for: .highlighted)button1.setTitle("禁用状态", for: .disabled)//显示文字颜色button1.setTitleColor(UIColor.red, for: .normal)button1.setTitleColor(UIColor.blue, for: .highlighted)button1.setTitleColor(UIColor.cyan, for: .selected)button1.setTitleColor(UIColor.cyan, for: .disabled)//阴影文字颜色设置button1.setTitleShadowColor(UIColor.cyan, for: .normal)button1.setTitleShadowColor(UIColor.green, for: .highlighted)button1.setTitleShadowColor(UIColor.brown, for: .disabled)button1.setTitleShadowColor(UIColor.darkGray, for: .selected) UIButton设置背景颜色和背景图片 //背景颜色button2.backgroundColor = UIColor.orange//背景图片 button4.setBackgroundImage(UIImage(named:"XXX"), for: .normal) UIButton设置字体大小button.titleLabel?.font = UIFont.systemFont(ofSize: 12) 禁用UIButton button.isEnabled = falsebutton.isEnabled = true 设置圆角 button.layer.cornerRadius = 5button.layer.masksToBounds = true 设置边框宽度/颜色 button.layer.borderWidth = 2button.layer.borderColor = UIColor.red.cgColor 设置背景图片为圆角 buttonImage.setImage(UIImage(named:"1") , forState: UIControlState.Normal)//设置背景图片为圆角buttonImage.imageView?.layer.cornerRadius = 50默认情况下按钮会被渲染成单一颜色；系统蓝button.setImage(UIImage(named:"icon1"),forState:.Normal) //设置图标button.adjustsImageWhenHighlighted=false //使触摸模式下按钮也不会变暗（半透明）button.adjustsImageWhenDisabled=false //使禁用模式下按钮也不会变暗（半透明）也可以设置成保留图标原来的颜色let iconImage = UIImage(named:"icon2")?.withRenderingMode(.alwaysOriginal)button.setImage(iconImage, for:.normal) //设置图标button.adjustsImageWhenHighlighted = false //使触摸模式下按钮也不会变暗（半透明）button.adjustsImageWhenDisabled = false //使禁用模式下按钮也不会变暗（半透明） UIButton上图片和文字调整 UIButton上添加图片和文字，有时需要我们调整,方向为逆时针方向，上、左、下、右依次去设置的 btn.imageEdgeInsets =UIEdgeInsetsMake(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat)btn.titleEdgeInsets =UIEdgeInsetsMake(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) //创建一个图片一个文字的按钮 let btn2: UIButton = UIButton(type: .Custom) btn2.frame = CGRectMake(50, 100, 120, 35) btn2.setImage(UIImage(named: "1"), forState: .Normal) btn2.backgroundColor = UIColor.blackColor() btn2.titleLabel?.font = UIFont.systemFontOfSize(20) btn2.imageView?.contentMode = UIViewContentMode.ScaleAspectFit btn2.setTitle("图片按钮", forState: .Normal) //偏移量，分别为上下左右 btn2.imageEdgeInsets = UIEdgeInsetsMake(0, -50, 0, 0) btn2.titleEdgeInsets = UIEdgeInsetsMake(0, -80, 0, 5) btn2.setTitleColor(UIColor.whiteColor(), forState: .Normal) btn2.adjustsImageWhenHighlighted = false self.view.addSubview(btn2) 添加按钮的点击事件 按钮的触摸时间有以下类型 touchDown：单点触摸按下事件，点触屏幕touchDownRepeat：多点触摸按下事件，点触计数大于1，按下第2、3或第4根手指的时候touchDragInside：触摸在控件内拖动时touchDragOutside：触摸在控件外拖动时touchDragEnter：触摸从控件之外拖动到内部时touchDragExit：触摸从控件内部拖动到外部时touchUpInside：在控件之内触摸并抬起事件touchUpOutside：在控件之外触摸抬起事件touchCancel：触摸取消事件，即一次触摸因为放上太多手指而被取消，或者电话打断 button1.addTarget(self,action:#selector(methodName), for: .touchUpInside)button1.addTarget(self, action:#selector(someMethod(button:)), for:.touchUpInside)//上 func methodName() &#123; print("tapped") &#125;//下 func someMethod(button:UIButton) &#123; print("你是谁啊，其实就是一个按钮") &#125; 按钮文字过长时候的显示处理 修改 button 按钮中 titleLabel 的 lineBreakMode 属性，便可以调整按钮在文字超长的情况下如何显示，以及是否换行 let button = UIButton(frame:CGRect(x:20, y:50, width:130, height:50))button.setTitle("这个是一长长长长长长长长长长的文字", for:.normal) //普通状态下的文字button.setTitleColor(UIColor.white, for: .normal) //普通状态下文字的颜色button.titleLabel?.lineBreakMode = .byTruncatingTailbutton.backgroundColor = UIColor.orangeself.view.addSubview(button) NSLineBreakMode样式可供选择，API的介绍也是简单明 public enum NSLineBreakMode : Int &#123; case byWordWrapping // Wrap at word boundaries, default case byCharWrapping // Wrap at character boundaries case byClipping // Simply clip case byTruncatingHead // Truncate at head of line: "...wxyz" case byTruncatingTail // Truncate at tail of line: "abcd..." case byTruncatingMiddle // Truncate middle of line: "ab...yz"&#125;]]></content>
-      <categories>
-        <category>Swift</category>
-        <category>UIKit</category>
-        <category>UIButton</category>
-      </categories>
-      <tags>
-        <tag>Swift</tag>
-        <tag>UIButton</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Swift-UIKit-UILabel]]></title>
     <url>%2F2017%2F12%2F06%2FSwift%2FUIKit%2FUILabel%2F</url>
     <content type="text"><![CDATA[lab 创建&amp;&amp; 设置frame let lab = UILabel(frame:CGRect(x:10,y:100,width:self.view.frame.size.width - 40,height:200)) 或 let lab = UILabel()lab.frame = CGRect(x:10,y:100,width:self.view.frame.size.width - 40,height:200) 添加父层 self.view.addSubview(lab); 显示文本内容 lab.text = "chen jian !" 设置bg颜色 lab.backgroundColor = UIColor.green 文字颜色 lab.textColor = UIColor.white 文字对齐方式 lab.textAlignment = NSTextAlignment.left 高亮文字颜色 lab.highlightedTextColor = UIColor.cyan 阴影颜色 lab.shadowColor = UIColor.black 阴影偏移位置 lab.shadowOffset = CGSize(width:-5,height:5) 设置圆角 lab.layer.cornerRadius = 20lab.layer.masksToBounds = true 边框的宽度和颜色 lab.layer.borderColor = UIColor.green.cgColorlab.layer.borderWidth = 2 文字类型/大小 lab.font = UIFont.boldSystemFont(ofSize: 20) //加粗类型lab.font = UIFont.systemFont(ofSize: 20) //文字大小lab.font = UIFont.italicSystemFont(ofSize: 20)//斜体类型lab.font = UIFont(name:"您好",size:50) //大小和文字一起设置 显示de样式 lab.lineBreakMode = NSLineBreakMode.byCharWrapping // NSParagraphStyle@available(iOS 6.0, *)public enum NSLineBreakMode : Int &#123;case byWordWrapping // Wrap at word boundaries, defaultcase byCharWrapping // Wrap at character boundariescase byClipping // Simply clipcase byTruncatingHead // Truncate at head of line: "...wxyz"case byTruncatingTail // Truncate at tail of line: "abcd..."case byTruncatingMiddle // Truncate middle of line: "ab...yz"&#125; 多行de显示 lab.numberOfLines = 2 //最多显示2行lab.numberOfLines = 0 // 默认没有行数显示lab.numberOfLines = 1 //只能显示一行 自动调整文字de大小 lab.adjustsFontSizeToFitWidth = true 富文本设置 //创建对象let attributeString = NSMutableAttributedString(string:"Welcome to Swift! Welcome to Swift! Welcome to Swift! Welcome to Swift!")//设置字体大小/字体类型attributeString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Bold", size: 16)!, range: NSMakeRange(0, 6))//设置背景颜色 attributeString.addAttribute(NSForegroundColorAttributeName, value: UIColor.red, range: NSMakeRange(0, 3)) //设置文档背景色 attributeString.addAttribute(NSBackgroundColorDocumentAttribute, value: UIColor.lightGray, range: NSMakeRange(10, 10))//设置下划线attributeString.addAttribute(NSUnderlineStyleAttributeName, value:NSUnderlineStyle.StyleSingle.rawValue, range: NSMakeRange(5,12)) testLable.attributedText = attributeString; 文本高度计算 extension NSString &#123; func textSizeWithFont(font: UIFont, constrainedToSize size:CGSize) -&gt; CGSize &#123; var textSize:CGSize! if CGSizeEqualToSize(size, CGSizeZero) &#123; let attributes = NSDictionary(object: font, forKey: NSFontAttributeName) textSize = self.sizeWithAttributes(attributes) &#125; else &#123; let option = NSStringDrawingOptions.UsesLineFragmentOrigin let attributes = NSDictionary(object: font, forKey: NSFontAttributeName) let stringRect = self.boundingRectWithSize(size, options: option, attributes: attributes, context: nil) textSize = stringRect.size &#125; return textSize &#125;&#125;]]></content>
@@ -2530,6 +2518,20 @@
         <tag>UIKit</tag>
         <tag>Swift</tag>
         <tag>UILabel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Swift-UIKit-UIButton]]></title>
+    <url>%2F2017%2F12%2F06%2FSwift%2FUIKit%2FUIButton%2F</url>
+    <content type="text"><![CDATA[UIButton UIButton继承自UIControl 创建btnlet btn: UIButton = UIButton() //没有样式//let btns:UIButton =UIButton(type: UIButtonType)//有样式//let button = UIButton(frame:CGRect(x:10, y:150, width:100, height:30))//简化创建方式self.view.addSubview(button) UIButtonType有以下类型public enum UIButtonType : Int &#123; case custom // no button type @available(iOS 7.0, *) case system // standard system button case detailDisclosure case infoLight case infoDark case contactAdd public static var roundedRect: UIButtonType &#123; get &#125; // Deprecated, use UIButtonTypeSystem instead&#125;//使用let btn: UIButton = UIButton(type: .Custom) UIButton设置字内容和颜色 UIButton所对应的状态有几种 /** Normal (默认状态) Highlighted （高亮状态）点击按钮不放 Disabled （使能状态）就是是否可用状态--&gt;禁用的状态才会显现 Selected （选中状态）通过selected属性设置 */ /显示文字button1.setTitle("普通状态", for: .normal)button1.setTitle("高粱状态", for: .highlighted)button1.setTitle("禁用状态", for: .disabled)//显示文字颜色button1.setTitleColor(UIColor.red, for: .normal)button1.setTitleColor(UIColor.blue, for: .highlighted)button1.setTitleColor(UIColor.cyan, for: .selected)button1.setTitleColor(UIColor.cyan, for: .disabled)//阴影文字颜色设置button1.setTitleShadowColor(UIColor.cyan, for: .normal)button1.setTitleShadowColor(UIColor.green, for: .highlighted)button1.setTitleShadowColor(UIColor.brown, for: .disabled)button1.setTitleShadowColor(UIColor.darkGray, for: .selected) UIButton设置背景颜色和背景图片 //背景颜色button2.backgroundColor = UIColor.orange//背景图片 button4.setBackgroundImage(UIImage(named:"XXX"), for: .normal) UIButton设置字体大小button.titleLabel?.font = UIFont.systemFont(ofSize: 12) 禁用UIButton button.isEnabled = falsebutton.isEnabled = true 设置圆角 button.layer.cornerRadius = 5button.layer.masksToBounds = true 设置边框宽度/颜色 button.layer.borderWidth = 2button.layer.borderColor = UIColor.red.cgColor 设置背景图片为圆角 buttonImage.setImage(UIImage(named:"1") , forState: UIControlState.Normal)//设置背景图片为圆角buttonImage.imageView?.layer.cornerRadius = 50默认情况下按钮会被渲染成单一颜色；系统蓝button.setImage(UIImage(named:"icon1"),forState:.Normal) //设置图标button.adjustsImageWhenHighlighted=false //使触摸模式下按钮也不会变暗（半透明）button.adjustsImageWhenDisabled=false //使禁用模式下按钮也不会变暗（半透明）也可以设置成保留图标原来的颜色let iconImage = UIImage(named:"icon2")?.withRenderingMode(.alwaysOriginal)button.setImage(iconImage, for:.normal) //设置图标button.adjustsImageWhenHighlighted = false //使触摸模式下按钮也不会变暗（半透明）button.adjustsImageWhenDisabled = false //使禁用模式下按钮也不会变暗（半透明） UIButton上图片和文字调整 UIButton上添加图片和文字，有时需要我们调整,方向为逆时针方向，上、左、下、右依次去设置的 btn.imageEdgeInsets =UIEdgeInsetsMake(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat)btn.titleEdgeInsets =UIEdgeInsetsMake(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) //创建一个图片一个文字的按钮 let btn2: UIButton = UIButton(type: .Custom) btn2.frame = CGRectMake(50, 100, 120, 35) btn2.setImage(UIImage(named: "1"), forState: .Normal) btn2.backgroundColor = UIColor.blackColor() btn2.titleLabel?.font = UIFont.systemFontOfSize(20) btn2.imageView?.contentMode = UIViewContentMode.ScaleAspectFit btn2.setTitle("图片按钮", forState: .Normal) //偏移量，分别为上下左右 btn2.imageEdgeInsets = UIEdgeInsetsMake(0, -50, 0, 0) btn2.titleEdgeInsets = UIEdgeInsetsMake(0, -80, 0, 5) btn2.setTitleColor(UIColor.whiteColor(), forState: .Normal) btn2.adjustsImageWhenHighlighted = false self.view.addSubview(btn2) 添加按钮的点击事件 按钮的触摸时间有以下类型 touchDown：单点触摸按下事件，点触屏幕touchDownRepeat：多点触摸按下事件，点触计数大于1，按下第2、3或第4根手指的时候touchDragInside：触摸在控件内拖动时touchDragOutside：触摸在控件外拖动时touchDragEnter：触摸从控件之外拖动到内部时touchDragExit：触摸从控件内部拖动到外部时touchUpInside：在控件之内触摸并抬起事件touchUpOutside：在控件之外触摸抬起事件touchCancel：触摸取消事件，即一次触摸因为放上太多手指而被取消，或者电话打断 button1.addTarget(self,action:#selector(methodName), for: .touchUpInside)button1.addTarget(self, action:#selector(someMethod(button:)), for:.touchUpInside)//上 func methodName() &#123; print("tapped") &#125;//下 func someMethod(button:UIButton) &#123; print("你是谁啊，其实就是一个按钮") &#125; 按钮文字过长时候的显示处理 修改 button 按钮中 titleLabel 的 lineBreakMode 属性，便可以调整按钮在文字超长的情况下如何显示，以及是否换行 let button = UIButton(frame:CGRect(x:20, y:50, width:130, height:50))button.setTitle("这个是一长长长长长长长长长长的文字", for:.normal) //普通状态下的文字button.setTitleColor(UIColor.white, for: .normal) //普通状态下文字的颜色button.titleLabel?.lineBreakMode = .byTruncatingTailbutton.backgroundColor = UIColor.orangeself.view.addSubview(button) NSLineBreakMode样式可供选择，API的介绍也是简单明 public enum NSLineBreakMode : Int &#123; case byWordWrapping // Wrap at word boundaries, default case byCharWrapping // Wrap at character boundaries case byClipping // Simply clip case byTruncatingHead // Truncate at head of line: "...wxyz" case byTruncatingTail // Truncate at tail of line: "abcd..." case byTruncatingMiddle // Truncate middle of line: "ab...yz"&#125;]]></content>
+      <categories>
+        <category>Swift</category>
+        <category>UIKit</category>
+        <category>UIButton</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>UIButton</tag>
       </tags>
   </entry>
   <entry>
@@ -2774,6 +2776,11 @@
       </tags>
   </entry>
   <entry>
+    <title></title>
+    <url>%2F2017%2F11%2F29%2FYoBook%2Fapp-%E5%88%86%E7%B1%BB%2F</url>
+    <content type="text"><![CDATA[​​ ​ # 产品设计​​​​​ ​​ # NSSet初始化​ &gt;NSSet是无序的​ &gt;注意:这个是最为重要的功能 NSSet中不能够存储重复的数据,可以用它来去除重复的值​​ ​ ​ NSString * str1 = @&quot;one&quot;;​ NSString * str2 = @&quot;two&quot;;​ NSString * str3 = @&quot;three&quot;;​ NSSet * set = [[NSSet alloc] initWithObjects:str1,str2,str3,str1, nil];​ 这样其实在set中指存储了 @“one”,@“two”,@“three” set.count 值为3​ [set containsObject:str1]; 是否包含str1​ ​ ​​ # 遍历​​ ​ NSEnumerator * enumerator = [set objectEnumerator];​ NSString * value;​ while (value = [enumerator nextObject]) &#123;​ NSLog(@"value %@",value);​ &#125;​ ​ # 可变集合NSMutableSet​ &gt;创建一个可变集合​​ ​ NSMutableSet * muSet = [[NSMutableSet alloc] init];​ ​ &gt;增加值​​ ​ [muSet addObject:str1];​ ​​ &gt;删除​​ ​ [muSet removeObject:str1];​ ​ &gt;删除所有​​ ​ [muSet removeAllObjects];​ ​​ # 集合之间相互转换​​ &gt;NSArray 转换成 NSMutableArray​​ ​ NSArray * array = @[@"one",@"two",@"three"];​ NSMutableArray * muArray = [NSMutableArray arrayWithArray:array];​ ​​ &gt;NSDictionary 转换成 NSMutableDictionary​​ ​ NSDictionary * dic = @&#123;@"one":@"1",@"two":@"2"&#125;;​ NSMutableDictionary * muDic = [NSMutableDictionary dictionaryWithDictionary:dic];​ ​​ &gt;NSSet 转换成 NSMutableSet​​ ​ NSSet * set = [[NSSet alloc] initWithObjects:@"one",@"two", nil];​ NSMutableSet *muSet = [NSMutableSet setWithSet:set];​ ​​ # NSArray 转换成NSSet​​ ​ NSMutableSet * muSet2 = [NSMutableSet setWithArray:array];​ ​​ # NSDictionary 转化成NSArray​​ ​ NSArray * keys = [dic allKeys];​ NSArray * values = [dic allValues];​ ​ # 字符串转换成数组​​ ​ NSString * str = @"aa.bb.cc";​ NSArray * strArray =[str componentsSeparatedByString:@“."];​]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[OC/Function功能类/Git/Git基本使用]]></title>
     <url>%2F2017%2F11%2F29%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FGit%2FGit-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%2F</url>
     <content type="text"><![CDATA[基本使用初始化仓库 创建普通仓库 $ git init 创建裸仓库，这里面许多git命令不能使用，切换分支都不可用，一般用来当远程仓库 $ git --bare init 别名 使用config alias.命令进行，添加–global参数后可以对全局git的config文件进行配置 $ git config --global alias.st status 一个很吊的配置，让你的git变得更好看，摘自 $ git config --global alias.lg &quot;log --color --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&apos; --abbrev-commit&quot; 本地的一些命令 配置信息 $ git config user.name &quot;名字&quot; git config user.email &quot;email&quot; branch分支相关命令 $ git branch -a //显示所有分支 git branch 分支名字 //如果该分支不存在，就会新建 git branch --delete 分支名字 //删除分支 add将本目录下的文件都添加到暂缓区，准备提交用 $ git add . commit 提交 $ git commit -m &quot;注释&quot; merge这个命令会将本分支merge别处的分支。 $ git merge merge过来的分支 远程命令 添加远程仓库 $ git remote add &lt;远程主机名&gt; url push，命令格式： &amp; git push 远程主机名 本地分支:远程分支 举个例子下面命令将本地分支a，push到远程主机origin的a_remote上，如果远程主机里面没有a_remote分支，那么就会创建一个这名字的分支。 $ git push origin a:a_remote 注意：如果没有远程分支的名字，那么将会在远程仓库建立一个同名的分支。如果没有本地名字，就像 :a_remote，这就相当于传了一个空的分支给远程， 那么会删除掉远程仓库的这个分支。 pull这个命令会将本地和远程分支进行merge，如果出现冲突，需要自己解决。 命令格式： $ git push 远程主机名 远程分支:本地分支 例子在此，将远程主机的 $ git pull orgin a_remote:a 发生冲突的时候，如果需要丢弃本地工作，那么使用 $ git reset --hard branch相关的远程命令将远程分支和本地分支相关联 git branch --track 本地分支 远程主机/远程分支 //在创建本地分支的时候指定它所关联的远程分支 git branch --set-upstream-to 远程主机/远程分支 //将当前分支关联远程分支 fetch这个命令将远程的分支fetch下来，然后可以将这些fetch下来的分支和本地分支进行合并 git fetch 主机名 git fetch -p 主机名 //fetch完成后，删除本地仍存在，但是远程不存在的分支关联 下面的命令将本地分支绑定远程分支，但好像并没什么用，push的时候如果不输入远程分支名字，那么还是会新建一个和本地分支同名的远程分支。 git branch --set-upstream-to origin/aa_remote stash在进行pull的时候，经常会遇到 error: Your local changes to the following files would be overwritten by merge: xxx/xxx/xxx.java Please, commit your changes or stash them before you can merge. Aborting 这里要么将你当前的工作commit一下，要么就可以使用stash命令。先用stash命令缓存当前工作，然后pull，pull后再用stash pop还原之前的工作 $ git pull ... file foobar not up to date, cannot merge. $ git stash $ git pull $ git stash pop 另外的情况就是：你在工作的时候，突然被老板要求去改别的东西，你也可以用stash把当前的工作缓存起来。改完别的东西后再回来继续工作。 其他 $... hack hack hack ... $ git stash $ edit emergency fix $ git commit -a -m &quot;Fix in a hurry&quot; $ git stash pop # ... continue hacking ... 最后一些坑 1、初始化的仓库要先commit一下才能新建分支 2、如果远程仓库在使用这个分支，那么不能提交到这个分支上去，除非建立bare仓库，但是bare仓库不能使用git命令。]]></content>
@@ -2782,11 +2789,6 @@
         <category>Function功能类</category>
         <category>Git</category>
       </categories>
-  </entry>
-  <entry>
-    <title></title>
-    <url>%2F2017%2F11%2F29%2FYoBook%2Fapp-%E5%88%86%E7%B1%BB%2F</url>
-    <content type="text"><![CDATA[​​ ​ # 产品设计​​​​​ ​​ # NSSet初始化​ &gt;NSSet是无序的​ &gt;注意:这个是最为重要的功能 NSSet中不能够存储重复的数据,可以用它来去除重复的值​​ ​ ​ NSString * str1 = @&quot;one&quot;;​ NSString * str2 = @&quot;two&quot;;​ NSString * str3 = @&quot;three&quot;;​ NSSet * set = [[NSSet alloc] initWithObjects:str1,str2,str3,str1, nil];​ 这样其实在set中指存储了 @“one”,@“two”,@“three” set.count 值为3​ [set containsObject:str1]; 是否包含str1​ ​ ​​ # 遍历​​ ​ NSEnumerator * enumerator = [set objectEnumerator];​ NSString * value;​ while (value = [enumerator nextObject]) &#123;​ NSLog(@"value %@",value);​ &#125;​ ​ # 可变集合NSMutableSet​ &gt;创建一个可变集合​​ ​ NSMutableSet * muSet = [[NSMutableSet alloc] init];​ ​ &gt;增加值​​ ​ [muSet addObject:str1];​ ​​ &gt;删除​​ ​ [muSet removeObject:str1];​ ​ &gt;删除所有​​ ​ [muSet removeAllObjects];​ ​​ # 集合之间相互转换​​ &gt;NSArray 转换成 NSMutableArray​​ ​ NSArray * array = @[@"one",@"two",@"three"];​ NSMutableArray * muArray = [NSMutableArray arrayWithArray:array];​ ​​ &gt;NSDictionary 转换成 NSMutableDictionary​​ ​ NSDictionary * dic = @&#123;@"one":@"1",@"two":@"2"&#125;;​ NSMutableDictionary * muDic = [NSMutableDictionary dictionaryWithDictionary:dic];​ ​​ &gt;NSSet 转换成 NSMutableSet​​ ​ NSSet * set = [[NSSet alloc] initWithObjects:@"one",@"two", nil];​ NSMutableSet *muSet = [NSMutableSet setWithSet:set];​ ​​ # NSArray 转换成NSSet​​ ​ NSMutableSet * muSet2 = [NSMutableSet setWithArray:array];​ ​​ # NSDictionary 转化成NSArray​​ ​ NSArray * keys = [dic allKeys];​ NSArray * values = [dic allValues];​ ​ # 字符串转换成数组​​ ​ NSString * str = @"aa.bb.cc";​ NSArray * strArray =[str componentsSeparatedByString:@“."];​]]></content>
   </entry>
   <entry>
     <title><![CDATA[Swift-Grammar-Classes/Structures类和结构体]]></title>
@@ -3016,6 +3018,16 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[OC/Function功能类/App配置/配置启动图]]></title>
+    <url>%2F2017%2F11%2F20%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E9%85%8D%E7%BD%AE%2F%E9%85%8D%E7%BD%AE%E5%90%AF%E5%8A%A8%E5%9B%BE%2F</url>
+    <content type="text"><![CDATA[https://www.cnblogs.com/xiu619544553/p/5348678.html]]></content>
+      <categories>
+        <category>OC</category>
+        <category>Function功能类</category>
+        <category>App配置</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[OC/Function功能类/App配置/检查项目是否使用IDFA]]></title>
     <url>%2F2017%2F11%2F20%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E9%85%8D%E7%BD%AE%2F%E6%A3%80%E6%9F%A5%E9%A1%B9%E7%9B%AE%E6%98%AF%E5%90%A6%E4%BD%BF%E7%94%A8IDFA%2F</url>
     <content type="text"><![CDATA[http://blog.csdn.net/chelongfei/article/details/51495862]]></content>
@@ -3029,16 +3041,6 @@
         <tag>Function功能类</tag>
         <tag>App配置</tag>
       </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[OC/Function功能类/App配置/配置启动图]]></title>
-    <url>%2F2017%2F11%2F20%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E9%85%8D%E7%BD%AE%2F%E9%85%8D%E7%BD%AE%E5%90%AF%E5%8A%A8%E5%9B%BE%2F</url>
-    <content type="text"><![CDATA[https://www.cnblogs.com/xiu619544553/p/5348678.html]]></content>
-      <categories>
-        <category>OC</category>
-        <category>Function功能类</category>
-        <category>App配置</category>
-      </categories>
   </entry>
   <entry>
     <title><![CDATA[OC -Lib-JSBadgeView数字角标]]></title>
