@@ -16,6 +16,16 @@
       </categories>
   </entry>
   <entry>
+    <title><![CDATA[OC/Function功能类/Encryption加密/RNCryptor对资源文件加密]]></title>
+    <url>%2F2019%2F04%2F07%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FEncryption%E5%8A%A0%E5%AF%86%2FRNCryptor%E5%AF%B9%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6%E5%8A%A0%E5%AF%86%2F</url>
+    <content type="text"><![CDATA[资源原文 基于RNCryptor的mac端加密小工具 资源进行解密NSData *encryptedData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"01.cxy" ofType:nil]]; NSError *error; NSData *decryptedData = [RNDecryptor decryptData:encryptedData withPassword:@"pwdcxy" error:&amp;error]; if (!error) &#123; NSLog(@"======dencrypt success!====="); UIImage *image = [UIImage imageWithData:decryptedData]; _imageView.image = image; &#125;]]></content>
+      <categories>
+        <category>OC</category>
+        <category>Function功能类</category>
+        <category>Encryption加密</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[OC/UIKit/UITextField/字数限制]]></title>
     <url>%2F2019%2F04%2F04%2FOC%2FUIKit%2FUITextField%2FUITextField%E5%AD%97%E6%95%B0%E9%99%90%E5%88%B6%2F</url>
     <content type="text"><![CDATA[遵循协议&lt;UITextFieldDelegate,UITextViewDelegate&gt; 实时监控[_nameTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged]; TextField Delegate- (BOOL)textField:(UITextField*)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString*)string&#123; //限制只可以输入数字 if (textField == _phoneTextField || textField == _registerText) &#123; NSCharacterSet * cs = [[NSCharacterSet characterSetWithCharactersInString:@&quot;0123456789&quot;] invertedSet]; NSString * filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@&quot;&quot;]; BOOL basicTest = [string isEqualToString:filtered]; if(!basicTest) &#123; [self showTextView:self.view message:@&quot;请输入数字&quot;]; return NO; &#125; &#125; return YES;&#125; 点击return按键收回键盘- (BOOL)textFieldShouldReturn:(UITextField *)textField&#123; [self.view endEditing:YES]; return YES;&#125;//简单实现了 点击 某个textField 整体页面上移 保证不会被键盘遮盖- (void)textFieldDidBeginEditing:(UITextField *)textField&#123; if (textField == _positionTextField ) &#123; [UIView animateWithDuration:0.2 animations:^&#123; _scrollView.contentOffset = CGPointMake(0, 40); &#125;]; &#125;else if (textField == _telTextField) &#123; [UIView animateWithDuration:0.2 animations:^&#123; _scrollView.contentOffset = CGPointMake(0, 50); &#125;]; &#125;else if (textField == _emailTextField) &#123; [UIView animateWithDuration:0.2 animations:^&#123; _scrollView.contentOffset = CGPointMake(0, 60); &#125;]; &#125;&#125; 限制输入字数- (void)textFieldDidChange:(UITextField *)textField&#123; NSInteger kMaxLength = 10 ; NSString *toBeString = textField.text; NSString *lang = [[UIApplication sharedApplication]textInputMode].primaryLanguage; //ios7之前使用[UITextInputMode currentInputMode].primaryLanguage if ([lang isEqualToString:@&quot;zh-Hans&quot;]) &#123; //中文输入 UITextRange *selectedRange = [textField markedTextRange]; //获取高亮部分 UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0]; if (!position) &#123;// 没有高亮选择的字，则对已输入的文字进行字数统计和限制 if (toBeString.length &gt; kMaxLength) &#123; textField.text = [toBeString substringToIndex:kMaxLength]; [self showTextView:self.view message:[NSString stringWithFormat:@&quot;最多可输入%ld位&quot;,(long)kMaxLength]]; &#125; &#125; else&#123;//有高亮选择的字符串，则暂不对文字进行统计和限制 &#125; &#125;else&#123;//中文输入法以外的直接对其统计限制即可，不考虑其他语种情况 if (toBeString.length &gt; kMaxLength) &#123; textField.text = [toBeString substringToIndex:kMaxLength]; [self showTextView:self.view message:[NSString stringWithFormat:@&quot;最多可输入%ld位&quot;,(long)kMaxLength]]; &#125; &#125;&#125;#pragma mark - TextView Delegate- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text&#123; if ([text isEqualToString:@&quot;\n&quot;])&#123; //判断输入的字是否是回车，即按下return //在这里做你响应return键的代码 [self.view endEditing:YES]; return NO; //这里返回NO，就代表return键值失效，即页面上按下return，不会出现换行，如果为yes，则输入页面会换行 &#125; return YES;&#125;- (void)textViewDidBeginEditing:(UITextView *)textView&#123; [UIView animateWithDuration:0.2 animations:^&#123; _scrollView.contentOffset = CGPointMake(0, 70); &#125;]; //粗略的给textView加上placeholder if([textView.text isEqualToString:@&quot;地址&quot;])&#123; textView.text=@&quot;&quot;; textView.textColor = MakeColorRGB(0x7a8fac); &#125;&#125;- (void)textViewDidChange:(UITextView *)textView&#123; NSInteger kMaxLength = 200 ; NSString *toBeString = textView.text; NSString *lang = [[UIApplication sharedApplication]textInputMode].primaryLanguage; //ios7之前使用[UITextInputMode currentInputMode].primaryLanguage if ([lang isEqualToString:@&quot;zh-Hans&quot;]) &#123; //中文输入 UITextRange *selectedRange = [textView markedTextRange]; //获取高亮部分 UITextPosition *position = [textView positionFromPosition:selectedRange.start offset:0]; if (!position) &#123;// 没有高亮选择的字，则对已输入的文字进行字数统计和限制 if (toBeString.length &gt; kMaxLength) &#123; textView.text = [toBeString substringToIndex:kMaxLength]; [self showTextView:self.view message:[NSString stringWithFormat:@&quot;最多可输入%ld位&quot;,(long)kMaxLength]]; &#125; &#125; else&#123;//有高亮选择的字符串，则暂不对文字进行统计和限制 &#125; &#125;else&#123;//中文输入法以外的直接对其统计限制即可，不考虑其他语种情况 if (toBeString.length &gt; kMaxLength) &#123; textView.text = [toBeString substringToIndex:kMaxLength]; [self showTextView:self.view message:[NSString stringWithFormat:@&quot;最多可输入%ld位&quot;,(long)kMaxLength]]; &#125; &#125;&#125;]]></content>
@@ -61,15 +71,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[OC/Foundation功能类/App跳转相关/APP跳转App(AppID)]]></title>
-    <url>%2F2019%2F04%2F02%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E8%B7%B3%E8%BD%AC%E7%9B%B8%E5%85%B3%2FAPP%E5%8D%87%E7%BA%A7%E8%B7%B3App%2F</url>
-    <content type="text"><![CDATA[OC/Foundation功能类/App跳转相关/APP跳转App(AppID)①②③④⑤⑥⑦⑧ APP跳转App-AppIDif ([[[UIDevice currentDevice] systemVersion] floatValue] &gt;= 10.0) &#123;[[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr] options:@&#123;&#125; completionHandler:nil];&#125; else &#123;[[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];&#125;]]></content>
-      <categories>
-        <category>OC</category>
-        <category>Function功能类</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[OC/Foundation功能类/App跳转相关/APP升级跳AppStore的评分]]></title>
     <url>%2F2019%2F04%2F02%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E8%B7%B3%E8%BD%AC%E7%9B%B8%E5%85%B3%2FAPP%E5%8D%87%E7%BA%A7%E8%B7%B3AppStore%E7%9A%84%E8%AF%84%E5%88%86%2F</url>
     <content type="text"><![CDATA[①②③④⑤⑥⑦⑧ #URL方式跳转评分 NSString *urlStr = [NSStringstringWithFormat:@"https://itunes.apple.com/cn/app/itunes-u/id%@?action=write-review&amp;mt=8",@"387682726"]; #APPID方式跳转评分 NSString *urlStr = [NSStringstringWithFormat:@"itms-apps://itunes.apple.com/cn/app/id%@?mt=8",@"387682726"];]]></content>
@@ -77,6 +78,15 @@
         <category>OC</category>
         <category>Function功能类</category>
         <category>App跳转相关</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[OC/Foundation功能类/App跳转相关/APP跳转App(AppID)]]></title>
+    <url>%2F2019%2F04%2F02%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E8%B7%B3%E8%BD%AC%E7%9B%B8%E5%85%B3%2FAPP%E5%8D%87%E7%BA%A7%E8%B7%B3App%2F</url>
+    <content type="text"><![CDATA[OC/Foundation功能类/App跳转相关/APP跳转App(AppID)①②③④⑤⑥⑦⑧ APP跳转App-AppIDif ([[[UIDevice currentDevice] systemVersion] floatValue] &gt;= 10.0) &#123;[[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr] options:@&#123;&#125; completionHandler:nil];&#125; else &#123;[[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];&#125;]]></content>
+      <categories>
+        <category>OC</category>
+        <category>Function功能类</category>
       </categories>
   </entry>
   <entry>
@@ -109,15 +119,6 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[OC-Foundation/框架简介]]></title>
-    <url>%2F2019%2F04%2F01%2FOC%2FFoundation%2FFoundation%E4%BB%8B%E7%BB%8D%2FOC-Foundation%2F</url>
-    <content type="text"><![CDATA[https://www.jianshu.com/p/495f5f8045ee]]></content>
-      <categories>
-        <category>OC</category>
-        <category>Foundation</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[OC/Foundation/NSString/截取分割字符串]]></title>
     <url>%2F2019%2F04%2F01%2FOC%2FFoundation%2FNSString%2F%E6%88%AA%E5%8F%96%E5%88%86%E5%89%B2%E5%AD%97%E7%AC%A6%E4%B8%B2%2F</url>
     <content type="text"><![CDATA[截取字符串NSString*string =@"sdfsfsfsAdfsdf";string = [string substringToIndex:7];//截取掉下标7之后的字符串NSLog(@"截取的值为：%@",string);[string substringFromIndex:2];//截取掉下标2之前的字符串NSLog(@"截取的值为：%@",string); 匹配字符串NSString*string =@"sdfsfsfsAdfsdf";NSRangerange = [stringrangeOfString:@"f"];//匹配得到的下标NSLog(@"rang:%@",NSStringFromRange(range));string = [string substringWithRange:range];//截取范围类的字符串NSLog(@"截取的值为：%@",string); #分隔字符串 NSString*string =@"sdfsfsfsAdfsdf";NSArray *array = [string componentsSeparatedByString:@"A"]; //从字符A中分隔成2个元素的数组NSLog(@"array:%@",array); //结果是adfsfsfs和dfsdf]]></content>
@@ -125,6 +126,15 @@
         <category>OC</category>
         <category>Foundation</category>
         <category>NSString</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[OC-Foundation/框架简介]]></title>
+    <url>%2F2019%2F04%2F01%2FOC%2FFoundation%2FFoundation%E4%BB%8B%E7%BB%8D%2FOC-Foundation%2F</url>
+    <content type="text"><![CDATA[https://www.jianshu.com/p/495f5f8045ee]]></content>
+      <categories>
+        <category>OC</category>
+        <category>Foundation</category>
       </categories>
   </entry>
   <entry>
@@ -194,8 +204,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -223,8 +233,8 @@
       </categories>
       <tags>
         <tag>UIKit</tag>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -236,8 +246,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -307,8 +317,8 @@
       </categories>
       <tags>
         <tag>UIKit</tag>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -348,8 +358,8 @@
       </categories>
       <tags>
         <tag>UIKit</tag>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -361,8 +371,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -374,8 +384,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -387,8 +397,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -401,8 +411,8 @@
       </categories>
       <tags>
         <tag>UIKit</tag>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -424,8 +434,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Func</tag>
         <tag>RxSwift</tag>
+        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
@@ -456,20 +466,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[RxDataSources-UITableView]]></title>
-    <url>%2F2018%2F04%2F07%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FLib%2FRxDataSources-UITableView%2F</url>
-    <content type="text"><![CDATA[自带的Section let items = Observable.just([ SectionModel(model:&quot;&quot;, items: [&quot;UILable的用法&quot;,&quot;UIText的用法&quot;, &quot;UIButton的用法&quot;])])创建数据源 let dataSource = RxTableViewSectionedReloadDataSource&lt;SectionModel&lt;String,String&gt;&gt;( configureCell: &#123; (dataSource,tv,indexPath,element) in let cell = tv.dequeueReusableCell(withIdentifier:&quot;Cell&quot;)! cell.textLabel?.text = &quot;\(indexPath.row):\(element)&quot; return cell &#125; ) //绑定单元格数据 items.bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: disposeBag) 方式2：自定义Section自定义Sectionstruct MySecion &#123; var header:String var items:[Item]&#125;extension MySecion:AnimatableSectionModelType&#123; typealias Item = String var identity : String&#123; return header &#125; init(original: MySecion,items:[Item]) &#123; self = original self.items = items &#125;&#125; 使用自定义Sectionlet sections = Observable.just([ MySecion(header: &quot;&quot;, items: [ &quot;AAAAA&quot;, &quot;BBBB&quot;, &quot;CCCCCC&quot;, ]) ])let datasource = RxTableViewSectionedAnimatedDataSource&lt;MySecion&gt;( //设置cell configureCell: &#123; ds,tv,ip,im in let cell = tv.dequeueReusableCell(withIdentifier: &quot;Cell&quot;) ?? UITableViewCell(style: .default, reuseIdentifier: &quot;Cell&quot;) cell.textLabel?.text = &quot;\(ip.row):\(im)&quot; return cell&#125; )//绑定cell的数据sections.bind(to: tableView.rx.items(dataSource: datasource)).disposed(by: disposeBag)]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Lib</category>
-      </categories>
-      <tags>
-        <tag>Lib</tag>
-        <tag>RxSwift</tag>
-        <tag>RxDataSources</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[RxSwift-Lib-目录]]></title>
     <url>%2F2018%2F04%2F07%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FLib%2FRxSwift-Lib-%E7%9B%AE%E5%BD%95%2F</url>
     <content type="text"><![CDATA[Moya-网络封装RxSwift/) Moya]]></content>
@@ -478,6 +474,20 @@
       </categories>
       <tags>
         <tag>RxSwift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RxDataSources-UITableView]]></title>
+    <url>%2F2018%2F04%2F07%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FLib%2FRxDataSources-UITableView%2F</url>
+    <content type="text"><![CDATA[自带的Section let items = Observable.just([ SectionModel(model:&quot;&quot;, items: [&quot;UILable的用法&quot;,&quot;UIText的用法&quot;, &quot;UIButton的用法&quot;])])创建数据源 let dataSource = RxTableViewSectionedReloadDataSource&lt;SectionModel&lt;String,String&gt;&gt;( configureCell: &#123; (dataSource,tv,indexPath,element) in let cell = tv.dequeueReusableCell(withIdentifier:&quot;Cell&quot;)! cell.textLabel?.text = &quot;\(indexPath.row):\(element)&quot; return cell &#125; ) //绑定单元格数据 items.bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: disposeBag) 方式2：自定义Section自定义Sectionstruct MySecion &#123; var header:String var items:[Item]&#125;extension MySecion:AnimatableSectionModelType&#123; typealias Item = String var identity : String&#123; return header &#125; init(original: MySecion,items:[Item]) &#123; self = original self.items = items &#125;&#125; 使用自定义Sectionlet sections = Observable.just([ MySecion(header: &quot;&quot;, items: [ &quot;AAAAA&quot;, &quot;BBBB&quot;, &quot;CCCCCC&quot;, ]) ])let datasource = RxTableViewSectionedAnimatedDataSource&lt;MySecion&gt;( //设置cell configureCell: &#123; ds,tv,ip,im in let cell = tv.dequeueReusableCell(withIdentifier: &quot;Cell&quot;) ?? UITableViewCell(style: .default, reuseIdentifier: &quot;Cell&quot;) cell.textLabel?.text = &quot;\(ip.row):\(im)&quot; return cell&#125; )//绑定cell的数据sections.bind(to: tableView.rx.items(dataSource: datasource)).disposed(by: disposeBag)]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Lib</category>
+      </categories>
+      <tags>
+        <tag>RxSwift</tag>
+        <tag>Lib</tag>
+        <tag>RxDataSources</tag>
       </tags>
   </entry>
   <entry>
@@ -502,8 +512,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -515,8 +525,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -528,8 +538,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -541,60 +551,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RxSwift-Grammar-Dispose和DisposeBag]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FDispose%E5%92%8CDisposeBag%2F</url>
-    <content type="text"><![CDATA[Dispose 和 DisposeBag当监听一个sequence的时候，有消息事件来了，做某些事情。但是这个sequence不再发送消息事件了，那么我们的监听也就没有什么存在的价值了，所以我们需要释放我们这些监听资源，其实也就是内存资源释放 ##手动调用释放方式(一般不适用这种方式) 创建一个subscription监听，在两秒以后我们不需要了，手动调用dispose()方法，就能释放监听资源，不再打印信息。上面的subscription不论是在哪个线程中监听，就算在主线程中调用的dispose()方法一样会销毁资源 let subscription = Observable&lt;Int&gt;.interval(0.3, scheduler:SerialDispatchQueueScheduler.init(internalSerialQueueName: "scott")) .observeOn(MainScheduler.instance) .subscribe &#123; event in print (event) &#125;Thread.sleep(forTimeInterval: 2.0)subscription.dispose() //打印结果：next(0)next(1)next(2)next(3)next(4)next(5) 自动方式 创建一个disposeBag来盛放我们需要管理的资源，然后把新建的监听都放进去，会在适当的时候销毁这些资源如果需要立即释放资源只需要新建一个DisposeBag()，那么上一个DisposeBag就会被销毁 let disposeBag = DisposeBag()Observable&lt;Int&gt;.empty() .subscribe&#123; event in print (event) &#125; .addDisponseableTo(disposeBag) DisposeBag DisposeBag其实就相当于iOS中的ARC似得，会在适当的时候销毁观察者，相当于内存管理者吧]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
         <tag>Grammar</tag>
-        <tag>RxSwift</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RxSwift-Grammar-observeOn()和subscribeOn()]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FobserveOn()%E5%92%8CsubscribeOn()%2F</url>
-    <content type="text"><![CDATA[observeOn()和subscribeOn() subscribeOn() 设置起点在哪个线程 observeOn() 置了后续工作在哪个线程 1)所有动作都发生在当前的默认线程2)observeOn()转换线程到主线程，下面所有的操作都在主线程3)subscribeOn()规定动作一开始不是发生在默认线程，而是在OtherScheduler了)-如果之前没有调用observeOn()，那么这边会在OtherScheduler发生，但是我们前面调用了observeOn()，所以这个动作会在主线程中调用subscribeOn()只是影响事件链开始默认的线程，而observeOn()规定了下一步动作发生在哪个线程中。 someObservable .doOneThing() //1 .observeOn(MainRouteScheduler.instance) // 2 .subscribeOn(OtherScheduler.instance) // 3 .subscribeNext &#123; // 4 ...... &#125; .addDisposableTo(disposeBag)]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
-        <tag>Grammar</tag>
-        <tag>RxSwift</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RxSwift-Grammar-Driver]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FDriver%2F</url>
-    <content type="text"><![CDATA[Driver 官方的例子的场景大概就是，根据一个输入框的关键字，来请求数据，然后接结果绑定到另一个Label,和TableView中首先创建一个可监听序列results;将results绑定到resultCount.rx.text上;将results绑定到resultsTableView上. //throttle过滤操作let results = query.rx.text.throttle(0.3,scheduler: MainScheduler.instance)//在主线程中操作，如果0.3秒内值发生多次改变，取最后一次的值 .flatMapLatest // flatMapLatest只会接收最新的value事件 &#123; query in //筛选出空值, 拍平序列，并取得最后一个有效的值 fetchAutoCompleteItems(query) &#125; results.map &#123; "\($0.count)" &#125; //得出结果之后，取出结果的数量 .bindTo(resultCount.rx.text) //取出结果的数量，绑定到resultCount上面显示出来 .addDisposableTo(disposeBag) //释放资源 results.bindTo(resultsTableView.rx.items(cellIdentifier: "Cell")) &#123; (_, result, cell) in cell.textLabel?.text = "\(result)" //取出结果，TableView的Cell上面显示出来 &#125; .addDisposableTo(disposeBag) 上面程序会出现下面几个异常： 如果fetchAutoCompleteItems出错，那么它绑定的UI将不再收到任何事件消息； 如果fetchAutoCompleteItems发生在后台线程，那么它绑定的事件也将在后台线程执行，这样更新UI会造成crash； 有两次绑定，fetchAutoCompleteItems就会执行两次 当然针对以上问题，也有解决方案针对第三点，可以使用神器shareReplay(1)保证只执行一次，可以使用observeOn()保证后面所有操作在主线程完成 let results = query.rx.text .throttle(0.3, scheduler: MainScheduler.instance) .flatMapLatest &#123; query in fetchAutoCompleteItems(query).observeOn(MainScheduler.instance) // 将返回结果切换到到主线程上 .catchErrorJustReturn([]) // 如果有问题，错误结果将会得到处理 &#125; .shareReplay(1) // HTTP请求将会得到分享，即两次绑定UI使用同一网络请求 results .map &#123; "\($0.count)" &#125; .bindTo(resultCount.rx.text) .addDisposableTo(disposeBag) results .bindTo(resultTableView.rx.items(cellIdentifier: "Cell")) &#123; (_, result, cell) in cell.textLabel?.text = "\(result)" &#125; .addDisposableTo(disposeBag) 用Driver来解决 let results = query.rx .text .asDriver() .throttle(0.3, scheduler: MainScheduler.instance) .flatMapLatest &#123; query in fetchAutoCompleteItems(query).asDriver(onErrorJustReturn: []) //当遇见错误需要返回什么 &#125; //不需要添加shareReplay(1) results.map &#123; "\($0.count)" &#125; .drive(resultCount.rx.text) //和bingTo()功能一样 .addDisposableTo(disposeBag) results.drive(resultTableView.rx.items(cellIdentifier: "Cell")) &#123; (_, result, cell) in cell.textLabel?.text = "\(result)" &#125; .addDisposableTo(disposeBag) .asDriver 将‘ControlProperty’ 转换成了 ‘Driver’ query.rx_text.asDriver() ‘Driver’拥有’ControlProperty’的所有属性，同时又增加了很多属性 任何 ‘Observable’ 序列都可以被转换为’Driver’, 只要他满足一下三点： 1.不能出错 2.观察主线程 3.共享资源 如何确保这些属性都满足呢？只需要使用 ‘asDriver(onErrorJustReturn: [])’ ,相当于如下代码: let safeSequence = xs .observeOn(MainScheduler.instance) // 切换到主线程 .catchErrorJustReturn(onErrorJustReturn) // 不能出错 .shareReplayLatestWhileConnected // 共享资源 return Driver(raw: safeSequence) // 返回 最后一点要说明的是 ‘driver’ 可以代替’bindTo’,drive 只能在 Driver 中使用 drive方法只能在Driver序列中使用，Driver有以下特点： Driver序列不允许发出error， Driver序列的监听只会在主线程中。 所以Driver是专为UI绑定量身打造的东西。以下情况你可以使用Driver替换BindTo: 不能发出error; 在主线程中监听; 共享事件流;]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
-        <tag>Grammar</tag>
-        <tag>RxSwift</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RxSwift-Grammar-Subscribe]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FSubscribe%2F</url>
-    <content type="text"><![CDATA[subscribe 和 subscribe(onNext:) Subscribe subscribe是订阅sequence发出的事件，比如next事件，error事件等 而subscribe(onNext:)是监听sequence发出的next事件中的element进行处理，他会忽略error和completed事件 相对应的还有subscribe(onError:) 和 subscribe(onCompleted:)]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
-        <tag>Grammar</tag>
-        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -606,34 +564,21 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[RxSwift-Grammar-UIBindingObserver]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FUIBindingObserver%2F</url>
-    <content type="text"><![CDATA[UIBindingObserver UIBindingObserver这个东西很有用的，创建我们自己的监听者，有时候RxCocoa(RxSwift中对UIKit的一个扩展库)给的扩展不够我们使用，比如一个UITextField有个isEnabled属性，我想把这个isEnabled变为一个observer，我们可以这样做 extension Reactive where Base: UITextField &#123; var inputEnabled: UIBindingObserver&lt;Base, Result&gt; &#123; return UIBindingObserver(UIElement: base) &#123; textFiled, result in textFiled.isEnabled = result.isValid &#125; &#125;&#125; UIBindingObserver是一个类，他的初始化方法中，有两个参数，第一个参数是一个元素本身，第一个参数是一个闭包，闭包参数是元素本身，还有他的一个属性 public init(UIElement: UIElementType, binding: @escaping (UIElementType, Value) -&gt; Swift.Void) 自定义了一个inputEnabled关联了UITextField的isEnabled属性]]></content>
+    <title><![CDATA[RxSwift-Grammar-Dispose和DisposeBag]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FDispose%E5%92%8CDisposeBag%2F</url>
+    <content type="text"><![CDATA[Dispose 和 DisposeBag当监听一个sequence的时候，有消息事件来了，做某些事情。但是这个sequence不再发送消息事件了，那么我们的监听也就没有什么存在的价值了，所以我们需要释放我们这些监听资源，其实也就是内存资源释放 ##手动调用释放方式(一般不适用这种方式) 创建一个subscription监听，在两秒以后我们不需要了，手动调用dispose()方法，就能释放监听资源，不再打印信息。上面的subscription不论是在哪个线程中监听，就算在主线程中调用的dispose()方法一样会销毁资源 let subscription = Observable&lt;Int&gt;.interval(0.3, scheduler:SerialDispatchQueueScheduler.init(internalSerialQueueName: "scott")) .observeOn(MainScheduler.instance) .subscribe &#123; event in print (event) &#125;Thread.sleep(forTimeInterval: 2.0)subscription.dispose() //打印结果：next(0)next(1)next(2)next(3)next(4)next(5) 自动方式 创建一个disposeBag来盛放我们需要管理的资源，然后把新建的监听都放进去，会在适当的时候销毁这些资源如果需要立即释放资源只需要新建一个DisposeBag()，那么上一个DisposeBag就会被销毁 let disposeBag = DisposeBag()Observable&lt;Int&gt;.empty() .subscribe&#123; event in print (event) &#125; .addDisponseableTo(disposeBag) DisposeBag DisposeBag其实就相当于iOS中的ARC似得，会在适当的时候销毁观察者，相当于内存管理者吧]]></content>
       <categories>
         <category>RxSwift</category>
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RxSwift-Grammar-特征序列Traits-Single]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FTraits-Single%2F</url>
-    <content type="text"><![CDATA[Single基本介绍 Single 是 Observable 的另外一个版本但它不像 Observable 可以发出多个元素，它要么只能发出一个元素，要么产生一个 error 事件 发出一个元素，或一个 error 事件 不会共享状态变化 应用场景 Single 比较常见的例子就是执行 HTTP 请求，然后返回一个应答或错误不过我们也可以用 Single 来描述任何只有一个元素的序列 SingleEvent 为方便使用，RxSwift 还为 Single 订阅提供了一个枚举（SingleEvent）： .success：里面包含该 Single 的一个元素值 .error：用于包含错误 public enum SingleEvent&lt;Element&gt; &#123; case success(Element) case error(Swift.Error)&#125; 使用样例 创建 Single 和创建 Observable 非常相似下面代码我们定义一个用于生成网络请求 Single 的函数 //获取豆瓣某频道下的歌曲信息func getPlaylist(_ channel: String) -&gt; Single&lt;[String: Any]&gt; &#123; return Single&lt;[String: Any]&gt;.create &#123; single in let url = "https://douban.fm/j/mine/playlist?" + "type=n&amp;channel=\(channel)&amp;from=mainsite" let task = URLSession.shared.dataTask(with: URL(string: url)!) &#123; data, _, error in if let error = error &#123; single(.error(error)) return &#125; guard let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: .mutableLeaves), let result = json as? [String: Any] else &#123; single(.error(DataError.cantParseJSON)) return &#125; single(.success(result)) &#125; task.resume() return Disposables.create &#123; task.cancel() &#125; &#125;&#125; //与数据相关的错误类型enum DataError: Error &#123; case cantParseJSON&#125; 接着我们可以使用如下方式使用这个 Single： mport UIKitimport RxSwiftimport RxCocoa class ViewController: UIViewController &#123; let disposeBag = DisposeBag() override func viewDidLoad() &#123; //获取第0个频道的歌曲信息 getPlaylist("0") .subscribe &#123; event in switch event &#123; case .success(let json): print("JSON结果: ", json) case .error(let error): print("发生错误: ", error) &#125; &#125; .disposed(by: disposeBag) &#125;&#125; 也可以使用 subscribe(onSuccess:onError:) 这种方式： import UIKitimport RxSwiftimport RxCocoa class ViewController: UIViewController &#123; let disposeBag = DisposeBag() override func viewDidLoad() &#123; //获取第0个频道的歌曲信息 getPlaylist("0") .subscribe(onSuccess: &#123; json in print("JSON结果: ", json) &#125;, onError: &#123; error in print("发生错误: ", error) &#125;) .disposed(by: disposeBag) &#125;&#125; asSingle() 我们可以通过调用 Observable 序列的 .asSingle() 方法，将它转换为 Single let disposeBag = DisposeBag() Observable.of("1") .asSingle() .subscribe(&#123; print($0) &#125;) .disposed(by: disposeBag) //print success("1")]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
         <tag>Grammar</tag>
-        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -645,8 +590,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -658,8 +603,73 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
+        <tag>Grammar</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RxSwift-Grammar-特征序列Traits-Single]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FTraits-Single%2F</url>
+    <content type="text"><![CDATA[Single基本介绍 Single 是 Observable 的另外一个版本但它不像 Observable 可以发出多个元素，它要么只能发出一个元素，要么产生一个 error 事件 发出一个元素，或一个 error 事件 不会共享状态变化 应用场景 Single 比较常见的例子就是执行 HTTP 请求，然后返回一个应答或错误不过我们也可以用 Single 来描述任何只有一个元素的序列 SingleEvent 为方便使用，RxSwift 还为 Single 订阅提供了一个枚举（SingleEvent）： .success：里面包含该 Single 的一个元素值 .error：用于包含错误 public enum SingleEvent&lt;Element&gt; &#123; case success(Element) case error(Swift.Error)&#125; 使用样例 创建 Single 和创建 Observable 非常相似下面代码我们定义一个用于生成网络请求 Single 的函数 //获取豆瓣某频道下的歌曲信息func getPlaylist(_ channel: String) -&gt; Single&lt;[String: Any]&gt; &#123; return Single&lt;[String: Any]&gt;.create &#123; single in let url = "https://douban.fm/j/mine/playlist?" + "type=n&amp;channel=\(channel)&amp;from=mainsite" let task = URLSession.shared.dataTask(with: URL(string: url)!) &#123; data, _, error in if let error = error &#123; single(.error(error)) return &#125; guard let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: .mutableLeaves), let result = json as? [String: Any] else &#123; single(.error(DataError.cantParseJSON)) return &#125; single(.success(result)) &#125; task.resume() return Disposables.create &#123; task.cancel() &#125; &#125;&#125; //与数据相关的错误类型enum DataError: Error &#123; case cantParseJSON&#125; 接着我们可以使用如下方式使用这个 Single： mport UIKitimport RxSwiftimport RxCocoa class ViewController: UIViewController &#123; let disposeBag = DisposeBag() override func viewDidLoad() &#123; //获取第0个频道的歌曲信息 getPlaylist("0") .subscribe &#123; event in switch event &#123; case .success(let json): print("JSON结果: ", json) case .error(let error): print("发生错误: ", error) &#125; &#125; .disposed(by: disposeBag) &#125;&#125; 也可以使用 subscribe(onSuccess:onError:) 这种方式： import UIKitimport RxSwiftimport RxCocoa class ViewController: UIViewController &#123; let disposeBag = DisposeBag() override func viewDidLoad() &#123; //获取第0个频道的歌曲信息 getPlaylist("0") .subscribe(onSuccess: &#123; json in print("JSON结果: ", json) &#125;, onError: &#123; error in print("发生错误: ", error) &#125;) .disposed(by: disposeBag) &#125;&#125; asSingle() 我们可以通过调用 Observable 序列的 .asSingle() 方法，将它转换为 Single let disposeBag = DisposeBag() Observable.of("1") .asSingle() .subscribe(&#123; print($0) &#125;) .disposed(by: disposeBag) //print success("1")]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>RxSwift</tag>
+        <tag>Grammar</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RxSwift-Grammar-UIBindingObserver]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FUIBindingObserver%2F</url>
+    <content type="text"><![CDATA[UIBindingObserver UIBindingObserver这个东西很有用的，创建我们自己的监听者，有时候RxCocoa(RxSwift中对UIKit的一个扩展库)给的扩展不够我们使用，比如一个UITextField有个isEnabled属性，我想把这个isEnabled变为一个observer，我们可以这样做 extension Reactive where Base: UITextField &#123; var inputEnabled: UIBindingObserver&lt;Base, Result&gt; &#123; return UIBindingObserver(UIElement: base) &#123; textFiled, result in textFiled.isEnabled = result.isValid &#125; &#125;&#125; UIBindingObserver是一个类，他的初始化方法中，有两个参数，第一个参数是一个元素本身，第一个参数是一个闭包，闭包参数是元素本身，还有他的一个属性 public init(UIElement: UIElementType, binding: @escaping (UIElementType, Value) -&gt; Swift.Void) 自定义了一个inputEnabled关联了UITextField的isEnabled属性]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>RxSwift</tag>
+        <tag>Grammar</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RxSwift-Grammar-Driver]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FDriver%2F</url>
+    <content type="text"><![CDATA[Driver 官方的例子的场景大概就是，根据一个输入框的关键字，来请求数据，然后接结果绑定到另一个Label,和TableView中首先创建一个可监听序列results;将results绑定到resultCount.rx.text上;将results绑定到resultsTableView上. //throttle过滤操作let results = query.rx.text.throttle(0.3,scheduler: MainScheduler.instance)//在主线程中操作，如果0.3秒内值发生多次改变，取最后一次的值 .flatMapLatest // flatMapLatest只会接收最新的value事件 &#123; query in //筛选出空值, 拍平序列，并取得最后一个有效的值 fetchAutoCompleteItems(query) &#125; results.map &#123; "\($0.count)" &#125; //得出结果之后，取出结果的数量 .bindTo(resultCount.rx.text) //取出结果的数量，绑定到resultCount上面显示出来 .addDisposableTo(disposeBag) //释放资源 results.bindTo(resultsTableView.rx.items(cellIdentifier: "Cell")) &#123; (_, result, cell) in cell.textLabel?.text = "\(result)" //取出结果，TableView的Cell上面显示出来 &#125; .addDisposableTo(disposeBag) 上面程序会出现下面几个异常： 如果fetchAutoCompleteItems出错，那么它绑定的UI将不再收到任何事件消息； 如果fetchAutoCompleteItems发生在后台线程，那么它绑定的事件也将在后台线程执行，这样更新UI会造成crash； 有两次绑定，fetchAutoCompleteItems就会执行两次 当然针对以上问题，也有解决方案针对第三点，可以使用神器shareReplay(1)保证只执行一次，可以使用observeOn()保证后面所有操作在主线程完成 let results = query.rx.text .throttle(0.3, scheduler: MainScheduler.instance) .flatMapLatest &#123; query in fetchAutoCompleteItems(query).observeOn(MainScheduler.instance) // 将返回结果切换到到主线程上 .catchErrorJustReturn([]) // 如果有问题，错误结果将会得到处理 &#125; .shareReplay(1) // HTTP请求将会得到分享，即两次绑定UI使用同一网络请求 results .map &#123; "\($0.count)" &#125; .bindTo(resultCount.rx.text) .addDisposableTo(disposeBag) results .bindTo(resultTableView.rx.items(cellIdentifier: "Cell")) &#123; (_, result, cell) in cell.textLabel?.text = "\(result)" &#125; .addDisposableTo(disposeBag) 用Driver来解决 let results = query.rx .text .asDriver() .throttle(0.3, scheduler: MainScheduler.instance) .flatMapLatest &#123; query in fetchAutoCompleteItems(query).asDriver(onErrorJustReturn: []) //当遇见错误需要返回什么 &#125; //不需要添加shareReplay(1) results.map &#123; "\($0.count)" &#125; .drive(resultCount.rx.text) //和bingTo()功能一样 .addDisposableTo(disposeBag) results.drive(resultTableView.rx.items(cellIdentifier: "Cell")) &#123; (_, result, cell) in cell.textLabel?.text = "\(result)" &#125; .addDisposableTo(disposeBag) .asDriver 将‘ControlProperty’ 转换成了 ‘Driver’ query.rx_text.asDriver() ‘Driver’拥有’ControlProperty’的所有属性，同时又增加了很多属性 任何 ‘Observable’ 序列都可以被转换为’Driver’, 只要他满足一下三点： 1.不能出错 2.观察主线程 3.共享资源 如何确保这些属性都满足呢？只需要使用 ‘asDriver(onErrorJustReturn: [])’ ,相当于如下代码: let safeSequence = xs .observeOn(MainScheduler.instance) // 切换到主线程 .catchErrorJustReturn(onErrorJustReturn) // 不能出错 .shareReplayLatestWhileConnected // 共享资源 return Driver(raw: safeSequence) // 返回 最后一点要说明的是 ‘driver’ 可以代替’bindTo’,drive 只能在 Driver 中使用 drive方法只能在Driver序列中使用，Driver有以下特点： Driver序列不允许发出error， Driver序列的监听只会在主线程中。 所以Driver是专为UI绑定量身打造的东西。以下情况你可以使用Driver替换BindTo: 不能发出error; 在主线程中监听; 共享事件流;]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>RxSwift</tag>
+        <tag>Grammar</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RxSwift-Grammar-Subscribe]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FSubscribe%2F</url>
+    <content type="text"><![CDATA[subscribe 和 subscribe(onNext:) Subscribe subscribe是订阅sequence发出的事件，比如next事件，error事件等 而subscribe(onNext:)是监听sequence发出的next事件中的element进行处理，他会忽略error和completed事件 相对应的还有subscribe(onError:) 和 subscribe(onCompleted:)]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>RxSwift</tag>
+        <tag>Grammar</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RxSwift-Grammar-observeOn()和subscribeOn()]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FobserveOn()%E5%92%8CsubscribeOn()%2F</url>
+    <content type="text"><![CDATA[observeOn()和subscribeOn() subscribeOn() 设置起点在哪个线程 observeOn() 置了后续工作在哪个线程 1)所有动作都发生在当前的默认线程2)observeOn()转换线程到主线程，下面所有的操作都在主线程3)subscribeOn()规定动作一开始不是发生在默认线程，而是在OtherScheduler了)-如果之前没有调用observeOn()，那么这边会在OtherScheduler发生，但是我们前面调用了observeOn()，所以这个动作会在主线程中调用subscribeOn()只是影响事件链开始默认的线程，而observeOn()规定了下一步动作发生在哪个线程中。 someObservable .doOneThing() //1 .observeOn(MainRouteScheduler.instance) // 2 .subscribeOn(OtherScheduler.instance) // 3 .subscribeNext &#123; // 4 ...... &#125; .addDisposableTo(disposeBag)]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>RxSwift</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -713,8 +723,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -745,9 +755,9 @@
         <category>RxSwift</category>
       </categories>
       <tags>
+        <tag>RxSwift</tag>
         <tag>Swift</tag>
         <tag>Error</tag>
-        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -759,9 +769,9 @@
         <category>RxSwift</category>
       </categories>
       <tags>
+        <tag>RxSwift</tag>
         <tag>Swift</tag>
         <tag>Error</tag>
-        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -788,8 +798,8 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>Func</tag>
         <tag>RxSwift</tag>
+        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
@@ -926,8 +936,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1284,8 +1294,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1297,8 +1307,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1310,8 +1320,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1323,8 +1333,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1336,8 +1346,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1349,8 +1359,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1362,21 +1372,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Swift-RxSwift-错误处理操作]]></title>
-    <url>%2F2017%2F12%2F19%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FOperators-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E6%93%8D%E4%BD%9C%2F</url>
-    <content type="text"><![CDATA[错误处理操作 ①catchErrorJustReturn ②catchError ③retry ④debug ①catchErrorJustReturn ①catchErrorJustReturn 遇到error事件的时候，就return一个值，然后结束 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;() sequenceThatFails .catchErrorJustReturn("😊") .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test)///next(😬)next(😨)next(😡)next(🔴)next(😊)completed ②catchError ②catchError 捕获error进行处理，可以返回另一个sequence进行订阅 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;()let recoverySequence = PublishSubject&lt;String&gt;() sequenceThatFails .catchError &#123; print("Error:", $0) return recoverySequence &#125; .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test) recoverySequence.onNext("😊")//next(😬)next(😨)next(😡)next(🔴)Error: testnext(😊) ③retry ③retry 遇见error事件可以进行重试，比如网络请求失败，可以进行重新连接 let disposeBag = DisposeBag()var count = 1 let sequenceThatErrors = Observable&lt;String&gt;.create &#123; observer in observer.onNext("🍎") observer.onNext("🍐") observer.onNext("🍊") if count == 1 &#123; observer.onError(TestError.test) print("Error encountered") count += 1 &#125; observer.onNext("🐶") observer.onNext("🐱") observer.onNext("🐭") observer.onCompleted() return Disposables.create()&#125; sequenceThatErrors .retry(3) //不传入数字的话，只会重试一次 .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) ④debug ④debug 打印所有的订阅, 事件和disposals sequenceThatErrors .retry(3) .debug() .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) RxSwift.Resources.total 查看RxSwift所有资源的占用 print(RxSwift.Resources.total)]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
         <tag>Swift</tag>
-        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1388,8 +1385,21 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Swift-RxSwift-错误处理操作]]></title>
+    <url>%2F2017%2F12%2F19%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FOperators-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[错误处理操作 ①catchErrorJustReturn ②catchError ③retry ④debug ①catchErrorJustReturn ①catchErrorJustReturn 遇到error事件的时候，就return一个值，然后结束 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;() sequenceThatFails .catchErrorJustReturn("😊") .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test)///next(😬)next(😨)next(😡)next(🔴)next(😊)completed ②catchError ②catchError 捕获error进行处理，可以返回另一个sequence进行订阅 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;()let recoverySequence = PublishSubject&lt;String&gt;() sequenceThatFails .catchError &#123; print("Error:", $0) return recoverySequence &#125; .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test) recoverySequence.onNext("😊")//next(😬)next(😨)next(😡)next(🔴)Error: testnext(😊) ③retry ③retry 遇见error事件可以进行重试，比如网络请求失败，可以进行重新连接 let disposeBag = DisposeBag()var count = 1 let sequenceThatErrors = Observable&lt;String&gt;.create &#123; observer in observer.onNext("🍎") observer.onNext("🍐") observer.onNext("🍊") if count == 1 &#123; observer.onError(TestError.test) print("Error encountered") count += 1 &#125; observer.onNext("🐶") observer.onNext("🐱") observer.onNext("🐭") observer.onCompleted() return Disposables.create()&#125; sequenceThatErrors .retry(3) //不传入数字的话，只会重试一次 .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) ④debug ④debug 打印所有的订阅, 事件和disposals sequenceThatErrors .retry(3) .debug() .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) RxSwift.Resources.total 查看RxSwift所有资源的占用 print(RxSwift.Resources.total)]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1401,8 +1411,8 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1414,8 +1424,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1427,8 +1437,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
         <tag>线程</tag>
       </tags>
   </entry>
@@ -1441,8 +1451,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1454,8 +1464,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -1467,8 +1477,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1480,8 +1490,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1493,9 +1503,9 @@
         <category>Grammar</category>
       </categories>
       <tags>
+        <tag>RxSwift</tag>
         <tag>Swift</tag>
         <tag>Grammar</tag>
-        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1507,8 +1517,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1520,8 +1530,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1533,8 +1543,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1546,9 +1556,9 @@
         <category>Grammar</category>
       </categories>
       <tags>
+        <tag>RxSwift</tag>
         <tag>Swift</tag>
         <tag>Grammar</tag>
-        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1561,21 +1571,8 @@
         <category>UI扩展</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Swift-RxSwift-简介以及简单学习使用]]></title>
-    <url>%2F2017%2F12%2F15%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2F%E7%AE%80%E4%BB%8B%E4%BB%A5%E5%8F%8A%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8%2F</url>
-    <content type="text"><![CDATA[Swift-RxSwift-简介以及简单学习使用 RxSwift 项目文档中 Why 已有详细介绍 Bindings [RxWhy] -&gt; [Bindings] -&gt; [BindingsViewController.swift] Observable.combineLatest(firstName.rx_text, lastName.rx_text) &#123; $0 + " " + $1 &#125; // ① .map &#123; "Greeting \($0)" &#125; // ② .bindTo(greetingLabel.rx_text) // ③ 将 firstName 和 lastName 的 text 属性结合起来，并进行合并处理，也就是 $0 + “ “ + $1 这部分，用空格将两个值合并起来作为结果传递给后面使用 使用 map 的方法，将上一步得到值前面加上一个 Greeting ，并将该值传递给后面使用 bindTo 就是绑定，将上一步的值绑定到 greetingLabel 的 text 代码就是实时的执行 greetingLabel.text = "Greeting " + firstName.text + " " + lastName.text 要求是实时 每当 fisrtName.text 或者 lastName.text 改变时， greetingLabel.text 都要随之改变 ContentOffset 经常通过 delegate 处理 scrollView 的 contentOffset 变化问题 public func scrollViewDidScroll(scrollView: UIScrollView) &#123; self.title = "contentOffset.x = \(scrollView.contentOffset.y)"&#125; 可能就和关联的逻辑分家了，内聚性啊…而且多个 scrollView ，还要做额外的判断处理，复杂性可想而知也有写过通过 closure 来解决的，其实可以认为 Rx 自带了这些功能（而且更强大[RxWhy] -&gt; [ContentOffset] -&gt; [ContentOffsetViewController.swift]Note: 在使用了 rx_contentOffset 后，最好不要去更改 delegate同样 button 也有类似的功能 tableView.rx_contentOffset .map &#123; $0.y &#125; .subscribeNext &#123; [unowned self] in self.title = "contentOffset.x = \($0)" &#125;.addDisposableTo(disposeBag) Tap button 的点击事件是一个很棘手的问题了，建立一个 target ，同时还使用的带字符串的 Select，button 的点击也和响应逻辑分家了处理方式会有两个问题 使用了带 String 的 Target 点击的关联事件代码和处理的逻辑分开了 button.addTarget(self, action: "tapButton", forControlEvents: .TouchDragInside) Rx 已经提供了 closure 的功能 button.rx_tap .subscribeNext &#123; print("Tap") &#125;.addDisposableTo(disposeBag) 资料来源]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
         <tag>Swift</tag>
-        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1587,8 +1584,21 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Swift-RxSwift-简介以及简单学习使用]]></title>
+    <url>%2F2017%2F12%2F15%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2F%E7%AE%80%E4%BB%8B%E4%BB%A5%E5%8F%8A%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[Swift-RxSwift-简介以及简单学习使用 RxSwift 项目文档中 Why 已有详细介绍 Bindings [RxWhy] -&gt; [Bindings] -&gt; [BindingsViewController.swift] Observable.combineLatest(firstName.rx_text, lastName.rx_text) &#123; $0 + " " + $1 &#125; // ① .map &#123; "Greeting \($0)" &#125; // ② .bindTo(greetingLabel.rx_text) // ③ 将 firstName 和 lastName 的 text 属性结合起来，并进行合并处理，也就是 $0 + “ “ + $1 这部分，用空格将两个值合并起来作为结果传递给后面使用 使用 map 的方法，将上一步得到值前面加上一个 Greeting ，并将该值传递给后面使用 bindTo 就是绑定，将上一步的值绑定到 greetingLabel 的 text 代码就是实时的执行 greetingLabel.text = "Greeting " + firstName.text + " " + lastName.text 要求是实时 每当 fisrtName.text 或者 lastName.text 改变时， greetingLabel.text 都要随之改变 ContentOffset 经常通过 delegate 处理 scrollView 的 contentOffset 变化问题 public func scrollViewDidScroll(scrollView: UIScrollView) &#123; self.title = "contentOffset.x = \(scrollView.contentOffset.y)"&#125; 可能就和关联的逻辑分家了，内聚性啊…而且多个 scrollView ，还要做额外的判断处理，复杂性可想而知也有写过通过 closure 来解决的，其实可以认为 Rx 自带了这些功能（而且更强大[RxWhy] -&gt; [ContentOffset] -&gt; [ContentOffsetViewController.swift]Note: 在使用了 rx_contentOffset 后，最好不要去更改 delegate同样 button 也有类似的功能 tableView.rx_contentOffset .map &#123; $0.y &#125; .subscribeNext &#123; [unowned self] in self.title = "contentOffset.x = \($0)" &#125;.addDisposableTo(disposeBag) Tap button 的点击事件是一个很棘手的问题了，建立一个 target ，同时还使用的带字符串的 Select，button 的点击也和响应逻辑分家了处理方式会有两个问题 使用了带 String 的 Target 点击的关联事件代码和处理的逻辑分开了 button.addTarget(self, action: "tapButton", forControlEvents: .TouchDragInside) Rx 已经提供了 closure 的功能 button.rx_tap .subscribeNext &#123; print("Tap") &#125;.addDisposableTo(disposeBag) 资料来源]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1610,8 +1620,8 @@
       </categories>
       <tags>
         <tag>UIKit</tag>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1623,8 +1633,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -2703,15 +2713,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Swift-Grammar-Initialization初始化&Deinitialization析构]]></title>
-    <url>%2F2017%2F12%2F01%2FSwift%2FGrammar%2FInitialization%E5%88%9D%E5%A7%8B%E5%8C%96-%E6%9E%90%E6%9E%84%2F</url>
-    <content type="text"><![CDATA[Initialization 初始化初始化 初始化，是当创建一个类、结构体、枚举类的时，完成存储属性的值的初始化，和其他一些初始化工作。准备好这个实例以供使用反过来，当一个实例不再使用的时候，由析构过程释放这个实例所占用资源完成初始化工作的一个方法一般称为初始化方法、构造器(Initializer)、构造方法等等Swift中的构造器不需返回值，只是完成初始化工作。 类或结构体在创建的时候必须保证存储属性有初始化值 目的的实现可以通过在定义属性的时候给存储属性添加上默认值，也可以在构造器中赋值。并且在这两种情况中都不会触发属性的观察器。官方文档建议我们在一个存储属性通常具有同一个初始值的时候，使用属性定义的方式添加初始值。 下面是这两种方法的代码class Animal &#123; var life: Int = 0 var height: Double init()&#123; height = 0 &#125; &#125; 这里的init()方法就是构造器。注意它是不带func关键字的。而且也没有返回值。以前创建一个实例的时候，都是使用“类名()”的形式，这其实就是调用了这个构造器。但是当时我们并没有写这个构造器，这是因为当一个类没有其他构造器的时候，编译器会自动生成这个默认的构造器。但是一旦有了其他的构造器，那么系统就不会再默认生成这个构造器。你也就再不能用“类名()”这种创建方法了。当然，当有其他构造器的时候，你也可以手动添加这个默认的构造器。 自定义构造器 可以定义构造器，可以传入自定义的参数列表来初始化类。自定义的构造器的外部参数名规则和方法不太一样，构造器的每一个参数都会生成和局部参数名一样的外部参数名。如果不想要外部参数名，还是可以用下划线取消 class Animal &#123; var life: Int = 0 var height: Double init()&#123; //注意，当有其他构造器的时候，系统不会再生成这个构造器，必须手动写出来 height = 0 &#125; init(life: Int, height: Double) &#123; self.life = life self.height = height &#125; &#125; //可以这样使用自定义的构造器 var a = Animal(life: 29, height: 1.2) 再次提醒，当有类定义里面有自定义构造器的时候，不会再自动生成默认构造器。并且对于结构体也再不会自动生成遍历属性的构造器。但是你可以将你自己的构造器写在扩展里面，这样就不会影响默认构造器的自动生成 构造器委托（Initializer Delegation） 构造器委托，就是在一个构造器里面调用另外一个构造器，这样可以减少多余的代码。在构造器里面使用self.init语法来调用另外一个构造器，且这个语法只能在构造器里面使用。构造器委托在值类型（结构体和枚举类）和类直接是不太一样的。因为类需要考虑到继承问题。先来看值类型的构造器委托。这个很简单，调用另外一个构造器就行了。下面的例子虽然有点脱裤子放屁的感觉，但。。就是举个例子而已 struct Apple &#123; var totalPrice: Double init(totalPrice: Double) &#123; self.totalPrice = totalPrice &#125; init(kg: Double, pricePerKg: Double) &#123; let totalPrice = kg * pricePerKg self.init(totalPrice: totalPrice) //调用另外一个构造器 &#125; &#125; 类的继承和初始化 因为类可以继承，所以它的初始化规则就变得比结构体要复杂多了。首先，类的构造器分为指定构造器（Designated Initializer） 和 便利构造器 （Convenience Initializer）一个类通常具有很少数量（一般只有1个）的指定构造器。但是必须最少具有一个。便利构造器是用来调用指定构造器完成初始化工作的。一个类可以不具有遍历构造器。两种构造器的语法 //指定构造器 init(parameters) &#123; statements &#125; //便利构造器 convenience init(parameters) &#123; statements &#125; 类的构造器委托规则： 1、一个指定构造器必须调用它的直接父类的指定构造器 2、一个便利构造器必须调用同一个类的另外的构造器 3、一个便利构造器必须最终以调用指定构造器结束。 规则2和3连起来就是说，一个便利构造器可能会调用了另外一个便利构造器，然后这个构造器又调用了另外一个便利构造器….但是这个链的最后的一个便利构造器必须是调用指定构造器。下面附上官方的图片。在图片上可以看到，三条规则总结起来就是：指定构造器往上调用，便利构造器平行调用且终结在指定构造器。 类的初始化分为两阶段第一阶段 1、一个指定构造器或便利构造器被调用 2、分配类实例所需的内存，但是内存没有初始化 3、这个类的指定构造器确保该类引入的新的存储属性都初始化。（因为便利构造器最终会到指定构造器）。 4、然后这个构造器调用父类的指定构造器完成和第三步同样的工作。 5、直到继承链的最顶部分。 6、这时候有的存储属性都有初始值了。 第二阶段 1、从继承链的最顶部分出发。每个指定构造器具有了修改实例的权利。并且可以调用实例方法。 2、最后，这个初始化链条里面的便利构造器都具有了修改实例的权利。 遵循上面两个阶段的步骤，避免了当在初始化链后面的构造器修改了属性之后，又被前面的构造器修改属性的可能性。避免了使用没有经过初始化的属性的可能性。 为了确保两个阶段步骤的实施。编译器有4条检测规则，这四条规则决定了你在构造器里面某些代码的顺序。 1、在调用父类构造器之前，必须确保子类引入的新属性已经得到初始化。 2、子类必须在调用了父类的构造器之后，才能访问继承的属性。 3、便利构造器必须在调用了其他构造器之后，才能访问属性或调用实例方法。 4、在完成第一阶段之前（其实就是完成初始化本类定义的新属性，调用父类构造器），构造器不能调用实例方法，不能访问属性的值，不能把self当做值访问。但是可以用self.属性名的方式给属性赋值。 下面可以看看分别违反每个规则的例子 class Animal &#123; var life: Int var height: Double init(getLife: Int, getHeight: Double) &#123; self.life = getLife self.height = getHeight &#125; &#125; class Dog: Animal &#123; var name: String init()&#123; super.init(getLife: 2, getHeight: 2.0) //这句报错，违反第一条，必须先将本类引入的属性初始化才能调用父类构造器 self.name = "Larry" //所以这一句必须写在前面才没错 &#125; init(name: String, getLife: Int, getHeight: Double)&#123; self.name = name self.life = 1 //这句报错，违反第二条，必须调用了父类构造器之后才能访问继承的属性。 super.init(getLife: getLife, getHeight: getHeight) //这句必须放在第二句之前才没错 &#125; convenience init(getLife: Int) &#123; self.name = "Larry" //这句报错，违反第三条，便利构造器里面必须调用了其他构造器之后才能访问属性 self.init() //这句应该放在前面 &#125; init(getName: String) &#123; self.name = getName Dog.sayHello() self.printName() //这句报错，违反第四条，必须完成了阶段1才能调用实例方法或访问属性 super.init(getLife: 21, getHeight: 2.3) //这句应该放在前面 &#125; func printName()&#123; print(self.name) &#125; static func sayHello()&#123; print("hello") &#125; &#125; 属性观察器 以前说过，属性观察器在构造器里面给属性赋值的时候是不会被调用的。但是这个只针对于本类定义的属性。对于继承而来的属性，当已经经过父类的构造器完成初始化后，如果在子类里面修改了继承属性的值，那么就会触发父类观察器，如果你在子类里面也覆盖了这个观察器，那么子类和父类的观察器都会被调用 另外再看 class Animal &#123; var life: Int = 0 &#123; willSet&#123; print("animial life newValue \(newValue)") &#125; &#125; init(getlife: Int)&#123; print("animal life init \(self.life)") self.life = 1 print("animal life after assign \(self.life)") &#125; &#125; 如果我们调用下面的语句 var a = Animal(getlife: 3) //打印 //animal life init 0 //animal life after assign 1 注意一点，我们在init里面第一句已经用到了self。根据编译器规则第四条，不允许在属性没有初始化的前进行访问。从上面代码通过编译来看，这里编译器已经将属性初始化为定义时候的值了。如果你将定义时候的默认值删去，那么第一句就会报错Swift默认是不继承父类的构造器的。如果你想要和父类一样的构造器，那么必须自己写。如果你写的构造器（不管是指定还是便利）和父类的指定构造器一样，那么这个构造器前必须加上override关键字。如果你写的构造器和父类的便利构造器一样，那么不用加override，因为子类永远不能直接调用父类的便利构造器。但是在某些情况下，子类可以自动继承父类构造器。前提条件：子类新引入的属性都必须具有默认值 规则1：如果子类没有定义任何的指定构造器。那么子类自动继承父类所有的指定构造器。 规则2：如果子类实现了父类所有的指定构造器（可以通过规则1继承而来，也可以通过重写而来），那么子类自动继承父类所有的便利构造器。 例子 class Animal &#123; var life: Int var height: Double convenience init(getLife: Int)&#123; self.init(getLife: getLife, getHeight: 0.0) &#125; init(getLife: Int, getHeight: Double) &#123; self.life = getLife self.height = getHeight &#125; &#125; class Dog: Animal &#123; var name: String = "Larry" // override init(getLife: Int, getHeight: Double)&#123; // super.init(getLife: getLife, getHeight:getHeight) // &#125; &#125; 无论上面Dog类里面注释的代码是否打开，Dog都继承了Animal的所有构造器 Failable Initializers可失败的构造器 Swift中有个概念，就是创建实例的时候如果条件不符合，可以返回一个nil对象。这类可以返回nil的构造器叫做可失败的构造器。语法是在init的前面加上一个？。当条件不满足的时候，你可以用 return nil结束构造方法。那么这时候得到的实例其实是一个nil，这里也说明了，可失败构造器返回的是可选类型。其实之前也说过，Swift的构造器是不需要返回值的。所以你成功的时候不需要写return什么东东。 值类型的可失败构造器下面是structure的 struct Apple &#123; var pricePerKg: Double init?(pricePerKg: Double)&#123; if pricePerKg &lt; 0 &#123; return nil &#125; self.pricePerKg = pricePerKg &#125; &#125; print(Apple(pricePerKg: 2)) print(Apple(pricePerKg: -2)) //打印 //Optional(SwiftTest.Apple(pricePerKg: 2.0)) //nil 接下来是枚举类的 enum FruitSet &#123; case apple, orange, banana init?(symbol: Character)&#123; switch symbol &#123; case &quot;a&quot;,&quot;A&quot; : self = .apple case &quot;o&quot;,&quot;O&quot; : self = .orange case &quot;b&quot;,&quot;B&quot; : self = .banana default : return nil &#125; &#125; &#125; print(FruitSet(symbol: &quot;a&quot;)) print(FruitSet(symbol: &quot;e&quot;)) //打印 //Optional(SwiftTest.FruitSet.apple) //nil 对应有默认值的枚举类，会自动生成一个init?(rawValue:)的构造器。如下 enum FruitSet : Character&#123; case apple = "a", orange = "o", banana = "b" &#125; print(FruitSet(rawValue: "a")) print(FruitSet(rawValue: "e")) 类的可失败构造器 有一个规则，就是必须在本类所有的属性（包括继承的）都赋值之后才可以返回nil class Apple &#123; var pricePerKg: Double init?(pricePerKg: Double)&#123; if pricePerKg &lt; 0 &#123; return nil //这句报错，所以你必须先初始化其他属性值 &#125; self.pricePerKg = pricePerKg &#125; &#125; 可失败初始化的传递过程 一个可失败的构造器可以调用其他的构造器，无论是可失败的还是不会失败的。 但是一个不可失败的构造器不能去调用一个可失败的构造器。如果去调用父类的可失败构造器，虽然用解包可以解决，但是一旦父类的可失败构造器返回了nil，那么程序直接崩溃 class Fruit &#123; var name: String init?(name: String)&#123; self.name = name if name.isEmpty &#123; return nil &#125; &#125; &#125; class Apple: Fruit &#123; var pricePerKg: Double init(pricePerKg: Double)&#123; self.pricePerKg = pricePerKg super.init(name: "")! //利用解包调用了父类的可失败构造器，但是因为这样父类会返回一个nil，所以程序在这行会崩溃 &#125; convenience init?()&#123; self.init(pricePerKg: 3) &#125; &#125; var i = Apple(pricePerKg: 3) 同样的，可失败的构造器也可以被重写，你可以重写为不可失败的构造器。但是不可失败的构造器不能覆盖为可失败的构造器。你可以用!代替?来实现可失败构造器，那么这样得到的实例会自动解包。当然，存在nil报错的问题。记得处理。 必须构造器（Required Initializers） 在构造器前面加上required关键字就行了。这样的构造器要求子类必须重写。子类重写这个构造器的时候，也必须加上required关键字。要求子类的子类也要重写这个构造器。写了required后不用写override关键字。写了会有警告。 给属性默认值时使用闭包或函数 func getprice()-&gt;Double &#123; return 1 &#125; class Apple &#123; var pricePerKg: Double = getprice() var name = &#123; return "apple" &#125;() //留意这对小括号，没有的话那就是给属性赋值一个闭包了。 &#125; var a = Apple() print(a.pricePerKg,a.name) 析构器 析构器，就是在一个实例再也不用到时候调用的方法。析构器里面完成一些清理工作或保存数据等等。析构器是系统自动调用的，不允许自行调用。 语法 deinit &#123; // perform the deinitialization &#125;]]></content>
-      <categories>
-        <category>Swift</category>
-        <category>Grammar</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[OC/UIKit/UIButton/Img和Title位置]]></title>
     <url>%2F2017%2F12%2F01%2FOC%2FUIKit%2FUIButton%2FImg%E5%92%8CTitle%E4%BD%8D%E7%BD%AE%2F</url>
     <content type="text"><![CDATA[iOS-UI-UIButton-Img和Title位置 UIButton 的image title 的位置都是可以调整的，具体如何调整可以按照下面的步骤 设置内容的水平垂直位置self.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft; self指的是UIButton对象，这是继承自UIButon的方法里面或者给UIButton添加扩展方法里面。通过这样的设置可以使得imageView显示在UIButton对象的左上角，titleLabel显示在imageView的右边 调整imageView居中CGFloat btn_width = self.frame.size.width;self.imageEdgeInsets = UIEdgeInsetsMake(10, (btn_width - self.imageView.frame.size.width)/2, 0, 0); 调整 titleLabel居中CGFloat btn_width = self.frame.size.width;self.titleEdgeInsets = UIEdgeInsetsMake(self.imageView.frame.size.height + vSpace+10, - self.imageView.frame.size.width+(btn_width/2-self.titleLabel.frame.size.width/2), 0, 0); 通过减去 imageView的宽度使titleLabel处在左上角，让后将label移植中心。经过以上三步就可以使imageView 、titleLabelLabel 居中，其它的显示形式一样可以参照以上的设置。 整理成了方法， 不需要每次都写 - (void) setImageAndTitleCenterWithVerticalGapSpace:(CGFloat) vSpace imageTopSpace:(CGFloat) iSpace &#123; self.contentVerticalAlignment = UIControlContentVerticalAlignmentTop; self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft; CGFloat btn_width = self.frame.size.width; CGFloat iTop = iSpace; self.imageEdgeInsets = UIEdgeInsetsMake(iTop, (btn_width - self.imageView.frame.size.width)/2, 0, 0);// self.titleEdgeInsets = UIEdgeInsetsMake(self.imageView.frame.size.height + vSpace+iTop, - self.imageView.frame.size.width+(btn_width/2-self.titleLabel.frame.size.width/2), 0, 0);// 使用中发现对于label的width取值不准确，遂通过计算一次获取，准确 CGSize size = [self.titleLabel sizeThatFits:CGSizeMake(CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))]; self.titleEdgeInsets = UIEdgeInsetsMake(CGRectGetHeight(self.imageView.frame)+ vSpace + iTop, - CGRectGetWidth(self.imageView.frame) + (CGRectGetWidth(self.frame) - size.width)/2, 0, 0);&#125; vSpace imageView与titleLabel垂直间隔 iSpace imageView 距离 top的间隔]]></content>
@@ -2719,6 +2720,15 @@
         <category>OC</category>
         <category>UIKit</category>
         <category>UIButton</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Swift-Grammar-Initialization初始化&Deinitialization析构]]></title>
+    <url>%2F2017%2F12%2F01%2FSwift%2FGrammar%2FInitialization%E5%88%9D%E5%A7%8B%E5%8C%96-%E6%9E%90%E6%9E%84%2F</url>
+    <content type="text"><![CDATA[Initialization 初始化初始化 初始化，是当创建一个类、结构体、枚举类的时，完成存储属性的值的初始化，和其他一些初始化工作。准备好这个实例以供使用反过来，当一个实例不再使用的时候，由析构过程释放这个实例所占用资源完成初始化工作的一个方法一般称为初始化方法、构造器(Initializer)、构造方法等等Swift中的构造器不需返回值，只是完成初始化工作。 类或结构体在创建的时候必须保证存储属性有初始化值 目的的实现可以通过在定义属性的时候给存储属性添加上默认值，也可以在构造器中赋值。并且在这两种情况中都不会触发属性的观察器。官方文档建议我们在一个存储属性通常具有同一个初始值的时候，使用属性定义的方式添加初始值。 下面是这两种方法的代码class Animal &#123; var life: Int = 0 var height: Double init()&#123; height = 0 &#125; &#125; 这里的init()方法就是构造器。注意它是不带func关键字的。而且也没有返回值。以前创建一个实例的时候，都是使用“类名()”的形式，这其实就是调用了这个构造器。但是当时我们并没有写这个构造器，这是因为当一个类没有其他构造器的时候，编译器会自动生成这个默认的构造器。但是一旦有了其他的构造器，那么系统就不会再默认生成这个构造器。你也就再不能用“类名()”这种创建方法了。当然，当有其他构造器的时候，你也可以手动添加这个默认的构造器。 自定义构造器 可以定义构造器，可以传入自定义的参数列表来初始化类。自定义的构造器的外部参数名规则和方法不太一样，构造器的每一个参数都会生成和局部参数名一样的外部参数名。如果不想要外部参数名，还是可以用下划线取消 class Animal &#123; var life: Int = 0 var height: Double init()&#123; //注意，当有其他构造器的时候，系统不会再生成这个构造器，必须手动写出来 height = 0 &#125; init(life: Int, height: Double) &#123; self.life = life self.height = height &#125; &#125; //可以这样使用自定义的构造器 var a = Animal(life: 29, height: 1.2) 再次提醒，当有类定义里面有自定义构造器的时候，不会再自动生成默认构造器。并且对于结构体也再不会自动生成遍历属性的构造器。但是你可以将你自己的构造器写在扩展里面，这样就不会影响默认构造器的自动生成 构造器委托（Initializer Delegation） 构造器委托，就是在一个构造器里面调用另外一个构造器，这样可以减少多余的代码。在构造器里面使用self.init语法来调用另外一个构造器，且这个语法只能在构造器里面使用。构造器委托在值类型（结构体和枚举类）和类直接是不太一样的。因为类需要考虑到继承问题。先来看值类型的构造器委托。这个很简单，调用另外一个构造器就行了。下面的例子虽然有点脱裤子放屁的感觉，但。。就是举个例子而已 struct Apple &#123; var totalPrice: Double init(totalPrice: Double) &#123; self.totalPrice = totalPrice &#125; init(kg: Double, pricePerKg: Double) &#123; let totalPrice = kg * pricePerKg self.init(totalPrice: totalPrice) //调用另外一个构造器 &#125; &#125; 类的继承和初始化 因为类可以继承，所以它的初始化规则就变得比结构体要复杂多了。首先，类的构造器分为指定构造器（Designated Initializer） 和 便利构造器 （Convenience Initializer）一个类通常具有很少数量（一般只有1个）的指定构造器。但是必须最少具有一个。便利构造器是用来调用指定构造器完成初始化工作的。一个类可以不具有遍历构造器。两种构造器的语法 //指定构造器 init(parameters) &#123; statements &#125; //便利构造器 convenience init(parameters) &#123; statements &#125; 类的构造器委托规则： 1、一个指定构造器必须调用它的直接父类的指定构造器 2、一个便利构造器必须调用同一个类的另外的构造器 3、一个便利构造器必须最终以调用指定构造器结束。 规则2和3连起来就是说，一个便利构造器可能会调用了另外一个便利构造器，然后这个构造器又调用了另外一个便利构造器….但是这个链的最后的一个便利构造器必须是调用指定构造器。下面附上官方的图片。在图片上可以看到，三条规则总结起来就是：指定构造器往上调用，便利构造器平行调用且终结在指定构造器。 类的初始化分为两阶段第一阶段 1、一个指定构造器或便利构造器被调用 2、分配类实例所需的内存，但是内存没有初始化 3、这个类的指定构造器确保该类引入的新的存储属性都初始化。（因为便利构造器最终会到指定构造器）。 4、然后这个构造器调用父类的指定构造器完成和第三步同样的工作。 5、直到继承链的最顶部分。 6、这时候有的存储属性都有初始值了。 第二阶段 1、从继承链的最顶部分出发。每个指定构造器具有了修改实例的权利。并且可以调用实例方法。 2、最后，这个初始化链条里面的便利构造器都具有了修改实例的权利。 遵循上面两个阶段的步骤，避免了当在初始化链后面的构造器修改了属性之后，又被前面的构造器修改属性的可能性。避免了使用没有经过初始化的属性的可能性。 为了确保两个阶段步骤的实施。编译器有4条检测规则，这四条规则决定了你在构造器里面某些代码的顺序。 1、在调用父类构造器之前，必须确保子类引入的新属性已经得到初始化。 2、子类必须在调用了父类的构造器之后，才能访问继承的属性。 3、便利构造器必须在调用了其他构造器之后，才能访问属性或调用实例方法。 4、在完成第一阶段之前（其实就是完成初始化本类定义的新属性，调用父类构造器），构造器不能调用实例方法，不能访问属性的值，不能把self当做值访问。但是可以用self.属性名的方式给属性赋值。 下面可以看看分别违反每个规则的例子 class Animal &#123; var life: Int var height: Double init(getLife: Int, getHeight: Double) &#123; self.life = getLife self.height = getHeight &#125; &#125; class Dog: Animal &#123; var name: String init()&#123; super.init(getLife: 2, getHeight: 2.0) //这句报错，违反第一条，必须先将本类引入的属性初始化才能调用父类构造器 self.name = "Larry" //所以这一句必须写在前面才没错 &#125; init(name: String, getLife: Int, getHeight: Double)&#123; self.name = name self.life = 1 //这句报错，违反第二条，必须调用了父类构造器之后才能访问继承的属性。 super.init(getLife: getLife, getHeight: getHeight) //这句必须放在第二句之前才没错 &#125; convenience init(getLife: Int) &#123; self.name = "Larry" //这句报错，违反第三条，便利构造器里面必须调用了其他构造器之后才能访问属性 self.init() //这句应该放在前面 &#125; init(getName: String) &#123; self.name = getName Dog.sayHello() self.printName() //这句报错，违反第四条，必须完成了阶段1才能调用实例方法或访问属性 super.init(getLife: 21, getHeight: 2.3) //这句应该放在前面 &#125; func printName()&#123; print(self.name) &#125; static func sayHello()&#123; print("hello") &#125; &#125; 属性观察器 以前说过，属性观察器在构造器里面给属性赋值的时候是不会被调用的。但是这个只针对于本类定义的属性。对于继承而来的属性，当已经经过父类的构造器完成初始化后，如果在子类里面修改了继承属性的值，那么就会触发父类观察器，如果你在子类里面也覆盖了这个观察器，那么子类和父类的观察器都会被调用 另外再看 class Animal &#123; var life: Int = 0 &#123; willSet&#123; print("animial life newValue \(newValue)") &#125; &#125; init(getlife: Int)&#123; print("animal life init \(self.life)") self.life = 1 print("animal life after assign \(self.life)") &#125; &#125; 如果我们调用下面的语句 var a = Animal(getlife: 3) //打印 //animal life init 0 //animal life after assign 1 注意一点，我们在init里面第一句已经用到了self。根据编译器规则第四条，不允许在属性没有初始化的前进行访问。从上面代码通过编译来看，这里编译器已经将属性初始化为定义时候的值了。如果你将定义时候的默认值删去，那么第一句就会报错Swift默认是不继承父类的构造器的。如果你想要和父类一样的构造器，那么必须自己写。如果你写的构造器（不管是指定还是便利）和父类的指定构造器一样，那么这个构造器前必须加上override关键字。如果你写的构造器和父类的便利构造器一样，那么不用加override，因为子类永远不能直接调用父类的便利构造器。但是在某些情况下，子类可以自动继承父类构造器。前提条件：子类新引入的属性都必须具有默认值 规则1：如果子类没有定义任何的指定构造器。那么子类自动继承父类所有的指定构造器。 规则2：如果子类实现了父类所有的指定构造器（可以通过规则1继承而来，也可以通过重写而来），那么子类自动继承父类所有的便利构造器。 例子 class Animal &#123; var life: Int var height: Double convenience init(getLife: Int)&#123; self.init(getLife: getLife, getHeight: 0.0) &#125; init(getLife: Int, getHeight: Double) &#123; self.life = getLife self.height = getHeight &#125; &#125; class Dog: Animal &#123; var name: String = "Larry" // override init(getLife: Int, getHeight: Double)&#123; // super.init(getLife: getLife, getHeight:getHeight) // &#125; &#125; 无论上面Dog类里面注释的代码是否打开，Dog都继承了Animal的所有构造器 Failable Initializers可失败的构造器 Swift中有个概念，就是创建实例的时候如果条件不符合，可以返回一个nil对象。这类可以返回nil的构造器叫做可失败的构造器。语法是在init的前面加上一个？。当条件不满足的时候，你可以用 return nil结束构造方法。那么这时候得到的实例其实是一个nil，这里也说明了，可失败构造器返回的是可选类型。其实之前也说过，Swift的构造器是不需要返回值的。所以你成功的时候不需要写return什么东东。 值类型的可失败构造器下面是structure的 struct Apple &#123; var pricePerKg: Double init?(pricePerKg: Double)&#123; if pricePerKg &lt; 0 &#123; return nil &#125; self.pricePerKg = pricePerKg &#125; &#125; print(Apple(pricePerKg: 2)) print(Apple(pricePerKg: -2)) //打印 //Optional(SwiftTest.Apple(pricePerKg: 2.0)) //nil 接下来是枚举类的 enum FruitSet &#123; case apple, orange, banana init?(symbol: Character)&#123; switch symbol &#123; case &quot;a&quot;,&quot;A&quot; : self = .apple case &quot;o&quot;,&quot;O&quot; : self = .orange case &quot;b&quot;,&quot;B&quot; : self = .banana default : return nil &#125; &#125; &#125; print(FruitSet(symbol: &quot;a&quot;)) print(FruitSet(symbol: &quot;e&quot;)) //打印 //Optional(SwiftTest.FruitSet.apple) //nil 对应有默认值的枚举类，会自动生成一个init?(rawValue:)的构造器。如下 enum FruitSet : Character&#123; case apple = "a", orange = "o", banana = "b" &#125; print(FruitSet(rawValue: "a")) print(FruitSet(rawValue: "e")) 类的可失败构造器 有一个规则，就是必须在本类所有的属性（包括继承的）都赋值之后才可以返回nil class Apple &#123; var pricePerKg: Double init?(pricePerKg: Double)&#123; if pricePerKg &lt; 0 &#123; return nil //这句报错，所以你必须先初始化其他属性值 &#125; self.pricePerKg = pricePerKg &#125; &#125; 可失败初始化的传递过程 一个可失败的构造器可以调用其他的构造器，无论是可失败的还是不会失败的。 但是一个不可失败的构造器不能去调用一个可失败的构造器。如果去调用父类的可失败构造器，虽然用解包可以解决，但是一旦父类的可失败构造器返回了nil，那么程序直接崩溃 class Fruit &#123; var name: String init?(name: String)&#123; self.name = name if name.isEmpty &#123; return nil &#125; &#125; &#125; class Apple: Fruit &#123; var pricePerKg: Double init(pricePerKg: Double)&#123; self.pricePerKg = pricePerKg super.init(name: "")! //利用解包调用了父类的可失败构造器，但是因为这样父类会返回一个nil，所以程序在这行会崩溃 &#125; convenience init?()&#123; self.init(pricePerKg: 3) &#125; &#125; var i = Apple(pricePerKg: 3) 同样的，可失败的构造器也可以被重写，你可以重写为不可失败的构造器。但是不可失败的构造器不能覆盖为可失败的构造器。你可以用!代替?来实现可失败构造器，那么这样得到的实例会自动解包。当然，存在nil报错的问题。记得处理。 必须构造器（Required Initializers） 在构造器前面加上required关键字就行了。这样的构造器要求子类必须重写。子类重写这个构造器的时候，也必须加上required关键字。要求子类的子类也要重写这个构造器。写了required后不用写override关键字。写了会有警告。 给属性默认值时使用闭包或函数 func getprice()-&gt;Double &#123; return 1 &#125; class Apple &#123; var pricePerKg: Double = getprice() var name = &#123; return "apple" &#125;() //留意这对小括号，没有的话那就是给属性赋值一个闭包了。 &#125; var a = Apple() print(a.pricePerKg,a.name) 析构器 析构器，就是在一个实例再也不用到时候调用的方法。析构器里面完成一些清理工作或保存数据等等。析构器是系统自动调用的，不允许自行调用。 语法 deinit &#123; // perform the deinitialization &#125;]]></content>
+      <categories>
+        <category>Swift</category>
+        <category>Grammar</category>
       </categories>
   </entry>
   <entry>
@@ -2793,11 +2803,6 @@
       </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>%2F2017%2F11%2F29%2FYoBook%2Fapp-%E5%88%86%E7%B1%BB%2F</url>
-    <content type="text"><![CDATA[​​ ​ # 产品设计​​​​​ ​​ # NSSet初始化​ &gt;NSSet是无序的​ &gt;注意:这个是最为重要的功能 NSSet中不能够存储重复的数据,可以用它来去除重复的值​​ ​ ​ NSString * str1 = @&quot;one&quot;;​ NSString * str2 = @&quot;two&quot;;​ NSString * str3 = @&quot;three&quot;;​ NSSet * set = [[NSSet alloc] initWithObjects:str1,str2,str3,str1, nil];​ 这样其实在set中指存储了 @“one”,@“two”,@“three” set.count 值为3​ [set containsObject:str1]; 是否包含str1​ ​ ​​ # 遍历​​ ​ NSEnumerator * enumerator = [set objectEnumerator];​ NSString * value;​ while (value = [enumerator nextObject]) &#123;​ NSLog(@"value %@",value);​ &#125;​ ​ # 可变集合NSMutableSet​ &gt;创建一个可变集合​​ ​ NSMutableSet * muSet = [[NSMutableSet alloc] init];​ ​ &gt;增加值​​ ​ [muSet addObject:str1];​ ​​ &gt;删除​​ ​ [muSet removeObject:str1];​ ​ &gt;删除所有​​ ​ [muSet removeAllObjects];​ ​​ # 集合之间相互转换​​ &gt;NSArray 转换成 NSMutableArray​​ ​ NSArray * array = @[@"one",@"two",@"three"];​ NSMutableArray * muArray = [NSMutableArray arrayWithArray:array];​ ​​ &gt;NSDictionary 转换成 NSMutableDictionary​​ ​ NSDictionary * dic = @&#123;@"one":@"1",@"two":@"2"&#125;;​ NSMutableDictionary * muDic = [NSMutableDictionary dictionaryWithDictionary:dic];​ ​​ &gt;NSSet 转换成 NSMutableSet​​ ​ NSSet * set = [[NSSet alloc] initWithObjects:@"one",@"two", nil];​ NSMutableSet *muSet = [NSMutableSet setWithSet:set];​ ​​ # NSArray 转换成NSSet​​ ​ NSMutableSet * muSet2 = [NSMutableSet setWithArray:array];​ ​​ # NSDictionary 转化成NSArray​​ ​ NSArray * keys = [dic allKeys];​ NSArray * values = [dic allValues];​ ​ # 字符串转换成数组​​ ​ NSString * str = @"aa.bb.cc";​ NSArray * strArray =[str componentsSeparatedByString:@“."];​]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[OC/Function功能类/Git/Git基本使用]]></title>
     <url>%2F2017%2F11%2F29%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FGit%2FGit-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%2F</url>
     <content type="text"><![CDATA[基本使用初始化仓库 创建普通仓库 $ git init 创建裸仓库，这里面许多git命令不能使用，切换分支都不可用，一般用来当远程仓库 $ git --bare init 别名 使用config alias.命令进行，添加–global参数后可以对全局git的config文件进行配置 $ git config --global alias.st status 一个很吊的配置，让你的git变得更好看，摘自 $ git config --global alias.lg &quot;log --color --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&apos; --abbrev-commit&quot; 本地的一些命令 配置信息 $ git config user.name &quot;名字&quot; git config user.email &quot;email&quot; branch分支相关命令 $ git branch -a //显示所有分支 git branch 分支名字 //如果该分支不存在，就会新建 git branch --delete 分支名字 //删除分支 add将本目录下的文件都添加到暂缓区，准备提交用 $ git add . commit 提交 $ git commit -m &quot;注释&quot; merge这个命令会将本分支merge别处的分支。 $ git merge merge过来的分支 远程命令 添加远程仓库 $ git remote add &lt;远程主机名&gt; url push，命令格式： &amp; git push 远程主机名 本地分支:远程分支 举个例子下面命令将本地分支a，push到远程主机origin的a_remote上，如果远程主机里面没有a_remote分支，那么就会创建一个这名字的分支。 $ git push origin a:a_remote 注意：如果没有远程分支的名字，那么将会在远程仓库建立一个同名的分支。如果没有本地名字，就像 :a_remote，这就相当于传了一个空的分支给远程， 那么会删除掉远程仓库的这个分支。 pull这个命令会将本地和远程分支进行merge，如果出现冲突，需要自己解决。 命令格式： $ git push 远程主机名 远程分支:本地分支 例子在此，将远程主机的 $ git pull orgin a_remote:a 发生冲突的时候，如果需要丢弃本地工作，那么使用 $ git reset --hard branch相关的远程命令将远程分支和本地分支相关联 git branch --track 本地分支 远程主机/远程分支 //在创建本地分支的时候指定它所关联的远程分支 git branch --set-upstream-to 远程主机/远程分支 //将当前分支关联远程分支 fetch这个命令将远程的分支fetch下来，然后可以将这些fetch下来的分支和本地分支进行合并 git fetch 主机名 git fetch -p 主机名 //fetch完成后，删除本地仍存在，但是远程不存在的分支关联 下面的命令将本地分支绑定远程分支，但好像并没什么用，push的时候如果不输入远程分支名字，那么还是会新建一个和本地分支同名的远程分支。 git branch --set-upstream-to origin/aa_remote stash在进行pull的时候，经常会遇到 error: Your local changes to the following files would be overwritten by merge: xxx/xxx/xxx.java Please, commit your changes or stash them before you can merge. Aborting 这里要么将你当前的工作commit一下，要么就可以使用stash命令。先用stash命令缓存当前工作，然后pull，pull后再用stash pop还原之前的工作 $ git pull ... file foobar not up to date, cannot merge. $ git stash $ git pull $ git stash pop 另外的情况就是：你在工作的时候，突然被老板要求去改别的东西，你也可以用stash把当前的工作缓存起来。改完别的东西后再回来继续工作。 其他 $... hack hack hack ... $ git stash $ edit emergency fix $ git commit -a -m &quot;Fix in a hurry&quot; $ git stash pop # ... continue hacking ... 最后一些坑 1、初始化的仓库要先commit一下才能新建分支 2、如果远程仓库在使用这个分支，那么不能提交到这个分支上去，除非建立bare仓库，但是bare仓库不能使用git命令。]]></content>
@@ -2806,6 +2811,11 @@
         <category>Function功能类</category>
         <category>Git</category>
       </categories>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2017%2F11%2F29%2FYoBook%2Fapp-%E5%88%86%E7%B1%BB%2F</url>
+    <content type="text"><![CDATA[​​ ​ # 产品设计​​​​​ ​​ # NSSet初始化​ &gt;NSSet是无序的​ &gt;注意:这个是最为重要的功能 NSSet中不能够存储重复的数据,可以用它来去除重复的值​​ ​ ​ NSString * str1 = @&quot;one&quot;;​ NSString * str2 = @&quot;two&quot;;​ NSString * str3 = @&quot;three&quot;;​ NSSet * set = [[NSSet alloc] initWithObjects:str1,str2,str3,str1, nil];​ 这样其实在set中指存储了 @“one”,@“two”,@“three” set.count 值为3​ [set containsObject:str1]; 是否包含str1​ ​ ​​ # 遍历​​ ​ NSEnumerator * enumerator = [set objectEnumerator];​ NSString * value;​ while (value = [enumerator nextObject]) &#123;​ NSLog(@"value %@",value);​ &#125;​ ​ # 可变集合NSMutableSet​ &gt;创建一个可变集合​​ ​ NSMutableSet * muSet = [[NSMutableSet alloc] init];​ ​ &gt;增加值​​ ​ [muSet addObject:str1];​ ​​ &gt;删除​​ ​ [muSet removeObject:str1];​ ​ &gt;删除所有​​ ​ [muSet removeAllObjects];​ ​​ # 集合之间相互转换​​ &gt;NSArray 转换成 NSMutableArray​​ ​ NSArray * array = @[@"one",@"two",@"three"];​ NSMutableArray * muArray = [NSMutableArray arrayWithArray:array];​ ​​ &gt;NSDictionary 转换成 NSMutableDictionary​​ ​ NSDictionary * dic = @&#123;@"one":@"1",@"two":@"2"&#125;;​ NSMutableDictionary * muDic = [NSMutableDictionary dictionaryWithDictionary:dic];​ ​​ &gt;NSSet 转换成 NSMutableSet​​ ​ NSSet * set = [[NSSet alloc] initWithObjects:@"one",@"two", nil];​ NSMutableSet *muSet = [NSMutableSet setWithSet:set];​ ​​ # NSArray 转换成NSSet​​ ​ NSMutableSet * muSet2 = [NSMutableSet setWithArray:array];​ ​​ # NSDictionary 转化成NSArray​​ ​ NSArray * keys = [dic allKeys];​ NSArray * values = [dic allValues];​ ​ # 字符串转换成数组​​ ​ NSString * str = @"aa.bb.cc";​ NSArray * strArray =[str componentsSeparatedByString:@“."];​]]></content>
   </entry>
   <entry>
     <title><![CDATA[Swift-Grammar-Classes/Structures类和结构体]]></title>
@@ -2900,16 +2910,6 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[Blog-配置]]></title>
-    <url>%2F2017%2F11%2F23%2FBlog%2FABCD%2F</url>
-    <content type="text"><![CDATA[#KVO实现原理 1.KVO是基于runtime机制实现的2.某个类的属性对象第一次被观察时，系统就会在运行期动态地创建该类的一个派生类，在这个派生类中重写基类中任何被观察属性的setter 方法。派生类在被重写的setter方法内实现真正的通知机制4如果原类为Person，那么生成的派生类名为NSKVONotifying_Person5.键值观察通知依赖于NSObject 的两个方法: willChangeValueForKey: 和 didChangevlueForKey:；在一个被观察属性发生改变之前， willChangeValueForKey:一定会被调用，这就 会记录旧的值。而当改变发生后，didChangeValueForKey:会被调用，继而 observeValueForKey:ofObject:change:context: 也会被调用 为什么代理要用weak？代理的delegate和dataSource有什么区别？block和代理的区别代理是使用weak来修饰的 1.使用weak是为了避免循环引用2.当使用weak修饰的属性，当对象释放的时候，系统会对属性赋值nil,object-c有个特性就是对nil对象发送消息也就是调用方法，不会cash。 delegate和 dataSource,都是可以使用require和optional来修饰的代理和Block的区别 相同点：代理和Block大多是我们都可以用来做倒序传值的。我们都得注意避免循环引用。不然我们去使用代理还是Block的时候，都需要判断它们是否实现不同点：代理使用weak修饰，代理必须先声明方法。当我们调用代理的时候要判断是否已经实现。block：使用的是copy来修饰，block保存的是一段代码，其实也就是一个函数。并且可以自动捕捉自动变量，如果想修改此自动变量，还必须使用__block修饰。 属性的实质是什么？包括哪几个部分？属性默认的关键字都有哪些？@dynamic关键字和@synthesize关键字是用来做什么的？ 属性是描述类的特征，也就是具备什么特性 三个部分，带下划线的成员变量，get、setter方法 默认关键字： readwrite，assign, atomic; 基本类型NSInteger, BOOL, int, 等 针对引用类型默认:strong, readwrite, atomic （例如：NSString, NSArray, NSDictory等） dynamic修饰的属性，其getter和setter方法编译器是不会自动帮你生成。必须自己是实现的 synthesize 修饰的属性，其getter和setter方法编译器是会自动帮你生成，不必自己实现。且指定与属性相对应的成员变量 默认关键字基本数据： atomic,readwrite,assign OC 对象: atomic,readwrite,strong NSString为什么要用copy关键字strong只是让创建的对象引用计数器+1，并返回当前对象的内容地向的内存地址是相同的,是一份内容因为A指向的内存地址和B指向的内存地址是不相同的，是两份内容 令自己所写的对象具有拷贝功能如果想让自己的类具备copy方法，并返回不可变类型，必须遵循nscopying协议，并且实现 (id)copyWithZone:(NSZone )zone如果让自己的类具备mutableCopy方法，并且放回可变类型，必须遵守NSMutableCopying，并实现- (id)mutableCopyWithZone:(nullable NSZone )zone注意：再此说的copy对应不可边类型和mutableCopy对应不可变类型方法，都是遵从系统规则而已。如果你想实现自己的规则，也是可以的。 nonatomic和atomic nonatomic:表示非原子，不安全，但是效率高。atomic：表示原子行，安全，但是效率低atomic：不能绝对保证线程的安全，当多线程同时访问的时候，会造成线程不安全。可以使用线程锁来保证线程的安全 线程间通信当使用dispath-async函数开辟线程执行任务的完成时，我们需要使用dispatch_async(dispatch_get_main_queue(), ^{ });函数会到主线程内刷新UI。并完成通信 如何使用队列来避免资源抢夺当我们使用多线程来访问同一个数据的时候，就有可能造成数据的不准确性。这个时候我么可以使用线程锁的来来绑定。也是可以使用串行队列来完成。如：fmdb就是使用FMDatabaseQueue，来解决多线程抢夺资源 #数据持久化的几个方案plist,存储字典，数组比较好用preference：偏好设置，实质也是plistNSKeyedArchiver：归档，可以存储对象sqlite：数据库，经常使用第三方来操作，也就是fmdbcoreData:也是数据库储存，苹果官方的 NSCache优于NSDictionary的几点 1.nscache 是可以自动释放内存的。2.nscache是线程安全的，我们可以在不同的线程中添加，删除和查询缓存中的对象。3.一个缓存对象不会拷贝key对象。 Block block：本质就是oc对象代码区，堆区、栈区（ARC情况下会自动拷贝到堆区，因此ARC下只能有两个地方：代码区、堆区）代码区：不访问栈区的变量（如局部变量），且不访问堆区的变量（alloc创建的对象），此时block存放在代码区堆区：访问了处于栈区的变量，或者堆区的变量，此时block存放在堆区。–需要注意实际是放在栈区，在ARC情况下会自动拷贝到堆区，如果不是ARC则存放在栈区，所在函数执行完毕就回释放，想再外面调用需要用copy指向它，这样就拷贝到了堆区，strong属性不会拷贝、会造成野指针错区 为什么在默认情况下无法修改被block捕获的变量？ __block都做了什么？默认情况下，block里面的变量，拷贝进去的是变量的值，而不是指向变量的内存的指针。当使用__block修饰后的变量，拷贝到block里面的就是指向变量的指针，所以我们就可以修改变量的值 Runtimeobjc在向一个对象发送消息,发生了什么 根据对象的isa指针找到类对象id，在查询类对象里面的methodLists方法函数列表，如果没有找到到，在沿着superClass,寻找父类，再在父类methodLists方法列表里面查询，最终找到SEL,根据id和SEL确认IMP（指针函数）,在发送消息 .什么时候会报unrecognized selector错误？iOS有哪些机制来避免走到这一步？能否向编译后得到的类中增加实例变量？能否向运行时创建的类中添加实例变量？为什么1.不能向编译后得到的类增加实例变量2.能向运行时创建的类中添加实例变量 runtime如何实现weak变量的自动置nilruntime 对注册的类， 会进行布局，对于 weak 对象会放入一个 hash 表中。用 weak 指向的对象内存地址作为 key，当此对象的引用计数为0的时候会 dealloc，假如 weak 指向的对象内存地址是a，那么就会以a为键， 在这个 weak 表中搜索，找到所有以a为键的 weak 对象，从而设置为 nil]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[Blog-配置]]></title>
-    <url>%2F2017%2F11%2F23%2FBlog%2FBlog-%E9%85%8D%E7%BD%AE%2F</url>
-    <content type="text"><![CDATA[博客配置01博客配置02 RxSwift]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[iOS-Tool-FastLane自动化发布工具+上传Bugly]]></title>
     <url>%2F2017%2F11%2F23%2FOC%2FFoundation%2FiOS-Tool-FastLane%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8F%91%E5%B8%83%E5%B7%A5%E5%85%B7%2B%E4%B8%8A%E4%BC%A0Bugly%2F</url>
     <content type="text"><![CDATA[打包的流程 修改测试版本号 修改Build版本号 执行Archive 选择Adhoc导出IPA安装包文件 上传Bugly测试平台 分享测试链接二维码FastlaneFastlane本身包含两大模块，内核部分+ActionActionAction是Fastlane自动化流程中的最小执行单元，直观上来讲就是Fastfile脚本中的一个个命令，比如：git_pull，deliver，pod_install等等，而这些命令背后都对应其实是一个用Ruby编写的脚本 Fastlane 是一套用 Ruby 编写的 iOS 命令行工具集（后来也支持了 Android），主要组件包括： match / cert / sigh 协助管理代码签名 pem 自动生成 APNs 证书 scan 自动化测试 gym 自动化编译并打包生成签名的 .ipa 文件 snapshot / frameit 协助处理 iOS 屏幕快照 pilot 上传和管理 TestFlight deliver 将应用及其它信息上传到 App Store 而正是这些颗粒度极小的Action，根据自己需求组合成一个自动化的链条 安装 首先确保Xcode命令行工具是最新版本的 $ xcode-select --install 安装Fastlane: $ sudo gem install fastlane -NV 找到工程文件目录下执行 $ fastlane init 在执行“Your Apple ID” 这一步输入苹果开发者账号，fastlane 会自动获取工程文件名，目录等其他数据。这一步“Please confirm the above values”，确认信息，没问题则输入 y。然后，fastlane 会进行一系列的初始化操作，包括下载 App Store 上的元数据和截屏文件。等待初始化完成之后，工程目录下就多了一个 fastlane目录： $ cd fastlane &amp;&amp; lsAppfile Fastfile metadata report.xmlDeliverfile README.md screenshots 文件目录 metadata目录下存放整个元数据文件，包括关键词、版本更新日志、图标等. screenshots目录下存放应用截图 Appfile文件记录App的 bundle ID、Apple ID、Team ID三种信息. Fastfile脚本的核心执行文件.有几个默认的选项，可直接使用. report文件时每次执行fastlane时生成报告 安装fastlane成功后，首先拆解我们需要自动化的两个流程: 自动打包成Adhoc的安装包ipa文件 通过fastlane自动上传到bugly 自动化打包 自动化打包使用最多就是Fastlane中gym这个Action, 转为打包而生, 安装gym这个组件: $ sudo gem install gym cd项目根目录, 创建自动打包脚本: $ vim gym.sh 输入脚本内容: #!/bin/bash#计时SECONDS=0#假设脚本放置在与项目相同的路径下project_path=$(pwd)#取当前时间字符串添加到文件结尾now=$(date +"%Y_%m_%d_%H_%M_%S")#指定项目的scheme名称scheme="Xitu"#指定要打包的配置名configuration="Adhoc"#指定打包所使用的输出方式，目前支持app-store, package, ad-hoc, enterprise, development, 和developer-id，即xcodebuild的method参数export_method='ad-hoc'#指定项目地址workspace_path="$project_path/Xitu.xcworkspace"#指定输出路径output_path="project_path/APP"#指定输出归档文件地址archive_path="$output_path/Xitu$&#123;now&#125;.xcarchive"#指定输出ipa地址ipa_path="$output_path/Xitu$&#123;now&#125;.ipa"#指定输出ipa名称ipa_name="Xitu$&#123;now&#125;.ipa"#获取执行命令时的commit messagecommit_msg="$1"#输出设定的变量值echo "===workspace path: $&#123;workspace_path&#125;==="echo "===archive path: $&#123;archive_path&#125;==="echo "===ipa path: $&#123;ipa_path&#125;==="echo "===export method: $&#123;export_method&#125;==="echo "===commit msg: $1==="#先清空前一次buildgym --workspace $&#123;workspace_path&#125; --scheme $&#123;scheme&#125; --clean --configuration $&#123;configuration&#125; --archive_path $&#123;archive_path&#125; --export_method $&#123;export_method&#125; --output_directory $&#123;output_path&#125; --output_name $&#123;ipa_name&#125;#输出总用时echo "===Finished. Total time: $&#123;SECONDS&#125;s===" 把如上脚本中Xitu改成你的项目名称即可. 为脚本执行提升权限 $ chmod +x gym.sh 执行一下脚本看一下打包效果: $ ./gym.sh 经过572s，Adhoc版本的ipa文件打包成功，我们在项目根目录下找到App目录： =========================================== #上传Bugly fastlane中定义action$ fastlane new_action 这时命令行会要求你输入自定义action名字，直接以bugly上传文件命名 $ upload_app_to_bugly wei wan]]></content>
@@ -2918,6 +2918,16 @@
         <category>Tool</category>
         <category>FastLane</category>
       </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Blog-配置]]></title>
+    <url>%2F2017%2F11%2F23%2FBlog%2FABCD%2F</url>
+    <content type="text"><![CDATA[#KVO实现原理 1.KVO是基于runtime机制实现的2.某个类的属性对象第一次被观察时，系统就会在运行期动态地创建该类的一个派生类，在这个派生类中重写基类中任何被观察属性的setter 方法。派生类在被重写的setter方法内实现真正的通知机制4如果原类为Person，那么生成的派生类名为NSKVONotifying_Person5.键值观察通知依赖于NSObject 的两个方法: willChangeValueForKey: 和 didChangevlueForKey:；在一个被观察属性发生改变之前， willChangeValueForKey:一定会被调用，这就 会记录旧的值。而当改变发生后，didChangeValueForKey:会被调用，继而 observeValueForKey:ofObject:change:context: 也会被调用 为什么代理要用weak？代理的delegate和dataSource有什么区别？block和代理的区别代理是使用weak来修饰的 1.使用weak是为了避免循环引用2.当使用weak修饰的属性，当对象释放的时候，系统会对属性赋值nil,object-c有个特性就是对nil对象发送消息也就是调用方法，不会cash。 delegate和 dataSource,都是可以使用require和optional来修饰的代理和Block的区别 相同点：代理和Block大多是我们都可以用来做倒序传值的。我们都得注意避免循环引用。不然我们去使用代理还是Block的时候，都需要判断它们是否实现不同点：代理使用weak修饰，代理必须先声明方法。当我们调用代理的时候要判断是否已经实现。block：使用的是copy来修饰，block保存的是一段代码，其实也就是一个函数。并且可以自动捕捉自动变量，如果想修改此自动变量，还必须使用__block修饰。 属性的实质是什么？包括哪几个部分？属性默认的关键字都有哪些？@dynamic关键字和@synthesize关键字是用来做什么的？ 属性是描述类的特征，也就是具备什么特性 三个部分，带下划线的成员变量，get、setter方法 默认关键字： readwrite，assign, atomic; 基本类型NSInteger, BOOL, int, 等 针对引用类型默认:strong, readwrite, atomic （例如：NSString, NSArray, NSDictory等） dynamic修饰的属性，其getter和setter方法编译器是不会自动帮你生成。必须自己是实现的 synthesize 修饰的属性，其getter和setter方法编译器是会自动帮你生成，不必自己实现。且指定与属性相对应的成员变量 默认关键字基本数据： atomic,readwrite,assign OC 对象: atomic,readwrite,strong NSString为什么要用copy关键字strong只是让创建的对象引用计数器+1，并返回当前对象的内容地向的内存地址是相同的,是一份内容因为A指向的内存地址和B指向的内存地址是不相同的，是两份内容 令自己所写的对象具有拷贝功能如果想让自己的类具备copy方法，并返回不可变类型，必须遵循nscopying协议，并且实现 (id)copyWithZone:(NSZone )zone如果让自己的类具备mutableCopy方法，并且放回可变类型，必须遵守NSMutableCopying，并实现- (id)mutableCopyWithZone:(nullable NSZone )zone注意：再此说的copy对应不可边类型和mutableCopy对应不可变类型方法，都是遵从系统规则而已。如果你想实现自己的规则，也是可以的。 nonatomic和atomic nonatomic:表示非原子，不安全，但是效率高。atomic：表示原子行，安全，但是效率低atomic：不能绝对保证线程的安全，当多线程同时访问的时候，会造成线程不安全。可以使用线程锁来保证线程的安全 线程间通信当使用dispath-async函数开辟线程执行任务的完成时，我们需要使用dispatch_async(dispatch_get_main_queue(), ^{ });函数会到主线程内刷新UI。并完成通信 如何使用队列来避免资源抢夺当我们使用多线程来访问同一个数据的时候，就有可能造成数据的不准确性。这个时候我么可以使用线程锁的来来绑定。也是可以使用串行队列来完成。如：fmdb就是使用FMDatabaseQueue，来解决多线程抢夺资源 #数据持久化的几个方案plist,存储字典，数组比较好用preference：偏好设置，实质也是plistNSKeyedArchiver：归档，可以存储对象sqlite：数据库，经常使用第三方来操作，也就是fmdbcoreData:也是数据库储存，苹果官方的 NSCache优于NSDictionary的几点 1.nscache 是可以自动释放内存的。2.nscache是线程安全的，我们可以在不同的线程中添加，删除和查询缓存中的对象。3.一个缓存对象不会拷贝key对象。 Block block：本质就是oc对象代码区，堆区、栈区（ARC情况下会自动拷贝到堆区，因此ARC下只能有两个地方：代码区、堆区）代码区：不访问栈区的变量（如局部变量），且不访问堆区的变量（alloc创建的对象），此时block存放在代码区堆区：访问了处于栈区的变量，或者堆区的变量，此时block存放在堆区。–需要注意实际是放在栈区，在ARC情况下会自动拷贝到堆区，如果不是ARC则存放在栈区，所在函数执行完毕就回释放，想再外面调用需要用copy指向它，这样就拷贝到了堆区，strong属性不会拷贝、会造成野指针错区 为什么在默认情况下无法修改被block捕获的变量？ __block都做了什么？默认情况下，block里面的变量，拷贝进去的是变量的值，而不是指向变量的内存的指针。当使用__block修饰后的变量，拷贝到block里面的就是指向变量的指针，所以我们就可以修改变量的值 Runtimeobjc在向一个对象发送消息,发生了什么 根据对象的isa指针找到类对象id，在查询类对象里面的methodLists方法函数列表，如果没有找到到，在沿着superClass,寻找父类，再在父类methodLists方法列表里面查询，最终找到SEL,根据id和SEL确认IMP（指针函数）,在发送消息 .什么时候会报unrecognized selector错误？iOS有哪些机制来避免走到这一步？能否向编译后得到的类中增加实例变量？能否向运行时创建的类中添加实例变量？为什么1.不能向编译后得到的类增加实例变量2.能向运行时创建的类中添加实例变量 runtime如何实现weak变量的自动置nilruntime 对注册的类， 会进行布局，对于 weak 对象会放入一个 hash 表中。用 weak 指向的对象内存地址作为 key，当此对象的引用计数为0的时候会 dealloc，假如 weak 指向的对象内存地址是a，那么就会以a为键， 在这个 weak 表中搜索，找到所有以a为键的 weak 对象，从而设置为 nil]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Blog-配置]]></title>
+    <url>%2F2017%2F11%2F23%2FBlog%2FBlog-%E9%85%8D%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[博客配置01博客配置02 RxSwift]]></content>
   </entry>
   <entry>
     <title><![CDATA[OC/Function功能类/App配置/Bug管理工具]]></title>
