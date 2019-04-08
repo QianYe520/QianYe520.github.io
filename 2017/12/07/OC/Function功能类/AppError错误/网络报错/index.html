@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="千夜、おれはおまえをずっと爱している">
 <meta property="og:description" content="不接受返回类型 解决方案：  AFURLResponseSerialization.m中，228行左右把 这句： self.acceptableContentTypes = [NSSet setWithObjects:@&amp;quot;application/json&amp;quot;, @&amp;quot;text/json&amp;quot;, @&amp;quot;text/javascript&amp;quot;, nil];修">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-04T01:41:16.941Z">
+<meta property="og:updated_time" content="2019-04-08T11:45:38.044Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OC&#x2F;Function功能类&#x2F;AppError错误&#x2F;网络报错">
 <meta name="twitter:description" content="不接受返回类型 解决方案：  AFURLResponseSerialization.m中，228行左右把 这句： self.acceptableContentTypes = [NSSet setWithObjects:@&amp;quot;application/json&amp;quot;, @&amp;quot;text/json&amp;quot;, @&amp;quot;text/javascript&amp;quot;, nil];修">
@@ -428,6 +428,11 @@
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">AFURLResponseSerialization.m中，228行左右</div><div class="line">把 这句： self.acceptableContentTypes = [NSSet setWithObjects:@&quot;application/json&quot;, @&quot;text/json&quot;, @&quot;text/javascript&quot;, nil];</div><div class="line"></div><div class="line">修改为：</div><div class="line"></div><div class="line">self.acceptableContentTypes = [NSSet setWithObjects:@&quot;application/json&quot;, @&quot;text/json&quot;, @&quot;text/javascript&quot;,@&quot;text/html&quot;, nil];</div><div class="line">在进行网络请求时出现-1016 是因为只支持text/json，application/json，text/javascript</div></pre></td></tr></table></figure>
 <h1 id="3840错误"><a href="#3840错误" class="headerlink" title="3840错误"></a>3840错误</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"> Error Domain=NSCocoaErrorDomain Code=3840 &quot;Invalid value around character 64.&quot; UserInfo=&#123;NSDebugDescription=Invalid value around character 64.&#125;</div><div class="line">服务器没有返回json数据</div></pre></td></tr></table></figure>
+<h1 id="请求返回-NSInlineData类型数据"><a href="#请求返回-NSInlineData类型数据" class="headerlink" title="请求返回 NSInlineData类型数据"></a>请求返回 NSInlineData类型数据</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">在设置manager的时候，如果有manager.responseSerializer = [AFHTTPResponseSerializer serializer];则返回的responseObject类型为_NSInlineData无法解析，</div><div class="line">应该写manager.requestSerializer = [AFHTTPRequestSerializer serializer];</div></pre></td></tr></table></figure>
+<h1 id="Code-999"><a href="#Code-999" class="headerlink" title="Code=-999"></a>Code=-999</h1><blockquote>
+<p>AFNetworking 请求被取消 出现错误Error Domain=NSURLErrorDomain Code=-999 “已取消”</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// 是否在证书域字段中验证域名</div><div class="line"></div><div class="line">[manager.securityPolicy setValidatesDomainName:NO];</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -464,8 +469,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/07/OC/Function功能类/AppError错误/Xcode版本错误/" rel="next" title="OC/Function功能类/AppError错误/AFN">
-                <i class="fa fa-chevron-left"></i> OC/Function功能类/AppError错误/AFN
+              <a href="/2017/12/07/OC/Function功能类/App配置/网络状况侦测/" rel="next" title="OC/Function功能类/App配置/网络状况侦测">
+                <i class="fa fa-chevron-left"></i> OC/Function功能类/App配置/网络状况侦测
               </a>
             
           </div>
@@ -564,7 +569,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">122</span>
+                  <span class="site-state-item-count">123</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -608,7 +613,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#不接受返回类型"><span class="nav-number">1.</span> <span class="nav-text">不接受返回类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3840错误"><span class="nav-number">2.</span> <span class="nav-text">3840错误</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#不接受返回类型"><span class="nav-number">1.</span> <span class="nav-text">不接受返回类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3840错误"><span class="nav-number">2.</span> <span class="nav-text">3840错误</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#请求返回-NSInlineData类型数据"><span class="nav-number">3.</span> <span class="nav-text">请求返回 NSInlineData类型数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Code-999"><span class="nav-number">4.</span> <span class="nav-text">Code=-999</span></a></li></ol></div>
             
 
           </div>
