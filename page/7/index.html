@@ -311,7 +311,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Traits-Single/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/map和flatMap/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -330,7 +330,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Traits-Single/" itemprop="url">RxSwift-Grammar-特征序列Traits-Single</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/map和flatMap/" itemprop="url">RxSwift-Grammar-map和flatMap</a></h1>
         
 
         <div class="post-meta">
@@ -415,19 +415,14 @@
       
         
           
-          Single基本介绍
-Single 是 Observable 的另外一个版本但它不像 Observable 可以发出多个元素，它要么只能发出一个元素，要么产生一个 error 事件
+          map和flatMap
+map函数，接收一个R类型的序列，返回一个R类型的序列，还是原来的序列。
 
-
-发出一个元素，或一个 error 事件
-不会共享状态变化
-
-应用场景
-Single 比较常见的例子就是执行 HTT
+public func map&lt;R&gt;(_ transform: @escaping (Self.E) throws -&gt; R) -&gt; RxSwift.Observable&lt
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Traits-Single/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/map和flatMap/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1988,7 +1983,7 @@ moya有以下特性
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2034,7 +2029,7 @@ moya有以下特性
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">270</span>
+                  <span class="site-state-item-count">271</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
