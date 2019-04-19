@@ -6,6 +6,19 @@
     <content type="text"><![CDATA[玛莎李 党大佬]]></content>
   </entry>
   <entry>
+    <title><![CDATA[OC/Guide/Xcode]]></title>
+    <url>%2F2020%2F11%2F23%2FOC%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FXcode%2F</url>
+    <content type="text"><![CDATA[新Xcode的SDK放入路径/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Blog-配置]]></title>
+    <url>%2F2020%2F11%2F23%2FBlog%2FBBBB%2F</url>
+    <content type="text"><![CDATA[11]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[OC/Function功能类/Encryption加密/AES加密]]></title>
     <url>%2F2019%2F04%2F07%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FEncryption%E5%8A%A0%E5%AF%86%2FAES%E5%8A%A0%E5%AF%86%2F</url>
     <content type="text"><![CDATA[基本使用加密步骤字符串经过AES加密得到NSData类型，然后在对加密后的NSData类型进行Base64转码，得出最终的字符串 解密步骤对要解密的字符串进行Base64解码，然后进行解密，得出原字符串 #import &lt;Foundation/Foundation.h&gt;#import &lt;CommonCrypto/CommonDigest.h&gt;#import &lt;CommonCrypto/CommonCryptor.h&gt;#import "NSData+AES.h"@interface NSString (AES)//加密字符串- (NSString*)aes128Encrypt:(NSString *)aKey;//解密字符串- (NSString*)aes128Decrypt:(NSString *)aKey;@end #define gIv @"0102030405060708" //自行修改16位 --&gt;偏移量@implementation NSString (AES256) - (NSString *)aes128Encrypt:(NSString *)aKey&#123; char keyPtr[kCCKeySizeAES128+1]; memset(keyPtr, 0, sizeof(keyPtr)); [aKey getCString:keyPtr maxLength:sizeof(keyPtr) encoding:NSUTF8StringEncoding]; char ivPtr[kCCBlockSizeAES128+1]; memset(ivPtr, 0, sizeof(ivPtr)); [gIv getCString:ivPtr maxLength:sizeof(ivPtr) encoding:NSUTF8StringEncoding]; NSData* data = [self dataUsingEncoding:NSUTF8StringEncoding]; NSUInteger dataLength = [data length]; int diff = kCCKeySizeAES128 - (dataLength % kCCKeySizeAES128); int newSize = 0; if(diff &gt; 0) &#123; newSize = dataLength + diff; &#125; char dataPtr[newSize]; memcpy(dataPtr, [data bytes], [data length]); for(int i = 0; i &lt; diff; i++) &#123; dataPtr[i + dataLength] = 0x00; &#125; size_t bufferSize = newSize + kCCBlockSizeAES128; void *buffer = malloc(bufferSize); memset(buffer, 0, bufferSize); size_t numBytesCrypted = 0; CCCryptorStatus cryptStatus = CCCrypt(kCCEncrypt, kCCAlgorithmAES128, kCCOptionPKCS7Padding, // 补码方式 keyPtr, kCCKeySizeAES128, ivPtr, dataPtr, sizeof(dataPtr), buffer, bufferSize, &amp;numBytesCrypted); if (cryptStatus == kCCSuccess) &#123; NSData *result = [NSData dataWithBytesNoCopy:buffer length:numBytesCrypted]; if (result &amp;&amp; result.length &gt; 0) &#123; Byte *datas = (Byte*)[result bytes]; NSMutableString *output = [NSMutableString stringWithCapacity:result.length * 2]; for(int i = 0; i &lt; result.length; i++)&#123; [output appendFormat:@"%02x", datas[i]]; &#125; return output; &#125; &#125; free(buffer); return nil;&#125; - (NSString *)aes128Decrypt:(NSString *)aKey&#123; char keyPtr[kCCKeySizeAES128 + 1]; memset(keyPtr, 0, sizeof(keyPtr)); [aKey getCString:keyPtr maxLength:sizeof(keyPtr) encoding:NSUTF8StringEncoding]; char ivPtr[kCCBlockSizeAES128 + 1]; memset(ivPtr, 0, sizeof(ivPtr)); [gIv getCString:ivPtr maxLength:sizeof(ivPtr) encoding:NSUTF8StringEncoding]; NSMutableData *data = [NSMutableData dataWithCapacity:self.length / 2]; unsigned char whole_byte; char byte_chars[3] = &#123;'\0','\0','\0'&#125;; int i; for (i=0; i &lt; [self length] / 2; i++) &#123; byte_chars[0] = [self characterAtIndex:i*2]; byte_chars[1] = [self characterAtIndex:i*2+1]; whole_byte = strtol(byte_chars, NULL, 16); [data appendBytes:&amp;whole_byte length:1]; &#125; NSUInteger dataLength = [data length]; size_t bufferSize = dataLength + kCCBlockSizeAES128; void *buffer = malloc(bufferSize); size_t numBytesCrypted = 0; CCCryptorStatus cryptStatus = CCCrypt(kCCDecrypt, kCCAlgorithmAES128, kCCOptionPKCS7Padding, keyPtr, kCCBlockSizeAES128, ivPtr, [data bytes], dataLength, buffer, bufferSize, &amp;numBytesCrypted); if (cryptStatus == kCCSuccess) &#123; NSData *resultData = [NSData dataWithBytesNoCopy:buffer length:numBytesCrypted]; return [[NSString alloc] initWithData:resultData encoding:NSUTF8StringEncoding]; &#125; free(buffer); return nil;&#125;@end]]></content>
@@ -26,16 +39,6 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[OC/Foundation/UITableview基本设置]]></title>
-    <url>%2F2019%2F04%2F06%2FOC%2FFoundation%2FUITableview%2FUITableview%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE%2F</url>
-    <content type="text"><![CDATA[刷新时界面异常移动现象 在appdelegate.m或者当前tableView.m文件中 if (@available(iOS 11.0, *)) &#123;UITableView.appearance.estimatedRowHeight = 0;UITableView.appearance.estimatedSectionFooterHeight = 0;UITableView.appearance.estimatedSectionHeaderHeight = 0;&#125;]]></content>
-      <categories>
-        <category>OC</category>
-        <category>Foundation</category>
-        <category>UITableView</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[OC/Foundation/WKWebView加载本地html文件]]></title>
     <url>%2F2019%2F04%2F06%2FOC%2FFoundation%2FWKWebView%2FWKWebView%2F</url>
     <content type="text"><![CDATA[WKWebView加载本地html文件#import &quot;ViewController.h&quot;#import &lt;WebKit/WebKit.h&gt;@interface ViewController ()@end@implementation ViewController- (void)viewDidLoad &#123; [super viewDidLoad]; WKWebView *webview = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)]; [self.view addSubview:webview]; //获取bundlePath 路径 NSString *bundlePath = [[NSBundle mainBundle] bundlePath]; //获取本地html目录 basePath NSString *basePath = [NSString stringWithFormat: @&quot;%@/dist&quot;, bundlePath]; //获取本地html目录 baseUrl NSURL *baseUrl = [NSURL fileURLWithPath: basePath isDirectory: YES]; NSLog(@&quot;%@&quot;, baseUrl); //html 路径 NSString *indexPath = [NSString stringWithFormat: @&quot;%@/index.html&quot;, basePath]; //html 文件中内容 NSString *indexContent = [NSString stringWithContentsOfFile: indexPath encoding: NSUTF8StringEncoding error:nil]; //显示内容 [webview loadHTMLString: indexContent baseURL: baseUrl]; &#125;@end]]></content>
@@ -43,6 +46,16 @@
         <category>OC</category>
         <category>Foundation</category>
         <category>WKWebView</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[OC/Foundation/UITableview基本设置]]></title>
+    <url>%2F2019%2F04%2F06%2FOC%2FFoundation%2FUITableview%2FUITableview%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[刷新时界面异常移动现象 在appdelegate.m或者当前tableView.m文件中 if (@available(iOS 11.0, *)) &#123;UITableView.appearance.estimatedRowHeight = 0;UITableView.appearance.estimatedSectionFooterHeight = 0;UITableView.appearance.estimatedSectionHeaderHeight = 0;&#125;]]></content>
+      <categories>
+        <category>OC</category>
+        <category>Foundation</category>
+        <category>UITableView</category>
       </categories>
   </entry>
   <entry>
@@ -120,6 +133,15 @@
       </categories>
   </entry>
   <entry>
+    <title><![CDATA[OC/Foundation功能类/App跳转相关/App升级跳转]]></title>
+    <url>%2F2019%2F04%2F02%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E8%B7%B3%E8%BD%AC%E7%9B%B8%E5%85%B3%2FAPP%E5%8D%87%E7%BA%A7%E8%B7%B3%E8%BD%AC%2F</url>
+    <content type="text"><![CDATA[①②③④⑤⑥⑦⑧ 从app跳转到AppStore方法：- (void)gotoAppStore &#123; NSString * urlStr = [NSString stringWithFormat: @"itms-apps://itunes.apple.com/app/id%@?mt=8",@"1205952707"]; [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];&#125; 获取iOS当前版本号//此获取的版本号对应bundle，打印出来对应为12345这样的数字NSNumber *number = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey];//此获取的版本号对应version，打印出来对应为1.2.3.4.5这样的字符串NSString *string = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]; 获取app在AppStore上的版本号- (void)getVersionForAppStore &#123; AFHTTPSessionManager *manager = [AFHTTPSessionManager manager]; manager.requestSerializer =[AFHTTPRequestSerializer serializer]; manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain",@"application/json",@"text/javascript",nil]; NSString *urlStr = [NSString stringWithFormat:@"http://itunes.apple.com/lookup?id=%@",@"1205952707"]; [manager POST:urlStr parameters:nil constructingBodyWithBlock:^(id&lt;AFMultipartFormData&gt; _Nonnull formData) &#123; &#125; progress:^(NSProgress * _Nonnull uploadProgress) &#123; &#125; success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) &#123; NSArray *array = responseObject[@"results"]; NSDictionary *dic = array[0]; NSString *appStoreVersion = dic[@"version"]; NSLog(@"AppStore上当前app的版本号：%@",appStoreVersion); &#125; failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) &#123; NSLog(@"%@", error); &#125;];&#125; 跳转到App Store- (void)jumpToAppStroe &#123; SKStoreProductViewController *storeProductVC = [[SKStoreProductViewController alloc] init]; storeProductVC.delegate = self; NSDictionary *dic = [NSDictionary dictionaryWithObject:@"1205952707" forKey:SKStoreProductParameterITunesItemIdentifier]; [storeProductVC loadProductWithParameters:dic completionBlock:^(BOOL result, NSError * _Nullable error) &#123; &#125;]; [self presentViewController:storeProductVC animated:YES completion:nil];&#125;]]></content>
+      <categories>
+        <category>OC</category>
+        <category>Function功能类</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[OC/Foundation功能类/App跳转相关/App跳转设置]]></title>
     <url>%2F2019%2F04%2F02%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E8%B7%B3%E8%BD%AC%E7%9B%B8%E5%85%B3%2FApp%E8%B7%B3%E8%BD%AC%E8%AE%BE%E7%BD%AE%2F</url>
     <content type="text"><![CDATA[①②③④⑤⑥⑦⑧ iOS10之后不支持，在网上看见一个方法跳到设置里-本应用开启蜂窝数据或WiFi的方法 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];iOS10之前，请添加一个URL schemes参数，为：prefs。NSString *str;str = @"https://www.baidu.com";//App跳转到Safari浏览此网页//str = @"https://itunes.apple.com/cn/app/...";//这个是App在iTunes的地址，能够跳转到App在AppStore的界面//str = @"taboo://";跳转到淘宝//str = @"prefs:root=Bluetooth";//跳转到蓝牙设置界面//str = @"prefs:root=CASTLE";//跳转到iCloud设置界面[[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]]; 跳到系统设置里的各种设置界面 跳到这些界面的参数配置：About — prefs:root=General&amp;path=AboutAccessibility — prefs:root=General&amp;path=ACCESSIBILITYAirplane Mode On — prefs:root=AIRPLANE_MODEAuto-Lock — prefs:root=General&amp;path=AUTOLOCKBrightness — prefs:root=BrightnessBluetooth — prefs:root=General&amp;path=BluetoothDate &amp; Time — prefs:root=General&amp;path=DATE_AND_TIMEFaceTime — prefs:root=FACETIMEGeneral — prefs:root=GeneralKeyboard — prefs:root=General&amp;path=KeyboardiCloud — prefs:root=CASTLEiCloud Storage &amp; Backup — prefs:root=CASTLE&amp;path=STORAGE_AND_BACKUPInternational — prefs:root=General&amp;path=INTERNATIONALLocation Services — prefs:root=LOCATION_SERVICESMusic — prefs:root=MUSICMusic Equalizer — prefs:root=MUSIC&amp;path=EQMusic Volume Limit — prefs:root=MUSIC&amp;path=VolumeLimitNetwork — prefs:root=General&amp;path=NetworkNike + iPod — prefs:root=NIKE_PLUS_IPODNotes — prefs:root=NOTESNotification — prefs:root=NOTIFICATIONS_IDPhone — prefs:root=PhonePhotos — prefs:root=PhotosProfile — prefs:root=General&amp;path=ManagedConfigurationListReset — prefs:root=General&amp;path=ResetSafari — prefs:root=SafariSiri — prefs:root=General&amp;path=AssistantSounds — prefs:root=SoundsSoftware Update — prefs:root=General&amp;path=SOFTWARE_UPDATE_LINKStore — prefs:root=STORETwitter — prefs:root=TWITTERUsage — prefs:root=General&amp;path=USAGEVPN — prefs:root=General&amp;path=Network/VPNWallpaper — prefs:root=WallpaperWi-Fi — prefs:root=WIFI]]></content>
@@ -127,15 +149,6 @@
         <category>OC</category>
         <category>Function功能类</category>
         <category>App跳转相关</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[OC/Foundation功能类/App跳转相关/App升级跳转]]></title>
-    <url>%2F2019%2F04%2F02%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E8%B7%B3%E8%BD%AC%E7%9B%B8%E5%85%B3%2FAPP%E5%8D%87%E7%BA%A7%E8%B7%B3%E8%BD%AC%2F</url>
-    <content type="text"><![CDATA[①②③④⑤⑥⑦⑧ 从app跳转到AppStore方法：- (void)gotoAppStore &#123; NSString * urlStr = [NSString stringWithFormat: @"itms-apps://itunes.apple.com/app/id%@?mt=8",@"1205952707"]; [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];&#125; 获取iOS当前版本号//此获取的版本号对应bundle，打印出来对应为12345这样的数字NSNumber *number = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey];//此获取的版本号对应version，打印出来对应为1.2.3.4.5这样的字符串NSString *string = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]; 获取app在AppStore上的版本号- (void)getVersionForAppStore &#123; AFHTTPSessionManager *manager = [AFHTTPSessionManager manager]; manager.requestSerializer =[AFHTTPRequestSerializer serializer]; manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain",@"application/json",@"text/javascript",nil]; NSString *urlStr = [NSString stringWithFormat:@"http://itunes.apple.com/lookup?id=%@",@"1205952707"]; [manager POST:urlStr parameters:nil constructingBodyWithBlock:^(id&lt;AFMultipartFormData&gt; _Nonnull formData) &#123; &#125; progress:^(NSProgress * _Nonnull uploadProgress) &#123; &#125; success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) &#123; NSArray *array = responseObject[@"results"]; NSDictionary *dic = array[0]; NSString *appStoreVersion = dic[@"version"]; NSLog(@"AppStore上当前app的版本号：%@",appStoreVersion); &#125; failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) &#123; NSLog(@"%@", error); &#125;];&#125; 跳转到App Store- (void)jumpToAppStroe &#123; SKStoreProductViewController *storeProductVC = [[SKStoreProductViewController alloc] init]; storeProductVC.delegate = self; NSDictionary *dic = [NSDictionary dictionaryWithObject:@"1205952707" forKey:SKStoreProductParameterITunesItemIdentifier]; [storeProductVC loadProductWithParameters:dic completionBlock:^(BOOL result, NSError * _Nullable error) &#123; &#125;]; [self presentViewController:storeProductVC animated:YES completion:nil];&#125;]]></content>
-      <categories>
-        <category>OC</category>
-        <category>Function功能类</category>
       </categories>
   </entry>
   <entry>
@@ -149,6 +162,15 @@
       </categories>
   </entry>
   <entry>
+    <title><![CDATA[OC-Foundation/框架简介]]></title>
+    <url>%2F2019%2F04%2F01%2FOC%2FFoundation%2FFoundation%E4%BB%8B%E7%BB%8D%2FOC-Foundation%2F</url>
+    <content type="text"><![CDATA[https://www.jianshu.com/p/495f5f8045ee]]></content>
+      <categories>
+        <category>OC</category>
+        <category>Foundation</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[OC/Foundation/NSString/字符串截取分割等处理]]></title>
     <url>%2F2019%2F04%2F01%2FOC%2FFoundation%2FNSString%2F%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%88%AA%E5%8F%96%E5%88%86%E5%89%B2%E7%AD%89%E5%A4%84%E7%90%86%2F</url>
     <content type="text"><![CDATA[截取字符串NSString*string =@"sdfsfsfsAdfsdf";string = [string substringToIndex:7];//截取掉下标7之后的字符串NSLog(@"截取的值为：%@",string);[string substringFromIndex:2];//截取掉下标2之前的字符串NSLog(@"截取的值为：%@",string); 匹配字符串NSString*string =@"sdfsfsfsAdfsdf";NSRangerange = [stringrangeOfString:@"f"];//匹配得到的下标NSLog(@"rang:%@",NSStringFromRange(range));string = [string substringWithRange:range];//截取范围类的字符串NSLog(@"截取的值为：%@",string); #分隔字符串 NSString*string =@"sdfsfsfsAdfsdf";NSArray *array = [string componentsSeparatedByString:@"A"]; //从字符A中分隔成2个元素的数组NSLog(@"array:%@",array); //结果是adfsfsfs和dfsdf]]></content>
@@ -156,15 +178,6 @@
         <category>OC</category>
         <category>Foundation</category>
         <category>NSString</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[OC-Foundation/框架简介]]></title>
-    <url>%2F2019%2F04%2F01%2FOC%2FFoundation%2FFoundation%E4%BB%8B%E7%BB%8D%2FOC-Foundation%2F</url>
-    <content type="text"><![CDATA[https://www.jianshu.com/p/495f5f8045ee]]></content>
-      <categories>
-        <category>OC</category>
-        <category>Foundation</category>
       </categories>
   </entry>
   <entry>
@@ -238,8 +251,8 @@
         <category>UIKit</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>RxSwift</tag>
+        <tag>UIKit</tag>
       </tags>
   </entry>
   <entry>
@@ -251,8 +264,8 @@
         <category>UIKit</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>RxSwift</tag>
+        <tag>UIKit</tag>
       </tags>
   </entry>
   <entry>
@@ -264,8 +277,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -292,9 +305,9 @@
         <category>UIKit</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
+        <tag>UIKit</tag>
       </tags>
   </entry>
   <entry>
@@ -306,8 +319,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -348,8 +361,8 @@
         <category>UIKit</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>RxSwift</tag>
+        <tag>UIKit</tag>
       </tags>
   </entry>
   <entry>
@@ -376,9 +389,9 @@
         <category>UIKit</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
+        <tag>UIKit</tag>
       </tags>
   </entry>
   <entry>
@@ -390,22 +403,8 @@
         <category>UIKit</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>RxSwift</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RxSwift-UIKit-UISlider-01]]></title>
-    <url>%2F2018%2F05%2F22%2FRxSwift%2FUIKit%2FUISlider-01%2F</url>
-    <content type="text"><![CDATA[UISlider disposeBag let disposeBag = DisposeBag() 滑块mySlider fileprivate lazy var mySlider: UISlider = &#123; let mySlider = UISlider() mySlider.frame = CGRect(x: 60, y: 100, width: 300, height: 30) return mySlider&#125;() add UI self.view.addSubview(self.mySlider) 输出滑动值 mySlider.rx .value .asObservable() .subscribe(&#123; print("当前值为：\($0)") &#125;) .disposed(by: disposeBag)]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>UIKit</category>
-      </categories>
-      <tags>
         <tag>UIKit</tag>
-        <tag>Swift</tag>
-        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -423,6 +422,20 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[RxSwift-UIKit-UISlider-01]]></title>
+    <url>%2F2018%2F05%2F22%2FRxSwift%2FUIKit%2FUISlider-01%2F</url>
+    <content type="text"><![CDATA[UISlider disposeBag let disposeBag = DisposeBag() 滑块mySlider fileprivate lazy var mySlider: UISlider = &#123; let mySlider = UISlider() mySlider.frame = CGRect(x: 60, y: 100, width: 300, height: 30) return mySlider&#125;() add UI self.view.addSubview(self.mySlider) 输出滑动值 mySlider.rx .value .asObservable() .subscribe(&#123; print("当前值为：\($0)") &#125;) .disposed(by: disposeBag)]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>UIKit</category>
+      </categories>
+      <tags>
+        <tag>RxSwift</tag>
+        <tag>Swift</tag>
+        <tag>UIKit</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[RxSwift-Grammar-特征序列Traits-ControlEvent]]></title>
     <url>%2F2018%2F05%2F20%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FTraits-ControlEvent%2F</url>
     <content type="text"><![CDATA[ControlEvent基本介绍 ControlEvent 是专门用于描述 UI 所产生的事件，拥有该类型的属性都是被观察者（Observable）ControlEvent 和 ControlProperty 一样，都具有以下特征 不会产生 error 事件 一定在 MainScheduler 订阅（主线程订阅） 一定在 MainScheduler 监听（主线程监听） 共享状态变化 使用样例 同样地，在 RxCocoa 下许多 UI 控件的事件方法都是被观察者（可观察序列）。比如我们查看源码（UIButton+Rx.swift），可以发现 UIButton 的 rx.tap 方法类型便是 ControlEvent： import RxSwiftimport UIKit extension Reactive where Base: UIButton &#123; public var tap: ControlEvent&lt;Void&gt; &#123; return controlEvent(.touchUpInside) &#125;&#125; 那么我们如果想实现当一个 button 被点击时，在控制台输出一段文字。即前者作为被观察者，后者作为观察者。可以这么写： import UIKitimport RxSwiftimport RxCocoa class ViewController: UIViewController &#123; let disposeBag = DisposeBag() @IBOutlet weak var button: UIButton! override func viewDidLoad() &#123; //订阅按钮点击事件 button.rx.tap .subscribe(onNext: &#123; print("欢迎访问hangge.com") &#125;).disposed(by: disposeBag) &#125;&#125;]]></content>
@@ -431,8 +444,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -444,8 +457,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -457,8 +470,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -470,9 +483,9 @@
         <category>UIKit</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
+        <tag>UIKit</tag>
       </tags>
   </entry>
   <entry>
@@ -494,8 +507,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Func</tag>
         <tag>RxSwift</tag>
+        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
@@ -534,8 +547,8 @@
         <category>Lib</category>
       </categories>
       <tags>
-        <tag>Lib</tag>
         <tag>RxSwift</tag>
+        <tag>Lib</tag>
         <tag>RxDataSources</tag>
       </tags>
   </entry>
@@ -572,8 +585,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -585,21 +598,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RxSwift-Grammar-特征序列Traits-Completable]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FTraits-Completable%2F</url>
-    <content type="text"><![CDATA[Completable基本介绍 Completable 是 Observable 的另外一个版本不像 Observable 可以发出多个元素，它要么只能产生一个 completed 事件，要么产生一个 error 事件 不会发出任何元素 只会发出一个 completed 事件或者一个 error 事件 不会共享状态变化 应用场景 Completable 和 Observable 有点类似适用于那些只关心任务是否完成，而不需要在意任务返回值的情况比如：在程序退出时将一些数据缓存到本地文件，供下次启动时加载。像这种情况我们只关心缓存是否成功 CompletableEvent 为方便使用，RxSwift 为 Completable 订阅提供了一个枚举（CompletableEvent）： .completed：用于产生完成事件 .error：用于产生一个错误 public enum CompletableEvent &#123; case error(Swift.Error) case completed&#125; 使用样例 创建 Completable 和创建 Observable 非常相似下面代码我们使用 Completable 来模拟一个数据缓存本地的操作 //将数据缓存到本地func cacheLocally() -&gt; Completable &#123; return Completable.create &#123; completable in //将数据缓存到本地（这里掠过具体的业务代码，随机成功或失败） let success = (arc4random() % 2 == 0) guard success else &#123; completable(.error(CacheError.failedCaching)) return Disposables.create &#123;&#125; &#125; completable(.completed) return Disposables.create &#123;&#125; &#125;&#125; //与缓存相关的错误类型enum CacheError: Error &#123; case failedCaching&#125; 接着我们可以使用如下方式使用这个 Completable： cacheLocally() .subscribe &#123; completable in switch completable &#123; case .completed: print("保存成功!") case .error(let error): print("保存失败: \(error.localizedDescription)") &#125; &#125; .disposed(by: disposeBag) 也可以使用 subscribe(onCompleted:onError:) 这种方式： cacheLocally() .subscribe(onCompleted: &#123; print("保存成功!") &#125;, onError: &#123; error in print("保存失败: \(error.localizedDescription)") &#125;) .disposed(by: disposeBag)]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
         <tag>Grammar</tag>
-        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -611,112 +611,21 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[RxSwift-Grammar-自定义operator]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2F07-09-Operator-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%93%8D%E4%BD%9C%E7%AC%A6%2F</url>
-    <content type="text"><![CDATA[自定义operator 自定义操作符很简单，官方推荐尽量使用标准的操作符，但是你也可以定义自己的操作符，文档上说有两种方法，这里介绍一下常用的一种方法吧自定义一个map操作符 extension ObserverType &#123; func myMap&lt;R&gt;(transform: E -&gt; R) -&gt; Observable&lt;R&gt; &#123; return Observable.create&#123; observer in let subscription = self.subscribe &#123;e in switch e&#123; case .next(let value): let result = transform(value) observer.on(.next(result)) case .error(let error): observer.on(.error(error)) case .completed: observer.on(.completed) &#125; &#125; return subscription &#125; &#125;&#125; 参数是一个闭包，其中闭包参数是E类型返回值是R类型，map函数的返回值是一个Observable类型。]]></content>
+    <title><![CDATA[RxSwift-Grammar-特征序列Traits-Completable]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FTraits-Completable%2F</url>
+    <content type="text"><![CDATA[Completable基本介绍 Completable 是 Observable 的另外一个版本不像 Observable 可以发出多个元素，它要么只能产生一个 completed 事件，要么产生一个 error 事件 不会发出任何元素 只会发出一个 completed 事件或者一个 error 事件 不会共享状态变化 应用场景 Completable 和 Observable 有点类似适用于那些只关心任务是否完成，而不需要在意任务返回值的情况比如：在程序退出时将一些数据缓存到本地文件，供下次启动时加载。像这种情况我们只关心缓存是否成功 CompletableEvent 为方便使用，RxSwift 为 Completable 订阅提供了一个枚举（CompletableEvent）： .completed：用于产生完成事件 .error：用于产生一个错误 public enum CompletableEvent &#123; case error(Swift.Error) case completed&#125; 使用样例 创建 Completable 和创建 Observable 非常相似下面代码我们使用 Completable 来模拟一个数据缓存本地的操作 //将数据缓存到本地func cacheLocally() -&gt; Completable &#123; return Completable.create &#123; completable in //将数据缓存到本地（这里掠过具体的业务代码，随机成功或失败） let success = (arc4random() % 2 == 0) guard success else &#123; completable(.error(CacheError.failedCaching)) return Disposables.create &#123;&#125; &#125; completable(.completed) return Disposables.create &#123;&#125; &#125;&#125; //与缓存相关的错误类型enum CacheError: Error &#123; case failedCaching&#125; 接着我们可以使用如下方式使用这个 Completable： cacheLocally() .subscribe &#123; completable in switch completable &#123; case .completed: print("保存成功!") case .error(let error): print("保存失败: \(error.localizedDescription)") &#125; &#125; .disposed(by: disposeBag) 也可以使用 subscribe(onCompleted:onError:) 这种方式： cacheLocally() .subscribe(onCompleted: &#123; print("保存成功!") &#125;, onError: &#123; error in print("保存失败: \(error.localizedDescription)") &#125;) .disposed(by: disposeBag)]]></content>
       <categories>
         <category>RxSwift</category>
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RxSwift-Grammar-Driver]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FDriver%2F</url>
-    <content type="text"><![CDATA[Driver 官方的例子的场景大概就是，根据一个输入框的关键字，来请求数据，然后接结果绑定到另一个Label,和TableView中首先创建一个可监听序列results;将results绑定到resultCount.rx.text上;将results绑定到resultsTableView上. //throttle过滤操作let results = query.rx.text.throttle(0.3,scheduler: MainScheduler.instance)//在主线程中操作，如果0.3秒内值发生多次改变，取最后一次的值 .flatMapLatest // flatMapLatest只会接收最新的value事件 &#123; query in //筛选出空值, 拍平序列，并取得最后一个有效的值 fetchAutoCompleteItems(query) &#125; results.map &#123; "\($0.count)" &#125; //得出结果之后，取出结果的数量 .bindTo(resultCount.rx.text) //取出结果的数量，绑定到resultCount上面显示出来 .addDisposableTo(disposeBag) //释放资源 results.bindTo(resultsTableView.rx.items(cellIdentifier: "Cell")) &#123; (_, result, cell) in cell.textLabel?.text = "\(result)" //取出结果，TableView的Cell上面显示出来 &#125; .addDisposableTo(disposeBag) 上面程序会出现下面几个异常： 如果fetchAutoCompleteItems出错，那么它绑定的UI将不再收到任何事件消息； 如果fetchAutoCompleteItems发生在后台线程，那么它绑定的事件也将在后台线程执行，这样更新UI会造成crash； 有两次绑定，fetchAutoCompleteItems就会执行两次 当然针对以上问题，也有解决方案针对第三点，可以使用神器shareReplay(1)保证只执行一次，可以使用observeOn()保证后面所有操作在主线程完成 let results = query.rx.text .throttle(0.3, scheduler: MainScheduler.instance) .flatMapLatest &#123; query in fetchAutoCompleteItems(query).observeOn(MainScheduler.instance) // 将返回结果切换到到主线程上 .catchErrorJustReturn([]) // 如果有问题，错误结果将会得到处理 &#125; .shareReplay(1) // HTTP请求将会得到分享，即两次绑定UI使用同一网络请求 results .map &#123; "\($0.count)" &#125; .bindTo(resultCount.rx.text) .addDisposableTo(disposeBag) results .bindTo(resultTableView.rx.items(cellIdentifier: "Cell")) &#123; (_, result, cell) in cell.textLabel?.text = "\(result)" &#125; .addDisposableTo(disposeBag) 用Driver来解决 let results = query.rx .text .asDriver() .throttle(0.3, scheduler: MainScheduler.instance) .flatMapLatest &#123; query in fetchAutoCompleteItems(query).asDriver(onErrorJustReturn: []) //当遇见错误需要返回什么 &#125; //不需要添加shareReplay(1) results.map &#123; "\($0.count)" &#125; .drive(resultCount.rx.text) //和bingTo()功能一样 .addDisposableTo(disposeBag) results.drive(resultTableView.rx.items(cellIdentifier: "Cell")) &#123; (_, result, cell) in cell.textLabel?.text = "\(result)" &#125; .addDisposableTo(disposeBag) .asDriver 将‘ControlProperty’ 转换成了 ‘Driver’ query.rx_text.asDriver() ‘Driver’拥有’ControlProperty’的所有属性，同时又增加了很多属性 任何 ‘Observable’ 序列都可以被转换为’Driver’, 只要他满足一下三点： 1.不能出错 2.观察主线程 3.共享资源 如何确保这些属性都满足呢？只需要使用 ‘asDriver(onErrorJustReturn: [])’ ,相当于如下代码: let safeSequence = xs .observeOn(MainScheduler.instance) // 切换到主线程 .catchErrorJustReturn(onErrorJustReturn) // 不能出错 .shareReplayLatestWhileConnected // 共享资源 return Driver(raw: safeSequence) // 返回 最后一点要说明的是 ‘driver’ 可以代替’bindTo’,drive 只能在 Driver 中使用 drive方法只能在Driver序列中使用，Driver有以下特点： Driver序列不允许发出error， Driver序列的监听只会在主线程中。 所以Driver是专为UI绑定量身打造的东西。以下情况你可以使用Driver替换BindTo: 不能发出error; 在主线程中监听; 共享事件流;]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
         <tag>Grammar</tag>
-        <tag>RxSwift</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RxSwift-Grammar-Dispose和DisposeBag]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FDispose%E5%92%8CDisposeBag%2F</url>
-    <content type="text"><![CDATA[Dispose 和 DisposeBag当监听一个sequence的时候，有消息事件来了，做某些事情。但是这个sequence不再发送消息事件了，那么我们的监听也就没有什么存在的价值了，所以我们需要释放我们这些监听资源，其实也就是内存资源释放 ##手动调用释放方式(一般不适用这种方式) 创建一个subscription监听，在两秒以后我们不需要了，手动调用dispose()方法，就能释放监听资源，不再打印信息。上面的subscription不论是在哪个线程中监听，就算在主线程中调用的dispose()方法一样会销毁资源 let subscription = Observable&lt;Int&gt;.interval(0.3, scheduler:SerialDispatchQueueScheduler.init(internalSerialQueueName: "scott")) .observeOn(MainScheduler.instance) .subscribe &#123; event in print (event) &#125;Thread.sleep(forTimeInterval: 2.0)subscription.dispose() //打印结果：next(0)next(1)next(2)next(3)next(4)next(5) 自动方式 创建一个disposeBag来盛放我们需要管理的资源，然后把新建的监听都放进去，会在适当的时候销毁这些资源如果需要立即释放资源只需要新建一个DisposeBag()，那么上一个DisposeBag就会被销毁 let disposeBag = DisposeBag()Observable&lt;Int&gt;.empty() .subscribe&#123; event in print (event) &#125; .addDisponseableTo(disposeBag) DisposeBag DisposeBag其实就相当于iOS中的ARC似得，会在适当的时候销毁观察者，相当于内存管理者吧]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
-        <tag>Grammar</tag>
-        <tag>RxSwift</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RxSwift-Grammar-Subscribe]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FSubscribe%2F</url>
-    <content type="text"><![CDATA[subscribe 和 subscribe(onNext:) Subscribe subscribe是订阅sequence发出的事件，比如next事件，error事件等 而subscribe(onNext:)是监听sequence发出的next事件中的element进行处理，他会忽略error和completed事件 相对应的还有subscribe(onError:) 和 subscribe(onCompleted:)]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
-        <tag>Grammar</tag>
-        <tag>RxSwift</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RxSwift-Grammar-observeOn()和subscribeOn()]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FobserveOn()%E5%92%8CsubscribeOn()%2F</url>
-    <content type="text"><![CDATA[observeOn()和subscribeOn() subscribeOn() 设置起点在哪个线程 observeOn() 置了后续工作在哪个线程 1)所有动作都发生在当前的默认线程2)observeOn()转换线程到主线程，下面所有的操作都在主线程3)subscribeOn()规定动作一开始不是发生在默认线程，而是在OtherScheduler了)-如果之前没有调用observeOn()，那么这边会在OtherScheduler发生，但是我们前面调用了observeOn()，所以这个动作会在主线程中调用subscribeOn()只是影响事件链开始默认的线程，而observeOn()规定了下一步动作发生在哪个线程中。 someObservable .doOneThing() //1 .observeOn(MainRouteScheduler.instance) // 2 .subscribeOn(OtherScheduler.instance) // 3 .subscribeNext &#123; // 4 ...... &#125; .addDisposableTo(disposeBag)]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
-        <tag>Grammar</tag>
-        <tag>RxSwift</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RxSwift-Grammar-特征序列Traits-Single]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FTraits-Single%2F</url>
-    <content type="text"><![CDATA[Single基本介绍 Single 是 Observable 的另外一个版本但它不像 Observable 可以发出多个元素，它要么只能发出一个元素，要么产生一个 error 事件 发出一个元素，或一个 error 事件 不会共享状态变化 应用场景 Single 比较常见的例子就是执行 HTTP 请求，然后返回一个应答或错误不过我们也可以用 Single 来描述任何只有一个元素的序列 SingleEvent 为方便使用，RxSwift 还为 Single 订阅提供了一个枚举（SingleEvent）： .success：里面包含该 Single 的一个元素值 .error：用于包含错误 public enum SingleEvent&lt;Element&gt; &#123; case success(Element) case error(Swift.Error)&#125; 使用样例 创建 Single 和创建 Observable 非常相似下面代码我们定义一个用于生成网络请求 Single 的函数 //获取豆瓣某频道下的歌曲信息func getPlaylist(_ channel: String) -&gt; Single&lt;[String: Any]&gt; &#123; return Single&lt;[String: Any]&gt;.create &#123; single in let url = "https://douban.fm/j/mine/playlist?" + "type=n&amp;channel=\(channel)&amp;from=mainsite" let task = URLSession.shared.dataTask(with: URL(string: url)!) &#123; data, _, error in if let error = error &#123; single(.error(error)) return &#125; guard let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: .mutableLeaves), let result = json as? [String: Any] else &#123; single(.error(DataError.cantParseJSON)) return &#125; single(.success(result)) &#125; task.resume() return Disposables.create &#123; task.cancel() &#125; &#125;&#125; //与数据相关的错误类型enum DataError: Error &#123; case cantParseJSON&#125; 接着我们可以使用如下方式使用这个 Single： mport UIKitimport RxSwiftimport RxCocoa class ViewController: UIViewController &#123; let disposeBag = DisposeBag() override func viewDidLoad() &#123; //获取第0个频道的歌曲信息 getPlaylist("0") .subscribe &#123; event in switch event &#123; case .success(let json): print("JSON结果: ", json) case .error(let error): print("发生错误: ", error) &#125; &#125; .disposed(by: disposeBag) &#125;&#125; 也可以使用 subscribe(onSuccess:onError:) 这种方式： import UIKitimport RxSwiftimport RxCocoa class ViewController: UIViewController &#123; let disposeBag = DisposeBag() override func viewDidLoad() &#123; //获取第0个频道的歌曲信息 getPlaylist("0") .subscribe(onSuccess: &#123; json in print("JSON结果: ", json) &#125;, onError: &#123; error in print("发生错误: ", error) &#125;) .disposed(by: disposeBag) &#125;&#125; asSingle() 我们可以通过调用 Observable 序列的 .asSingle() 方法，将它转换为 Single let disposeBag = DisposeBag() Observable.of("1") .asSingle() .subscribe(&#123; print($0) &#125;) .disposed(by: disposeBag) //print success("1")]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
-        <tag>Grammar</tag>
-        <tag>RxSwift</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RxSwift-Grammar-UIBindingObserver]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FUIBindingObserver%2F</url>
-    <content type="text"><![CDATA[UIBindingObserver UIBindingObserver这个东西很有用的，创建我们自己的监听者，有时候RxCocoa(RxSwift中对UIKit的一个扩展库)给的扩展不够我们使用，比如一个UITextField有个isEnabled属性，我想把这个isEnabled变为一个observer，我们可以这样做 extension Reactive where Base: UITextField &#123; var inputEnabled: UIBindingObserver&lt;Base, Result&gt; &#123; return UIBindingObserver(UIElement: base) &#123; textFiled, result in textFiled.isEnabled = result.isValid &#125; &#125;&#125; UIBindingObserver是一个类，他的初始化方法中，有两个参数，第一个参数是一个元素本身，第一个参数是一个闭包，闭包参数是元素本身，还有他的一个属性 public init(UIElement: UIElementType, binding: @escaping (UIElementType, Value) -&gt; Swift.Void) 自定义了一个inputEnabled关联了UITextField的isEnabled属性]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
-        <tag>Grammar</tag>
-        <tag>RxSwift</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RxSwift-Grammar-Observable可观察序列&Observer观察者]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FObservable%26Observer%2F</url>
-    <content type="text"><![CDATA[Observable可观察序列 和 Observer观察者实质 Observer (观察者)订阅一个可观察序列 Observable(事件源)每一个Observable的实例都是一个序列观察者 对 Observable 发射的数据或数据序列作出响应 举例 Button 的点击这个情景 把用户一次又一次的点击 Button 看做是序列(sequence) 通过调用 subscribe 来订阅这个点击事件 每次点击都会发射一个数据 作为订阅者的 subscribe 收到这个这个数据进行某些响应 Rx 的基本概念，有Observer观察者观察一个序列sequence，每当序列发射值的时候，观察者根据序列做一些事情Observable序列相比于Swift序列的关键优势点在于它能够异步地接收元素 Observable(ObservableType)等效于Sequence observableType.subscribe(_:)方法等效于Sequence.makeIterator() ObservableType.subscribe(_:)接收一个观察者ObserverType参数,它将被订阅自动接收由可观察到的序列事件和元素，而不是在返回的生成器上手动调用next() 如果一个Observable发出一个next事件(Event.next(Element)),它还能够继续发出更多的事件但是，如果一个Observable发出一个error事件(Event.error(ErrorType))或者一个completed事件(Event.completed)，那么这个Observable序列就不能给订阅者发送其他的事件 可观察序列 (Observables aka Sequences) 可观察序列 存在三种情况:①发射数据(Next)②遇到问题(Error)③发射完成(Completed) 有限序列 比如，有这样一个序列 --1--2--3--4--5--6--| ，它发送了按顺序发送了 1 2 3 4 5 6 这些值后，就终止了，就是发射完成。这是一个有限序列也有可能因为某些特殊的情况，遇到某些错误（比如数据解析错误），--1--2--3--4--X ，因为解析错误意外终止 无限序列 比如用户点击 Button ，这个就属于无限序列 ---tap-tap-------tap---&gt; 当然这里的无限不是真的无限，是不确定用户什么时候会点击，不确定是否会继续点击。所以这是一个无限序列，每当用户点击，序列就发射一个值 将以上的三种情况统概括为事件 enum Event&lt;Element&gt; &#123; case Next(Element) // 序列的下一个元素 case Error(ErrorType) // 序列因为某些错误终止 case Completed // 正常的序列技术&#125; 观察者 (Observer) 观察者需要一个订阅序列的功能 class Observable&lt;Element&gt; &#123;func subscribe(observer: Observer&lt;Element&gt;) -&gt; Disposable&#125;protocol ObserverType &#123; func on(event: Event&lt;Element&gt;)&#125; 通过序列的这个 subscribe 来订阅序列这里就应该提到序列的“冷”“热”问题 冷：只有当有观察者订阅这个序列时，序列才发射值 热：序列创建时就开始发射值 整体上就是这样的一个关系，序列发射值，观察者订阅序列，收到值，进行处理 Obserable 创建被观察者其实就是创建一个Obserable的sequence，就是创建一个流，然后就可以被订阅subscribe，这样被观察者发出时间消失，就能做相应的处理]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
-        <tag>Grammar</tag>
-        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -728,8 +637,112 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
+        <tag>Grammar</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RxSwift-Grammar-observeOn()和subscribeOn()]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FobserveOn()%E5%92%8CsubscribeOn()%2F</url>
+    <content type="text"><![CDATA[observeOn()和subscribeOn() subscribeOn() 设置起点在哪个线程 observeOn() 置了后续工作在哪个线程 1)所有动作都发生在当前的默认线程2)observeOn()转换线程到主线程，下面所有的操作都在主线程3)subscribeOn()规定动作一开始不是发生在默认线程，而是在OtherScheduler了)-如果之前没有调用observeOn()，那么这边会在OtherScheduler发生，但是我们前面调用了observeOn()，所以这个动作会在主线程中调用subscribeOn()只是影响事件链开始默认的线程，而observeOn()规定了下一步动作发生在哪个线程中。 someObservable .doOneThing() //1 .observeOn(MainRouteScheduler.instance) // 2 .subscribeOn(OtherScheduler.instance) // 3 .subscribeNext &#123; // 4 ...... &#125; .addDisposableTo(disposeBag)]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>RxSwift</tag>
+        <tag>Grammar</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RxSwift-Grammar-Driver]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FDriver%2F</url>
+    <content type="text"><![CDATA[Driver 官方的例子的场景大概就是，根据一个输入框的关键字，来请求数据，然后接结果绑定到另一个Label,和TableView中首先创建一个可监听序列results;将results绑定到resultCount.rx.text上;将results绑定到resultsTableView上. //throttle过滤操作let results = query.rx.text.throttle(0.3,scheduler: MainScheduler.instance)//在主线程中操作，如果0.3秒内值发生多次改变，取最后一次的值 .flatMapLatest // flatMapLatest只会接收最新的value事件 &#123; query in //筛选出空值, 拍平序列，并取得最后一个有效的值 fetchAutoCompleteItems(query) &#125; results.map &#123; "\($0.count)" &#125; //得出结果之后，取出结果的数量 .bindTo(resultCount.rx.text) //取出结果的数量，绑定到resultCount上面显示出来 .addDisposableTo(disposeBag) //释放资源 results.bindTo(resultsTableView.rx.items(cellIdentifier: "Cell")) &#123; (_, result, cell) in cell.textLabel?.text = "\(result)" //取出结果，TableView的Cell上面显示出来 &#125; .addDisposableTo(disposeBag) 上面程序会出现下面几个异常： 如果fetchAutoCompleteItems出错，那么它绑定的UI将不再收到任何事件消息； 如果fetchAutoCompleteItems发生在后台线程，那么它绑定的事件也将在后台线程执行，这样更新UI会造成crash； 有两次绑定，fetchAutoCompleteItems就会执行两次 当然针对以上问题，也有解决方案针对第三点，可以使用神器shareReplay(1)保证只执行一次，可以使用observeOn()保证后面所有操作在主线程完成 let results = query.rx.text .throttle(0.3, scheduler: MainScheduler.instance) .flatMapLatest &#123; query in fetchAutoCompleteItems(query).observeOn(MainScheduler.instance) // 将返回结果切换到到主线程上 .catchErrorJustReturn([]) // 如果有问题，错误结果将会得到处理 &#125; .shareReplay(1) // HTTP请求将会得到分享，即两次绑定UI使用同一网络请求 results .map &#123; "\($0.count)" &#125; .bindTo(resultCount.rx.text) .addDisposableTo(disposeBag) results .bindTo(resultTableView.rx.items(cellIdentifier: "Cell")) &#123; (_, result, cell) in cell.textLabel?.text = "\(result)" &#125; .addDisposableTo(disposeBag) 用Driver来解决 let results = query.rx .text .asDriver() .throttle(0.3, scheduler: MainScheduler.instance) .flatMapLatest &#123; query in fetchAutoCompleteItems(query).asDriver(onErrorJustReturn: []) //当遇见错误需要返回什么 &#125; //不需要添加shareReplay(1) results.map &#123; "\($0.count)" &#125; .drive(resultCount.rx.text) //和bingTo()功能一样 .addDisposableTo(disposeBag) results.drive(resultTableView.rx.items(cellIdentifier: "Cell")) &#123; (_, result, cell) in cell.textLabel?.text = "\(result)" &#125; .addDisposableTo(disposeBag) .asDriver 将‘ControlProperty’ 转换成了 ‘Driver’ query.rx_text.asDriver() ‘Driver’拥有’ControlProperty’的所有属性，同时又增加了很多属性 任何 ‘Observable’ 序列都可以被转换为’Driver’, 只要他满足一下三点： 1.不能出错 2.观察主线程 3.共享资源 如何确保这些属性都满足呢？只需要使用 ‘asDriver(onErrorJustReturn: [])’ ,相当于如下代码: let safeSequence = xs .observeOn(MainScheduler.instance) // 切换到主线程 .catchErrorJustReturn(onErrorJustReturn) // 不能出错 .shareReplayLatestWhileConnected // 共享资源 return Driver(raw: safeSequence) // 返回 最后一点要说明的是 ‘driver’ 可以代替’bindTo’,drive 只能在 Driver 中使用 drive方法只能在Driver序列中使用，Driver有以下特点： Driver序列不允许发出error， Driver序列的监听只会在主线程中。 所以Driver是专为UI绑定量身打造的东西。以下情况你可以使用Driver替换BindTo: 不能发出error; 在主线程中监听; 共享事件流;]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>RxSwift</tag>
+        <tag>Grammar</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RxSwift-Grammar-UIBindingObserver]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FUIBindingObserver%2F</url>
+    <content type="text"><![CDATA[UIBindingObserver UIBindingObserver这个东西很有用的，创建我们自己的监听者，有时候RxCocoa(RxSwift中对UIKit的一个扩展库)给的扩展不够我们使用，比如一个UITextField有个isEnabled属性，我想把这个isEnabled变为一个observer，我们可以这样做 extension Reactive where Base: UITextField &#123; var inputEnabled: UIBindingObserver&lt;Base, Result&gt; &#123; return UIBindingObserver(UIElement: base) &#123; textFiled, result in textFiled.isEnabled = result.isValid &#125; &#125;&#125; UIBindingObserver是一个类，他的初始化方法中，有两个参数，第一个参数是一个元素本身，第一个参数是一个闭包，闭包参数是元素本身，还有他的一个属性 public init(UIElement: UIElementType, binding: @escaping (UIElementType, Value) -&gt; Swift.Void) 自定义了一个inputEnabled关联了UITextField的isEnabled属性]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>RxSwift</tag>
+        <tag>Grammar</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RxSwift-Grammar-Subscribe]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FSubscribe%2F</url>
+    <content type="text"><![CDATA[subscribe 和 subscribe(onNext:) Subscribe subscribe是订阅sequence发出的事件，比如next事件，error事件等 而subscribe(onNext:)是监听sequence发出的next事件中的element进行处理，他会忽略error和completed事件 相对应的还有subscribe(onError:) 和 subscribe(onCompleted:)]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>RxSwift</tag>
+        <tag>Grammar</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RxSwift-Grammar-特征序列Traits-Single]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FTraits-Single%2F</url>
+    <content type="text"><![CDATA[Single基本介绍 Single 是 Observable 的另外一个版本但它不像 Observable 可以发出多个元素，它要么只能发出一个元素，要么产生一个 error 事件 发出一个元素，或一个 error 事件 不会共享状态变化 应用场景 Single 比较常见的例子就是执行 HTTP 请求，然后返回一个应答或错误不过我们也可以用 Single 来描述任何只有一个元素的序列 SingleEvent 为方便使用，RxSwift 还为 Single 订阅提供了一个枚举（SingleEvent）： .success：里面包含该 Single 的一个元素值 .error：用于包含错误 public enum SingleEvent&lt;Element&gt; &#123; case success(Element) case error(Swift.Error)&#125; 使用样例 创建 Single 和创建 Observable 非常相似下面代码我们定义一个用于生成网络请求 Single 的函数 //获取豆瓣某频道下的歌曲信息func getPlaylist(_ channel: String) -&gt; Single&lt;[String: Any]&gt; &#123; return Single&lt;[String: Any]&gt;.create &#123; single in let url = "https://douban.fm/j/mine/playlist?" + "type=n&amp;channel=\(channel)&amp;from=mainsite" let task = URLSession.shared.dataTask(with: URL(string: url)!) &#123; data, _, error in if let error = error &#123; single(.error(error)) return &#125; guard let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: .mutableLeaves), let result = json as? [String: Any] else &#123; single(.error(DataError.cantParseJSON)) return &#125; single(.success(result)) &#125; task.resume() return Disposables.create &#123; task.cancel() &#125; &#125;&#125; //与数据相关的错误类型enum DataError: Error &#123; case cantParseJSON&#125; 接着我们可以使用如下方式使用这个 Single： mport UIKitimport RxSwiftimport RxCocoa class ViewController: UIViewController &#123; let disposeBag = DisposeBag() override func viewDidLoad() &#123; //获取第0个频道的歌曲信息 getPlaylist("0") .subscribe &#123; event in switch event &#123; case .success(let json): print("JSON结果: ", json) case .error(let error): print("发生错误: ", error) &#125; &#125; .disposed(by: disposeBag) &#125;&#125; 也可以使用 subscribe(onSuccess:onError:) 这种方式： import UIKitimport RxSwiftimport RxCocoa class ViewController: UIViewController &#123; let disposeBag = DisposeBag() override func viewDidLoad() &#123; //获取第0个频道的歌曲信息 getPlaylist("0") .subscribe(onSuccess: &#123; json in print("JSON结果: ", json) &#125;, onError: &#123; error in print("发生错误: ", error) &#125;) .disposed(by: disposeBag) &#125;&#125; asSingle() 我们可以通过调用 Observable 序列的 .asSingle() 方法，将它转换为 Single let disposeBag = DisposeBag() Observable.of("1") .asSingle() .subscribe(&#123; print($0) &#125;) .disposed(by: disposeBag) //print success("1")]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>RxSwift</tag>
+        <tag>Grammar</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RxSwift-Grammar-自定义operator]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2F07-09-Operator-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%93%8D%E4%BD%9C%E7%AC%A6%2F</url>
+    <content type="text"><![CDATA[自定义operator 自定义操作符很简单，官方推荐尽量使用标准的操作符，但是你也可以定义自己的操作符，文档上说有两种方法，这里介绍一下常用的一种方法吧自定义一个map操作符 extension ObserverType &#123; func myMap&lt;R&gt;(transform: E -&gt; R) -&gt; Observable&lt;R&gt; &#123; return Observable.create&#123; observer in let subscription = self.subscribe &#123;e in switch e&#123; case .next(let value): let result = transform(value) observer.on(.next(result)) case .error(let error): observer.on(.error(error)) case .completed: observer.on(.completed) &#125; &#125; return subscription &#125; &#125;&#125; 参数是一个闭包，其中闭包参数是E类型返回值是R类型，map函数的返回值是一个Observable类型。]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>RxSwift</tag>
+        <tag>Grammar</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RxSwift-Grammar-Observable可观察序列&Observer观察者]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FObservable%26Observer%2F</url>
+    <content type="text"><![CDATA[Observable可观察序列 和 Observer观察者实质 Observer (观察者)订阅一个可观察序列 Observable(事件源)每一个Observable的实例都是一个序列观察者 对 Observable 发射的数据或数据序列作出响应 举例 Button 的点击这个情景 把用户一次又一次的点击 Button 看做是序列(sequence) 通过调用 subscribe 来订阅这个点击事件 每次点击都会发射一个数据 作为订阅者的 subscribe 收到这个这个数据进行某些响应 Rx 的基本概念，有Observer观察者观察一个序列sequence，每当序列发射值的时候，观察者根据序列做一些事情Observable序列相比于Swift序列的关键优势点在于它能够异步地接收元素 Observable(ObservableType)等效于Sequence observableType.subscribe(_:)方法等效于Sequence.makeIterator() ObservableType.subscribe(_:)接收一个观察者ObserverType参数,它将被订阅自动接收由可观察到的序列事件和元素，而不是在返回的生成器上手动调用next() 如果一个Observable发出一个next事件(Event.next(Element)),它还能够继续发出更多的事件但是，如果一个Observable发出一个error事件(Event.error(ErrorType))或者一个completed事件(Event.completed)，那么这个Observable序列就不能给订阅者发送其他的事件 可观察序列 (Observables aka Sequences) 可观察序列 存在三种情况:①发射数据(Next)②遇到问题(Error)③发射完成(Completed) 有限序列 比如，有这样一个序列 --1--2--3--4--5--6--| ，它发送了按顺序发送了 1 2 3 4 5 6 这些值后，就终止了，就是发射完成。这是一个有限序列也有可能因为某些特殊的情况，遇到某些错误（比如数据解析错误），--1--2--3--4--X ，因为解析错误意外终止 无限序列 比如用户点击 Button ，这个就属于无限序列 ---tap-tap-------tap---&gt; 当然这里的无限不是真的无限，是不确定用户什么时候会点击，不确定是否会继续点击。所以这是一个无限序列，每当用户点击，序列就发射一个值 将以上的三种情况统概括为事件 enum Event&lt;Element&gt; &#123; case Next(Element) // 序列的下一个元素 case Error(ErrorType) // 序列因为某些错误终止 case Completed // 正常的序列技术&#125; 观察者 (Observer) 观察者需要一个订阅序列的功能 class Observable&lt;Element&gt; &#123;func subscribe(observer: Observer&lt;Element&gt;) -&gt; Disposable&#125;protocol ObserverType &#123; func on(event: Event&lt;Element&gt;)&#125; 通过序列的这个 subscribe 来订阅序列这里就应该提到序列的“冷”“热”问题 冷：只有当有观察者订阅这个序列时，序列才发射值 热：序列创建时就开始发射值 整体上就是这样的一个关系，序列发射值，观察者订阅序列，收到值，进行处理 Obserable 创建被观察者其实就是创建一个Obserable的sequence，就是创建一个流，然后就可以被订阅subscribe，这样被观察者发出时间消失，就能做相应的处理]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>RxSwift</tag>
+        <tag>Grammar</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RxSwift-Grammar-Dispose和DisposeBag]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FDispose%E5%92%8CDisposeBag%2F</url>
+    <content type="text"><![CDATA[Dispose 和 DisposeBag当监听一个sequence的时候，有消息事件来了，做某些事情。但是这个sequence不再发送消息事件了，那么我们的监听也就没有什么存在的价值了，所以我们需要释放我们这些监听资源，其实也就是内存资源释放 ##手动调用释放方式(一般不适用这种方式) 创建一个subscription监听，在两秒以后我们不需要了，手动调用dispose()方法，就能释放监听资源，不再打印信息。上面的subscription不论是在哪个线程中监听，就算在主线程中调用的dispose()方法一样会销毁资源 let subscription = Observable&lt;Int&gt;.interval(0.3, scheduler:SerialDispatchQueueScheduler.init(internalSerialQueueName: "scott")) .observeOn(MainScheduler.instance) .subscribe &#123; event in print (event) &#125;Thread.sleep(forTimeInterval: 2.0)subscription.dispose() //打印结果：next(0)next(1)next(2)next(3)next(4)next(5) 自动方式 创建一个disposeBag来盛放我们需要管理的资源，然后把新建的监听都放进去，会在适当的时候销毁这些资源如果需要立即释放资源只需要新建一个DisposeBag()，那么上一个DisposeBag就会被销毁 let disposeBag = DisposeBag()Observable&lt;Int&gt;.empty() .subscribe&#123; event in print (event) &#125; .addDisponseableTo(disposeBag) DisposeBag DisposeBag其实就相当于iOS中的ARC似得，会在适当的时候销毁观察者，相当于内存管理者吧]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>RxSwift</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -783,8 +796,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -815,9 +828,9 @@
         <category>RxSwift</category>
       </categories>
       <tags>
+        <tag>RxSwift</tag>
         <tag>Swift</tag>
         <tag>Error</tag>
-        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -829,9 +842,9 @@
         <category>RxSwift</category>
       </categories>
       <tags>
+        <tag>RxSwift</tag>
         <tag>Swift</tag>
         <tag>Error</tag>
-        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -858,8 +871,8 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>Func</tag>
         <tag>RxSwift</tag>
+        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
@@ -996,8 +1009,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1340,8 +1353,8 @@
         <category>WKWebView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>WKWebView</tag>
       </tags>
   </entry>
@@ -1354,8 +1367,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1367,8 +1380,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1380,8 +1393,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1393,8 +1406,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1406,8 +1419,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1419,8 +1432,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1432,21 +1445,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Swift-RxSwift-连接性操作]]></title>
-    <url>%2F2017%2F12%2F19%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FOperators-%E8%BF%9E%E6%8E%A5%E6%80%A7%E6%93%8D%E4%BD%9C%2F</url>
-    <content type="text"><![CDATA[连接性操作 ①publish ②replay ③multicast Connectable Observable有订阅时不开始发射事件消息，而是仅当调用它们的connect（）方法时。这样就可以等待所有我们想要的订阅者都已经订阅了以后，再开始发出事件消息，这样能保证我们想要的所有订阅者都能接收到事件消息。其实也就是等大家都就位以后，开始发出消息 ①publish ①publish 将一个正常的sequence转换成一个connectable sequence let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .publish() _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; //相当于把事件消息推迟了两秒 delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(6) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125;//Subscription 1:, Event: 0Subscription 1:, Event: 1Subscription 2:, Event: 1Subscription 1:, Event: 2Subscription 2:, Event: 2Subscription 1:, Event: 3Subscription 3:, Event: 3Subscription 2:, Event: 3Subscription 1:, Event: 4Subscription 3:, Event: 4 ②replay ②replay 将一个正常的sequence转换成一个connectable sequence，然后和replaySubject相似，能接收到订阅之前的事件消息 let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .replay(5) //接收到订阅之前的5条事件消息 _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(8) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125; ③multicast ③multicast 将一个正常的sequence转换成一个connectable sequence，并且通过特性的subject发送出去，比如PublishSubject，或者replaySubject，behaviorSubject等。不同的Subject会有不同的结果 let subject = PublishSubject&lt;Int&gt;() _ = subject .subscribe(onNext: &#123; print("Subject: \($0)") &#125;) let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .multicast(subject) _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 2:, Event: \($0)") &#125;)&#125;]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
         <tag>Swift</tag>
-        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1458,8 +1458,21 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Swift-RxSwift-连接性操作]]></title>
+    <url>%2F2017%2F12%2F19%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FOperators-%E8%BF%9E%E6%8E%A5%E6%80%A7%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[连接性操作 ①publish ②replay ③multicast Connectable Observable有订阅时不开始发射事件消息，而是仅当调用它们的connect（）方法时。这样就可以等待所有我们想要的订阅者都已经订阅了以后，再开始发出事件消息，这样能保证我们想要的所有订阅者都能接收到事件消息。其实也就是等大家都就位以后，开始发出消息 ①publish ①publish 将一个正常的sequence转换成一个connectable sequence let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .publish() _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; //相当于把事件消息推迟了两秒 delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(6) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125;//Subscription 1:, Event: 0Subscription 1:, Event: 1Subscription 2:, Event: 1Subscription 1:, Event: 2Subscription 2:, Event: 2Subscription 1:, Event: 3Subscription 3:, Event: 3Subscription 2:, Event: 3Subscription 1:, Event: 4Subscription 3:, Event: 4 ②replay ②replay 将一个正常的sequence转换成一个connectable sequence，然后和replaySubject相似，能接收到订阅之前的事件消息 let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .replay(5) //接收到订阅之前的5条事件消息 _ = intSequence .subscribe(onNext: &#123; print("Subscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 2:, Event: \($0)") &#125;)&#125; delay(8) &#123; _ = intSequence .subscribe(onNext: &#123; print("Subscription 3:, Event: \($0)") &#125;)&#125; ③multicast ③multicast 将一个正常的sequence转换成一个connectable sequence，并且通过特性的subject发送出去，比如PublishSubject，或者replaySubject，behaviorSubject等。不同的Subject会有不同的结果 let subject = PublishSubject&lt;Int&gt;() _ = subject .subscribe(onNext: &#123; print("Subject: \($0)") &#125;) let intSequence = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance) .multicast(subject) _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 1:, Event: \($0)") &#125;) delay(2) &#123; _ = intSequence.connect() &#125; delay(4) &#123; _ = intSequence .subscribe(onNext: &#123; print("\tSubscription 2:, Event: \($0)") &#125;)&#125;]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1471,8 +1484,8 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1484,8 +1497,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1497,8 +1510,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
         <tag>线程</tag>
       </tags>
   </entry>
@@ -1511,8 +1524,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1524,8 +1537,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
+        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -1537,8 +1550,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1550,8 +1563,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1563,9 +1576,9 @@
         <category>Grammar</category>
       </categories>
       <tags>
+        <tag>RxSwift</tag>
         <tag>Swift</tag>
         <tag>Grammar</tag>
-        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1577,8 +1590,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1590,8 +1603,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1603,8 +1616,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1616,9 +1629,9 @@
         <category>Grammar</category>
       </categories>
       <tags>
+        <tag>RxSwift</tag>
         <tag>Swift</tag>
         <tag>Grammar</tag>
-        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1631,21 +1644,8 @@
         <category>UI扩展</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Swift-RxSwift-创建Observable序列]]></title>
-    <url>%2F2017%2F12%2F15%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2F%E5%88%9B%E5%BB%BAObservable%E5%BA%8F%E5%88%97%2F</url>
-    <content type="text"><![CDATA[①just ②of ③from ④empty ⑤never ⑥error ⑦range ⑧repeatElement ⑨generate ⑩create ⑪deferred ⑫interval ⑬timer ①just just() 方法该方法通过传入一个默认值来初始化只创建包含一个元素的序列。换言之，只发送一个值和 .Completed： let observable = Observable&lt;Int&gt;.just(5) ②of 通过一组元素创建一个序列该方法可以接受可变数量的参数（必需要是同类型的） let observable = Observable.of("A", "B", "C") ③from 需要一个数组参数数据里的元素就会被当做这个 Observable 所发出 event 携带的数据内容，最终效果同上面 of 样例是一样的 let observable = Observable.from(["A", "B", "C"]) ④empty 创建一个空内容的 Observable 序列 let observable = Observable&lt;Int&gt;.empty() ⑤never ⑤never 创建一个永远不会发出 Event（也不会终止）的 Observable 序列 let observable = Observable&lt;Int&gt;.never() ⑥error 创建一个不做任何操作，而是直接发送一个错误的 Observable 序列 enum MyError: Error &#123; case A case B&#125; let observable = Observable&lt;Int&gt;.error(MyError.A) ⑦range 通过指定起始和结束数值，创建一个以这个范围内所有值作为初始值的 Observable 序列。下面样例中，两种方法创建的 Observable 序列都是一样的 //使用range()let observable = Observable.range(start: 1, count: 5) //使用of()let observable = Observable.of(1, 2, 3 ,4 ,5) ⑧repeatElement 法创建一个可以无限发出给定元素的 Event 的 Observable 序列（永不终止） let observable = Observable.repeatElement(1) #⑨generate 该方法创建一个只有当提供的所有的判断条件都为 true 的时候，才会给出动作的 Observable 序列两种方法创建的 Observable 序列都是一样的 //使用generate()方法let observable = Observable.generate( initialState: 0, condition: &#123; $0 &lt;= 10 &#125;, iterate: &#123; $0 + 2 &#125;) //使用of()方法let observable = Observable.of(0 , 2 ,4 ,6 ,8 ,10) #⑩create 接受一个 block 形式的参数，任务是对每一个过来的订阅进行处理方便演示，这里增加了订阅相关代码 //这个block有一个回调参数observer就是订阅这个Observable对象的订阅者//当一个订阅者订阅这个Observable对象的时候，就会将订阅者作为参数传入这个block来执行一些内容let observable = Observable&lt;String&gt;.create&#123;observer in //对订阅者发出了.next事件，且携带了一个数据&quot;hangge.com&quot; observer.onNext(&quot;hangge.com&quot;) //对订阅者发出了.completed事件 observer.onCompleted() //因为一个订阅行为会有一个Disposable类型的返回值，所以在结尾一定要returen一个Disposable return Disposables.create()&#125; //订阅测试observable.subscribe &#123; print($0)&#125;//打印 next(hangge.com) completed #⑪deferred 该个方法相当于是创建一个 Observable 工厂，通过传入一个 block 来执行延迟 Observable 序列创建的行为，而这个 block 里就是真正的实例化序列对象的地方 //用于标记是奇数、还是偶数var isOdd = true //使用deferred()方法延迟Observable序列的初始化，通过传入的block来实现Observable序列的初始化并且返回。let factory : Observable&lt;Int&gt; = Observable.deferred &#123; //让每次执行这个block时候都会让奇、偶数进行交替 isOdd = !isOdd //根据isOdd参数，决定创建并返回的是奇数Observable、还是偶数Observable if isOdd &#123; return Observable.of(1, 3, 5 ,7) &#125;else &#123; return Observable.of(2, 4, 6, 8) &#125;&#125; //第1次订阅测试factory.subscribe &#123; event in print("\(isOdd)", event)&#125; //第2次订阅测试factory.subscribe &#123; event in print("\(isOdd)", event)&#125;// printfalse next(2)false next(4)false next(6)false next(8)false completedtrue next(1)true next(3)true next(5)true next(7)true completed #⑫interval 创建的 Observable 序列每隔一段设定的时间，会发出一个索引数的元素。而且它会一直发送下去创建的 Observable 序列每隔一段设定的时间，会发出一个索引数的元素。而且它会一直发送下去 let observable = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance)observable.subscribe &#123; event in print(event)&#125;//printnext(0)next(1)next(2)next(3) ⑬timer 这个方法有两种用法，一种是创建的 Observable 序列在经过设定的一段时间后，产生唯一的一个元素 //5秒种后发出唯一的一个元素0let observable = Observable&lt;Int&gt;.timer(5, scheduler: MainScheduler.instance)observable.subscribe &#123; event in print(event)&#125;//printnext(0)competed 另一种是创建的 Observable 序列在经过设定的一段时间后，每隔一段时间产生一个元素 //延时5秒种后，每隔1秒钟发出一个元素let observable = Observable&lt;Int&gt;.timer(5, period: 1, scheduler: MainScheduler.instance)observable.subscribe &#123; event in print(event)&#125;//printnext(0)next(1)next(2)next(3)]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
         <tag>Swift</tag>
-        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1657,8 +1657,21 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Swift</tag>
         <tag>RxSwift</tag>
+        <tag>Swift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Swift-RxSwift-创建Observable序列]]></title>
+    <url>%2F2017%2F12%2F15%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2F%E5%88%9B%E5%BB%BAObservable%E5%BA%8F%E5%88%97%2F</url>
+    <content type="text"><![CDATA[①just ②of ③from ④empty ⑤never ⑥error ⑦range ⑧repeatElement ⑨generate ⑩create ⑪deferred ⑫interval ⑬timer ①just just() 方法该方法通过传入一个默认值来初始化只创建包含一个元素的序列。换言之，只发送一个值和 .Completed： let observable = Observable&lt;Int&gt;.just(5) ②of 通过一组元素创建一个序列该方法可以接受可变数量的参数（必需要是同类型的） let observable = Observable.of("A", "B", "C") ③from 需要一个数组参数数据里的元素就会被当做这个 Observable 所发出 event 携带的数据内容，最终效果同上面 of 样例是一样的 let observable = Observable.from(["A", "B", "C"]) ④empty 创建一个空内容的 Observable 序列 let observable = Observable&lt;Int&gt;.empty() ⑤never ⑤never 创建一个永远不会发出 Event（也不会终止）的 Observable 序列 let observable = Observable&lt;Int&gt;.never() ⑥error 创建一个不做任何操作，而是直接发送一个错误的 Observable 序列 enum MyError: Error &#123; case A case B&#125; let observable = Observable&lt;Int&gt;.error(MyError.A) ⑦range 通过指定起始和结束数值，创建一个以这个范围内所有值作为初始值的 Observable 序列。下面样例中，两种方法创建的 Observable 序列都是一样的 //使用range()let observable = Observable.range(start: 1, count: 5) //使用of()let observable = Observable.of(1, 2, 3 ,4 ,5) ⑧repeatElement 法创建一个可以无限发出给定元素的 Event 的 Observable 序列（永不终止） let observable = Observable.repeatElement(1) #⑨generate 该方法创建一个只有当提供的所有的判断条件都为 true 的时候，才会给出动作的 Observable 序列两种方法创建的 Observable 序列都是一样的 //使用generate()方法let observable = Observable.generate( initialState: 0, condition: &#123; $0 &lt;= 10 &#125;, iterate: &#123; $0 + 2 &#125;) //使用of()方法let observable = Observable.of(0 , 2 ,4 ,6 ,8 ,10) #⑩create 接受一个 block 形式的参数，任务是对每一个过来的订阅进行处理方便演示，这里增加了订阅相关代码 //这个block有一个回调参数observer就是订阅这个Observable对象的订阅者//当一个订阅者订阅这个Observable对象的时候，就会将订阅者作为参数传入这个block来执行一些内容let observable = Observable&lt;String&gt;.create&#123;observer in //对订阅者发出了.next事件，且携带了一个数据&quot;hangge.com&quot; observer.onNext(&quot;hangge.com&quot;) //对订阅者发出了.completed事件 observer.onCompleted() //因为一个订阅行为会有一个Disposable类型的返回值，所以在结尾一定要returen一个Disposable return Disposables.create()&#125; //订阅测试observable.subscribe &#123; print($0)&#125;//打印 next(hangge.com) completed #⑪deferred 该个方法相当于是创建一个 Observable 工厂，通过传入一个 block 来执行延迟 Observable 序列创建的行为，而这个 block 里就是真正的实例化序列对象的地方 //用于标记是奇数、还是偶数var isOdd = true //使用deferred()方法延迟Observable序列的初始化，通过传入的block来实现Observable序列的初始化并且返回。let factory : Observable&lt;Int&gt; = Observable.deferred &#123; //让每次执行这个block时候都会让奇、偶数进行交替 isOdd = !isOdd //根据isOdd参数，决定创建并返回的是奇数Observable、还是偶数Observable if isOdd &#123; return Observable.of(1, 3, 5 ,7) &#125;else &#123; return Observable.of(2, 4, 6, 8) &#125;&#125; //第1次订阅测试factory.subscribe &#123; event in print("\(isOdd)", event)&#125; //第2次订阅测试factory.subscribe &#123; event in print("\(isOdd)", event)&#125;// printfalse next(2)false next(4)false next(6)false next(8)false completedtrue next(1)true next(3)true next(5)true next(7)true completed #⑫interval 创建的 Observable 序列每隔一段设定的时间，会发出一个索引数的元素。而且它会一直发送下去创建的 Observable 序列每隔一段设定的时间，会发出一个索引数的元素。而且它会一直发送下去 let observable = Observable&lt;Int&gt;.interval(1, scheduler: MainScheduler.instance)observable.subscribe &#123; event in print(event)&#125;//printnext(0)next(1)next(2)next(3) ⑬timer 这个方法有两种用法，一种是创建的 Observable 序列在经过设定的一段时间后，产生唯一的一个元素 //5秒种后发出唯一的一个元素0let observable = Observable&lt;Int&gt;.timer(5, scheduler: MainScheduler.instance)observable.subscribe &#123; event in print(event)&#125;//printnext(0)competed 另一种是创建的 Observable 序列在经过设定的一段时间后，每隔一段时间产生一个元素 //延时5秒种后，每隔1秒钟发出一个元素let observable = Observable&lt;Int&gt;.timer(5, period: 1, scheduler: MainScheduler.instance)observable.subscribe &#123; event in print(event)&#125;//printnext(0)next(1)next(2)next(3)]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>RxSwift</tag>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1671,20 +1684,6 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[RxSwift-UIKit-UILabel-响应式扩展-01]]></title>
-    <url>%2F2017%2F12%2F15%2FRxSwift%2FUIKit%2FUILabel-01%2F</url>
-    <content type="text"><![CDATA[RxSwift RxSwift 是一个用于与 Swift 语言交互的框架，但它只是基础，并不能用来进行用户交互、网络请求等。 而 RxCocoa 是让 Cocoa APIs 更容易使用响应式编程的一个框架。RxCocoa 能够让我们方便地进行响应式网络请求、响应式的用户交互、绑定数据模型到 UI 控件等等。而且大多数的 UIKit 控件都有响应式扩展，它们都是通过 rx 属性进行使用 UILabel disposeBag let disposeBag = DisposeBag() UI- 显示时间lab fileprivate lazy var timeLabel: UILabel = &#123; let timeLabel = UILabel() timeLabel.frame = CGRect(x:30,y:40,width:300,height:111) return timeLabel&#125;() 显示彩色时间lab fileprivate lazy var timeColorLabel: UILabel = &#123; let timeColorLabel = UILabel() timeColorLabel.frame = CGRect(x:30,y:40+150,width:300,height:111) return timeColorLabel&#125;() 功能主要实现 UI- 添加UI view.addSubview(timeLabel) 把时间弄到lab上显示创建一个计时器（每0.1秒发送一个索引数） let timer = Observable&lt;Int&gt;.interval(0.1, scheduler: MainScheduler.instance) ``` &gt;已过去的时间格式化成想要的字符串，并绑定到label上```swift //普通文本 timer.map&#123;(String(format: "过去多少时间:%0.2d:%0.2d.%0.1d", arguments:[($0 / 600) % 600, ($0 % 600) / 10, $0 % 10]))&#125; .bind(to: timeLabel.rx.text) .disposed(by: disposeBag) //MARK:UI-彩色lab view.addSubview(timeColorLabel) timer.map(formatTimeInterval) .bind(to: timeColorLabel.rx.attributedText) .disposed(by: disposeBag) 将数字转成对应的富文本 func formatTimeInterval(ms: NSInteger) -&gt; NSMutableAttributedString &#123; let string = String(format: "过去多少时间%0.2d:%0.2d.%0.1d", arguments: [(ms / 600) % 600, (ms % 600 ) / 10, ms % 10]) //富文本设置 let attibuteString = NSMutableAttributedString(string: string) //从文本0开始6个字符字体HelveticaNeue-Bold,16号 attibuteString.addAttributes([NSAttributedStringKey.font : UIFont(name: "HelveticaNeue-Bold", size: 16)!], range: NSMakeRange(0, 5)) //设置字体颜色 attibuteString.addAttributes([NSAttributedStringKey.foregroundColor : UIColor.white], range: NSMakeRange(0,5)) //设置文字背景颜色 attibuteString.addAttributes([NSAttributedStringKey.backgroundColor : UIColor.orange], range: NSMakeRange(0,5)) return attibuteString&#125; 效果图]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>UIKit</category>
-      </categories>
-      <tags>
-        <tag>UIKit</tag>
-        <tag>Swift</tag>
-        <tag>RxSwift</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[RxSwift-基本介绍&安装配置-01]]></title>
     <url>%2F2017%2F12%2F15%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2F01-%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D%26%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%2F</url>
     <content type="text"><![CDATA[#Rx 介绍 Rx Rx 是 ReactiveX 的缩写，简单来说就是基于异步 Event（事件）序列的响应式编程 Rx 可以简化异步编程方法，并提供更优雅的数据绑定。让我们可以时刻响应新的数据同时顺序地处理它们 Rx 库 Rx 本身可以说是一种跨平台的标准，它有自己的社区论坛，不管是 web 还是移动开发，都能用 Rx 的思维和方法来完成你的工作 作为一种跨平台标准，目前已经有许多基于不同开发语言的 Rx 的库。除了我后面会着重介绍的 RxSwift 之外，还有 RxJava, RxJS, RxKotlin, Rx.NET…等等 这些 Rx 库虽然用的语言不同，但它们之间其实都是相通的，都有相同的 API。所以说如果以后你使用别的语言做其他的方面的开发，同样是可以使用相同的思维甚至相同的方法接口（除了语言不同）来编程 ##Rx 主页 如果想了解整个 Rx 大家庭的成员，可以访问它的主页 RxSwift 介绍RxSwift 的作用 经常需要检测某些值的变化（比如：textFiled 输入值的变化、数据请求完成或失败的变化），然后进行相应的处理 过去针对不同的情况，我们需要采用不同的事件传递方法去处理，比如：delegate、notifinotion、target-action、KVO 等等 而 RectiveX 机制（由 RxSwift 实现）的出现，让程序里的事件传递响应方法做到统一。将之前那些常用的事件传递方法（比如：delegate、notification、target-action 等等），全部替换成 Rx 的“信号链”方式 如果使用的是 MVVM 开发模式的话，通过 RxSwift 可以获得更加方便的数据绑定的方法，使得 MVVM 开发更加如虎添翼 RxSwift 的安装与配置 GitHub 上下载或 cocopods 导入 2 import RxSwiftimport RxCocoa RxSwift 与 RxCocoa RxSwift：它只是基于 Swift 语言的 Rx 标准实现接口库，所以 RxSwift 里不包含任何 Cocoa 或者 UI 方面的类 RxCocoa：是基于 RxSwift 针对于 iOS 开发的一个库，它通过 Extension 的方法给原生的比如 UI 控件添加了 Rx 的特性，使得我们更容易订阅和响应这些控件的事件 两种编程方式的比较样例需求 以最常见的 tableView 数据展示功能为例作为演示。后面分别使用传统写法，以及使用 RxSwift 响应式写法来实现 表格中显示的是歌曲信息（歌名，以及歌手） 点击选中任意一个单元格，在控制台中打印出对应的歌曲信息 实现 首先我们创建一个 Music 的结构体，用来保存歌曲名称、歌手名字。此外它还遵循 CustomStringConvertible 协议，方便我们输出调试 //歌曲结构体struct Music &#123; let name: String //歌名 let singer: String //演唱者 init(name: String, singer: String)&#123; self.name = name self.singer = singer &#125; &#125;extension Music: CustomStringConvertible &#123; var description: String &#123; return "name:\(name) singer:\(singer)" &#125;&#125; 传统式编程 ViewModel import Foundation //歌曲列表数据源struct MusicListViewModel &#123; let data = [ Music(name: "无条件", singer: "陈奕迅"), Music(name: "你曾是少年", singer: "S.H.E"), Music(name: "从前的我", singer: "陈洁仪"), Music(name: "在木星", singer: "朴树"), ]&#125; 视图控制器代码（ViewController.swift 设置 UITableView 的委托，并让视图控制器实现 UITableViewDataSource 和 UITableViewDelegate 协议，及相关的协议方法 import UIKitimport RxSwift class ViewController: UIViewController &#123; //tableView对象 @IBOutlet weak var tableView: UITableView! //歌曲列表数据源 let musicListViewModel = MusicListViewModel() override func viewDidLoad() &#123; super.viewDidLoad() //设置代理 tableView.dataSource = self tableView.delegate = self &#125;&#125; extension ViewController: UITableViewDataSource &#123; //返回单元格数量 func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -&gt; Int &#123; return musicListViewModel.data.count &#125; //返回对应的单元格 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -&gt; UITableViewCell &#123; let cell = tableView.dequeueReusableCell(withIdentifier: "musicCell")! let music = musicListViewModel.data[indexPath.row] cell.textLabel?.text = music.name cell.detailTextLabel?.text = music.singer return cell &#125;&#125; extension ViewController: UITableViewDelegate &#123; //单元格点击 func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) &#123; print("你选中的歌曲信息【\(musicListViewModel.data[indexPath.row])】") &#125;&#125; RxSwift 进行改造（响应式编程） ViewModel data 属性变成一个可观察序列对象（Observable Squence），而对象当中的内容和我们之前在数组当中所包含的内容是完全一样的 import RxSwift //歌曲列表数据源struct MusicListViewModel &#123; let data = Observable.just([ Music(name: "无条件", singer: "陈奕迅"), Music(name: "你曾是少年", singer: "S.H.E"), Music(name: "从前的我", singer: "陈洁仪"), Music(name: "在木星", singer: "朴树"), ])&#125; 视图控制器代码（ViewController.swift） DisposeBag：作用是 Rx 在视图控制器或者其持有者将要销毁的时候，自动释法掉绑定在它上面的资源。它是通过类似“订阅处置机制”方式实现（类似于 NotificationCenter 的 removeObserver）。 rx.items(cellIdentifier:）:这是 Rx 基于 cellForRowAt 数据源方法的一个封装。传统方式中我们还要有个 numberOfRowsInSection 方法，使用 Rx 后就不再需要了（Rx 已经帮我们完成了相关工作）。 rx.modelSelected： 这是 Rx 基于 UITableView 委托回调方法 didSelectRowAt 的一个封装。 import UIKitimport RxSwiftimport RxCocoa class ViewController: UIViewController &#123; //tableView对象 @IBOutlet weak var tableView: UITableView! //歌曲列表数据源 let musicListViewModel = MusicListViewModel() //负责对象销毁 let disposeBag = DisposeBag() override func viewDidLoad() &#123; super.viewDidLoad() //将数据源数据绑定到tableView上 musicListViewModel.data .bind(to: tableView.rx.items(cellIdentifier:"musicCell")) &#123; _, music, cell in cell.textLabel?.text = music.name cell.detailTextLabel?.text = music.singer &#125;.disposed(by: disposeBag) //tableView点击响应 tableView.rx.modelSelected(Music.self).subscribe(onNext: &#123; music in print("你选中的歌曲信息【\(music)】") &#125;).disposed(by: disposeBag) &#125;&#125;]]></content>
@@ -1693,8 +1692,22 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>Grammar</tag>
         <tag>RxSwift</tag>
+        <tag>Grammar</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RxSwift-UIKit-UILabel-响应式扩展-01]]></title>
+    <url>%2F2017%2F12%2F15%2FRxSwift%2FUIKit%2FUILabel-01%2F</url>
+    <content type="text"><![CDATA[RxSwift RxSwift 是一个用于与 Swift 语言交互的框架，但它只是基础，并不能用来进行用户交互、网络请求等。 而 RxCocoa 是让 Cocoa APIs 更容易使用响应式编程的一个框架。RxCocoa 能够让我们方便地进行响应式网络请求、响应式的用户交互、绑定数据模型到 UI 控件等等。而且大多数的 UIKit 控件都有响应式扩展，它们都是通过 rx 属性进行使用 UILabel disposeBag let disposeBag = DisposeBag() UI- 显示时间lab fileprivate lazy var timeLabel: UILabel = &#123; let timeLabel = UILabel() timeLabel.frame = CGRect(x:30,y:40,width:300,height:111) return timeLabel&#125;() 显示彩色时间lab fileprivate lazy var timeColorLabel: UILabel = &#123; let timeColorLabel = UILabel() timeColorLabel.frame = CGRect(x:30,y:40+150,width:300,height:111) return timeColorLabel&#125;() 功能主要实现 UI- 添加UI view.addSubview(timeLabel) 把时间弄到lab上显示创建一个计时器（每0.1秒发送一个索引数） let timer = Observable&lt;Int&gt;.interval(0.1, scheduler: MainScheduler.instance) ``` &gt;已过去的时间格式化成想要的字符串，并绑定到label上```swift //普通文本 timer.map&#123;(String(format: "过去多少时间:%0.2d:%0.2d.%0.1d", arguments:[($0 / 600) % 600, ($0 % 600) / 10, $0 % 10]))&#125; .bind(to: timeLabel.rx.text) .disposed(by: disposeBag) //MARK:UI-彩色lab view.addSubview(timeColorLabel) timer.map(formatTimeInterval) .bind(to: timeColorLabel.rx.attributedText) .disposed(by: disposeBag) 将数字转成对应的富文本 func formatTimeInterval(ms: NSInteger) -&gt; NSMutableAttributedString &#123; let string = String(format: "过去多少时间%0.2d:%0.2d.%0.1d", arguments: [(ms / 600) % 600, (ms % 600 ) / 10, ms % 10]) //富文本设置 let attibuteString = NSMutableAttributedString(string: string) //从文本0开始6个字符字体HelveticaNeue-Bold,16号 attibuteString.addAttributes([NSAttributedStringKey.font : UIFont(name: "HelveticaNeue-Bold", size: 16)!], range: NSMakeRange(0, 5)) //设置字体颜色 attibuteString.addAttributes([NSAttributedStringKey.foregroundColor : UIColor.white], range: NSMakeRange(0,5)) //设置文字背景颜色 attibuteString.addAttributes([NSAttributedStringKey.backgroundColor : UIColor.orange], range: NSMakeRange(0,5)) return attibuteString&#125; 效果图]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>UIKit</category>
+      </categories>
+      <tags>
+        <tag>RxSwift</tag>
+        <tag>Swift</tag>
+        <tag>UIKit</tag>
       </tags>
   </entry>
   <entry>
@@ -1707,8 +1720,8 @@
         <category>UIImagePickerController</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIImagePickerController</tag>
       </tags>
   </entry>
@@ -1722,8 +1735,8 @@
         <category>NSAttributedString</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>NSAttributedString</tag>
       </tags>
   </entry>
@@ -1776,8 +1789,8 @@
         <category>NSNotificationCenter</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>NSNotificationCenter</tag>
       </tags>
   </entry>
@@ -1815,8 +1828,8 @@
         <category>UITableView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITableView</tag>
       </tags>
   </entry>
@@ -1856,8 +1869,8 @@
         <category>UIWebView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIWebView</tag>
       </tags>
   </entry>
@@ -1871,8 +1884,8 @@
         <category>UIWebView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIWebView</tag>
       </tags>
   </entry>
@@ -1886,8 +1899,8 @@
         <category>UINavigationController</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UINavigationController</tag>
       </tags>
   </entry>
@@ -1901,8 +1914,8 @@
         <category>UINavigationController</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UINavigationController</tag>
       </tags>
   </entry>
@@ -1916,8 +1929,8 @@
         <category>UISegmentedControl</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UISegmentedControl</tag>
       </tags>
   </entry>
@@ -1931,8 +1944,8 @@
         <category>UISegmentedControl</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UISegmentedControl</tag>
       </tags>
   </entry>
@@ -1946,8 +1959,8 @@
         <category>UISwitch</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UISwitch</tag>
       </tags>
   </entry>
@@ -1961,8 +1974,8 @@
         <category>UISwitch</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UISwitch</tag>
       </tags>
   </entry>
@@ -1976,8 +1989,8 @@
         <category>UITextField</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITextField</tag>
       </tags>
   </entry>
@@ -1991,8 +2004,8 @@
         <category>UITxtxField</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITxtxField</tag>
       </tags>
   </entry>
@@ -2006,8 +2019,8 @@
         <category>UIImage</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIImage</tag>
       </tags>
   </entry>
@@ -2021,8 +2034,8 @@
         <category>UIImage</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIImage</tag>
       </tags>
   </entry>
@@ -2036,8 +2049,8 @@
         <category>UITableViewCell</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITableViewCell</tag>
       </tags>
   </entry>
@@ -2051,8 +2064,8 @@
         <category>UITableViewCell</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITableViewCell</tag>
       </tags>
   </entry>
@@ -2066,8 +2079,8 @@
         <category>UITableView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITableView</tag>
       </tags>
   </entry>
@@ -2081,8 +2094,8 @@
         <category>UITableView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITableView</tag>
       </tags>
   </entry>
@@ -2096,8 +2109,8 @@
         <category>UIScrollView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIScrollView</tag>
       </tags>
   </entry>
@@ -2111,8 +2124,8 @@
         <category>UIScrollView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIScrollView</tag>
       </tags>
   </entry>
@@ -2126,8 +2139,8 @@
         <category>UITextView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITextView</tag>
       </tags>
   </entry>
@@ -2141,8 +2154,8 @@
         <category>UITextView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITextView</tag>
       </tags>
   </entry>
@@ -2156,8 +2169,8 @@
         <category>UIActionSheet</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIActionSheet</tag>
       </tags>
   </entry>
@@ -2171,8 +2184,8 @@
         <category>UIActionSheet</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIActionSheet</tag>
       </tags>
   </entry>
@@ -2199,8 +2212,8 @@
         <category>NSTimer</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>NSTimer</tag>
       </tags>
   </entry>
@@ -2214,8 +2227,8 @@
         <category>UICollectionView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UICollectionView</tag>
       </tags>
   </entry>
@@ -2229,8 +2242,8 @@
         <category>UICollectionView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UICollectionView</tag>
       </tags>
   </entry>
@@ -2432,8 +2445,8 @@
         <category>UITableView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITableView</tag>
       </tags>
   </entry>
@@ -2527,8 +2540,8 @@
         <category>UIImageView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIImageView</tag>
       </tags>
   </entry>
@@ -2542,8 +2555,8 @@
         <category>UISegmentedControl</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UISegmentedControl</tag>
       </tags>
   </entry>
@@ -2557,8 +2570,8 @@
         <category>UISwitch</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UISwitch</tag>
       </tags>
   </entry>
@@ -2572,8 +2585,8 @@
         <category>UIStepper</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIStepper</tag>
       </tags>
   </entry>
@@ -2587,8 +2600,8 @@
         <category>UISlider</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UISlider</tag>
       </tags>
   </entry>
@@ -2602,8 +2615,8 @@
         <category>UITextField</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITextField</tag>
       </tags>
   </entry>
@@ -2631,8 +2644,8 @@
         <category>UILabel</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UILabel</tag>
       </tags>
   </entry>
@@ -2646,8 +2659,8 @@
         <category>AppDelegate</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>AppDelegate</tag>
       </tags>
   </entry>
@@ -2690,8 +2703,8 @@
         <category>NSSet</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>UIKit</tag>
+        <tag>iOS</tag>
         <tag>NSSet</tag>
       </tags>
   </entry>
@@ -2705,8 +2718,8 @@
         <category>NSDictionary</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>UIKit</tag>
+        <tag>iOS</tag>
         <tag>NSDictionary</tag>
       </tags>
   </entry>
@@ -2719,8 +2732,8 @@
         <category>UIKit</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>UIKit</tag>
+        <tag>iOS</tag>
       </tags>
   </entry>
   <entry>
@@ -2985,14 +2998,9 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[iOS-Tool-FastLane自动化发布工具+上传Bugly]]></title>
-    <url>%2F2017%2F11%2F23%2FOC%2FFoundation%2FiOS-Tool-FastLane%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8F%91%E5%B8%83%E5%B7%A5%E5%85%B7%2B%E4%B8%8A%E4%BC%A0Bugly%2F</url>
-    <content type="text"><![CDATA[打包的流程 修改测试版本号 修改Build版本号 执行Archive 选择Adhoc导出IPA安装包文件 上传Bugly测试平台 分享测试链接二维码FastlaneFastlane本身包含两大模块，内核部分+ActionActionAction是Fastlane自动化流程中的最小执行单元，直观上来讲就是Fastfile脚本中的一个个命令，比如：git_pull，deliver，pod_install等等，而这些命令背后都对应其实是一个用Ruby编写的脚本 Fastlane 是一套用 Ruby 编写的 iOS 命令行工具集（后来也支持了 Android），主要组件包括： match / cert / sigh 协助管理代码签名 pem 自动生成 APNs 证书 scan 自动化测试 gym 自动化编译并打包生成签名的 .ipa 文件 snapshot / frameit 协助处理 iOS 屏幕快照 pilot 上传和管理 TestFlight deliver 将应用及其它信息上传到 App Store 而正是这些颗粒度极小的Action，根据自己需求组合成一个自动化的链条 安装 首先确保Xcode命令行工具是最新版本的 $ xcode-select --install 安装Fastlane: $ sudo gem install fastlane -NV 找到工程文件目录下执行 $ fastlane init 在执行“Your Apple ID” 这一步输入苹果开发者账号，fastlane 会自动获取工程文件名，目录等其他数据。这一步“Please confirm the above values”，确认信息，没问题则输入 y。然后，fastlane 会进行一系列的初始化操作，包括下载 App Store 上的元数据和截屏文件。等待初始化完成之后，工程目录下就多了一个 fastlane目录： $ cd fastlane &amp;&amp; lsAppfile Fastfile metadata report.xmlDeliverfile README.md screenshots 文件目录 metadata目录下存放整个元数据文件，包括关键词、版本更新日志、图标等. screenshots目录下存放应用截图 Appfile文件记录App的 bundle ID、Apple ID、Team ID三种信息. Fastfile脚本的核心执行文件.有几个默认的选项，可直接使用. report文件时每次执行fastlane时生成报告 安装fastlane成功后，首先拆解我们需要自动化的两个流程: 自动打包成Adhoc的安装包ipa文件 通过fastlane自动上传到bugly 自动化打包 自动化打包使用最多就是Fastlane中gym这个Action, 转为打包而生, 安装gym这个组件: $ sudo gem install gym cd项目根目录, 创建自动打包脚本: $ vim gym.sh 输入脚本内容: #!/bin/bash#计时SECONDS=0#假设脚本放置在与项目相同的路径下project_path=$(pwd)#取当前时间字符串添加到文件结尾now=$(date +"%Y_%m_%d_%H_%M_%S")#指定项目的scheme名称scheme="Xitu"#指定要打包的配置名configuration="Adhoc"#指定打包所使用的输出方式，目前支持app-store, package, ad-hoc, enterprise, development, 和developer-id，即xcodebuild的method参数export_method='ad-hoc'#指定项目地址workspace_path="$project_path/Xitu.xcworkspace"#指定输出路径output_path="project_path/APP"#指定输出归档文件地址archive_path="$output_path/Xitu$&#123;now&#125;.xcarchive"#指定输出ipa地址ipa_path="$output_path/Xitu$&#123;now&#125;.ipa"#指定输出ipa名称ipa_name="Xitu$&#123;now&#125;.ipa"#获取执行命令时的commit messagecommit_msg="$1"#输出设定的变量值echo "===workspace path: $&#123;workspace_path&#125;==="echo "===archive path: $&#123;archive_path&#125;==="echo "===ipa path: $&#123;ipa_path&#125;==="echo "===export method: $&#123;export_method&#125;==="echo "===commit msg: $1==="#先清空前一次buildgym --workspace $&#123;workspace_path&#125; --scheme $&#123;scheme&#125; --clean --configuration $&#123;configuration&#125; --archive_path $&#123;archive_path&#125; --export_method $&#123;export_method&#125; --output_directory $&#123;output_path&#125; --output_name $&#123;ipa_name&#125;#输出总用时echo "===Finished. Total time: $&#123;SECONDS&#125;s===" 把如上脚本中Xitu改成你的项目名称即可. 为脚本执行提升权限 $ chmod +x gym.sh 执行一下脚本看一下打包效果: $ ./gym.sh 经过572s，Adhoc版本的ipa文件打包成功，我们在项目根目录下找到App目录： =========================================== #上传Bugly fastlane中定义action$ fastlane new_action 这时命令行会要求你输入自定义action名字，直接以bugly上传文件命名 $ upload_app_to_bugly wei wan]]></content>
-      <categories>
-        <category>iOS</category>
-        <category>Tool</category>
-        <category>FastLane</category>
-      </categories>
+    <title><![CDATA[Blog-配置]]></title>
+    <url>%2F2017%2F11%2F23%2FBlog%2FABCD%2F</url>
+    <content type="text"><![CDATA[#KVO实现原理 1.KVO是基于runtime机制实现的2.某个类的属性对象第一次被观察时，系统就会在运行期动态地创建该类的一个派生类，在这个派生类中重写基类中任何被观察属性的setter 方法。派生类在被重写的setter方法内实现真正的通知机制4如果原类为Person，那么生成的派生类名为NSKVONotifying_Person5.键值观察通知依赖于NSObject 的两个方法: willChangeValueForKey: 和 didChangevlueForKey:；在一个被观察属性发生改变之前， willChangeValueForKey:一定会被调用，这就 会记录旧的值。而当改变发生后，didChangeValueForKey:会被调用，继而 observeValueForKey:ofObject:change:context: 也会被调用 为什么代理要用weak？代理的delegate和dataSource有什么区别？block和代理的区别代理是使用weak来修饰的 1.使用weak是为了避免循环引用2.当使用weak修饰的属性，当对象释放的时候，系统会对属性赋值nil,object-c有个特性就是对nil对象发送消息也就是调用方法，不会cash。 delegate和 dataSource,都是可以使用require和optional来修饰的代理和Block的区别 相同点：代理和Block大多是我们都可以用来做倒序传值的。我们都得注意避免循环引用。不然我们去使用代理还是Block的时候，都需要判断它们是否实现不同点：代理使用weak修饰，代理必须先声明方法。当我们调用代理的时候要判断是否已经实现。block：使用的是copy来修饰，block保存的是一段代码，其实也就是一个函数。并且可以自动捕捉自动变量，如果想修改此自动变量，还必须使用__block修饰。 属性的实质是什么？包括哪几个部分？属性默认的关键字都有哪些？@dynamic关键字和@synthesize关键字是用来做什么的？ 属性是描述类的特征，也就是具备什么特性 三个部分，带下划线的成员变量，get、setter方法 默认关键字： readwrite，assign, atomic; 基本类型NSInteger, BOOL, int, 等 针对引用类型默认:strong, readwrite, atomic （例如：NSString, NSArray, NSDictory等） dynamic修饰的属性，其getter和setter方法编译器是不会自动帮你生成。必须自己是实现的 synthesize 修饰的属性，其getter和setter方法编译器是会自动帮你生成，不必自己实现。且指定与属性相对应的成员变量 默认关键字基本数据： atomic,readwrite,assign OC 对象: atomic,readwrite,strong NSString为什么要用copy关键字strong只是让创建的对象引用计数器+1，并返回当前对象的内容地向的内存地址是相同的,是一份内容因为A指向的内存地址和B指向的内存地址是不相同的，是两份内容 令自己所写的对象具有拷贝功能如果想让自己的类具备copy方法，并返回不可变类型，必须遵循nscopying协议，并且实现 (id)copyWithZone:(NSZone )zone如果让自己的类具备mutableCopy方法，并且放回可变类型，必须遵守NSMutableCopying，并实现- (id)mutableCopyWithZone:(nullable NSZone )zone注意：再此说的copy对应不可边类型和mutableCopy对应不可变类型方法，都是遵从系统规则而已。如果你想实现自己的规则，也是可以的。 nonatomic和atomic nonatomic:表示非原子，不安全，但是效率高。atomic：表示原子行，安全，但是效率低atomic：不能绝对保证线程的安全，当多线程同时访问的时候，会造成线程不安全。可以使用线程锁来保证线程的安全 线程间通信当使用dispath-async函数开辟线程执行任务的完成时，我们需要使用dispatch_async(dispatch_get_main_queue(), ^{ });函数会到主线程内刷新UI。并完成通信 如何使用队列来避免资源抢夺当我们使用多线程来访问同一个数据的时候，就有可能造成数据的不准确性。这个时候我么可以使用线程锁的来来绑定。也是可以使用串行队列来完成。如：fmdb就是使用FMDatabaseQueue，来解决多线程抢夺资源 #数据持久化的几个方案plist,存储字典，数组比较好用preference：偏好设置，实质也是plistNSKeyedArchiver：归档，可以存储对象sqlite：数据库，经常使用第三方来操作，也就是fmdbcoreData:也是数据库储存，苹果官方的 NSCache优于NSDictionary的几点 1.nscache 是可以自动释放内存的。2.nscache是线程安全的，我们可以在不同的线程中添加，删除和查询缓存中的对象。3.一个缓存对象不会拷贝key对象。 Block block：本质就是oc对象代码区，堆区、栈区（ARC情况下会自动拷贝到堆区，因此ARC下只能有两个地方：代码区、堆区）代码区：不访问栈区的变量（如局部变量），且不访问堆区的变量（alloc创建的对象），此时block存放在代码区堆区：访问了处于栈区的变量，或者堆区的变量，此时block存放在堆区。–需要注意实际是放在栈区，在ARC情况下会自动拷贝到堆区，如果不是ARC则存放在栈区，所在函数执行完毕就回释放，想再外面调用需要用copy指向它，这样就拷贝到了堆区，strong属性不会拷贝、会造成野指针错区 为什么在默认情况下无法修改被block捕获的变量？ __block都做了什么？默认情况下，block里面的变量，拷贝进去的是变量的值，而不是指向变量的内存的指针。当使用__block修饰后的变量，拷贝到block里面的就是指向变量的指针，所以我们就可以修改变量的值 Runtimeobjc在向一个对象发送消息,发生了什么 根据对象的isa指针找到类对象id，在查询类对象里面的methodLists方法函数列表，如果没有找到到，在沿着superClass,寻找父类，再在父类methodLists方法列表里面查询，最终找到SEL,根据id和SEL确认IMP（指针函数）,在发送消息 .什么时候会报unrecognized selector错误？iOS有哪些机制来避免走到这一步？能否向编译后得到的类中增加实例变量？能否向运行时创建的类中添加实例变量？为什么1.不能向编译后得到的类增加实例变量2.能向运行时创建的类中添加实例变量 runtime如何实现weak变量的自动置nilruntime 对注册的类， 会进行布局，对于 weak 对象会放入一个 hash 表中。用 weak 指向的对象内存地址作为 key，当此对象的引用计数为0的时候会 dealloc，假如 weak 指向的对象内存地址是a，那么就会以a为键， 在这个 weak 表中搜索，找到所有以a为键的 weak 对象，从而设置为 nil]]></content>
   </entry>
   <entry>
     <title><![CDATA[Blog-配置]]></title>
@@ -3003,9 +3011,14 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[Blog-配置]]></title>
-    <url>%2F2017%2F11%2F23%2FBlog%2FABCD%2F</url>
-    <content type="text"><![CDATA[#KVO实现原理 1.KVO是基于runtime机制实现的2.某个类的属性对象第一次被观察时，系统就会在运行期动态地创建该类的一个派生类，在这个派生类中重写基类中任何被观察属性的setter 方法。派生类在被重写的setter方法内实现真正的通知机制4如果原类为Person，那么生成的派生类名为NSKVONotifying_Person5.键值观察通知依赖于NSObject 的两个方法: willChangeValueForKey: 和 didChangevlueForKey:；在一个被观察属性发生改变之前， willChangeValueForKey:一定会被调用，这就 会记录旧的值。而当改变发生后，didChangeValueForKey:会被调用，继而 observeValueForKey:ofObject:change:context: 也会被调用 为什么代理要用weak？代理的delegate和dataSource有什么区别？block和代理的区别代理是使用weak来修饰的 1.使用weak是为了避免循环引用2.当使用weak修饰的属性，当对象释放的时候，系统会对属性赋值nil,object-c有个特性就是对nil对象发送消息也就是调用方法，不会cash。 delegate和 dataSource,都是可以使用require和optional来修饰的代理和Block的区别 相同点：代理和Block大多是我们都可以用来做倒序传值的。我们都得注意避免循环引用。不然我们去使用代理还是Block的时候，都需要判断它们是否实现不同点：代理使用weak修饰，代理必须先声明方法。当我们调用代理的时候要判断是否已经实现。block：使用的是copy来修饰，block保存的是一段代码，其实也就是一个函数。并且可以自动捕捉自动变量，如果想修改此自动变量，还必须使用__block修饰。 属性的实质是什么？包括哪几个部分？属性默认的关键字都有哪些？@dynamic关键字和@synthesize关键字是用来做什么的？ 属性是描述类的特征，也就是具备什么特性 三个部分，带下划线的成员变量，get、setter方法 默认关键字： readwrite，assign, atomic; 基本类型NSInteger, BOOL, int, 等 针对引用类型默认:strong, readwrite, atomic （例如：NSString, NSArray, NSDictory等） dynamic修饰的属性，其getter和setter方法编译器是不会自动帮你生成。必须自己是实现的 synthesize 修饰的属性，其getter和setter方法编译器是会自动帮你生成，不必自己实现。且指定与属性相对应的成员变量 默认关键字基本数据： atomic,readwrite,assign OC 对象: atomic,readwrite,strong NSString为什么要用copy关键字strong只是让创建的对象引用计数器+1，并返回当前对象的内容地向的内存地址是相同的,是一份内容因为A指向的内存地址和B指向的内存地址是不相同的，是两份内容 令自己所写的对象具有拷贝功能如果想让自己的类具备copy方法，并返回不可变类型，必须遵循nscopying协议，并且实现 (id)copyWithZone:(NSZone )zone如果让自己的类具备mutableCopy方法，并且放回可变类型，必须遵守NSMutableCopying，并实现- (id)mutableCopyWithZone:(nullable NSZone )zone注意：再此说的copy对应不可边类型和mutableCopy对应不可变类型方法，都是遵从系统规则而已。如果你想实现自己的规则，也是可以的。 nonatomic和atomic nonatomic:表示非原子，不安全，但是效率高。atomic：表示原子行，安全，但是效率低atomic：不能绝对保证线程的安全，当多线程同时访问的时候，会造成线程不安全。可以使用线程锁来保证线程的安全 线程间通信当使用dispath-async函数开辟线程执行任务的完成时，我们需要使用dispatch_async(dispatch_get_main_queue(), ^{ });函数会到主线程内刷新UI。并完成通信 如何使用队列来避免资源抢夺当我们使用多线程来访问同一个数据的时候，就有可能造成数据的不准确性。这个时候我么可以使用线程锁的来来绑定。也是可以使用串行队列来完成。如：fmdb就是使用FMDatabaseQueue，来解决多线程抢夺资源 #数据持久化的几个方案plist,存储字典，数组比较好用preference：偏好设置，实质也是plistNSKeyedArchiver：归档，可以存储对象sqlite：数据库，经常使用第三方来操作，也就是fmdbcoreData:也是数据库储存，苹果官方的 NSCache优于NSDictionary的几点 1.nscache 是可以自动释放内存的。2.nscache是线程安全的，我们可以在不同的线程中添加，删除和查询缓存中的对象。3.一个缓存对象不会拷贝key对象。 Block block：本质就是oc对象代码区，堆区、栈区（ARC情况下会自动拷贝到堆区，因此ARC下只能有两个地方：代码区、堆区）代码区：不访问栈区的变量（如局部变量），且不访问堆区的变量（alloc创建的对象），此时block存放在代码区堆区：访问了处于栈区的变量，或者堆区的变量，此时block存放在堆区。–需要注意实际是放在栈区，在ARC情况下会自动拷贝到堆区，如果不是ARC则存放在栈区，所在函数执行完毕就回释放，想再外面调用需要用copy指向它，这样就拷贝到了堆区，strong属性不会拷贝、会造成野指针错区 为什么在默认情况下无法修改被block捕获的变量？ __block都做了什么？默认情况下，block里面的变量，拷贝进去的是变量的值，而不是指向变量的内存的指针。当使用__block修饰后的变量，拷贝到block里面的就是指向变量的指针，所以我们就可以修改变量的值 Runtimeobjc在向一个对象发送消息,发生了什么 根据对象的isa指针找到类对象id，在查询类对象里面的methodLists方法函数列表，如果没有找到到，在沿着superClass,寻找父类，再在父类methodLists方法列表里面查询，最终找到SEL,根据id和SEL确认IMP（指针函数）,在发送消息 .什么时候会报unrecognized selector错误？iOS有哪些机制来避免走到这一步？能否向编译后得到的类中增加实例变量？能否向运行时创建的类中添加实例变量？为什么1.不能向编译后得到的类增加实例变量2.能向运行时创建的类中添加实例变量 runtime如何实现weak变量的自动置nilruntime 对注册的类， 会进行布局，对于 weak 对象会放入一个 hash 表中。用 weak 指向的对象内存地址作为 key，当此对象的引用计数为0的时候会 dealloc，假如 weak 指向的对象内存地址是a，那么就会以a为键， 在这个 weak 表中搜索，找到所有以a为键的 weak 对象，从而设置为 nil]]></content>
+    <title><![CDATA[iOS-Tool-FastLane自动化发布工具+上传Bugly]]></title>
+    <url>%2F2017%2F11%2F23%2FOC%2FFoundation%2FiOS-Tool-FastLane%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8F%91%E5%B8%83%E5%B7%A5%E5%85%B7%2B%E4%B8%8A%E4%BC%A0Bugly%2F</url>
+    <content type="text"><![CDATA[打包的流程 修改测试版本号 修改Build版本号 执行Archive 选择Adhoc导出IPA安装包文件 上传Bugly测试平台 分享测试链接二维码FastlaneFastlane本身包含两大模块，内核部分+ActionActionAction是Fastlane自动化流程中的最小执行单元，直观上来讲就是Fastfile脚本中的一个个命令，比如：git_pull，deliver，pod_install等等，而这些命令背后都对应其实是一个用Ruby编写的脚本 Fastlane 是一套用 Ruby 编写的 iOS 命令行工具集（后来也支持了 Android），主要组件包括： match / cert / sigh 协助管理代码签名 pem 自动生成 APNs 证书 scan 自动化测试 gym 自动化编译并打包生成签名的 .ipa 文件 snapshot / frameit 协助处理 iOS 屏幕快照 pilot 上传和管理 TestFlight deliver 将应用及其它信息上传到 App Store 而正是这些颗粒度极小的Action，根据自己需求组合成一个自动化的链条 安装 首先确保Xcode命令行工具是最新版本的 $ xcode-select --install 安装Fastlane: $ sudo gem install fastlane -NV 找到工程文件目录下执行 $ fastlane init 在执行“Your Apple ID” 这一步输入苹果开发者账号，fastlane 会自动获取工程文件名，目录等其他数据。这一步“Please confirm the above values”，确认信息，没问题则输入 y。然后，fastlane 会进行一系列的初始化操作，包括下载 App Store 上的元数据和截屏文件。等待初始化完成之后，工程目录下就多了一个 fastlane目录： $ cd fastlane &amp;&amp; lsAppfile Fastfile metadata report.xmlDeliverfile README.md screenshots 文件目录 metadata目录下存放整个元数据文件，包括关键词、版本更新日志、图标等. screenshots目录下存放应用截图 Appfile文件记录App的 bundle ID、Apple ID、Team ID三种信息. Fastfile脚本的核心执行文件.有几个默认的选项，可直接使用. report文件时每次执行fastlane时生成报告 安装fastlane成功后，首先拆解我们需要自动化的两个流程: 自动打包成Adhoc的安装包ipa文件 通过fastlane自动上传到bugly 自动化打包 自动化打包使用最多就是Fastlane中gym这个Action, 转为打包而生, 安装gym这个组件: $ sudo gem install gym cd项目根目录, 创建自动打包脚本: $ vim gym.sh 输入脚本内容: #!/bin/bash#计时SECONDS=0#假设脚本放置在与项目相同的路径下project_path=$(pwd)#取当前时间字符串添加到文件结尾now=$(date +"%Y_%m_%d_%H_%M_%S")#指定项目的scheme名称scheme="Xitu"#指定要打包的配置名configuration="Adhoc"#指定打包所使用的输出方式，目前支持app-store, package, ad-hoc, enterprise, development, 和developer-id，即xcodebuild的method参数export_method='ad-hoc'#指定项目地址workspace_path="$project_path/Xitu.xcworkspace"#指定输出路径output_path="project_path/APP"#指定输出归档文件地址archive_path="$output_path/Xitu$&#123;now&#125;.xcarchive"#指定输出ipa地址ipa_path="$output_path/Xitu$&#123;now&#125;.ipa"#指定输出ipa名称ipa_name="Xitu$&#123;now&#125;.ipa"#获取执行命令时的commit messagecommit_msg="$1"#输出设定的变量值echo "===workspace path: $&#123;workspace_path&#125;==="echo "===archive path: $&#123;archive_path&#125;==="echo "===ipa path: $&#123;ipa_path&#125;==="echo "===export method: $&#123;export_method&#125;==="echo "===commit msg: $1==="#先清空前一次buildgym --workspace $&#123;workspace_path&#125; --scheme $&#123;scheme&#125; --clean --configuration $&#123;configuration&#125; --archive_path $&#123;archive_path&#125; --export_method $&#123;export_method&#125; --output_directory $&#123;output_path&#125; --output_name $&#123;ipa_name&#125;#输出总用时echo "===Finished. Total time: $&#123;SECONDS&#125;s===" 把如上脚本中Xitu改成你的项目名称即可. 为脚本执行提升权限 $ chmod +x gym.sh 执行一下脚本看一下打包效果: $ ./gym.sh 经过572s，Adhoc版本的ipa文件打包成功，我们在项目根目录下找到App目录： =========================================== #上传Bugly fastlane中定义action$ fastlane new_action 这时命令行会要求你输入自定义action名字，直接以bugly上传文件命名 $ upload_app_to_bugly wei wan]]></content>
+      <categories>
+        <category>iOS</category>
+        <category>Tool</category>
+        <category>FastLane</category>
+      </categories>
   </entry>
   <entry>
     <title><![CDATA[OC/Function功能类/App配置/Bug管理工具]]></title>
@@ -3123,6 +3136,16 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[OC/Function功能类/App配置/配置启动图]]></title>
+    <url>%2F2017%2F11%2F20%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E9%85%8D%E7%BD%AE%2F%E9%85%8D%E7%BD%AE%E5%90%AF%E5%8A%A8%E5%9B%BE%2F</url>
+    <content type="text"><![CDATA[https://www.cnblogs.com/xiu619544553/p/5348678.html]]></content>
+      <categories>
+        <category>OC</category>
+        <category>Function功能类</category>
+        <category>App配置</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[OC/Function功能类/App配置/检查项目是否使用IDFA]]></title>
     <url>%2F2017%2F11%2F20%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E9%85%8D%E7%BD%AE%2F%E6%A3%80%E6%9F%A5%E9%A1%B9%E7%9B%AE%E6%98%AF%E5%90%A6%E4%BD%BF%E7%94%A8IDFA%2F</url>
     <content type="text"><![CDATA[http://blog.csdn.net/chelongfei/article/details/51495862]]></content>
@@ -3136,16 +3159,6 @@
         <tag>Function功能类</tag>
         <tag>App配置</tag>
       </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[OC/Function功能类/App配置/配置启动图]]></title>
-    <url>%2F2017%2F11%2F20%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E9%85%8D%E7%BD%AE%2F%E9%85%8D%E7%BD%AE%E5%90%AF%E5%8A%A8%E5%9B%BE%2F</url>
-    <content type="text"><![CDATA[https://www.cnblogs.com/xiu619544553/p/5348678.html]]></content>
-      <categories>
-        <category>OC</category>
-        <category>Function功能类</category>
-        <category>App配置</category>
-      </categories>
   </entry>
   <entry>
     <title><![CDATA[OC -Lib-JSBadgeView数字角标]]></title>
@@ -3254,6 +3267,15 @@
       </categories>
   </entry>
   <entry>
+    <title><![CDATA[iOS]]></title>
+    <url>%2F2016%2F11%2F23%2FOC%2FFoundation%2FiOS%2F</url>
+    <content type="text"><![CDATA[iOS多线程的锁]]></content>
+      <categories>
+        <category>iOS</category>
+        <category>Refer</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[OC/Foundation/Runtime实现iOS序列化与反序列化]]></title>
     <url>%2F2016%2F11%2F23%2FOC%2FFoundation%2FSerialization%E5%BA%8F%E5%88%97%E5%8C%96%2FRuntime%E5%AE%9E%E7%8E%B0iOS%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%2F</url>
     <content type="text"><![CDATA[https://www.jianshu.com/p/fed1dcb1ac9f https://blog.csdn.net/longlongValue/article/details/81060583]]></content>
@@ -3261,15 +3283,6 @@
         <category>OC</category>
         <category>Foundation</category>
         <category>Serialization</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[iOS]]></title>
-    <url>%2F2016%2F11%2F23%2FOC%2FFoundation%2FiOS%2F</url>
-    <content type="text"><![CDATA[iOS多线程的锁]]></content>
-      <categories>
-        <category>iOS</category>
-        <category>Refer</category>
       </categories>
   </entry>
   <entry>
