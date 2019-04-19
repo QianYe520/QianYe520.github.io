@@ -641,7 +641,7 @@ subscribe是订阅sequence发出的事件，比如next事件，error事件等
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Observable&Observer/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Traits-Single/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -660,7 +660,7 @@ subscribe是订阅sequence发出的事件，比如next事件，error事件等
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Observable&Observer/" itemprop="url">RxSwift-Grammar-Observable可观察序列&Observer观察者</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Traits-Single/" itemprop="url">RxSwift-Grammar-特征序列Traits-Single</a></h1>
         
 
         <div class="post-meta">
@@ -745,18 +745,19 @@ subscribe是订阅sequence发出的事件，比如next事件，error事件等
       
         
           
-          Observable可观察序列  和 Observer观察者实质
-Observer (观察者)订阅一个可观察序列 Observable(事件源)每一个Observable的实例都是一个序列观察者 对 Observable 发射的数据或数据序列作出响应
-
-举例
-Button 的点击这个情景
+          Single基本介绍
+Single 是 Observable 的另外一个版本但它不像 Observable 可以发出多个元素，它要么只能发出一个元素，要么产生一个 error 事件
 
 
-把用户
+发出一个元素，或一个 error 事件
+不会共享状态变化
+
+应用场景
+Single 比较常见的例子就是执行 HTT
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Observable&Observer/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Traits-Single/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2032,7 +2033,7 @@ Swift我们用Alamofire来做网络库.而Moya在Alamofire的基础上又封装�
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">126</span>
+                  <span class="site-state-item-count">127</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
