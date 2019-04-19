@@ -311,7 +311,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Traits-Single/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Observable&Observer/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -330,7 +330,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Traits-Single/" itemprop="url">RxSwift-Grammar-特征序列Traits-Single</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Observable&Observer/" itemprop="url">RxSwift-Grammar-Observable可观察序列&Observer观察者</a></h1>
         
 
         <div class="post-meta">
@@ -415,19 +415,18 @@
       
         
           
-          Single基本介绍
-Single 是 Observable 的另外一个版本但它不像 Observable 可以发出多个元素，它要么只能发出一个元素，要么产生一个 error 事件
+          Observable可观察序列  和 Observer观察者实质
+Observer (观察者)订阅一个可观察序列 Observable(事件源)每一个Observable的实例都是一个序列观察者 对 Observable 发射的数据或数据序列作出响应
+
+举例
+Button 的点击这个情景
 
 
-发出一个元素，或一个 error 事件
-不会共享状态变化
-
-应用场景
-Single 比较常见的例子就是执行 HTT
+把用户
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Traits-Single/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Observable&Observer/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -480,7 +479,7 @@ Single 比较常见的例子就是执行 HTT
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Dispose和DisposeBag/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Driver/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -499,7 +498,7 @@ Single 比较常见的例子就是执行 HTT
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Dispose和DisposeBag/" itemprop="url">RxSwift-Grammar-Dispose和DisposeBag</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Driver/" itemprop="url">RxSwift-Grammar-Driver</a></h1>
         
 
         <div class="post-meta">
@@ -584,14 +583,14 @@ Single 比较常见的例子就是执行 HTT
       
         
           
-          Dispose 和 DisposeBag当监听一个sequence的时候，有消息事件来了，做某些事情。但是这个sequence不再发送消息事件了，那么我们的监听也就没有什么存在的价值了，所以我们需要释放我们这些监听资源，其实也就是内存资源释放
-##手动调用释放方式(一般不适用这种方式)
+          Driver
+官方的例子的场景大概就是，根据一个输入框的关键字，来请求数据，然后接结果绑定到另一个Label,和TableView中首先创建一个可监听序列results;将results绑定到resultCount.rx.text上;将results绑定到resultsTableView上.
 
-创建一个s
+//
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Dispose和DisposeBag/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Driver/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
