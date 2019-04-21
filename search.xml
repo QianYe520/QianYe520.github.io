@@ -37,16 +37,6 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[OC/Foundation/UITableview基本设置]]></title>
-    <url>%2F2019%2F04%2F06%2FOC%2FFoundation%2FUITableview%2FUITableview%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE%2F</url>
-    <content type="text"><![CDATA[刷新时界面异常移动现象 在appdelegate.m或者当前tableView.m文件中 if (@available(iOS 11.0, *)) &#123;UITableView.appearance.estimatedRowHeight = 0;UITableView.appearance.estimatedSectionFooterHeight = 0;UITableView.appearance.estimatedSectionHeaderHeight = 0;&#125;]]></content>
-      <categories>
-        <category>OC</category>
-        <category>Foundation</category>
-        <category>UITableView</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[OC/Foundation/WKWebView加载本地html文件]]></title>
     <url>%2F2019%2F04%2F06%2FOC%2FFoundation%2FWKWebView%2FWKWebView%2F</url>
     <content type="text"><![CDATA[WKWebView加载本地html文件#import &quot;ViewController.h&quot;#import &lt;WebKit/WebKit.h&gt;@interface ViewController ()@end@implementation ViewController- (void)viewDidLoad &#123; [super viewDidLoad]; WKWebView *webview = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)]; [self.view addSubview:webview]; //获取bundlePath 路径 NSString *bundlePath = [[NSBundle mainBundle] bundlePath]; //获取本地html目录 basePath NSString *basePath = [NSString stringWithFormat: @&quot;%@/dist&quot;, bundlePath]; //获取本地html目录 baseUrl NSURL *baseUrl = [NSURL fileURLWithPath: basePath isDirectory: YES]; NSLog(@&quot;%@&quot;, baseUrl); //html 路径 NSString *indexPath = [NSString stringWithFormat: @&quot;%@/index.html&quot;, basePath]; //html 文件中内容 NSString *indexContent = [NSString stringWithContentsOfFile: indexPath encoding: NSUTF8StringEncoding error:nil]; //显示内容 [webview loadHTMLString: indexContent baseURL: baseUrl]; &#125;@end]]></content>
@@ -54,6 +44,16 @@
         <category>OC</category>
         <category>Foundation</category>
         <category>WKWebView</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[OC/Foundation/UITableview基本设置]]></title>
+    <url>%2F2019%2F04%2F06%2FOC%2FFoundation%2FUITableview%2FUITableview%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[刷新时界面异常移动现象 在appdelegate.m或者当前tableView.m文件中 if (@available(iOS 11.0, *)) &#123;UITableView.appearance.estimatedRowHeight = 0;UITableView.appearance.estimatedSectionFooterHeight = 0;UITableView.appearance.estimatedSectionHeaderHeight = 0;&#125;]]></content>
+      <categories>
+        <category>OC</category>
+        <category>Foundation</category>
+        <category>UITableView</category>
       </categories>
   </entry>
   <entry>
@@ -112,13 +112,21 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[OC/Foundation功能类/App跳转相关/App跳转设置]]></title>
-    <url>%2F2019%2F04%2F02%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E8%B7%B3%E8%BD%AC%E7%9B%B8%E5%85%B3%2FApp%E8%B7%B3%E8%BD%AC%E8%AE%BE%E7%BD%AE%2F</url>
-    <content type="text"><![CDATA[①②③④⑤⑥⑦⑧ iOS10之后不支持，在网上看见一个方法跳到设置里-本应用开启蜂窝数据或WiFi的方法 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];iOS10之前，请添加一个URL schemes参数，为：prefs。NSString *str;str = @"https://www.baidu.com";//App跳转到Safari浏览此网页//str = @"https://itunes.apple.com/cn/app/...";//这个是App在iTunes的地址，能够跳转到App在AppStore的界面//str = @"taboo://";跳转到淘宝//str = @"prefs:root=Bluetooth";//跳转到蓝牙设置界面//str = @"prefs:root=CASTLE";//跳转到iCloud设置界面[[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]]; 跳到系统设置里的各种设置界面 跳到这些界面的参数配置：About — prefs:root=General&amp;path=AboutAccessibility — prefs:root=General&amp;path=ACCESSIBILITYAirplane Mode On — prefs:root=AIRPLANE_MODEAuto-Lock — prefs:root=General&amp;path=AUTOLOCKBrightness — prefs:root=BrightnessBluetooth — prefs:root=General&amp;path=BluetoothDate &amp; Time — prefs:root=General&amp;path=DATE_AND_TIMEFaceTime — prefs:root=FACETIMEGeneral — prefs:root=GeneralKeyboard — prefs:root=General&amp;path=KeyboardiCloud — prefs:root=CASTLEiCloud Storage &amp; Backup — prefs:root=CASTLE&amp;path=STORAGE_AND_BACKUPInternational — prefs:root=General&amp;path=INTERNATIONALLocation Services — prefs:root=LOCATION_SERVICESMusic — prefs:root=MUSICMusic Equalizer — prefs:root=MUSIC&amp;path=EQMusic Volume Limit — prefs:root=MUSIC&amp;path=VolumeLimitNetwork — prefs:root=General&amp;path=NetworkNike + iPod — prefs:root=NIKE_PLUS_IPODNotes — prefs:root=NOTESNotification — prefs:root=NOTIFICATIONS_IDPhone — prefs:root=PhonePhotos — prefs:root=PhotosProfile — prefs:root=General&amp;path=ManagedConfigurationListReset — prefs:root=General&amp;path=ResetSafari — prefs:root=SafariSiri — prefs:root=General&amp;path=AssistantSounds — prefs:root=SoundsSoftware Update — prefs:root=General&amp;path=SOFTWARE_UPDATE_LINKStore — prefs:root=STORETwitter — prefs:root=TWITTERUsage — prefs:root=General&amp;path=USAGEVPN — prefs:root=General&amp;path=Network/VPNWallpaper — prefs:root=WallpaperWi-Fi — prefs:root=WIFI]]></content>
+    <title><![CDATA[OC/Foundation功能类/App跳转相关/App升级跳转]]></title>
+    <url>%2F2019%2F04%2F02%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E8%B7%B3%E8%BD%AC%E7%9B%B8%E5%85%B3%2FAPP%E5%8D%87%E7%BA%A7%E8%B7%B3%E8%BD%AC%2F</url>
+    <content type="text"><![CDATA[①②③④⑤⑥⑦⑧ 从app跳转到AppStore方法：- (void)gotoAppStore &#123; NSString * urlStr = [NSString stringWithFormat: @"itms-apps://itunes.apple.com/app/id%@?mt=8",@"1205952707"]; [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];&#125; 获取iOS当前版本号//此获取的版本号对应bundle，打印出来对应为12345这样的数字NSNumber *number = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey];//此获取的版本号对应version，打印出来对应为1.2.3.4.5这样的字符串NSString *string = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]; 获取app在AppStore上的版本号- (void)getVersionForAppStore &#123; AFHTTPSessionManager *manager = [AFHTTPSessionManager manager]; manager.requestSerializer =[AFHTTPRequestSerializer serializer]; manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain",@"application/json",@"text/javascript",nil]; NSString *urlStr = [NSString stringWithFormat:@"http://itunes.apple.com/lookup?id=%@",@"1205952707"]; [manager POST:urlStr parameters:nil constructingBodyWithBlock:^(id&lt;AFMultipartFormData&gt; _Nonnull formData) &#123; &#125; progress:^(NSProgress * _Nonnull uploadProgress) &#123; &#125; success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) &#123; NSArray *array = responseObject[@"results"]; NSDictionary *dic = array[0]; NSString *appStoreVersion = dic[@"version"]; NSLog(@"AppStore上当前app的版本号：%@",appStoreVersion); &#125; failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) &#123; NSLog(@"%@", error); &#125;];&#125; 跳转到App Store- (void)jumpToAppStroe &#123; SKStoreProductViewController *storeProductVC = [[SKStoreProductViewController alloc] init]; storeProductVC.delegate = self; NSDictionary *dic = [NSDictionary dictionaryWithObject:@"1205952707" forKey:SKStoreProductParameterITunesItemIdentifier]; [storeProductVC loadProductWithParameters:dic completionBlock:^(BOOL result, NSError * _Nullable error) &#123; &#125;]; [self presentViewController:storeProductVC animated:YES completion:nil];&#125;]]></content>
       <categories>
         <category>OC</category>
         <category>Function功能类</category>
-        <category>App跳转相关</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[OC/Foundation功能类/App跳转相关/APP跳转App(AppID)]]></title>
+    <url>%2F2019%2F04%2F02%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E8%B7%B3%E8%BD%AC%E7%9B%B8%E5%85%B3%2FAPP%E5%8D%87%E7%BA%A7%E8%B7%B3App%2F</url>
+    <content type="text"><![CDATA[OC/Foundation功能类/App跳转相关/APP跳转App(AppID)①②③④⑤⑥⑦⑧ APP跳转App-AppIDif ([[[UIDevice currentDevice] systemVersion] floatValue] &gt;= 10.0) &#123;[[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr] options:@&#123;&#125; completionHandler:nil];&#125; else &#123;[[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];&#125;]]></content>
+      <categories>
+        <category>OC</category>
+        <category>Function功能类</category>
       </categories>
   </entry>
   <entry>
@@ -132,21 +140,13 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[OC/Foundation功能类/App跳转相关/APP跳转App(AppID)]]></title>
-    <url>%2F2019%2F04%2F02%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E8%B7%B3%E8%BD%AC%E7%9B%B8%E5%85%B3%2FAPP%E5%8D%87%E7%BA%A7%E8%B7%B3App%2F</url>
-    <content type="text"><![CDATA[OC/Foundation功能类/App跳转相关/APP跳转App(AppID)①②③④⑤⑥⑦⑧ APP跳转App-AppIDif ([[[UIDevice currentDevice] systemVersion] floatValue] &gt;= 10.0) &#123;[[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr] options:@&#123;&#125; completionHandler:nil];&#125; else &#123;[[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];&#125;]]></content>
+    <title><![CDATA[OC/Foundation功能类/App跳转相关/App跳转设置]]></title>
+    <url>%2F2019%2F04%2F02%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E8%B7%B3%E8%BD%AC%E7%9B%B8%E5%85%B3%2FApp%E8%B7%B3%E8%BD%AC%E8%AE%BE%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[①②③④⑤⑥⑦⑧ iOS10之后不支持，在网上看见一个方法跳到设置里-本应用开启蜂窝数据或WiFi的方法 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];iOS10之前，请添加一个URL schemes参数，为：prefs。NSString *str;str = @"https://www.baidu.com";//App跳转到Safari浏览此网页//str = @"https://itunes.apple.com/cn/app/...";//这个是App在iTunes的地址，能够跳转到App在AppStore的界面//str = @"taboo://";跳转到淘宝//str = @"prefs:root=Bluetooth";//跳转到蓝牙设置界面//str = @"prefs:root=CASTLE";//跳转到iCloud设置界面[[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]]; 跳到系统设置里的各种设置界面 跳到这些界面的参数配置：About — prefs:root=General&amp;path=AboutAccessibility — prefs:root=General&amp;path=ACCESSIBILITYAirplane Mode On — prefs:root=AIRPLANE_MODEAuto-Lock — prefs:root=General&amp;path=AUTOLOCKBrightness — prefs:root=BrightnessBluetooth — prefs:root=General&amp;path=BluetoothDate &amp; Time — prefs:root=General&amp;path=DATE_AND_TIMEFaceTime — prefs:root=FACETIMEGeneral — prefs:root=GeneralKeyboard — prefs:root=General&amp;path=KeyboardiCloud — prefs:root=CASTLEiCloud Storage &amp; Backup — prefs:root=CASTLE&amp;path=STORAGE_AND_BACKUPInternational — prefs:root=General&amp;path=INTERNATIONALLocation Services — prefs:root=LOCATION_SERVICESMusic — prefs:root=MUSICMusic Equalizer — prefs:root=MUSIC&amp;path=EQMusic Volume Limit — prefs:root=MUSIC&amp;path=VolumeLimitNetwork — prefs:root=General&amp;path=NetworkNike + iPod — prefs:root=NIKE_PLUS_IPODNotes — prefs:root=NOTESNotification — prefs:root=NOTIFICATIONS_IDPhone — prefs:root=PhonePhotos — prefs:root=PhotosProfile — prefs:root=General&amp;path=ManagedConfigurationListReset — prefs:root=General&amp;path=ResetSafari — prefs:root=SafariSiri — prefs:root=General&amp;path=AssistantSounds — prefs:root=SoundsSoftware Update — prefs:root=General&amp;path=SOFTWARE_UPDATE_LINKStore — prefs:root=STORETwitter — prefs:root=TWITTERUsage — prefs:root=General&amp;path=USAGEVPN — prefs:root=General&amp;path=Network/VPNWallpaper — prefs:root=WallpaperWi-Fi — prefs:root=WIFI]]></content>
       <categories>
         <category>OC</category>
         <category>Function功能类</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[OC/Foundation功能类/App跳转相关/App升级跳转]]></title>
-    <url>%2F2019%2F04%2F02%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E8%B7%B3%E8%BD%AC%E7%9B%B8%E5%85%B3%2FAPP%E5%8D%87%E7%BA%A7%E8%B7%B3%E8%BD%AC%2F</url>
-    <content type="text"><![CDATA[①②③④⑤⑥⑦⑧ 从app跳转到AppStore方法：- (void)gotoAppStore &#123; NSString * urlStr = [NSString stringWithFormat: @"itms-apps://itunes.apple.com/app/id%@?mt=8",@"1205952707"]; [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];&#125; 获取iOS当前版本号//此获取的版本号对应bundle，打印出来对应为12345这样的数字NSNumber *number = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey];//此获取的版本号对应version，打印出来对应为1.2.3.4.5这样的字符串NSString *string = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]; 获取app在AppStore上的版本号- (void)getVersionForAppStore &#123; AFHTTPSessionManager *manager = [AFHTTPSessionManager manager]; manager.requestSerializer =[AFHTTPRequestSerializer serializer]; manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain",@"application/json",@"text/javascript",nil]; NSString *urlStr = [NSString stringWithFormat:@"http://itunes.apple.com/lookup?id=%@",@"1205952707"]; [manager POST:urlStr parameters:nil constructingBodyWithBlock:^(id&lt;AFMultipartFormData&gt; _Nonnull formData) &#123; &#125; progress:^(NSProgress * _Nonnull uploadProgress) &#123; &#125; success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) &#123; NSArray *array = responseObject[@"results"]; NSDictionary *dic = array[0]; NSString *appStoreVersion = dic[@"version"]; NSLog(@"AppStore上当前app的版本号：%@",appStoreVersion); &#125; failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) &#123; NSLog(@"%@", error); &#125;];&#125; 跳转到App Store- (void)jumpToAppStroe &#123; SKStoreProductViewController *storeProductVC = [[SKStoreProductViewController alloc] init]; storeProductVC.delegate = self; NSDictionary *dic = [NSDictionary dictionaryWithObject:@"1205952707" forKey:SKStoreProductParameterITunesItemIdentifier]; [storeProductVC loadProductWithParameters:dic completionBlock:^(BOOL result, NSError * _Nullable error) &#123; &#125;]; [self presentViewController:storeProductVC animated:YES completion:nil];&#125;]]></content>
-      <categories>
-        <category>OC</category>
-        <category>Function功能类</category>
+        <category>App跳转相关</category>
       </categories>
   </entry>
   <entry>
@@ -213,9 +213,9 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[OC/Foundation/AVAudioFoundation-AVAssetTrack]]></title>
-    <url>%2F2018%2F11%2F30%2FOC%2FFoundation%2FAVAudioFoundation%2FOC%3AFoundation%3AAVAudioFoundation-AVAssetTrack%2F</url>
-    <content type="text"><![CDATA[AVAssetTrack 为AVAsset的媒体轨道提供轨道级检查界面的对象 检索跟踪信息https://www.jianshu.com/p/26b1aca5d534]]></content>
+    <title><![CDATA[OC/Foundation/AVAudioFoundation-AVAsset]]></title>
+    <url>%2F2018%2F11%2F30%2FOC%2FFoundation%2FAVAudioFoundation%2FOC%3AFoundation%3AAVAudioFoundation-AVAsset%2F</url>
+    <content type="text"><![CDATA[https://www.cnblogs.com/samirchen/category/1022946.html https://www.cnblogs.com/samirchen/p/7073992.html]]></content>
       <categories>
         <category>OC</category>
         <category>Foundation</category>
@@ -228,9 +228,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[OC/Foundation/AVAudioFoundation-AVAsset]]></title>
-    <url>%2F2018%2F11%2F30%2FOC%2FFoundation%2FAVAudioFoundation%2FOC%3AFoundation%3AAVAudioFoundation-AVAsset%2F</url>
-    <content type="text"><![CDATA[https://www.cnblogs.com/samirchen/category/1022946.html https://www.cnblogs.com/samirchen/p/7073992.html]]></content>
+    <title><![CDATA[OC/Foundation/AVAudioFoundation-AVAssetTrack]]></title>
+    <url>%2F2018%2F11%2F30%2FOC%2FFoundation%2FAVAudioFoundation%2FOC%3AFoundation%3AAVAudioFoundation-AVAssetTrack%2F</url>
+    <content type="text"><![CDATA[AVAssetTrack 为AVAsset的媒体轨道提供轨道级检查界面的对象 检索跟踪信息https://www.jianshu.com/p/26b1aca5d534]]></content>
       <categories>
         <category>OC</category>
         <category>Foundation</category>
@@ -285,8 +285,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -313,9 +313,9 @@
         <category>UIKit</category>
       </categories>
       <tags>
+        <tag>Swift</tag>
         <tag>UIKit</tag>
         <tag>RxSwift</tag>
-        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -327,8 +327,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -397,9 +397,9 @@
         <category>UIKit</category>
       </categories>
       <tags>
+        <tag>Swift</tag>
         <tag>UIKit</tag>
         <tag>RxSwift</tag>
-        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -438,9 +438,9 @@
         <category>UIKit</category>
       </categories>
       <tags>
+        <tag>Swift</tag>
         <tag>UIKit</tag>
         <tag>RxSwift</tag>
-        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -452,8 +452,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -465,8 +465,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -478,8 +478,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -491,9 +491,9 @@
         <category>UIKit</category>
       </categories>
       <tags>
+        <tag>Swift</tag>
         <tag>UIKit</tag>
         <tag>RxSwift</tag>
-        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -515,8 +515,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Func</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -547,17 +547,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[RxSwift-Lib-目录]]></title>
-    <url>%2F2018%2F04%2F07%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FLib%2FRxSwift-Lib-%E7%9B%AE%E5%BD%95%2F</url>
-    <content type="text"><![CDATA[Moya-网络封装RxSwift/) Moya]]></content>
-      <categories>
-        <category>RxSwift</category>
-      </categories>
-      <tags>
-        <tag>RxSwift</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[RxDataSources-UITableView]]></title>
     <url>%2F2018%2F04%2F07%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FLib%2FRxDataSources-UITableView%2F</url>
     <content type="text"><![CDATA[自带的Section let items = Observable.just([ SectionModel(model:&quot;&quot;, items: [&quot;UILable的用法&quot;,&quot;UIText的用法&quot;, &quot;UIButton的用法&quot;])])创建数据源 let dataSource = RxTableViewSectionedReloadDataSource&lt;SectionModel&lt;String,String&gt;&gt;( configureCell: &#123; (dataSource,tv,indexPath,element) in let cell = tv.dequeueReusableCell(withIdentifier:&quot;Cell&quot;)! cell.textLabel?.text = &quot;\(indexPath.row):\(element)&quot; return cell &#125; ) //绑定单元格数据 items.bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: disposeBag) 方式2：自定义Section自定义Sectionstruct MySecion &#123; var header:String var items:[Item]&#125;extension MySecion:AnimatableSectionModelType&#123; typealias Item = String var identity : String&#123; return header &#125; init(original: MySecion,items:[Item]) &#123; self = original self.items = items &#125;&#125; 使用自定义Sectionlet sections = Observable.just([ MySecion(header: &quot;&quot;, items: [ &quot;AAAAA&quot;, &quot;BBBB&quot;, &quot;CCCCCC&quot;, ]) ])let datasource = RxTableViewSectionedAnimatedDataSource&lt;MySecion&gt;( //设置cell configureCell: &#123; ds,tv,ip,im in let cell = tv.dequeueReusableCell(withIdentifier: &quot;Cell&quot;) ?? UITableViewCell(style: .default, reuseIdentifier: &quot;Cell&quot;) cell.textLabel?.text = &quot;\(ip.row):\(im)&quot; return cell&#125; )//绑定cell的数据sections.bind(to: tableView.rx.items(dataSource: datasource)).disposed(by: disposeBag)]]></content>
@@ -566,9 +555,20 @@
         <category>Lib</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Lib</tag>
+        <tag>RxSwift</tag>
         <tag>RxDataSources</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RxSwift-Lib-目录]]></title>
+    <url>%2F2018%2F04%2F07%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FLib%2FRxSwift-Lib-%E7%9B%AE%E5%BD%95%2F</url>
+    <content type="text"><![CDATA[Moya-网络封装RxSwift/) Moya]]></content>
+      <categories>
+        <category>RxSwift</category>
+      </categories>
+      <tags>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -593,8 +593,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -606,21 +606,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RxSwift-Grammar-特征序列Traits-Completable]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FTraits-Completable%2F</url>
-    <content type="text"><![CDATA[Completable基本介绍 Completable 是 Observable 的另外一个版本不像 Observable 可以发出多个元素，它要么只能产生一个 completed 事件，要么产生一个 error 事件 不会发出任何元素 只会发出一个 completed 事件或者一个 error 事件 不会共享状态变化 应用场景 Completable 和 Observable 有点类似适用于那些只关心任务是否完成，而不需要在意任务返回值的情况比如：在程序退出时将一些数据缓存到本地文件，供下次启动时加载。像这种情况我们只关心缓存是否成功 CompletableEvent 为方便使用，RxSwift 为 Completable 订阅提供了一个枚举（CompletableEvent）： .completed：用于产生完成事件 .error：用于产生一个错误 public enum CompletableEvent &#123; case error(Swift.Error) case completed&#125; 使用样例 创建 Completable 和创建 Observable 非常相似下面代码我们使用 Completable 来模拟一个数据缓存本地的操作 //将数据缓存到本地func cacheLocally() -&gt; Completable &#123; return Completable.create &#123; completable in //将数据缓存到本地（这里掠过具体的业务代码，随机成功或失败） let success = (arc4random() % 2 == 0) guard success else &#123; completable(.error(CacheError.failedCaching)) return Disposables.create &#123;&#125; &#125; completable(.completed) return Disposables.create &#123;&#125; &#125;&#125; //与缓存相关的错误类型enum CacheError: Error &#123; case failedCaching&#125; 接着我们可以使用如下方式使用这个 Completable： cacheLocally() .subscribe &#123; completable in switch completable &#123; case .completed: print("保存成功!") case .error(let error): print("保存失败: \(error.localizedDescription)") &#125; &#125; .disposed(by: disposeBag) 也可以使用 subscribe(onCompleted:onError:) 这种方式： cacheLocally() .subscribe(onCompleted: &#123; print("保存成功!") &#125;, onError: &#123; error in print("保存失败: \(error.localizedDescription)") &#125;) .disposed(by: disposeBag)]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
         <tag>RxSwift</tag>
-        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -632,60 +619,21 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[RxSwift-Grammar-observeOn()和subscribeOn()]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FobserveOn()%E5%92%8CsubscribeOn()%2F</url>
-    <content type="text"><![CDATA[observeOn()和subscribeOn() subscribeOn() 设置起点在哪个线程 observeOn() 置了后续工作在哪个线程 1)所有动作都发生在当前的默认线程2)observeOn()转换线程到主线程，下面所有的操作都在主线程3)subscribeOn()规定动作一开始不是发生在默认线程，而是在OtherScheduler了)-如果之前没有调用observeOn()，那么这边会在OtherScheduler发生，但是我们前面调用了observeOn()，所以这个动作会在主线程中调用subscribeOn()只是影响事件链开始默认的线程，而observeOn()规定了下一步动作发生在哪个线程中。 someObservable .doOneThing() //1 .observeOn(MainRouteScheduler.instance) // 2 .subscribeOn(OtherScheduler.instance) // 3 .subscribeNext &#123; // 4 ...... &#125; .addDisposableTo(disposeBag)]]></content>
+    <title><![CDATA[RxSwift-Grammar-特征序列Traits-Completable]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FTraits-Completable%2F</url>
+    <content type="text"><![CDATA[Completable基本介绍 Completable 是 Observable 的另外一个版本不像 Observable 可以发出多个元素，它要么只能产生一个 completed 事件，要么产生一个 error 事件 不会发出任何元素 只会发出一个 completed 事件或者一个 error 事件 不会共享状态变化 应用场景 Completable 和 Observable 有点类似适用于那些只关心任务是否完成，而不需要在意任务返回值的情况比如：在程序退出时将一些数据缓存到本地文件，供下次启动时加载。像这种情况我们只关心缓存是否成功 CompletableEvent 为方便使用，RxSwift 为 Completable 订阅提供了一个枚举（CompletableEvent）： .completed：用于产生完成事件 .error：用于产生一个错误 public enum CompletableEvent &#123; case error(Swift.Error) case completed&#125; 使用样例 创建 Completable 和创建 Observable 非常相似下面代码我们使用 Completable 来模拟一个数据缓存本地的操作 //将数据缓存到本地func cacheLocally() -&gt; Completable &#123; return Completable.create &#123; completable in //将数据缓存到本地（这里掠过具体的业务代码，随机成功或失败） let success = (arc4random() % 2 == 0) guard success else &#123; completable(.error(CacheError.failedCaching)) return Disposables.create &#123;&#125; &#125; completable(.completed) return Disposables.create &#123;&#125; &#125;&#125; //与缓存相关的错误类型enum CacheError: Error &#123; case failedCaching&#125; 接着我们可以使用如下方式使用这个 Completable： cacheLocally() .subscribe &#123; completable in switch completable &#123; case .completed: print("保存成功!") case .error(let error): print("保存失败: \(error.localizedDescription)") &#125; &#125; .disposed(by: disposeBag) 也可以使用 subscribe(onCompleted:onError:) 这种方式： cacheLocally() .subscribe(onCompleted: &#123; print("保存成功!") &#125;, onError: &#123; error in print("保存失败: \(error.localizedDescription)") &#125;) .disposed(by: disposeBag)]]></content>
       <categories>
         <category>RxSwift</category>
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RxSwift-Grammar-Driver]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FDriver%2F</url>
-    <content type="text"><![CDATA[Driver 官方的例子的场景大概就是，根据一个输入框的关键字，来请求数据，然后接结果绑定到另一个Label,和TableView中首先创建一个可监听序列results;将results绑定到resultCount.rx.text上;将results绑定到resultsTableView上. //throttle过滤操作let results = query.rx.text.throttle(0.3,scheduler: MainScheduler.instance)//在主线程中操作，如果0.3秒内值发生多次改变，取最后一次的值 .flatMapLatest // flatMapLatest只会接收最新的value事件 &#123; query in //筛选出空值, 拍平序列，并取得最后一个有效的值 fetchAutoCompleteItems(query) &#125; results.map &#123; "\($0.count)" &#125; //得出结果之后，取出结果的数量 .bindTo(resultCount.rx.text) //取出结果的数量，绑定到resultCount上面显示出来 .addDisposableTo(disposeBag) //释放资源 results.bindTo(resultsTableView.rx.items(cellIdentifier: "Cell")) &#123; (_, result, cell) in cell.textLabel?.text = "\(result)" //取出结果，TableView的Cell上面显示出来 &#125; .addDisposableTo(disposeBag) 上面程序会出现下面几个异常： 如果fetchAutoCompleteItems出错，那么它绑定的UI将不再收到任何事件消息； 如果fetchAutoCompleteItems发生在后台线程，那么它绑定的事件也将在后台线程执行，这样更新UI会造成crash； 有两次绑定，fetchAutoCompleteItems就会执行两次 当然针对以上问题，也有解决方案针对第三点，可以使用神器shareReplay(1)保证只执行一次，可以使用observeOn()保证后面所有操作在主线程完成 let results = query.rx.text .throttle(0.3, scheduler: MainScheduler.instance) .flatMapLatest &#123; query in fetchAutoCompleteItems(query).observeOn(MainScheduler.instance) // 将返回结果切换到到主线程上 .catchErrorJustReturn([]) // 如果有问题，错误结果将会得到处理 &#125; .shareReplay(1) // HTTP请求将会得到分享，即两次绑定UI使用同一网络请求 results .map &#123; "\($0.count)" &#125; .bindTo(resultCount.rx.text) .addDisposableTo(disposeBag) results .bindTo(resultTableView.rx.items(cellIdentifier: "Cell")) &#123; (_, result, cell) in cell.textLabel?.text = "\(result)" &#125; .addDisposableTo(disposeBag) 用Driver来解决 let results = query.rx .text .asDriver() .throttle(0.3, scheduler: MainScheduler.instance) .flatMapLatest &#123; query in fetchAutoCompleteItems(query).asDriver(onErrorJustReturn: []) //当遇见错误需要返回什么 &#125; //不需要添加shareReplay(1) results.map &#123; "\($0.count)" &#125; .drive(resultCount.rx.text) //和bingTo()功能一样 .addDisposableTo(disposeBag) results.drive(resultTableView.rx.items(cellIdentifier: "Cell")) &#123; (_, result, cell) in cell.textLabel?.text = "\(result)" &#125; .addDisposableTo(disposeBag) .asDriver 将‘ControlProperty’ 转换成了 ‘Driver’ query.rx_text.asDriver() ‘Driver’拥有’ControlProperty’的所有属性，同时又增加了很多属性 任何 ‘Observable’ 序列都可以被转换为’Driver’, 只要他满足一下三点： 1.不能出错 2.观察主线程 3.共享资源 如何确保这些属性都满足呢？只需要使用 ‘asDriver(onErrorJustReturn: [])’ ,相当于如下代码: let safeSequence = xs .observeOn(MainScheduler.instance) // 切换到主线程 .catchErrorJustReturn(onErrorJustReturn) // 不能出错 .shareReplayLatestWhileConnected // 共享资源 return Driver(raw: safeSequence) // 返回 最后一点要说明的是 ‘driver’ 可以代替’bindTo’,drive 只能在 Driver 中使用 drive方法只能在Driver序列中使用，Driver有以下特点： Driver序列不允许发出error， Driver序列的监听只会在主线程中。 所以Driver是专为UI绑定量身打造的东西。以下情况你可以使用Driver替换BindTo: 不能发出error; 在主线程中监听; 共享事件流;]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
         <tag>RxSwift</tag>
-        <tag>Grammar</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RxSwift-Grammar-Observable可观察序列&Observer观察者]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FObservable%26Observer%2F</url>
-    <content type="text"><![CDATA[Observable可观察序列 和 Observer观察者实质 Observer (观察者)订阅一个可观察序列 Observable(事件源)每一个Observable的实例都是一个序列观察者 对 Observable 发射的数据或数据序列作出响应 举例 Button 的点击这个情景 把用户一次又一次的点击 Button 看做是序列(sequence) 通过调用 subscribe 来订阅这个点击事件 每次点击都会发射一个数据 作为订阅者的 subscribe 收到这个这个数据进行某些响应 Rx 的基本概念，有Observer观察者观察一个序列sequence，每当序列发射值的时候，观察者根据序列做一些事情Observable序列相比于Swift序列的关键优势点在于它能够异步地接收元素 Observable(ObservableType)等效于Sequence observableType.subscribe(_:)方法等效于Sequence.makeIterator() ObservableType.subscribe(_:)接收一个观察者ObserverType参数,它将被订阅自动接收由可观察到的序列事件和元素，而不是在返回的生成器上手动调用next() 如果一个Observable发出一个next事件(Event.next(Element)),它还能够继续发出更多的事件但是，如果一个Observable发出一个error事件(Event.error(ErrorType))或者一个completed事件(Event.completed)，那么这个Observable序列就不能给订阅者发送其他的事件 可观察序列 (Observables aka Sequences) 可观察序列 存在三种情况:①发射数据(Next)②遇到问题(Error)③发射完成(Completed) 有限序列 比如，有这样一个序列 --1--2--3--4--5--6--| ，它发送了按顺序发送了 1 2 3 4 5 6 这些值后，就终止了，就是发射完成。这是一个有限序列也有可能因为某些特殊的情况，遇到某些错误（比如数据解析错误），--1--2--3--4--X ，因为解析错误意外终止 无限序列 比如用户点击 Button ，这个就属于无限序列 ---tap-tap-------tap---&gt; 当然这里的无限不是真的无限，是不确定用户什么时候会点击，不确定是否会继续点击。所以这是一个无限序列，每当用户点击，序列就发射一个值 将以上的三种情况统概括为事件 enum Event&lt;Element&gt; &#123; case Next(Element) // 序列的下一个元素 case Error(ErrorType) // 序列因为某些错误终止 case Completed // 正常的序列技术&#125; 观察者 (Observer) 观察者需要一个订阅序列的功能 class Observable&lt;Element&gt; &#123;func subscribe(observer: Observer&lt;Element&gt;) -&gt; Disposable&#125;protocol ObserverType &#123; func on(event: Event&lt;Element&gt;)&#125; 通过序列的这个 subscribe 来订阅序列这里就应该提到序列的“冷”“热”问题 冷：只有当有观察者订阅这个序列时，序列才发射值 热：序列创建时就开始发射值 整体上就是这样的一个关系，序列发射值，观察者订阅序列，收到值，进行处理 Obserable 创建被观察者其实就是创建一个Obserable的sequence，就是创建一个流，然后就可以被订阅subscribe，这样被观察者发出时间消失，就能做相应的处理]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
-        <tag>RxSwift</tag>
-        <tag>Grammar</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RxSwift-Grammar-map和flatMap]]></title>
-    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2Fmap%E5%92%8CflatMap%2F</url>
-    <content type="text"><![CDATA[map和flatMap map函数，接收一个R类型的序列，返回一个R类型的序列，还是原来的序列。 public func map&lt;R&gt;(_ transform: @escaping (Self.E) throws -&gt; R) -&gt; RxSwift.Observable&lt;R&gt; flatMap函数，接收一个O类型的序列，返回一个O.E类型的序列，也就是有原来序列里元素组成的新序列。 public func flatMap&lt;O: ObservableConvertibleType&gt;(_ selector: @escaping (E) throws -&gt; O) -&gt; Observable&lt;O.E&gt; 实这里的map和flatMap在swift中的作用是一样的。map函数可以对原有序列里面的事件元素进行改造，返回的还是原来的序列。而flatMap对原有序列中的元素进行改造和处理，每一个元素返回一个新的sequence，然后把每一个元素对应的sequence合并为一个新的sequence序列 let disposeBag = DisposeBag() let observable = Observable.of("1","2","3","4","5").map&#123;$0 + "scott"&#125; observable.subscribe(onNext: &#123;print($0)&#125;).disposed(by: disposeBag)//打印结果：1scott2scott3scott4scott5scott 使用map对序列中每一个元素进行了处理，返回的是一个元素，而使用flatMap需要返回的序列。那么使用map也返回一个序列看看 let test = Observable.of("1", "2", "3", "4", "5") .map &#123; Observable.just($0) &#125; test.subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) // 运行结果:RxSwift.(Just in _BD9B9D4356C4038796FB16D0D54A9F8E)&lt;Swift.String&gt;RxSwift.(Just in _BD9B9D4356C4038796FB16D0D54A9F8E)&lt;Swift.String&gt;RxSwift.(Just in _BD9B9D4356C4038796FB16D0D54A9F8E)&lt;Swift.String&gt;RxSwift.(Just in _BD9B9D4356C4038796FB16D0D54A9F8E)&lt;Swift.String&gt;RxSwift.(Just in _BD9B9D4356C4038796FB16D0D54A9F8E)&lt;Swift.String&gt; 看到结果会打印出每一个序列，下面我们使用merge()方法将这几个序列进行合并: let test = Observable.of("1", "2", "3", "4", "5") .map &#123; Observable.just($0) &#125;.merge() test.subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag)//运行结果: 12345 并为一个新序列后我们就可以正常打印元素了。下面看看使用faltMap()函数干这件事 let test = Observable.of("1", "2", "3", "4", "5") .flatMap &#123; Observable.just($0) &#125; test.subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) //运行结果: 12345 看下对比是不是一样，这样子对比就清晰了吧。 map函数只能返回原来的那一个序列，里面的参数的返回值被当做原来序列中所对应的元素。 flatMap函数返回的是一个新的序列，将原来元素进行了处理，返回这些处理后的元素组成的新序列 map函数 + 合并函数 = flatMap函数 flatMap函数在实际应用中有很多地方需要用到，比如网络请求，网络请求可能会发生错误，我们需要对这个请求过程进行监听，然后处理错误。只要继续他返回的是一个新的序列]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
-        <tag>RxSwift</tag>
-        <tag>Grammar</tag>
       </tags>
   </entry>
   <entry>
@@ -697,8 +645,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -710,8 +658,60 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RxSwift-Grammar-map和flatMap]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2Fmap%E5%92%8CflatMap%2F</url>
+    <content type="text"><![CDATA[map和flatMap map函数，接收一个R类型的序列，返回一个R类型的序列，还是原来的序列。 public func map&lt;R&gt;(_ transform: @escaping (Self.E) throws -&gt; R) -&gt; RxSwift.Observable&lt;R&gt; flatMap函数，接收一个O类型的序列，返回一个O.E类型的序列，也就是有原来序列里元素组成的新序列。 public func flatMap&lt;O: ObservableConvertibleType&gt;(_ selector: @escaping (E) throws -&gt; O) -&gt; Observable&lt;O.E&gt; 实这里的map和flatMap在swift中的作用是一样的。map函数可以对原有序列里面的事件元素进行改造，返回的还是原来的序列。而flatMap对原有序列中的元素进行改造和处理，每一个元素返回一个新的sequence，然后把每一个元素对应的sequence合并为一个新的sequence序列 let disposeBag = DisposeBag() let observable = Observable.of("1","2","3","4","5").map&#123;$0 + "scott"&#125; observable.subscribe(onNext: &#123;print($0)&#125;).disposed(by: disposeBag)//打印结果：1scott2scott3scott4scott5scott 使用map对序列中每一个元素进行了处理，返回的是一个元素，而使用flatMap需要返回的序列。那么使用map也返回一个序列看看 let test = Observable.of("1", "2", "3", "4", "5") .map &#123; Observable.just($0) &#125; test.subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) // 运行结果:RxSwift.(Just in _BD9B9D4356C4038796FB16D0D54A9F8E)&lt;Swift.String&gt;RxSwift.(Just in _BD9B9D4356C4038796FB16D0D54A9F8E)&lt;Swift.String&gt;RxSwift.(Just in _BD9B9D4356C4038796FB16D0D54A9F8E)&lt;Swift.String&gt;RxSwift.(Just in _BD9B9D4356C4038796FB16D0D54A9F8E)&lt;Swift.String&gt;RxSwift.(Just in _BD9B9D4356C4038796FB16D0D54A9F8E)&lt;Swift.String&gt; 看到结果会打印出每一个序列，下面我们使用merge()方法将这几个序列进行合并: let test = Observable.of("1", "2", "3", "4", "5") .map &#123; Observable.just($0) &#125;.merge() test.subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag)//运行结果: 12345 并为一个新序列后我们就可以正常打印元素了。下面看看使用faltMap()函数干这件事 let test = Observable.of("1", "2", "3", "4", "5") .flatMap &#123; Observable.just($0) &#125; test.subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) //运行结果: 12345 看下对比是不是一样，这样子对比就清晰了吧。 map函数只能返回原来的那一个序列，里面的参数的返回值被当做原来序列中所对应的元素。 flatMap函数返回的是一个新的序列，将原来元素进行了处理，返回这些处理后的元素组成的新序列 map函数 + 合并函数 = flatMap函数 flatMap函数在实际应用中有很多地方需要用到，比如网络请求，网络请求可能会发生错误，我们需要对这个请求过程进行监听，然后处理错误。只要继续他返回的是一个新的序列]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>Grammar</tag>
+        <tag>RxSwift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RxSwift-Grammar-Driver]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FDriver%2F</url>
+    <content type="text"><![CDATA[Driver 官方的例子的场景大概就是，根据一个输入框的关键字，来请求数据，然后接结果绑定到另一个Label,和TableView中首先创建一个可监听序列results;将results绑定到resultCount.rx.text上;将results绑定到resultsTableView上. //throttle过滤操作let results = query.rx.text.throttle(0.3,scheduler: MainScheduler.instance)//在主线程中操作，如果0.3秒内值发生多次改变，取最后一次的值 .flatMapLatest // flatMapLatest只会接收最新的value事件 &#123; query in //筛选出空值, 拍平序列，并取得最后一个有效的值 fetchAutoCompleteItems(query) &#125; results.map &#123; "\($0.count)" &#125; //得出结果之后，取出结果的数量 .bindTo(resultCount.rx.text) //取出结果的数量，绑定到resultCount上面显示出来 .addDisposableTo(disposeBag) //释放资源 results.bindTo(resultsTableView.rx.items(cellIdentifier: "Cell")) &#123; (_, result, cell) in cell.textLabel?.text = "\(result)" //取出结果，TableView的Cell上面显示出来 &#125; .addDisposableTo(disposeBag) 上面程序会出现下面几个异常： 如果fetchAutoCompleteItems出错，那么它绑定的UI将不再收到任何事件消息； 如果fetchAutoCompleteItems发生在后台线程，那么它绑定的事件也将在后台线程执行，这样更新UI会造成crash； 有两次绑定，fetchAutoCompleteItems就会执行两次 当然针对以上问题，也有解决方案针对第三点，可以使用神器shareReplay(1)保证只执行一次，可以使用observeOn()保证后面所有操作在主线程完成 let results = query.rx.text .throttle(0.3, scheduler: MainScheduler.instance) .flatMapLatest &#123; query in fetchAutoCompleteItems(query).observeOn(MainScheduler.instance) // 将返回结果切换到到主线程上 .catchErrorJustReturn([]) // 如果有问题，错误结果将会得到处理 &#125; .shareReplay(1) // HTTP请求将会得到分享，即两次绑定UI使用同一网络请求 results .map &#123; "\($0.count)" &#125; .bindTo(resultCount.rx.text) .addDisposableTo(disposeBag) results .bindTo(resultTableView.rx.items(cellIdentifier: "Cell")) &#123; (_, result, cell) in cell.textLabel?.text = "\(result)" &#125; .addDisposableTo(disposeBag) 用Driver来解决 let results = query.rx .text .asDriver() .throttle(0.3, scheduler: MainScheduler.instance) .flatMapLatest &#123; query in fetchAutoCompleteItems(query).asDriver(onErrorJustReturn: []) //当遇见错误需要返回什么 &#125; //不需要添加shareReplay(1) results.map &#123; "\($0.count)" &#125; .drive(resultCount.rx.text) //和bingTo()功能一样 .addDisposableTo(disposeBag) results.drive(resultTableView.rx.items(cellIdentifier: "Cell")) &#123; (_, result, cell) in cell.textLabel?.text = "\(result)" &#125; .addDisposableTo(disposeBag) .asDriver 将‘ControlProperty’ 转换成了 ‘Driver’ query.rx_text.asDriver() ‘Driver’拥有’ControlProperty’的所有属性，同时又增加了很多属性 任何 ‘Observable’ 序列都可以被转换为’Driver’, 只要他满足一下三点： 1.不能出错 2.观察主线程 3.共享资源 如何确保这些属性都满足呢？只需要使用 ‘asDriver(onErrorJustReturn: [])’ ,相当于如下代码: let safeSequence = xs .observeOn(MainScheduler.instance) // 切换到主线程 .catchErrorJustReturn(onErrorJustReturn) // 不能出错 .shareReplayLatestWhileConnected // 共享资源 return Driver(raw: safeSequence) // 返回 最后一点要说明的是 ‘driver’ 可以代替’bindTo’,drive 只能在 Driver 中使用 drive方法只能在Driver序列中使用，Driver有以下特点： Driver序列不允许发出error， Driver序列的监听只会在主线程中。 所以Driver是专为UI绑定量身打造的东西。以下情况你可以使用Driver替换BindTo: 不能发出error; 在主线程中监听; 共享事件流;]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>Grammar</tag>
+        <tag>RxSwift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RxSwift-Grammar-Observable可观察序列&Observer观察者]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FObservable%26Observer%2F</url>
+    <content type="text"><![CDATA[Observable可观察序列 和 Observer观察者实质 Observer (观察者)订阅一个可观察序列 Observable(事件源)每一个Observable的实例都是一个序列观察者 对 Observable 发射的数据或数据序列作出响应 举例 Button 的点击这个情景 把用户一次又一次的点击 Button 看做是序列(sequence) 通过调用 subscribe 来订阅这个点击事件 每次点击都会发射一个数据 作为订阅者的 subscribe 收到这个这个数据进行某些响应 Rx 的基本概念，有Observer观察者观察一个序列sequence，每当序列发射值的时候，观察者根据序列做一些事情Observable序列相比于Swift序列的关键优势点在于它能够异步地接收元素 Observable(ObservableType)等效于Sequence observableType.subscribe(_:)方法等效于Sequence.makeIterator() ObservableType.subscribe(_:)接收一个观察者ObserverType参数,它将被订阅自动接收由可观察到的序列事件和元素，而不是在返回的生成器上手动调用next() 如果一个Observable发出一个next事件(Event.next(Element)),它还能够继续发出更多的事件但是，如果一个Observable发出一个error事件(Event.error(ErrorType))或者一个completed事件(Event.completed)，那么这个Observable序列就不能给订阅者发送其他的事件 可观察序列 (Observables aka Sequences) 可观察序列 存在三种情况:①发射数据(Next)②遇到问题(Error)③发射完成(Completed) 有限序列 比如，有这样一个序列 --1--2--3--4--5--6--| ，它发送了按顺序发送了 1 2 3 4 5 6 这些值后，就终止了，就是发射完成。这是一个有限序列也有可能因为某些特殊的情况，遇到某些错误（比如数据解析错误），--1--2--3--4--X ，因为解析错误意外终止 无限序列 比如用户点击 Button ，这个就属于无限序列 ---tap-tap-------tap---&gt; 当然这里的无限不是真的无限，是不确定用户什么时候会点击，不确定是否会继续点击。所以这是一个无限序列，每当用户点击，序列就发射一个值 将以上的三种情况统概括为事件 enum Event&lt;Element&gt; &#123; case Next(Element) // 序列的下一个元素 case Error(ErrorType) // 序列因为某些错误终止 case Completed // 正常的序列技术&#125; 观察者 (Observer) 观察者需要一个订阅序列的功能 class Observable&lt;Element&gt; &#123;func subscribe(observer: Observer&lt;Element&gt;) -&gt; Disposable&#125;protocol ObserverType &#123; func on(event: Event&lt;Element&gt;)&#125; 通过序列的这个 subscribe 来订阅序列这里就应该提到序列的“冷”“热”问题 冷：只有当有观察者订阅这个序列时，序列才发射值 热：序列创建时就开始发射值 整体上就是这样的一个关系，序列发射值，观察者订阅序列，收到值，进行处理 Obserable 创建被观察者其实就是创建一个Obserable的sequence，就是创建一个流，然后就可以被订阅subscribe，这样被观察者发出时间消失，就能做相应的处理]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>Grammar</tag>
+        <tag>RxSwift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RxSwift-Grammar-observeOn()和subscribeOn()]]></title>
+    <url>%2F2018%2F03%2F27%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FobserveOn()%E5%92%8CsubscribeOn()%2F</url>
+    <content type="text"><![CDATA[observeOn()和subscribeOn() subscribeOn() 设置起点在哪个线程 observeOn() 置了后续工作在哪个线程 1)所有动作都发生在当前的默认线程2)observeOn()转换线程到主线程，下面所有的操作都在主线程3)subscribeOn()规定动作一开始不是发生在默认线程，而是在OtherScheduler了)-如果之前没有调用observeOn()，那么这边会在OtherScheduler发生，但是我们前面调用了observeOn()，所以这个动作会在主线程中调用subscribeOn()只是影响事件链开始默认的线程，而observeOn()规定了下一步动作发生在哪个线程中。 someObservable .doOneThing() //1 .observeOn(MainRouteScheduler.instance) // 2 .subscribeOn(OtherScheduler.instance) // 3 .subscribeNext &#123; // 4 ...... &#125; .addDisposableTo(disposeBag)]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -723,8 +723,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -736,8 +736,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -749,8 +749,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -804,8 +804,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -836,9 +836,9 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
         <tag>Error</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -850,9 +850,9 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
         <tag>Error</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -879,8 +879,8 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Func</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1017,8 +1017,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1361,8 +1361,8 @@
         <category>WKWebView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>WKWebView</tag>
       </tags>
   </entry>
@@ -1375,8 +1375,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1388,8 +1388,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1401,8 +1401,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1414,8 +1414,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1427,8 +1427,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1440,8 +1440,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1453,21 +1453,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Swift-RxSwift-错误处理操作]]></title>
-    <url>%2F2017%2F12%2F19%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FOperators-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E6%93%8D%E4%BD%9C%2F</url>
-    <content type="text"><![CDATA[错误处理操作 ①catchErrorJustReturn ②catchError ③retry ④debug ①catchErrorJustReturn ①catchErrorJustReturn 遇到error事件的时候，就return一个值，然后结束 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;() sequenceThatFails .catchErrorJustReturn("😊") .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test)///next(😬)next(😨)next(😡)next(🔴)next(😊)completed ②catchError ②catchError 捕获error进行处理，可以返回另一个sequence进行订阅 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;()let recoverySequence = PublishSubject&lt;String&gt;() sequenceThatFails .catchError &#123; print("Error:", $0) return recoverySequence &#125; .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test) recoverySequence.onNext("😊")//next(😬)next(😨)next(😡)next(🔴)Error: testnext(😊) ③retry ③retry 遇见error事件可以进行重试，比如网络请求失败，可以进行重新连接 let disposeBag = DisposeBag()var count = 1 let sequenceThatErrors = Observable&lt;String&gt;.create &#123; observer in observer.onNext("🍎") observer.onNext("🍐") observer.onNext("🍊") if count == 1 &#123; observer.onError(TestError.test) print("Error encountered") count += 1 &#125; observer.onNext("🐶") observer.onNext("🐱") observer.onNext("🐭") observer.onCompleted() return Disposables.create()&#125; sequenceThatErrors .retry(3) //不传入数字的话，只会重试一次 .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) ④debug ④debug 打印所有的订阅, 事件和disposals sequenceThatErrors .retry(3) .debug() .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) RxSwift.Resources.total 查看RxSwift所有资源的占用 print(RxSwift.Resources.total)]]></content>
-      <categories>
-        <category>RxSwift</category>
-        <category>Grammar</category>
-      </categories>
-      <tags>
         <tag>RxSwift</tag>
-        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1479,8 +1466,21 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Swift-RxSwift-错误处理操作]]></title>
+    <url>%2F2017%2F12%2F19%2FRxSwift%2FGuide%E6%96%87%E6%A1%A3%E6%8C%87%E5%8D%97%2FRxSwift%E6%96%87%E6%A1%A3%2FOperators-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[错误处理操作 ①catchErrorJustReturn ②catchError ③retry ④debug ①catchErrorJustReturn ①catchErrorJustReturn 遇到error事件的时候，就return一个值，然后结束 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;() sequenceThatFails .catchErrorJustReturn("😊") .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test)///next(😬)next(😨)next(😡)next(🔴)next(😊)completed ②catchError ②catchError 捕获error进行处理，可以返回另一个sequence进行订阅 let disposeBag = DisposeBag() let sequenceThatFails = PublishSubject&lt;String&gt;()let recoverySequence = PublishSubject&lt;String&gt;() sequenceThatFails .catchError &#123; print("Error:", $0) return recoverySequence &#125; .subscribe &#123; print($0) &#125; .addDisposableTo(disposeBag) sequenceThatFails.onNext("😬")sequenceThatFails.onNext("😨")sequenceThatFails.onNext("😡")sequenceThatFails.onNext("🔴")sequenceThatFails.onError(TestError.test) recoverySequence.onNext("😊")//next(😬)next(😨)next(😡)next(🔴)Error: testnext(😊) ③retry ③retry 遇见error事件可以进行重试，比如网络请求失败，可以进行重新连接 let disposeBag = DisposeBag()var count = 1 let sequenceThatErrors = Observable&lt;String&gt;.create &#123; observer in observer.onNext("🍎") observer.onNext("🍐") observer.onNext("🍊") if count == 1 &#123; observer.onError(TestError.test) print("Error encountered") count += 1 &#125; observer.onNext("🐶") observer.onNext("🐱") observer.onNext("🐭") observer.onCompleted() return Disposables.create()&#125; sequenceThatErrors .retry(3) //不传入数字的话，只会重试一次 .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) ④debug ④debug 打印所有的订阅, 事件和disposals sequenceThatErrors .retry(3) .debug() .subscribe(onNext: &#123; print($0) &#125;) .addDisposableTo(disposeBag) RxSwift.Resources.total 查看RxSwift所有资源的占用 print(RxSwift.Resources.total)]]></content>
+      <categories>
+        <category>RxSwift</category>
+        <category>Grammar</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1492,8 +1492,8 @@
         <category>RxSwift</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1505,8 +1505,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1518,8 +1518,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
         <tag>线程</tag>
       </tags>
   </entry>
@@ -1532,8 +1532,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1545,8 +1545,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1558,8 +1558,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1571,8 +1571,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1584,9 +1584,9 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1598,8 +1598,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1611,8 +1611,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1624,8 +1624,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1637,9 +1637,9 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1652,8 +1652,8 @@
         <category>UI扩展</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1665,8 +1665,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1678,8 +1678,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Swift</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1700,9 +1700,9 @@
         <category>UIKit</category>
       </categories>
       <tags>
+        <tag>Swift</tag>
         <tag>UIKit</tag>
         <tag>RxSwift</tag>
-        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1714,8 +1714,8 @@
         <category>Grammar</category>
       </categories>
       <tags>
-        <tag>RxSwift</tag>
         <tag>Grammar</tag>
+        <tag>RxSwift</tag>
       </tags>
   </entry>
   <entry>
@@ -1728,8 +1728,8 @@
         <category>UIImagePickerController</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIImagePickerController</tag>
       </tags>
   </entry>
@@ -1743,8 +1743,8 @@
         <category>NSAttributedString</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>NSAttributedString</tag>
       </tags>
   </entry>
@@ -1757,8 +1757,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Func</tag>
         <tag>Swift</tag>
+        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
@@ -1770,8 +1770,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Func</tag>
         <tag>Swift</tag>
+        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
@@ -1783,8 +1783,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Func</tag>
         <tag>Swift</tag>
+        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
@@ -1797,8 +1797,8 @@
         <category>NSNotificationCenter</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>NSNotificationCenter</tag>
       </tags>
   </entry>
@@ -1836,8 +1836,8 @@
         <category>UITableView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITableView</tag>
       </tags>
   </entry>
@@ -1877,8 +1877,8 @@
         <category>UIWebView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIWebView</tag>
       </tags>
   </entry>
@@ -1892,8 +1892,8 @@
         <category>UIWebView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIWebView</tag>
       </tags>
   </entry>
@@ -1907,8 +1907,8 @@
         <category>UINavigationController</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UINavigationController</tag>
       </tags>
   </entry>
@@ -1922,8 +1922,8 @@
         <category>UINavigationController</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UINavigationController</tag>
       </tags>
   </entry>
@@ -1937,8 +1937,8 @@
         <category>UISegmentedControl</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UISegmentedControl</tag>
       </tags>
   </entry>
@@ -1952,8 +1952,8 @@
         <category>UISegmentedControl</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UISegmentedControl</tag>
       </tags>
   </entry>
@@ -1967,8 +1967,8 @@
         <category>UISwitch</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UISwitch</tag>
       </tags>
   </entry>
@@ -1982,8 +1982,8 @@
         <category>UISwitch</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UISwitch</tag>
       </tags>
   </entry>
@@ -1997,8 +1997,8 @@
         <category>UITextField</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITextField</tag>
       </tags>
   </entry>
@@ -2012,8 +2012,8 @@
         <category>UITxtxField</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITxtxField</tag>
       </tags>
   </entry>
@@ -2027,8 +2027,8 @@
         <category>UIImage</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIImage</tag>
       </tags>
   </entry>
@@ -2042,8 +2042,8 @@
         <category>UIImage</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIImage</tag>
       </tags>
   </entry>
@@ -2057,8 +2057,8 @@
         <category>UITableViewCell</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITableViewCell</tag>
       </tags>
   </entry>
@@ -2072,8 +2072,8 @@
         <category>UITableViewCell</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITableViewCell</tag>
       </tags>
   </entry>
@@ -2087,8 +2087,8 @@
         <category>UITableView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITableView</tag>
       </tags>
   </entry>
@@ -2102,8 +2102,8 @@
         <category>UITableView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITableView</tag>
       </tags>
   </entry>
@@ -2117,8 +2117,8 @@
         <category>UIScrollView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIScrollView</tag>
       </tags>
   </entry>
@@ -2132,8 +2132,8 @@
         <category>UIScrollView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIScrollView</tag>
       </tags>
   </entry>
@@ -2147,8 +2147,8 @@
         <category>UITextView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITextView</tag>
       </tags>
   </entry>
@@ -2162,8 +2162,8 @@
         <category>UITextView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITextView</tag>
       </tags>
   </entry>
@@ -2177,8 +2177,8 @@
         <category>UIActionSheet</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIActionSheet</tag>
       </tags>
   </entry>
@@ -2192,8 +2192,8 @@
         <category>UIActionSheet</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIActionSheet</tag>
       </tags>
   </entry>
@@ -2206,8 +2206,8 @@
         <category>Func</category>
       </categories>
       <tags>
-        <tag>Func</tag>
         <tag>Swift</tag>
+        <tag>Func</tag>
       </tags>
   </entry>
   <entry>
@@ -2220,8 +2220,8 @@
         <category>NSTimer</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>NSTimer</tag>
       </tags>
   </entry>
@@ -2235,8 +2235,8 @@
         <category>UICollectionView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UICollectionView</tag>
       </tags>
   </entry>
@@ -2250,8 +2250,8 @@
         <category>UICollectionView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UICollectionView</tag>
       </tags>
   </entry>
@@ -2453,8 +2453,8 @@
         <category>UITableView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITableView</tag>
       </tags>
   </entry>
@@ -2489,9 +2489,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[OC/Function功能类/视频->加载URL通过ALAsset旋转角度&宽&高]]></title>
-    <url>%2F2017%2F12%2F07%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FAudio%E9%9F%B3%E8%A7%86%E9%A2%91%2F%E8%A7%86%E9%A2%91-%3E%E5%8A%A0%E8%BD%BDURL%E9%80%9A%E8%BF%87ALAsset%E6%97%8B%E8%BD%AC%E8%A7%92%E5%BA%A6%26%E5%AE%BD%26%E9%AB%98%2F</url>
-    <content type="text"><![CDATA[-(NSUInteger)degressFromVideoFileWithURL:(NSURL *)url &#123; NSUInteger degress = 0; AVAsset *asset = [AVAsset assetWithURL:url]; NSArray *tracks = [asset tracksWithMediaType:AVMediaTypeVideo]; if([tracks count] &gt; 0) &#123; AVAssetTrack *videoTrack = [tracks objectAtIndex:0]; CGAffineTransform t = videoTrack.preferredTransform; if(t.a == 0 &amp;&amp; t.b == 1.0 &amp;&amp; t.c == -1.0 &amp;&amp; t.d == 0)&#123; // Portrait degress = 90; &#125;else if(t.a == 0 &amp;&amp; t.b == -1.0 &amp;&amp; t.c == 1.0 &amp;&amp; t.d == 0)&#123; // PortraitUpsideDown degress = 270; &#125;else if(t.a == 1.0 &amp;&amp; t.b == 0 &amp;&amp; t.c == 0 &amp;&amp; t.d == 1.0)&#123; // LandscapeRight degress = 0; &#125;else if(t.a == -1.0 &amp;&amp; t.b == 0 &amp;&amp; t.c == 0 &amp;&amp; t.d == -1.0)&#123; // LandscapeLeft degress = 180; &#125; &#125; return degress; &#125;差不多这样调用即可： ALAsset *result=[self.videoAssets objectAtIndex:0]; NSURL *url=[[result defaultRepresentation]url]; int angle= [self degressFromVideoFileWithURL:url]; NSLog(@"====angle==:%d",angle); CGFloat w1;CGFloat h1;AVAsset *asset = [AVAsset assetWithURL:[NSURL URLWithString:cell.model.url]];NSArray *tracks = [asset tracksWithMediaType:AVMediaTypeVideo];NSUInteger degress = 0;if([tracks count] &gt; 0) &#123; AVAssetTrack *videoTrack = [tracks objectAtIndex:0]; CGAffineTransform t = videoTrack.preferredTransform;//这里的矩阵有旋转角度，转换一下即可 if(t.a == 0 &amp;&amp; t.b == 1.0 &amp;&amp; t.c == -1.0 &amp;&amp; t.d == 0)&#123; // Portrait degress = 90; w1 = videoTrack.naturalSize.height; h1 = videoTrack.naturalSize.width; &#125;else if(t.a == 0 &amp;&amp; t.b == -1.0 &amp;&amp; t.c == 1.0 &amp;&amp; t.d == 0)&#123; // PortraitUpsideDown degress = 270; w1 = videoTrack.naturalSize.height; h1 = videoTrack.naturalSize.width; &#125;else if(t.a == 1.0 &amp;&amp; t.b == 0 &amp;&amp; t.c == 0 &amp;&amp; t.d == 1.0)&#123; // LandscapeRight degress = 0; w1 = videoTrack.naturalSize.width; h1 = videoTrack.naturalSize.height; &#125;else &#123; //if( t.a == -1.0 &amp;&amp; t.b == 0 &amp;&amp; t.c == 0 &amp;&amp; t.d == -1.0 ) // LandscapeLeft degress = 180; w1 = videoTrack.naturalSize.width; h1 = videoTrack.naturalSize.height; &#125; NSLog(@&quot;=====hello width:%f===height:%f&quot;,videoTrack.naturalSize.width,videoTrack.naturalSize.height);//宽高 if ( w1 &gt;0 &amp;&amp; w1 &lt; h1 ) &#123; self.playerManager.scalingMode = ZFPlayerScalingModeAspectFill; &#125;else&#123; //16:9 self.playerManager.scalingMode = ZFPlayerScalingModeAspectFit; &#125;&#125;]]></content>
+    <title><![CDATA[OC/Function功能类/音频->录音+拼接+剪切+边录边压缩转码]]></title>
+    <url>%2F2017%2F12%2F07%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FAudio%E9%9F%B3%E8%A7%86%E9%A2%91%2F%E9%9F%B3%E9%A2%91-%3E%E5%BD%95%E9%9F%B3%2B%E6%8B%BC%E6%8E%A5%2B%E5%89%AA%E5%88%87%2B%E8%BE%B9%E5%BD%95%E8%BE%B9%E5%8E%8B%E7%BC%A9%E8%BD%AC%E7%A0%81%2F</url>
+    <content type="text"><![CDATA[参考]]></content>
       <categories>
         <category>OC</category>
         <category>Function功能类</category>
@@ -2504,9 +2504,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[OC/Function功能类/音频->录音+拼接+剪切+边录边压缩转码]]></title>
-    <url>%2F2017%2F12%2F07%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FAudio%E9%9F%B3%E8%A7%86%E9%A2%91%2F%E9%9F%B3%E9%A2%91-%3E%E5%BD%95%E9%9F%B3%2B%E6%8B%BC%E6%8E%A5%2B%E5%89%AA%E5%88%87%2B%E8%BE%B9%E5%BD%95%E8%BE%B9%E5%8E%8B%E7%BC%A9%E8%BD%AC%E7%A0%81%2F</url>
-    <content type="text"><![CDATA[参考]]></content>
+    <title><![CDATA[OC/Function功能类/视频->加载URL通过ALAsset旋转角度&宽&高]]></title>
+    <url>%2F2017%2F12%2F07%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FAudio%E9%9F%B3%E8%A7%86%E9%A2%91%2F%E8%A7%86%E9%A2%91-%3E%E5%8A%A0%E8%BD%BDURL%E9%80%9A%E8%BF%87ALAsset%E6%97%8B%E8%BD%AC%E8%A7%92%E5%BA%A6%26%E5%AE%BD%26%E9%AB%98%2F</url>
+    <content type="text"><![CDATA[-(NSUInteger)degressFromVideoFileWithURL:(NSURL *)url &#123; NSUInteger degress = 0; AVAsset *asset = [AVAsset assetWithURL:url]; NSArray *tracks = [asset tracksWithMediaType:AVMediaTypeVideo]; if([tracks count] &gt; 0) &#123; AVAssetTrack *videoTrack = [tracks objectAtIndex:0]; CGAffineTransform t = videoTrack.preferredTransform; if(t.a == 0 &amp;&amp; t.b == 1.0 &amp;&amp; t.c == -1.0 &amp;&amp; t.d == 0)&#123; // Portrait degress = 90; &#125;else if(t.a == 0 &amp;&amp; t.b == -1.0 &amp;&amp; t.c == 1.0 &amp;&amp; t.d == 0)&#123; // PortraitUpsideDown degress = 270; &#125;else if(t.a == 1.0 &amp;&amp; t.b == 0 &amp;&amp; t.c == 0 &amp;&amp; t.d == 1.0)&#123; // LandscapeRight degress = 0; &#125;else if(t.a == -1.0 &amp;&amp; t.b == 0 &amp;&amp; t.c == 0 &amp;&amp; t.d == -1.0)&#123; // LandscapeLeft degress = 180; &#125; &#125; return degress; &#125;差不多这样调用即可： ALAsset *result=[self.videoAssets objectAtIndex:0]; NSURL *url=[[result defaultRepresentation]url]; int angle= [self degressFromVideoFileWithURL:url]; NSLog(@"====angle==:%d",angle); CGFloat w1;CGFloat h1;AVAsset *asset = [AVAsset assetWithURL:[NSURL URLWithString:cell.model.url]];NSArray *tracks = [asset tracksWithMediaType:AVMediaTypeVideo];NSUInteger degress = 0;if([tracks count] &gt; 0) &#123; AVAssetTrack *videoTrack = [tracks objectAtIndex:0]; CGAffineTransform t = videoTrack.preferredTransform;//这里的矩阵有旋转角度，转换一下即可 if(t.a == 0 &amp;&amp; t.b == 1.0 &amp;&amp; t.c == -1.0 &amp;&amp; t.d == 0)&#123; // Portrait degress = 90; w1 = videoTrack.naturalSize.height; h1 = videoTrack.naturalSize.width; &#125;else if(t.a == 0 &amp;&amp; t.b == -1.0 &amp;&amp; t.c == 1.0 &amp;&amp; t.d == 0)&#123; // PortraitUpsideDown degress = 270; w1 = videoTrack.naturalSize.height; h1 = videoTrack.naturalSize.width; &#125;else if(t.a == 1.0 &amp;&amp; t.b == 0 &amp;&amp; t.c == 0 &amp;&amp; t.d == 1.0)&#123; // LandscapeRight degress = 0; w1 = videoTrack.naturalSize.width; h1 = videoTrack.naturalSize.height; &#125;else &#123; //if( t.a == -1.0 &amp;&amp; t.b == 0 &amp;&amp; t.c == 0 &amp;&amp; t.d == -1.0 ) // LandscapeLeft degress = 180; w1 = videoTrack.naturalSize.width; h1 = videoTrack.naturalSize.height; &#125; NSLog(@&quot;=====hello width:%f===height:%f&quot;,videoTrack.naturalSize.width,videoTrack.naturalSize.height);//宽高 if ( w1 &gt;0 &amp;&amp; w1 &lt; h1 ) &#123; self.playerManager.scalingMode = ZFPlayerScalingModeAspectFill; &#125;else&#123; //16:9 self.playerManager.scalingMode = ZFPlayerScalingModeAspectFit; &#125;&#125;]]></content>
       <categories>
         <category>OC</category>
         <category>Function功能类</category>
@@ -2548,8 +2548,8 @@
         <category>UIImageView</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIImageView</tag>
       </tags>
   </entry>
@@ -2563,8 +2563,8 @@
         <category>UISegmentedControl</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UISegmentedControl</tag>
       </tags>
   </entry>
@@ -2578,8 +2578,8 @@
         <category>UISwitch</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UISwitch</tag>
       </tags>
   </entry>
@@ -2593,8 +2593,8 @@
         <category>UIStepper</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UIStepper</tag>
       </tags>
   </entry>
@@ -2608,8 +2608,8 @@
         <category>UISlider</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UISlider</tag>
       </tags>
   </entry>
@@ -2623,24 +2623,9 @@
         <category>UITextField</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>UITextField</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Swift-UIKit-UILabel]]></title>
-    <url>%2F2017%2F12%2F06%2FSwift%2FUIKit%2FUILabel%2F</url>
-    <content type="text"><![CDATA[lab 创建&amp;&amp; 设置frame let lab = UILabel(frame:CGRect(x:10,y:100,width:self.view.frame.size.width - 40,height:200)) 或 let lab = UILabel()lab.frame = CGRect(x:10,y:100,width:self.view.frame.size.width - 40,height:200) 添加父层 self.view.addSubview(lab); 显示文本内容 lab.text = "chen jian !" 设置bg颜色 lab.backgroundColor = UIColor.green 文字颜色 lab.textColor = UIColor.white 文字对齐方式 lab.textAlignment = NSTextAlignment.left 高亮文字颜色 lab.highlightedTextColor = UIColor.cyan 阴影颜色 lab.shadowColor = UIColor.black 阴影偏移位置 lab.shadowOffset = CGSize(width:-5,height:5) 设置圆角 lab.layer.cornerRadius = 20lab.layer.masksToBounds = true 边框的宽度和颜色 lab.layer.borderColor = UIColor.green.cgColorlab.layer.borderWidth = 2 文字类型/大小 lab.font = UIFont.boldSystemFont(ofSize: 20) //加粗类型lab.font = UIFont.systemFont(ofSize: 20) //文字大小lab.font = UIFont.italicSystemFont(ofSize: 20)//斜体类型lab.font = UIFont(name:"您好",size:50) //大小和文字一起设置 显示de样式 lab.lineBreakMode = NSLineBreakMode.byCharWrapping // NSParagraphStyle@available(iOS 6.0, *)public enum NSLineBreakMode : Int &#123;case byWordWrapping // Wrap at word boundaries, defaultcase byCharWrapping // Wrap at character boundariescase byClipping // Simply clipcase byTruncatingHead // Truncate at head of line: "...wxyz"case byTruncatingTail // Truncate at tail of line: "abcd..."case byTruncatingMiddle // Truncate middle of line: "ab...yz"&#125; 多行de显示 lab.numberOfLines = 2 //最多显示2行lab.numberOfLines = 0 // 默认没有行数显示lab.numberOfLines = 1 //只能显示一行 自动调整文字de大小 lab.adjustsFontSizeToFitWidth = true 富文本设置 //创建对象let attributeString = NSMutableAttributedString(string:"Welcome to Swift! Welcome to Swift! Welcome to Swift! Welcome to Swift!")//设置字体大小/字体类型attributeString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Bold", size: 16)!, range: NSMakeRange(0, 6))//设置背景颜色 attributeString.addAttribute(NSForegroundColorAttributeName, value: UIColor.red, range: NSMakeRange(0, 3)) //设置文档背景色 attributeString.addAttribute(NSBackgroundColorDocumentAttribute, value: UIColor.lightGray, range: NSMakeRange(10, 10))//设置下划线attributeString.addAttribute(NSUnderlineStyleAttributeName, value:NSUnderlineStyle.StyleSingle.rawValue, range: NSMakeRange(5,12)) testLable.attributedText = attributeString; 文本高度计算 extension NSString &#123; func textSizeWithFont(font: UIFont, constrainedToSize size:CGSize) -&gt; CGSize &#123; var textSize:CGSize! if CGSizeEqualToSize(size, CGSizeZero) &#123; let attributes = NSDictionary(object: font, forKey: NSFontAttributeName) textSize = self.sizeWithAttributes(attributes) &#125; else &#123; let option = NSStringDrawingOptions.UsesLineFragmentOrigin let attributes = NSDictionary(object: font, forKey: NSFontAttributeName) let stringRect = self.boundingRectWithSize(size, options: option, attributes: attributes, context: nil) textSize = stringRect.size &#125; return textSize &#125;&#125;]]></content>
-      <categories>
-        <category>Swift</category>
-        <category>UIKit</category>
-        <category>UILabel</category>
-      </categories>
-      <tags>
-        <tag>UIKit</tag>
-        <tag>Swift</tag>
-        <tag>UILabel</tag>
       </tags>
   </entry>
   <entry>
@@ -2658,6 +2643,21 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Swift-UIKit-UILabel]]></title>
+    <url>%2F2017%2F12%2F06%2FSwift%2FUIKit%2FUILabel%2F</url>
+    <content type="text"><![CDATA[lab 创建&amp;&amp; 设置frame let lab = UILabel(frame:CGRect(x:10,y:100,width:self.view.frame.size.width - 40,height:200)) 或 let lab = UILabel()lab.frame = CGRect(x:10,y:100,width:self.view.frame.size.width - 40,height:200) 添加父层 self.view.addSubview(lab); 显示文本内容 lab.text = "chen jian !" 设置bg颜色 lab.backgroundColor = UIColor.green 文字颜色 lab.textColor = UIColor.white 文字对齐方式 lab.textAlignment = NSTextAlignment.left 高亮文字颜色 lab.highlightedTextColor = UIColor.cyan 阴影颜色 lab.shadowColor = UIColor.black 阴影偏移位置 lab.shadowOffset = CGSize(width:-5,height:5) 设置圆角 lab.layer.cornerRadius = 20lab.layer.masksToBounds = true 边框的宽度和颜色 lab.layer.borderColor = UIColor.green.cgColorlab.layer.borderWidth = 2 文字类型/大小 lab.font = UIFont.boldSystemFont(ofSize: 20) //加粗类型lab.font = UIFont.systemFont(ofSize: 20) //文字大小lab.font = UIFont.italicSystemFont(ofSize: 20)//斜体类型lab.font = UIFont(name:"您好",size:50) //大小和文字一起设置 显示de样式 lab.lineBreakMode = NSLineBreakMode.byCharWrapping // NSParagraphStyle@available(iOS 6.0, *)public enum NSLineBreakMode : Int &#123;case byWordWrapping // Wrap at word boundaries, defaultcase byCharWrapping // Wrap at character boundariescase byClipping // Simply clipcase byTruncatingHead // Truncate at head of line: "...wxyz"case byTruncatingTail // Truncate at tail of line: "abcd..."case byTruncatingMiddle // Truncate middle of line: "ab...yz"&#125; 多行de显示 lab.numberOfLines = 2 //最多显示2行lab.numberOfLines = 0 // 默认没有行数显示lab.numberOfLines = 1 //只能显示一行 自动调整文字de大小 lab.adjustsFontSizeToFitWidth = true 富文本设置 //创建对象let attributeString = NSMutableAttributedString(string:"Welcome to Swift! Welcome to Swift! Welcome to Swift! Welcome to Swift!")//设置字体大小/字体类型attributeString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Bold", size: 16)!, range: NSMakeRange(0, 6))//设置背景颜色 attributeString.addAttribute(NSForegroundColorAttributeName, value: UIColor.red, range: NSMakeRange(0, 3)) //设置文档背景色 attributeString.addAttribute(NSBackgroundColorDocumentAttribute, value: UIColor.lightGray, range: NSMakeRange(10, 10))//设置下划线attributeString.addAttribute(NSUnderlineStyleAttributeName, value:NSUnderlineStyle.StyleSingle.rawValue, range: NSMakeRange(5,12)) testLable.attributedText = attributeString; 文本高度计算 extension NSString &#123; func textSizeWithFont(font: UIFont, constrainedToSize size:CGSize) -&gt; CGSize &#123; var textSize:CGSize! if CGSizeEqualToSize(size, CGSizeZero) &#123; let attributes = NSDictionary(object: font, forKey: NSFontAttributeName) textSize = self.sizeWithAttributes(attributes) &#125; else &#123; let option = NSStringDrawingOptions.UsesLineFragmentOrigin let attributes = NSDictionary(object: font, forKey: NSFontAttributeName) let stringRect = self.boundingRectWithSize(size, options: option, attributes: attributes, context: nil) textSize = stringRect.size &#125; return textSize &#125;&#125;]]></content>
+      <categories>
+        <category>Swift</category>
+        <category>UIKit</category>
+        <category>UILabel</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>UIKit</tag>
+        <tag>UILabel</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Swift-UIKit-AppDelegate项目入口]]></title>
     <url>%2F2017%2F12%2F06%2FSwift%2FUIKit%2FAppDelegate%E9%A1%B9%E7%9B%AE%E5%85%A5%E5%8F%A3%2F</url>
     <content type="text"><![CDATA[AppDelegate.swift //import是导入文件的/库的关键字//UIKit是iOS中所有的控件的所在库文件import UIKit@UIApplicationMain //调用了OC中的UIApplicationMain函数;//UIApplicationMain是IOS应用程序的入口//UIApplacationMain:1.创建了一个UIApplication对象,代表当前应用程序.作用是用来检测当前应用程序状态的改变// 2.创建一个遵守UIApplicationDelegate的协议的子类对象作为UIApplication的代理,作用是处理应用程序状态的改变(创建AppDelegate对象并且设置为UIApplication对象的代理)class AppDelegate: UIResponder, UIApplicationDelegate &#123; //属性: var window: UIWindow? //方法: //一.当应用程序已经启动成功后,会自动调用这个方法 func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -&gt; Bool &#123; // Override point for customization after application launch. //1.在这个方法中来搭建应用程序中的所有的界面 //2.获取应用程序需要展示的数据 //3.使用界面展示数据 //注意:如果不再做这个方法中去创建window,那么程序会通过Main.stroyboard去创建应用程序的界面 print("程序启动成功") return true &#125; //二.当应用程序将要成为非活跃状态的时候会自动调用这个方法. //活跃状态:程序在屏幕上可见 //非活跃状态:程序没有显示在屏幕上(按home键进入后台,来电打断,在当前应用程序中打开其他的应用程序) func applicationWillResignActive(application: UIApplication) &#123; //按下home键:command + shift + h //在这个方法中一般去暂停视频/音频播放;游戏需要暂停;保存数据 print("将要成为非活跃状态") &#125; //三.应用程序已经进入后台的时候会自动调用 //进入后台:按home键 func applicationDidEnterBackground(application: UIApplication) &#123; print("进入后台") &#125; //四.应用程序将要进入前台的时候会自动调用 //进入前台: func applicationWillEnterForeground(application: UIApplication) &#123; print("将要进入前台") &#125; //五.应用程序已经变成活跃状态的时候会自动调用 //1.程序启动成功后 //2.程序从后台重新进入前台 //3.来电打断结束... func applicationDidBecomeActive(application: UIApplication) &#123; print("已经变成活跃状态") &#125; //六.应用程序将要终止的时候会调用这个方法 func applicationWillTerminate(application: UIApplication) &#123; print("应用程序将要终止") &#125;&#125; ViewController.swift class ViewController: UIViewController &#123; override func viewDidLoad() &#123; super.viewDidLoad() //UIView:是IOS中所有视图(控件)直接/间接的父类;所以UIView的属性和方法,对于其他类型的视图都有效 //视图:在屏幕上能看到的所有的东西都属于视图 //一.创建UIView的对象 let redView = UIView.init() //想要将视图展示在屏幕上的两个必要条件 //1.必须设置坐标的大小(默认坐标是(0,0),大小(0,0,)) //2.将视图添加到已经展示在屏幕上的视图上 //二.设置frame属性(由坐标(x,y)和大小(width,height)两个部分组成) redView.frame = CGRect(x: 10, y: 10, width: 100, height: 100) //IOS中所有的结构体都有一个对应的Make方法用来快速的创建一个结构体变量 redView.frame = CGRectMake(10, 10, 100, 100) //三.将视图添加到界面上 self.view.addSubview(redView) //四.设置背景颜色 //视图的背景颜色默认是透明色 //颜色的创建方式: //1.通过类型方法创建指定颜色 // redView.backgroundColor = UIColor.redColor() //通过三原色来创建颜色 //CGFloat就是UI中的浮点型 //参数1,2,3:红,绿,蓝的值(0~1)-(0/255~255/255) //参数4:透明度 //redView.backgroundColor = UIColor(red: 149/255.0, green: 106/255.0, blue: 55/255.0, alpha: 1) //设置不同程度的灰色 //redView.backgroundColor = UIColor(white: 0.2, alpha: 1) //练习:创建一个黄色的矩形,显示在红色视图的中心位置,大小(50,50) //方式1: //创建视图对象并且设置frame属性 /* let yellowView = UIView.init() yellowView.frame = CGRectMake(35, 35, 50, 50) //添加到界面上 self.view.addSubview(yellowView) //设置背景颜色 yellowView.backgroundColor = UIColor.yellowColor() */ //方式2: let yellowView = UIView(frame: CGRectMake(25,25,50,50)) redView.addSubview(yellowView) yellowView.backgroundColor = UIColor.yellowColor() //GET:计算视图的坐标的时候,注意相对性.当前视图被添加到那个视图上,那么当前视图的坐标就是相对于谁来算的 &#125;&#125; 视图对象的基本属性 mport UIKitclass ViewController: UIViewController &#123; override func viewDidLoad() &#123; super.viewDidLoad() //创建一个视图对象 let redView = UIView.init() //添加到界面上 self.view.addSubview(redView) //设置背景颜色 redView.backgroundColor = UIColor.redColor() //1.frame(坐标和大小) redView.frame = CGRectMake(100, 100, 100, 100) //2.center(中心点坐标) //通过frame和确定视图的中心点坐标 print(redView.center) print(redView.frame) redView.center = CGPointMake(200, 200) print(redView.frame) //3.bounds(坐标和大小) //默认情况下bounds的坐标(0,0),大小和视图的frame大小一样 print(redView.bounds) //了解: //如果改变bounds的大小,不改变center的坐标,改变frame的坐标和大小 /* redView.bounds = CGRectMake(0, 0, 200, 200) print(redView.frame) print("center\(redView.center)") */ //如果改变bounds的坐标,不影响当前视图的位置.但是影响添加到当前视图上的子视图的坐标,不建议修改bounds redView.bounds = CGRectMake(0, 0, 100, 100) let yellowView = UIView.init(frame:CGRectMake(10, 10, 40, 40)) yellowView.backgroundColor = UIColor.yellowColor() redView.addSubview(yellowView) //4.transform(形变) // 当前视图发生形变,那么添加到当前视图上的所有的视图会跟着一起形变 //1). 缩放 //参数1:x方向上的缩放比例 //参数2:y方向上的缩放比例 redView.transform = CGAffineTransformMakeScale(0.5, 0.5) //2).旋转 //参数:旋转角度(圆周率对应的角度) redView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_4)) //3).平移 //参数1:在x方向上平移的距离 //参数2:在y方向上平移的距离 redView.transform = CGAffineTransformMakeTranslation(0, 300) //4).多个形变同时进行 //在另外一个形变的前提下旋转 //参数1:另外一个形变 //在拥有缩放这个形变的前提下旋转(既可以缩放又可以旋转) redView.transform = CGAffineTransformRotate(CGAffineTransformMakeScale(0.5, 0.5), CGFloat(M_PI_4 / 2)) //在另外一个形变的前提下平移(既可以缩放和旋转又可以平移) redView.transform = CGAffineTransformTranslate(redView.transform, 0, 100) //既可以平移又可以缩放 redView.transform = CGAffineTransformScale(CGAffineTransformMakeTranslation(100, 0), 0.5, 2) //组合两个形变 //旋转形变 let rotate = CGAffineTransformMakeRotation(0.2) //平移形变 let transLation = CGAffineTransformMakeTranslation(100, 100) //将旋转形变和平移形变组合 redView.transform = CGAffineTransformConcat(rotate, transLation) &#125;&#125;]]></content>
@@ -2667,8 +2667,8 @@
         <category>AppDelegate</category>
       </categories>
       <tags>
-        <tag>UIKit</tag>
         <tag>Swift</tag>
+        <tag>UIKit</tag>
         <tag>AppDelegate</tag>
       </tags>
   </entry>
@@ -2711,8 +2711,8 @@
         <category>NSSet</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>UIKit</tag>
+        <tag>iOS</tag>
         <tag>NSSet</tag>
       </tags>
   </entry>
@@ -2726,8 +2726,8 @@
         <category>NSDictionary</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>UIKit</tag>
+        <tag>iOS</tag>
         <tag>NSDictionary</tag>
       </tags>
   </entry>
@@ -2740,8 +2740,8 @@
         <category>UIKit</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>UIKit</tag>
+        <tag>iOS</tag>
       </tags>
   </entry>
   <entry>
@@ -2899,6 +2899,11 @@
       </tags>
   </entry>
   <entry>
+    <title></title>
+    <url>%2F2017%2F11%2F29%2FYoBook%2Fapp-%E5%88%86%E7%B1%BB%2F</url>
+    <content type="text"><![CDATA[​​ ​ # 产品设计​​​​​ ​​ # NSSet初始化​ &gt;NSSet是无序的​ &gt;注意:这个是最为重要的功能 NSSet中不能够存储重复的数据,可以用它来去除重复的值​​ ​ ​ NSString * str1 = @&quot;one&quot;;​ NSString * str2 = @&quot;two&quot;;​ NSString * str3 = @&quot;three&quot;;​ NSSet * set = [[NSSet alloc] initWithObjects:str1,str2,str3,str1, nil];​ 这样其实在set中指存储了 @“one”,@“two”,@“three” set.count 值为3​ [set containsObject:str1]; 是否包含str1​ ​ ​​ # 遍历​​ ​ NSEnumerator * enumerator = [set objectEnumerator];​ NSString * value;​ while (value = [enumerator nextObject]) &#123;​ NSLog(@"value %@",value);​ &#125;​ ​ # 可变集合NSMutableSet​ &gt;创建一个可变集合​​ ​ NSMutableSet * muSet = [[NSMutableSet alloc] init];​ ​ &gt;增加值​​ ​ [muSet addObject:str1];​ ​​ &gt;删除​​ ​ [muSet removeObject:str1];​ ​ &gt;删除所有​​ ​ [muSet removeAllObjects];​ ​​ # 集合之间相互转换​​ &gt;NSArray 转换成 NSMutableArray​​ ​ NSArray * array = @[@"one",@"two",@"three"];​ NSMutableArray * muArray = [NSMutableArray arrayWithArray:array];​ ​​ &gt;NSDictionary 转换成 NSMutableDictionary​​ ​ NSDictionary * dic = @&#123;@"one":@"1",@"two":@"2"&#125;;​ NSMutableDictionary * muDic = [NSMutableDictionary dictionaryWithDictionary:dic];​ ​​ &gt;NSSet 转换成 NSMutableSet​​ ​ NSSet * set = [[NSSet alloc] initWithObjects:@"one",@"two", nil];​ NSMutableSet *muSet = [NSMutableSet setWithSet:set];​ ​​ # NSArray 转换成NSSet​​ ​ NSMutableSet * muSet2 = [NSMutableSet setWithArray:array];​ ​​ # NSDictionary 转化成NSArray​​ ​ NSArray * keys = [dic allKeys];​ NSArray * values = [dic allValues];​ ​ # 字符串转换成数组​​ ​ NSString * str = @"aa.bb.cc";​ NSArray * strArray =[str componentsSeparatedByString:@“."];​]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[OC/Function功能类/Git/Git基本使用]]></title>
     <url>%2F2017%2F11%2F29%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FGit%2FGit-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%2F</url>
     <content type="text"><![CDATA[基本使用初始化仓库 创建普通仓库 $ git init 创建裸仓库，这里面许多git命令不能使用，切换分支都不可用，一般用来当远程仓库 $ git --bare init 别名 使用config alias.命令进行，添加–global参数后可以对全局git的config文件进行配置 $ git config --global alias.st status 一个很吊的配置，让你的git变得更好看，摘自 $ git config --global alias.lg &quot;log --color --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&apos; --abbrev-commit&quot; 本地的一些命令 配置信息 $ git config user.name &quot;名字&quot; git config user.email &quot;email&quot; branch分支相关命令 $ git branch -a //显示所有分支 git branch 分支名字 //如果该分支不存在，就会新建 git branch --delete 分支名字 //删除分支 add将本目录下的文件都添加到暂缓区，准备提交用 $ git add . commit 提交 $ git commit -m &quot;注释&quot; merge这个命令会将本分支merge别处的分支。 $ git merge merge过来的分支 远程命令 添加远程仓库 $ git remote add &lt;远程主机名&gt; url push，命令格式： &amp; git push 远程主机名 本地分支:远程分支 举个例子下面命令将本地分支a，push到远程主机origin的a_remote上，如果远程主机里面没有a_remote分支，那么就会创建一个这名字的分支。 $ git push origin a:a_remote 注意：如果没有远程分支的名字，那么将会在远程仓库建立一个同名的分支。如果没有本地名字，就像 :a_remote，这就相当于传了一个空的分支给远程， 那么会删除掉远程仓库的这个分支。 pull这个命令会将本地和远程分支进行merge，如果出现冲突，需要自己解决。 命令格式： $ git push 远程主机名 远程分支:本地分支 例子在此，将远程主机的 $ git pull orgin a_remote:a 发生冲突的时候，如果需要丢弃本地工作，那么使用 $ git reset --hard branch相关的远程命令将远程分支和本地分支相关联 git branch --track 本地分支 远程主机/远程分支 //在创建本地分支的时候指定它所关联的远程分支 git branch --set-upstream-to 远程主机/远程分支 //将当前分支关联远程分支 fetch这个命令将远程的分支fetch下来，然后可以将这些fetch下来的分支和本地分支进行合并 git fetch 主机名 git fetch -p 主机名 //fetch完成后，删除本地仍存在，但是远程不存在的分支关联 下面的命令将本地分支绑定远程分支，但好像并没什么用，push的时候如果不输入远程分支名字，那么还是会新建一个和本地分支同名的远程分支。 git branch --set-upstream-to origin/aa_remote stash在进行pull的时候，经常会遇到 error: Your local changes to the following files would be overwritten by merge: xxx/xxx/xxx.java Please, commit your changes or stash them before you can merge. Aborting 这里要么将你当前的工作commit一下，要么就可以使用stash命令。先用stash命令缓存当前工作，然后pull，pull后再用stash pop还原之前的工作 $ git pull ... file foobar not up to date, cannot merge. $ git stash $ git pull $ git stash pop 另外的情况就是：你在工作的时候，突然被老板要求去改别的东西，你也可以用stash把当前的工作缓存起来。改完别的东西后再回来继续工作。 其他 $... hack hack hack ... $ git stash $ edit emergency fix $ git commit -a -m &quot;Fix in a hurry&quot; $ git stash pop # ... continue hacking ... 最后一些坑 1、初始化的仓库要先commit一下才能新建分支 2、如果远程仓库在使用这个分支，那么不能提交到这个分支上去，除非建立bare仓库，但是bare仓库不能使用git命令。]]></content>
@@ -2907,11 +2912,6 @@
         <category>Function功能类</category>
         <category>Git</category>
       </categories>
-  </entry>
-  <entry>
-    <title></title>
-    <url>%2F2017%2F11%2F29%2FYoBook%2Fapp-%E5%88%86%E7%B1%BB%2F</url>
-    <content type="text"><![CDATA[​​ ​ # 产品设计​​​​​ ​​ # NSSet初始化​ &gt;NSSet是无序的​ &gt;注意:这个是最为重要的功能 NSSet中不能够存储重复的数据,可以用它来去除重复的值​​ ​ ​ NSString * str1 = @&quot;one&quot;;​ NSString * str2 = @&quot;two&quot;;​ NSString * str3 = @&quot;three&quot;;​ NSSet * set = [[NSSet alloc] initWithObjects:str1,str2,str3,str1, nil];​ 这样其实在set中指存储了 @“one”,@“two”,@“three” set.count 值为3​ [set containsObject:str1]; 是否包含str1​ ​ ​​ # 遍历​​ ​ NSEnumerator * enumerator = [set objectEnumerator];​ NSString * value;​ while (value = [enumerator nextObject]) &#123;​ NSLog(@"value %@",value);​ &#125;​ ​ # 可变集合NSMutableSet​ &gt;创建一个可变集合​​ ​ NSMutableSet * muSet = [[NSMutableSet alloc] init];​ ​ &gt;增加值​​ ​ [muSet addObject:str1];​ ​​ &gt;删除​​ ​ [muSet removeObject:str1];​ ​ &gt;删除所有​​ ​ [muSet removeAllObjects];​ ​​ # 集合之间相互转换​​ &gt;NSArray 转换成 NSMutableArray​​ ​ NSArray * array = @[@"one",@"two",@"three"];​ NSMutableArray * muArray = [NSMutableArray arrayWithArray:array];​ ​​ &gt;NSDictionary 转换成 NSMutableDictionary​​ ​ NSDictionary * dic = @&#123;@"one":@"1",@"two":@"2"&#125;;​ NSMutableDictionary * muDic = [NSMutableDictionary dictionaryWithDictionary:dic];​ ​​ &gt;NSSet 转换成 NSMutableSet​​ ​ NSSet * set = [[NSSet alloc] initWithObjects:@"one",@"two", nil];​ NSMutableSet *muSet = [NSMutableSet setWithSet:set];​ ​​ # NSArray 转换成NSSet​​ ​ NSMutableSet * muSet2 = [NSMutableSet setWithArray:array];​ ​​ # NSDictionary 转化成NSArray​​ ​ NSArray * keys = [dic allKeys];​ NSArray * values = [dic allValues];​ ​ # 字符串转换成数组​​ ​ NSString * str = @"aa.bb.cc";​ NSArray * strArray =[str componentsSeparatedByString:@“."];​]]></content>
   </entry>
   <entry>
     <title><![CDATA[Swift-Grammar-Classes/Structures类和结构体]]></title>
@@ -3006,19 +3006,6 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[Blog-配置]]></title>
-    <url>%2F2017%2F11%2F23%2FBlog%2FABCD%2F</url>
-    <content type="text"><![CDATA[#KVO实现原理 1.KVO是基于runtime机制实现的2.某个类的属性对象第一次被观察时，系统就会在运行期动态地创建该类的一个派生类，在这个派生类中重写基类中任何被观察属性的setter 方法。派生类在被重写的setter方法内实现真正的通知机制4如果原类为Person，那么生成的派生类名为NSKVONotifying_Person5.键值观察通知依赖于NSObject 的两个方法: willChangeValueForKey: 和 didChangevlueForKey:；在一个被观察属性发生改变之前， willChangeValueForKey:一定会被调用，这就 会记录旧的值。而当改变发生后，didChangeValueForKey:会被调用，继而 observeValueForKey:ofObject:change:context: 也会被调用 为什么代理要用weak？代理的delegate和dataSource有什么区别？block和代理的区别代理是使用weak来修饰的 1.使用weak是为了避免循环引用2.当使用weak修饰的属性，当对象释放的时候，系统会对属性赋值nil,object-c有个特性就是对nil对象发送消息也就是调用方法，不会cash。 delegate和 dataSource,都是可以使用require和optional来修饰的代理和Block的区别 相同点：代理和Block大多是我们都可以用来做倒序传值的。我们都得注意避免循环引用。不然我们去使用代理还是Block的时候，都需要判断它们是否实现不同点：代理使用weak修饰，代理必须先声明方法。当我们调用代理的时候要判断是否已经实现。block：使用的是copy来修饰，block保存的是一段代码，其实也就是一个函数。并且可以自动捕捉自动变量，如果想修改此自动变量，还必须使用__block修饰。 属性的实质是什么？包括哪几个部分？属性默认的关键字都有哪些？@dynamic关键字和@synthesize关键字是用来做什么的？ 属性是描述类的特征，也就是具备什么特性 三个部分，带下划线的成员变量，get、setter方法 默认关键字： readwrite，assign, atomic; 基本类型NSInteger, BOOL, int, 等 针对引用类型默认:strong, readwrite, atomic （例如：NSString, NSArray, NSDictory等） dynamic修饰的属性，其getter和setter方法编译器是不会自动帮你生成。必须自己是实现的 synthesize 修饰的属性，其getter和setter方法编译器是会自动帮你生成，不必自己实现。且指定与属性相对应的成员变量 默认关键字基本数据： atomic,readwrite,assign OC 对象: atomic,readwrite,strong NSString为什么要用copy关键字strong只是让创建的对象引用计数器+1，并返回当前对象的内容地向的内存地址是相同的,是一份内容因为A指向的内存地址和B指向的内存地址是不相同的，是两份内容 令自己所写的对象具有拷贝功能如果想让自己的类具备copy方法，并返回不可变类型，必须遵循nscopying协议，并且实现 (id)copyWithZone:(NSZone )zone如果让自己的类具备mutableCopy方法，并且放回可变类型，必须遵守NSMutableCopying，并实现- (id)mutableCopyWithZone:(nullable NSZone )zone注意：再此说的copy对应不可边类型和mutableCopy对应不可变类型方法，都是遵从系统规则而已。如果你想实现自己的规则，也是可以的。 nonatomic和atomic nonatomic:表示非原子，不安全，但是效率高。atomic：表示原子行，安全，但是效率低atomic：不能绝对保证线程的安全，当多线程同时访问的时候，会造成线程不安全。可以使用线程锁来保证线程的安全 线程间通信当使用dispath-async函数开辟线程执行任务的完成时，我们需要使用dispatch_async(dispatch_get_main_queue(), ^{ });函数会到主线程内刷新UI。并完成通信 如何使用队列来避免资源抢夺当我们使用多线程来访问同一个数据的时候，就有可能造成数据的不准确性。这个时候我么可以使用线程锁的来来绑定。也是可以使用串行队列来完成。如：fmdb就是使用FMDatabaseQueue，来解决多线程抢夺资源 #数据持久化的几个方案plist,存储字典，数组比较好用preference：偏好设置，实质也是plistNSKeyedArchiver：归档，可以存储对象sqlite：数据库，经常使用第三方来操作，也就是fmdbcoreData:也是数据库储存，苹果官方的 NSCache优于NSDictionary的几点 1.nscache 是可以自动释放内存的。2.nscache是线程安全的，我们可以在不同的线程中添加，删除和查询缓存中的对象。3.一个缓存对象不会拷贝key对象。 Block block：本质就是oc对象代码区，堆区、栈区（ARC情况下会自动拷贝到堆区，因此ARC下只能有两个地方：代码区、堆区）代码区：不访问栈区的变量（如局部变量），且不访问堆区的变量（alloc创建的对象），此时block存放在代码区堆区：访问了处于栈区的变量，或者堆区的变量，此时block存放在堆区。–需要注意实际是放在栈区，在ARC情况下会自动拷贝到堆区，如果不是ARC则存放在栈区，所在函数执行完毕就回释放，想再外面调用需要用copy指向它，这样就拷贝到了堆区，strong属性不会拷贝、会造成野指针错区 为什么在默认情况下无法修改被block捕获的变量？ __block都做了什么？默认情况下，block里面的变量，拷贝进去的是变量的值，而不是指向变量的内存的指针。当使用__block修饰后的变量，拷贝到block里面的就是指向变量的指针，所以我们就可以修改变量的值 Runtimeobjc在向一个对象发送消息,发生了什么 根据对象的isa指针找到类对象id，在查询类对象里面的methodLists方法函数列表，如果没有找到到，在沿着superClass,寻找父类，再在父类methodLists方法列表里面查询，最终找到SEL,根据id和SEL确认IMP（指针函数）,在发送消息 .什么时候会报unrecognized selector错误？iOS有哪些机制来避免走到这一步？能否向编译后得到的类中增加实例变量？能否向运行时创建的类中添加实例变量？为什么1.不能向编译后得到的类增加实例变量2.能向运行时创建的类中添加实例变量 runtime如何实现weak变量的自动置nilruntime 对注册的类， 会进行布局，对于 weak 对象会放入一个 hash 表中。用 weak 指向的对象内存地址作为 key，当此对象的引用计数为0的时候会 dealloc，假如 weak 指向的对象内存地址是a，那么就会以a为键， 在这个 weak 表中搜索，找到所有以a为键的 weak 对象，从而设置为 nil]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[Blog-配置]]></title>
-    <url>%2F2017%2F11%2F23%2FBlog%2FBlog-%E9%85%8D%E7%BD%AE%2F</url>
-    <content type="text"><![CDATA[博客配置01博客配置02 RxSwift 15158084852 Sc125623 15715785197 ww199084 SC125623]]></content>
-      <categories>
-        <category>Blog</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[iOS-Tool-FastLane自动化发布工具+上传Bugly]]></title>
     <url>%2F2017%2F11%2F23%2FOC%2FFoundation%2FiOS-Tool-FastLane%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8F%91%E5%B8%83%E5%B7%A5%E5%85%B7%2B%E4%B8%8A%E4%BC%A0Bugly%2F</url>
     <content type="text"><![CDATA[打包的流程 修改测试版本号 修改Build版本号 执行Archive 选择Adhoc导出IPA安装包文件 上传Bugly测试平台 分享测试链接二维码FastlaneFastlane本身包含两大模块，内核部分+ActionActionAction是Fastlane自动化流程中的最小执行单元，直观上来讲就是Fastfile脚本中的一个个命令，比如：git_pull，deliver，pod_install等等，而这些命令背后都对应其实是一个用Ruby编写的脚本 Fastlane 是一套用 Ruby 编写的 iOS 命令行工具集（后来也支持了 Android），主要组件包括： match / cert / sigh 协助管理代码签名 pem 自动生成 APNs 证书 scan 自动化测试 gym 自动化编译并打包生成签名的 .ipa 文件 snapshot / frameit 协助处理 iOS 屏幕快照 pilot 上传和管理 TestFlight deliver 将应用及其它信息上传到 App Store 而正是这些颗粒度极小的Action，根据自己需求组合成一个自动化的链条 安装 首先确保Xcode命令行工具是最新版本的 $ xcode-select --install 安装Fastlane: $ sudo gem install fastlane -NV 找到工程文件目录下执行 $ fastlane init 在执行“Your Apple ID” 这一步输入苹果开发者账号，fastlane 会自动获取工程文件名，目录等其他数据。这一步“Please confirm the above values”，确认信息，没问题则输入 y。然后，fastlane 会进行一系列的初始化操作，包括下载 App Store 上的元数据和截屏文件。等待初始化完成之后，工程目录下就多了一个 fastlane目录： $ cd fastlane &amp;&amp; lsAppfile Fastfile metadata report.xmlDeliverfile README.md screenshots 文件目录 metadata目录下存放整个元数据文件，包括关键词、版本更新日志、图标等. screenshots目录下存放应用截图 Appfile文件记录App的 bundle ID、Apple ID、Team ID三种信息. Fastfile脚本的核心执行文件.有几个默认的选项，可直接使用. report文件时每次执行fastlane时生成报告 安装fastlane成功后，首先拆解我们需要自动化的两个流程: 自动打包成Adhoc的安装包ipa文件 通过fastlane自动上传到bugly 自动化打包 自动化打包使用最多就是Fastlane中gym这个Action, 转为打包而生, 安装gym这个组件: $ sudo gem install gym cd项目根目录, 创建自动打包脚本: $ vim gym.sh 输入脚本内容: #!/bin/bash#计时SECONDS=0#假设脚本放置在与项目相同的路径下project_path=$(pwd)#取当前时间字符串添加到文件结尾now=$(date +"%Y_%m_%d_%H_%M_%S")#指定项目的scheme名称scheme="Xitu"#指定要打包的配置名configuration="Adhoc"#指定打包所使用的输出方式，目前支持app-store, package, ad-hoc, enterprise, development, 和developer-id，即xcodebuild的method参数export_method='ad-hoc'#指定项目地址workspace_path="$project_path/Xitu.xcworkspace"#指定输出路径output_path="project_path/APP"#指定输出归档文件地址archive_path="$output_path/Xitu$&#123;now&#125;.xcarchive"#指定输出ipa地址ipa_path="$output_path/Xitu$&#123;now&#125;.ipa"#指定输出ipa名称ipa_name="Xitu$&#123;now&#125;.ipa"#获取执行命令时的commit messagecommit_msg="$1"#输出设定的变量值echo "===workspace path: $&#123;workspace_path&#125;==="echo "===archive path: $&#123;archive_path&#125;==="echo "===ipa path: $&#123;ipa_path&#125;==="echo "===export method: $&#123;export_method&#125;==="echo "===commit msg: $1==="#先清空前一次buildgym --workspace $&#123;workspace_path&#125; --scheme $&#123;scheme&#125; --clean --configuration $&#123;configuration&#125; --archive_path $&#123;archive_path&#125; --export_method $&#123;export_method&#125; --output_directory $&#123;output_path&#125; --output_name $&#123;ipa_name&#125;#输出总用时echo "===Finished. Total time: $&#123;SECONDS&#125;s===" 把如上脚本中Xitu改成你的项目名称即可. 为脚本执行提升权限 $ chmod +x gym.sh 执行一下脚本看一下打包效果: $ ./gym.sh 经过572s，Adhoc版本的ipa文件打包成功，我们在项目根目录下找到App目录： =========================================== #上传Bugly fastlane中定义action$ fastlane new_action 这时命令行会要求你输入自定义action名字，直接以bugly上传文件命名 $ upload_app_to_bugly wei wan]]></content>
@@ -3027,6 +3014,11 @@
         <category>Tool</category>
         <category>FastLane</category>
       </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Blog-配置]]></title>
+    <url>%2F2017%2F11%2F23%2FBlog%2FABCD%2F</url>
+    <content type="text"><![CDATA[#KVO实现原理 1.KVO是基于runtime机制实现的2.某个类的属性对象第一次被观察时，系统就会在运行期动态地创建该类的一个派生类，在这个派生类中重写基类中任何被观察属性的setter 方法。派生类在被重写的setter方法内实现真正的通知机制4如果原类为Person，那么生成的派生类名为NSKVONotifying_Person5.键值观察通知依赖于NSObject 的两个方法: willChangeValueForKey: 和 didChangevlueForKey:；在一个被观察属性发生改变之前， willChangeValueForKey:一定会被调用，这就 会记录旧的值。而当改变发生后，didChangeValueForKey:会被调用，继而 observeValueForKey:ofObject:change:context: 也会被调用 为什么代理要用weak？代理的delegate和dataSource有什么区别？block和代理的区别代理是使用weak来修饰的 1.使用weak是为了避免循环引用2.当使用weak修饰的属性，当对象释放的时候，系统会对属性赋值nil,object-c有个特性就是对nil对象发送消息也就是调用方法，不会cash。 delegate和 dataSource,都是可以使用require和optional来修饰的代理和Block的区别 相同点：代理和Block大多是我们都可以用来做倒序传值的。我们都得注意避免循环引用。不然我们去使用代理还是Block的时候，都需要判断它们是否实现不同点：代理使用weak修饰，代理必须先声明方法。当我们调用代理的时候要判断是否已经实现。block：使用的是copy来修饰，block保存的是一段代码，其实也就是一个函数。并且可以自动捕捉自动变量，如果想修改此自动变量，还必须使用__block修饰。 属性的实质是什么？包括哪几个部分？属性默认的关键字都有哪些？@dynamic关键字和@synthesize关键字是用来做什么的？ 属性是描述类的特征，也就是具备什么特性 三个部分，带下划线的成员变量，get、setter方法 默认关键字： readwrite，assign, atomic; 基本类型NSInteger, BOOL, int, 等 针对引用类型默认:strong, readwrite, atomic （例如：NSString, NSArray, NSDictory等） dynamic修饰的属性，其getter和setter方法编译器是不会自动帮你生成。必须自己是实现的 synthesize 修饰的属性，其getter和setter方法编译器是会自动帮你生成，不必自己实现。且指定与属性相对应的成员变量 默认关键字基本数据： atomic,readwrite,assign OC 对象: atomic,readwrite,strong NSString为什么要用copy关键字strong只是让创建的对象引用计数器+1，并返回当前对象的内容地向的内存地址是相同的,是一份内容因为A指向的内存地址和B指向的内存地址是不相同的，是两份内容 令自己所写的对象具有拷贝功能如果想让自己的类具备copy方法，并返回不可变类型，必须遵循nscopying协议，并且实现 (id)copyWithZone:(NSZone )zone如果让自己的类具备mutableCopy方法，并且放回可变类型，必须遵守NSMutableCopying，并实现- (id)mutableCopyWithZone:(nullable NSZone )zone注意：再此说的copy对应不可边类型和mutableCopy对应不可变类型方法，都是遵从系统规则而已。如果你想实现自己的规则，也是可以的。 nonatomic和atomic nonatomic:表示非原子，不安全，但是效率高。atomic：表示原子行，安全，但是效率低atomic：不能绝对保证线程的安全，当多线程同时访问的时候，会造成线程不安全。可以使用线程锁来保证线程的安全 线程间通信当使用dispath-async函数开辟线程执行任务的完成时，我们需要使用dispatch_async(dispatch_get_main_queue(), ^{ });函数会到主线程内刷新UI。并完成通信 如何使用队列来避免资源抢夺当我们使用多线程来访问同一个数据的时候，就有可能造成数据的不准确性。这个时候我么可以使用线程锁的来来绑定。也是可以使用串行队列来完成。如：fmdb就是使用FMDatabaseQueue，来解决多线程抢夺资源 #数据持久化的几个方案plist,存储字典，数组比较好用preference：偏好设置，实质也是plistNSKeyedArchiver：归档，可以存储对象sqlite：数据库，经常使用第三方来操作，也就是fmdbcoreData:也是数据库储存，苹果官方的 NSCache优于NSDictionary的几点 1.nscache 是可以自动释放内存的。2.nscache是线程安全的，我们可以在不同的线程中添加，删除和查询缓存中的对象。3.一个缓存对象不会拷贝key对象。 Block block：本质就是oc对象代码区，堆区、栈区（ARC情况下会自动拷贝到堆区，因此ARC下只能有两个地方：代码区、堆区）代码区：不访问栈区的变量（如局部变量），且不访问堆区的变量（alloc创建的对象），此时block存放在代码区堆区：访问了处于栈区的变量，或者堆区的变量，此时block存放在堆区。–需要注意实际是放在栈区，在ARC情况下会自动拷贝到堆区，如果不是ARC则存放在栈区，所在函数执行完毕就回释放，想再外面调用需要用copy指向它，这样就拷贝到了堆区，strong属性不会拷贝、会造成野指针错区 为什么在默认情况下无法修改被block捕获的变量？ __block都做了什么？默认情况下，block里面的变量，拷贝进去的是变量的值，而不是指向变量的内存的指针。当使用__block修饰后的变量，拷贝到block里面的就是指向变量的指针，所以我们就可以修改变量的值 Runtimeobjc在向一个对象发送消息,发生了什么 根据对象的isa指针找到类对象id，在查询类对象里面的methodLists方法函数列表，如果没有找到到，在沿着superClass,寻找父类，再在父类methodLists方法列表里面查询，最终找到SEL,根据id和SEL确认IMP（指针函数）,在发送消息 .什么时候会报unrecognized selector错误？iOS有哪些机制来避免走到这一步？能否向编译后得到的类中增加实例变量？能否向运行时创建的类中添加实例变量？为什么1.不能向编译后得到的类增加实例变量2.能向运行时创建的类中添加实例变量 runtime如何实现weak变量的自动置nilruntime 对注册的类， 会进行布局，对于 weak 对象会放入一个 hash 表中。用 weak 指向的对象内存地址作为 key，当此对象的引用计数为0的时候会 dealloc，假如 weak 指向的对象内存地址是a，那么就会以a为键， 在这个 weak 表中搜索，找到所有以a为键的 weak 对象，从而设置为 nil]]></content>
   </entry>
   <entry>
     <title><![CDATA[OC/Function功能类/App配置/Bug管理工具]]></title>
@@ -3106,16 +3098,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[OC/Function功能类/App配置/Universal Links通用链接]]></title>
-    <url>%2F2017%2F11%2F21%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E9%85%8D%E7%BD%AE%2FUniversal%20Links%E9%80%9A%E7%94%A8%E9%93%BE%E6%8E%A5%2F</url>
-    <content type="text"><![CDATA[Universal Links简介 iOS9之前 iOS9之前,对于从各种从浏览器,Safari、UIWebView或者 WKWebView中唤醒APP的需求,我们通常只能使用scheme.首先是app中注册某个scheme 在iOS 9以后 通过Universal Link，将App 与网页端建立连接桥，可以从Safari 或者其他前端浏览器来识别并唤醒App，甚至是微信环境下也可以冲破障碍 官方的说明文档–&gt; Universal Link的优点 唯一性: 不像自定义的scheme,因为它使用标准的http/https链接到你的web站点,所以它不会被其它的app所声明.另外,Custom URL scheme 因为是自定义的协议，所以在没有安装 app 的情况下是无法直接打开的，而 universal links 本身是一个 HTTP/HTTPS 链接，所以有更好的兼容性 安全: 当用户的手机上安装了你的app,那么iOS将去你的网站上去下载你上传上去的说明文件(这个说明文件声明了你的app可以打开哪些类型的http链接).因为只有你自己才能上传文件到你网站的根目录,所以你的网站和你的app之间的关联是安全的. 可变: 当用户手机上没有安装你的app的时候,Universal Links也能够工作.如果你愿意,在没有安装你的app的时候,用户点击链接,会在safari中展示你网站的内容. 简单: 一个URL链接,可以同时作用于网站和ap 私有 其它app可以在不需要知道你的app是否安装了的情况下和你的app相互通信 需求 分享页面中，我们经常会看到在页面的顶端或者底部遇到有【打开App】或者【下载App】这样的按钮。 比较友好的产品，会做设备识别，以及检测APP是否安装，来做打开或者下载App 的需求但是在微信中，这方面做的比较恶心，微信下面几乎是全面屏蔽了唤起原生App 的功能 Universal Link 实现条件 域名 有一个域名,且这个域名的网站需要支持https,然后拥有网站的上传到根目录的权限(这个权限是为了上传一个apple指定的文件) 支持Universal Links(通用链接) 创建一个json格式的命名为apple-app-site-association文件 注意这个文件必须没有后缀名,文件名必须为: apple-app-site-association &#123; "applinks": &#123; "apps": [], "details": [ &#123; "appID": "Prefix +点 +BundleID", "paths": [ "/html/1/*", "/*"], &#125;, ] &#125;&#125; Prefix 和 BundleID paths:根据 paths 键设定一个你的app支持的路径列表,只有这些指定的路径的链接,才能被app所处理,举个例子:如果你的网站是www.XXXX.com,你的path写的是”/support/“,那么当用户点击www.yohunl.com/support/myDoucument,就可以进入你的app了,相反www.yohunl.com/other 就不会.path是大小写敏感的! 号表示任意路径. 服务器服务器配置 准备独立域名一级域名，二级域名均可。SSL 证书 为服务器配置HTTPS 用的SSL 证书上传签名好的JSON 配置文件 新建JSON文件新建一个JSON文件，不需要后缀名，内容输入以下代码： appID:相关内容可以在Developer 中心找到相关的内容。如图，前半部分为Prefix 后半部分为ID，即你的App 的bundle id，两者通过.相连paths:用来唤醒App 所需要指定的JSON文件在服务器中的路径。用”/* “ 是根目录，而/html 则是指html目录下的注意：这里的AppID中前半部分，在App 转让主体后会改变，需重新更新填好后保存为apple-app-site-association 名，上传到域名指向的服务器根目录。 &#123; "applinks": &#123; "apps": [], "details": [ &#123; "appID": "5B5Q4xxxx.com.xxxx.xxxx", "paths": [ "/html/1/*", "/*"] &#125;, ] &#125;&#125; 上传传该文件apple-app-site-association 上传传该文件apple-app-site-association到你的域名所对应的网站的根目录下(其实也不一定是根目录,例如ghost博客站点,就没有根目录一说,它就需要放在相应的主题目录下) 这一步是为了苹果能从https://你的域名/apple-app-site-associationxh获取到你上传的apple-app-site-association文件.上传完后,自己先访问一下,看看是否能够获取到,用我的做例子,https://yohunl.com/apple-app-site-association ,当你点击这个链接,应该是下载apple-app-site-association文件.验证该文件是否合法,苹果为了方便开发者,提供了一个网页来验证我们编写的这个apple-app-site-association是否合法有效,验证网址,进入网站进行验证 App配置工程文件配置 在工程文件中，找到Targets - Capabilities - Associated Domains 将开关选为On，并添加你的域名， 格式为 applinks: + 后台给的域名.com applinks: + www.后台给的域名.com iOS移动端的代码- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray * _Nullable))restorationHandler&#123; if ([userActivity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) &#123; NSString *url = userActivity.webpageURL.description; // 这里可以通过拆分url 来传入参数，达到跳转原生页面的功能，如跳转某商品页 [UIApplication sharedApplication] openURL:webpageURL]; &#125; return YES;&#125; h5网页配置 h5网页中对需要唤起App 的按钮或者控件添加点击事件，事件的函数代码如下: function wakeUpApp()&#123; if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) &#123; var loadDateTime = new Date(); window.setTimeout(function() &#123; var timeOutDateTime = new Date(); if (timeOutDateTime - loadDateTime &lt; 5000) &#123; window.location.href = "http://a.app.qq.com/o/simple.jsp?pkgname=你的应用宝BundleID"; &#125; else &#123; window.close(); &#125; &#125;, 25); window.location.href = "https://yourdomainname.com/"; &#125; else if (navigator.userAgent.match(/android/i)) &#123; var state = null; try &#123; state = window.open("apps custom url schemes ", '_blank'); &#125; catch(e) &#123;&#125; if (state) &#123; window.close(); &#125; else &#123; window.location.href = "要跳转的页面URL"; &#125; &#125;&#125;]]></content>
-      <categories>
-        <category>OC</category>
-        <category>Function功能类</category>
-        <category>App配置</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[OC/Function功能类/Websocket长链接]]></title>
     <url>%2F2017%2F11%2F21%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FWebsocket%E9%95%BF%E9%93%BE%E6%8E%A5%2FWebsocket%E9%80%9A%E8%AE%AF%E5%8A%9F%E8%83%BD%2F</url>
     <content type="text"><![CDATA[https://www.jianshu.com/p/86e1059a3e92]]></content>
@@ -3123,6 +3105,16 @@
         <category>OC</category>
         <category>Function功能类</category>
         <category>Websocket长链接</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[OC/Function功能类/App配置/Universal Links通用链接]]></title>
+    <url>%2F2017%2F11%2F21%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E9%85%8D%E7%BD%AE%2FUniversal%20Links%E9%80%9A%E7%94%A8%E9%93%BE%E6%8E%A5%2F</url>
+    <content type="text"><![CDATA[Universal Links简介 iOS9之前 iOS9之前,对于从各种从浏览器,Safari、UIWebView或者 WKWebView中唤醒APP的需求,我们通常只能使用scheme.首先是app中注册某个scheme 在iOS 9以后 通过Universal Link，将App 与网页端建立连接桥，可以从Safari 或者其他前端浏览器来识别并唤醒App，甚至是微信环境下也可以冲破障碍 官方的说明文档–&gt; Universal Link的优点 唯一性: 不像自定义的scheme,因为它使用标准的http/https链接到你的web站点,所以它不会被其它的app所声明.另外,Custom URL scheme 因为是自定义的协议，所以在没有安装 app 的情况下是无法直接打开的，而 universal links 本身是一个 HTTP/HTTPS 链接，所以有更好的兼容性 安全: 当用户的手机上安装了你的app,那么iOS将去你的网站上去下载你上传上去的说明文件(这个说明文件声明了你的app可以打开哪些类型的http链接).因为只有你自己才能上传文件到你网站的根目录,所以你的网站和你的app之间的关联是安全的. 可变: 当用户手机上没有安装你的app的时候,Universal Links也能够工作.如果你愿意,在没有安装你的app的时候,用户点击链接,会在safari中展示你网站的内容. 简单: 一个URL链接,可以同时作用于网站和ap 私有 其它app可以在不需要知道你的app是否安装了的情况下和你的app相互通信 需求 分享页面中，我们经常会看到在页面的顶端或者底部遇到有【打开App】或者【下载App】这样的按钮。 比较友好的产品，会做设备识别，以及检测APP是否安装，来做打开或者下载App 的需求但是在微信中，这方面做的比较恶心，微信下面几乎是全面屏蔽了唤起原生App 的功能 Universal Link 实现条件 域名 有一个域名,且这个域名的网站需要支持https,然后拥有网站的上传到根目录的权限(这个权限是为了上传一个apple指定的文件) 支持Universal Links(通用链接) 创建一个json格式的命名为apple-app-site-association文件 注意这个文件必须没有后缀名,文件名必须为: apple-app-site-association &#123; "applinks": &#123; "apps": [], "details": [ &#123; "appID": "Prefix +点 +BundleID", "paths": [ "/html/1/*", "/*"], &#125;, ] &#125;&#125; Prefix 和 BundleID paths:根据 paths 键设定一个你的app支持的路径列表,只有这些指定的路径的链接,才能被app所处理,举个例子:如果你的网站是www.XXXX.com,你的path写的是”/support/“,那么当用户点击www.yohunl.com/support/myDoucument,就可以进入你的app了,相反www.yohunl.com/other 就不会.path是大小写敏感的! 号表示任意路径. 服务器服务器配置 准备独立域名一级域名，二级域名均可。SSL 证书 为服务器配置HTTPS 用的SSL 证书上传签名好的JSON 配置文件 新建JSON文件新建一个JSON文件，不需要后缀名，内容输入以下代码： appID:相关内容可以在Developer 中心找到相关的内容。如图，前半部分为Prefix 后半部分为ID，即你的App 的bundle id，两者通过.相连paths:用来唤醒App 所需要指定的JSON文件在服务器中的路径。用”/* “ 是根目录，而/html 则是指html目录下的注意：这里的AppID中前半部分，在App 转让主体后会改变，需重新更新填好后保存为apple-app-site-association 名，上传到域名指向的服务器根目录。 &#123; "applinks": &#123; "apps": [], "details": [ &#123; "appID": "5B5Q4xxxx.com.xxxx.xxxx", "paths": [ "/html/1/*", "/*"] &#125;, ] &#125;&#125; 上传传该文件apple-app-site-association 上传传该文件apple-app-site-association到你的域名所对应的网站的根目录下(其实也不一定是根目录,例如ghost博客站点,就没有根目录一说,它就需要放在相应的主题目录下) 这一步是为了苹果能从https://你的域名/apple-app-site-associationxh获取到你上传的apple-app-site-association文件.上传完后,自己先访问一下,看看是否能够获取到,用我的做例子,https://yohunl.com/apple-app-site-association ,当你点击这个链接,应该是下载apple-app-site-association文件.验证该文件是否合法,苹果为了方便开发者,提供了一个网页来验证我们编写的这个apple-app-site-association是否合法有效,验证网址,进入网站进行验证 App配置工程文件配置 在工程文件中，找到Targets - Capabilities - Associated Domains 将开关选为On，并添加你的域名， 格式为 applinks: + 后台给的域名.com applinks: + www.后台给的域名.com iOS移动端的代码- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray * _Nullable))restorationHandler&#123; if ([userActivity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) &#123; NSString *url = userActivity.webpageURL.description; // 这里可以通过拆分url 来传入参数，达到跳转原生页面的功能，如跳转某商品页 [UIApplication sharedApplication] openURL:webpageURL]; &#125; return YES;&#125; h5网页配置 h5网页中对需要唤起App 的按钮或者控件添加点击事件，事件的函数代码如下: function wakeUpApp()&#123; if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) &#123; var loadDateTime = new Date(); window.setTimeout(function() &#123; var timeOutDateTime = new Date(); if (timeOutDateTime - loadDateTime &lt; 5000) &#123; window.location.href = "http://a.app.qq.com/o/simple.jsp?pkgname=你的应用宝BundleID"; &#125; else &#123; window.close(); &#125; &#125;, 25); window.location.href = "https://yourdomainname.com/"; &#125; else if (navigator.userAgent.match(/android/i)) &#123; var state = null; try &#123; state = window.open("apps custom url schemes ", '_blank'); &#125; catch(e) &#123;&#125; if (state) &#123; window.close(); &#125; else &#123; window.location.href = "要跳转的页面URL"; &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>OC</category>
+        <category>Function功能类</category>
+        <category>App配置</category>
       </categories>
   </entry>
   <entry>
@@ -3144,6 +3136,16 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[OC/Function功能类/App配置/配置启动图]]></title>
+    <url>%2F2017%2F11%2F20%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E9%85%8D%E7%BD%AE%2F%E9%85%8D%E7%BD%AE%E5%90%AF%E5%8A%A8%E5%9B%BE%2F</url>
+    <content type="text"><![CDATA[https://www.cnblogs.com/xiu619544553/p/5348678.html]]></content>
+      <categories>
+        <category>OC</category>
+        <category>Function功能类</category>
+        <category>App配置</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[OC/Function功能类/App配置/检查项目是否使用IDFA]]></title>
     <url>%2F2017%2F11%2F20%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E9%85%8D%E7%BD%AE%2F%E6%A3%80%E6%9F%A5%E9%A1%B9%E7%9B%AE%E6%98%AF%E5%90%A6%E4%BD%BF%E7%94%A8IDFA%2F</url>
     <content type="text"><![CDATA[http://blog.csdn.net/chelongfei/article/details/51495862]]></content>
@@ -3157,16 +3159,6 @@
         <tag>Function功能类</tag>
         <tag>App配置</tag>
       </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[OC/Function功能类/App配置/配置启动图]]></title>
-    <url>%2F2017%2F11%2F20%2FOC%2FFunction%E5%8A%9F%E8%83%BD%E7%B1%BB%2FApp%E9%85%8D%E7%BD%AE%2F%E9%85%8D%E7%BD%AE%E5%90%AF%E5%8A%A8%E5%9B%BE%2F</url>
-    <content type="text"><![CDATA[https://www.cnblogs.com/xiu619544553/p/5348678.html]]></content>
-      <categories>
-        <category>OC</category>
-        <category>Function功能类</category>
-        <category>App配置</category>
-      </categories>
   </entry>
   <entry>
     <title><![CDATA[OC -Lib-JSBadgeView数字角标]]></title>
@@ -3284,9 +3276,9 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[OC/Foundation/Serialization序列化和发序列化]]></title>
-    <url>%2F2016%2F11%2F23%2FOC%2FFoundation%2FSerialization%E5%BA%8F%E5%88%97%E5%8C%96%2FSerialization%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%91%E5%BA%8F%E5%88%97%E5%8C%96%2F</url>
-    <content type="text"><![CDATA[https://blog.csdn.net/u010810493/article/details/20917625]]></content>
+    <title><![CDATA[OC/Foundation/Runtime实现iOS序列化与反序列化]]></title>
+    <url>%2F2016%2F11%2F23%2FOC%2FFoundation%2FSerialization%E5%BA%8F%E5%88%97%E5%8C%96%2FRuntime%E5%AE%9E%E7%8E%B0iOS%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%2F</url>
+    <content type="text"><![CDATA[https://www.jianshu.com/p/fed1dcb1ac9f https://blog.csdn.net/longlongValue/article/details/81060583]]></content>
       <categories>
         <category>OC</category>
         <category>Foundation</category>
@@ -3294,9 +3286,9 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[OC/Foundation/Runtime实现iOS序列化与反序列化]]></title>
-    <url>%2F2016%2F11%2F23%2FOC%2FFoundation%2FSerialization%E5%BA%8F%E5%88%97%E5%8C%96%2FRuntime%E5%AE%9E%E7%8E%B0iOS%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%2F</url>
-    <content type="text"><![CDATA[https://www.jianshu.com/p/fed1dcb1ac9f https://blog.csdn.net/longlongValue/article/details/81060583]]></content>
+    <title><![CDATA[OC/Foundation/Serialization序列化和发序列化]]></title>
+    <url>%2F2016%2F11%2F23%2FOC%2FFoundation%2FSerialization%E5%BA%8F%E5%88%97%E5%8C%96%2FSerialization%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%91%E5%BA%8F%E5%88%97%E5%8C%96%2F</url>
+    <content type="text"><![CDATA[https://blog.csdn.net/u010810493/article/details/20917625]]></content>
       <categories>
         <category>OC</category>
         <category>Foundation</category>
