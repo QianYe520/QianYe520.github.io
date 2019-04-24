@@ -311,7 +311,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Traits-Single/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Subscribe/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -330,7 +330,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Traits-Single/" itemprop="url">RxSwift-Grammar-特征序列Traits-Single</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Subscribe/" itemprop="url">RxSwift-Grammar-Subscribe</a></h1>
         
 
         <div class="post-meta">
@@ -415,19 +415,16 @@
       
         
           
-          Single基本介绍
-Single 是 Observable 的另外一个版本但它不像 Observable 可以发出多个元素，它要么只能发出一个元素，要么产生一个 error 事件
+          subscribe 和 subscribe(onNext:)
+Subscribe
 
 
-发出一个元素，或一个 error 事件
-不会共享状态变化
-
-应用场景
-Single 比较常见的例子就是执行 HTT
+subscribe是订阅sequence发出的事件，比如next事件，error事件等
+而subscribe(onNext:)是监听sequence发出的next事件中的element进行处理，他会忽略error和
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Traits-Single/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Subscribe/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -480,7 +477,7 @@ Single 比较常见的例子就是执行 HTT
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/map和flatMap/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Driver/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -499,7 +496,7 @@ Single 比较常见的例子就是执行 HTT
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/map和flatMap/" itemprop="url">RxSwift-Grammar-map和flatMap</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Driver/" itemprop="url">RxSwift-Grammar-Driver</a></h1>
         
 
         <div class="post-meta">
@@ -584,14 +581,14 @@ Single 比较常见的例子就是执行 HTT
       
         
           
-          map和flatMap
-map函数，接收一个R类型的序列，返回一个R类型的序列，还是原来的序列。
+          Driver
+官方的例子的场景大概就是，根据一个输入框的关键字，来请求数据，然后接结果绑定到另一个Label,和TableView中首先创建一个可监听序列results;将results绑定到resultCount.rx.text上;将results绑定到resultsTableView上.
 
-public func map&lt;R&gt;(_ transform: @escaping (Self.E) throws -&gt; R) -&gt; RxSwift.Observable&lt
+//
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/map和flatMap/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Driver/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -644,7 +641,7 @@ public func map&lt;R&gt;(_ transform: @escaping (Self.E) throws -&gt; R) -&gt; R
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/observeOn()和subscribeOn()/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Observable&Observer/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -663,7 +660,7 @@ public func map&lt;R&gt;(_ transform: @escaping (Self.E) throws -&gt; R) -&gt; R
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/observeOn()和subscribeOn()/" itemprop="url">RxSwift-Grammar-observeOn()和subscribeOn()</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Observable&Observer/" itemprop="url">RxSwift-Grammar-Observable可观察序列&Observer观察者</a></h1>
         
 
         <div class="post-meta">
@@ -748,30 +745,18 @@ public func map&lt;R&gt;(_ transform: @escaping (Self.E) throws -&gt; R) -&gt; R
       
         
           
-          observeOn()和subscribeOn()
+          Observable可观察序列  和 Observer观察者实质
+Observer (观察者)订阅一个可观察序列 Observable(事件源)每一个Observable的实例都是一个序列观察者 对 Observable 发射的数据或数据序列作出响应
+
+举例
+Button 的点击这个情景
 
 
-
-
-
-
-
-
-subscribeOn()
-设置起点在哪个线程
-
-
-observeOn()
-置了后续工作在哪个线程
-
-
-
-
-1)所有动作都发生在当前的默认线程2)observeOn()转换线程到主线程，下面所有的操作都在主线程3)subscribe
+把用户
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/observeOn()和subscribeOn()/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Observable&Observer/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
