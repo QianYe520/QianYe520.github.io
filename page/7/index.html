@@ -311,7 +311,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/07-09-Operator-自定义操作符/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/map和flatMap/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -330,7 +330,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/07-09-Operator-自定义操作符/" itemprop="url">RxSwift-Grammar-自定义operator</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/map和flatMap/" itemprop="url">RxSwift-Grammar-map和flatMap</a></h1>
         
 
         <div class="post-meta">
@@ -415,14 +415,14 @@
       
         
           
-          自定义operator
-自定义操作符很简单，官方推荐尽量使用标准的操作符，但是你也可以定义自己的操作符，文档上说有两种方法，这里介绍一下常用的一种方法吧自定义一个map操作符
+          map和flatMap
+map函数，接收一个R类型的序列，返回一个R类型的序列，还是原来的序列。
 
- extension ObserverType &#123;    func myMap&lt;R&gt;(transfo
+public func map&lt;R&gt;(_ transform: @escaping (Self.E) throws -&gt; R) -&gt; RxSwift.Observable&lt
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/07-09-Operator-自定义操作符/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/map和flatMap/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -475,7 +475,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/UIBindingObserver/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Observable&Observer/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -494,7 +494,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/UIBindingObserver/" itemprop="url">RxSwift-Grammar-UIBindingObserver</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Observable&Observer/" itemprop="url">RxSwift-Grammar-Observable可观察序列&Observer观察者</a></h1>
         
 
         <div class="post-meta">
@@ -579,12 +579,18 @@
       
         
           
-          UIBindingObserver
-UIBindingObserver这个东西很有用的，创建我们自己的监听者，有时候RxCocoa(RxSwift中对UIKit的一个扩展库)给的扩展不够我们使用，比如一个UITextField有个isEnabled属性，我想把这个isEnabled变为一个obser
+          Observable可观察序列  和 Observer观察者实质
+Observer (观察者)订阅一个可观察序列 Observable(事件源)每一个Observable的实例都是一个序列观察者 对 Observable 发射的数据或数据序列作出响应
+
+举例
+Button 的点击这个情景
+
+
+把用户
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/UIBindingObserver/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Observable&Observer/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -637,7 +643,7 @@ UIBindingObserver这个东西很有用的，创建我们自己的监听者，有
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/observeOn()和subscribeOn()/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Subscribe/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千夜 QQ:738816656">
@@ -656,7 +662,7 @@ UIBindingObserver这个东西很有用的，创建我们自己的监听者，有
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/observeOn()和subscribeOn()/" itemprop="url">RxSwift-Grammar-observeOn()和subscribeOn()</a></h1>
+                <a class="post-title-link" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Subscribe/" itemprop="url">RxSwift-Grammar-Subscribe</a></h1>
         
 
         <div class="post-meta">
@@ -741,30 +747,16 @@ UIBindingObserver这个东西很有用的，创建我们自己的监听者，有
       
         
           
-          observeOn()和subscribeOn()
+          subscribe 和 subscribe(onNext:)
+Subscribe
 
 
-
-
-
-
-
-
-subscribeOn()
-设置起点在哪个线程
-
-
-observeOn()
-置了后续工作在哪个线程
-
-
-
-
-1)所有动作都发生在当前的默认线程2)observeOn()转换线程到主线程，下面所有的操作都在主线程3)subscribe
+subscribe是订阅sequence发出的事件，比如next事件，error事件等
+而subscribe(onNext:)是监听sequence发出的next事件中的element进行处理，他会忽略error和
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/observeOn()和subscribeOn()/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/RxSwift/Guide文档指南/RxSwift文档/Subscribe/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
